@@ -1,0 +1,14 @@
+dataset: breast-w
+templates:
+  5e515c9a-e720-4783-918d-e0afbeb253d2: !Template
+    name: breast-w
+    id: 5e515c9a-e720-4783-918d-e0afbeb253d2
+    reference: ''
+    answer_choices: Benign tumor ||| Malignant tumor
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Benign tumor, Malignant tumor?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

@@ -1,0 +1,216 @@
+{
+  "dataset": "credit-g",
+  "description": "German Credit dataset for credit risk assessment. This dataset classifies people described by a set of attributes as good or bad credit risks. Based on demographic and financial profiles of loan applicants, the dataset enables banks to predict creditworthiness and make informed lending decisions.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data",
+  "openml_task": 31,
+  "openml_dataset": 31,
+  "date_donated": "1994",
+  "creator": "Dr. Hans Hofmann (University of Hamburg)",
+  "instances": 1000,
+  "features": 20,
+  "target": "class",
+  "target_type": "binary",
+  "missing_values": false,
+  "feature_types": {
+    "numerical": 7,
+    "categorical": 13
+  },
+  "feature_extraction": "Original demographic and financial attributes from loan applications",
+  "feature_description": "Mix of demographic (age, personal status, employment), financial (credit amount, account status, savings), and loan-specific (duration, purpose, installment rate) attributes collected from German bank loan applications.",
+  "instances_per_class": {
+    "good": 700,
+    "bad": 300
+  },
+  "target_values": {
+    "1": "Good credit risk (creditworthy)",
+    "2": "Bad credit risk (not creditworthy)"
+  },
+  "domain": "Finance/Banking/Credit Risk Management",
+  "use_case": "Credit scoring, loan approval decision support, risk assessment for banking institutions, financial services automation, and credit risk modeling",
+  "dataset_family": {
+    "description": "StatLog project dataset collection for classification benchmarking",
+    "other_datasets": [
+      "StatLog Vehicle dataset",
+      "StatLog Heart Disease dataset", 
+      "StatLog Australian Credit dataset",
+      "StatLog Landsat Satellite dataset"
+    ],
+    "note": "Part of the StatLog (Statistical Learning) project comparing classification algorithms"
+  },
+  "data_collection": "Loan application records from a German financial institution, containing demographic and financial information of credit applicants processed in the early 1990s",
+  "mathematical_background": "Binary classification problem with cost matrix consideration - misclassifying bad credit as good (false negative) incurs 5x higher cost than misclassifying good credit as bad (false positive)",
+  "ethical_considerations": "Dataset represents German banking practices from the 1990s and may contain demographic biases. Contains gender and marital status information that may raise fairness concerns in modern credit decisions. Cultural and temporal context should be considered when applying models.",
+  "cost_matrix": {
+    "description": "Asymmetric misclassification costs where false negatives (approving bad credit) cost 5 times more than false positives (rejecting good credit)",
+    "matrix": [
+      [0, 1],
+      [5, 0]
+    ],
+    "explanation": "Row: actual class, Column: predicted class. Cost of classifying bad customer as good (5) >> cost of classifying good customer as bad (1)"
+  },
+  "citations": [
+    {
+      "author": "H. Hofmann",
+      "title": "Statlog (German Credit Data)",
+      "venue": "UCI Machine Learning Repository",
+      "doi": "10.24432/C5NC77",
+      "year": "1994",
+      "institution": "University of Hamburg, Institut für Statistik und Ökonometrie"
+    }
+  ],
+  "dataset_name": "credit-g",
+  "original_source": {
+    "creator": "Dr. Hans Hofmann",
+    "institution": "University of Hamburg, Institut für Statistik und Ökonometrie",
+    "department": "FB Wirtschaftswissenschaften",
+    "address": "Von-Melle-Park 5, 2000 Hamburg 13, Germany",
+    "date": "1994",
+    "context": "StatLog project for comparative analysis of machine learning algorithms"
+  },
+  "columns": [
+    {
+      "name": "checking_status",
+      "semantic_description": "Status of existing checking account in Deutsche Mark. Indicates the applicant's current account balance range or absence of checking account.",
+      "data_type": "categorical",
+      "values": ["<0 DM", "0<=X<200 DM", ">=200 DM", "no checking account"]
+    },
+    {
+      "name": "duration",
+      "semantic_description": "Duration of the credit/loan in months. Represents the requested loan term length.",
+      "data_type": "numerical",
+      "unit": "months"
+    },
+    {
+      "name": "credit_history",
+      "semantic_description": "Credit history status indicating past credit behavior, payment delays, and existing credit obligations.",
+      "data_type": "categorical", 
+      "values": ["no credits taken/all paid duly", "all credits paid duly", "existing credits paid duly", "delay in paying", "critical account/other credits"]
+    },
+    {
+      "name": "purpose",
+      "semantic_description": "Purpose for which the credit/loan is being requested (e.g., car purchase, education, business).",
+      "data_type": "categorical",
+      "values": ["new car", "used car", "furniture/equipment", "radio/television", "domestic appliances", "repairs", "education", "retraining", "business", "others"]
+    },
+    {
+      "name": "credit_amount",
+      "semantic_description": "Credit amount requested by the applicant in Deutsche Mark.",
+      "data_type": "numerical",
+      "unit": "Deutsche Mark (DM)"
+    },
+    {
+      "name": "savings_status",
+      "semantic_description": "Status of savings account/bonds in Deutsche Mark, indicating the applicant's savings level.",
+      "data_type": "categorical",
+      "values": ["<100 DM", "100<=X<500 DM", "500<=X<1000 DM", ">=1000 DM", "unknown/no savings account"]
+    },
+    {
+      "name": "employment",
+      "semantic_description": "Present employment duration in years, indicating job stability and employment history.",
+      "data_type": "categorical",
+      "values": ["unemployed", "<1 year", "1<=X<4 years", "4<=X<7 years", ">=7 years"]
+    },
+    {
+      "name": "installment_commitment",
+      "semantic_description": "Installment rate as percentage of disposable income, indicating debt burden relative to income.",
+      "data_type": "numerical",
+      "unit": "percentage"
+    },
+    {
+      "name": "personal_status",
+      "semantic_description": "Personal status and gender information combining marital status with gender identification.",
+      "data_type": "categorical",
+      "values": ["male divorced/separated", "female divorced/separated/married", "male single", "male married/widowed", "female single"]
+    },
+    {
+      "name": "other_parties",
+      "semantic_description": "Information about other debtors or guarantors for the loan application.",
+      "data_type": "categorical",
+      "values": ["none", "co-applicant", "guarantor"]
+    },
+    {
+      "name": "residence_since",
+      "semantic_description": "Present residence duration in years, indicating housing stability.",
+      "data_type": "numerical",
+      "unit": "years"
+    },
+    {
+      "name": "property_magnitude",
+      "semantic_description": "Most valuable available property owned by the applicant.",
+      "data_type": "categorical",
+      "values": ["real estate", "building society savings/life insurance", "car or other", "unknown/no property"]
+    },
+    {
+      "name": "age",
+      "semantic_description": "Age of the credit applicant in years.",
+      "data_type": "numerical",
+      "unit": "years"
+    },
+    {
+      "name": "other_payment_plans",
+      "semantic_description": "Existence of other installment plans with banks or stores.",
+      "data_type": "categorical",
+      "values": ["bank", "stores", "none"]
+    },
+    {
+      "name": "housing",
+      "semantic_description": "Housing situation of the applicant (rent, own, or free).",
+      "data_type": "categorical",
+      "values": ["rent", "own", "for free"]
+    },
+    {
+      "name": "existing_credits",
+      "semantic_description": "Number of existing credits at this bank, indicating current credit exposure.",
+      "data_type": "numerical",
+      "unit": "count"
+    },
+    {
+      "name": "job",
+      "semantic_description": "Job classification indicating skill level and employment type.",
+      "data_type": "categorical",
+      "values": ["unemployed/unskilled non-resident", "unskilled resident", "skilled employee/official", "management/highly qualified"]
+    },
+    {
+      "name": "num_dependents",
+      "semantic_description": "Number of people being liable to provide maintenance for (dependents).",
+      "data_type": "numerical",
+      "unit": "count"
+    },
+    {
+      "name": "own_telephone",
+      "semantic_description": "Whether the applicant has a registered telephone number.",
+      "data_type": "categorical",
+      "values": ["yes", "no"]
+    },
+    {
+      "name": "foreign_worker",
+      "semantic_description": "Whether the applicant is a foreign worker.",
+      "data_type": "categorical", 
+      "values": ["yes", "no"]
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "1",
+      "meaning": "Good credit risk - likely to repay loan"
+    },
+    {
+      "name": "2", 
+      "meaning": "Bad credit risk - unlikely to repay loan"
+    }
+  ],
+  "dataset_history": "Data Collection: Real loan application records from a German financial institution in the early 1990s, processed and anonymized for research purposes as part of the StatLog comparative study of machine learning algorithms.",
+  "inference_notes": "Use Case: Predict creditworthiness of loan applicants to support banking decisions on loan approvals. The dataset includes a cost matrix reflecting the real-world asymmetric costs of credit decisions where false negatives (approving bad credit) are much more expensive than false positives (rejecting good credit).",
+  "data_preprocessing": {
+    "categorical_encoding": "Original dataset uses categorical codes (A11, A12, etc.) which are often converted to meaningful labels",
+    "numerical_format": "Alternative numerical version available with indicator variables for categorical features",
+    "missing_values": "No missing values in the dataset",
+    "class_distribution": "Imbalanced with 70% good credit risks and 30% bad credit risks"
+  },
+  "benchmark_performance": {
+    "baseline_accuracy": "Majority class baseline achieves 70% accuracy",
+    "cost_considerations": "Performance should be evaluated using the provided cost matrix rather than simple accuracy",
+    "evaluation_metrics": "Recommended metrics include cost-sensitive accuracy, precision/recall for bad credit class, and total misclassification cost"
+  }
+}

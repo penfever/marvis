@@ -1,0 +1,56 @@
+{
+  "dataset_name": "jc_penney_products",
+  "description": "A retail dataset containing product information from JC Penney's e-commerce website. The dataset combines both textual and numerical features to characterize products and their pricing, representing a real-world multimodal machine learning challenge in retail price prediction.",
+  "original_source": {
+    "creator": "PromptCloud",
+    "institution": "PromptCloud Web Scraping Services",
+    "date": "2017",
+    "publication": "Felix, N., et al. (2021). Benchmarking multimodal automl for tabular data with text fields. arXiv preprint arXiv:2111.02705"
+  },
+  "columns": [
+    {
+      "name": "product_title",
+      "semantic_description": "The displayed name/title of the product on the JC Penney website",
+      "data_type": "text"
+    },
+    {
+      "name": "product_description",
+      "semantic_description": "Detailed text description of the product including features, materials, and specifications",
+      "data_type": "text"
+    },
+    {
+      "name": "rating",
+      "semantic_description": "Customer rating of the product on a 5-point scale",
+      "data_type": "numeric (float), range: 0-5"
+    },
+    {
+      "name": "regular_price",
+      "semantic_description": "Original listed price of the product before any discounts",
+      "data_type": "numeric (float), USD"
+    },
+    {
+      "name": "category",
+      "semantic_description": "Product category or department classification",
+      "data_type": "categorical text"
+    },
+    {
+      "name": "brand",
+      "semantic_description": "Manufacturer or brand name of the product",
+      "data_type": "categorical text"
+    }
+  ],
+  "target_description": {
+    "name": "sale_price",
+    "meaning": "The actual selling price of the product after applying any discounts or promotions",
+    "units": "USD (United States Dollars)",
+    "range": "Positive float values, typically between $1-$500"
+  },
+  "dataset_history": "The dataset was created by scraping product information from JC Penney's website around 2017. It was initially shared on Kaggle by PromptCloud and has since been used in research studying multimodal AutoML approaches, particularly for handling mixed text and numerical data in retail applications. The dataset represents a snapshot of JC Penney's product catalog during a specific time period.",
+  "inference_notes": "Important considerations include:\n1. Temporal nature of pricing data - patterns may not hold for current market conditions\n2. Text features require careful preprocessing due to retail-specific terminology and formatting\n3. Price relationships may be influenced by seasonal factors and promotional events\n4. Rating data may have selection bias as it represents only customers who chose to leave reviews\n5. The relationship between regular_price and sale_price reflects JC Penney's pricing strategy and may not generalize to other retailers\n6. Product descriptions may contain noise from HTML formatting or inconsistent entry patterns",
+  "_metadata": {
+    "task_id": 363373,
+    "generated_at": "2025-06-22T08:26:58.938476",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "dataset": "churn",
+  "description": "Telecommunications customer churn dataset containing telephony account features and usage patterns to predict whether customers will switch providers. Originally used in 'Discovering Knowledge in Data: An Introduction to Data Mining'.",
+  "source": "Penn Machine Learning Benchmarks (PMLB)",
+  "source_url": "https://github.com/EpistasisLab/penn-ml-benchmarks",
+  "openml_task": 167141,
+  "openml_dataset": 40701,
+  "original_source": {
+    "creator": "Unknown",
+    "institution": "Penn Machine Learning Benchmarks (PMLB)",
+    "date": "Unknown",
+    "publication": "Unknown: Unknown"
+  },
+  "creator": {
+    "note": "Unknown original creator, distributed via PMLB"
+  },
+  "instances": 5000,
+  "features": 20,
+  "target": "churn",
+  "target_type": "binary",
+  "missing_values": false,
+  "feature_types": {
+    "numeric": 17,
+    "categorical": 3
+  },
+  "feature_description": {
+    "state": "State code (numeric encoding)",
+    "account_length": "Length of account in days",
+    "area_code": "Telephone area code (408, 415, 510)",
+    "phone_number": "Phone number (numeric)",
+    "international_plan": "International plan subscription (0=no, 1=yes)",
+    "voice_mail_plan": "Voice mail plan subscription (0=no, 1=yes)",
+    "number_vmail_messages": "Number of voice mail messages",
+    "total_day_minutes": "Total minutes used during day",
+    "total_day_calls": "Total number of calls during day",
+    "total_day_charge": "Total charges for day usage",
+    "total_eve_minutes": "Total minutes used during evening",
+    "total_eve_calls": "Total number of calls during evening",
+    "total_eve_charge": "Total charges for evening usage",
+    "total_night_minutes": "Total minutes used during night",
+    "total_night_calls": "Total number of calls during night",
+    "total_night_charge": "Total charges for night usage",
+    "total_intl_minutes": "Total international minutes",
+    "total_intl_calls": "Total international calls",
+    "total_intl_charge": "Total international charges",
+    "number_customer_service_calls": "Number of calls to customer service"
+  },
+  "target_values": {
+    "0": "No churn (customer retained)",
+    "1": "Churn (customer left)"
+  },
+  "class_distribution": {
+    "no_churn": "Approximately 86%",
+    "churn": "Approximately 14%",
+    "note": "Imbalanced dataset typical of real-world churn scenarios"
+  },
+  "domain": "Telecommunications/Customer Analytics",
+  "use_case": "Customer retention, churn prediction, targeted marketing, customer lifetime value optimization, proactive retention campaigns",
+  "business_context": "Retaining existing customers is more cost-effective than acquiring new ones",
+  "preprocessing": "Features include derived charge amounts from usage, area codes as categorical",
+  "performance_considerations": "Class imbalance (14% churn rate), need for cost-sensitive learning or resampling techniques",
+  "advantages": "Real business problem, clear features, actionable insights possible",
+  "challenges": "Imbalanced classes, temporal aspects not captured, regional variations",
+  "research_applications": "Binary classification, imbalanced learning, customer analytics, feature importance for business insights",
+  "evaluation_metrics": "Recall/sensitivity crucial for identifying churners, precision-recall trade-offs, cost-sensitive evaluation",
+  "business_value": "Even 1% reduction in churn can lead to significant revenue retention",
+  "citations": [
+    {
+      "reference": "Used in 'Discovering Knowledge in Data: An Introduction to Data Mining' by Daniel T. Larose",
+      "url": "http://secs.ac.in/wp-content/CSE_PORTAL/DataMining_Daniel.pdf"
+    }
+  ],
+  "dataset_name": "churn",
+  "columns": [
+    {
+      "name": "state",
+      "semantic_description": "State code (numeric encoding)",
+      "data_type": "numeric"
+    },
+    {
+      "name": "account_length",
+      "semantic_description": "Length of account in days",
+      "data_type": "integer"
+    },
+    {
+      "name": "area_code",
+      "semantic_description": "Telephone area code (408, 415, 510)",
+      "data_type": "numeric"
+    },
+    {
+      "name": "phone_number",
+      "semantic_description": "Phone number (numeric)",
+      "data_type": "integer"
+    },
+    {
+      "name": "international_plan",
+      "semantic_description": "International plan subscription (0=no, 1=yes)",
+      "data_type": "binary"
+    },
+    {
+      "name": "voice_mail_plan",
+      "semantic_description": "Voice mail plan subscription (0=no, 1=yes)",
+      "data_type": "binary"
+    },
+    {
+      "name": "number_vmail_messages",
+      "semantic_description": "Number of voice mail messages",
+      "data_type": "integer"
+    },
+    {
+      "name": "total_day_minutes",
+      "semantic_description": "Total minutes used during day",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_day_calls",
+      "semantic_description": "Total number of calls during day",
+      "data_type": "integer"
+    },
+    {
+      "name": "total_day_charge",
+      "semantic_description": "Total charges for day usage",
+      "data_type": "integer"
+    },
+    {
+      "name": "total_eve_minutes",
+      "semantic_description": "Total minutes used during evening",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_eve_calls",
+      "semantic_description": "Total number of calls during evening",
+      "data_type": "integer"
+    },
+    {
+      "name": "total_eve_charge",
+      "semantic_description": "Total charges for evening usage",
+      "data_type": "integer"
+    },
+    {
+      "name": "total_night_minutes",
+      "semantic_description": "Total minutes used during night",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_night_calls",
+      "semantic_description": "Total number of calls during night",
+      "data_type": "integer"
+    },
+    {
+      "name": "total_night_charge",
+      "semantic_description": "Total charges for night usage",
+      "data_type": "integer"
+    },
+    {
+      "name": "total_intl_minutes",
+      "semantic_description": "Total international minutes",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_intl_calls",
+      "semantic_description": "Total international calls",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_intl_charge",
+      "semantic_description": "Total international charges",
+      "data_type": "numeric"
+    },
+    {
+      "name": "number_customer_service_calls",
+      "semantic_description": "Number of calls to customer service",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "No churn (customer retained)"
+    },
+    {
+      "name": "1",
+      "meaning": "Churn (customer left)"
+    }
+  ],
+  "dataset_history": "Dataset history not available for churn",
+  "inference_notes": "Challenges: Imbalanced classes, temporal aspects not captured, regional variations. Advantages: Real business problem, clear features, actionable insights possible. Applications: Binary classification, imbalanced learning, customer analytics, feature importance for business insights. Use Case: Customer retention, churn prediction, targeted marketing, customer lifetime value optimization, proactive retention campaigns"
+}

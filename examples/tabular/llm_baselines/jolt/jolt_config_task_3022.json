@@ -1,0 +1,27 @@
+{
+  "dataset_name": "vowel",
+  "task_prefix": "Speaker-independent recognition of eleven steady-state vowels of British English. Features are derived from spectral analysis of vowel sounds, with contextual information about speaker gender and identity. Each example contains 4 features. Vowel recognition systems.",
+  "column_descriptions": {
+    "F0-F9": "10 features representing formant frequencies extracted from vowel utterances",
+    "Sex": "Speaker gender (Male/Female)",
+    "Speaker": "Speaker identifier",
+    "Train_or_Test": "Dataset split indicator (removed in OpenML version)"
+  },
+  "class_names": [
+    "0",
+    "1",
+    "10",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '0' (hid (as in 'heed')), '1' (hId (as in 'hid')), '2' (hEd (as in 'head')), '3' (hAd (as in 'had')), '4' (hYd (as in 'hard')), '5' (had (as in 'hod')), '6' (hOd (as in 'hoard')), '7' (hUd (as in 'hood')), '8' (hud (as in 'who'd')), '9' (hed (as in 'heard')), '10' (had (as in 'hud'))",
+  "num_features": 4,
+  "num_classes": 11,
+  "task_id": "3022"
+}

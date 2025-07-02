@@ -1,0 +1,16 @@
+dataset: pendigits
+templates:
+  13d89967-e2f0-4a84-8823-39b3f45c22cf: !Template
+    name: pendigits
+    id: 13d89967-e2f0-4a84-8823-39b3f45c22cf
+    reference: ''
+    answer_choices: Digit 0 ||| Digit 1 ||| Digit 2 ||| Digit 3 ||| Digit 4 ||| Digit
+      5 ||| Digit 6 ||| Digit 7 ||| Digit 8 ||| Digit 9
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Digit 0, Digit 1, Digit 2, Digit 3, Digit 4, Digit 5, Digit 6, Digit 7, Digit\
+      \ 8, Digit 9?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

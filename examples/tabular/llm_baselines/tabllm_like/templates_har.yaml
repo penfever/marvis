@@ -1,0 +1,16 @@
+dataset: har
+templates:
+  d800d6c2-36e8-4007-a0d9-24cdcf8ec4fb: !Template
+    name: har
+    id: d800d6c2-36e8-4007-a0d9-24cdcf8ec4fb
+    reference: ''
+    answer_choices: WALKING ||| WALKING_UPSTAIRS ||| WALKING_DOWNSTAIRS ||| SITTING
+      ||| STANDING ||| LAYING
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING?\n\
+      Answer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

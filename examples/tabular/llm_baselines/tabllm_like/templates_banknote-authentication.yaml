@@ -1,0 +1,15 @@
+dataset: banknote-authentication
+templates:
+  3a3e8470-4f0a-431a-849c-9a2c7dbdc664: !Template
+    name: banknote-authentication
+    id: 3a3e8470-4f0a-431a-849c-9a2c7dbdc664
+    reference: ''
+    answer_choices: Forged/counterfeit banknote ||| Genuine/authentic banknote
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Forged/counterfeit banknote, Genuine/authentic banknote?\nAnswer: \n|||\n\
+      {{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

@@ -1,0 +1,18 @@
+{
+  "dataset_name": "climate_change_dataset2020-2024",
+  "task_prefix": "A time-series dataset tracking monthly global climate indicators from 2020-2024, focused on measuring various atmospheric and oceanic parameters to study climate change patterns. The dataset specifically emphasizes sea surface temperature predictions using multiple climate variables. Each example contains 5 features. Predict the Sea_Surface_Temp_degC.",
+  "column_descriptions": {
+    "Sea_Surface_Temp_degC": "Average global sea surface temperature measured in degrees Celsius, a key indicator of ocean warming and climate change",
+    "CO2_ppm": "Atmospheric carbon dioxide concentration in parts per million, measuring greenhouse gas levels",
+    "Global_Temp_Anomaly": "Deviation from historical average global temperature, indicating warming or cooling trends",
+    "Ocean_Heat_Content": "Measure of energy stored in ocean waters, indicating long-term warming trends",
+    "Note: Remaining features not explicitly named in source data": "Likely includes atmospheric pressure, humidity, precipitation, wind patterns, and other climate indicators"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Sea_Surface_Temp_degC - Global average sea surface temperature, a critical indicator of ocean warming and climate change impacts. Units: Degrees Celsius. Range: Typically between -2\u00b0C to 30\u00b0C depending on location and season",
+  "num_features": 5,
+  "num_classes": 1,
+  "task_id": 363436
+}

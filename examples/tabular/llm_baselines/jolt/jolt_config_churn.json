@@ -1,0 +1,26 @@
+{
+  "dataset_name": "churn",
+  "task_prefix": "Telephony customer churn dataset containing account features and usage patterns to predict customer attrition. Originally used in 'Discovering Knowledge in Data: An Introduction to Data Mining' textbook. Each example contains 13 features. Predict the target class.",
+  "column_descriptions": {
+    "state": "US state where the customer resides. Geographic indicator for regional patterns.",
+    "account_length": "Number of days the account has been active. Indicates customer tenure and loyalty.",
+    "area_code": "Telephone area code of the customer. Additional geographic information.",
+    "international_plan": "Customer has international calling plan. premium service indicator.",
+    "voice_mail_plan": "Customer has voice mail service. additional service adoption indicator.",
+    "number_vmail_messages": "Number of voice mail messages. Usage intensity of voice mail service.",
+    "total_day_minutes": "Total minutes used during daytime. Primary usage metric for billing period.",
+    "total_day_calls": "Total number of calls made during daytime. Call frequency pattern.",
+    "total_eve_minutes": "Total minutes used during evening. Off-peak usage pattern.",
+    "total_night_minutes": "Total minutes used during nighttime. Late night usage pattern.",
+    "total_intl_minutes": "Total international calling minutes. International usage intensity.",
+    "customer_service_calls": "Number of calls to customer service. Key indicator of customer dissatisfaction.",
+    "churn": "Customer churned (left the service). target variable for prediction."
+  },
+  "class_names": [
+    "True",
+    "False"
+  ],
+  "class_description": "Classes: 'True' (Customer churned - discontinued service with the company), 'False' (Customer retained - continued service with the company)",
+  "num_features": 13,
+  "num_classes": 2
+}

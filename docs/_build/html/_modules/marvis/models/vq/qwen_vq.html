@@ -1,0 +1,880 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.models.vq.qwen_vq &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">marvis.models.vq.qwen_vq</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for marvis.models.vq.qwen_vq</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Qwen model with Vector-Quantized prefix embedding capability.</span>
+
+<span class="sd">This module implements a modified Qwen model that accepts tabular embeddings as</span>
+<span class="sd">vector-quantized inputs, providing a more structured and efficient representation.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Callable</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.vector_quantizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">VectorQuantizer</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="QwenWithVQPrefixEmbedding">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">QwenWithVQPrefixEmbedding</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wrapper for Qwen model with vector-quantized prefix embedding capability.</span>
+<span class="sd">    Enables the model to accept tabular embeddings as quantized prefix inputs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="QwenWithVQPrefixEmbedding.__init__">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+                <span class="n">base_model</span><span class="p">,</span>
+                <span class="n">embedding_size</span><span class="p">,</span>
+                <span class="n">prefix_start_id</span><span class="p">,</span>
+                <span class="n">prefix_end_id</span><span class="p">,</span>
+                <span class="n">class_token_ids</span><span class="p">,</span>
+                <span class="n">vq_num_embeddings</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+                <span class="n">vq_commitment_cost</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+                <span class="n">vq_decay</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the QwenWithVQPrefixEmbedding model.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            base_model: The base Qwen model</span>
+<span class="sd">            embedding_size: Size of the input embeddings from TabPFN</span>
+<span class="sd">            prefix_start_id: Token ID for prefix start marker</span>
+<span class="sd">            prefix_end_id: Token ID for prefix end marker</span>
+<span class="sd">            class_token_ids: List of token IDs for class tokens</span>
+<span class="sd">            vq_num_embeddings: Size of the codebook for vector quantization</span>
+<span class="sd">            vq_commitment_cost: Weight for the commitment loss in VQ</span>
+<span class="sd">            vq_decay: Decay factor for EMA updates of the codebook (0 for no EMA)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span> <span class="o">=</span> <span class="n">base_model</span>
+        
+        <span class="c1"># Create the vector quantizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vector_quantizer</span> <span class="o">=</span> <span class="n">VectorQuantizer</span><span class="p">(</span>
+            <span class="n">embedding_dim</span><span class="o">=</span><span class="n">embedding_size</span><span class="p">,</span>
+            <span class="n">num_embeddings</span><span class="o">=</span><span class="n">vq_num_embeddings</span><span class="p">,</span>
+            <span class="n">commitment_cost</span><span class="o">=</span><span class="n">vq_commitment_cost</span><span class="p">,</span>
+            <span class="n">decay</span><span class="o">=</span><span class="n">vq_decay</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># Linear projection to map quantized vectors to model dimension</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_projector</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">embedding_size</span><span class="p">,</span> <span class="n">base_model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+        
+        <span class="c1"># Store token IDs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefix_start_id</span> <span class="o">=</span> <span class="n">prefix_start_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefix_end_id</span> <span class="o">=</span> <span class="n">prefix_end_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_token_ids</span> <span class="o">=</span> <span class="n">class_token_ids</span>
+        
+        <span class="c1"># Copy necessary attributes from base_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">base_model</span><span class="o">.</span><span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vq_num_embeddings</span> <span class="o">=</span> <span class="n">vq_num_embeddings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vq_commitment_cost</span> <span class="o">=</span> <span class="n">vq_commitment_cost</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vq_decay</span> <span class="o">=</span> <span class="n">vq_decay</span>
+        
+        <span class="c1"># Register with accelerate for proper device management</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_with_accelerate</span><span class="p">()</span>
+        
+        <span class="c1"># Total VQ loss accumulator for tracking</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;_total_vq_loss&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;_num_vq_updates&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_register_with_accelerate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Register this module with Accelerate&#39;s hooks if base_model has hooks.</span>
+<span class="sd">        This ensures all parameters are tracked properly during distributed operations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check if accelerate is being used</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="p">,</span> <span class="s2">&quot;_hf_hook&quot;</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Extract execution_device if available from any hook type</span>
+                <span class="n">execution_device</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">base_hook</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">_hf_hook</span>
+                
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">base_hook</span><span class="p">,</span> <span class="s2">&quot;execution_device&quot;</span><span class="p">):</span>
+                    <span class="n">execution_device</span> <span class="o">=</span> <span class="n">base_hook</span><span class="o">.</span><span class="n">execution_device</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found execution_device: </span><span class="si">{</span><span class="n">execution_device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    
+                    <span class="c1"># Move components to the same device</span>
+                    <span class="k">if</span> <span class="n">execution_device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">vector_quantizer</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">execution_device</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_projector</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">execution_device</span><span class="p">)</span>
+                
+            <span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not extract info from Accelerate hooks: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="QwenWithVQPrefixEmbedding.to">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.to">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Override to method to ensure all components move to the correct device.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            device: The target device</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            The model on the target device</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Move base_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Move vector_quantizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vector_quantizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vector_quantizer</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Move embedding_projector</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_projector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_projector</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Move the rest of self</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QwenWithVQPrefixEmbedding.prepare_inputs_for_generation">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.prepare_inputs_for_generation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prepare_inputs_for_generation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pass through prepare_inputs_for_generation from base model.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">prepare_inputs_for_generation</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QwenWithVQPrefixEmbedding.get_input_embeddings">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.get_input_embeddings">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_input_embeddings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get input embeddings from base model.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">get_input_embeddings</span><span class="p">()</span></div>
+
+    
+<div class="viewcode-block" id="QwenWithVQPrefixEmbedding.forward">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.forward">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+                <span class="n">input_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">attention_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">prefix_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">inputs_embeds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">return_vq_loss</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Forward pass with vector-quantized embedding prefix integration.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            input_ids: Input token IDs</span>
+<span class="sd">            attention_mask: Attention mask</span>
+<span class="sd">            prefix_data: Tabular embedding data to use as prefix</span>
+<span class="sd">            inputs_embeds: Input embeddings (optional)</span>
+<span class="sd">            return_vq_loss: Whether to return VQ loss in output</span>
+<span class="sd">            **kwargs: Additional arguments for the base model</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Model outputs from the base model with optional VQ loss</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get current device</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_hf_hook&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hf_hook</span><span class="p">,</span> <span class="s2">&quot;execution_device&quot;</span><span class="p">):</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hf_hook</span><span class="o">.</span><span class="n">execution_device</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span><span class="o">.</span><span class="n">device</span>
+        
+        <span class="c1"># Either use provided inputs_embeds or create them from input_ids</span>
+        <span class="k">if</span> <span class="n">inputs_embeds</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">input_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">input_ids</span> <span class="o">=</span> <span class="n">input_ids</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">inputs_embeds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">get_input_embeddings</span><span class="p">()(</span><span class="n">input_ids</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">inputs_embeds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">inputs_embeds</span> <span class="o">=</span> <span class="n">inputs_embeds</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Move attention_mask to the right device</span>
+        <span class="k">if</span> <span class="n">attention_mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">attention_mask</span> <span class="o">=</span> <span class="n">attention_mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Variables to track vector quantization</span>
+        <span class="n">vq_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">total_perplexity</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">num_quantized</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">if</span> <span class="n">prefix_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">input_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">input_ids</span> <span class="o">=</span> <span class="n">input_ids</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            
+            <span class="c1"># Find positions of PREFIX_START and PREFIX_END tokens</span>
+            <span class="n">start_positions</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_ids</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix_start_id</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">as_tuple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">end_positions</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_ids</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix_end_id</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">as_tuple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            
+            <span class="c1"># Process each sequence in batch</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">input_ids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">batch_start_positions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">start_positions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">batch_end_positions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">end_positions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                
+                <span class="c1"># Process each PREFIX_START/END pair</span>
+                <span class="k">for</span> <span class="n">start_idx_pos</span><span class="p">,</span> <span class="n">end_idx_pos</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">batch_start_positions</span><span class="p">,</span> <span class="n">batch_end_positions</span><span class="p">):</span>
+                    <span class="n">start_pos</span> <span class="o">=</span> <span class="n">start_positions</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">start_idx_pos</span><span class="p">]</span>
+                    <span class="n">end_pos</span> <span class="o">=</span> <span class="n">end_positions</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">end_idx_pos</span><span class="p">]</span>
+                    
+                    <span class="k">if</span> <span class="n">start_pos</span> <span class="o">&gt;=</span> <span class="n">end_pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Need at least 1 token between markers</span>
+                        <span class="k">continue</span>
+                    
+                    <span class="c1"># Calculate how many tokens we have between markers</span>
+                    <span class="n">num_tokens</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">end_pos</span> <span class="o">-</span> <span class="n">start_pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">end_pos</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="k">else</span> <span class="p">(</span><span class="n">end_pos</span> <span class="o">-</span> <span class="n">start_pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                    
+                    <span class="c1"># Reserve space for the query embedding (10 tokens)</span>
+                    <span class="n">query_space</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_tokens</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># Reserve up to 1/3 of available space, max 10 tokens</span>
+                    <span class="n">example_space</span> <span class="o">=</span> <span class="n">num_tokens</span> <span class="o">-</span> <span class="n">query_space</span>
+                    
+                    <span class="c1"># Convert to Python integers</span>
+                    <span class="n">query_space</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">query_space</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">query_space</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="k">else</span> <span class="n">query_space</span>
+                    <span class="n">example_space</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">example_space</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">example_space</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="k">else</span> <span class="n">example_space</span>
+                    
+                    <span class="c1"># Get the current example&#39;s query embedding</span>
+                    <span class="n">query_embedding</span> <span class="o">=</span> <span class="n">prefix_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    
+                    <span class="c1"># Ensure query_embedding is a tensor on the right device</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">query_embedding</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">query_embedding</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="c1"># Handle case where prefix_data contains (embeddings, class_labels)</span>
+                        <span class="n">embeddings</span><span class="p">,</span> <span class="n">class_labels</span> <span class="o">=</span> <span class="n">query_embedding</span>
+                        
+                        <span class="c1"># Move embeddings to current device</span>
+                        <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">embeddings</span><span class="p">):</span>
+                            <span class="n">embeddings</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+                        
+                        <span class="c1"># First, apply vector quantization to each embedding</span>
+                        <span class="n">quantized_embeddings</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="n">batch_vq_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+                        <span class="n">batch_perplexity</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+                        
+                        <span class="k">for</span> <span class="n">emb</span> <span class="ow">in</span> <span class="n">embeddings</span><span class="p">:</span>
+                            <span class="c1"># Ensure emb is on the right device</span>
+                            <span class="n">emb</span> <span class="o">=</span> <span class="n">emb</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+                            
+                            <span class="c1"># Apply vector quantization</span>
+                            <span class="n">quantized_emb</span><span class="p">,</span> <span class="n">emb_vq_loss</span><span class="p">,</span> <span class="n">emb_perplexity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vector_quantizer</span><span class="p">(</span><span class="n">emb</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+                            <span class="n">quantized_embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">quantized_emb</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+                            
+                            <span class="c1"># Accumulate loss and perplexity</span>
+                            <span class="n">batch_vq_loss</span> <span class="o">+=</span> <span class="n">emb_vq_loss</span>
+                            <span class="n">batch_perplexity</span> <span class="o">+=</span> <span class="n">emb_perplexity</span>
+                            <span class="n">num_quantized</span> <span class="o">+=</span> <span class="mi">1</span>
+                        
+                        <span class="c1"># Average the loss and perplexity</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="n">batch_vq_loss</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
+                            <span class="n">batch_perplexity</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
+                            
+                            <span class="c1"># Add to total loss and perplexity</span>
+                            <span class="n">vq_loss</span> <span class="o">+=</span> <span class="n">batch_vq_loss</span>
+                            <span class="n">total_perplexity</span> <span class="o">+=</span> <span class="n">batch_perplexity</span>
+                        
+                        <span class="c1"># Quantize the query embedding separately</span>
+                        <span class="n">query_embedding</span> <span class="o">=</span> <span class="n">query_embedding</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+                        <span class="n">quantized_query</span><span class="p">,</span> <span class="n">query_vq_loss</span><span class="p">,</span> <span class="n">query_perplexity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vector_quantizer</span><span class="p">(</span><span class="n">query_embedding</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+                        
+                        <span class="c1"># Add query VQ loss to total</span>
+                        <span class="n">vq_loss</span> <span class="o">+=</span> <span class="n">query_vq_loss</span>
+                        <span class="n">total_perplexity</span> <span class="o">+=</span> <span class="n">query_perplexity</span>
+                        <span class="n">num_quantized</span> <span class="o">+=</span> <span class="mi">1</span>
+                        
+                        <span class="c1"># Project quantized embeddings to model hidden size</span>
+                        <span class="n">projected_quantized_embeddings</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="k">for</span> <span class="n">quantized_emb</span> <span class="ow">in</span> <span class="n">quantized_embeddings</span><span class="p">:</span>
+                            <span class="n">projected_emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_projector</span><span class="p">(</span><span class="n">quantized_emb</span><span class="p">)</span>
+                            <span class="n">projected_quantized_embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">projected_emb</span><span class="p">)</span>
+                        
+                        <span class="c1"># Project quantized query</span>
+                        <span class="n">projected_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_projector</span><span class="p">(</span><span class="n">quantized_query</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+                        
+                        <span class="c1"># Determine maximum examples we can use based on space</span>
+                        <span class="n">max_examples</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">example_space</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">))</span>
+                        
+                        <span class="c1"># Create a tensor to hold all our embeddings (query + examples)</span>
+                        <span class="n">all_embeddings</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+                            <span class="n">num_tokens</span><span class="p">,</span>  <span class="c1"># Total space between markers</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span>
+                            <span class="n">device</span><span class="o">=</span><span class="n">device</span>
+                        <span class="p">)</span>
+                        
+                        <span class="c1"># Get separator token embedding</span>
+                        <span class="n">query_separator_id</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">eos_token_id</span>
+                        <span class="k">if</span> <span class="s2">&quot;&lt;QUERY&gt;&quot;</span> <span class="ow">in</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">get_vocab</span><span class="p">():</span>
+                            <span class="n">query_separator_id</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="s2">&quot;&lt;QUERY&gt;&quot;</span><span class="p">)</span>
+                        
+                        <span class="n">query_separator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">get_input_embeddings</span><span class="p">()(</span>
+                            <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">query_separator_id</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+                        <span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                        
+                        <span class="c1"># Add query separator and repeated quantized query embedding</span>
+                        <span class="n">all_embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">query_separator</span>
+                        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">query_space</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                            <span class="n">all_embeddings</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">projected_query</span>
+                        <span class="n">all_embeddings</span><span class="p">[</span><span class="n">query_space</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">query_separator</span>
+                        
+                        <span class="c1"># Next, add the interleaved example embeddings and class tokens</span>
+                        <span class="n">example_offset</span> <span class="o">=</span> <span class="n">query_space</span>
+                        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_examples</span><span class="p">):</span>
+                            <span class="c1"># Example embedding</span>
+                            <span class="n">all_embeddings</span><span class="p">[</span><span class="n">example_offset</span> <span class="o">+</span> <span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">projected_quantized_embeddings</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                            
+                            <span class="c1"># Class token</span>
+                            <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_labels</span><span class="p">):</span>
+                                <span class="c1"># Convert to integer if needed</span>
+                                <span class="n">class_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">class_labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_labels</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">class_labels</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                                
+                                <span class="c1"># Get the class token ID for this class</span>
+                                <span class="n">class_token_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_token_ids</span><span class="p">[</span><span class="n">class_idx</span><span class="p">]</span>
+                                
+                                <span class="c1"># Convert to int if it&#39;s a tensor</span>
+                                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">class_token_id</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+                                    <span class="n">class_token_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">class_token_id</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+                                
+                                <span class="c1"># Get the class token embedding</span>
+                                <span class="n">class_token_embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">get_input_embeddings</span><span class="p">()(</span>
+                                    <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">class_token_id</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+                                <span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                                
+                                <span class="n">all_embeddings</span><span class="p">[</span><span class="n">example_offset</span> <span class="o">+</span> <span class="n">j</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">class_token_embedding</span>
+                        
+                        <span class="c1"># Replace token embeddings with our custom embeddings</span>
+                        <span class="c1"># +1 to skip the PREFIX_START token</span>
+                        <span class="n">inputs_embeds</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">start_pos</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">end_pos</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">all_embeddings</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># Handle the case where we just have a single query embedding without class info</span>
+                        <span class="c1"># Ensure it&#39;s on the right device</span>
+                        <span class="n">query_embedding</span> <span class="o">=</span> <span class="n">query_embedding</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+                        
+                        <span class="c1"># Apply vector quantization</span>
+                        <span class="n">quantized_query</span><span class="p">,</span> <span class="n">query_vq_loss</span><span class="p">,</span> <span class="n">query_perplexity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vector_quantizer</span><span class="p">(</span><span class="n">query_embedding</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+                        
+                        <span class="c1"># Update VQ tracking</span>
+                        <span class="n">vq_loss</span> <span class="o">+=</span> <span class="n">query_vq_loss</span>
+                        <span class="n">total_perplexity</span> <span class="o">+=</span> <span class="n">query_perplexity</span>
+                        <span class="n">num_quantized</span> <span class="o">+=</span> <span class="mi">1</span>
+                        
+                        <span class="c1"># Project the quantized query to model hidden size</span>
+                        <span class="n">projected_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_projector</span><span class="p">(</span><span class="n">quantized_query</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+                        
+                        <span class="c1"># Replace the prefix placeholder with repeated query embedding</span>
+                        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">num_tokens</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>  <span class="c1"># Limit to 10 tokens for single query</span>
+                            <span class="n">inputs_embeds</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">start_pos</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">projected_query</span>
+        
+        <span class="c1"># Update VQ loss tracking for monitoring</span>
+        <span class="k">if</span> <span class="n">num_quantized</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">avg_vq_loss</span> <span class="o">=</span> <span class="n">vq_loss</span> <span class="o">/</span> <span class="n">num_quantized</span>
+            <span class="n">avg_perplexity</span> <span class="o">=</span> <span class="n">total_perplexity</span> <span class="o">/</span> <span class="n">num_quantized</span>
+            
+            <span class="c1"># Update running average of VQ loss</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_total_vq_loss</span> <span class="o">+=</span> <span class="n">avg_vq_loss</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_num_vq_updates</span> <span class="o">+=</span> <span class="mi">1</span>
+                
+                <span class="c1"># Periodically log VQ statistics</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_vq_updates</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">avg_total_vq_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_total_vq_loss</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_vq_updates</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;VQ Stats - Avg Loss: </span><span class="si">{</span><span class="n">avg_total_vq_loss</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">, Avg Perplexity: </span><span class="si">{</span><span class="n">avg_perplexity</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    
+                    <span class="c1"># Reset counters periodically to focus on recent performance</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_vq_updates</span> <span class="o">&gt;=</span> <span class="mi">1000</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_total_vq_loss</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_num_vq_updates</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+        
+        <span class="c1"># Ensure all inputs are on the current device before the forward pass</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">else</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        
+        <span class="c1"># Forward pass with modified embeddings</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="p">(</span>
+            <span class="n">input_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">attention_mask</span><span class="o">=</span><span class="n">attention_mask</span><span class="p">,</span>
+            <span class="n">inputs_embeds</span><span class="o">=</span><span class="n">inputs_embeds</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># Add VQ loss to the total loss if requested</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="ow">and</span> <span class="n">num_quantized</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Only add VQ loss if we actually quantized something</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="s2">&quot;loss&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">outputs</span><span class="o">.</span><span class="n">loss</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">outputs</span><span class="o">.</span><span class="n">loss</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">loss</span> <span class="o">+</span> <span class="n">avg_vq_loss</span>
+            
+            <span class="c1"># Return VQ loss separately if requested</span>
+            <span class="k">if</span> <span class="n">return_vq_loss</span><span class="p">:</span>
+                <span class="n">outputs</span><span class="o">.</span><span class="n">vq_loss</span> <span class="o">=</span> <span class="n">avg_vq_loss</span>
+                <span class="n">outputs</span><span class="o">.</span><span class="n">vq_perplexity</span> <span class="o">=</span> <span class="n">avg_perplexity</span>
+        
+        <span class="k">return</span> <span class="n">outputs</span></div>
+
+    
+    <span class="c1"># Pass through any other needed methods to the base model</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    
+    <span class="c1"># Override generate to ensure devices are consistent</span>
+<div class="viewcode-block" id="QwenWithVQPrefixEmbedding.generate">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.generate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate output sequences using the base model&#39;s generate method.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            *args: Positional arguments for generate</span>
+<span class="sd">            **kwargs: Keyword arguments for generate</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Generated token sequences</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get device from hook if present, otherwise from parameters</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_hf_hook&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hf_hook</span><span class="p">,</span> <span class="s2">&quot;execution_device&quot;</span><span class="p">):</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hf_hook</span><span class="o">.</span><span class="n">execution_device</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span><span class="o">.</span><span class="n">device</span>
+        
+        <span class="c1"># Move any tensor inputs to the current device</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># For Accelerate compatibility, ensure we&#39;re using the base model&#39;s generate with proper hooks</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="p">,</span> <span class="s2">&quot;_hf_hook&quot;</span><span class="p">):</span>
+            <span class="c1"># Let the hook handle the generation</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Direct call without hooks</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QwenWithVQPrefixEmbedding.save_pretrained">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.save_pretrained">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_pretrained</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_directory</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the model including vector quantizer and embedding projector.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            save_directory: Directory to save the model</span>
+<span class="sd">            **kwargs: Additional arguments for save_pretrained</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Save the base model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_model</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="n">save_directory</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Save the vector quantizer</span>
+        <span class="n">vector_quantizer_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">save_directory</span><span class="si">}</span><span class="s2">/vector_quantizer.pt&quot;</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vector_quantizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">vector_quantizer_path</span><span class="p">)</span>
+
+        <span class="c1"># Save the embedding projector</span>
+        <span class="n">embedding_projector_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">save_directory</span><span class="si">}</span><span class="s2">/embedding_projector.pt&quot;</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding_projector</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">embedding_projector_path</span><span class="p">)</span>
+
+        <span class="c1"># Get final class token IDs from kwargs if provided (for permutation support)</span>
+        <span class="n">final_class_token_ids</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;final_class_token_ids&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_token_ids</span><span class="p">)</span>
+
+        <span class="c1"># Save model configuration</span>
+        <span class="n">model_info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;prefix_start_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix_start_id</span><span class="p">,</span>
+            <span class="s2">&quot;prefix_end_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix_end_id</span><span class="p">,</span>
+            <span class="s2">&quot;class_token_ids&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_token_ids</span><span class="p">,</span>
+            <span class="s2">&quot;final_class_token_ids&quot;</span><span class="p">:</span> <span class="n">final_class_token_ids</span><span class="p">,</span>  <span class="c1"># Store the permuted mapping</span>
+            <span class="s2">&quot;embedding_size&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">vector_quantizer</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">,</span>
+            <span class="s2">&quot;vq_num_embeddings&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">vq_num_embeddings</span><span class="p">,</span>
+            <span class="s2">&quot;vq_commitment_cost&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">vq_commitment_cost</span><span class="p">,</span>
+            <span class="s2">&quot;vq_decay&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">vq_decay</span>
+        <span class="p">}</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_info</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">save_directory</span><span class="si">}</span><span class="s2">/model_info.pt&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QwenWithVQPrefixEmbedding.from_pretrained">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.from_pretrained">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_pretrained</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pretrained_model_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load a pretrained model from a directory.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pretrained_model_path: Path to the pretrained model</span>
+<span class="sd">            **kwargs: Additional arguments for from_pretrained</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Loaded QwenWithVQPrefixEmbedding model</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Load the base model</span>
+        <span class="n">base_model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+            <span class="n">pretrained_model_path</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Load model info</span>
+        <span class="n">model_info_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pretrained_model_path</span><span class="si">}</span><span class="s2">/model_info.pt&quot;</span>
+        <span class="n">model_info</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_info_path</span><span class="p">)</span>
+
+        <span class="c1"># Check if we should use permuted class token IDs</span>
+        <span class="n">use_permuted</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;use_permuted_mapping&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">class_token_ids</span> <span class="o">=</span> <span class="n">model_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;final_class_token_ids&quot;</span><span class="p">,</span> <span class="n">model_info</span><span class="p">[</span><span class="s2">&quot;class_token_ids&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">use_permuted</span> <span class="k">else</span> <span class="n">model_info</span><span class="p">[</span><span class="s2">&quot;class_token_ids&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Create a new instance</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">base_model</span><span class="o">=</span><span class="n">base_model</span><span class="p">,</span>
+            <span class="n">embedding_size</span><span class="o">=</span><span class="n">model_info</span><span class="p">[</span><span class="s2">&quot;embedding_size&quot;</span><span class="p">],</span>
+            <span class="n">prefix_start_id</span><span class="o">=</span><span class="n">model_info</span><span class="p">[</span><span class="s2">&quot;prefix_start_id&quot;</span><span class="p">],</span>
+            <span class="n">prefix_end_id</span><span class="o">=</span><span class="n">model_info</span><span class="p">[</span><span class="s2">&quot;prefix_end_id&quot;</span><span class="p">],</span>
+            <span class="n">class_token_ids</span><span class="o">=</span><span class="n">class_token_ids</span><span class="p">,</span>
+            <span class="n">vq_num_embeddings</span><span class="o">=</span><span class="n">model_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vq_num_embeddings&quot;</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+            <span class="n">vq_commitment_cost</span><span class="o">=</span><span class="n">model_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vq_commitment_cost&quot;</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">),</span>
+            <span class="n">vq_decay</span><span class="o">=</span><span class="n">model_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vq_decay&quot;</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Load the vector quantizer</span>
+        <span class="n">vector_quantizer_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pretrained_model_path</span><span class="si">}</span><span class="s2">/vector_quantizer.pt&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">vector_quantizer_path</span><span class="p">):</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">vector_quantizer</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">vector_quantizer_path</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vector quantizer weights not found at </span><span class="si">{</span><span class="n">vector_quantizer_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Load the embedding projector</span>
+        <span class="n">embedding_projector_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pretrained_model_path</span><span class="si">}</span><span class="s2">/embedding_projector.pt&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">embedding_projector_path</span><span class="p">):</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">embedding_projector</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">embedding_projector_path</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Embedding projector weights not found at </span><span class="si">{</span><span class="n">embedding_projector_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">model</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="prepare_qwen_with_vq_prefix_embedding">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.prepare_qwen_with_vq_prefix_embedding">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">prepare_qwen_with_vq_prefix_embedding</span><span class="p">(</span>
+    <span class="n">embedding_size</span><span class="o">=</span><span class="mi">192</span><span class="p">,</span>
+    <span class="n">model_id</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-3B-Instruct&quot;</span><span class="p">,</span>
+    <span class="n">vq_num_embeddings</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+    <span class="n">vq_commitment_cost</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+    <span class="n">vq_decay</span><span class="o">=</span><span class="mf">0.99</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prepare Qwen model with vector-quantized prefix embedding capability and class tokens.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        embedding_size: Size of the input embeddings from TabPFN</span>
+<span class="sd">        model_id: Hugging Face model ID for the Qwen model</span>
+<span class="sd">        vq_num_embeddings: Size of the codebook for vector quantization</span>
+<span class="sd">        vq_commitment_cost: Weight for the commitment loss in VQ</span>
+<span class="sd">        vq_decay: Decay factor for EMA updates of the codebook (0 for no EMA)</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        model: QwenWithVQPrefixEmbedding model</span>
+<span class="sd">        tokenizer: Tokenizer for the model</span>
+<span class="sd">        prefix_start_id: Token ID for prefix start marker</span>
+<span class="sd">        prefix_end_id: Token ID for prefix end marker</span>
+<span class="sd">        class_token_ids: List of token IDs for class tokens</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading </span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2"> model and tokenizer&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Load the Qwen model and tokenizer</span>
+    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+        <span class="n">model_id</span><span class="p">,</span> 
+        <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+        <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Add special tokens for prefix and classes</span>
+    <span class="n">special_tokens</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;additional_special_tokens&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;&lt;PREFIX_START&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;PREFIX_END&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;QUERY&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;&lt;CLASS_0&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;CLASS_1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;CLASS_2&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;CLASS_3&gt;&quot;</span><span class="p">,</span> 
+            <span class="s2">&quot;&lt;CLASS_4&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;CLASS_5&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;CLASS_6&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;CLASS_7&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;&lt;CLASS_8&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;CLASS_9&gt;&quot;</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="n">tokenizer</span><span class="o">.</span><span class="n">add_special_tokens</span><span class="p">(</span><span class="n">special_tokens</span><span class="p">)</span>
+    
+    <span class="c1"># Resize model&#39;s embedding matrix to accommodate new tokens</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">resize_token_embeddings</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">))</span>
+    
+    <span class="c1"># Define token IDs for later use</span>
+    <span class="n">prefix_start_id</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="s2">&quot;&lt;PREFIX_START&gt;&quot;</span><span class="p">)</span>
+    <span class="n">prefix_end_id</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="s2">&quot;&lt;PREFIX_END&gt;&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Get class token IDs</span>
+    <span class="n">class_token_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;CLASS_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&gt;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added special tokens: PREFIX_START_ID=</span><span class="si">{</span><span class="n">prefix_start_id</span><span class="si">}</span><span class="s2">, PREFIX_END_ID=</span><span class="si">{</span><span class="n">prefix_end_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using Vector Quantization with codebook size=</span><span class="si">{</span><span class="n">vq_num_embeddings</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create the model with vector quantization</span>
+    <span class="n">qwen_with_vq_prefix</span> <span class="o">=</span> <span class="n">QwenWithVQPrefixEmbedding</span><span class="p">(</span>
+        <span class="n">base_model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">embedding_size</span><span class="o">=</span><span class="n">embedding_size</span><span class="p">,</span>
+        <span class="n">prefix_start_id</span><span class="o">=</span><span class="n">prefix_start_id</span><span class="p">,</span>
+        <span class="n">prefix_end_id</span><span class="o">=</span><span class="n">prefix_end_id</span><span class="p">,</span>
+        <span class="n">class_token_ids</span><span class="o">=</span><span class="n">class_token_ids</span><span class="p">,</span>
+        <span class="n">vq_num_embeddings</span><span class="o">=</span><span class="n">vq_num_embeddings</span><span class="p">,</span>
+        <span class="n">vq_commitment_cost</span><span class="o">=</span><span class="n">vq_commitment_cost</span><span class="p">,</span>
+        <span class="n">vq_decay</span><span class="o">=</span><span class="n">vq_decay</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">qwen_with_vq_prefix</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">prefix_start_id</span><span class="p">,</span> <span class="n">prefix_end_id</span><span class="p">,</span> <span class="n">class_token_ids</span></div>
+
+
+
+<div class="viewcode-block" id="load_vq_pretrained_model">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.load_vq_pretrained_model">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_vq_pretrained_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device_map</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">model_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">bool</span>
+<span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load a pretrained Vector-Quantized MARVIS model from a checkpoint directory.</span>
+<span class="sd">    </span>
+<span class="sd">    This function handles different model loading scenarios for VQ models:</span>
+<span class="sd">    1. Models saved with vector_quantizer.pt (saved using QwenWithVQPrefixEmbedding.save_pretrained)</span>
+<span class="sd">    2. Custom models requiring initialization using prepare_qwen_with_vq_prefix_embedding</span>
+<span class="sd">    3. Fallback to standard model loading if this is not a VQ model</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        model_path: Path to the pretrained model directory</span>
+<span class="sd">        device_map: Device mapping strategy for model loading</span>
+<span class="sd">        embedding_size: Size of the embeddings (for initialization if needed)</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        model: Loaded model (either VQ or standard)</span>
+<span class="sd">        tokenizer: Tokenizer for the model</span>
+<span class="sd">        prefix_start_id: Token ID for prefix start marker</span>
+<span class="sd">        prefix_end_id: Token ID for prefix end marker</span>
+<span class="sd">        class_token_ids: List of token IDs for class tokens</span>
+<span class="sd">        is_vq: Boolean indicating whether this is a VQ model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading model from </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2"> (checking for VQ capabilities)&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># First, check if this is a model with best_model directory</span>
+    <span class="n">best_model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;best_model&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">best_model_path</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">best_model_path</span><span class="p">):</span>
+        <span class="n">model_path</span> <span class="o">=</span> <span class="n">best_model_path</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found best_model directory, using </span><span class="si">{</span><span class="n">best_model_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Look for VQ-specific files</span>
+    <span class="n">vector_quantizer_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;vector_quantizer.pt&quot;</span><span class="p">)</span>
+    <span class="n">is_vq</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">vector_quantizer_path</span><span class="p">)</span>
+    
+    <span class="c1"># Try to load tokenizer first as it&#39;s needed for both approaches</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load tokenizer from </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1"># Try to create a new tokenizer using the preparation function</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initializing new tokenizer&quot;</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">prepare_qwen_with_vq_prefix_embedding</span><span class="p">(</span>
+            <span class="n">embedding_size</span><span class="o">=</span><span class="n">embedding_size</span><span class="p">,</span>
+            <span class="n">model_id</span><span class="o">=</span><span class="n">model_id</span> <span class="k">if</span> <span class="n">model_id</span> <span class="k">else</span> <span class="s2">&quot;Qwen/Qwen2.5-3B-Instruct&quot;</span>
+        <span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">is_vq</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found vector quantizer at </span><span class="si">{</span><span class="n">vector_quantizer_path</span><span class="si">}</span><span class="s2">, loading as VQ model&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Check for model_info.pt which contains token IDs and model configuration</span>
+        <span class="n">model_info_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;model_info.pt&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">model_info_path</span><span class="p">):</span>
+            <span class="c1"># Load using the VQ model&#39;s from_pretrained method</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">model</span> <span class="o">=</span> <span class="n">QwenWithVQPrefixEmbedding</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+                    <span class="n">model_path</span><span class="p">,</span>
+                    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+                    <span class="n">device_map</span><span class="o">=</span><span class="n">device_map</span>
+                <span class="p">)</span>
+                
+                <span class="c1"># Extract token IDs</span>
+                <span class="n">prefix_start_id</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">prefix_start_id</span>
+                <span class="n">prefix_end_id</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">prefix_end_id</span>
+                <span class="n">class_token_ids</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">class_token_ids</span>
+                
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully loaded VQ model with codebook size </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">vq_num_embeddings</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">prefix_start_id</span><span class="p">,</span> <span class="n">prefix_end_id</span><span class="p">,</span> <span class="n">class_token_ids</span><span class="p">,</span> <span class="kc">True</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading VQ model with from_pretrained: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Falling back to manual VQ model initialization&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># If we couldn&#39;t load directly, try the manual approach</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Extract token IDs manually</span>
+            <span class="n">prefix_start_id</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="s2">&quot;&lt;PREFIX_START&gt;&quot;</span><span class="p">)</span>
+            <span class="n">prefix_end_id</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="s2">&quot;&lt;PREFIX_END&gt;&quot;</span><span class="p">)</span>
+            <span class="n">class_token_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;CLASS_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&gt;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+            
+            <span class="c1"># Load base model</span>
+            <span class="n">base_model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+                <span class="n">model_path</span><span class="p">,</span>
+                <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+                <span class="n">device_map</span><span class="o">=</span><span class="n">device_map</span>
+            <span class="p">)</span>
+            
+            <span class="c1"># Create VQ model wrapper</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">QwenWithVQPrefixEmbedding</span><span class="p">(</span>
+                <span class="n">base_model</span><span class="o">=</span><span class="n">base_model</span><span class="p">,</span>
+                <span class="n">embedding_size</span><span class="o">=</span><span class="n">embedding_size</span><span class="p">,</span>
+                <span class="n">prefix_start_id</span><span class="o">=</span><span class="n">prefix_start_id</span><span class="p">,</span>
+                <span class="n">prefix_end_id</span><span class="o">=</span><span class="n">prefix_end_id</span><span class="p">,</span>
+                <span class="n">class_token_ids</span><span class="o">=</span><span class="n">class_token_ids</span><span class="p">,</span>
+                <span class="n">vq_num_embeddings</span><span class="o">=</span><span class="mi">512</span>  <span class="c1"># Default values that can be overridden by saved state</span>
+            <span class="p">)</span>
+            
+            <span class="c1"># Try to load the vector quantizer state dict</span>
+            <span class="n">vq_state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">vector_quantizer_path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">vector_quantizer</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">vq_state</span><span class="p">)</span>
+            
+            <span class="c1"># Try to load the embedding projector state dict</span>
+            <span class="n">projector_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="s2">&quot;embedding_projector.pt&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">projector_path</span><span class="p">):</span>
+                <span class="n">projector_state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">projector_path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">embedding_projector</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">projector_state</span><span class="p">)</span>
+            
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Created VQ model wrapper manually&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">prefix_start_id</span><span class="p">,</span> <span class="n">prefix_end_id</span><span class="p">,</span> <span class="n">class_token_ids</span><span class="p">,</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to initialize VQ model manually: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># If we&#39;re here, either it&#39;s not a VQ model or we failed to load it as one</span>
+    <span class="c1"># Try using the standard model loading function from the parent module</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Import here to avoid circular imports</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..qwen_prefix</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pretrained_model</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Falling back to standard model loading&quot;</span><span class="p">)</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">prefix_start_id</span><span class="p">,</span> <span class="n">prefix_end_id</span><span class="p">,</span> <span class="n">class_token_ids</span> <span class="o">=</span> <span class="n">load_pretrained_model</span><span class="p">(</span>
+            <span class="n">model_path</span><span class="o">=</span><span class="n">model_path</span><span class="p">,</span>
+            <span class="n">device_map</span><span class="o">=</span><span class="n">device_map</span><span class="p">,</span>
+            <span class="n">embedding_size</span><span class="o">=</span><span class="n">embedding_size</span><span class="p">,</span>
+            <span class="n">model_id</span><span class="o">=</span><span class="n">model_id</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully loaded standard (non-VQ) model&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">prefix_start_id</span><span class="p">,</span> <span class="n">prefix_end_id</span><span class="p">,</span> <span class="n">class_token_ids</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;All model loading methods failed! Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not load model from </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">. Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

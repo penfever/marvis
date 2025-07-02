@@ -1,0 +1,18 @@
+{
+  "dataset_name": "news_popularity2",
+  "task_prefix": "A dataset focused on predicting the social media popularity of online news articles from Mashable.com. It contains features extracted from article metadata and content characteristics to predict how many times an article will be shared on social media platforms. The dataset represents real-world digital journalism data from 2013-2015. Each example contains 5 features. Predict the log_shares.",
+  "column_descriptions": {
+    "0": "Number of words in the article title",
+    "1": "Average length of words in the article title",
+    "2": "Number of keywords associated with the article",
+    "3": "Article category (encoded numerically)",
+    "4": "Day of week when the article was published (encoded numerically)"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: log_shares - Natural logarithm of the number of times the article was shared on social media platforms. Units: log(number of shares). Range: Typically between 0 and 12 (corresponding to 1 to ~160k shares)",
+  "num_features": 5,
+  "num_classes": 1,
+  "task_id": 363376
+}

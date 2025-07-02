@@ -1,0 +1,17 @@
+dataset: electricity
+templates:
+  1ba6be2c-10b0-46b3-9457-8444ca56e811: !Template
+    name: electricity
+    id: 1ba6be2c-10b0-46b3-9457-8444ca56e811
+    reference: ''
+    answer_choices: Price went down in New South Wales relative to a 24 hour moving
+      average ||| Price went up in New South Wales relative to a 24 hour moving average
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Price went down in New South Wales relative to a 24 hour moving average, Price\
+      \ went up in New South Wales relative to a 24 hour moving average?\nAnswer:\
+      \ \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

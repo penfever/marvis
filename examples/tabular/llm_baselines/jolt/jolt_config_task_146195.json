@@ -1,0 +1,18 @@
+{
+  "dataset_name": "connect-4",
+  "task_prefix": "Connect-4 game dataset containing all legal 8-ply positions where neither player has won yet and the next move is not forced. Used for game-theoretic analysis and predicting game outcomes. Each example contains 3 features. Game AI development.",
+  "column_descriptions": {
+    "board_positions": "42 features (a1-g6) representing each position on the 6x7 game board",
+    "position_values": "position_values",
+    "board_layout": "Board numbered with columns a-g (left to right) and rows 1-6 (bottom to top)"
+  },
+  "class_names": [
+    "draw",
+    "loss",
+    "win"
+  ],
+  "class_description": "Classes: 'win' (First player (X) wins), 'loss' (First player (X) loses), 'draw' (Game ends in a draw)",
+  "num_features": 3,
+  "num_classes": 3,
+  "task_id": "146195"
+}

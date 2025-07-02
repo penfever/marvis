@@ -1,0 +1,25 @@
+{
+  "dataset_name": "superconductivity-critical-temperature",
+  "task_prefix": "Dataset for predicting the critical temperature (Tc) of superconductors based on their chemical composition and derived features. The critical temperature is the threshold below which a material exhibits zero electrical resistance. Each example contains 12 features. Predict the target class.",
+  "column_descriptions": {
+    "number_of_elements": "Total count of unique chemical elements in the superconductor compound.",
+    "mean_atomic_mass": "Average atomic mass of all elements in the compound, weighted by stoichiometry. Measured in atomic mass units (AMU).",
+    "wtd_mean_atomic_mass": "Weighted mean of atomic masses considering element proportions in the chemical formula.",
+    "mean_fie": "Mean first ionization energy across all elements. Energy required to remove outermost electron, measured in kJ/mol.",
+    "mean_atomic_radius": "Average atomic radius of constituent elements. Indicates typical atomic size in the compound, measured in picometers.",
+    "mean_density": "Average density of constituent elements at standard conditions. Measured in kg/m\u00b3.",
+    "mean_electron_affinity": "Average energy change when adding electron to neutral atoms. Indicates electron-accepting tendency, measured in kJ/mol.",
+    "mean_fusion_heat": "Average heat of fusion (solid to liquid transition) across elements. Measured in kJ/mol.",
+    "mean_thermal_conductivity": "Average thermal conductivity coefficient of elements. Measured in W/(m\u00b7K).",
+    "mean_valence": "Average number of valence electrons across all atoms in the compound.",
+    "wtd_mean_valence": "Weighted mean valence considering element proportions. Critical for understanding electronic properties.",
+    "critical_temp": "Critical temperature below which the material becomes superconducting. Target variable measured in Kelvin (K)."
+  },
+  "class_names": [
+    "Class_0",
+    "Class_1"
+  ],
+  "class_description": "Classes: Class_0, Class_1",
+  "num_features": 12,
+  "num_classes": 2
+}

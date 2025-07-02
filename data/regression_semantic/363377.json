@@ -1,0 +1,56 @@
+{
+  "dataset_name": "mercari_price_suggestion100K",
+  "description": "This dataset contains product listings from Mercari, Japan's largest community-powered shopping app. It represents a sample of 100,000 product listings with various attributes used to predict selling prices. The dataset was created for developing machine learning models that can automatically suggest prices to sellers, helping them price their items competitively while maximizing their potential earnings.",
+  "original_source": {
+    "creator": "Mercari, Inc.",
+    "institution": "Mercari (via Kaggle Competition)",
+    "date": "2017",
+    "publication": "Kaggle Competition: Mercari Price Suggestion Challenge"
+  },
+  "columns": [
+    {
+      "name": "name",
+      "semantic_description": "The title/name of the product listing as entered by the seller",
+      "data_type": "text/string"
+    },
+    {
+      "name": "item_condition_id",
+      "semantic_description": "Rating of the condition of the item (1-5 scale, where 1 is worst and 5 is best condition)",
+      "data_type": "integer (1-5)"
+    },
+    {
+      "name": "category_name",
+      "semantic_description": "The category path of the listing (e.g., 'Electronics/Computers/Laptops')",
+      "data_type": "text/string (hierarchical categories)"
+    },
+    {
+      "name": "brand_name",
+      "semantic_description": "The brand name of the product (if provided by seller)",
+      "data_type": "text/string (nullable)"
+    },
+    {
+      "name": "shipping",
+      "semantic_description": "Whether shipping cost is paid by seller (1) or buyer (0)",
+      "data_type": "binary (0,1)"
+    },
+    {
+      "name": "item_description",
+      "semantic_description": "The full text description of the item provided by the seller",
+      "data_type": "text/string"
+    }
+  ],
+  "target_description": {
+    "name": "log_price",
+    "meaning": "Natural logarithm of the product's selling price in USD. Logarithmic transformation is used to normalize the price distribution and handle price skewness",
+    "units": "log(USD)",
+    "range": "Typically between 0 and 10 (corresponding to prices from $1 to ~$22,000)"
+  },
+  "dataset_history": "The dataset was originally created for a Kaggle competition in 2017 where participants were challenged to build algorithms for suggesting product prices to sellers. The competition was motivated by Mercari's need to automate price suggestions on their platform. The full dataset contained over 1.4 million records, with this version being a 100K sample. The competition attracted significant attention from the data science community and led to several innovative approaches in price prediction using text and categorical features.",
+  "inference_notes": "Important considerations include:\n1. Text features (name, description) contain valuable pricing signals and require careful NLP processing\n2. Brand names and categories are hierarchical and contain many unique values\n3. Price distribution is highly skewed, hence the log transformation\n4. Missing values are common in brand_name field\n5. Item condition ratings may be subjective\n6. Temporal aspects of pricing not captured in the dataset\n7. Regional price variations not accounted for\n8. Success of models heavily depends on feature engineering, especially for text fields\n9. Category hierarchy can be leveraged for better predictions\n10. Shipping cost inclusion in price needs to be considered during analysis",
+  "_metadata": {
+    "task_id": 363377,
+    "generated_at": "2025-06-22T08:28:23.625907",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

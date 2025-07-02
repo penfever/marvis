@@ -1,0 +1,16 @@
+dataset: vehicle
+templates:
+  c9750162-654e-4a4b-94da-03a087b5146a: !Template
+    name: vehicle
+    id: c9750162-654e-4a4b-94da-03a087b5146a
+    reference: ''
+    answer_choices: Double decker bus ||| Opel Manta 400 ||| Saab 9000 ||| Chevrolet
+      van
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Double decker bus, Opel Manta 400, Saab 9000, Chevrolet van?\nAnswer: \n|||\n\
+      {{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

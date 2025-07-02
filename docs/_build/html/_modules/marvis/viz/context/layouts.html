@@ -1,0 +1,618 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.viz.context.layouts &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">marvis.viz.context.layouts</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for marvis.viz.context.layouts</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Layout management for multi-visualization compositions.</span>
+
+<span class="sd">This module handles the spatial arrangement of multiple visualizations</span>
+<span class="sd">in a single composed image optimized for VLM consumption.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span> <span class="n">ImageFont</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="n">VisualizationResult</span>
+
+<span class="c1"># Import shared styling utilities</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.styling</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">apply_consistent_legend_formatting</span><span class="p">,</span>
+    <span class="n">create_distinct_color_map</span><span class="p">,</span>
+    <span class="n">get_class_color_name_map</span>
+<span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="LayoutStrategy">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.LayoutStrategy">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">LayoutStrategy</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Available layout strategies for visualization composition.&quot;&quot;&quot;</span>
+    <span class="n">GRID</span> <span class="o">=</span> <span class="s2">&quot;grid&quot;</span>                    <span class="c1"># Regular grid layout</span>
+    <span class="n">ADAPTIVE_GRID</span> <span class="o">=</span> <span class="s2">&quot;adaptive_grid&quot;</span>  <span class="c1"># Grid that adapts to content</span>
+    <span class="n">SEQUENTIAL</span> <span class="o">=</span> <span class="s2">&quot;sequential&quot;</span>        <span class="c1"># Sequential horizontal layout</span>
+    <span class="n">HIERARCHICAL</span> <span class="o">=</span> <span class="s2">&quot;hierarchical&quot;</span>    <span class="c1"># Tree-like hierarchical layout</span>
+    <span class="n">FOCUS_PLUS_CONTEXT</span> <span class="o">=</span> <span class="s2">&quot;focus_plus_context&quot;</span>  <span class="c1"># One large + smaller supporting views</span></div>
+
+
+
+<div class="viewcode-block" id="LayoutConfig">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.LayoutConfig">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LayoutConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for layout management.&quot;&quot;&quot;</span>
+    <span class="n">strategy</span><span class="p">:</span> <span class="n">LayoutStrategy</span> <span class="o">=</span> <span class="n">LayoutStrategy</span><span class="o">.</span><span class="n">GRID</span>
+    <span class="n">max_per_row</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">padding</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span>
+    <span class="n">title_height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.08</span>
+    <span class="n">legend_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.15</span>
+    <span class="n">background_color</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+    <span class="n">border_color</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="n">border_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span></div>
+
+
+
+<div class="viewcode-block" id="LayoutManager">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.LayoutManager">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">LayoutManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Manages the layout and composition of multiple visualizations.</span>
+<span class="sd">    </span>
+<span class="sd">    This class is responsible for arranging multiple visualization results</span>
+<span class="sd">    into a single, coherent image that can be effectively processed by VLM systems.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="LayoutManager.__init__">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.LayoutManager.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">composition_config</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the layout manager.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            composition_config: CompositionConfig object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">composition_config</span> <span class="o">=</span> <span class="n">composition_config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        
+        <span class="c1"># Create layout config from composition config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span> <span class="o">=</span> <span class="n">LayoutConfig</span><span class="p">(</span>
+            <span class="n">strategy</span><span class="o">=</span><span class="n">composition_config</span><span class="o">.</span><span class="n">layout_strategy</span><span class="p">,</span>
+            <span class="n">max_per_row</span><span class="o">=</span><span class="n">composition_config</span><span class="o">.</span><span class="n">max_visualizations_per_row</span><span class="p">,</span>
+            <span class="n">spacing</span><span class="o">=</span><span class="n">composition_config</span><span class="o">.</span><span class="n">subplot_spacing</span>
+        <span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="LayoutManager.compose_layout">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.LayoutManager.compose_layout">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compose_layout</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">VisualizationResult</span><span class="p">],</span>
+        <span class="n">strategy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LayoutStrategy</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compose multiple visualization results into a single image.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            results: List of VisualizationResult objects</span>
+<span class="sd">            strategy: Layout strategy to use (overrides config)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Composed PIL Image</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No visualization results provided&quot;</span><span class="p">)</span>
+        
+        <span class="n">layout_strategy</span> <span class="o">=</span> <span class="n">strategy</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">strategy</span>
+                
+        <span class="c1"># Route to appropriate layout method</span>
+        <span class="k">if</span> <span class="n">layout_strategy</span> <span class="o">==</span> <span class="n">LayoutStrategy</span><span class="o">.</span><span class="n">GRID</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compose_grid_layout</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">layout_strategy</span> <span class="o">==</span> <span class="n">LayoutStrategy</span><span class="o">.</span><span class="n">ADAPTIVE_GRID</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compose_adaptive_grid_layout</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">layout_strategy</span> <span class="o">==</span> <span class="n">LayoutStrategy</span><span class="o">.</span><span class="n">SEQUENTIAL</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compose_sequential_layout</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">layout_strategy</span> <span class="o">==</span> <span class="n">LayoutStrategy</span><span class="o">.</span><span class="n">HIERARCHICAL</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compose_hierarchical_layout</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">layout_strategy</span> <span class="o">==</span> <span class="n">LayoutStrategy</span><span class="o">.</span><span class="n">FOCUS_PLUS_CONTEXT</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compose_focus_plus_context_layout</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported layout strategy: </span><span class="si">{</span><span class="n">layout_strategy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compose_grid_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">VisualizationResult</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compose results in a regular grid layout.&quot;&quot;&quot;</span>
+        <span class="n">n_results</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="n">n_cols</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">max_per_row</span><span class="p">,</span> <span class="n">n_results</span><span class="p">)</span>
+        <span class="n">n_rows</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_results</span> <span class="o">+</span> <span class="n">n_cols</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">n_cols</span>
+        
+        <span class="c1"># Calculate grid dimensions</span>
+        <span class="n">base_width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span>
+        <span class="n">base_height</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">height</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span>
+        
+        <span class="n">spacing_px</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">spacing</span> <span class="o">*</span> <span class="n">base_width</span><span class="p">)</span>
+        <span class="n">padding_px</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">padding</span> <span class="o">*</span> <span class="n">base_width</span><span class="p">)</span>
+        <span class="n">title_height_px</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">title_height</span> <span class="o">*</span> <span class="n">base_height</span><span class="p">)</span>
+        
+        <span class="c1"># Calculate total composition size</span>
+        <span class="n">total_width</span> <span class="o">=</span> <span class="n">n_cols</span> <span class="o">*</span> <span class="n">base_width</span> <span class="o">+</span> <span class="p">(</span><span class="n">n_cols</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing_px</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding_px</span>
+        <span class="n">total_height</span> <span class="o">=</span> <span class="n">n_rows</span> <span class="o">*</span> <span class="p">(</span><span class="n">base_height</span> <span class="o">+</span> <span class="n">title_height_px</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">n_rows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing_px</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding_px</span>
+        
+        <span class="c1"># Create composition image</span>
+        <span class="n">composition</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">total_width</span><span class="p">,</span> <span class="n">total_height</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">background_color</span><span class="p">)</span>
+        <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">composition</span><span class="p">)</span>
+        
+        <span class="c1"># Try to load a font</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">truetype</span><span class="p">(</span><span class="s2">&quot;arial.ttf&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">load_default</span><span class="p">()</span>
+        
+        <span class="c1"># Place images in grid</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="n">n_cols</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="n">n_cols</span>
+            
+            <span class="c1"># Calculate position</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">padding_px</span> <span class="o">+</span> <span class="n">col</span> <span class="o">*</span> <span class="p">(</span><span class="n">base_width</span> <span class="o">+</span> <span class="n">spacing_px</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">padding_px</span> <span class="o">+</span> <span class="n">row</span> <span class="o">*</span> <span class="p">(</span><span class="n">base_height</span> <span class="o">+</span> <span class="n">title_height_px</span> <span class="o">+</span> <span class="n">spacing_px</span><span class="p">)</span>
+            
+            <span class="c1"># Resize image if necessary</span>
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="p">(</span><span class="n">base_width</span><span class="p">,</span> <span class="n">base_height</span><span class="p">):</span>
+                <span class="n">resized_image</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">base_width</span><span class="p">,</span> <span class="n">base_height</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">Resampling</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">resized_image</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span>
+            
+            <span class="c1"># Paste image</span>
+            <span class="n">composition</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">resized_image</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+            
+            <span class="c1"># Add title</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">title</span><span class="p">:</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">title</span>
+            
+            <span class="n">title_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">base_width</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">title_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">base_height</span> <span class="o">+</span> <span class="mi">5</span>
+            
+            <span class="c1"># Get text bbox to center it</span>
+            <span class="n">bbox</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="n">textbbox</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">title</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+            <span class="n">text_width</span> <span class="o">=</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            
+            <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">title_x</span> <span class="o">-</span> <span class="n">text_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">title_y</span><span class="p">),</span>
+                <span class="n">title</span><span class="p">,</span>
+                <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                <span class="n">font</span><span class="o">=</span><span class="n">font</span>
+            <span class="p">)</span>
+            
+            <span class="c1"># Add border</span>
+            <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">base_width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">base_height</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">outline</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">border_color</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">border_width</span>
+            <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">composition</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compose_adaptive_grid_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">VisualizationResult</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compose results in an adaptive grid that adjusts to content.&quot;&quot;&quot;</span>
+        <span class="c1"># Group results by importance/type</span>
+        <span class="n">primary_results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">secondary_results</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="c1"># Prioritize results with highlighting or special metadata</span>
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">highlighted_indices</span> <span class="ow">or</span> <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;importance&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
+                <span class="n">primary_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">secondary_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        
+        <span class="c1"># If no prioritization, treat first result as primary</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">primary_results</span><span class="p">:</span>
+            <span class="n">primary_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="n">secondary_results</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        
+        <span class="c1"># Layout primary results with more space</span>
+        <span class="n">primary_size</span> <span class="o">=</span> <span class="mi">400</span>
+        <span class="n">secondary_size</span> <span class="o">=</span> <span class="mi">200</span>
+        <span class="n">spacing</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="mi">30</span>
+        
+        <span class="c1"># Calculate layout</span>
+        <span class="n">n_primary</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">primary_results</span><span class="p">)</span>
+        <span class="n">n_secondary</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">secondary_results</span><span class="p">)</span>
+        
+        <span class="c1"># Arrange primary results in a row</span>
+        <span class="n">primary_width</span> <span class="o">=</span> <span class="n">n_primary</span> <span class="o">*</span> <span class="n">primary_size</span> <span class="o">+</span> <span class="p">(</span><span class="n">n_primary</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span>
+        
+        <span class="c1"># Arrange secondary results below</span>
+        <span class="n">secondary_cols</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_secondary</span><span class="p">)</span> <span class="k">if</span> <span class="n">n_secondary</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">secondary_rows</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_secondary</span> <span class="o">+</span> <span class="n">secondary_cols</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">secondary_cols</span> <span class="k">if</span> <span class="n">n_secondary</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">secondary_width</span> <span class="o">=</span> <span class="n">secondary_cols</span> <span class="o">*</span> <span class="n">secondary_size</span> <span class="o">+</span> <span class="p">(</span><span class="n">secondary_cols</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span> <span class="k">if</span> <span class="n">secondary_cols</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        
+        <span class="c1"># Total dimensions</span>
+        <span class="n">total_width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">primary_width</span><span class="p">,</span> <span class="n">secondary_width</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding</span>
+        <span class="n">total_height</span> <span class="o">=</span> <span class="n">primary_size</span> <span class="o">+</span> <span class="p">(</span><span class="n">secondary_rows</span> <span class="o">*</span> <span class="n">secondary_size</span> <span class="o">+</span> <span class="p">(</span><span class="n">secondary_rows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span> <span class="k">if</span> <span class="n">secondary_rows</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">spacing</span>
+        
+        <span class="c1"># Create composition</span>
+        <span class="n">composition</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">total_width</span><span class="p">,</span> <span class="n">total_height</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">background_color</span><span class="p">)</span>
+        
+        <span class="c1"># Place primary results</span>
+        <span class="n">start_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_width</span> <span class="o">-</span> <span class="n">primary_width</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">primary_results</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">start_x</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">primary_size</span> <span class="o">+</span> <span class="n">spacing</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">padding</span>
+            
+            <span class="n">resized</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">primary_size</span><span class="p">,</span> <span class="n">primary_size</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">Resampling</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+            <span class="n">composition</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">resized</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+            
+            <span class="c1"># Add method label</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_text_label</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">primary_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">primary_size</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+        
+        <span class="c1"># Place secondary results</span>
+        <span class="k">if</span> <span class="n">secondary_results</span><span class="p">:</span>
+            <span class="n">start_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_width</span> <span class="o">-</span> <span class="n">secondary_width</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">start_y</span> <span class="o">=</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">primary_size</span> <span class="o">+</span> <span class="n">spacing</span> <span class="o">+</span> <span class="mi">30</span>
+            
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">secondary_results</span><span class="p">):</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="n">secondary_cols</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="n">secondary_cols</span>
+                
+                <span class="n">x</span> <span class="o">=</span> <span class="n">start_x</span> <span class="o">+</span> <span class="n">col</span> <span class="o">*</span> <span class="p">(</span><span class="n">secondary_size</span> <span class="o">+</span> <span class="n">spacing</span><span class="p">)</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">start_y</span> <span class="o">+</span> <span class="n">row</span> <span class="o">*</span> <span class="p">(</span><span class="n">secondary_size</span> <span class="o">+</span> <span class="n">spacing</span><span class="p">)</span>
+                
+                <span class="n">resized</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">secondary_size</span><span class="p">,</span> <span class="n">secondary_size</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">Resampling</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+                <span class="n">composition</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">resized</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+                
+                <span class="c1"># Add method label</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_text_label</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">secondary_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">secondary_size</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">composition</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compose_sequential_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">VisualizationResult</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compose results in a horizontal sequence matching tsne_functions style.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+        
+        <span class="c1"># Use consistent dimensions for all visualizations</span>
+        <span class="n">target_width</span> <span class="o">=</span> <span class="mi">600</span>   <span class="c1"># Fixed width for consistency</span>
+        <span class="n">target_height</span> <span class="o">=</span> <span class="mi">600</span>  <span class="c1"># Fixed height for consistency (square format)</span>
+        <span class="n">spacing</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># Increased spacing for better separation</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Increased padding for better framing</span>
+        
+        <span class="c1"># Resize all images to same dimensions (square format)</span>
+        <span class="n">resized_results</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="c1"># Resize to exact target dimensions (square format for consistency)</span>
+            <span class="n">resized_image</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">target_width</span><span class="p">,</span> <span class="n">target_height</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">Resampling</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+            <span class="n">resized_results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">resized_image</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
+        
+        <span class="c1"># Calculate total composition dimensions</span>
+        <span class="n">total_width</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">*</span> <span class="n">target_width</span> <span class="o">+</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding</span>
+        <span class="n">total_height</span> <span class="o">=</span> <span class="n">target_height</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding</span> <span class="o">+</span> <span class="mi">60</span>  <span class="c1"># Extra space for labels</span>
+        
+        <span class="c1"># Create composition with white background matching tsne_functions</span>
+        <span class="n">composition</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">total_width</span><span class="p">,</span> <span class="n">total_height</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+        
+        <span class="c1"># Place images side by side</span>
+        <span class="n">current_x</span> <span class="o">=</span> <span class="n">padding</span>
+        <span class="k">for</span> <span class="n">resized_image</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">resized_results</span><span class="p">:</span>
+            <span class="n">composition</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">resized_image</span><span class="p">,</span> <span class="p">(</span><span class="n">current_x</span><span class="p">,</span> <span class="n">padding</span><span class="p">))</span>
+            
+            <span class="c1"># Add method label below image (like tsne_functions legend style)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_text_label</span><span class="p">(</span>
+                <span class="n">composition</span><span class="p">,</span> 
+                <span class="n">result</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span>
+                <span class="n">current_x</span> <span class="o">+</span> <span class="n">target_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="n">padding</span> <span class="o">+</span> <span class="n">target_height</span> <span class="o">+</span> <span class="mi">15</span><span class="p">,</span>
+                <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span>  <span class="c1"># Larger font for better readability</span>
+            <span class="p">)</span>
+            
+            <span class="n">current_x</span> <span class="o">+=</span> <span class="n">target_width</span> <span class="o">+</span> <span class="n">spacing</span>
+        
+        <span class="k">return</span> <span class="n">composition</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compose_hierarchical_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">VisualizationResult</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compose results in a hierarchical tree layout.&quot;&quot;&quot;</span>
+        <span class="c1"># For now, implement a simple hierarchical layout</span>
+        <span class="c1"># This could be expanded to show method relationships</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_border_and_title</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        
+        <span class="c1"># Split into levels</span>
+        <span class="n">level1</span> <span class="o">=</span> <span class="n">results</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Main visualization</span>
+        <span class="n">level2</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="p">[]</span>  <span class="c1"># Supporting visualizations</span>
+        <span class="n">level3</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="p">[]</span>  <span class="c1"># Additional context</span>
+        
+        <span class="n">level1_size</span> <span class="o">=</span> <span class="mi">500</span>
+        <span class="n">level2_size</span> <span class="o">=</span> <span class="mi">250</span>
+        <span class="n">level3_size</span> <span class="o">=</span> <span class="mi">150</span>
+        <span class="n">spacing</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="mi">30</span>
+        
+        <span class="c1"># Calculate layout</span>
+        <span class="n">total_width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+            <span class="n">level1_size</span><span class="p">,</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">level2</span><span class="p">)</span> <span class="o">*</span> <span class="n">level2_size</span> <span class="o">+</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">level2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span> <span class="k">if</span> <span class="n">level2</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">level3</span><span class="p">)</span> <span class="o">*</span> <span class="n">level3_size</span> <span class="o">+</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">level3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span> <span class="k">if</span> <span class="n">level3</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding</span>
+        
+        <span class="n">total_height</span> <span class="o">=</span> <span class="n">level1_size</span> <span class="o">+</span> <span class="p">(</span><span class="n">level2_size</span> <span class="k">if</span> <span class="n">level2</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">level3_size</span> <span class="k">if</span> <span class="n">level3</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">padding</span>
+        
+        <span class="n">composition</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">total_width</span><span class="p">,</span> <span class="n">total_height</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">background_color</span><span class="p">)</span>
+        
+        <span class="c1"># Place level 1 (main)</span>
+        <span class="k">if</span> <span class="n">level1</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_width</span> <span class="o">-</span> <span class="n">level1_size</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">padding</span>
+            <span class="n">resized</span> <span class="o">=</span> <span class="n">level1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">level1_size</span><span class="p">,</span> <span class="n">level1_size</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">Resampling</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+            <span class="n">composition</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">resized</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_text_label</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="n">level1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">level1_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">level1_size</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span>
+        
+        <span class="c1"># Place level 2</span>
+        <span class="k">if</span> <span class="n">level2</span><span class="p">:</span>
+            <span class="n">level2_width</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">level2</span><span class="p">)</span> <span class="o">*</span> <span class="n">level2_size</span> <span class="o">+</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">level2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span>
+            <span class="n">start_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_width</span> <span class="o">-</span> <span class="n">level2_width</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">level1_size</span> <span class="o">+</span> <span class="n">padding</span>
+            
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">level2</span><span class="p">):</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">start_x</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">level2_size</span> <span class="o">+</span> <span class="n">spacing</span><span class="p">)</span>
+                <span class="n">resized</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">level2_size</span><span class="p">,</span> <span class="n">level2_size</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">Resampling</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+                <span class="n">composition</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">resized</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_text_label</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">level2_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">level2_size</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+        
+        <span class="c1"># Place level 3</span>
+        <span class="k">if</span> <span class="n">level3</span><span class="p">:</span>
+            <span class="n">level3_width</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">level3</span><span class="p">)</span> <span class="o">*</span> <span class="n">level3_size</span> <span class="o">+</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">level3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span>
+            <span class="n">start_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_width</span> <span class="o">-</span> <span class="n">level3_width</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">level1_size</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">+</span> <span class="p">(</span><span class="n">level2_size</span> <span class="k">if</span> <span class="n">level2</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding</span>
+            
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">level3</span><span class="p">):</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">start_x</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">level3_size</span> <span class="o">+</span> <span class="n">spacing</span><span class="p">)</span>
+                <span class="n">resized</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">level3_size</span><span class="p">,</span> <span class="n">level3_size</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">Resampling</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+                <span class="n">composition</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">resized</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_text_label</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">level3_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">level3_size</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">composition</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compose_focus_plus_context_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">VisualizationResult</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compose with one large focal visualization and smaller context views.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+        
+        <span class="c1"># First result is the focus, others are context</span>
+        <span class="n">focus_result</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">context_results</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        
+        <span class="n">focus_size</span> <span class="o">=</span> <span class="mi">600</span>
+        <span class="n">context_size</span> <span class="o">=</span> <span class="mi">200</span>
+        <span class="n">spacing</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="mi">30</span>
+        
+        <span class="c1"># Calculate layout</span>
+        <span class="n">context_cols</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">context_results</span><span class="p">))</span>
+        <span class="n">context_rows</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">context_results</span><span class="p">)</span> <span class="o">+</span> <span class="n">context_cols</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">context_cols</span> <span class="k">if</span> <span class="n">context_results</span> <span class="k">else</span> <span class="mi">0</span>
+        
+        <span class="n">context_width</span> <span class="o">=</span> <span class="n">context_cols</span> <span class="o">*</span> <span class="n">context_size</span> <span class="o">+</span> <span class="p">(</span><span class="n">context_cols</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span> <span class="k">if</span> <span class="n">context_cols</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">context_height</span> <span class="o">=</span> <span class="n">context_rows</span> <span class="o">*</span> <span class="n">context_size</span> <span class="o">+</span> <span class="p">(</span><span class="n">context_rows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">spacing</span> <span class="k">if</span> <span class="n">context_rows</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        
+        <span class="n">total_width</span> <span class="o">=</span> <span class="n">focus_size</span> <span class="o">+</span> <span class="n">spacing</span> <span class="o">+</span> <span class="n">context_width</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding</span> <span class="k">if</span> <span class="n">context_results</span> <span class="k">else</span> <span class="n">focus_size</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding</span>
+        <span class="n">total_height</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">focus_size</span><span class="p">,</span> <span class="n">context_height</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding</span> <span class="o">+</span> <span class="mi">50</span>  <span class="c1"># Extra for labels</span>
+        
+        <span class="n">composition</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">total_width</span><span class="p">,</span> <span class="n">total_height</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">background_color</span><span class="p">)</span>
+        
+        <span class="c1"># Place focus visualization</span>
+        <span class="n">focus_resized</span> <span class="o">=</span> <span class="n">focus_result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">focus_size</span><span class="p">,</span> <span class="n">focus_size</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">Resampling</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+        <span class="n">composition</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">focus_resized</span><span class="p">,</span> <span class="p">(</span><span class="n">padding</span><span class="p">,</span> <span class="n">padding</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_text_label</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Focus: </span><span class="si">{</span><span class="n">focus_result</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">focus_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">focus_size</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span>
+        
+        <span class="c1"># Place context visualizations</span>
+        <span class="k">if</span> <span class="n">context_results</span><span class="p">:</span>
+            <span class="n">context_start_x</span> <span class="o">=</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">focus_size</span> <span class="o">+</span> <span class="n">spacing</span>
+            <span class="n">context_start_y</span> <span class="o">=</span> <span class="n">padding</span> <span class="o">+</span> <span class="p">(</span><span class="n">focus_size</span> <span class="o">-</span> <span class="n">context_height</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>  <span class="c1"># Center vertically</span>
+            
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">context_results</span><span class="p">):</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="n">context_cols</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="n">context_cols</span>
+                
+                <span class="n">x</span> <span class="o">=</span> <span class="n">context_start_x</span> <span class="o">+</span> <span class="n">col</span> <span class="o">*</span> <span class="p">(</span><span class="n">context_size</span> <span class="o">+</span> <span class="n">spacing</span><span class="p">)</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">context_start_y</span> <span class="o">+</span> <span class="n">row</span> <span class="o">*</span> <span class="p">(</span><span class="n">context_size</span> <span class="o">+</span> <span class="n">spacing</span><span class="p">)</span>
+                
+                <span class="n">context_resized</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">context_size</span><span class="p">,</span> <span class="n">context_size</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">Resampling</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+                <span class="n">composition</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">context_resized</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_text_label</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">context_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">context_size</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">composition</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_text_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">font_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">16</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a text label to an image.&quot;&quot;&quot;</span>
+        <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">truetype</span><span class="p">(</span><span class="s2">&quot;arial.ttf&quot;</span><span class="p">,</span> <span class="n">font_size</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">load_default</span><span class="p">()</span>
+        
+        <span class="c1"># Get text dimensions for centering</span>
+        <span class="n">bbox</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="n">textbbox</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">text</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+        <span class="n">text_width</span> <span class="o">=</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">text_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span>
+            <span class="n">text</span><span class="p">,</span>
+            <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">font</span>
+        <span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_border_and_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">VisualizationResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add border and title to a single visualization result.&quot;&quot;&quot;</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="mi">30</span>
+        <span class="n">title_height</span> <span class="o">=</span> <span class="mi">40</span>
+        
+        <span class="c1"># Create new image with padding and title space</span>
+        <span class="n">new_width</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding</span>
+        <span class="n">new_height</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">title_height</span>
+        
+        <span class="n">bordered</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">new_width</span><span class="p">,</span> <span class="n">new_height</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">background_color</span><span class="p">)</span>
+        
+        <span class="c1"># Paste original image</span>
+        <span class="n">bordered</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="n">padding</span><span class="p">,</span> <span class="n">padding</span><span class="p">))</span>
+        
+        <span class="c1"># Add title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_text_label</span><span class="p">(</span>
+            <span class="n">bordered</span><span class="p">,</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span>
+            <span class="n">new_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="n">padding</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mi">10</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># Add border</span>
+        <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">bordered</span><span class="p">)</span>
+        <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">padding</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">padding</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span>
+            <span class="n">outline</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">border_color</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="o">.</span><span class="n">border_width</span>
+        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">bordered</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+dataset: texture
+templates:
+  9f52810c-a7a4-4a0f-85bb-dc7f79d42627: !Template
+    name: texture
+    id: 9f52810c-a7a4-4a0f-85bb-dc7f79d42627
+    reference: ''
+    answer_choices: Class 0 ||| Class 1
+    jinja: "{{note}}\n\nWhat is the class of this instance?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

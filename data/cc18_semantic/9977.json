@@ -1,0 +1,681 @@
+{
+  "dataset": "nomao",
+  "description": "Nomao is a dataset for data deduplication of place information. It contains features comparing two places (spots) collected from multiple web sources to determine if they refer to the same physical location. The dataset was enriched during the Nomao Challenge at ECML-PKDD 2012 conference.",
+  "source": "UCI Machine Learning Repository / Nomao Labs",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Nomao",
+  "openml_task": 9977,
+  "openml_dataset": 1486,
+  "date_donated": "2012",
+  "creator": "Laurent Candillier and Vincent Lemaire (Nomao Labs)",
+  "instances": 34465,
+  "features": 119,
+  "target": "Class",
+  "target_type": "binary",
+  "missing_values": true,
+  "feature_types": {
+    "continuous": 89,
+    "nominal": 30
+  },
+  "feature_categories": {
+    "name_similarity": "Features comparing place names using various string metrics",
+    "address_similarity": "Features comparing address information",
+    "phone_similarity": "Features comparing phone numbers",
+    "location_similarity": "Features comparing geographic coordinates and locations",
+    "metadata_similarity": "Other features comparing place metadata"
+  },
+  "feature_examples": {
+    "name_levenshtein": "Levenshtein distance between place names",
+    "name_trigram": "Trigram similarity between place names",
+    "name_equality": "Categorical equality measure for names (n/s/m)",
+    "phone_diff": "Numerical difference between phone numbers",
+    "coordinates_lat_diff": "Difference in latitude coordinates",
+    "coordinates_long_diff": "Difference in longitude coordinates",
+    "geocode_coordinates_diff": "Distance between geocoded coordinates"
+  },
+  "equality_categories": {
+    "n": "Not equal",
+    "s": "Similar",
+    "m": "Match (equal)"
+  },
+  "target_values": {
+    "+1": "Same place (duplicate)",
+    "-1": "Different places (not duplicate)"
+  },
+  "labeling_methods": {
+    "human_prior": "First 29,104 instances labeled by human expert",
+    "marg": "917 instances labeled using margin-based active learning",
+    "wmarg": "964 instances using weighted margin method",
+    "wmarg5": "995 instances using weighted margin variant",
+    "rand": "1,985 instances using random selection",
+    "baseline": "163 instances using baseline method"
+  },
+  "domain": "Data Deduplication/Entity Resolution",
+  "use_case": "Identifying duplicate place entries in location-based services, search engines, and business directories. Essential for data quality in mapping applications and local search.",
+  "active_learning_context": "Dataset was specifically designed for active learning research, demonstrating how to efficiently label data for deduplication tasks",
+  "ethical_considerations": "Place data may contain business information that could be sensitive. Deduplication accuracy is crucial for fair representation of businesses in search results and maps.",
+  "citations": [
+    {
+      "author": "Laurent Candillier and Vincent Lemaire",
+      "title": "Design and Analysis of the Nomao Challenge - Active Learning in the Real-World",
+      "venue": "Proceedings of the ALRA: Active Learning in Real-world Applications, Workshop ECML-PKDD 2012",
+      "location": "Bristol, UK",
+      "date": "September 28, 2012"
+    }
+  ],
+  "dataset_name": "nomao",
+  "original_source": {
+    "creator": "Laurent Candillier and Vincent Lemaire (Nomao Labs)",
+    "institution": "UCI Machine Learning Repository / Nomao Labs",
+    "date": "2012",
+    "publication": "Laurent Candillier and Vincent Lemaire: Design and Analysis of the Nomao Challenge - Active Learning in the Real-World"
+  },
+  "columns": [
+    {
+      "name": "feature_1",
+      "semantic_description": "Feature 1",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_2",
+      "semantic_description": "Feature 2",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_3",
+      "semantic_description": "Feature 3",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_4",
+      "semantic_description": "Feature 4",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_5",
+      "semantic_description": "Feature 5",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_6",
+      "semantic_description": "Feature 6",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_7",
+      "semantic_description": "Feature 7",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_8",
+      "semantic_description": "Feature 8",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_9",
+      "semantic_description": "Feature 9",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_10",
+      "semantic_description": "Feature 10",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_11",
+      "semantic_description": "Feature 11",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_12",
+      "semantic_description": "Feature 12",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_13",
+      "semantic_description": "Feature 13",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_14",
+      "semantic_description": "Feature 14",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_15",
+      "semantic_description": "Feature 15",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_16",
+      "semantic_description": "Feature 16",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_17",
+      "semantic_description": "Feature 17",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_18",
+      "semantic_description": "Feature 18",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_19",
+      "semantic_description": "Feature 19",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_20",
+      "semantic_description": "Feature 20",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_21",
+      "semantic_description": "Feature 21",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_22",
+      "semantic_description": "Feature 22",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_23",
+      "semantic_description": "Feature 23",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_24",
+      "semantic_description": "Feature 24",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_25",
+      "semantic_description": "Feature 25",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_26",
+      "semantic_description": "Feature 26",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_27",
+      "semantic_description": "Feature 27",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_28",
+      "semantic_description": "Feature 28",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_29",
+      "semantic_description": "Feature 29",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_30",
+      "semantic_description": "Feature 30",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_31",
+      "semantic_description": "Feature 31",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_32",
+      "semantic_description": "Feature 32",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_33",
+      "semantic_description": "Feature 33",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_34",
+      "semantic_description": "Feature 34",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_35",
+      "semantic_description": "Feature 35",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_36",
+      "semantic_description": "Feature 36",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_37",
+      "semantic_description": "Feature 37",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_38",
+      "semantic_description": "Feature 38",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_39",
+      "semantic_description": "Feature 39",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_40",
+      "semantic_description": "Feature 40",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_41",
+      "semantic_description": "Feature 41",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_42",
+      "semantic_description": "Feature 42",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_43",
+      "semantic_description": "Feature 43",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_44",
+      "semantic_description": "Feature 44",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_45",
+      "semantic_description": "Feature 45",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_46",
+      "semantic_description": "Feature 46",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_47",
+      "semantic_description": "Feature 47",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_48",
+      "semantic_description": "Feature 48",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_49",
+      "semantic_description": "Feature 49",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_50",
+      "semantic_description": "Feature 50",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_51",
+      "semantic_description": "Feature 51",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_52",
+      "semantic_description": "Feature 52",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_53",
+      "semantic_description": "Feature 53",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_54",
+      "semantic_description": "Feature 54",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_55",
+      "semantic_description": "Feature 55",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_56",
+      "semantic_description": "Feature 56",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_57",
+      "semantic_description": "Feature 57",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_58",
+      "semantic_description": "Feature 58",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_59",
+      "semantic_description": "Feature 59",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_60",
+      "semantic_description": "Feature 60",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_61",
+      "semantic_description": "Feature 61",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_62",
+      "semantic_description": "Feature 62",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_63",
+      "semantic_description": "Feature 63",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_64",
+      "semantic_description": "Feature 64",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_65",
+      "semantic_description": "Feature 65",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_66",
+      "semantic_description": "Feature 66",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_67",
+      "semantic_description": "Feature 67",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_68",
+      "semantic_description": "Feature 68",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_69",
+      "semantic_description": "Feature 69",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_70",
+      "semantic_description": "Feature 70",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_71",
+      "semantic_description": "Feature 71",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_72",
+      "semantic_description": "Feature 72",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_73",
+      "semantic_description": "Feature 73",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_74",
+      "semantic_description": "Feature 74",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_75",
+      "semantic_description": "Feature 75",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_76",
+      "semantic_description": "Feature 76",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_77",
+      "semantic_description": "Feature 77",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_78",
+      "semantic_description": "Feature 78",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_79",
+      "semantic_description": "Feature 79",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_80",
+      "semantic_description": "Feature 80",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_81",
+      "semantic_description": "Feature 81",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_82",
+      "semantic_description": "Feature 82",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_83",
+      "semantic_description": "Feature 83",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_84",
+      "semantic_description": "Feature 84",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_85",
+      "semantic_description": "Feature 85",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_86",
+      "semantic_description": "Feature 86",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_87",
+      "semantic_description": "Feature 87",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_88",
+      "semantic_description": "Feature 88",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_89",
+      "semantic_description": "Feature 89",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_90",
+      "semantic_description": "Feature 90",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_91",
+      "semantic_description": "Feature 91",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_92",
+      "semantic_description": "Feature 92",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_93",
+      "semantic_description": "Feature 93",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_94",
+      "semantic_description": "Feature 94",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_95",
+      "semantic_description": "Feature 95",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_96",
+      "semantic_description": "Feature 96",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_97",
+      "semantic_description": "Feature 97",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_98",
+      "semantic_description": "Feature 98",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_99",
+      "semantic_description": "Feature 99",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_100",
+      "semantic_description": "Feature 100",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_101",
+      "semantic_description": "Feature 101",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_102",
+      "semantic_description": "Feature 102",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_103",
+      "semantic_description": "Feature 103",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_104",
+      "semantic_description": "Feature 104",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_105",
+      "semantic_description": "Feature 105",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_106",
+      "semantic_description": "Feature 106",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_107",
+      "semantic_description": "Feature 107",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_108",
+      "semantic_description": "Feature 108",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_109",
+      "semantic_description": "Feature 109",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_110",
+      "semantic_description": "Feature 110",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_111",
+      "semantic_description": "Feature 111",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_112",
+      "semantic_description": "Feature 112",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_113",
+      "semantic_description": "Feature 113",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_114",
+      "semantic_description": "Feature 114",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_115",
+      "semantic_description": "Feature 115",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_116",
+      "semantic_description": "Feature 116",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_117",
+      "semantic_description": "Feature 117",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_118",
+      "semantic_description": "Feature 118",
+      "data_type": "continuous"
+    },
+    {
+      "name": "feature_119",
+      "semantic_description": "Feature 119",
+      "data_type": "continuous"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "+1",
+      "meaning": "Same place (duplicate)"
+    },
+    {
+      "name": "-1",
+      "meaning": "Different places (not duplicate)"
+    }
+  ],
+  "dataset_history": "Dataset history not available for nomao",
+  "inference_notes": "Use Case: Identifying duplicate place entries in location-based services, search engines, and business directories. Essential for data quality in mapping applications and local search."
+}

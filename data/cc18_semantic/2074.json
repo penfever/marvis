@@ -1,0 +1,90 @@
+{
+  "dataset": "satimage",
+  "description": "Landsat satellite image dataset consisting of multi-spectral values of pixels in 3x3 neighborhoods. The database contains spectral data from four digital images of the same scene in different spectral bands (two visible, two near-infrared). The task is to predict the soil type classification of the central pixel based on multi-spectral values.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Statlog+(Landsat+Satellite)",
+  "openml_task": 2074,
+  "openml_dataset": 182,
+  "date_donated": "1993",
+  "creator": "Ashwin Srinivasan, Department of Statistics and Data Modeling, University of Strathclyde",
+  "instances": 6435,
+  "features": 36,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "integer"
+  },
+  "feature_names": {
+    "attr1-attr36": "Multi-spectral pixel values"
+  },
+  "feature_descriptions": {
+    "attr1-attr9": "Pixel values in 3x3 neighborhood for spectral band 1 (visible green)",
+    "attr10-attr18": "Pixel values in 3x3 neighborhood for spectral band 2 (visible red)",
+    "attr19-attr27": "Pixel values in 3x3 neighborhood for spectral band 3 (near infrared)",
+    "attr28-attr36": "Pixel values in 3x3 neighborhood for spectral band 4 (near infrared)"
+  },
+  "feature_scale": "8-bit values (0-255) representing pixel intensities",
+  "target_values": {
+    "1": "Red soil",
+    "2": "Cotton crop",
+    "3": "Grey soil",
+    "4": "Damp grey soil",
+    "5": "Soil with vegetation stubble",
+    "7": "Very damp grey soil"
+  },
+  "domain": "Remote Sensing/Agriculture",
+  "use_case": "Land cover classification from satellite imagery. Applications include agricultural monitoring, environmental assessment, urban planning, and natural resource management. Useful for automated analysis of large-scale geographical areas.",
+  "data_generation": "Landsat Multi-Spectral Scanner (MSS) imagery with spatial resolution of 80m x 80m per pixel. Sub-area of 82x100 pixels extracted from larger 2340x3380 pixel scene. Four spectral bands captured simultaneously.",
+  "ethical_considerations": "Satellite imagery classification should consider privacy implications when applied to inhabited areas. Environmental monitoring applications should be used responsibly to support sustainable land use practices.",
+  "citations": [
+    {
+      "author": "Ashwin Srinivasan",
+      "title": "The Statlog Landsat Satellite Dataset",
+      "venue": "UCI Machine Learning Repository",
+      "year": "1993"
+    }
+  ],
+  "dataset_name": "satimage",
+  "original_source": {
+    "creator": "Ashwin Srinivasan, Department of Statistics and Data Modeling, University of Strathclyde",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1993",
+    "publication": "Ashwin Srinivasan: The Statlog Landsat Satellite Dataset"
+  },
+  "columns": [
+    {
+      "name": "Multi-spectral pixel values",
+      "semantic_description": "Feature: Multi-spectral pixel values",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "1",
+      "meaning": "Red soil"
+    },
+    {
+      "name": "2",
+      "meaning": "Cotton crop"
+    },
+    {
+      "name": "3",
+      "meaning": "Grey soil"
+    },
+    {
+      "name": "4",
+      "meaning": "Damp grey soil"
+    },
+    {
+      "name": "5",
+      "meaning": "Soil with vegetation stubble"
+    },
+    {
+      "name": "7",
+      "meaning": "Very damp grey soil"
+    }
+  ],
+  "dataset_history": "Dataset history not available for satimage",
+  "inference_notes": "Use Case: Land cover classification from satellite imagery. Applications include agricultural monitoring, environmental assessment, urban planning, and natural resource management. Useful for automated analysis of large-scale geographical areas."
+}

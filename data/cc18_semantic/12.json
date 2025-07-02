@@ -1,0 +1,110 @@
+{
+  "dataset": "mfeat-factors",
+  "description": "Multiple Features Dataset: Factors. One of six datasets describing features of handwritten numerals (0-9) extracted from Dutch utility maps. This dataset contains 216 profile correlations computed from the digit images. Each class has 200 instances digitized from binary images.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Multiple+Features",
+  "openml_task": 12,
+  "openml_dataset": 12,
+  "date_donated": "1998",
+  "creator": "Robert P.W. Duin, Department of Applied Physics, Delft University of Technology",
+  "instances": 2000,
+  "features": 216,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "numeric"
+  },
+  "feature_names": {
+    "att1-att216": "Profile correlation features"
+  },
+  "feature_descriptions": {
+    "all_features": "216 profile correlations computed from the handwritten digit images. These features capture shape characteristics through correlation analysis of digit profiles."
+  },
+  "feature_scale": "Continuous numeric values representing correlation coefficients",
+  "target_values": {
+    "0": "Digit 0",
+    "1": "Digit 1",
+    "2": "Digit 2",
+    "3": "Digit 3",
+    "4": "Digit 4",
+    "5": "Digit 5",
+    "6": "Digit 6",
+    "7": "Digit 7",
+    "8": "Digit 8",
+    "9": "Digit 9"
+  },
+  "domain": "Computer Vision/Pattern Recognition",
+  "use_case": "Handwritten digit recognition using profile-based features. Applications include postal automation, document digitization, and comparison of different feature extraction methods for pattern recognition tasks.",
+  "data_generation": "Handwritten numerals from Dutch utility maps scanned at 400dpi in 8-bit grey scale, then sharpened and thresholded. Profile correlations computed to capture shape characteristics of the digits.",
+  "ethical_considerations": "Dataset represents handwriting samples from Dutch utility maps, which may have specific characteristics. Performance may vary for different writing styles or cultural contexts.",
+  "citations": [
+    {
+      "author": "M. van Breukelen, R.P.W. Duin, D.M.J. Tax, and J.E. den Hartog",
+      "title": "Handwritten digit recognition by combined classifiers",
+      "venue": "Kybernetika",
+      "volume": "34",
+      "number": "4",
+      "pages": "381-386",
+      "year": "1998"
+    }
+  ],
+  "dataset_name": "mfeat-factors",
+  "original_source": {
+    "creator": "Robert P.W. Duin, Department of Applied Physics, Delft University of Technology",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1998",
+    "publication": "M. van Breukelen, R.P.W. Duin, D.M.J. Tax, and J.E. den Hartog: Handwritten digit recognition by combined classifiers"
+  },
+  "columns": [
+    {
+      "name": "Profile correlation features",
+      "semantic_description": "Feature: Profile correlation features",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Digit 0"
+    },
+    {
+      "name": "1",
+      "meaning": "Digit 1"
+    },
+    {
+      "name": "2",
+      "meaning": "Digit 2"
+    },
+    {
+      "name": "3",
+      "meaning": "Digit 3"
+    },
+    {
+      "name": "4",
+      "meaning": "Digit 4"
+    },
+    {
+      "name": "5",
+      "meaning": "Digit 5"
+    },
+    {
+      "name": "6",
+      "meaning": "Digit 6"
+    },
+    {
+      "name": "7",
+      "meaning": "Digit 7"
+    },
+    {
+      "name": "8",
+      "meaning": "Digit 8"
+    },
+    {
+      "name": "9",
+      "meaning": "Digit 9"
+    }
+  ],
+  "dataset_history": "Dataset history not available for mfeat-factors",
+  "inference_notes": "Use Case: Handwritten digit recognition using profile-based features. Applications include postal automation, document digitization, and comparison of different feature extraction methods for pattern recognition tasks."
+}

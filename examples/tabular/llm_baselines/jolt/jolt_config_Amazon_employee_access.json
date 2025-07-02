@@ -1,0 +1,23 @@
+{
+  "dataset_name": "Amazon_employee_access",
+  "task_prefix": "Historical data from Amazon's employee resource access system. Used to predict whether an employee's request for computer resource access will be approved or denied based on their role and organizational context. Each example contains 10 features. Predict the target class.",
+  "column_descriptions": {
+    "ACTION": "Target variable indicating whether the resource access request was approved or denied.",
+    "RESOURCE": "Unique identifier for each computer resource. Represents specific systems, applications, or data that employees request access to.",
+    "MGR_ID": "Employee ID of the requester's manager. Used to capture managerial hierarchy and approval patterns.",
+    "ROLE_ROLLUP_1": "Company role grouping at the highest level (e.g., US Engineering). Represents broad organizational divisions.",
+    "ROLE_ROLLUP_2": "Company role grouping at a more specific level (e.g., US Retail). Provides finer role categorization within ROLE_ROLLUP_1.",
+    "ROLE_DEPTNAME": "Department name of the employee's role (e.g., Retail). Indicates functional area within the organization.",
+    "ROLE_TITLE": "Business title of the employee's role (e.g., Senior Engineering Retail Manager). Most specific role designation.",
+    "ROLE_FAMILY_DESC": "Extended description of the role family (e.g., Retail Manager, Software Engineering). Groups similar roles across departments.",
+    "ROLE_FAMILY": "Shortened role family description (e.g., Retail Manager). Core role category.",
+    "ROLE_CODE": "Unique code for each specific role (e.g., Manager). Most granular role identifier."
+  },
+  "class_names": [
+    "1",
+    "0"
+  ],
+  "class_description": "Classes: '1' (Resource access request was approved), '0' (Resource access request was denied)",
+  "num_features": 10,
+  "num_classes": 2
+}

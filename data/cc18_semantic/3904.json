@@ -1,0 +1,204 @@
+{
+  "dataset": "jm1",
+  "description": "NASA Metrics Data Program defect dataset for software quality prediction. Contains McCabe and Halstead metrics extracted from C language modules of a real-time predictive ground system used for satellite simulations.",
+  "source": "PROMISE Software Engineering Repository / NASA MDP",
+  "source_url": "http://promise.site.uottawa.ca/SERepository/datasets/jm1.arff",
+  "openml_task": 3904,
+  "openml_dataset": 1053,
+  "date_donated": "2004-12-02",
+  "creator": "NASA Metrics Data Program (Mike Chapman, Pat Callis)",
+  "instances": 10885,
+  "features": 21,
+  "target": "defects",
+  "target_type": "binary",
+  "missing_values": false,
+  "feature_types": {
+    "continuous": 21
+  },
+  "feature_description": {
+    "loc": "McCabe's line count of code",
+    "v(g)": "McCabe's cyclomatic complexity",
+    "ev(g)": "McCabe's essential complexity",
+    "iv(g)": "McCabe's design complexity",
+    "n": "Halstead's total operators + operands",
+    "v": "Halstead's volume",
+    "l": "Halstead's program length",
+    "d": "Halstead's difficulty",
+    "i": "Halstead's intelligence",
+    "e": "Halstead's effort",
+    "b": "Halstead's delivered bugs estimate",
+    "t": "Halstead's time estimator",
+    "lOCode": "Halstead's line count",
+    "lOComment": "Halstead's count of lines of comments",
+    "lOBlank": "Halstead's count of blank lines",
+    "lOCodeAndComment": "Lines of code and comment",
+    "uniq_Op": "Unique operators",
+    "uniq_Opnd": "Unique operands",
+    "total_Op": "Total operators",
+    "total_Opnd": "Total operands",
+    "branchCount": "Number of branches in flow graph"
+  },
+  "instances_per_class": {
+    "false": 2106,
+    "true": 8779
+  },
+  "target_values": {
+    "false": "No defects (19.35%)",
+    "true": "Has defects (80.65%)"
+  },
+  "domain": "Software Engineering",
+  "use_case": "Software defect prediction, quality assurance, risk assessment, resource allocation for testing, identifying fault-prone modules",
+  "dataset_family": {
+    "description": "Part of NASA Metrics Data Program collection",
+    "other_datasets": [
+      "CM1, PC1, PC2, PC3, PC4, PC5",
+      "KC1, KC2, KC3, KC4",
+      "MC1, MC2, MW1"
+    ]
+  },
+  "data_collection": "Static code metrics extracted from C language source code using McCabe and Halstead feature extractors",
+  "mathematical_background": "McCabe metrics measure code complexity through control flow analysis. Halstead metrics estimate program difficulty through operator and operand analysis",
+  "challenges": "Severe class imbalance (80% defective), metrics from 1970s may not capture modern software complexity, single programming language",
+  "advantages": "Well-studied benchmark dataset, objective metrics from source code, large number of instances",
+  "ethical_considerations": "Metrics-based prediction should complement, not replace, human code review. Risk of over-relying on automated predictions",
+  "citations": [
+    {
+      "author": "Tim Menzies, Justin S. Di Stefano",
+      "title": "How Good is Your Blind Spot Sampling Policy?",
+      "venue": "IEEE Conference on High Assurance Software Engineering",
+      "year": "2004"
+    },
+    {
+      "author": "Sayyad Shirabad, J. and Menzies, T.J.",
+      "title": "The PROMISE Repository of Software Engineering Databases",
+      "venue": "School of Information Technology and Engineering, University of Ottawa",
+      "year": "2005"
+    }
+  ],
+  "dataset_name": "jm1",
+  "original_source": {
+    "creator": "NASA Metrics Data Program (Mike Chapman, Pat Callis)",
+    "institution": "PROMISE Software Engineering Repository / NASA MDP",
+    "date": "2004-12-02",
+    "publication": "Tim Menzies, Justin S. Di Stefano: How Good is Your Blind Spot Sampling Policy?"
+  },
+  "columns": [
+    {
+      "name": "loc",
+      "semantic_description": "McCabe's line count of code",
+      "data_type": "integer"
+    },
+    {
+      "name": "v(g)",
+      "semantic_description": "McCabe's cyclomatic complexity",
+      "data_type": "numeric"
+    },
+    {
+      "name": "ev(g)",
+      "semantic_description": "McCabe's essential complexity",
+      "data_type": "numeric"
+    },
+    {
+      "name": "iv(g)",
+      "semantic_description": "McCabe's design complexity",
+      "data_type": "numeric"
+    },
+    {
+      "name": "n",
+      "semantic_description": "Halstead's total operators + operands",
+      "data_type": "numeric"
+    },
+    {
+      "name": "v",
+      "semantic_description": "Halstead's volume",
+      "data_type": "numeric"
+    },
+    {
+      "name": "l",
+      "semantic_description": "Halstead's program length",
+      "data_type": "numeric"
+    },
+    {
+      "name": "d",
+      "semantic_description": "Halstead's difficulty",
+      "data_type": "numeric"
+    },
+    {
+      "name": "i",
+      "semantic_description": "Halstead's intelligence",
+      "data_type": "numeric"
+    },
+    {
+      "name": "e",
+      "semantic_description": "Halstead's effort",
+      "data_type": "numeric"
+    },
+    {
+      "name": "b",
+      "semantic_description": "Halstead's delivered bugs estimate",
+      "data_type": "numeric"
+    },
+    {
+      "name": "t",
+      "semantic_description": "Halstead's time estimator",
+      "data_type": "numeric"
+    },
+    {
+      "name": "lOCode",
+      "semantic_description": "Halstead's line count",
+      "data_type": "integer"
+    },
+    {
+      "name": "lOComment",
+      "semantic_description": "Halstead's count of lines of comments",
+      "data_type": "integer"
+    },
+    {
+      "name": "lOBlank",
+      "semantic_description": "Halstead's count of blank lines",
+      "data_type": "integer"
+    },
+    {
+      "name": "lOCodeAndComment",
+      "semantic_description": "Lines of code and comment",
+      "data_type": "numeric"
+    },
+    {
+      "name": "uniq_Op",
+      "semantic_description": "Unique operators",
+      "data_type": "numeric"
+    },
+    {
+      "name": "uniq_Opnd",
+      "semantic_description": "Unique operands",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_Op",
+      "semantic_description": "Total operators",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_Opnd",
+      "semantic_description": "Total operands",
+      "data_type": "numeric"
+    },
+    {
+      "name": "branchCount",
+      "semantic_description": "Number of branches in flow graph",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "false",
+      "meaning": "No defects (19.35%)"
+    },
+    {
+      "name": "true",
+      "meaning": "Has defects (80.65%)"
+    }
+  ],
+  "dataset_history": "Data Collection: Static code metrics extracted from C language source code using McCabe and Halstead feature extractors",
+  "inference_notes": "Challenges: Severe class imbalance (80% defective), metrics from 1970s may not capture modern software complexity, single programming language. Advantages: Well-studied benchmark dataset, objective metrics from source code, large number of instances. Use Case: Software defect prediction, quality assurance, risk assessment, resource allocation for testing, identifying fault-prone modules"
+}

@@ -1,0 +1,16 @@
+dataset: Bioresponse
+templates:
+  0210e697-ae76-4aa8-b377-029b6277e98b: !Template
+    name: Bioresponse
+    id: 0210e697-ae76-4aa8-b377-029b6277e98b
+    reference: ''
+    answer_choices: Molecule did not elicit biological response ||| Molecule elicited
+      biological response
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Molecule did not elicit biological response, Molecule elicited biological\
+      \ response?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

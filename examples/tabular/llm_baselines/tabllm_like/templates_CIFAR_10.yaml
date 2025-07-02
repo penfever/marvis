@@ -1,0 +1,16 @@
+dataset: CIFAR_10
+templates:
+  524e0387-f584-4839-a803-fa23a3224cf8: !Template
+    name: CIFAR_10
+    id: 524e0387-f584-4839-a803-fa23a3224cf8
+    reference: ''
+    answer_choices: airplane ||| automobile ||| bird ||| cat ||| deer ||| dog |||
+      frog ||| horse ||| ship ||| truck
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck?\nAnswer:\
+      \ \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

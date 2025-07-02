@@ -1,0 +1,16 @@
+dataset: mfeat-karhunen
+templates:
+  204c98f6-3ef8-4341-89ca-98e05bb73aad: !Template
+    name: mfeat-karhunen
+    id: 204c98f6-3ef8-4341-89ca-98e05bb73aad
+    reference: ''
+    answer_choices: Digit 0 ||| Digit 1 ||| Digit 2 ||| Digit 3 ||| Digit 4 ||| Digit
+      5 ||| Digit 6 ||| Digit 7 ||| Digit 8 ||| Digit 9
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Digit 0, Digit 1, Digit 2, Digit 3, Digit 4, Digit 5, Digit 6, Digit 7, Digit\
+      \ 8, Digit 9?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

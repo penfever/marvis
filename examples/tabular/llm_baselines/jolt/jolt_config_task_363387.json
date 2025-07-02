@@ -1,0 +1,18 @@
+{
+  "dataset_name": "convai2_inferred",
+  "task_prefix": "This dataset is part of a larger effort to study and classify gender bias in conversational AI systems. It contains persona-based conversations from the ConvAI2 competition, specifically annotated and analyzed for gender-related attributes and biases. The data represents conversations where personas contain gender-identifiable information, which has been annotated both manually and through automated classification. Each example contains 5 features. Predict the ternary_score.",
+  "column_descriptions": {
+    "0": "Likely represents text features or embeddings from the conversation context",
+    "1": "Likely represents speaker (AS) gender-related features",
+    "2": "Likely represents addressee (TO) gender-related features",
+    "3": "Likely represents ABOUT classification features",
+    "4": "Additional contextual or derived features from the conversation"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: ternary_score - A measure of gender bias classification on a three-point scale, likely representing neutral, biased, or strongly biased classifications. Units: Categorical/Numerical score. Range: Likely [0,2] or [-1,1], representing different levels of gender bias",
+  "num_features": 5,
+  "num_classes": 1,
+  "task_id": 363387
+}

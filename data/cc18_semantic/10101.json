@@ -1,0 +1,44 @@
+{
+  "dataset_name": "blood-transfusion-service-center",
+  "description": "Blood donation records from the Blood Transfusion Service Center in Hsin-Chu City, Taiwan. Mobile blood donation bus visits one university campus approximately every three months. Task is to predict whether a donor will donate blood in the next campaign.",
+  "original_source": {
+    "creator": "Prof. I-Cheng Yeh",
+    "institution": "Department of Information Management, Chung-Hua University, Hsin-Chu, Taiwan",
+    "date": "October 2, 2008",
+    "publication": "Yeh, I-C., Yang, K-J., & Ting, T-M. (2009). Knowledge discovery on RFM model using Bernoulli sequence. Expert Systems with Applications, 36(3), 5866-5871. DOI: 10.1016/j.eswa.2008.07.018"
+  },
+  "columns": [
+    {
+      "name": "Recency",
+      "semantic_description": "Months since the donor's last blood donation. Lower values indicate more recent donations, suggesting higher engagement with donation campaigns.",
+      "data_type": "float (0.03 to 74.4 months)"
+    },
+    {
+      "name": "Frequency",
+      "semantic_description": "Total number of times the donor has donated blood. Captures the donor's lifetime donation behavior and commitment level.",
+      "data_type": "integer (1 to 50 times)"
+    },
+    {
+      "name": "Monetary",
+      "semantic_description": "Total volume of blood donated in cubic centimeters (c.c.). In Taiwan, standard donation is 250cc per session. Directly proportional to frequency since each donation has fixed volume.",
+      "data_type": "integer (250 to 12,500 c.c.)"
+    },
+    {
+      "name": "Time",
+      "semantic_description": "Months since the donor's first blood donation. Represents how long the donor has been in the donation system, indicating donor relationship duration.",
+      "data_type": "float (2.27 to 98.3 months)"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "1",
+      "meaning": "Donor donated blood in March 2007 target campaign (24% of instances)"
+    },
+    {
+      "name": "0",
+      "meaning": "Donor did not donate blood in March 2007 target campaign (76% of instances)"
+    }
+  ],
+  "dataset_history": "Created to demonstrate the RFMTC marketing model, an extension of the classic RFM (Recency, Frequency, Monetary) model with added Time and Churn probability components. The study developed predictive formulas using Bernoulli sequence probability theory to estimate future donation likelihood. Dataset represents a random sample of 748 donors from the blood center's database. The mobile blood service bus visits the university campus approximately every three months for blood drives.",
+  "inference_notes": "RFMTC model adapts traditional customer value analysis to blood donation context. 'Monetary' value is volume rather than currency, reflecting the life-saving value of blood. The 'C' in RFMTC represents Churn probability, though not explicitly included as a feature - it's the prediction target. Dataset shows class imbalance (76% non-donors in target period) typical of donation campaigns. The Monetary feature has extremely high variance (2,114,363) compared to other features, requiring normalization for many ML algorithms. Features capture key behavioral patterns: engagement recency, loyalty frequency, contribution magnitude, and relationship duration."
+}

@@ -1,0 +1,22 @@
+{
+  "dataset_name": "Mercedes_Benz_Greener_Manufacturing",
+  "task_prefix": "Anonymized Mercedes-Benz vehicle testing data representing different permutations of car features to predict the time vehicles spend on the test bench. Each row represents a unique car configuration with various customization options. Each example contains 10 features. Predict the target class.",
+  "column_descriptions": {
+    "X0": "Categorical feature representing a car configuration option. Has multiple levels (e.g., 'aa', 'ab', 'ac', etc.).",
+    "X1": "Categorical feature for another configuration aspect. Contains various coded values.",
+    "X2": "Categorical feature representing additional customization option.",
+    "X3": "Binary feature indicating presence/absence of specific car feature (e.g., could be 4WD, air suspension, etc.).",
+    "X4": "Binary feature for another car configuration option.",
+    "X5": "Categorical feature with multiple levels representing configuration variant.",
+    "X6": "Categorical feature for additional customization aspect.",
+    "X8": "Categorical feature representing another configuration dimension.",
+    "X10-X385": "Binary features representing presence/absence of various car features and options. Total of 376 binary variables indicating different customization choices.",
+    "y": "Target variable: Time in seconds that the car spent on the test bench. Represents testing duration for quality assurance."
+  },
+  "class_names": [
+    "continuous"
+  ],
+  "class_description": "Classes: 'continuous' (Regression target - testing time in seconds (ranges approximately 70-180 seconds))",
+  "num_features": 10,
+  "num_classes": 1
+}

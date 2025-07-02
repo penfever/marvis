@@ -1,0 +1,15 @@
+dataset: spambase
+templates:
+  9bc85e20-7dc4-44fc-b242-0f70b4796d4a: !Template
+    name: spambase
+    id: 9bc85e20-7dc4-44fc-b242-0f70b4796d4a
+    reference: ''
+    answer_choices: 0 ||| 1
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: 0 (Not\
+      \ spam - legitimate email (ham)), 1 (Spam - unsolicited commercial email)\n\
+      Answer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

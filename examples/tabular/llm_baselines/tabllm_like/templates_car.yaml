@@ -1,0 +1,15 @@
+dataset: car
+templates:
+  e30b1d13-87c3-4ff4-b72c-c06beb66dcf8: !Template
+    name: car
+    id: e30b1d13-87c3-4ff4-b72c-c06beb66dcf8
+    reference: ''
+    answer_choices: Acceptable ||| Good ||| Unacceptable ||| Very good
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Acceptable, Good, Unacceptable, Very good?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

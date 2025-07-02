@@ -1,0 +1,36 @@
+{
+  "dataset_name": "pc1-software-defect-prediction",
+  "task_prefix": "NASA Metrics Data Program defect dataset from flight software for an earth-orbiting satellite. Contains static code metrics extracted using McCabe and Halstead analyzers to predict software modules likely to contain defects. Each example contains 22 features. Predict the target class.",
+  "column_descriptions": {
+    "loc": "McCabe's line count of code. Physical lines of code in the module, including executable statements.",
+    "v(g)": "McCabe cyclomatic complexity. Number of linearly independent paths through the code, calculated as edges - nodes + 2. Higher values indicate more complex control flow.",
+    "ev(g)": "McCabe essential complexity. Measures the structuredness of code by counting irreducible control structures. High values indicate unstructured 'spaghetti' code.",
+    "iv(g)": "McCabe design complexity. Cyclomatic complexity of a module's design-reduced flowgraph, measuring integration complexity with other modules.",
+    "n": "Halstead total operators + operands. Sum of all operators and operands in the code.",
+    "v": "Halstead volume. Program size measure calculated as n * log2(n1 + n2), where n1 and n2 are unique operators and operands.",
+    "l": "Halstead program length. Estimated program length based on unique operators and operands.",
+    "d": "Halstead difficulty. Measure of how difficult the program is to write or understand, calculated as (n1/2) * (N2/n2).",
+    "i": "Halstead intelligence. Inverse of difficulty, representing the clarity or ease of understanding the code.",
+    "e": "Halstead effort. Mental effort required to develop the program, calculated as difficulty * volume.",
+    "b": "Halstead error estimate. Estimated number of bugs, calculated as e^(2/3) / 3000.",
+    "t": "Halstead time estimator. Estimated time to program in seconds, calculated as effort / 18.",
+    "lOCode": "Halstead's line count. Count of lines containing actual code.",
+    "lOComment": "Halstead's count of lines of comments. Documentation within the code.",
+    "lOBlank": "Halstead's count of blank lines. White space for code readability.",
+    "lOCodeAndComment": "Count of lines containing both code and comments.",
+    "uniq_Op": "Number of unique operators. Distinct operators used in the module (e.g., +, -, *, /, if, while).",
+    "uniq_Opnd": "Number of unique operands. Distinct variables and constants in the module.",
+    "total_Op": "Total count of operators. All operator occurrences including repetitions.",
+    "total_Opnd": "Total count of operands. All operand occurrences including repetitions.",
+    "branchCount": "Number of branches in the flow graph. Count of decision points in the code.",
+    "defects": "Binary indicator of whether the module has one or more reported defects. Target variable for prediction."
+  },
+  "class_names": [
+    "false",
+    "true"
+  ],
+  "class_description": "Classes: 'false' (Module has no reported defects), 'true' (Module has one or more reported defects)",
+  "num_features": 22,
+  "num_classes": 2,
+  "task_id": "3918"
+}

@@ -1,0 +1,21 @@
+{
+  "dataset_name": "pakistan_hunger_data",
+  "task_prefix": "A comprehensive dataset tracking hunger and nutrition metrics across Pakistan from 2020-2023. The data captures key indicators related to food security, poverty, and child malnutrition, aimed at understanding and addressing nutritional challenges in the country. The dataset is particularly valuable for policy makers and humanitarian organizations working on food security initiatives in Pakistan. Each example contains 8 features. Predict the Children_Underweight.",
+  "column_descriptions": {
+    "Poverty_Rate": "Percentage of population living below the national poverty line in Pakistan",
+    "Malnutrition_Rate": "Prevalence of malnutrition among the general population, including both under-nutrition and micronutrient deficiencies",
+    "Food_Insecurity": "Percentage of population experiencing moderate to severe food insecurity, measured through access to adequate food",
+    "Clean_Water_Access": "Percentage of population with access to improved drinking water sources",
+    "Food_Production_Index": "Index measuring the relative level of aggregate agricultural production compared to a base period",
+    "Healthcare_Access": "Percentage of population with access to basic healthcare services",
+    "Rural_Population": "Percentage of total population living in rural areas",
+    "GDP_Per_Capita": "Gross Domestic Product per capita in USD, indicating economic output and standard of living"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Children_Underweight - Percentage of children under 5 years of age who are underweight for their age according to WHO child growth standards. Units: Percentage. Range: 0-100",
+  "num_features": 8,
+  "num_classes": 1,
+  "task_id": 363440
+}

@@ -1,0 +1,535 @@
+{
+  "dataset": "MiceProtein",
+  "description": "Expression levels of 77 proteins measured in the cerebral cortex of control and Down syndrome (trisomy) mice. Mice were exposed to context fear conditioning to assess associative learning, with some receiving memantine treatment.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Mice+Protein+Expression",
+  "openml_task": 146800,
+  "openml_dataset": 40966,
+  "date_donated": "2015-08-04",
+  "creator": [
+    {
+      "name": "Clara Higuera",
+      "affiliation": "Department of Software Engineering and Artificial Intelligence, Faculty of Informatics, Complutense University, Madrid"
+    },
+    {
+      "name": "Katheleen J. Gardiner",
+      "affiliation": "Department of Biochemistry and Molecular Biology, Faculty of Chemistry, Complutense University, Madrid"
+    },
+    {
+      "name": "Krzysztof J. Cios",
+      "affiliation": "Department of Computer Science, Virginia Commonwealth University"
+    }
+  ],
+  "instances": 1080,
+  "features": 77,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": true,
+  "feature_types": {
+    "all": "continuous"
+  },
+  "feature_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA).",
+  "experimental_design": {
+    "mice_total": 72,
+    "control_mice": 38,
+    "trisomic_mice": 34,
+    "measurements_per_protein": "15 per mouse",
+    "total_measurements": 1080
+  },
+  "target_values": {
+    "c-CS-s": "Control mice, stimulated to learn, saline injection (9 mice)",
+    "c-CS-m": "Control mice, stimulated to learn, memantine injection (10 mice)",
+    "c-SC-s": "Control mice, not stimulated to learn, saline injection (9 mice)",
+    "c-SC-m": "Control mice, not stimulated to learn, memantine injection (10 mice)",
+    "t-CS-s": "Trisomy mice, stimulated to learn, saline injection (7 mice)",
+    "t-CS-m": "Trisomy mice, stimulated to learn, memantine injection (9 mice)",
+    "t-SC-s": "Trisomy mice, not stimulated to learn, saline injection (9 mice)",
+    "t-SC-m": "Trisomy mice, not stimulated to learn, memantine injection (9 mice)"
+  },
+  "class_characteristics": {
+    "genotype": [
+      "Control",
+      "Trisomy (Ts65Dn - Down syndrome model)"
+    ],
+    "behavior": [
+      "CS (Context-shock: stimulated to learn)",
+      "SC (Shock-context: not stimulated to learn)"
+    ],
+    "treatment": [
+      "Saline (placebo)",
+      "Memantine (drug)"
+    ]
+  },
+  "domain": "Neuroscience/Proteomics",
+  "use_case": "Biomarker discovery for Down syndrome, understanding learning deficits, drug efficacy assessment, protein expression analysis in neurological disorders",
+  "experimental_protocol": {
+    "task": "Context fear conditioning (CFC)",
+    "measurement_technique": "Reverse phase protein array (RPPA)",
+    "tissue": "Nuclear fraction of cerebral cortex",
+    "learning_outcomes": {
+      "control_mice": "Learn successfully",
+      "trisomic_mice": "Fail to learn unless treated with memantine"
+    }
+  },
+  "research_objectives": "Identify protein subsets discriminant between classes, understand molecular basis of learning deficits in Down syndrome, evaluate memantine as potential treatment",
+  "data_characteristics": {
+    "repeated_measures": "15 measurements per protein per mouse",
+    "independence": "Each measurement can be considered independent",
+    "missing_data": "Some technical artifacts resulted in missing values"
+  },
+  "advantages": "Real biological data, important medical application, multiple experimental conditions, protein-level measurements",
+  "challenges": "Missing values due to technical artifacts, relatively small sample size per class, complex interactions between proteins",
+  "biomedical_significance": "First dataset to assess pharmacotherapy efficacy for Down syndrome cognitive deficits, potential for identifying therapeutic targets",
+  "ethical_considerations": "Animal research conducted under appropriate protocols, aimed at understanding and treating human genetic disorder",
+  "citations": [
+    {
+      "author": "Clara Higuera, Katheleen J. Gardiner, and Krzysztof J. Cios",
+      "title": "Self-Organizing Feature Maps Identify Proteins Critical to Learning in a Mouse Model of Down Syndrome",
+      "venue": "PLoS ONE",
+      "volume": "10",
+      "number": "6",
+      "pages": "e0129126",
+      "year": "2015",
+      "doi": "10.1371/journal.pone.0129126"
+    },
+    {
+      "author": "Md Mahmudulla Hassan Ahmed et al.",
+      "title": "Protein dynamics associated with failed and rescued learning in the Ts65Dn mouse model of Down syndrome",
+      "venue": "PLoS ONE",
+      "volume": "10",
+      "number": "3",
+      "pages": "e0119491",
+      "year": "2015"
+    }
+  ],
+  "dataset_name": "MiceProtein",
+  "original_source": {
+    "creator": "[{'name': 'Clara Higuera', 'affiliation': 'Department of Software Engineering and Artificial Intelligence, Faculty of Informatics, Complutense University, Madrid'}, {'name': 'Katheleen J. Gardiner', 'affiliation': 'Department of Biochemistry and Molecular Biology, Faculty of Chemistry, Complutense University, Madrid'}, {'name': 'Krzysztof J. Cios', 'affiliation': 'Department of Computer Science, Virginia Commonwealth University'}]",
+    "institution": "UCI Machine Learning Repository",
+    "date": "2015-08-04",
+    "publication": "Clara Higuera, Katheleen J. Gardiner, and Krzysztof J. Cios: Self-Organizing Feature Maps Identify Proteins Critical to Learning in a Mouse Model of Down Syndrome"
+  },
+  "columns": [
+    {
+      "name": "Feature 1",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 1)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 2",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 2)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 3",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 3)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 4",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 4)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 5",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 5)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 6",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 6)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 7",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 7)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 8",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 8)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 9",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 9)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 10",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 10)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 11",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 11)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 12",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 12)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 13",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 13)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 14",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 14)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 15",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 15)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 16",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 16)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 17",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 17)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 18",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 18)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 19",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 19)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 20",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 20)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 21",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 21)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 22",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 22)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 23",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 23)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 24",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 24)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 25",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 25)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 26",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 26)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 27",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 27)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 28",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 28)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 29",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 29)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 30",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 30)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 31",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 31)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 32",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 32)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 33",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 33)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 34",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 34)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 35",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 35)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 36",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 36)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 37",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 37)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 38",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 38)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 39",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 39)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 40",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 40)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 41",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 41)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 42",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 42)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 43",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 43)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 44",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 44)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 45",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 45)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 46",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 46)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 47",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 47)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 48",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 48)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 49",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 49)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 50",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 50)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 51",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 51)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 52",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 52)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 53",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 53)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 54",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 54)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 55",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 55)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 56",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 56)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 57",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 57)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 58",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 58)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 59",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 59)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 60",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 60)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 61",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 61)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 62",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 62)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 63",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 63)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 64",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 64)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 65",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 65)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 66",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 66)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 67",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 67)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 68",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 68)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 69",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 69)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 70",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 70)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 71",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 71)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 72",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 72)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 73",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 73)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 74",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 74)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 75",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 75)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 76",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 76)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 77",
+      "semantic_description": "77 protein expression levels measured in nuclear fraction of cortex. Each protein name is followed by '_n' indicating nuclear fraction measurement. Values represent expression levels detected through reverse phase protein array (RPPA). (feature 77)",
+      "data_type": "continuous"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "c-CS-s",
+      "meaning": "Control mice, stimulated to learn, saline injection (9 mice)"
+    },
+    {
+      "name": "c-CS-m",
+      "meaning": "Control mice, stimulated to learn, memantine injection (10 mice)"
+    },
+    {
+      "name": "c-SC-s",
+      "meaning": "Control mice, not stimulated to learn, saline injection (9 mice)"
+    },
+    {
+      "name": "c-SC-m",
+      "meaning": "Control mice, not stimulated to learn, memantine injection (10 mice)"
+    },
+    {
+      "name": "t-CS-s",
+      "meaning": "Trisomy mice, stimulated to learn, saline injection (7 mice)"
+    },
+    {
+      "name": "t-CS-m",
+      "meaning": "Trisomy mice, stimulated to learn, memantine injection (9 mice)"
+    },
+    {
+      "name": "t-SC-s",
+      "meaning": "Trisomy mice, not stimulated to learn, saline injection (9 mice)"
+    },
+    {
+      "name": "t-SC-m",
+      "meaning": "Trisomy mice, not stimulated to learn, memantine injection (9 mice)"
+    }
+  ],
+  "dataset_history": "Dataset history not available for MiceProtein",
+  "inference_notes": "Challenges: Missing values due to technical artifacts, relatively small sample size per class, complex interactions between proteins. Advantages: Real biological data, important medical application, multiple experimental conditions, protein-level measurements. Use Case: Biomarker discovery for Down syndrome, understanding learning deficits, drug efficacy assessment, protein expression analysis in neurological disorders"
+}

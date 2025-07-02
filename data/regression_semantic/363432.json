@@ -1,0 +1,71 @@
+{
+  "dataset_name": "Crime_Data_from_2010",
+  "description": "This dataset contains detailed crime incident data from the City of Los Angeles from 2010 onwards. It represents individual crime reports with various attributes including victim demographics, crime types, locations, and temporal information. The data is used for crime analysis, public safety planning, and predictive policing applications.",
+  "original_source": {
+    "creator": "Los Angeles Police Department (LAPD)",
+    "institution": "City of Los Angeles",
+    "date": "2010 (initial collection) - ongoing",
+    "publication": "Published on data.gov and the City of Los Angeles Open Data portal"
+  },
+  "columns": [
+    {
+      "name": "Date_Rptd",
+      "semantic_description": "The date when the crime was reported to the police",
+      "data_type": "datetime"
+    },
+    {
+      "name": "DATE_OCC",
+      "semantic_description": "The date when the crime actually occurred",
+      "data_type": "datetime"
+    },
+    {
+      "name": "TIME_OCC",
+      "semantic_description": "The time when the crime occurred in 24-hour format",
+      "data_type": "integer (military time)"
+    },
+    {
+      "name": "AREA",
+      "semantic_description": "The LAPD patrol area where the crime occurred",
+      "data_type": "categorical (numeric codes)"
+    },
+    {
+      "name": "Crm_Cd",
+      "semantic_description": "Crime code identifying the type of crime",
+      "data_type": "categorical (numeric codes)"
+    },
+    {
+      "name": "Vict_Age",
+      "semantic_description": "Age of the victim at the time of the crime",
+      "data_type": "numeric (years)"
+    },
+    {
+      "name": "Vict_Sex",
+      "semantic_description": "Gender of the victim",
+      "data_type": "categorical (M/F/X)"
+    },
+    {
+      "name": "LAT",
+      "semantic_description": "Latitude of crime location (truncated to protect privacy)",
+      "data_type": "float"
+    },
+    {
+      "name": "LON",
+      "semantic_description": "Longitude of crime location (truncated to protect privacy)",
+      "data_type": "float"
+    }
+  ],
+  "target_description": {
+    "name": "Victim_Age",
+    "meaning": "The age of the crime victim at the time of the incident",
+    "units": "Years",
+    "range": "0-100 (typical range for human ages)"
+  },
+  "dataset_history": "The dataset was initiated in 2010 as part of Los Angeles' open data initiative to increase transparency in law enforcement. It represents a digitization of paper-based crime reports, converted into a structured database format. The data collection is ongoing, with new incidents added regularly as they are reported and processed.",
+  "inference_notes": "Important considerations include:\n1. Location data is intentionally anonymized by truncating to nearest hundred block\n2. Some records may contain inaccuracies due to manual transcription from paper reports\n3. Missing values are often coded as (0,0) for coordinates\n4. There may be reporting bias in certain areas or for certain types of crimes\n5. The time between occurrence and reporting can vary significantly\n6. Demographic information may be incomplete or based on initial observations\n7. The dataset primarily represents reported crimes, not all actual crimes that occurred",
+  "_metadata": {
+    "task_id": 363432,
+    "generated_at": "2025-06-22T08:32:41.574861",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

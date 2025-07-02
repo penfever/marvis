@@ -1,0 +1,18 @@
+{
+  "dataset_name": "airfoil_self_noise",
+  "task_prefix": "NASA dataset containing aerodynamic and acoustic test results of NACA 0012 airfoils. The data comprises measurements from two and three-dimensional airfoil blade sections tested in an anechoic wind tunnel to predict self-noise levels. Each example contains 6 features. Predict the target class.",
+  "column_descriptions": {
+    "Frequency": "Frequency of sound in Hertz. Represents the pitch of the noise generated.",
+    "AngleOfAttack": "Angle of attack in degrees. The angle between the airfoil chord line and the relative wind direction.",
+    "ChordLength": "Chord length in meters. The distance from the leading edge to the trailing edge of the airfoil.",
+    "FreeStreamVelocity": "Free-stream velocity in meters per second. The velocity of the undisturbed air flow.",
+    "SuctionSideDisplacementThickness": "Suction side displacement thickness in meters. Boundary layer parameter on the upper surface of the airfoil.",
+    "ScaledSoundPressureLevel": "Scaled sound pressure level in decibels. The target variable representing the intensity of self-generated noise."
+  },
+  "class_names": [
+    "continuous"
+  ],
+  "class_description": "Classes: 'continuous' (Regression target - scaled sound pressure level in decibels)",
+  "num_features": 6,
+  "num_classes": 1
+}

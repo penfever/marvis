@@ -1,0 +1,171 @@
+{
+  "dataset": "credit-approval",
+  "description": "Credit card application approval dataset with all attribute names and values changed to meaningless symbols to protect confidentiality. Contains a mix of continuous and categorical attributes representing various applicant characteristics used in credit approval decisions.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/credit+approval",
+  "openml_task": 29,
+  "openml_dataset": 29,
+  "date_donated": "1987",
+  "creator": "J. Ross Quinlan",
+  "instances": 690,
+  "features": 15,
+  "target": "A16",
+  "target_type": "binary",
+  "missing_values": true,
+  "feature_types": {
+    "continuous": [
+      "A2",
+      "A3",
+      "A8",
+      "A11",
+      "A14",
+      "A15"
+    ],
+    "categorical": [
+      "A1",
+      "A4",
+      "A5",
+      "A6",
+      "A7",
+      "A9",
+      "A10",
+      "A12",
+      "A13"
+    ]
+  },
+  "feature_names": {
+    "A1": "Attribute 1 (binary)",
+    "A2": "Attribute 2 (continuous)",
+    "A3": "Attribute 3 (continuous)",
+    "A4": "Attribute 4 (categorical)",
+    "A5": "Attribute 5 (categorical)",
+    "A6": "Attribute 6 (categorical)",
+    "A7": "Attribute 7 (categorical)",
+    "A8": "Attribute 8 (continuous)",
+    "A9": "Attribute 9 (binary)",
+    "A10": "Attribute 10 (binary)",
+    "A11": "Attribute 11 (continuous)",
+    "A12": "Attribute 12 (binary)",
+    "A13": "Attribute 13 (categorical)",
+    "A14": "Attribute 14 (continuous)",
+    "A15": "Attribute 15 (continuous)"
+  },
+  "feature_descriptions": {
+    "note": "All features are anonymized for confidentiality. Original meanings relate to applicant demographics, financial status, and credit history."
+  },
+  "feature_scale": "Mixed - binary, categorical, and continuous values",
+  "target_values": {
+    "+": "Credit approved",
+    "-": "Credit denied"
+  },
+  "domain": "Finance/Banking",
+  "use_case": "Automated credit approval decision systems for financial institutions. Applications include credit card approval, loan assessment, and risk evaluation in consumer lending.",
+  "data_generation": "Real credit card applications with all identifying information replaced by meaningless symbols to protect applicant privacy and proprietary decision criteria.",
+  "ethical_considerations": "Credit decisions have significant impact on individuals' financial opportunities. Models should be tested for bias across protected characteristics. Original anonymization prevents direct bias assessment but highlights importance of fair lending practices.",
+  "citations": [
+    {
+      "author": "J. R. Quinlan",
+      "title": "Simplifying decision trees",
+      "venue": "International Journal of Man-Machine Studies",
+      "volume": "27",
+      "pages": "221-234",
+      "year": "1987"
+    }
+  ],
+  "dataset_name": "credit-approval",
+  "original_source": {
+    "creator": "J. Ross Quinlan",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1987",
+    "publication": "J. R. Quinlan: Simplifying decision trees"
+  },
+  "columns": [
+    {
+      "name": "Attribute 1 (binary)",
+      "semantic_description": "Feature: Attribute 1 (binary)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 2 (continuous)",
+      "semantic_description": "Feature: Attribute 2 (continuous)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 3 (continuous)",
+      "semantic_description": "Feature: Attribute 3 (continuous)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 4 (categorical)",
+      "semantic_description": "Feature: Attribute 4 (categorical)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 5 (categorical)",
+      "semantic_description": "Feature: Attribute 5 (categorical)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 6 (categorical)",
+      "semantic_description": "Feature: Attribute 6 (categorical)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 7 (categorical)",
+      "semantic_description": "Feature: Attribute 7 (categorical)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 8 (continuous)",
+      "semantic_description": "Feature: Attribute 8 (continuous)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 9 (binary)",
+      "semantic_description": "Feature: Attribute 9 (binary)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 10 (binary)",
+      "semantic_description": "Feature: Attribute 10 (binary)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 11 (continuous)",
+      "semantic_description": "Feature: Attribute 11 (continuous)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 12 (binary)",
+      "semantic_description": "Feature: Attribute 12 (binary)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 13 (categorical)",
+      "semantic_description": "Feature: Attribute 13 (categorical)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 14 (continuous)",
+      "semantic_description": "Feature: Attribute 14 (continuous)",
+      "data_type": "unknown"
+    },
+    {
+      "name": "Attribute 15 (continuous)",
+      "semantic_description": "Feature: Attribute 15 (continuous)",
+      "data_type": "unknown"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "+",
+      "meaning": "Credit approved"
+    },
+    {
+      "name": "-",
+      "meaning": "Credit denied"
+    }
+  ],
+  "dataset_history": "Dataset history not available for credit-approval",
+  "inference_notes": "Use Case: Automated credit approval decision systems for financial institutions. Applications include credit card approval, loan assessment, and risk evaluation in consumer lending."
+}

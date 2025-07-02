@@ -1,0 +1,16 @@
+dataset: bank-marketing
+templates:
+  5159cb7d-d56e-46e1-9af0-a7a3478af3f1: !Template
+    name: bank-marketing
+    id: 5159cb7d-d56e-46e1-9af0-a7a3478af3f1
+    reference: ''
+    answer_choices: Client did not subscribe to a term deposit ||| Client subscribed
+      to a term deposit
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Client did not subscribe to a term deposit, Client subscribed to a term deposit?\n\
+      Answer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

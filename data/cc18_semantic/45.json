@@ -1,0 +1,73 @@
+{
+  "dataset": "splice",
+  "description": "DNA splice-junction gene sequences dataset for recognizing boundaries between exons (retained after splicing) and introns (spliced out) in primate DNA sequences. Contains 60-nucleotide sequences centered around splice junctions, with the task of classifying exon/intron boundaries (EI sites) and intron/exon boundaries (IE sites).",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Molecular+Biology+(Splice-junction+Gene+Sequences)",
+  "openml_task": 45,
+  "openml_dataset": 46,
+  "date_donated": "1990",
+  "creator": "G. Towell, M. Noordewier, and J. Shavlik (donated from Genbank)",
+  "instances": 3190,
+  "features": 60,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "categorical"
+  },
+  "feature_names": {
+    "position_-30_to_29": "DNA nucleotides at positions -30 to +29 relative to splice junction"
+  },
+  "feature_descriptions": {
+    "all_positions": "Each feature represents one nucleotide in the DNA sequence, from position -30 to +29 relative to the potential splice site. Values are A, C, G, T, or ambiguity codes (D, N, S, R)."
+  },
+  "feature_scale": "Categorical nucleotide values with ambiguity codes",
+  "target_values": {
+    "EI": "Exon-Intron boundary (donor site)",
+    "IE": "Intron-Exon boundary (acceptor site)",
+    "N": "Neither (no splice site)"
+  },
+  "domain": "Bioinformatics/Molecular Biology",
+  "use_case": "Gene structure prediction and annotation in genomic sequences. Applications include identifying protein-coding regions, understanding gene regulation, and improving genome annotation pipelines for biological research.",
+  "data_generation": "Sequences extracted from Genbank 64.1, containing all primate splice-gene entries. Non-splice examples taken from sequences known not to include splicing sites. 60-nucleotide windows centered on splice junctions.",
+  "ethical_considerations": "Genomic data analysis should respect privacy when applied to human sequences. Results should be validated experimentally before use in medical applications.",
+  "citations": [
+    {
+      "author": "M. O. Noordewier, G. G. Towell, and J. W. Shavlik",
+      "title": "Training Knowledge-Based Neural Networks to Recognize Genes in DNA Sequences",
+      "venue": "Advances in Neural Information Processing Systems",
+      "volume": "3",
+      "year": "1991"
+    }
+  ],
+  "dataset_name": "splice",
+  "original_source": {
+    "creator": "G. Towell, M. Noordewier, and J. Shavlik (donated from Genbank)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1990",
+    "publication": "M. O. Noordewier, G. G. Towell, and J. W. Shavlik: Training Knowledge-Based Neural Networks to Recognize Genes in DNA Sequences"
+  },
+  "columns": [
+    {
+      "name": "DNA nucleotides at positions -30 to +29 relative to splice junction",
+      "semantic_description": "Feature: DNA nucleotides at positions -30 to +29 relative to splice junction",
+      "data_type": "categorical"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "EI",
+      "meaning": "Exon-Intron boundary (donor site)"
+    },
+    {
+      "name": "IE",
+      "meaning": "Intron-Exon boundary (acceptor site)"
+    },
+    {
+      "name": "N",
+      "meaning": "Neither (no splice site)"
+    }
+  ],
+  "dataset_history": "Dataset history not available for splice",
+  "inference_notes": "Use Case: Gene structure prediction and annotation in genomic sequences. Applications include identifying protein-coding regions, understanding gene regulation, and improving genome annotation pipelines for biological research."
+}

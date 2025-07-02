@@ -1,0 +1,26 @@
+{
+  "dataset_name": "Diabetes130US",
+  "task_prefix": "10 years of clinical care data from 130 US hospitals and integrated delivery networks. Dataset focuses on diabetic patient encounters to analyze factors related to hospital readmission and patient outcomes. Each example contains 12 features. Predict the target class.",
+  "column_descriptions": {
+    "encounter_id": "Unique identifier for each patient hospital encounter. Links to specific admission event.",
+    "patient_nbr": "Unique identifier for each patient. Allows tracking multiple encounters per patient.",
+    "race": "Patient's race category. Important demographic factor for health disparities analysis.",
+    "gender": "Patient's gender. Basic demographic variable affecting diabetes progression and outcomes.",
+    "age": "Age group of the patient in 10-year intervals. Grouped to protect patient privacy.",
+    "admission_type_id": "Category of admission (Emergency, Urgent, Elective, etc.). Indicates severity and planning of hospital visit.",
+    "time_in_hospital": "Number of days patient stayed in hospital. Indicates severity and resource utilization.",
+    "num_lab_procedures": "Number of laboratory tests performed during encounter. Indicates complexity of care.",
+    "num_medications": "Number of distinct medications administered during encounter. Reflects treatment complexity.",
+    "number_diagnoses": "Number of diagnoses recorded. Indicates patient comorbidity burden.",
+    "A1Cresult": "Hemoglobin A1c test result indicating blood sugar control over past 2-3 months.",
+    "readmitted": "Patient was readmitted within 30 days, after 30 days, or not readmitted. primary outcome variable."
+  },
+  "class_names": [
+    "<30",
+    ">30",
+    "NO"
+  ],
+  "class_description": "Classes: '<30' (Patient was readmitted to hospital within 30 days of discharge), '>30' (Patient was readmitted to hospital after 30 days of discharge), 'NO' (Patient was not readmitted to hospital)",
+  "num_features": 12,
+  "num_classes": 3
+}

@@ -1,0 +1,15 @@
+dataset: jm1
+templates:
+  7b119de6-9d8f-4876-ba93-54ec1a12c324: !Template
+    name: jm1
+    id: 7b119de6-9d8f-4876-ba93-54ec1a12c324
+    reference: ''
+    answer_choices: No defects (19.35%) ||| Has defects (80.65%)
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ No defects (19.35%), Has defects (80.65%)?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

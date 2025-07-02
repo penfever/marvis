@@ -1,0 +1,34 @@
+{
+  "dataset_name": "churn",
+  "task_prefix": "Telecommunications customer churn dataset containing telephony account features and usage patterns to predict whether customers will switch providers. Originally used in 'Discovering Knowledge in Data: An Introduction to Data Mining'. Each example contains 20 features. Customer retention.",
+  "column_descriptions": {
+    "feature_1": "Feature 1",
+    "feature_2": "Feature 2",
+    "feature_3": "Feature 3",
+    "feature_4": "Feature 4",
+    "feature_5": "Feature 5",
+    "feature_6": "Feature 6",
+    "feature_7": "Feature 7",
+    "feature_8": "Feature 8",
+    "feature_9": "Feature 9",
+    "feature_10": "Feature 10",
+    "feature_11": "Feature 11",
+    "feature_12": "Feature 12",
+    "feature_13": "Feature 13",
+    "feature_14": "Feature 14",
+    "feature_15": "Feature 15",
+    "feature_16": "Feature 16",
+    "feature_17": "Feature 17",
+    "feature_18": "Feature 18",
+    "feature_19": "Feature 19",
+    "feature_20": "Feature 20"
+  },
+  "class_names": [
+    "0",
+    "1"
+  ],
+  "class_description": "Classes: '0' (No churn (customer retained)), '1' (Churn (customer left))",
+  "num_features": 20,
+  "num_classes": 2,
+  "task_id": "167141_20250621_185544"
+}

@@ -1,0 +1,23 @@
+{
+  "dataset_name": "physicochemical-properties-of-protein-tertiary-structure",
+  "task_prefix": "Dataset containing physicochemical properties that characterize protein tertiary structures, used to predict Root Mean Square Deviation (RMSD) from native structures. The data is derived from CASP 5-9 protein structure prediction experiments. Each example contains 10 features. Predict the target class.",
+  "column_descriptions": {
+    "RMSD": "Root Mean Square Deviation of the predicted tertiary structure from the native structure. Target variable measuring structural similarity (lower values indicate better predictions).",
+    "F1": "Total surface area of the protein structure. Represents the overall size and exposed regions of the folded protein.",
+    "F2": "Non-polar exposed area. Indicates hydrophobic regions on the protein surface, important for protein-protein interactions and stability.",
+    "F3": "Fractional area of exposed non-polar residue. Ratio of hydrophobic surface to total surface area.",
+    "F4": "Fractional area of exposed non-polar part of residue. More detailed measure of hydrophobic exposure at residue level.",
+    "F5": "Molecular mass weighted exposed area. Accounts for the size of exposed residues in surface area calculations.",
+    "F6": "Average deviation from standard exposed area of residue. Measures how much the structure deviates from typical exposure patterns.",
+    "F7": "Euclidean distance. Geometric measure of structural differences between predicted and native conformations.",
+    "F8": "Secondary structure penalty. Quantifies deviations in alpha-helix and beta-sheet formations from the native structure.",
+    "F9": "Spatial distribution constraints (N,K Value). Measures how well the predicted structure maintains proper spatial relationships between residues."
+  },
+  "class_names": [
+    "Class_0",
+    "Class_1"
+  ],
+  "class_description": "Classes: Class_0, Class_1",
+  "num_features": 10,
+  "num_classes": 2
+}

@@ -1,0 +1,902 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.utils.results_manager &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">marvis.utils.results_manager</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for marvis.utils.results_manager</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Unified Results Management System for MARVIS</span>
+
+<span class="sd">This module provides centralized, consistent results storage across all modalities (tabular, audio, vision).</span>
+<span class="sd">Integrates with the existing resource manager to provide standardized directory structures, </span>
+<span class="sd">file naming conventions, and metadata handling.</span>
+
+<span class="sd">Key features:</span>
+<span class="sd">- Consistent directory structure: &lt;base_output_dir&gt;/&lt;modality&gt;/&lt;dataset_id&gt;/&lt;model_name&gt;/</span>
+<span class="sd">- Standardized file formats with comprehensive metadata</span>
+<span class="sd">- Modality-specific artifact support (visualizations, audio files, etc.)</span>
+<span class="sd">- Integration with existing resource manager</span>
+<span class="sd">- Backward compatibility with existing scripts</span>
+<span class="sd">- Thread-safe operations for concurrent evaluations</span>
+
+<span class="sd">Usage examples:</span>
+<span class="sd">    # Basic usage</span>
+<span class="sd">    results_manager = get_results_manager()</span>
+<span class="sd">    results_manager.save_evaluation_results(</span>
+<span class="sd">        model_name=&quot;tabllm&quot;,</span>
+<span class="sd">        dataset_id=&quot;adult&quot;, </span>
+<span class="sd">        modality=&quot;tabular&quot;,</span>
+<span class="sd">        results=evaluation_results,</span>
+<span class="sd">        experiment_metadata=experiment_config</span>
+<span class="sd">    )</span>
+<span class="sd">    </span>
+<span class="sd">    # With artifacts</span>
+<span class="sd">    results_manager.save_evaluation_results(</span>
+<span class="sd">        model_name=&quot;marvis_tsne&quot;,</span>
+<span class="sd">        dataset_id=&quot;cifar10&quot;,</span>
+<span class="sd">        modality=&quot;vision&quot;, </span>
+<span class="sd">        results=evaluation_results,</span>
+<span class="sd">        artifacts={</span>
+<span class="sd">            &quot;visualizations&quot;: [&quot;tsne_plot.png&quot;, &quot;knn_plot.png&quot;],</span>
+<span class="sd">            &quot;raw_responses&quot;: &quot;vlm_responses.json&quot;</span>
+<span class="sd">        }</span>
+<span class="sd">    )</span>
+<span class="sd">    </span>
+<span class="sd">    # Load previous results</span>
+<span class="sd">    previous_results = results_manager.load_evaluation_results(</span>
+<span class="sd">        model_name=&quot;jolt&quot;,</span>
+<span class="sd">        dataset_id=&quot;diabetes&quot;,</span>
+<span class="sd">        modality=&quot;tabular&quot;</span>
+<span class="sd">    )</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">asdict</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.resource_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_resource_manager</span><span class="p">,</span> <span class="n">MarvisResourceManager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.json_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_json_dump</span><span class="p">,</span> <span class="n">safe_json_dumps</span><span class="p">,</span> <span class="n">convert_for_json_serialization</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ExperimentMetadata">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ExperimentMetadata">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ExperimentMetadata</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Metadata for a machine learning experiment.&quot;&quot;&quot;</span>
+    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;tabular&quot;, &quot;vision&quot;, &quot;audio&quot;</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span>
+    
+    <span class="c1"># Dataset information</span>
+    <span class="n">num_samples_train</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">num_samples_test</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">num_features</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">num_classes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">class_names</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">task_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># &quot;classification&quot;, &quot;regression&quot;</span>
+    
+    <span class="c1"># Model configuration</span>
+    <span class="n">model_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">hyperparameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Experiment setup</span>
+    <span class="n">random_seed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">k_shot</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># For few-shot learning</span>
+    <span class="n">use_wandb</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">wandb_run_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Computational resources</span>
+    <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">training_time_seconds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">evaluation_time_seconds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">memory_usage_mb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Version information</span>
+    <span class="n">marvis_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">python_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">dependencies</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Additional context</span>
+    <span class="n">notes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="EvaluationResults">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.EvaluationResults">[docs]</a>
+<span class="nd">@dataclass</span> 
+<span class="k">class</span><span class="w"> </span><span class="nc">EvaluationResults</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Standardized evaluation results structure.&quot;&quot;&quot;</span>
+    <span class="c1"># Core metrics (at least one should be present)</span>
+    <span class="n">accuracy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">balanced_accuracy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">r2_score</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">mae</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">rmse</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Classification-specific metrics</span>
+    <span class="n">precision_macro</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">recall_macro</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">f1_macro</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">precision_weighted</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">recall_weighted</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">f1_weighted</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">classification_report</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">confusion_matrix</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Per-class metrics</span>
+    <span class="n">per_class_accuracy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">per_class_precision</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">per_class_recall</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">per_class_f1</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Additional metrics</span>
+    <span class="n">completion_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># For LLM evaluations that may fail</span>
+    <span class="n">prediction_time_per_sample</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">total_prediction_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Raw outputs (for detailed analysis)</span>
+    <span class="n">predictions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">prediction_probabilities</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">true_labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Error analysis</span>
+    <span class="n">failed_predictions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Indices of failed predictions</span>
+    <span class="n">error_messages</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Model-specific outputs</span>
+    <span class="n">raw_responses</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># For LLM models</span>
+    <span class="n">embeddings</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># For embedding-based models</span>
+    <span class="n">visualization_paths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Paths to saved visualizations</span>
+    
+    <span class="c1"># Status and diagnostics</span>
+    <span class="n">status</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;completed&quot;</span>  <span class="c1"># &quot;completed&quot;, &quot;failed&quot;, &quot;partial&quot;</span>
+    <span class="n">error_message</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">warnings</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="ResultsArtifacts">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsArtifacts">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ResultsArtifacts</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Container for additional artifacts beyond core results.&quot;&quot;&quot;</span>
+    <span class="c1"># Visualization files</span>
+    <span class="n">plots</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Paths to plot files</span>
+    <span class="n">visualizations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Name -&gt; path mapping</span>
+    
+    <span class="c1"># Model outputs</span>
+    <span class="n">raw_outputs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Path to raw model outputs file</span>
+    <span class="n">processed_outputs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Path to processed outputs</span>
+    
+    <span class="c1"># Data files</span>
+    <span class="n">predictions_csv</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">metrics_csv</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Model artifacts</span>
+    <span class="n">model_checkpoint</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">embeddings_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="c1"># Modality-specific artifacts</span>
+    <span class="n">audio_files</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># For audio experiments</span>
+    <span class="n">image_files</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># For vision experiments</span>
+    <span class="n">data_files</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For tabular experiments</span></div>
+
+
+
+<div class="viewcode-block" id="ResultsManager">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ResultsManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Unified results management system for MARVIS experiments.&quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="ResultsManager.__init__">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource_manager</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MarvisResourceManager</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource_manager</span> <span class="o">=</span> <span class="n">resource_manager</span> <span class="ow">or</span> <span class="n">get_resource_manager</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_supported_modalities</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span> <span class="s2">&quot;vision&quot;</span><span class="p">,</span> <span class="s2">&quot;audio&quot;</span><span class="p">}</span>
+        
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initialized ResultsManager with base dir: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_manager</span><span class="o">.</span><span class="n">path_resolver</span><span class="o">.</span><span class="n">get_base_dir</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="ResultsManager.get_results_base_dir">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager.get_results_base_dir">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_results_base_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get base directory for all results storage.&quot;&quot;&quot;</span>
+        <span class="n">base_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_manager</span><span class="o">.</span><span class="n">path_resolver</span><span class="o">.</span><span class="n">get_base_dir</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;results&quot;</span>
+        <span class="n">base_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">base_dir</span></div>
+
+    
+<div class="viewcode-block" id="ResultsManager.get_experiment_dir">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager.get_experiment_dir">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_experiment_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get standardized directory structure for an experiment.</span>
+<span class="sd">        </span>
+<span class="sd">        Structure: &lt;results_base&gt;/&lt;modality&gt;/&lt;dataset_id&gt;/&lt;model_name&gt;/</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">modality</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported_modalities</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported modality &#39;</span><span class="si">{</span><span class="n">modality</span><span class="si">}</span><span class="s2">&#39;. Supported: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_supported_modalities</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="n">experiment_dir</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_results_base_dir</span><span class="p">()</span> <span class="o">/</span> 
+            <span class="n">modality</span> <span class="o">/</span> 
+            <span class="nb">str</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span> <span class="o">/</span> 
+            <span class="n">model_name</span>
+        <span class="p">)</span>
+        <span class="n">experiment_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">experiment_dir</span></div>
+
+    
+<div class="viewcode-block" id="ResultsManager.save_evaluation_results">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager.save_evaluation_results">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_evaluation_results</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+        <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">results</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">EvaluationResults</span><span class="p">],</span>
+        <span class="n">experiment_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">ExperimentMetadata</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">artifacts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">ResultsArtifacts</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save evaluation results with standardized structure and metadata.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            model_name: Name of the model (e.g., &quot;tabllm&quot;, &quot;marvis_tsne&quot;)</span>
+<span class="sd">            dataset_id: Dataset identifier (e.g., &quot;adult&quot;, &quot;cifar10&quot;, &quot;1590&quot;)</span>
+<span class="sd">            modality: Experiment modality (&quot;tabular&quot;, &quot;vision&quot;, &quot;audio&quot;)</span>
+<span class="sd">            results: Evaluation results (dict or EvaluationResults object)</span>
+<span class="sd">            experiment_metadata: Experiment metadata (dict or ExperimentMetadata object)</span>
+<span class="sd">            artifacts: Additional artifacts (dict or ResultsArtifacts object)</span>
+<span class="sd">            overwrite: Whether to overwrite existing results</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Path to the saved results directory</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="n">experiment_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_experiment_dir</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">modality</span><span class="p">)</span>
+            
+            <span class="c1"># Check if results already exist</span>
+            <span class="n">results_file</span> <span class="o">=</span> <span class="n">experiment_dir</span> <span class="o">/</span> <span class="s2">&quot;results.json&quot;</span>
+            <span class="k">if</span> <span class="n">results_file</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">overwrite</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Results already exist at </span><span class="si">{</span><span class="n">results_file</span><span class="si">}</span><span class="s2"> and overwrite=False&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">experiment_dir</span>
+            
+            <span class="c1"># Convert inputs to standardized formats</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="c1"># Convert dict to EvaluationResults, preserving all fields</span>
+                <span class="n">results_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict_to_evaluation_results</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">results_obj</span> <span class="o">=</span> <span class="n">results</span>
+            
+            <span class="k">if</span> <span class="n">experiment_metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">metadata_obj</span> <span class="o">=</span> <span class="n">ExperimentMetadata</span><span class="p">(</span>
+                    <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+                    <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">,</span>
+                    <span class="n">modality</span><span class="o">=</span><span class="n">modality</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">experiment_metadata</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="c1"># Merge provided metadata with required fields</span>
+                <span class="n">metadata_dict</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;model_name&#39;</span><span class="p">:</span> <span class="n">model_name</span><span class="p">,</span>
+                    <span class="s1">&#39;dataset_id&#39;</span><span class="p">:</span> <span class="n">dataset_id</span><span class="p">,</span> 
+                    <span class="s1">&#39;modality&#39;</span><span class="p">:</span> <span class="n">modality</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">experiment_metadata</span>
+                <span class="p">}</span>
+                <span class="n">metadata_obj</span> <span class="o">=</span> <span class="n">ExperimentMetadata</span><span class="p">(</span><span class="o">**</span><span class="n">metadata_dict</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">metadata_obj</span> <span class="o">=</span> <span class="n">experiment_metadata</span>
+            
+            <span class="k">if</span> <span class="n">artifacts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">artifacts_obj</span> <span class="o">=</span> <span class="n">ResultsArtifacts</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">artifacts</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">artifacts_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict_to_artifacts</span><span class="p">(</span><span class="n">artifacts</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">artifacts_obj</span> <span class="o">=</span> <span class="n">artifacts</span>
+            
+            <span class="c1"># Create combined results structure</span>
+            <span class="n">combined_results</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="n">asdict</span><span class="p">(</span><span class="n">metadata_obj</span><span class="p">),</span>
+                <span class="s1">&#39;results&#39;</span><span class="p">:</span> <span class="n">asdict</span><span class="p">(</span><span class="n">results_obj</span><span class="p">),</span>
+                <span class="s1">&#39;artifacts&#39;</span><span class="p">:</span> <span class="n">asdict</span><span class="p">(</span><span class="n">artifacts_obj</span><span class="p">),</span>
+                <span class="s1">&#39;format_version&#39;</span><span class="p">:</span> <span class="s1">&#39;1.0&#39;</span>
+            <span class="p">}</span>
+            
+            <span class="c1"># Save main results file</span>
+            <span class="n">success</span> <span class="o">=</span> <span class="n">safe_json_dump</span><span class="p">(</span>
+                <span class="n">combined_results</span><span class="p">,</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">results_file</span><span class="p">),</span>
+                <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
+                <span class="n">minimal_fallback</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">indent</span><span class="o">=</span><span class="mi">2</span>
+            <span class="p">)</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to save results to </span><span class="si">{</span><span class="n">results_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">experiment_dir</span>
+            
+            <span class="c1"># Save separate metadata file for easy access</span>
+            <span class="n">metadata_file</span> <span class="o">=</span> <span class="n">experiment_dir</span> <span class="o">/</span> <span class="s2">&quot;metadata.json&quot;</span>
+            <span class="n">safe_json_dump</span><span class="p">(</span>
+                <span class="n">asdict</span><span class="p">(</span><span class="n">metadata_obj</span><span class="p">),</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">metadata_file</span><span class="p">),</span>
+                <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
+                <span class="n">minimal_fallback</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">indent</span><span class="o">=</span><span class="mi">2</span>
+            <span class="p">)</span>
+            
+            <span class="c1"># Save metrics summary for quick reference</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_save_metrics_summary</span><span class="p">(</span><span class="n">results_obj</span><span class="p">,</span> <span class="n">experiment_dir</span><span class="p">)</span>
+            
+            <span class="c1"># Handle artifacts</span>
+            <span class="k">if</span> <span class="n">artifacts_obj</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_artifacts</span><span class="p">(</span><span class="n">artifacts_obj</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_save_artifacts_manifest</span><span class="p">(</span><span class="n">artifacts_obj</span><span class="p">,</span> <span class="n">experiment_dir</span><span class="p">)</span>
+            
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully saved results for </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">experiment_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">experiment_dir</span></div>
+
+    
+<div class="viewcode-block" id="ResultsManager.load_evaluation_results">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager.load_evaluation_results">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_evaluation_results</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+        <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load evaluation results for a specific experiment.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Combined dictionary with &#39;metadata&#39;, &#39;results&#39;, and &#39;artifacts&#39; keys,</span>
+<span class="sd">            or None if not found</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">experiment_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_experiment_dir</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">modality</span><span class="p">)</span>
+        <span class="n">results_file</span> <span class="o">=</span> <span class="n">experiment_dir</span> <span class="o">/</span> <span class="s2">&quot;results.json&quot;</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">results_file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No results found for </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">experiment_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">results_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading results from </span><span class="si">{</span><span class="n">results_file</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+    
+<div class="viewcode-block" id="ResultsManager.list_experiments">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager.list_experiments">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_experiments</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">modality</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List all experiments matching the given criteria.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            List of experiment info dictionaries with keys: </span>
+<span class="sd">            &#39;modality&#39;, &#39;dataset_id&#39;, &#39;model_name&#39;, &#39;path&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results_base</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_results_base_dir</span><span class="p">()</span>
+        <span class="n">experiments</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">results_base</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">experiments</span>
+        
+        <span class="c1"># Traverse the directory structure</span>
+        <span class="k">for</span> <span class="n">modality_dir</span> <span class="ow">in</span> <span class="n">results_base</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">modality_dir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">modality</span> <span class="ow">and</span> <span class="n">modality_dir</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="n">modality</span><span class="p">:</span>
+                <span class="k">continue</span>
+                
+            <span class="k">for</span> <span class="n">dataset_dir</span> <span class="ow">in</span> <span class="n">modality_dir</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">dataset_dir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">dataset_id</span> <span class="ow">and</span> <span class="n">dataset_dir</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="n">dataset_id</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                    
+                <span class="k">for</span> <span class="n">model_dir</span> <span class="ow">in</span> <span class="n">dataset_dir</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">model_dir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+                        <span class="k">continue</span>
+                    <span class="k">if</span> <span class="n">model_name</span> <span class="ow">and</span> <span class="n">model_dir</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="n">model_name</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    
+                    <span class="c1"># Check if this is a valid experiment (has results.json)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">model_dir</span> <span class="o">/</span> <span class="s2">&quot;results.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                        <span class="n">experiments</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                            <span class="s1">&#39;modality&#39;</span><span class="p">:</span> <span class="n">modality_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                            <span class="s1">&#39;dataset_id&#39;</span><span class="p">:</span> <span class="n">dataset_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                            <span class="s1">&#39;model_name&#39;</span><span class="p">:</span> <span class="n">model_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                            <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">model_dir</span><span class="p">)</span>
+                        <span class="p">})</span>
+        
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">experiments</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;modality&#39;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;dataset_id&#39;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">]))</span></div>
+
+    
+<div class="viewcode-block" id="ResultsManager.save_artifacts">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager.save_artifacts">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_artifacts</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">artifacts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]],</span>
+        <span class="n">copy_files</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save additional artifacts (files, visualizations, etc.) for an experiment.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            model_name: Name of the model</span>
+<span class="sd">            dataset_id: Dataset identifier</span>
+<span class="sd">            modality: Experiment modality</span>
+<span class="sd">            artifacts: Dictionary mapping artifact names to file paths</span>
+<span class="sd">            copy_files: Whether to copy files to the experiment directory</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary mapping artifact names to their final paths</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">experiment_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_experiment_dir</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">modality</span><span class="p">)</span>
+        <span class="n">artifacts_dir</span> <span class="o">=</span> <span class="n">experiment_dir</span> <span class="o">/</span> <span class="s2">&quot;artifacts&quot;</span>
+        <span class="n">artifacts_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="n">final_paths</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="k">for</span> <span class="n">artifact_name</span><span class="p">,</span> <span class="n">artifact_path</span> <span class="ow">in</span> <span class="n">artifacts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">artifact_path</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="c1"># Handle multiple files for one artifact</span>
+                <span class="n">final_paths</span><span class="p">[</span><span class="n">artifact_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">artifact_path</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">copy_files</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                        <span class="n">dest_path</span> <span class="o">=</span> <span class="n">artifacts_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">artifact_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dest_path</span><span class="p">)</span>
+                        <span class="n">final_paths</span><span class="p">[</span><span class="n">artifact_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dest_path</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">final_paths</span><span class="p">[</span><span class="n">artifact_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Single file</span>
+                <span class="k">if</span> <span class="n">copy_files</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">artifact_path</span><span class="p">):</span>
+                    <span class="n">dest_path</span> <span class="o">=</span> <span class="n">artifacts_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">artifact_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">artifact_path</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">artifact_path</span><span class="p">,</span> <span class="n">dest_path</span><span class="p">)</span>
+                    <span class="n">final_paths</span><span class="p">[</span><span class="n">artifact_name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">dest_path</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">final_paths</span><span class="p">[</span><span class="n">artifact_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">artifact_path</span>
+        
+        <span class="c1"># Update artifacts manifest</span>
+        <span class="n">manifest_file</span> <span class="o">=</span> <span class="n">artifacts_dir</span> <span class="o">/</span> <span class="s2">&quot;manifest.json&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">manifest_file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">manifest_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">manifest</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">manifest</span> <span class="o">=</span> <span class="p">{}</span>
+            
+            <span class="n">manifest</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">final_paths</span><span class="p">)</span>
+            
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">manifest_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">manifest</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to update artifacts manifest: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">final_paths</span></div>
+
+    
+<div class="viewcode-block" id="ResultsManager.create_summary_report">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager.create_summary_report">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_summary_report</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">modality</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a summary report of all experiments.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            modality: Filter by modality, or None for all</span>
+<span class="sd">            output_file: Optional file to save the report</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Summary report dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">experiments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_experiments</span><span class="p">(</span><span class="n">modality</span><span class="o">=</span><span class="n">modality</span><span class="p">)</span>
+        
+        <span class="n">report</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;summary&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;total_experiments&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">experiments</span><span class="p">),</span>
+                <span class="s1">&#39;modalities&#39;</span><span class="p">:</span> <span class="nb">set</span><span class="p">(),</span>
+                <span class="s1">&#39;datasets&#39;</span><span class="p">:</span> <span class="nb">set</span><span class="p">(),</span>
+                <span class="s1">&#39;models&#39;</span><span class="p">:</span> <span class="nb">set</span><span class="p">(),</span>
+                <span class="s1">&#39;generated_at&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;experiments&#39;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">}</span>
+        
+        <span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="n">experiments</span><span class="p">:</span>
+            <span class="n">report</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">][</span><span class="s1">&#39;modalities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="s1">&#39;modality&#39;</span><span class="p">])</span>
+            <span class="n">report</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">][</span><span class="s1">&#39;datasets&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="s1">&#39;dataset_id&#39;</span><span class="p">])</span>
+            <span class="n">report</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">][</span><span class="s1">&#39;models&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">])</span>
+            
+            <span class="c1"># Load experiment details</span>
+            <span class="n">exp_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_evaluation_results</span><span class="p">(</span>
+                <span class="n">exp</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">],</span> <span class="n">exp</span><span class="p">[</span><span class="s1">&#39;dataset_id&#39;</span><span class="p">],</span> <span class="n">exp</span><span class="p">[</span><span class="s1">&#39;modality&#39;</span><span class="p">]</span>
+            <span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">exp_results</span><span class="p">:</span>
+                <span class="n">exp_summary</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;modality&#39;</span><span class="p">:</span> <span class="n">exp</span><span class="p">[</span><span class="s1">&#39;modality&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;dataset_id&#39;</span><span class="p">:</span> <span class="n">exp</span><span class="p">[</span><span class="s1">&#39;dataset_id&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;model_name&#39;</span><span class="p">:</span> <span class="n">exp</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">exp_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;metadata&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">),</span>
+                    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">exp_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">)</span>
+                <span class="p">}</span>
+                
+                <span class="c1"># Add key metrics</span>
+                <span class="n">results</span> <span class="o">=</span> <span class="n">exp_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="k">if</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">exp_summary</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;r2_score&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">exp_summary</span><span class="p">[</span><span class="s1">&#39;r2_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;r2_score&#39;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;training_time_seconds&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">exp_summary</span><span class="p">[</span><span class="s1">&#39;training_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_time_seconds&#39;</span><span class="p">]</span>
+                
+                <span class="n">report</span><span class="p">[</span><span class="s1">&#39;experiments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exp_summary</span><span class="p">)</span>
+        
+        <span class="c1"># Convert sets to lists for JSON serialization</span>
+        <span class="n">report</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">][</span><span class="s1">&#39;modalities&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">][</span><span class="s1">&#39;modalities&#39;</span><span class="p">]))</span>
+        <span class="n">report</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">][</span><span class="s1">&#39;datasets&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">][</span><span class="s1">&#39;datasets&#39;</span><span class="p">]))</span>
+        <span class="n">report</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">][</span><span class="s1">&#39;models&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">][</span><span class="s1">&#39;models&#39;</span><span class="p">]))</span>
+        
+        <span class="k">if</span> <span class="n">output_file</span><span class="p">:</span>
+            <span class="n">safe_json_dump</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Summary report saved to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">report</span></div>
+
+    
+<div class="viewcode-block" id="ResultsManager.cleanup_old_results">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager.cleanup_old_results">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cleanup_old_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">days_old</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clean up old experiment results.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            days_old: Remove results older than this many days</span>
+<span class="sd">            dry_run: If True, only report what would be deleted</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with cleanup statistics</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cutoff_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">days_old</span><span class="p">)</span>
+        <span class="n">results_base</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_results_base_dir</span><span class="p">()</span>
+        
+        <span class="n">stats</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;scanned&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;marked_for_deletion&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;deleted&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;errors&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;total_size_mb&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">&#39;freed_size_mb&#39;</span><span class="p">:</span> <span class="mf">0.0</span>
+        <span class="p">}</span>
+        
+        <span class="n">experiments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_experiments</span><span class="p">()</span>
+        
+        <span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="n">experiments</span><span class="p">:</span>
+            <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;scanned&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">exp_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span>
+            
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Check modification time of results.json</span>
+                <span class="n">results_file</span> <span class="o">=</span> <span class="n">exp_path</span> <span class="o">/</span> <span class="s2">&quot;results.json&quot;</span>
+                <span class="k">if</span> <span class="n">results_file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                    <span class="n">mod_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">results_file</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_mtime</span><span class="p">)</span>
+                    
+                    <span class="k">if</span> <span class="n">mod_time</span> <span class="o">&lt;</span> <span class="n">cutoff_date</span><span class="p">:</span>
+                        <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;marked_for_deletion&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                        
+                        <span class="c1"># Calculate size</span>
+                        <span class="n">size_mb</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">exp_path</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">is_file</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)</span>
+                        <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;total_size_mb&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">size_mb</span>
+                        
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span><span class="p">:</span>
+                            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">exp_path</span><span class="p">)</span>
+                            <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;deleted&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                            <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;freed_size_mb&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">size_mb</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleted old experiment: </span><span class="si">{</span><span class="n">exp</span><span class="p">[</span><span class="s1">&#39;modality&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="p">[</span><span class="s1">&#39;dataset_id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Would delete: </span><span class="si">{</span><span class="n">exp</span><span class="p">[</span><span class="s1">&#39;modality&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="p">[</span><span class="s1">&#39;dataset_id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">size_mb</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> MB)&quot;</span><span class="p">)</span>
+                            
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;errors&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing </span><span class="si">{</span><span class="n">exp_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cleanup completed: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;deleted&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;marked_for_deletion&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> deleted, </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;freed_size_mb&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> MB freed&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">stats</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_dict_to_evaluation_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">EvaluationResults</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert dictionary to EvaluationResults, preserving all fields.&quot;&quot;&quot;</span>
+        <span class="c1"># Get all fields from EvaluationResults</span>
+        <span class="n">result_fields</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">EvaluationResults</span><span class="o">.</span><span class="n">__dataclass_fields__</span><span class="o">.</span><span class="n">values</span><span class="p">()}</span>
+        
+        <span class="c1"># Extract matching fields from input data</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">result_fields</span><span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">EvaluationResults</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_dict_to_artifacts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ResultsArtifacts</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert dictionary to ResultsArtifacts.&quot;&quot;&quot;</span>
+        <span class="n">artifact_fields</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">ResultsArtifacts</span><span class="o">.</span><span class="n">__dataclass_fields__</span><span class="o">.</span><span class="n">values</span><span class="p">()}</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">artifact_fields</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">ResultsArtifacts</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_has_artifacts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">artifacts</span><span class="p">:</span> <span class="n">ResultsArtifacts</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if artifacts object contains any actual artifacts.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">asdict</span><span class="p">(</span><span class="n">artifacts</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">field_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">field_value</span> <span class="o">!=</span> <span class="p">[]:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_save_metrics_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">EvaluationResults</span><span class="p">,</span> <span class="n">experiment_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save a quick metrics summary for easy access.&quot;&quot;&quot;</span>
+        <span class="n">metrics</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="c1"># Core metrics</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">,</span> <span class="s1">&#39;balanced_accuracy&#39;</span><span class="p">,</span> <span class="s1">&#39;r2_score&#39;</span><span class="p">,</span> <span class="s1">&#39;mae&#39;</span><span class="p">,</span> <span class="s1">&#39;rmse&#39;</span><span class="p">]:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">metrics</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        
+        <span class="c1"># Classification metrics</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;precision_macro&#39;</span><span class="p">,</span> <span class="s1">&#39;recall_macro&#39;</span><span class="p">,</span> <span class="s1">&#39;f1_macro&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;precision_weighted&#39;</span><span class="p">,</span> <span class="s1">&#39;recall_weighted&#39;</span><span class="p">,</span> <span class="s1">&#39;f1_weighted&#39;</span><span class="p">]:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">metrics</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        
+        <span class="c1"># Timing and completion</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;completion_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;total_prediction_time&#39;</span><span class="p">,</span> <span class="s1">&#39;prediction_time_per_sample&#39;</span><span class="p">]:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">metrics</span><span class="p">[</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        
+        <span class="k">if</span> <span class="n">metrics</span><span class="p">:</span>
+            <span class="n">summary_file</span> <span class="o">=</span> <span class="n">experiment_dir</span> <span class="o">/</span> <span class="s2">&quot;metrics_summary.json&quot;</span>
+            <span class="n">safe_json_dump</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">summary_file</span><span class="p">),</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_save_artifacts_manifest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">artifacts</span><span class="p">:</span> <span class="n">ResultsArtifacts</span><span class="p">,</span> <span class="n">experiment_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save artifacts manifest for easy discovery.&quot;&quot;&quot;</span>
+        <span class="n">artifacts_dict</span> <span class="o">=</span> <span class="n">asdict</span><span class="p">(</span><span class="n">artifacts</span><span class="p">)</span>
+        <span class="c1"># Remove None values</span>
+        <span class="n">artifacts_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">artifacts_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+        
+        <span class="k">if</span> <span class="n">artifacts_dict</span><span class="p">:</span>
+            <span class="n">manifest_file</span> <span class="o">=</span> <span class="n">experiment_dir</span> <span class="o">/</span> <span class="s2">&quot;artifacts_manifest.json&quot;</span>
+            <span class="n">safe_json_dump</span><span class="p">(</span><span class="n">artifacts_dict</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">manifest_file</span><span class="p">),</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># Global results manager instance</span>
+<span class="n">_results_manager</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ResultsManager</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">_results_manager_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="get_results_manager">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.get_results_manager">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_results_manager</span><span class="p">(</span><span class="n">resource_manager</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MarvisResourceManager</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultsManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get global results manager instance.&quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">_results_manager</span>
+    
+    <span class="k">with</span> <span class="n">_results_manager_lock</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">_results_manager</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_results_manager</span> <span class="o">=</span> <span class="n">ResultsManager</span><span class="p">(</span><span class="n">resource_manager</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_results_manager</span></div>
+
+
+
+<div class="viewcode-block" id="reset_results_manager">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.reset_results_manager">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">reset_results_manager</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reset global results manager instance (mainly for testing).&quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">_results_manager</span>
+    <span class="k">with</span> <span class="n">_results_manager_lock</span><span class="p">:</span>
+        <span class="n">_results_manager</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<span class="c1"># Convenience functions for backward compatibility</span>
+
+<div class="viewcode-block" id="save_results_unified">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.results_manager.save_results_unified">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_results_unified</span><span class="p">(</span>
+    <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">model_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Backward-compatible results saving function.</span>
+<span class="sd">    </span>
+<span class="sd">    This function provides compatibility with the existing save_results() pattern</span>
+<span class="sd">    while using the new unified system.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">model_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Extract model name from results if available</span>
+        <span class="n">model_name</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;model_name&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown_model&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Use the results manager but save to the specified output directory</span>
+    <span class="n">results_manager</span> <span class="o">=</span> <span class="n">get_results_manager</span><span class="p">()</span>
+    
+    <span class="c1"># Temporarily override the base directory</span>
+    <span class="n">original_base_dir</span> <span class="o">=</span> <span class="n">results_manager</span><span class="o">.</span><span class="n">resource_manager</span><span class="o">.</span><span class="n">path_resolver</span><span class="o">.</span><span class="n">get_base_dir</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">custom_base_dir</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+    
+    <span class="n">results_manager</span><span class="o">.</span><span class="n">resource_manager</span><span class="o">.</span><span class="n">path_resolver</span><span class="o">.</span><span class="n">get_base_dir</span> <span class="o">=</span> <span class="n">custom_base_dir</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">results_manager</span><span class="o">.</span><span class="n">save_evaluation_results</span><span class="p">(</span>
+            <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+            <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_name</span><span class="p">,</span>
+            <span class="n">modality</span><span class="o">=</span><span class="n">modality</span><span class="p">,</span>
+            <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="c1"># Restore original base directory function</span>
+        <span class="n">results_manager</span><span class="o">.</span><span class="n">resource_manager</span><span class="o">.</span><span class="n">path_resolver</span><span class="o">.</span><span class="n">get_base_dir</span> <span class="o">=</span> <span class="n">original_base_dir</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

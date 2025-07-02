@@ -1,0 +1,22 @@
+{
+  "dataset_name": "car",
+  "task_prefix": "Car Evaluation Database derived from a hierarchical decision model for evaluating cars based on their overall acceptability. The model evaluates cars according to price characteristics (buying price and maintenance cost) and technical characteristics (comfort and safety features). Each example contains 6 features. Car evaluation.",
+  "column_descriptions": {
+    "feature_1": "Feature 1",
+    "feature_2": "Feature 2",
+    "feature_3": "Feature 3",
+    "feature_4": "Feature 4",
+    "feature_5": "Feature 5",
+    "feature_6": "Feature 6"
+  },
+  "class_names": [
+    "acc",
+    "good",
+    "unacc",
+    "vgood"
+  ],
+  "class_description": "Classes: 'unacc' (Unacceptable), 'acc' (Acceptable), 'good' (Good), 'vgood' (Very good)",
+  "num_features": 6,
+  "num_classes": 4,
+  "task_id": "146821_20250621_185544"
+}

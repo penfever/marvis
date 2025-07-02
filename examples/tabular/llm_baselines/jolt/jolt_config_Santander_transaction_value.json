@@ -1,0 +1,15 @@
+{
+  "dataset_name": "Santander_transaction_value",
+  "task_prefix": "Anonymized customer transaction data from Santander Bank to predict whether customers will make specific transactions. Features are heavily anonymized numeric variables representing various aspects of customer banking behavior. Each example contains 2 features. Predict the target class.",
+  "column_descriptions": {
+    "var_0": "Anonymized numeric feature representing customer or transaction characteristic.",
+    "var_1-var_199": "199 anonymized numeric features capturing various aspects of customer banking behavior, transaction patterns, or account characteristics. Each variable has been normalized and anonymized."
+  },
+  "class_names": [
+    "1",
+    "0"
+  ],
+  "class_description": "Classes: '1' (Customer will make the transaction (positive class - approximately 10% of instances)), '0' (Customer will not make the transaction (negative class - approximately 90% of instances))",
+  "num_features": 2,
+  "num_classes": 2
+}

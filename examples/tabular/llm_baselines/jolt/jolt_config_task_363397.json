@@ -1,0 +1,15 @@
+{
+  "dataset_name": "Phenotype_202",
+  "task_prefix": "This dataset contains phenotypic and sequencing statistics for 202 yellow drum (Nibea albiflora) individuals, focusing on survival characteristics and various biological measurements. The data is part of a larger study on fish genetics and phenotypic traits that impact survival in aquaculture environments. Each example contains 2 features. Predict the Survive_time.",
+  "column_descriptions": {
+    "Survive_time": "Duration of survival for the yellow drum specimen",
+    "Features 0-47": "Various phenotypic measurements and sequencing statistics of the yellow drum specimens. Exact semantic meaning of individual features not explicitly provided in available documentation"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Survive_time - The length of time a yellow drum individual survived under study conditions. Units: Likely days or hours (not explicitly specified in documentation). Range: Continuous positive values (exact range not specified in documentation)",
+  "num_features": 2,
+  "num_classes": 1,
+  "task_id": 363397
+}

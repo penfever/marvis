@@ -1,0 +1,306 @@
+{
+  "dataset_name": "mfeat-zernike",
+  "openml_task_id": 22,
+  "dataset_description": "This dataset is part of the Multiple Features Dataset collection, containing features of handwritten numerals (0-9) extracted from Dutch utility maps. Specifically, this dataset contains 47 Zernike moment features, which are rotation-invariant shape descriptors. Each of the 10 digit classes has 200 instances digitized from binary images. Note: Zernike moments cannot distinguish between digits '6' and '9' due to their rotational similarity.",
+  "dataset_source": "Delft University of Technology, Netherlands - UCI Repository",
+  "domain": "Computer Vision, Handwritten Digit Recognition",
+  "problem_type": "Multi-class Classification",
+  "input_features": {
+    "number_of_features": 47,
+    "feature_types": "Continuous numerical",
+    "feature_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks."
+  },
+  "dataset_size": {
+    "instances": 2000,
+    "features": 47,
+    "classes": 10
+  },
+  "description": "This dataset is part of the Multiple Features Dataset collection, containing features of handwritten numerals (0-9) extracted from Dutch utility maps. Specifically, this dataset contains 47 Zernike moment features, which are rotation-invariant shape descriptors. Each of the 10 digit classes has 200 instances digitized from binary images. Note: Zernike moments cannot distinguish between digits '6' and '9' due to their rotational similarity.",
+  "original_source": {
+    "creator": "Unknown",
+    "institution": "Unknown",
+    "date": "Unknown",
+    "publication": "Unknown"
+  },
+  "columns": [
+    {
+      "name": "feature_1",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 1)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_2",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 2)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_3",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 3)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_4",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 4)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_5",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 5)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_6",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 6)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_7",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 7)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_8",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 8)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_9",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 9)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_10",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 10)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_11",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 11)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_12",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 12)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_13",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 13)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_14",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 14)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_15",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 15)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_16",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 16)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_17",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 17)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_18",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 18)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_19",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 19)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_20",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 20)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_21",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 21)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_22",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 22)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_23",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 23)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_24",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 24)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_25",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 25)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_26",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 26)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_27",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 27)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_28",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 28)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_29",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 29)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_30",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 30)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_31",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 31)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_32",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 32)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_33",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 33)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_34",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 34)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_35",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 35)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_36",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 36)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_37",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 37)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_38",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 38)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_39",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 39)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_40",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 40)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_41",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 41)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_42",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 42)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_43",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 43)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_44",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 44)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_45",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 45)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_46",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 46)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_47",
+      "semantic_description": "47 rotation-invariant Zernike moments calculated from handwritten digit images. These moments capture shape information independent of rotation, making them useful for digit recognition tasks. (feature 47)",
+      "data_type": "Continuous numerical"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Handwritten digit class (0-9): 0"
+    },
+    {
+      "name": "1",
+      "meaning": "Handwritten digit class (0-9): 1"
+    },
+    {
+      "name": "2",
+      "meaning": "Handwritten digit class (0-9): 2"
+    },
+    {
+      "name": "3",
+      "meaning": "Handwritten digit class (0-9): 3"
+    },
+    {
+      "name": "4",
+      "meaning": "Handwritten digit class (0-9): 4"
+    },
+    {
+      "name": "5",
+      "meaning": "Handwritten digit class (0-9): 5"
+    },
+    {
+      "name": "6",
+      "meaning": "Handwritten digit class (0-9): 6"
+    },
+    {
+      "name": "7",
+      "meaning": "Handwritten digit class (0-9): 7"
+    },
+    {
+      "name": "8",
+      "meaning": "Handwritten digit class (0-9): 8"
+    },
+    {
+      "name": "9",
+      "meaning": "Handwritten digit class (0-9): 9"
+    }
+  ],
+  "dataset_history": "Dataset history not available for mfeat-zernike",
+  "inference_notes": "Inference notes not available for mfeat-zernike"
+}

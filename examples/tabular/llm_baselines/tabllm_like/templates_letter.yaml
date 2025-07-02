@@ -1,0 +1,18 @@
+dataset: letter
+templates:
+  33e164b8-1695-4082-83eb-3f6ae58cd053: !Template
+    name: letter
+    id: 33e164b8-1695-4082-83eb-3f6ae58cd053
+    reference: ''
+    answer_choices: Letter A ||| Letter B ||| Letter C ||| Letter D ||| Letter E |||
+      Letter F ||| Letter G ||| Letter H ||| Letter I ||| Letter J ||| Letter K |||
+      Letter L ||| Letter M ||| Letter N ||| Letter O ||| Letter P ||| Letter Q |||
+      Letter R ||| Letter S ||| Letter T ||| Letter U ||| Letter V ||| Letter W |||
+      Letter X ||| Letter Y ||| Letter Z
+    jinja: "{{note}}\n\nWhich capital letter of the English alphabet does this pixel\
+      \ display represent?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

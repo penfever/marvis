@@ -1,0 +1,16 @@
+dataset: madelon
+templates:
+  578a46fc-f983-4400-bc66-4205c145400a: !Template
+    name: madelon
+    id: 578a46fc-f983-4400-bc66-4205c145400a
+    reference: ''
+    answer_choices: Positive class (randomly assigned) ||| Negative class (randomly
+      assigned)
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Positive class (randomly assigned), Negative class (randomly assigned)?\n\
+      Answer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

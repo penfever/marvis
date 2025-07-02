@@ -1,0 +1,18 @@
+{
+  "dataset_name": "light_inferred",
+  "task_prefix": "This dataset is derived from the LIGHT (Learning in Interactive Games with Humans and Text) project, focusing on analyzing gender bias in persona-based conversations. It contains conversations where personas interact in a fantasy-themed environment. The dataset is specifically processed to study multi-dimensional gender bias by analyzing how language differs based on the speaker's gender, the addressee's gender, and who is being discussed. Each example contains 5 features. Predict the ternary_score.",
+  "column_descriptions": {
+    "0": "Likely represents text embeddings or encoded features derived from conversation text",
+    "1": "Likely represents speaker (AS) characteristics or encoded conversation attributes",
+    "2": "Likely represents addressee (TO) characteristics or conversation context features",
+    "3": "Likely represents semantic or contextual features from the conversation",
+    "4": "Likely represents additional conversation or persona attributes"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: ternary_score - A measure of gender bias in the conversation, likely representing a classification of bias type or intensity. Units: Normalized score. Range: Continuous values, likely normalized between specific bounds (exact range uncertain)",
+  "num_features": 5,
+  "num_classes": 1,
+  "task_id": 363388
+}

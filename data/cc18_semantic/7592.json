@@ -1,0 +1,172 @@
+{
+  "dataset": "adult",
+  "description": "Adult income dataset (Census Income). Predicts whether annual income exceeds $50K/yr based on census data extracted from the 1994 US Census database.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/adult",
+  "openml_task": 7592,
+  "openml_dataset": 1590,
+  "date_donated": "1996-05-01",
+  "creator": {
+    "name": "Barry Becker",
+    "affiliation": "Extracted from 1994 Census database",
+    "extraction_conditions": "((AAGE>16) && (AGI>100) && (AFNLWGT>1) && (HRSWK>0))"
+  },
+  "donor": {
+    "name": "Ron Kohavi",
+    "affiliation": "Data Mining and Visualization, Silicon Graphics"
+  },
+  "instances": 48842,
+  "features": 14,
+  "target": "income",
+  "target_type": "binary",
+  "missing_values": true,
+  "feature_types": {
+    "continuous": 6,
+    "categorical": 8
+  },
+  "feature_description": {
+    "age": "continuous",
+    "workclass": "Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked",
+    "fnlwgt": "continuous (final weight)",
+    "education": "Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool",
+    "education-num": "continuous",
+    "marital-status": "Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse",
+    "occupation": "Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces",
+    "relationship": "Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried",
+    "race": "White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black",
+    "sex": "Female, Male",
+    "capital-gain": "continuous",
+    "capital-loss": "continuous",
+    "hours-per-week": "continuous",
+    "native-country": "United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&Tobago, Peru, Hong, Holand-Netherlands"
+  },
+  "target_values": {
+    "<=50K": "Income less than or equal to $50,000 per year",
+    ">50K": "Income greater than $50,000 per year"
+  },
+  "class_distribution": {
+    "<=50K": "75.2% (majority class)",
+    ">50K": "24.8% (minority class)"
+  },
+  "domain": "Social/Economic",
+  "use_case": "Income prediction, socioeconomic analysis, fairness in machine learning research, demographic studies, policy making",
+  "dataset_splits": {
+    "training": "32561 instances (adult.data)",
+    "test": "16281 instances (adult.test)",
+    "note": "Test set has slight different distribution characteristics"
+  },
+  "data_collection": "Extraction from 1994 US Census database with specific filtering conditions to ensure data quality",
+  "preprocessing_notes": "Missing values marked with '?', requires handling of categorical variables, potential for feature engineering from existing attributes",
+  "advantages": "Well-studied benchmark dataset, realistic class imbalance, mix of continuous and categorical features, useful for fairness studies",
+  "challenges": "Missing values in several attributes, imbalanced classes, potential bias in historical census data, sensitive attributes present",
+  "ethical_considerations": "Contains sensitive demographic information (race, sex, native-country), historical biases in income distribution, widely used in fairness and bias detection research",
+  "related_datasets": {
+    "ACSIncome": "Modern alternative from American Community Survey (2014-2018) addressing some limitations of original Adult dataset"
+  },
+  "citations": [
+    {
+      "author": "Ron Kohavi",
+      "title": "Scaling Up the Accuracy of Naive-Bayes Classifiers: a Decision-Tree Hybrid",
+      "venue": "Proceedings of the Second International Conference on Knowledge Discovery and Data Mining",
+      "year": "1996"
+    },
+    {
+      "author": "Barry Becker and Ron Kohavi",
+      "title": "Adult Dataset",
+      "venue": "UCI Machine Learning Repository",
+      "doi": "https://doi.org/10.24432/C5XW20",
+      "year": "1996"
+    }
+  ],
+  "dataset_name": "adult",
+  "original_source": {
+    "creator": "Barry Becker",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1996-05-01",
+    "publication": "Ron Kohavi: Scaling Up the Accuracy of Naive-Bayes Classifiers: a Decision-Tree Hybrid"
+  },
+  "columns": [
+    {
+      "name": "age",
+      "semantic_description": "continuous",
+      "data_type": "continuous"
+    },
+    {
+      "name": "workclass",
+      "semantic_description": "Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov, Without-pay, Never-worked",
+      "data_type": "numeric"
+    },
+    {
+      "name": "fnlwgt",
+      "semantic_description": "continuous (final weight)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "education",
+      "semantic_description": "Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th, 7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool",
+      "data_type": "numeric"
+    },
+    {
+      "name": "education-num",
+      "semantic_description": "continuous",
+      "data_type": "continuous"
+    },
+    {
+      "name": "marital-status",
+      "semantic_description": "Married-civ-spouse, Divorced, Never-married, Separated, Widowed, Married-spouse-absent, Married-AF-spouse",
+      "data_type": "numeric"
+    },
+    {
+      "name": "occupation",
+      "semantic_description": "Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty, Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing, Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces",
+      "data_type": "integer"
+    },
+    {
+      "name": "relationship",
+      "semantic_description": "Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried",
+      "data_type": "numeric"
+    },
+    {
+      "name": "race",
+      "semantic_description": "White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black",
+      "data_type": "numeric"
+    },
+    {
+      "name": "sex",
+      "semantic_description": "Female, Male",
+      "data_type": "numeric"
+    },
+    {
+      "name": "capital-gain",
+      "semantic_description": "continuous",
+      "data_type": "continuous"
+    },
+    {
+      "name": "capital-loss",
+      "semantic_description": "continuous",
+      "data_type": "continuous"
+    },
+    {
+      "name": "hours-per-week",
+      "semantic_description": "continuous",
+      "data_type": "continuous"
+    },
+    {
+      "name": "native-country",
+      "semantic_description": "United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&Tobago, Peru, Hong, Holand-Netherlands",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "<=50K",
+      "meaning": "Income less than or equal to $50,000 per year"
+    },
+    {
+      "name": ">50K",
+      "meaning": "Income greater than $50,000 per year"
+    }
+  ],
+  "dataset_history": "Data Collection: Extraction from 1994 US Census database with specific filtering conditions to ensure data quality",
+  "inference_notes": "Challenges: Missing values in several attributes, imbalanced classes, potential bias in historical census data, sensitive attributes present. Advantages: Well-studied benchmark dataset, realistic class imbalance, mix of continuous and categorical features, useful for fairness studies. Use Case: Income prediction, socioeconomic analysis, fairness in machine learning research, demographic studies, policy making"
+}

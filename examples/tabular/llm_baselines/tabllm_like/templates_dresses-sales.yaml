@@ -1,0 +1,14 @@
+dataset: dresses-sales
+templates:
+  5c02b555-476a-48e2-8ff2-f5b75c55b2f6: !Template
+    name: dresses-sales
+    id: 5c02b555-476a-48e2-8ff2-f5b75c55b2f6
+    reference: ''
+    answer_choices: Not recommended ||| Recommended
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Not recommended, Recommended?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

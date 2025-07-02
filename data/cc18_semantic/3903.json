@@ -1,0 +1,204 @@
+{
+  "dataset_name": "pc3",
+  "description": "NASA software defect prediction dataset from flight software for earth orbiting satellite. Contains static code metrics extracted using McCabe and Halstead feature extractors to predict software quality and defect-proneness.",
+  "original_source": {
+    "creator": "NASA Metrics Data Program (MDP)",
+    "institution": "NASA IV&V Facility",
+    "date": "2007",
+    "publication": "Menzies, T., DiStefano, J., Orrego, A., & Chapman, R. (2004). How good is your blind spot sampling policy? Proceedings, 8th IEEE International Symposium on High Assurance Systems Engineering."
+  },
+  "columns": [
+    {
+      "name": "LOC_BLANK",
+      "semantic_description": "Count of blank lines - empty lines used for code readability and organization.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "BRANCH_COUNT",
+      "semantic_description": "Number of branches in the flow graph - count of decision points that create alternate execution paths.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "CALL_PAIRS",
+      "semantic_description": "Number of calls to other functions or modules - indicates coupling between modules.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "LOC_CODE_AND_COMMENT",
+      "semantic_description": "Lines containing both code and comments - mixed lines with executable code and explanatory comments.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "LOC_COMMENTS",
+      "semantic_description": "Count of lines containing comments - includes both standalone comment lines and inline comments.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "CONDITION_COUNT",
+      "semantic_description": "Number of conditionals in the module - count of logical conditions in control structures.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "CYCLOMATIC_COMPLEXITY",
+      "semantic_description": "McCabe's cyclomatic complexity - counts linearly independent paths through code, measuring decision complexity.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "CYCLOMATIC_DENSITY",
+      "semantic_description": "Ratio of cyclomatic complexity to size - normalized complexity measure.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "DECISION_COUNT",
+      "semantic_description": "Number of decision points in the code - if/while/for statements and other control structures.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "DECISION_DENSITY",
+      "semantic_description": "Ratio of decision count to size - normalized measure of decision complexity.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "DESIGN_COMPLEXITY",
+      "semantic_description": "McCabe's design complexity - measures integration complexity between modules.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "DESIGN_DENSITY",
+      "semantic_description": "Ratio of design complexity to size - normalized integration complexity.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "EDGE_COUNT",
+      "semantic_description": "Number of edges in the control flow graph - connections between nodes in the program flow.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "ESSENTIAL_COMPLEXITY",
+      "semantic_description": "McCabe's essential complexity - measures how well-structured the code is, with 1 being perfectly structured.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "ESSENTIAL_DENSITY",
+      "semantic_description": "Ratio of essential complexity to size - normalized structural quality measure.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "LOC_EXECUTABLE",
+      "semantic_description": "Number of lines of executable code - actual code statements excluding comments and blanks.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "PARAMETER_COUNT",
+      "semantic_description": "Number of parameters - function/method parameters indicating interface complexity.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "HALSTEAD_CONTENT",
+      "semantic_description": "Halstead's intelligence content - measures the complexity of the algorithm itself.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "HALSTEAD_DIFFICULTY",
+      "semantic_description": "Halstead's difficulty - measures how difficult the code is to write or understand.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "HALSTEAD_EFFORT",
+      "semantic_description": "Halstead's effort - mental effort required to develop the module.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "HALSTEAD_ERROR_EST",
+      "semantic_description": "Halstead's delivered bugs estimate - predicted number of errors in the module.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "HALSTEAD_LENGTH",
+      "semantic_description": "Halstead's program length - total count of all operators and operands.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "HALSTEAD_LEVEL",
+      "semantic_description": "Halstead's program level - inverse of difficulty, measures implementation conciseness.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "HALSTEAD_PROG_TIME",
+      "semantic_description": "Halstead's time estimator - estimated time to program the module in seconds.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "HALSTEAD_VOLUME",
+      "semantic_description": "Halstead's volume - measures program size as bits needed to encode the program.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "NUM_OPERANDS",
+      "semantic_description": "Total count of operands - sum of all operand occurrences in the module.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "NUM_OPERATORS",
+      "semantic_description": "Total count of operators - sum of all operator occurrences in the module.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "NUM_UNIQUE_OPERANDS",
+      "semantic_description": "Number of unique operands - distinct variables, constants, and identifiers.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "NUM_UNIQUE_OPERATORS",
+      "semantic_description": "Number of unique operators - distinct operators like +, -, *, /, if, while.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "NUMBER_OF_LINES",
+      "semantic_description": "Total number of lines in the module - all lines including code, comments, and blanks.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "PERCENT_COMMENTS",
+      "semantic_description": "Percentage of comment lines - ratio of comment lines to total lines.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "LOC_TOTAL",
+      "semantic_description": "Total lines of code - comprehensive line count for the module.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "MAINTENANCE_SEVERITY",
+      "semantic_description": "Predicted maintenance difficulty - composite measure of code maintainability.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "MODIFIED_CONDITION_COUNT",
+      "semantic_description": "Modified condition/decision coverage count - testing-related complexity metric.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "MULTIPLE_CONDITION_COUNT",
+      "semantic_description": "Number of multiple conditions - complex boolean expressions in the code.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "NODE_COUNT",
+      "semantic_description": "Number of nodes in the control flow graph - distinct points in program execution.",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "FALSE",
+      "meaning": "Module has no reported defects - considered defect-free in testing/operation"
+    },
+    {
+      "name": "TRUE",
+      "meaning": "Module has one or more reported defects - bugs found during testing or deployment"
+    }
+  ],
+  "dataset_history": "Part of NASA's software quality improvement initiative, collected from flight software for earth orbiting satellite. PC3 is one of 12 NASA MDP datasets used extensively in defect prediction research. The dataset demonstrates effectiveness of machine learning for identifying defect-prone modules in safety-critical systems.",
+  "inference_notes": "PC3 contains 1077 instances with 134 defective modules (12.44% defect rate), showing significant class imbalance. Like other NASA datasets, it uses 1970s-era McCabe and Halstead metrics that remain standard in software engineering despite criticisms they may proxy for size. The flight software context makes defect prediction crucial for mission safety."
+}

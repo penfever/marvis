@@ -1,0 +1,67 @@
+{
+  "dataset_name": "wall-robot-navigation",
+  "openml_task_id": 9960,
+  "dataset_description": "This dataset contains sensor readings collected from a SCITOS G5 mobile robot navigating through a room following walls in a clockwise direction. The robot uses 24 ultrasound sensors arranged circularly around its waist. The dataset includes simplified distance measurements (front, left, right, back) derived from minimum sensor readings within 60-degree arcs. The task is to predict the appropriate navigation action based on these sensor readings.",
+  "dataset_source": "Federal University of Ceará, Brazil - Robotics research",
+  "domain": "Robotics, Autonomous Navigation",
+  "problem_type": "Multi-class Classification",
+  "input_features": {
+    "number_of_features": 4,
+    "feature_types": "Continuous numerical",
+    "feature_description": "SD_front: minimum sensor reading within 60° arc at front; SD_left: minimum sensor reading within 60° arc at left; SD_right: minimum sensor reading within 60° arc at right; SD_back: minimum sensor reading within 60° arc at back. All values are real numbers representing distances."
+  },
+  "dataset_size": {
+    "instances": 5456,
+    "features": 4,
+    "classes": 4
+  },
+  "description": "This dataset contains sensor readings collected from a SCITOS G5 mobile robot navigating through a room following walls in a clockwise direction. The robot uses 24 ultrasound sensors arranged circularly around its waist. The dataset includes simplified distance measurements (front, left, right, back) derived from minimum sensor readings within 60-degree arcs. The task is to predict the appropriate navigation action based on these sensor readings.",
+  "original_source": {
+    "creator": "Unknown",
+    "institution": "Unknown",
+    "date": "Unknown",
+    "publication": "Unknown"
+  },
+  "columns": [
+    {
+      "name": "feature_1",
+      "semantic_description": "SD_front: minimum sensor reading within 60° arc at front; SD_left: minimum sensor reading within 60° arc at left; SD_right: minimum sensor reading within 60° arc at right; SD_back: minimum sensor reading within 60° arc at back. All values are real numbers representing distances. (feature 1)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_2",
+      "semantic_description": "SD_front: minimum sensor reading within 60° arc at front; SD_left: minimum sensor reading within 60° arc at left; SD_right: minimum sensor reading within 60° arc at right; SD_back: minimum sensor reading within 60° arc at back. All values are real numbers representing distances. (feature 2)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_3",
+      "semantic_description": "SD_front: minimum sensor reading within 60° arc at front; SD_left: minimum sensor reading within 60° arc at left; SD_right: minimum sensor reading within 60° arc at right; SD_back: minimum sensor reading within 60° arc at back. All values are real numbers representing distances. (feature 3)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_4",
+      "semantic_description": "SD_front: minimum sensor reading within 60° arc at front; SD_left: minimum sensor reading within 60° arc at left; SD_right: minimum sensor reading within 60° arc at right; SD_back: minimum sensor reading within 60° arc at back. All values are real numbers representing distances. (feature 4)",
+      "data_type": "Continuous numerical"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "Move-Forward",
+      "meaning": "Robot navigation action to be taken: Move-Forward"
+    },
+    {
+      "name": "Slight-Right-Turn",
+      "meaning": "Robot navigation action to be taken: Slight-Right-Turn"
+    },
+    {
+      "name": "Sharp-Right-Turn",
+      "meaning": "Robot navigation action to be taken: Sharp-Right-Turn"
+    },
+    {
+      "name": "Slight-Left-Turn",
+      "meaning": "Robot navigation action to be taken: Slight-Left-Turn"
+    }
+  ],
+  "dataset_history": "Dataset history not available for wall-robot-navigation",
+  "inference_notes": "Inference notes not available for wall-robot-navigation"
+}

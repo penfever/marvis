@@ -1,0 +1,22 @@
+{
+  "dataset_name": "optdigits",
+  "task_prefix": "Optical Recognition of Handwritten Digits dataset containing handwritten digit samples (0-9) from 43 people. Images were preprocessed from 32x32 bitmaps divided into 4x4 non-overlapping blocks, counting pixels in each block to generate 8x8 input matrices with integer values 0-16. This dimensionality reduction provides invariance to small distortions. Each example contains 1 features. Optical character recognition (OCR) for handwritten digit recognition. Applications include postal code reading.",
+  "column_descriptions": {
+    "Pixel counts in 8x8 blocks": "Integer values (0-16) representing the count of 'on' pixels in each 4x4 block of the original 32x32 image, arranged in an 8x8 grid"
+  },
+  "class_names": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '0' (Digit 0), '1' (Digit 1), '2' (Digit 2), '3' (Digit 3), '4' (Digit 4), '5' (Digit 5), '6' (Digit 6), '7' (Digit 7), '8' (Digit 8), '9' (Digit 9)",
+  "num_features": 1,
+  "num_classes": 10
+}

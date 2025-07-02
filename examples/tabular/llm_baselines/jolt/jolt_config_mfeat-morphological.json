@@ -1,0 +1,27 @@
+{
+  "dataset_name": "mfeat-morphological",
+  "task_prefix": "Multiple Features Dataset: Morphological. One of six datasets describing features of handwritten numerals (0-9) extracted from Dutch utility maps. This dataset contains 6 morphological features computed from the digit images. Each class has 200 instances digitized from binary images. Each example contains 6 features. Handwritten digit recognition using morphological features. Applications include comparing effectiveness of different feature types.",
+  "column_descriptions": {
+    "Morphological feature 1": "Feature: Morphological feature 1",
+    "Morphological feature 2": "Feature: Morphological feature 2",
+    "Morphological feature 3": "Feature: Morphological feature 3",
+    "Morphological feature 4": "Feature: Morphological feature 4",
+    "Morphological feature 5": "Feature: Morphological feature 5",
+    "Morphological feature 6": "Feature: Morphological feature 6"
+  },
+  "class_names": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '0' (Digit 0), '1' (Digit 1), '2' (Digit 2), '3' (Digit 3), '4' (Digit 4), '5' (Digit 5), '6' (Digit 6), '7' (Digit 7), '8' (Digit 8), '9' (Digit 9)",
+  "num_features": 6,
+  "num_classes": 10
+}

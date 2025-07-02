@@ -1,0 +1,14 @@
+dataset: mfeat-zernike
+templates:
+  37804b4c-3dea-40a7-b09c-dae65eb8c90b: !Template
+    name: mfeat-zernike
+    id: 37804b4c-3dea-40a7-b09c-dae65eb8c90b
+    reference: ''
+    answer_choices: Class 0 ||| Class 1
+    jinja: "{{note}}\n\nWhat is the class of this instance?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

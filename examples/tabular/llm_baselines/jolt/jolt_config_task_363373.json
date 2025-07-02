@@ -1,0 +1,19 @@
+{
+  "dataset_name": "jc_penney_products",
+  "task_prefix": "A retail dataset containing product information from JC Penney's e-commerce website. The dataset combines both textual and numerical features to characterize products and their pricing, representing a real-world multimodal machine learning challenge in retail price prediction. Each example contains 6 features. Predict the sale_price.",
+  "column_descriptions": {
+    "product_title": "The displayed name/title of the product on the JC Penney website",
+    "product_description": "Detailed text description of the product including features, materials, and specifications",
+    "rating": "Customer rating of the product on a 5-point scale",
+    "regular_price": "Original listed price of the product before any discounts",
+    "category": "Product category or department classification",
+    "brand": "Manufacturer or brand name of the product"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: sale_price - The actual selling price of the product after applying any discounts or promotions. Units: USD (United States Dollars). Range: Positive float values, typically between $1-$500",
+  "num_features": 6,
+  "num_classes": 1,
+  "task_id": 363373
+}

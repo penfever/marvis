@@ -1,0 +1,16 @@
+dataset: connect-4
+templates:
+  723f7623-c8b4-4fd6-9adc-99d6c41c70c8: !Template
+    name: connect-4
+    id: 723f7623-c8b4-4fd6-9adc-99d6c41c70c8
+    reference: ''
+    answer_choices: Game ends in a draw ||| First player (X) loses ||| First player
+      (X) wins
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Game ends in a draw, First player (X) loses, First player (X) wins?\nAnswer:\
+      \ \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

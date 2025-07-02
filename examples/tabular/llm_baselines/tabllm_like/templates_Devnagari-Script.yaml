@@ -1,0 +1,14 @@
+dataset: Devnagari-Script
+templates:
+  4ba0387e-46dc-4caf-99ed-59f0aa5f5a2a: !Template
+    name: Devnagari-Script
+    id: 4ba0387e-46dc-4caf-99ed-59f0aa5f5a2a
+    reference: ''
+    answer_choices: characters ||| classes ||| script
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ characters, classes, script?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

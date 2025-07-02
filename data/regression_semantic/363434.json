@@ -1,0 +1,101 @@
+{
+  "dataset_name": "climate_change_impact_on_agriculture_2024",
+  "description": "A synthetic dataset designed to model the relationship between climate change variables and agricultural economic impacts. The dataset simulates real-world patterns of how climate variations affect agricultural productivity and resulting economic consequences across different regions and farming conditions.",
+  "original_source": {
+    "creator": "Unknown (Synthetic Dataset)",
+    "institution": "Unknown",
+    "date": "2024",
+    "publication": "None identified - appears to be created for educational/research purposes"
+  },
+  "columns": [
+    {
+      "name": "Temperature_Change",
+      "semantic_description": "Average temperature deviation from historical baseline in degrees Celsius",
+      "data_type": "float, likely ranging from -2.0 to +6.0°C"
+    },
+    {
+      "name": "Precipitation_Change",
+      "semantic_description": "Percentage change in annual precipitation compared to historical average",
+      "data_type": "float, likely ranging from -50% to +50%"
+    },
+    {
+      "name": "Extreme_Weather_Events",
+      "semantic_description": "Number of extreme weather events (droughts, floods, storms) per year",
+      "data_type": "integer, likely ranging from 0 to 20"
+    },
+    {
+      "name": "Soil_Quality_Index",
+      "semantic_description": "Composite measure of soil health including organic content, pH, and nutrient levels",
+      "data_type": "float, likely 0-100 scale"
+    },
+    {
+      "name": "Crop_Diversity_Index",
+      "semantic_description": "Measure of agricultural biodiversity in the region",
+      "data_type": "float, likely 0-1 scale"
+    },
+    {
+      "name": "Irrigation_Access",
+      "semantic_description": "Percentage of agricultural land with irrigation access",
+      "data_type": "float, 0-100 percentage"
+    },
+    {
+      "name": "Technology_Adoption_Level",
+      "semantic_description": "Index of modern agricultural technology implementation",
+      "data_type": "float, likely 0-10 scale"
+    },
+    {
+      "name": "Farm_Size_Hectares",
+      "semantic_description": "Average size of farming operations in the region",
+      "data_type": "float, positive values"
+    },
+    {
+      "name": "Growing_Season_Length",
+      "semantic_description": "Number of days suitable for crop growth annually",
+      "data_type": "integer, likely 120-365 days"
+    },
+    {
+      "name": "Market_Access_Score",
+      "semantic_description": "Measure of farmers' ability to reach markets and sell produce",
+      "data_type": "float, likely 0-100 scale"
+    },
+    {
+      "name": "Agricultural_GDP_Percentage",
+      "semantic_description": "Agriculture's contribution to regional GDP",
+      "data_type": "float, 0-100 percentage"
+    },
+    {
+      "name": "Farmer_Education_Level",
+      "semantic_description": "Average years of formal education among farmers",
+      "data_type": "float, likely 0-20 years"
+    },
+    {
+      "name": "Adaptation_Investment",
+      "semantic_description": "Annual investment in climate adaptation measures",
+      "data_type": "float, positive values in USD"
+    },
+    {
+      "name": "Insurance_Coverage",
+      "semantic_description": "Percentage of farms with climate-related insurance",
+      "data_type": "float, 0-100 percentage"
+    },
+    {
+      "name": "Previous_Year_Impact",
+      "semantic_description": "Economic impact from climate events in previous year",
+      "data_type": "float, in Million USD"
+    }
+  ],
+  "target_description": {
+    "name": "Economic_Impact_Million_USD",
+    "meaning": "Projected economic impact of climate change on agricultural production",
+    "units": "Millions of US Dollars",
+    "range": "Likely negative to positive values, representing losses and gains"
+  },
+  "dataset_history": "This appears to be a synthetic dataset created to simulate the complex relationships between climate change and agricultural economics. It incorporates various factors known to influence agricultural resilience and productivity in the face of climate change, based on established research in agricultural economics and climate science.",
+  "inference_notes": "As a synthetic dataset, it may not capture all real-world complexities and local variations. The relationships between variables are likely based on simplified models of known climate-agriculture interactions. Users should consider that actual climate impacts can be more complex and region-specific. The dataset appears designed for educational purposes and preliminary modeling rather than definitive policy decisions.",
+  "_metadata": {
+    "task_id": 363434,
+    "generated_at": "2025-06-22T08:34:06.567853",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

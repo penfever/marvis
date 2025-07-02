@@ -1,0 +1,30 @@
+{
+  "dataset_name": "bank-marketing",
+  "task_prefix": "The bank marketing dataset is related to direct marketing campaigns of a Portuguese banking institution. The marketing campaigns were based on phone calls to convince clients to subscribe to a bank term deposit. Often, more than one contact to the same client was required. The dataset includes client demographic data, campaign information, and socio-economic indicators. Each example contains 16 features. Predicting whether a client will subscribe to a term deposit based on direct marketing campaign data. Useful for optimizing marketing strategies.",
+  "column_descriptions": {
+    "Age": "Client's age in years",
+    "Type of job": "Type of job (categorical: 'admin.', 'blue-collar', 'entrepreneur', 'housemaid', 'management', 'retired', 'self-employed', 'services', 'student', 'technician', 'unemployed', 'unknown')",
+    "Marital status": "Marital status (categorical: 'divorced', 'married', 'single', 'unknown')",
+    "Education level": "Education level (categorical: 'basic.4y', 'basic.6y', 'basic.9y', 'high.school', 'illiterate', 'professional.course', 'university.degree', 'unknown')",
+    "Has credit in default?": "Has credit in default? (binary: 'yes', 'no')",
+    "Average yearly balance": "Average yearly balance in euros",
+    "Has housing loan?": "Has housing loan? (binary: 'yes', 'no')",
+    "Has personal loan?": "Has personal loan? (binary: 'yes', 'no')",
+    "Contact communication type": "Contact communication type (categorical: 'cellular', 'telephone', 'unknown')",
+    "Last contact day of the month": "Last contact day of the month (numeric: 1-31)",
+    "Last contact month of year": "Last contact month of year (categorical: 'jan', 'feb', 'mar', ..., 'nov', 'dec')",
+    "Last contact duration": "Last contact duration in seconds (numeric). Important note: this attribute highly affects the output target",
+    "Number of contacts during this campaign": "Number of contacts performed during this campaign and for this client (includes last contact)",
+    "Days since last contact from previous campaign": "Number of days that passed by after the client was last contacted from a previous campaign (-1 means client was not previously contacted)",
+    "Number of contacts before this campaign": "Number of contacts performed before this campaign and for this client",
+    "Outcome of previous marketing campaign": "Outcome of the previous marketing campaign (categorical: 'failure', 'other', 'success', 'unknown')"
+  },
+  "class_names": [
+    "no",
+    "yes"
+  ],
+  "class_description": "Classes: 'yes' (Client subscribed to a term deposit), 'no' (Client did not subscribe to a term deposit)",
+  "num_features": 16,
+  "num_classes": 2,
+  "task_id": "14965"
+}

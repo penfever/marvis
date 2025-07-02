@@ -1,0 +1,16 @@
+dataset: cnae-9
+templates:
+  d3b2612f-0e9c-46c1-8c35-1f43318a89c7: !Template
+    name: cnae-9
+    id: d3b2612f-0e9c-46c1-8c35-1f43318a89c7
+    reference: ''
+    answer_choices: Category 1 ||| Category 2 ||| Category 3 ||| Category 4 ||| Category
+      5 ||| Category 6 ||| Category 7 ||| Category 8 ||| Category 9
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Category 1, Category 2, Category 3, Category 4, Category 5, Category 6, Category\
+      \ 7, Category 8, Category 9?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

@@ -1,0 +1,136 @@
+{
+  "dataset": "breast-w",
+  "description": "Wisconsin Breast Cancer (Original) dataset containing features computed from digitized images of fine needle aspirates (FNA) of breast masses. Features describe characteristics of cell nuclei present in the image. The task is to classify tumors as benign or malignant based on cytological characteristics.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/breast+cancer+wisconsin+(original)",
+  "openml_task": 15,
+  "openml_dataset": 15,
+  "date_donated": "1995",
+  "creator": "Dr. William H. Wolberg (University of Wisconsin)",
+  "instances": 699,
+  "features": 9,
+  "target": "Class",
+  "target_type": "binary",
+  "missing_values": true,
+  "missing_count": 16,
+  "feature_types": {
+    "all": "integer"
+  },
+  "feature_names": {
+    "Clump_Thickness": "Clump thickness",
+    "Cell_Size_Uniformity": "Uniformity of cell size",
+    "Cell_Shape_Uniformity": "Uniformity of cell shape",
+    "Marginal_Adhesion": "Marginal adhesion",
+    "Single_Epi_Cell_Size": "Single epithelial cell size",
+    "Bare_Nuclei": "Bare nuclei",
+    "Bland_Chromatin": "Bland chromatin",
+    "Normal_Nucleoli": "Normal nucleoli",
+    "Mitoses": "Mitoses"
+  },
+  "feature_descriptions": {
+    "Clump_Thickness": "Assessment of the thickness of clumps of cells (1-10)",
+    "Cell_Size_Uniformity": "Evaluation of whether cells are uniform in size (1-10)",
+    "Cell_Shape_Uniformity": "Evaluation of whether cells are uniform in shape (1-10)",
+    "Marginal_Adhesion": "How much cells on the outside of the epithelial tend to stick together (1-10)",
+    "Single_Epi_Cell_Size": "Size of epithelial cells (1-10)",
+    "Bare_Nuclei": "Nuclei not surrounded by cytoplasm (1-10)",
+    "Bland_Chromatin": "Uniform texture of the nucleus (1-10)",
+    "Normal_Nucleoli": "Small structures in nucleus where ribosomes are made (1-10)",
+    "Mitoses": "Cell division process (1-10)"
+  },
+  "feature_scale": "All features are on a scale of 1-10, with 1 being closest to benign and 10 being most abnormal",
+  "target_values": {
+    "2": "Benign tumor",
+    "4": "Malignant tumor"
+  },
+  "domain": "Medical/Healthcare",
+  "use_case": "Breast cancer diagnosis support system to assist medical professionals in distinguishing between benign and malignant breast tumors based on cell characteristics from FNA samples",
+  "clinical_context": "Fine needle aspiration is a diagnostic procedure where a thin needle is inserted into an area of abnormal tissue to extract cells for examination",
+  "ethical_considerations": "Dataset should be used to support, not replace, medical professionals' judgment. Care must be taken to avoid bias in deployment. Patient privacy must be maintained when using similar medical data.",
+  "citations": [
+    {
+      "author": "O. L. Mangasarian and W. H. Wolberg",
+      "title": "Cancer diagnosis via linear programming",
+      "venue": "SIAM News",
+      "volume": "23",
+      "number": "5",
+      "pages": "1 & 18",
+      "year": "1990"
+    },
+    {
+      "author": "William H. Wolberg and O.L. Mangasarian",
+      "title": "Multisurface method of pattern separation for medical diagnosis applied to breast cytology",
+      "venue": "Proceedings of the National Academy of Sciences",
+      "volume": "87",
+      "pages": "9193-9196",
+      "year": "1990"
+    }
+  ],
+  "note": "This is the 'Original' Wisconsin Breast Cancer dataset. There is also a related 'Diagnostic' (WDBC) dataset with different features.",
+  "dataset_name": "breast-w",
+  "original_source": {
+    "creator": "Dr. William H. Wolberg (University of Wisconsin)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1995",
+    "publication": "O. L. Mangasarian and W. H. Wolberg: Cancer diagnosis via linear programming"
+  },
+  "columns": [
+    {
+      "name": "Clump thickness",
+      "semantic_description": "Assessment of the thickness of clumps of cells (1-10)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Uniformity of cell size",
+      "semantic_description": "Evaluation of whether cells are uniform in size (1-10)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Uniformity of cell shape",
+      "semantic_description": "Evaluation of whether cells are uniform in shape (1-10)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Marginal adhesion",
+      "semantic_description": "How much cells on the outside of the epithelial tend to stick together (1-10)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Single epithelial cell size",
+      "semantic_description": "Size of epithelial cells (1-10)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Bare nuclei",
+      "semantic_description": "Nuclei not surrounded by cytoplasm (1-10)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Bland chromatin",
+      "semantic_description": "Uniform texture of the nucleus (1-10)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Normal nucleoli",
+      "semantic_description": "Small structures in nucleus where ribosomes are made (1-10)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Mitoses",
+      "semantic_description": "Cell division process (1-10)",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "2",
+      "meaning": "Benign tumor"
+    },
+    {
+      "name": "4",
+      "meaning": "Malignant tumor"
+    }
+  ],
+  "dataset_history": "Dataset history not available for breast-w",
+  "inference_notes": "Use Case: Breast cancer diagnosis support system to assist medical professionals in distinguishing between benign and malignant breast tumors based on cell characteristics from FNA samples"
+}

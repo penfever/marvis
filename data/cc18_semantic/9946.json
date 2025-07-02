@@ -1,0 +1,174 @@
+{
+  "dataset_name": "wdbc",
+  "description": "Wisconsin Diagnostic Breast Cancer dataset containing measurements from digitized images of fine needle aspirate (FNA) of breast masses. Features describe characteristics of cell nuclei to classify tumors as malignant or benign.",
+  "original_source": {
+    "creator": "Dr. William H. Wolberg, W. Nick Street, and Olvi L. Mangasarian",
+    "institution": "University of Wisconsin Hospitals, Madison",
+    "date": "October 31, 1995",
+    "publication": "Street, W.N., Wolberg, W.H., and Mangasarian, O.L. (1993). Nuclear feature extraction for breast tumor diagnosis. Proceedings SPIE 1905, Biomedical Image Processing and Biomedical Visualization, pp. 861-870."
+  },
+  "columns": [
+    {
+      "name": "radius_mean",
+      "semantic_description": "Mean of distances from center to points on the perimeter - average size of cell nuclei.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "texture_mean",
+      "semantic_description": "Standard deviation of gray-scale values - variation in gray-scale intensities in the cell nuclei image.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "perimeter_mean",
+      "semantic_description": "Mean perimeter of cell nuclei - average boundary length of nuclei.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "area_mean",
+      "semantic_description": "Mean area of cell nuclei - average size in square units.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "smoothness_mean",
+      "semantic_description": "Mean of local variation in radius lengths - measures contour smoothness.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "compactness_mean",
+      "semantic_description": "Mean of perimeter²/area - 1.0 - measures shape compactness.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "concavity_mean",
+      "semantic_description": "Mean severity of concave portions of the contour - depth of indentations.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "concave_points_mean",
+      "semantic_description": "Mean number of concave portions of the contour - count of indented sections.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "symmetry_mean",
+      "semantic_description": "Mean symmetry of cell nuclei - similarity between halves when divided.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "fractal_dimension_mean",
+      "semantic_description": "Mean of 'coastline approximation' - 1 - complexity of nuclear boundary.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "radius_se",
+      "semantic_description": "Standard error of cell nuclei radius measurements.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "texture_se",
+      "semantic_description": "Standard error of gray-scale value standard deviations.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "perimeter_se",
+      "semantic_description": "Standard error of cell nuclei perimeter measurements.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "area_se",
+      "semantic_description": "Standard error of cell nuclei area measurements.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "smoothness_se",
+      "semantic_description": "Standard error of local variation in radius lengths.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "compactness_se",
+      "semantic_description": "Standard error of compactness measurements.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "concavity_se",
+      "semantic_description": "Standard error of concavity severity measurements.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "concave_points_se",
+      "semantic_description": "Standard error of concave portions count.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "symmetry_se",
+      "semantic_description": "Standard error of symmetry measurements.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "fractal_dimension_se",
+      "semantic_description": "Standard error of fractal dimension measurements.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "radius_worst",
+      "semantic_description": "Mean of the three largest radius values - captures extreme cell nuclei sizes.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "texture_worst",
+      "semantic_description": "Mean of the three largest texture values - captures extreme gray-scale variations.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "perimeter_worst",
+      "semantic_description": "Mean of the three largest perimeter values - captures extreme boundary lengths.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "area_worst",
+      "semantic_description": "Mean of the three largest area values - captures extreme nuclei sizes.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "smoothness_worst",
+      "semantic_description": "Mean of the three largest smoothness values - captures extreme contour variations.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "compactness_worst",
+      "semantic_description": "Mean of the three largest compactness values - captures extreme shape deviations.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "concavity_worst",
+      "semantic_description": "Mean of the three largest concavity values - captures deepest indentations.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "concave_points_worst",
+      "semantic_description": "Mean of the three largest concave points values - captures most indented contours.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "symmetry_worst",
+      "semantic_description": "Mean of the three largest symmetry values - captures most asymmetric nuclei.",
+      "data_type": "continuous"
+    },
+    {
+      "name": "fractal_dimension_worst",
+      "semantic_description": "Mean of the three largest fractal dimension values - captures most complex boundaries.",
+      "data_type": "continuous"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "B",
+      "meaning": "Benign - non-cancerous breast mass (357 instances, 62.7%)"
+    },
+    {
+      "name": "M",
+      "meaning": "Malignant - cancerous breast mass (212 instances, 37.3%)"
+    }
+  ],
+  "dataset_history": "Created using the Xcyt image analysis system to extract nuclear features from FNA slides. Features selected through exhaustive search in 1-4 features and 1-3 separating planes space. Used Multisurface Method-Tree (MSM-T) with linear programming for classification. Original work achieved 97.5% accuracy (369/370 correct). The one misclassified case was likely due to missing the tumor during aspiration. Dataset became a benchmark for ML algorithms in medical diagnosis.",
+  "inference_notes": "Each of 10 nuclear features computed three ways: mean (average across all nuclei), standard error (variability measure), and worst (mean of three largest values). 'Worst' features capture extreme cases that may indicate malignancy. Fractal dimension uses 'coastline approximation' to quantify boundary complexity - malignant nuclei often have more irregular boundaries. Compactness formula (perimeter²/area - 1) normalized so circle = 0. Features are scale-invariant and rotation-invariant, important for robust image analysis."
+}

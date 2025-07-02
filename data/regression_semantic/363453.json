@@ -1,0 +1,51 @@
+{
+  "dataset_name": "social-media-impact-on-suicide-rates",
+  "description": "A dataset examining the relationship between social media usage metrics and changes in suicide rates since 2010. The dataset combines social media engagement statistics with World Health Organization (WHO) suicide rate data to analyze potential correlations between digital platform usage and changes in suicide prevalence.",
+  "original_source": {
+    "creator": "Unknown/Not Specified",
+    "institution": "Likely compiled from WHO and social media platform data",
+    "date": "Circa 2021-2022 (estimated based on reference period)",
+    "publication": "No formal academic publication found"
+  },
+  "columns": [
+    {
+      "name": "social_media_usage",
+      "semantic_description": "Likely represents the percentage of population using social media platforms or average time spent on social media",
+      "data_type": "numeric (float/percentage)"
+    },
+    {
+      "name": "engagement_metrics",
+      "semantic_description": "Measures of user interaction such as likes, shares, or comments on social platforms",
+      "data_type": "numeric (integer)"
+    },
+    {
+      "name": "platform_penetration",
+      "semantic_description": "Market penetration or adoption rate of specific social media platforms in the population",
+      "data_type": "numeric (percentage)"
+    },
+    {
+      "name": "demographic_factor",
+      "semantic_description": "Demographic variables that might influence both social media usage and suicide rates",
+      "data_type": "numeric or categorical"
+    },
+    {
+      "name": "temporal_metric",
+      "semantic_description": "Time-based measurement, possibly year or period of observation",
+      "data_type": "numeric or datetime"
+    }
+  ],
+  "target_description": {
+    "name": "suicide_rate_change_since_2010",
+    "meaning": "Percentage change in suicide rates compared to 2010 baseline levels",
+    "units": "Percentage change (%)",
+    "range": "Likely -100 to +100 percent"
+  },
+  "dataset_history": "This dataset appears to be compiled as part of a broader investigation into the relationship between social media usage and mental health outcomes. It combines WHO suicide statistics with social media metrics, using 2010 as a baseline year, likely chosen because it represents a period when social media usage began to accelerate globally.",
+  "inference_notes": "Important considerations:\n1. Small sample size (30 instances) limits statistical power\n2. Correlation does not imply causation - many confounding variables may exist\n3. Social media metrics may be aggregated across platforms\n4. Geographic and cultural factors may not be fully captured\n5. Reporting biases in suicide statistics vary by country/region\n6. Social media usage data may have collection inconsistencies\n7. The 2010 baseline choice may affect interpretation of trends",
+  "_metadata": {
+    "task_id": 363453,
+    "generated_at": "2025-06-22T08:38:39.669258",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

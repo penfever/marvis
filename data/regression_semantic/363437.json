@@ -1,0 +1,71 @@
+{
+  "dataset_name": "climate_insights_dataset",
+  "description": "A synthetic dataset created to study climate change impacts by modeling relationships between various climate indicators including temperature patterns, CO2 emissions, and sea level rise. The dataset is designed for educational and analytical purposes to understand the interconnections between different climate change factors.",
+  "original_source": {
+    "creator": "Unknown (likely synthetic dataset)",
+    "institution": "Unknown",
+    "date": "2023 (estimated)",
+    "publication": "No formal academic publication associated"
+  },
+  "columns": [
+    {
+      "name": "Temperature_Anomaly",
+      "semantic_description": "Deviation from historical average temperature baseline, indicating global temperature change",
+      "data_type": "float, measured in degrees Celsius"
+    },
+    {
+      "name": "CO2_Emissions",
+      "semantic_description": "Carbon dioxide emissions levels, representing human-caused greenhouse gas emissions",
+      "data_type": "float, measured in metric tons"
+    },
+    {
+      "name": "Ocean_Heat",
+      "semantic_description": "Heat content in upper ocean layers, indicating thermal energy absorption",
+      "data_type": "float, measured in joules x 10^22"
+    },
+    {
+      "name": "Arctic_Ice",
+      "semantic_description": "Arctic sea ice extent, measuring ice coverage in northern polar region",
+      "data_type": "float, measured in million square kilometers"
+    },
+    {
+      "name": "Precipitation",
+      "semantic_description": "Global precipitation patterns and intensity",
+      "data_type": "float, measured in millimeters"
+    },
+    {
+      "name": "Greenhouse_Gas",
+      "semantic_description": "Composite measure of greenhouse gas concentrations in atmosphere",
+      "data_type": "float, measured in parts per million (ppm)"
+    },
+    {
+      "name": "Land_Temperature",
+      "semantic_description": "Surface temperature measurements over land areas",
+      "data_type": "float, measured in degrees Celsius"
+    },
+    {
+      "name": "Ocean_Acidification",
+      "semantic_description": "pH levels in ocean water indicating acidification from CO2 absorption",
+      "data_type": "float, pH scale"
+    },
+    {
+      "name": "Global_Temperature",
+      "semantic_description": "Combined land and ocean temperature measurements",
+      "data_type": "float, measured in degrees Celsius"
+    }
+  ],
+  "target_description": {
+    "name": "Sea_Level_Rise",
+    "meaning": "Change in global mean sea level relative to a historical baseline, indicating the combined effect of thermal expansion of oceans and melting of land-based ice",
+    "units": "millimeters (mm)",
+    "range": "Typically 0-500mm for recent historical measurements, but may vary in synthetic data"
+  },
+  "dataset_history": "This appears to be a synthetic dataset created for educational and analytical purposes to help understand climate change relationships. While based on real climate science principles, the data points are likely generated to demonstrate typical patterns and relationships between climate variables rather than representing actual historical measurements.",
+  "inference_notes": "Important considerations:\n1. As a synthetic dataset, relationships between variables may be simplified compared to real-world complexity\n2. The dataset appears designed for regression analysis to predict sea level rise based on other climate indicators\n3. Variables are likely normalized or scaled to make them suitable for machine learning\n4. The 10,000 instances suggest a balanced dataset suitable for training models\n5. Users should be aware that real-world climate relationships are often more complex and involve additional variables not included here",
+  "_metadata": {
+    "task_id": 363437,
+    "generated_at": "2025-06-22T08:35:08.315362",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

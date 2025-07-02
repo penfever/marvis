@@ -1,0 +1,27 @@
+{
+  "dataset_name": "MiamiHousing2016",
+  "task_prefix": "A comprehensive dataset of single-family home sales in Miami, Florida from 2016. The dataset combines real estate transaction data with environmental and geographical features, including aviation noise impacts and location-based metrics. It's particularly valuable for real estate price prediction and urban housing market analysis. Each example contains 14 features. Predict the SALEPRC.",
+  "column_descriptions": {
+    "SALEPRC": "The actual selling price of the property",
+    "LIVEAREA": "Living area of the home in square feet, representing the habitable space",
+    "AGE": "Age of the property in years at the time of sale",
+    "LOTSIZE": "Total area of the property lot",
+    "AIRCOND": "Presence of air conditioning (binary indicator)",
+    "BEDS": "Number of bedrooms in the property",
+    "BATHS": "Number of bathrooms in the property",
+    "STORIES": "Number of stories/floors in the house",
+    "DRIVEWAY": "Presence of a driveway",
+    "FULLBASE": "Presence of a full basement",
+    "AVNOISE": "Aviation noise level measurement at the property location",
+    "DISTANCE": "Distance to central business district or key amenities",
+    "LAT": "Latitude coordinate of the property",
+    "LON": "Longitude coordinate of the property"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: SALEPRC - The final sale price of the residential property, representing the market value agreed upon between buyer and seller. Units: US Dollars (USD). Range: Typically between $100,000 and $2,000,000 for Miami single-family homes in 2016",
+  "num_features": 14,
+  "num_classes": 1,
+  "task_id": 361087
+}

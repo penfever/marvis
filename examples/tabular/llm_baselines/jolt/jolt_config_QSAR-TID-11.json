@@ -1,0 +1,15 @@
+{
+  "dataset_name": "QSAR-TID-11",
+  "task_prefix": "QSAR dataset from ChEMBL version 17 showing activity values (pseudo-pCI50) of compounds on drug target TID-11. Part of the MetaQSAR project for drug discovery and meta-learning research. Each example contains 3 features. Predict the target class.",
+  "column_descriptions": {
+    "MOLECULE_CHEMBL_ID": "Unique identifier for the chemical compound in the ChEMBL database. Links to full chemical structure and properties.",
+    "FCFP_1 to FCFP_1024": "1024-bit Functional Class Fingerprint (FCFP) molecular descriptors. Binary features representing presence/absence of specific molecular substructures and functional groups.",
+    "MEDIAN_PXC50": "Median pseudo-pIC50 value representing the compound's biological activity against the target. Higher values indicate stronger binding/inhibition."
+  },
+  "class_names": [
+    "MEDIAN_PXC50"
+  ],
+  "class_description": "Classes: 'MEDIAN_PXC50' (Continuous regression target representing biological activity strength. Typically ranges from 4 to 10, where higher values indicate more potent compounds.)",
+  "num_features": 3,
+  "num_classes": 1
+}

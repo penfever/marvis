@@ -1,0 +1,309 @@
+{
+  "dataset_name": "spambase",
+  "description": "Email spam classification dataset from Hewlett-Packard Labs. Contains word and character frequency distributions from spam and legitimate emails, used to build spam filters.",
+  "original_source": {
+    "creator": "Mark Hopkins, Erik Reeber, George Forman, Jaap Suermondt",
+    "institution": "Hewlett-Packard Labs, Palo Alto, CA",
+    "date": "1999",
+    "publication": "Cranor, L.F., LaMacchia, B.A. (1998). Spam! Communications of the ACM, 41(8):74-83."
+  },
+  "columns": [
+    {
+      "name": "word_freq_make",
+      "semantic_description": "Percentage of words in email matching 'make' - common in spam solicitations.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_address",
+      "semantic_description": "Percentage of words in email matching 'address' - often used in legitimate emails.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_all",
+      "semantic_description": "Percentage of words in email matching 'all' - general frequency indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_3d",
+      "semantic_description": "Percentage of words in email matching '3d' - technical/promotional term.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_our",
+      "semantic_description": "Percentage of words in email matching 'our' - possessive pronoun frequency.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_over",
+      "semantic_description": "Percentage of words in email matching 'over' - preposition frequency.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_remove",
+      "semantic_description": "Percentage of words in email matching 'remove' - common in spam opt-out messages.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_internet",
+      "semantic_description": "Percentage of words in email matching 'internet' - technology-related term.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_order",
+      "semantic_description": "Percentage of words in email matching 'order' - commercial transaction indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_mail",
+      "semantic_description": "Percentage of words in email matching 'mail' - communication-related term.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_receive",
+      "semantic_description": "Percentage of words in email matching 'receive' - action verb frequency.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_will",
+      "semantic_description": "Percentage of words in email matching 'will' - future tense indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_people",
+      "semantic_description": "Percentage of words in email matching 'people' - plural noun frequency.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_report",
+      "semantic_description": "Percentage of words in email matching 'report' - business/formal term.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_addresses",
+      "semantic_description": "Percentage of words in email matching 'addresses' - plural of address.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_free",
+      "semantic_description": "Percentage of words in email matching 'free' - strong spam indicator for offers.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_business",
+      "semantic_description": "Percentage of words in email matching 'business' - commercial context.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_email",
+      "semantic_description": "Percentage of words in email matching 'email' - meta-reference to medium.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_you",
+      "semantic_description": "Percentage of words in email matching 'you' - second person pronoun.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_credit",
+      "semantic_description": "Percentage of words in email matching 'credit' - financial spam indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_your",
+      "semantic_description": "Percentage of words in email matching 'your' - possessive pronoun.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_font",
+      "semantic_description": "Percentage of words in email matching 'font' - HTML formatting indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_000",
+      "semantic_description": "Percentage of words in email matching '000' - large number indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_money",
+      "semantic_description": "Percentage of words in email matching 'money' - financial spam indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_hp",
+      "semantic_description": "Percentage of words in email matching 'hp' - Hewlett-Packard, indicates legitimate work email.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_hpl",
+      "semantic_description": "Percentage of words in email matching 'hpl' - HP Labs, legitimate indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_george",
+      "semantic_description": "Percentage of words in email matching 'george' - personal name, non-spam indicator in this dataset.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_650",
+      "semantic_description": "Percentage of words in email matching '650' - area code for Palo Alto, non-spam indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_lab",
+      "semantic_description": "Percentage of words in email matching 'lab' - laboratory/research context.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_labs",
+      "semantic_description": "Percentage of words in email matching 'labs' - plural of lab.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_telnet",
+      "semantic_description": "Percentage of words in email matching 'telnet' - technical term.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_857",
+      "semantic_description": "Percentage of words in email matching '857' - specific number pattern.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_data",
+      "semantic_description": "Percentage of words in email matching 'data' - technical/business term.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_415",
+      "semantic_description": "Percentage of words in email matching '415' - San Francisco area code.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_85",
+      "semantic_description": "Percentage of words in email matching '85' - number pattern.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_technology",
+      "semantic_description": "Percentage of words in email matching 'technology' - technical context.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_1999",
+      "semantic_description": "Percentage of words in email matching '1999' - year reference.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_parts",
+      "semantic_description": "Percentage of words in email matching 'parts' - component reference.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_pm",
+      "semantic_description": "Percentage of words in email matching 'pm' - time indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_direct",
+      "semantic_description": "Percentage of words in email matching 'direct' - instruction/marketing term.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_cs",
+      "semantic_description": "Percentage of words in email matching 'cs' - computer science abbreviation.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_meeting",
+      "semantic_description": "Percentage of words in email matching 'meeting' - business context.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_original",
+      "semantic_description": "Percentage of words in email matching 'original' - email thread indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_project",
+      "semantic_description": "Percentage of words in email matching 'project' - work-related term.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_re",
+      "semantic_description": "Percentage of words in email matching 're' - reply indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_edu",
+      "semantic_description": "Percentage of words in email matching 'edu' - educational domain.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_table",
+      "semantic_description": "Percentage of words in email matching 'table' - HTML or data structure.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "word_freq_conference",
+      "semantic_description": "Percentage of words in email matching 'conference' - professional event.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "char_freq_;",
+      "semantic_description": "Percentage of characters in email that are semicolons - punctuation pattern.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "char_freq_(",
+      "semantic_description": "Percentage of characters in email that are opening parentheses.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "char_freq_[",
+      "semantic_description": "Percentage of characters in email that are opening brackets.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "char_freq_!",
+      "semantic_description": "Percentage of characters in email that are exclamation marks - emphasis indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "char_freq_$",
+      "semantic_description": "Percentage of characters in email that are dollar signs - money indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "char_freq_#",
+      "semantic_description": "Percentage of characters in email that are hash symbols.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "capital_run_length_average",
+      "semantic_description": "Average length of uninterrupted sequences of capital letters.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "capital_run_length_longest",
+      "semantic_description": "Length of longest uninterrupted sequence of capital letters - shouting indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "capital_run_length_total",
+      "semantic_description": "Total number of capital letters in the email.",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Not spam - legitimate email (ham)"
+    },
+    {
+      "name": "1",
+      "meaning": "Spam - unsolicited commercial email"
+    }
+  ],
+  "dataset_history": "Collected at HP Labs from postmaster and filed spam/legitimate emails. Personal indicators like 'george' and '650' area code reflect the specific collection context, making this a personalized spam filter dataset. Typical performance achieves ~7% misclassification error, with emphasis on minimizing false positives.",
+  "inference_notes": "Contains 4601 instances with 39.4% spam rate. Word frequencies normalized as percentages allow comparison across emails of different lengths. The dataset includes personalized features specific to HP Labs context, requiring consideration when generalizing. Capital letter patterns strongly indicate spam. Zero false positives in training yields 20-25% false negative rate, showing precision-recall tradeoff."
+}

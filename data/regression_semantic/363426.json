@@ -1,0 +1,51 @@
+{
+  "dataset_name": "biosses",
+  "description": "BIOSSES (Biomedical Semantic Similarity Estimation System) is a dataset for evaluating semantic similarity between biomedical sentences. It contains pairs of biomedical sentences with human-annotated similarity scores, designed to help develop and evaluate natural language processing systems in the biomedical domain.",
+  "original_source": {
+    "creator": "Gizem Soğancıoğlu, Hakime Öztürk, Arzucan Özgür",
+    "institution": "Department of Computer Engineering, Boğaziçi University",
+    "date": "2017",
+    "publication": "BIOSSES: a semantic sentence similarity estimation system for the biomedical domain (Bioinformatics, 2017)"
+  },
+  "columns": [
+    {
+      "name": "0",
+      "semantic_description": "First sentence from the biomedical text pair",
+      "data_type": "string/text"
+    },
+    {
+      "name": "1",
+      "semantic_description": "Second sentence from the biomedical text pair",
+      "data_type": "string/text"
+    },
+    {
+      "name": "2",
+      "semantic_description": "Preprocessed version of first sentence",
+      "data_type": "string/text"
+    },
+    {
+      "name": "3",
+      "semantic_description": "Preprocessed version of second sentence",
+      "data_type": "string/text"
+    },
+    {
+      "name": "4",
+      "semantic_description": "Additional metadata or processing information",
+      "data_type": "string/text"
+    }
+  ],
+  "target_description": {
+    "name": "label",
+    "meaning": "Human-annotated semantic similarity score between the sentence pairs",
+    "units": "Normalized similarity score",
+    "range": "0.0 to 1.0 (where 0 indicates no similarity and 1 indicates identical meaning)"
+  },
+  "dataset_history": "The BIOSSES dataset was created to address the specific challenges of semantic similarity assessment in biomedical text. The sentences were carefully selected from biomedical literature and annotated by domain experts. It has become an important benchmark dataset for evaluating biomedical NLP systems and is part of the larger BIGBIO framework for biomedical natural language processing.",
+  "inference_notes": "Important considerations:\n1. The dataset is relatively small (100 pairs) but carefully curated\n2. Annotations were done by multiple domain experts to ensure reliability\n3. Biomedical domain knowledge is crucial for understanding the semantic relationships\n4. The similarity scores are subjective and based on human judgment\n5. The dataset is specifically focused on biomedical terminology and concepts\n6. Models trained on general text similarity tasks may need domain adaptation for this dataset",
+  "_metadata": {
+    "task_id": 363426,
+    "generated_at": "2025-06-22T08:32:00.742293",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

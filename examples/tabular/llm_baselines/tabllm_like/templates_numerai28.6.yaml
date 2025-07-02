@@ -1,0 +1,15 @@
+dataset: numerai28.6
+templates:
+  cca4cf77-cdba-410d-bf80-97c811700b0a: !Template
+    name: numerai28.6
+    id: cca4cf77-cdba-410d-bf80-97c811700b0a
+    reference: ''
+    answer_choices: Negative market movement/return ||| Positive market movement/return
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Negative market movement/return, Positive market movement/return?\nAnswer:\
+      \ \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

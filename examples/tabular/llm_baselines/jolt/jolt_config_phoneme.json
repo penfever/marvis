@@ -1,0 +1,18 @@
+{
+  "dataset_name": "phoneme",
+  "task_prefix": "Speech recognition dataset for distinguishing between nasal and oral vowels. Created as part of the European ESPRIT 5516 ROARS project for French and Spanish speech recognition. Each example contains 5 features. Predict the target class.",
+  "column_descriptions": {
+    "V1": "Normalized amplitude of the first harmonic (AH1/Ene) - ratio of first harmonic amplitude to total energy.",
+    "V2": "Normalized amplitude of the second harmonic (AH2/Ene) - ratio of second harmonic amplitude to total energy.",
+    "V3": "Normalized amplitude of the third harmonic (AH3/Ene) - ratio of third harmonic amplitude to total energy.",
+    "V4": "Normalized amplitude of the fourth harmonic (AH4/Ene) - ratio of fourth harmonic amplitude to total energy.",
+    "V5": "Normalized amplitude of the fifth harmonic (AH5/Ene) - ratio of fifth harmonic amplitude to total energy."
+  },
+  "class_names": [
+    "0",
+    "1"
+  ],
+  "class_description": "Classes: '0' (Nasal vowels - sounds produced with airflow through nose and mouth), '1' (Oral vowels - sounds produced with airflow only through mouth)",
+  "num_features": 5,
+  "num_classes": 2
+}

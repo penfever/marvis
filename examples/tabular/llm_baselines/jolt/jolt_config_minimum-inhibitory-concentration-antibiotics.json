@@ -1,0 +1,22 @@
+{
+  "dataset_name": "minimum-inhibitory-concentration-antibiotics",
+  "task_prefix": "Dataset for predicting Minimum Inhibitory Concentration (MIC) values of antibiotics against bacterial strains. MIC represents the lowest concentration of an antimicrobial that inhibits visible growth of a microorganism after incubation. Each example contains 9 features. Predict the target class.",
+  "column_descriptions": {
+    "bacterial_strain": "Specific bacterial species and strain identifier. Includes common pathogens like E. coli, K. pneumoniae, S. aureus.",
+    "antibiotic": "Name of the antimicrobial agent tested. Includes various classes: beta-lactams, aminoglycosides, fluoroquinolones, etc.",
+    "antibiotic_class": "Broad classification of antibiotic mechanism. Groups drugs by mode of action (cell wall synthesis inhibitors, protein synthesis inhibitors, etc.).",
+    "molecular_weight": "Molecular weight of the antibiotic compound in Daltons. Affects drug penetration and pharmacokinetics.",
+    "logP": "Octanol-water partition coefficient. Indicates lipophilicity affecting membrane permeability.",
+    "bacterial_features": "Genomic or phenotypic features of the bacterial strain. May include resistance genes, virulence factors, or growth characteristics.",
+    "testing_method": "Laboratory method used: broth microdilution, agar dilution, or E-test. Affects precision and range of MIC values.",
+    "MIC_value": "Minimum Inhibitory Concentration in \u03bcg/mL. Target variable representing antibiotic effectiveness.",
+    "resistance_phenotype": "Clinical interpretation: Susceptible, Intermediate, or Resistant based on breakpoint criteria."
+  },
+  "class_names": [
+    "Class_0",
+    "Class_1"
+  ],
+  "class_description": "Classes: Class_0, Class_1",
+  "num_features": 9,
+  "num_classes": 2
+}

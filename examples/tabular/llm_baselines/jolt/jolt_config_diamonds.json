@@ -1,0 +1,22 @@
+{
+  "dataset_name": "diamonds",
+  "task_prefix": "Classic dataset containing prices and attributes of nearly 54,000 diamonds. Used for regression analysis to understand and predict diamond prices based on the 4 Cs (carat, cut, clarity, color) and physical dimensions. Each example contains 10 features. Predict the target class.",
+  "column_descriptions": {
+    "price": "Price in US dollars. Target variable for prediction ranging from $326 to $18,823.",
+    "carat": "Weight of the diamond in carats. Primary factor in pricing, ranges from 0.2 to 5.01 carats.",
+    "cut": "Quality of the diamond cut, which affects how light reflects through the diamond. Ordered factor from worst to best.",
+    "color": "Diamond color grade based on absence of color. D is colorless (best) to J has noticeable color (worst).",
+    "clarity": "Diamond clarity grade based on absence of inclusions and blemishes. Ranges from I1 (inclusions visible to naked eye) to IF (internally flawless).",
+    "depth": "Total depth percentage calculated as z / mean(x, y) = 2 * z / (x + y). Measures diamond proportions.",
+    "table": "Width of diamond's top facet relative to widest point, expressed as percentage. Affects light reflection.",
+    "x": "Length of diamond in millimeters. Primary dimension measurement.",
+    "y": "Width of diamond in millimeters. Should be similar to x for round diamonds.",
+    "z": "Depth/height of diamond in millimeters. Used to calculate depth percentage."
+  },
+  "class_names": [
+    "price"
+  ],
+  "class_description": "Classes: 'price' (Continuous target variable representing diamond value in US dollars)",
+  "num_features": 10,
+  "num_classes": 1
+}

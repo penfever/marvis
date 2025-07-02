@@ -1,0 +1,24 @@
+{
+  "dataset_name": "miami-housing-prices",
+  "task_prefix": "Real estate dataset containing property characteristics and sale prices for residential homes in Miami, Florida. Used for predicting housing prices based on various property features, location factors, and market conditions. Each example contains 11 features. Predict the target class.",
+  "column_descriptions": {
+    "PARCELNO": "Unique parcel identification number for the property. Administrative identifier used for property records.",
+    "SALE_PRC": "Sale price of the property in US dollars. Target variable representing the actual transaction amount.",
+    "LND_SQFOOT": "Land area in square feet. Total lot size which impacts property value especially in urban areas.",
+    "TOT_LVG_AREA": "Total living area in square feet. Interior space of the home, key determinant of property value.",
+    "SPEC_FEAT_VAL": "Value of special features like pools, decks, or other improvements. Additional amenities that add to property value.",
+    "age": "Age of the property in years since construction. Calculated from year built to present/sale date.",
+    "structure_quality": "Quality rating of the building structure. Categorical or ordinal measure of construction quality and condition.",
+    "avno60plus": "Indicator or count related to aviation noise exposure for properties near airports. Environmental factor affecting desirability.",
+    "month_sold": "Month when the property was sold. Captures seasonal patterns in real estate markets.",
+    "LATITUDE": "Geographic latitude coordinate. Used for spatial analysis and neighborhood effects on pricing.",
+    "LONGITUDE": "Geographic longitude coordinate. Enables location-based features and proximity calculations."
+  },
+  "class_names": [
+    "Class_0",
+    "Class_1"
+  ],
+  "class_description": "Classes: Class_0, Class_1",
+  "num_features": 11,
+  "num_classes": 2
+}

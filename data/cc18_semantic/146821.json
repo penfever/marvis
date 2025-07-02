@@ -1,0 +1,136 @@
+{
+  "dataset": "car",
+  "description": "Car Evaluation Database derived from a hierarchical decision model for evaluating cars based on their overall acceptability. The model evaluates cars according to price characteristics (buying price and maintenance cost) and technical characteristics (comfort and safety features).",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/car+evaluation",
+  "openml_task": 146821,
+  "openml_dataset": 40975,
+  "date_donated": "1997-06",
+  "creator": {
+    "name": "Marko Bohanec",
+    "affiliation": "Jozef Stefan Institute, Slovenia",
+    "coauthors": [
+      "Blaz Zupan"
+    ],
+    "email": "marko.bohanec@ijs.si"
+  },
+  "instances": 1728,
+  "features": 6,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "categorical/ordinal"
+  },
+  "feature_description": {
+    "buying": "Buying price (vhigh, high, med, low)",
+    "maint": "Maintenance price (vhigh, high, med, low)",
+    "doors": "Number of doors (2, 3, 4, 5more)",
+    "persons": "Capacity in terms of persons to carry (2, 4, more)",
+    "lug_boot": "Size of luggage boot (small, med, big)",
+    "safety": "Estimated safety of the car (low, med, high)"
+  },
+  "target_values": {
+    "unacc": "Unacceptable",
+    "acc": "Acceptable",
+    "good": "Good",
+    "vgood": "Very good"
+  },
+  "class_distribution": {
+    "unacc": "1210 instances (70.0%)",
+    "acc": "384 instances (22.2%)",
+    "good": "69 instances (4.0%)",
+    "vgood": "65 instances (3.8%)"
+  },
+  "domain": "Decision Support/Consumer Products",
+  "use_case": "Car evaluation, consumer decision support, multi-criteria decision making, preference learning, product recommendation",
+  "dataset_characteristics": {
+    "completeness": "Instances completely cover the attribute space",
+    "structure": "Derived from hierarchical decision model",
+    "concept_hierarchy": "CAR -> PRICE (buying, maint) + TECH -> COMFORT (doors, persons, lug_boot) + safety"
+  },
+  "preprocessing": "None required - categorical data in standard format, ordinal variables stored as ordered factors",
+  "performance_considerations": "Highly imbalanced classes with 70% in unacceptable category, ordinal nature of features",
+  "advantages": "Complete coverage of attribute space, well-defined hierarchical structure, no missing values, clear decision model",
+  "challenges": "Severe class imbalance, small number of positive examples (good/vgood), discrete feature space",
+  "research_applications": "Multi-class classification, ordinal classification, decision tree learning, rule-based systems, preference learning, imbalanced classification",
+  "model_origin": "DEX (Decision EXpert system)",
+  "citations": [
+    {
+      "author": "M. Bohanec and V. Rajkovic",
+      "title": "Knowledge acquisition and explanation for multi-attribute decision making",
+      "venue": "8th International Workshop on Expert Systems and their Applications",
+      "location": "Avignon, France",
+      "pages": "59-78",
+      "year": "1988"
+    },
+    {
+      "author": "M. Bohanec, V. Rajkovic",
+      "title": "Expert system for decision making",
+      "venue": "Sistemica",
+      "volume": "1",
+      "number": "1",
+      "pages": "145-157",
+      "year": "1990"
+    }
+  ],
+  "dataset_name": "car",
+  "original_source": {
+    "creator": "Marko Bohanec",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1997-06",
+    "publication": "M. Bohanec and V. Rajkovic: Knowledge acquisition and explanation for multi-attribute decision making"
+  },
+  "columns": [
+    {
+      "name": "buying",
+      "semantic_description": "Buying price (vhigh, high, med, low)",
+      "data_type": "numeric"
+    },
+    {
+      "name": "maint",
+      "semantic_description": "Maintenance price (vhigh, high, med, low)",
+      "data_type": "numeric"
+    },
+    {
+      "name": "doors",
+      "semantic_description": "Number of doors (2, 3, 4, 5more)",
+      "data_type": "integer"
+    },
+    {
+      "name": "persons",
+      "semantic_description": "Capacity in terms of persons to carry (2, 4, more)",
+      "data_type": "numeric"
+    },
+    {
+      "name": "lug_boot",
+      "semantic_description": "Size of luggage boot (small, med, big)",
+      "data_type": "integer"
+    },
+    {
+      "name": "safety",
+      "semantic_description": "Estimated safety of the car (low, med, high)",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "unacc",
+      "meaning": "Unacceptable"
+    },
+    {
+      "name": "acc",
+      "meaning": "Acceptable"
+    },
+    {
+      "name": "good",
+      "meaning": "Good"
+    },
+    {
+      "name": "vgood",
+      "meaning": "Very good"
+    }
+  ],
+  "dataset_history": "Dataset history not available for car",
+  "inference_notes": "Challenges: Severe class imbalance, small number of positive examples (good/vgood), discrete feature space. Advantages: Complete coverage of attribute space, well-defined hierarchical structure, no missing values, clear decision model. Applications: Multi-class classification, ordinal classification, decision tree learning, rule-based systems, preference learning, imbalanced classification. Use Case: Car evaluation, consumer decision support, multi-criteria decision making, preference learning, product recommendation"
+}

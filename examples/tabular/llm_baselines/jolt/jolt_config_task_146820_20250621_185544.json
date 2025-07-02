@@ -1,0 +1,19 @@
+{
+  "dataset_name": "wilt",
+  "task_prefix": "Remote sensing dataset for detecting diseased trees (Japanese oak wilt and Japanese pine wilt) in Quickbird satellite imagery. Contains spectral and texture features from image segments with highly imbalanced classes. Each example contains 5 features. Forest health monitoring.",
+  "column_descriptions": {
+    "feature_1": "Feature 1",
+    "feature_2": "Feature 2",
+    "feature_3": "Feature 3",
+    "feature_4": "Feature 4",
+    "feature_5": "Feature 5"
+  },
+  "class_names": [
+    "n",
+    "w"
+  ],
+  "class_description": "Classes: 'w' (Diseased trees (wilt)), 'n' (Other land cover (non-diseased))",
+  "num_features": 5,
+  "num_classes": 2,
+  "task_id": "146820_20250621_185544"
+}

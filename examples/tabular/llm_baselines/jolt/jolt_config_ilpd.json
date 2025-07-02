@@ -1,0 +1,23 @@
+{
+  "dataset_name": "ilpd",
+  "task_prefix": "Indian Liver Patient Dataset for predicting liver disease. Contains biochemical and demographic data collected from patients in North East Andhra Pradesh, India. Each example contains 10 features. Predict the target class.",
+  "column_descriptions": {
+    "age": "Age of the patient - any patient whose age exceeded 89 is listed as being of age 90.",
+    "gender": "Gender of the patient - male or female biological sex.",
+    "total_bilirubin": "Total bilirubin (mg/dL) - yellowish pigment in blood, elevated levels indicate liver dysfunction.",
+    "direct_bilirubin": "Direct (conjugated) bilirubin (mg/dL) - water-soluble form processed by liver.",
+    "alkaline_phosphatase": "Alkaline phosphatase (IU/L) - enzyme elevated in liver disease or bile duct obstruction.",
+    "alanine_transaminase": "Alanine aminotransferase/SGPT (IU/L) - liver enzyme, elevated levels indicate liver damage.",
+    "aspartate_transaminase": "Aspartate aminotransferase/SGOT (IU/L) - enzyme released when liver is damaged.",
+    "total_protein": "Total proteins (g/dL) - sum of albumin and globulin, indicates liver synthetic function.",
+    "albumin": "Albumin (g/dL) - protein made by liver, low levels suggest liver disease.",
+    "albumin_globulin_ratio": "A/G ratio - albumin to globulin ratio, altered in liver disease."
+  },
+  "class_names": [
+    "yes",
+    "no"
+  ],
+  "class_description": "Classes: 'yes' (Patient has liver disease - confirmed liver patient), 'no' (Patient does not have liver disease - non-liver patient)",
+  "num_features": 10,
+  "num_classes": 2
+}

@@ -1,0 +1,219 @@
+{
+  "dataset": "segment",
+  "description": "Image Segmentation dataset. Contains features extracted from 3x3 pixel regions of 7 outdoor images that were hand-segmented to create pixel classifications. Used for training algorithms to segment images into different regions.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Image+Segmentation",
+  "openml_task": 146822,
+  "openml_dataset": 36,
+  "date_donated": "1990-11-01",
+  "creator": "Vision Group, University of Massachusetts",
+  "instances": 2310,
+  "features": 19,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "continuous"
+  },
+  "feature_description": {
+    "region-centroid-col": "Column of the center pixel of the region",
+    "region-centroid-row": "Row of the center pixel of the region",
+    "region-pixel-count": "Number of pixels in a region (always 9 for 3x3)",
+    "short-line-density-5": "Line extraction result for low contrast lines of length 5",
+    "short-line-density-2": "Line extraction result for high contrast lines",
+    "vedge-mean": "Mean of contrast of horizontally adjacent pixels (vertical edge)",
+    "vedge-sd": "Standard deviation of vertical edge contrast",
+    "hedge-mean": "Mean of contrast of vertically adjacent pixels (horizontal edge)",
+    "hedge-sd": "Standard deviation of horizontal edge contrast",
+    "intensity-mean": "Mean intensity (R+G+B)/3 over the region",
+    "rawred-mean": "Mean of red channel over the region",
+    "rawblue-mean": "Mean of blue channel over the region",
+    "rawgreen-mean": "Mean of green channel over the region",
+    "exred-mean": "Mean of (2R - (G + B)) measure of excess red",
+    "exblue-mean": "Mean of (2B - (G + R)) measure of excess blue",
+    "exgreen-mean": "Mean of (2G - (R + B)) measure of excess green",
+    "value-mean": "Mean of value (from HSV color space)",
+    "saturation-mean": "Mean of saturation (from HSV color space)",
+    "hue-mean": "Mean of hue (from HSV color space)"
+  },
+  "target_values": {
+    "brickface": "Brick face regions",
+    "sky": "Sky regions",
+    "foliage": "Trees, bushes, and other vegetation",
+    "cement": "Cement and concrete regions",
+    "window": "Window regions",
+    "path": "Path and road regions",
+    "grass": "Grass regions"
+  },
+  "instances_per_class": {
+    "brickface": 330,
+    "sky": 330,
+    "foliage": 330,
+    "cement": 330,
+    "window": 330,
+    "path": 330,
+    "grass": 330
+  },
+  "domain": "Computer Vision/Image Processing",
+  "use_case": "Image segmentation, region classification, texture analysis, computer vision education, outdoor scene understanding",
+  "dataset_splits": {
+    "training": "210 instances (30 per class)",
+    "test": "2100 instances (300 per class)",
+    "note": "Instances drawn randomly from database of 7 outdoor images"
+  },
+  "data_collection": "7 outdoor images were manually segmented to create ground truth classification for every pixel. Features computed from 3x3 regions around each pixel.",
+  "feature_engineering": {
+    "color_features": "RGB raw values, excess color measures, HSV values",
+    "texture_features": "Edge contrasts, line densities",
+    "spatial_features": "Centroid position"
+  },
+  "advantages": "Balanced classes, well-defined problem, mix of color and texture features, suitable for benchmarking",
+  "challenges": "Limited to 7 source images, small region size (3x3), outdoor scenes only",
+  "research_applications": "Texture classification, color-based segmentation, feature selection studies, multi-class classification benchmarking",
+  "historical_significance": "Early dataset in image segmentation research, widely used benchmark in 1990s-2000s",
+  "ethical_considerations": "Dataset contains only outdoor scenes, may not generalize to indoor environments or other image types",
+  "citations": [
+    {
+      "title": "Image Segmentation Dataset",
+      "venue": "UCI Machine Learning Repository",
+      "year": "1990",
+      "doi": "https://doi.org/10.24432/C5GP4N"
+    }
+  ],
+  "dataset_name": "segment",
+  "original_source": {
+    "creator": "Vision Group, University of Massachusetts",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1990-11-01",
+    "publication": "Unknown: Image Segmentation Dataset"
+  },
+  "columns": [
+    {
+      "name": "region-centroid-col",
+      "semantic_description": "Column of the center pixel of the region",
+      "data_type": "numeric"
+    },
+    {
+      "name": "region-centroid-row",
+      "semantic_description": "Row of the center pixel of the region",
+      "data_type": "numeric"
+    },
+    {
+      "name": "region-pixel-count",
+      "semantic_description": "Number of pixels in a region (always 9 for 3x3)",
+      "data_type": "integer"
+    },
+    {
+      "name": "short-line-density-5",
+      "semantic_description": "Line extraction result for low contrast lines of length 5",
+      "data_type": "numeric"
+    },
+    {
+      "name": "short-line-density-2",
+      "semantic_description": "Line extraction result for high contrast lines",
+      "data_type": "numeric"
+    },
+    {
+      "name": "vedge-mean",
+      "semantic_description": "Mean of contrast of horizontally adjacent pixels (vertical edge)",
+      "data_type": "numeric"
+    },
+    {
+      "name": "vedge-sd",
+      "semantic_description": "Standard deviation of vertical edge contrast",
+      "data_type": "numeric"
+    },
+    {
+      "name": "hedge-mean",
+      "semantic_description": "Mean of contrast of vertically adjacent pixels (horizontal edge)",
+      "data_type": "numeric"
+    },
+    {
+      "name": "hedge-sd",
+      "semantic_description": "Standard deviation of horizontal edge contrast",
+      "data_type": "numeric"
+    },
+    {
+      "name": "intensity-mean",
+      "semantic_description": "Mean intensity (R+G+B)/3 over the region",
+      "data_type": "numeric"
+    },
+    {
+      "name": "rawred-mean",
+      "semantic_description": "Mean of red channel over the region",
+      "data_type": "numeric"
+    },
+    {
+      "name": "rawblue-mean",
+      "semantic_description": "Mean of blue channel over the region",
+      "data_type": "numeric"
+    },
+    {
+      "name": "rawgreen-mean",
+      "semantic_description": "Mean of green channel over the region",
+      "data_type": "numeric"
+    },
+    {
+      "name": "exred-mean",
+      "semantic_description": "Mean of (2R - (G + B)) measure of excess red",
+      "data_type": "continuous"
+    },
+    {
+      "name": "exblue-mean",
+      "semantic_description": "Mean of (2B - (G + R)) measure of excess blue",
+      "data_type": "continuous"
+    },
+    {
+      "name": "exgreen-mean",
+      "semantic_description": "Mean of (2G - (R + B)) measure of excess green",
+      "data_type": "continuous"
+    },
+    {
+      "name": "value-mean",
+      "semantic_description": "Mean of value (from HSV color space)",
+      "data_type": "numeric"
+    },
+    {
+      "name": "saturation-mean",
+      "semantic_description": "Mean of saturation (from HSV color space)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "hue-mean",
+      "semantic_description": "Mean of hue (from HSV color space)",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "brickface",
+      "meaning": "Brick face regions"
+    },
+    {
+      "name": "sky",
+      "meaning": "Sky regions"
+    },
+    {
+      "name": "foliage",
+      "meaning": "Trees, bushes, and other vegetation"
+    },
+    {
+      "name": "cement",
+      "meaning": "Cement and concrete regions"
+    },
+    {
+      "name": "window",
+      "meaning": "Window regions"
+    },
+    {
+      "name": "path",
+      "meaning": "Path and road regions"
+    },
+    {
+      "name": "grass",
+      "meaning": "Grass regions"
+    }
+  ],
+  "dataset_history": "Data Collection: 7 outdoor images were manually segmented to create ground truth classification for every pixel. Features computed from 3x3 regions around each pixel.",
+  "inference_notes": "Challenges: Limited to 7 source images, small region size (3x3), outdoor scenes only. Advantages: Balanced classes, well-defined problem, mix of color and texture features, suitable for benchmarking. Applications: Texture classification, color-based segmentation, feature selection studies, multi-class classification benchmarking. Use Case: Image segmentation, region classification, texture analysis, computer vision education, outdoor scene understanding"
+}

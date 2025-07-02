@@ -1,0 +1,10 @@
+['The Feature 1 is category_3. The Feature 2 is category_1. The Feature 3 is category_1. The Feature 4 is category_3. The Feature 5 is category_3. The Feature 6 is category_2.'] -> acc
+['The Feature 1 is category_1. The Feature 2 is category_3. The Feature 3 is category_2. The Feature 4 is category_2. The Feature 5 is category_2. The Feature 6 is category_1.'] -> unacc
+['The Feature 1 is category_3. The Feature 2 is category_2. The Feature 3 is category_2. The Feature 4 is category_1. The Feature 5 is category_3. The Feature 6 is category_2.'] -> acc
+['The Feature 1 is category_3. The Feature 2 is category_1. The Feature 3 is category_1. The Feature 4 is category_2. The Feature 5 is category_2. The Feature 6 is category_2.'] -> vgood
+['The Feature 1 is category_2. The Feature 2 is category_1. The Feature 3 is category_1. The Feature 4 is category_3. The Feature 5 is category_2. The Feature 6 is category_3.'] -> unacc
+['The Feature 1 is category_2. The Feature 2 is category_1. The Feature 3 is category_3. The Feature 4 is category_2. The Feature 5 is category_1. The Feature 6 is category_1.'] -> unacc
+['The Feature 1 is category_3. The Feature 2 is category_3. The Feature 3 is category_1. The Feature 4 is category_3. The Feature 5 is category_3. The Feature 6 is category_2.'] -> vgood
+['The Feature 1 is category_1. The Feature 2 is category_3. The Feature 3 is category_1. The Feature 4 is category_2. The Feature 5 is category_2. The Feature 6 is category_2.'] -> good
+['The Feature 1 is category_2. The Feature 2 is category_3. The Feature 3 is category_1. The Feature 4 is category_3. The Feature 5 is category_3. The Feature 6 is category_3.'] -> unacc
+['The Feature 1 is category_3. The Feature 2 is category_2. The Feature 3 is category_2. The Feature 4 is category_1. The Feature 5 is category_2. The Feature 6 is category_1.'] -> vgood

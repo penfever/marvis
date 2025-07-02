@@ -1,0 +1,146 @@
+{
+  "dataset": "vowel",
+  "description": "Speaker-independent recognition of eleven steady-state vowels of British English. Features are derived from spectral analysis of vowel sounds, with contextual information about speaker gender and identity.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Connectionist+Bench+(Vowel+Recognition+-+Deterding+Data)",
+  "openml_task": 3022,
+  "openml_dataset": 307,
+  "date_donated": "1990",
+  "creator": "David Deterding (Cambridge University)",
+  "instances": 990,
+  "features": 13,
+  "target": "Class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "continuous": 10,
+    "categorical": 3
+  },
+  "feature_description": {
+    "F0-F9": "10 features representing formant frequencies extracted from vowel utterances",
+    "Sex": "Speaker gender (Male/Female)",
+    "Speaker": "Speaker identifier",
+    "Train_or_Test": "Dataset split indicator (removed in OpenML version)"
+  },
+  "instances_per_class": 90,
+  "target_values": {
+    "0": "hid (as in 'heed')",
+    "1": "hId (as in 'hid')",
+    "2": "hEd (as in 'head')",
+    "3": "hAd (as in 'had')",
+    "4": "hYd (as in 'hard')",
+    "5": "had (as in 'hod')",
+    "6": "hOd (as in 'hoard')",
+    "7": "hUd (as in 'hood')",
+    "8": "hud (as in 'who'd')",
+    "9": "hed (as in 'heard')",
+    "10": "had (as in 'hud')"
+  },
+  "domain": "Speech Recognition/Phonetics",
+  "use_case": "Vowel recognition systems, speech recognition, phonetic analysis, speaker-independent speech processing, accent detection",
+  "dataset_characteristics": "15 speakers (8 male, 7 female) each pronouncing 11 vowels in 'h*d' context, 6 utterances per vowel per speaker",
+  "data_collection": "Steady-state vowels extracted from speakers saying words in 'h_d' context (e.g., 'heed', 'hid', 'head')",
+  "signal_processing": "10-dimensional feature vectors derived from spectral analysis, likely including formant frequencies",
+  "challenges": "Limited number of speakers, British English specific, steady-state vowels only (not continuous speech)",
+  "mathematical_background": "Features likely based on formant analysis and spectral characteristics of vowel sounds",
+  "advantages": "Balanced dataset, well-controlled recording conditions, classic benchmark for vowel recognition",
+  "ethical_considerations": "Limited to British English speakers, may not generalize to other accents or languages",
+  "citations": [
+    {
+      "author": "D. H. Deterding",
+      "title": "Speaker Normalisation for Automatic Speech Recognition",
+      "venue": "PhD Thesis, University of Cambridge",
+      "year": "1989"
+    },
+    {
+      "author": "A. J. Robinson, M. Niranjan, F. Fallside",
+      "title": "Generalising the Nodes of the Error Propagation Network",
+      "venue": "Cambridge University Engineering Department Technical Report CUED/F-INFENG/TR.25",
+      "year": "1988"
+    },
+    {
+      "author": "P. Turney",
+      "title": "Robust Classification With Context-Sensitive Features",
+      "venue": "Proceedings of IEA/AIE-93",
+      "pages": "268-276",
+      "year": "1993"
+    }
+  ],
+  "dataset_name": "vowel",
+  "original_source": {
+    "creator": "David Deterding (Cambridge University)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1990",
+    "publication": "D. H. Deterding: Speaker Normalisation for Automatic Speech Recognition"
+  },
+  "columns": [
+    {
+      "name": "F0-F9",
+      "semantic_description": "10 features representing formant frequencies extracted from vowel utterances",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Sex",
+      "semantic_description": "Speaker gender (Male/Female)",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Speaker",
+      "semantic_description": "Speaker identifier",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Train_or_Test",
+      "semantic_description": "Dataset split indicator (removed in OpenML version)",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "hid (as in 'heed')"
+    },
+    {
+      "name": "1",
+      "meaning": "hId (as in 'hid')"
+    },
+    {
+      "name": "2",
+      "meaning": "hEd (as in 'head')"
+    },
+    {
+      "name": "3",
+      "meaning": "hAd (as in 'had')"
+    },
+    {
+      "name": "4",
+      "meaning": "hYd (as in 'hard')"
+    },
+    {
+      "name": "5",
+      "meaning": "had (as in 'hod')"
+    },
+    {
+      "name": "6",
+      "meaning": "hOd (as in 'hoard')"
+    },
+    {
+      "name": "7",
+      "meaning": "hUd (as in 'hood')"
+    },
+    {
+      "name": "8",
+      "meaning": "hud (as in 'who'd')"
+    },
+    {
+      "name": "9",
+      "meaning": "hed (as in 'heard')"
+    },
+    {
+      "name": "10",
+      "meaning": "had (as in 'hud')"
+    }
+  ],
+  "dataset_history": "Data Collection: Steady-state vowels extracted from speakers saying words in 'h_d' context (e.g., 'heed', 'hid', 'head')",
+  "inference_notes": "Challenges: Limited number of speakers, British English specific, steady-state vowels only (not continuous speech). Advantages: Balanced dataset, well-controlled recording conditions, classic benchmark for vowel recognition. Use Case: Vowel recognition systems, speech recognition, phonetic analysis, speaker-independent speech processing, accent detection"
+}

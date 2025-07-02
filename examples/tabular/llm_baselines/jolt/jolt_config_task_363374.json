@@ -1,0 +1,22 @@
+{
+  "dataset_name": "women_clothing_review",
+  "task_prefix": "This dataset contains customer reviews and ratings for women's clothing items from an e-commerce retailer. It represents real-world customer feedback and purchasing behavior in online fashion retail, combining both textual review content and structured metadata about products and customer interactions. Each example contains 9 features. Predict the Rating.",
+  "column_descriptions": {
+    "Review Text": "The actual written review provided by the customer describing their experience with the clothing item",
+    "Title": "The title/headline of the customer review",
+    "Department": "The store department categorization of the reviewed item",
+    "Class": "More specific product classification within department",
+    "Age": "Age of the reviewer",
+    "Positive Feedback Count": "Number of other customers who found the review helpful",
+    "Division Name": "High-level product categorization",
+    "Department Name": "Specific department name",
+    "Recommended IND": "Binary indicator if reviewer recommends the product"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Rating - Customer satisfaction score given to the product. Units: Stars. Range: 1-5 stars (integer values)",
+  "num_features": 9,
+  "num_classes": 1,
+  "task_id": 363374
+}

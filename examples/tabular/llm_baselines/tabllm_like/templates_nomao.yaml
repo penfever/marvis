@@ -1,0 +1,15 @@
+dataset: nomao
+templates:
+  ffd5dce1-8581-4bbd-b7c3-4fd90ebcad55: !Template
+    name: nomao
+    id: ffd5dce1-8581-4bbd-b7c3-4fd90ebcad55
+    reference: ''
+    answer_choices: Same place (duplicate) ||| Different places (not duplicate)
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Same place (duplicate), Different places (not duplicate)?\nAnswer: \n|||\n\
+      {{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

@@ -1,0 +1,34 @@
+{
+  "dataset_name": "kc1",
+  "task_prefix": "NASA software defect prediction dataset from C++ storage management system for receiving and processing ground data. Contains static code metrics extracted using McCabe and Halstead feature extractors to predict software quality and defect-proneness. Each example contains 21 features. Predict the target class.",
+  "column_descriptions": {
+    "loc": "McCabe's line count of code - the number of lines of executable code in the module, excluding comments and blank lines.",
+    "v(g)": "McCabe's cyclomatic complexity - counts linearly independent paths through code, measuring decision complexity (if/while/for statements).",
+    "ev(g)": "McCabe's essential complexity - measures how well-structured the code is, with 1 being perfectly structured and higher values indicating unstructured code.",
+    "iv(g)": "McCabe's design complexity - measures integration complexity between modules, indicating how complex the module's interface is.",
+    "n": "Halstead's program length - total count of all operators and operands in the code (N1 + N2).",
+    "v": "Halstead's volume - measures program size as N * log2(vocabulary), representing bits needed to encode the program.",
+    "l": "Halstead's program level - inverse of difficulty, measures how concisely the algorithm is implemented (0 to 1).",
+    "d": "Halstead's difficulty - measures how difficult the code is to write or understand, based on operator/operand usage patterns.",
+    "i": "Halstead's intelligence content - measures the complexity of the algorithm itself, independent of the implementation.",
+    "e": "Halstead's effort - mental effort required to develop the module, calculated as Volume * Difficulty.",
+    "b": "Halstead's delivered bugs estimate - predicted number of errors in the module, calculated as Volume/3000.",
+    "t": "Halstead's time estimator - estimated time to program the module in seconds, calculated as Effort/18.",
+    "lOCode": "Halstead's count of lines of code - may differ from McCabe's loc due to different counting methods.",
+    "lOComment": "Halstead's count of lines containing comments - includes both standalone comment lines and inline comments.",
+    "lOBlank": "Halstead's count of blank lines - empty lines used for code readability and organization.",
+    "lOCodeAndComment": "Lines containing both code and comments - mixed lines with executable code and explanatory comments.",
+    "uniq_Op": "Number of unique operators (n1) - distinct operators like +, -, *, /, if, while, etc. used in the module.",
+    "uniq_Opnd": "Number of unique operands (n2) - distinct variables, constants, and identifiers used in the module.",
+    "total_Op": "Total count of operators (N1) - sum of all operator occurrences in the module.",
+    "total_Opnd": "Total count of operands (N2) - sum of all operand occurrences in the module.",
+    "branchCount": "Number of branches in the flow graph - count of decision points that create alternate execution paths."
+  },
+  "class_names": [
+    "false",
+    "true"
+  ],
+  "class_description": "Classes: 'false' (Module has no reported defects - considered defect-free in testing/operation), 'true' (Module has one or more reported defects - bugs found during testing or deployment)",
+  "num_features": 21,
+  "num_classes": 2
+}

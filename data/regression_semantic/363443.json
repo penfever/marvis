@@ -1,0 +1,46 @@
+{
+  "dataset_name": "sustainable_development_report_zero_hunger",
+  "description": "This dataset is derived from the Sustainable Development Report (SDR), specifically focusing on SDG 2 (Zero Hunger). It contains metrics and indicators that measure countries' progress towards eliminating hunger, achieving food security, improving nutrition, and promoting sustainable agriculture. The data represents country-level measurements and scores across various hunger and nutrition-related indicators.",
+  "original_source": {
+    "creator": "Sustainable Development Solutions Network (SDSN)",
+    "institution": "United Nations, Bertelsmann Stiftung",
+    "date": "2023",
+    "publication": "Sustainable Development Report 2023: The Decade of Action for the Sustainable Development Goals"
+  },
+  "columns": [
+    {
+      "name": "prevalence_undernourishment",
+      "semantic_description": "Percentage of population with insufficient caloric intake for an active and healthy life",
+      "data_type": "float, percentage (0-100)"
+    },
+    {
+      "name": "stunting_under5",
+      "semantic_description": "Percentage of children under 5 years who are stunted (height-for-age ratio more than 2 standard deviations below WHO Child Growth Standards median)",
+      "data_type": "float, percentage (0-100)"
+    },
+    {
+      "name": "wasting_under5",
+      "semantic_description": "Percentage of children under 5 years who are wasting (weight-for-height ratio more than 2 standard deviations below WHO Child Growth Standards median)",
+      "data_type": "float, percentage (0-100)"
+    },
+    {
+      "name": "cereal_yield",
+      "semantic_description": "Cereal yield per hectare of harvested land, measuring agricultural productivity",
+      "data_type": "float, kilograms per hectare"
+    }
+  ],
+  "target_description": {
+    "name": "goal_2_score",
+    "meaning": "Aggregate score measuring overall progress towards SDG 2 (Zero Hunger), combining various indicators related to hunger, food security, nutrition, and sustainable agriculture",
+    "units": "Normalized score",
+    "range": "0-100 (where 100 represents full achievement of SDG 2 targets)"
+  },
+  "dataset_history": "The dataset is part of the annual Sustainable Development Report series that began after the adoption of SDGs in 2015. It represents a comprehensive framework for measuring progress towards the 17 SDGs. The Zero Hunger (SDG 2) data specifically tracks progress on ending hunger and malnutrition while promoting sustainable agriculture. The data is collected through various international organizations, national statistical offices, and UN agencies.",
+  "inference_notes": "Important considerations include:\n1. Data quality varies by country and indicator\n2. Some countries may have missing or outdated data points\n3. Scores are relative to defined thresholds and targets\n4. Regional and development status differences should be considered\n5. COVID-19 pandemic has significantly impacted recent measurements\n6. Agricultural indicators may be affected by seasonal and climate variations\n7. Data collection methodologies may vary between countries",
+  "_metadata": {
+    "task_id": 363443,
+    "generated_at": "2025-06-22T08:37:00.854056",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

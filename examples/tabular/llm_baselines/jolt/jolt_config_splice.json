@@ -1,0 +1,19 @@
+{
+  "dataset_name": "splice",
+  "task_prefix": "DNA splice site recognition dataset for identifying boundaries between exons (retained sequences) and introns (removed sequences) in genetic sequences. Critical for understanding gene expression and protein synthesis in eukaryotic organisms. Each example contains 5 features. Predict the target class.",
+  "column_descriptions": {
+    "instance_name": "Unique identifier for each DNA sequence sample. Should be ignored for modeling purposes.",
+    "position_-30": "Nucleotide at position 30 bases before the potential splice site. Part of upstream context.",
+    "position_-29": "Nucleotide at position 29 bases before the splice site. Contributes to sequence context.",
+    "[positions -28 through +29]": "Nucleotides at each position in the 60-base window centered on potential splice site. Each position may contain standard nucleotides or ambiguity codes.",
+    "position_+30": "Nucleotide at position 30 bases after the potential splice site. Part of downstream context."
+  },
+  "class_names": [
+    "EI",
+    "IE",
+    "N"
+  ],
+  "class_description": "Classes: 'EI' (Exon-Intron boundary (donor site) - where exon ends and intron begins), 'IE' (Intron-Exon boundary (acceptor site) - where intron ends and exon begins), 'N' (Neither - not a splice site, just a regular sequence region)",
+  "num_features": 5,
+  "num_classes": 3
+}

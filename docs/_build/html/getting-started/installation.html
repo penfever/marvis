@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation Guide &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quick Start Guide" href="quick-start.html" />
+    <link rel="prev" title="MARVIS: Classification using Language Model embeddings" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-installation">Basic Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#from-source-recommended">From Source (Recommended)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modality-specific-installation">Modality-Specific Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vision-models">Vision Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#audio-models">Audio Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-models">API Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-installation">Complete Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-installation">Advanced Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vllm-backend-optional">VLLM Backend (Optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apple-silicon-support">Apple Silicon Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#development-installation">Development Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation-dependencies">Documentation Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#test-your-installation">Test Your Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quick-functionality-test">Quick Functionality Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-environment-setup">Virtual Environment Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-installation">Docker Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#platform-specific-notes">Platform-Specific Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting-started/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-guide">
+<h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Link to this heading"></a></h1>
+<p>This guide covers the installation of MARVIS and its dependencies for different use cases.</p>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<p><strong>Python Version</strong>: 3.8 or higher (3.9+ recommended)</p>
+<p><strong>System Requirements</strong>:</p>
+<ul class="simple">
+<li><p><strong>GPU</strong>:
+* NVIDIA GPU with CUDA support (recommended for VLM models)
+* Apple Silicon Mac (M1/M2/M3/M4) with Metal Performance Shaders support</p></li>
+<li><p><strong>Memory</strong>: 8GB+ RAM (16GB+ recommended for large models)</p></li>
+<li><p><strong>Storage</strong>: 5GB+ free space for models and cache</p></li>
+</ul>
+</section>
+<section id="basic-installation">
+<h2>Basic Installation<a class="headerlink" href="#basic-installation" title="Link to this heading"></a></h2>
+<section id="from-source-recommended">
+<h3>From Source (Recommended)<a class="headerlink" href="#from-source-recommended" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clone the repository</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/penfever/marvis.git
+<span class="nb">cd</span><span class="w"> </span>marvis
+
+<span class="c1"># Install in development mode</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+<p>This installs the core MARVIS package with basic dependencies.</p>
+</section>
+</section>
+<section id="modality-specific-installation">
+<h2>Modality-Specific Installation<a class="headerlink" href="#modality-specific-installation" title="Link to this heading"></a></h2>
+<section id="vision-models">
+<h3>Vision Models<a class="headerlink" href="#vision-models" title="Link to this heading"></a></h3>
+<p>For image classification with DINOV2 embeddings and vision models:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[vision]&quot;</span>
+</pre></div>
+</div>
+<p>This includes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">torch</span></code> and <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> for PyTorch models</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timm</span></code> for pre-trained vision models</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIL</span></code> for image processing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">opencv-python</span></code> for advanced image operations</p></li>
+</ul>
+</section>
+<section id="audio-models">
+<h3>Audio Models<a class="headerlink" href="#audio-models" title="Link to this heading"></a></h3>
+<p>For audio classification with Whisper and CLAP embeddings:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[audio]&quot;</span>
+</pre></div>
+</div>
+<p>This includes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">librosa</span></code> for audio processing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">soundfile</span></code> for audio I/O</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">whisper</span></code> for speech embeddings</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transformers</span></code> for CLAP models</p></li>
+</ul>
+</section>
+<section id="api-models">
+<h3>API Models<a class="headerlink" href="#api-models" title="Link to this heading"></a></h3>
+<p>For integration with commercial API models (OpenAI, Google):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[api]&quot;</span>
+</pre></div>
+</div>
+<p>This includes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">openai</span></code> client library</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">google-generativeai</span></code> for Gemini models</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anthropic</span></code> for Claude models (future support)</p></li>
+</ul>
+</section>
+<section id="complete-installation">
+<h3>Complete Installation<a class="headerlink" href="#complete-installation" title="Link to this heading"></a></h3>
+<p>To install all optional dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[vision,audio,api]&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-installation">
+<h2>Advanced Installation<a class="headerlink" href="#advanced-installation" title="Link to this heading"></a></h2>
+<section id="vllm-backend-optional">
+<h3>VLLM Backend (Optional)<a class="headerlink" href="#vllm-backend-optional" title="Link to this heading"></a></h3>
+<p>For faster local VLM inference with VLLM:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>vllm
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>VLLM requires CUDA and is not compatible with Apple Silicon (MPS).
+See <a class="reference external" href="https://docs.vllm.ai/en/latest/getting_started/installation.html">VLLM installation guide</a> for details.</p>
+</div>
+</section>
+<section id="apple-silicon-support">
+<h3>Apple Silicon Support<a class="headerlink" href="#apple-silicon-support" title="Link to this heading"></a></h3>
+<p>MARVIS automatically detects and uses Metal Performance Shaders (MPS) on Apple Silicon Macs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Force transformers backend for MPS support</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">VLLM_AVAILABLE</span><span class="o">=</span><span class="nb">false</span>
+
+<span class="c1"># Run with automatic MPS detection</span>
+python<span class="w"> </span>your_script.py
+</pre></div>
+</div>
+<p>To verify MPS is being used:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>tests/test_mps_detection.py
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The transformers backend provides full MPS support for GPU acceleration on Mac.
+Monitor GPU usage in Activity Monitor to verify MPS utilization.</p>
+</div>
+</section>
+<section id="development-installation">
+<h3>Development Installation<a class="headerlink" href="#development-installation" title="Link to this heading"></a></h3>
+<p>For contributing to MARVIS development:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install with development dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[vision,audio,api,dev]&quot;</span>
+
+<span class="c1"># Install pre-commit hooks</span>
+pre-commit<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+<section id="documentation-dependencies">
+<h3>Documentation Dependencies<a class="headerlink" href="#documentation-dependencies" title="Link to this heading"></a></h3>
+<p>To build documentation locally:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>docs/requirements.txt
+</pre></div>
+</div>
+</section>
+</section>
+<section id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h2>
+<section id="test-your-installation">
+<h3>Test Your Installation<a class="headerlink" href="#test-your-installation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test basic import</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">marvis</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MARVIS version: </span><span class="si">{</span><span class="n">marvis</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Test core functionality</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✓ Core MARVIS functionality available&quot;</span><span class="p">)</span>
+
+<span class="c1"># Test vision support (if installed)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">torchvision</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✓ Vision dependencies available&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✗ Vision dependencies not installed&quot;</span><span class="p">)</span>
+
+<span class="c1"># Test audio support (if installed)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">librosa</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">whisper</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✓ Audio dependencies available&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✗ Audio dependencies not installed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="quick-functionality-test">
+<h3>Quick Functionality Test<a class="headerlink" href="#quick-functionality-test" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test with sample data</span>
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">from marvis.models.marvis_tsne import MarvisTsneClassifier</span>
+<span class="s2">from sklearn.datasets import make_classification</span>
+<span class="s2">import numpy as np</span>
+
+<span class="s2"># Create sample data</span>
+<span class="s2">X, y = make_classification(n_samples=50, n_features=10, n_classes=3, random_state=42)</span>
+
+<span class="s2"># Test tabular classification</span>
+<span class="s2">classifier = MarvisTsneClassifier(</span>
+<span class="s2">    modality=&#39;tabular&#39;,</span>
+<span class="s2">    vlm_model_id=&#39;Qwen/Qwen2.5-VL-3B-Instruct&#39;</span>
+<span class="s2">)</span>
+
+<span class="s2"># This should complete without errors</span>
+<span class="s2">print(&#39;✓ MARVIS installation verified successfully&#39;)</span>
+<span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><strong>ImportError: No module named ‘marvis’</strong></dt><dd><p>Make sure you installed with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code> and are in the correct directory.</p>
+</dd>
+<dt><strong>CUDA out of memory</strong></dt><dd><p>Try using smaller VLM models or reducing batch sizes. See <a class="reference internal" href="../technical-guides/resource-management.html"><span class="doc">Resource Management</span></a>.</p>
+</dd>
+<dt><strong>Model download failures</strong></dt><dd><p>Check your internet connection. Models are downloaded from HuggingFace Hub on first use.</p>
+</dd>
+<dt><strong>Permission errors during installation</strong></dt><dd><p>Try using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> or create a virtual environment.</p>
+</dd>
+</dl>
+</section>
+<section id="virtual-environment-setup">
+<h3>Virtual Environment Setup<a class="headerlink" href="#virtual-environment-setup" title="Link to this heading"></a></h3>
+<p>We recommend using a virtual environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create virtual environment</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>marvis-env
+
+<span class="c1"># Activate (Linux/Mac)</span>
+<span class="nb">source</span><span class="w"> </span>marvis-env/bin/activate
+
+<span class="c1"># Activate (Windows)</span>
+marvis-env<span class="se">\\</span>Scripts<span class="se">\\</span>activate
+
+<span class="c1"># Install MARVIS</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[vision,audio,api]&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="docker-installation">
+<h3>Docker Installation<a class="headerlink" href="#docker-installation" title="Link to this heading"></a></h3>
+<p>For a containerized environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build Docker image (Dockerfile needed)</span>
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>marvis:latest<span class="w"> </span>.
+
+<span class="c1"># Run with GPU support</span>
+docker<span class="w"> </span>run<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>-it<span class="w"> </span>marvis:latest
+</pre></div>
+</div>
+</section>
+<section id="platform-specific-notes">
+<h3>Platform-Specific Notes<a class="headerlink" href="#platform-specific-notes" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><strong>macOS</strong></dt><dd><p>Some audio dependencies may require Homebrew: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">ffmpeg</span></code></p>
+</dd>
+<dt><strong>Windows</strong></dt><dd><p>Make sure to install Visual Studio Build Tools for compiling native extensions.</p>
+</dd>
+<dt><strong>Linux</strong></dt><dd><p>CUDA toolkit installation may be required for GPU support.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading"></a></h2>
+<p>If you encounter installation issues:</p>
+<ol class="arabic simple">
+<li><p>Check our <a class="reference external" href="https://github.com/penfever/marvis/issues">GitHub Issues</a></p></li>
+<li><p>Review the <a class="reference internal" href="../troubleshooting.html"><span class="doc">Troubleshooting Guide</span></a> guide</p></li>
+<li><p>Create a new issue with your system information and error messages</p></li>
+</ol>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>After successful installation, proceed to:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="quick-start.html"><span class="doc">Quick Start Guide</span></a> - Learn basic MARVIS usage</p></li>
+<li><p><a class="reference internal" href="configuration.html"><span class="doc">Configuration Guide</span></a> - Configure MARVIS for your needs</p></li>
+<li><p><a class="reference internal" href="../tutorials/basic-classification.html"><span class="doc">Basic Classification Tutorial</span></a> - Follow detailed tutorials</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="MARVIS: Classification using Language Model embeddings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quick-start.html" class="btn btn-neutral float-right" title="Quick Start Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

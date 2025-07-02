@@ -1,0 +1,17 @@
+{
+  "dataset_name": "Allstate_Claims_Severity",
+  "task_prefix": "Insurance claim data from Allstate Corporation containing anonymized features to predict the severity (monetary loss value) of claims. Features are masked to prevent identification of specific insurance aspects while maintaining predictive value. Each example contains 5 features. Predict the target class.",
+  "column_descriptions": {
+    "cat1-cat116": "116 categorical features representing various anonymized aspects of the insurance claim, policyholder, or incident. Each has varying number of levels (some binary, others with 100+ categories).",
+    "cont1": "Continuous feature related to claim or policy characteristics. Shows bimodal distribution suggesting possible underlying categorical nature.",
+    "cont2": "Continuous feature with distinct clustering pattern, possibly representing discretized continuous data.",
+    "cont3-cont14": "Additional continuous features representing various normalized metrics related to the insurance claim. Each shows different distribution patterns.",
+    "loss": "Target variable: The severity of the insurance claim measured as monetary loss amount in dollars."
+  },
+  "class_names": [
+    "continuous"
+  ],
+  "class_description": "Classes: 'continuous' (Regression target - claim severity in dollars (median: $2,115, mean: $3,037))",
+  "num_features": 5,
+  "num_classes": 1
+}

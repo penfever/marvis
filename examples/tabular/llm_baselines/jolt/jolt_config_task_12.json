@@ -1,0 +1,23 @@
+{
+  "dataset_name": "mfeat-factors",
+  "task_prefix": "Multiple Features Dataset: Factors. One of six datasets describing features of handwritten numerals (0-9) extracted from Dutch utility maps. This dataset contains 216 profile correlations computed from the digit images. Each class has 200 instances digitized from binary images. Each example contains 1 features. Handwritten digit recognition using profile-based features. Applications include postal automation.",
+  "column_descriptions": {
+    "Profile correlation features": "Feature: Profile correlation features"
+  },
+  "class_names": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '0' (Digit 0), '1' (Digit 1), '2' (Digit 2), '3' (Digit 3), '4' (Digit 4), '5' (Digit 5), '6' (Digit 6), '7' (Digit 7), '8' (Digit 8), '9' (Digit 9)",
+  "num_features": 1,
+  "num_classes": 10,
+  "task_id": "12"
+}

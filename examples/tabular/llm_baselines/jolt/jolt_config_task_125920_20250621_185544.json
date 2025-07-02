@@ -1,0 +1,27 @@
+{
+  "dataset_name": "dresses-sales",
+  "task_prefix": "Dataset containing attributes of dresses and their sales-based recommendations. Sales are monitored on alternate days. The dataset helps predict dress recommendations based on various fashion attributes. Each example contains 13 features. Fashion product recommendation.",
+  "column_descriptions": {
+    "feature_1": "Feature 1",
+    "feature_2": "Feature 2",
+    "feature_3": "Feature 3",
+    "feature_4": "Feature 4",
+    "feature_5": "Feature 5",
+    "feature_6": "Feature 6",
+    "feature_7": "Feature 7",
+    "feature_8": "Feature 8",
+    "feature_9": "Feature 9",
+    "feature_10": "Feature 10",
+    "feature_11": "Feature 11",
+    "feature_12": "Feature 12",
+    "feature_13": "Feature 13"
+  },
+  "class_names": [
+    "0",
+    "1"
+  ],
+  "class_description": "Classes: '0' (Not recommended), '1' (Recommended)",
+  "num_features": 13,
+  "num_classes": 2,
+  "task_id": "125920_20250621_185544"
+}

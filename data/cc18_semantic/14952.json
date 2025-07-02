@@ -1,0 +1,189 @@
+{
+  "dataset_name": "PhishingWebsites",
+  "openml_task_id": 14952,
+  "dataset_description": "This dataset contains features extracted from websites to identify phishing attempts. It addresses the challenge of detecting fraudulent websites that attempt to steal sensitive information by mimicking legitimate sites. The dataset includes various URL-based, domain-based, and page-based features that have proven effective in distinguishing phishing websites from legitimate ones.",
+  "dataset_source": "University of Huddersfield, UK and Canadian University of Dubai",
+  "domain": "Cybersecurity, Web Security",
+  "problem_type": "Binary Classification",
+  "input_features": {
+    "number_of_features": 30,
+    "feature_types": "Categorical (Nominal)",
+    "feature_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators."
+  },
+  "dataset_size": {
+    "instances": 11055,
+    "features": 30,
+    "classes": 2
+  },
+  "description": "This dataset contains features extracted from websites to identify phishing attempts. It addresses the challenge of detecting fraudulent websites that attempt to steal sensitive information by mimicking legitimate sites. The dataset includes various URL-based, domain-based, and page-based features that have proven effective in distinguishing phishing websites from legitimate ones.",
+  "original_source": {
+    "creator": "Unknown",
+    "institution": "Unknown",
+    "date": "Unknown",
+    "publication": "Unknown"
+  },
+  "columns": [
+    {
+      "name": "feature_1",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 1)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_2",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 2)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_3",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 3)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_4",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 4)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_5",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 5)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_6",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 6)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_7",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 7)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_8",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 8)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_9",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 9)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_10",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 10)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_11",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 11)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_12",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 12)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_13",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 13)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_14",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 14)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_15",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 15)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_16",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 16)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_17",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 17)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_18",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 18)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_19",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 19)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_20",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 20)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_21",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 21)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_22",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 22)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_23",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 23)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_24",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 24)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_25",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 25)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_26",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 26)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_27",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 27)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_28",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 28)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_29",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 29)",
+      "data_type": "Categorical (Nominal)"
+    },
+    {
+      "name": "feature_30",
+      "semantic_description": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 30)",
+      "data_type": "Categorical (Nominal)"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "-1",
+      "meaning": "Website classification: -1 for phishing, 1 for legitimate: -1"
+    },
+    {
+      "name": "1",
+      "meaning": "Website classification: -1 for phishing, 1 for legitimate: 1"
+    }
+  ],
+  "dataset_history": "Dataset history not available for PhishingWebsites",
+  "inference_notes": "Inference notes not available for PhishingWebsites"
+}

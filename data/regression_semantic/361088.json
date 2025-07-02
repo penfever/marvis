@@ -1,0 +1,51 @@
+{
+  "dataset_name": "superconduct",
+  "description": "A materials science dataset containing properties of superconducting materials and their critical temperatures. The dataset is used to predict the temperature at which materials transition to a superconducting state based on various physical and chemical properties. This is valuable for materials discovery and design of new superconductors.",
+  "original_source": {
+    "creator": "Kam Hamidieh",
+    "institution": "Department of Statistics, UC Irvine",
+    "date": "2018",
+    "publication": "A data-driven statistical model for predicting the critical temperature of a superconductor, Computational Materials Science, Volume 154, November 2018, Pages 346-354"
+  },
+  "columns": [
+    {
+      "name": "Features 0-8",
+      "semantic_description": "Number of atoms for different elements in the superconducting compound",
+      "data_type": "numerical, continuous"
+    },
+    {
+      "name": "Features 9-21",
+      "semantic_description": "Atomic mass properties and statistics (mean, standard deviation, etc.) of constituent elements",
+      "data_type": "numerical, continuous"
+    },
+    {
+      "name": "Features 22-39",
+      "semantic_description": "Electron configuration properties including valence electrons and electron affinity",
+      "data_type": "numerical, continuous"
+    },
+    {
+      "name": "Features 40-55",
+      "semantic_description": "Atomic radius and density characteristics of constituent elements",
+      "data_type": "numerical, continuous"
+    },
+    {
+      "name": "Features 56-80",
+      "semantic_description": "Derived features including thermal conductivity, atomic orbital radii, and other physical properties",
+      "data_type": "numerical, continuous"
+    }
+  ],
+  "target_description": {
+    "name": "criticaltemp",
+    "meaning": "Critical temperature at which the material transitions to a superconducting state (loses electrical resistance)",
+    "units": "Kelvin (K)",
+    "range": "0 to approximately 180 K"
+  },
+  "dataset_history": "The dataset was created by extracting features from the chemical composition of known superconducting materials. It combines data from multiple experimental studies and materials databases. The features were carefully engineered to capture relevant physical and chemical properties that influence superconductivity. The dataset has become a benchmark for machine learning in materials science.",
+  "inference_notes": "Important considerations:\n1. The dataset focuses on conventional superconductors and may not capture all properties relevant to high-temperature superconductors\n2. Feature engineering was done based on known physics of superconductivity\n3. There may be selection bias as only known superconductors are included\n4. The features are highly engineered and some may have correlations\n5. The dataset has been widely used in benchmarking machine learning models for materials science\n6. Critical temperature predictions should be interpreted as estimates for screening potential materials rather than exact values",
+  "_metadata": {
+    "task_id": 361088,
+    "generated_at": "2025-06-22T08:24:34.664675",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

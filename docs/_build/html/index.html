@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MARVIS: Classification using Language Model embeddings &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=251ceabf" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation Guide" href="getting-started/installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">MARVIS: Classification using Language Model embeddings</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="marvis-classification-using-language-model-embeddings">
+<h1>MARVIS: Classification using Language Model embeddings<a class="headerlink" href="#marvis-classification-using-language-model-embeddings" title="Link to this heading"></a></h1>
+<p><strong>MARVIS</strong> (Classification using Language Model embeddings) is a powerful framework for multi-modal classification that leverages Vision Language Models (VLMs) to perform classification on tabular, audio, and vision data through intelligent visualization and embedding techniques.</p>
+<section id="quick-start">
+<h2>🚀 <strong>Quick Start</strong><a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[vision,audio,api]&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
+
+<span class="c1"># Create classifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">)</span>
+
+<span class="c1"># Generate sample data</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Fit and predict</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="key-features">
+<h2>🌟 <strong>Key Features</strong><a class="headerlink" href="#key-features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Multi-modal Support</strong>: Tabular, audio, and vision data classification</p></li>
+<li><p><strong>Vision Language Models</strong>: Leverages state-of-the-art VLMs for intelligent reasoning</p></li>
+<li><p><strong>Advanced Visualizations</strong>: t-SNE, PCA, UMAP, and multi-visualization frameworks</p></li>
+<li><p><strong>API Integration</strong>: Support for OpenAI, Google Gemini, and local models</p></li>
+<li><p><strong>Rich Embeddings</strong>: TabPFN, Whisper, DINOV2, and more</p></li>
+<li><p><strong>Resource Management</strong>: Intelligent caching and memory optimization</p></li>
+</ul>
+</section>
+<section id="documentation-contents">
+<h2>📋 <strong>Documentation Contents</strong><a class="headerlink" href="#documentation-contents" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/installation.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#basic-installation">Basic Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#modality-specific-installation">Modality-Specific Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#advanced-installation">Advanced Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#verification">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/quick-start.html">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/quick-start.html#second-example-tabular-data">30-Second Example: Tabular Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/quick-start.html#vision-classification">Vision Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/quick-start.html#audio-classification">Audio Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/quick-start.html#advanced-features">Advanced Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/quick-start.html#evaluation-workflows">Evaluation Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/quick-start.html#configuration-examples">Configuration Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/quick-start.html#interactive-notebooks">Interactive Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/quick-start.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/quick-start.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/quick-start.html#need-help">Need Help?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/configuration.html">Configuration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#configuration-methods">Configuration Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#constructor-parameters">Constructor Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#modality-specific-configuration">Modality-Specific Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#performance-configurations">Performance Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#hardware-and-platform-configuration">Hardware and Platform Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#api-model-configurations">API Model Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#configuration-profiles">Configuration Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/vision/index.html">Vision Classification Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/vision/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/vision/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/vision/index.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/vision/index.html#api-reference">API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/audio/index.html">Audio Classification Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/audio/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/audio/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/audio/index.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/audio/index.html#api-reference">API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/tabular/index.html">Tabular Data Classification Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/tabular/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/tabular/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/tabular/index.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/tabular/index.html#api-reference">API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/api-models/index.html">API Models Integration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/api-models/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/api-models/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/api-models/index.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-guide/api-models/index.html#api-reference">API Reference</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basic-classification.html">Basic Classification Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/basic-classification.html#tutorial-contents">Tutorial Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/basic-classification.html#coming-soon">Coming Soon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/basic-classification.html#interim-resources">Interim Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/multi-modal-pipeline.html#coming-soon">Coming Soon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/multi-modal-pipeline.html#interim-resources">Interim Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/custom-datasets.html">Custom Datasets Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/custom-datasets.html#coming-soon">Coming Soon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/custom-datasets.html#interim-resources">Interim Resources</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.models.html">marvis.models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.models.html#main-classifier">Main Classifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.models.html#utility-functions">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.models.html#model-configuration">Model Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.models.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.models.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.models.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.models.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.data.html">marvis.data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.data.html#module-marvis.data.dataset">Dataset Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.data.html#module-marvis.data.embeddings">Embedding Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.data.html#audio-processing">Audio Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.data.html#visualization-moved-to-marvis-viz">Visualization (Moved to marvis.viz)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.data.html#module-marvis.data.csv_utils">Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.utils.html">marvis.utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.utils.html#module-marvis.utils.resource_manager">Resource Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.utils.html#module-marvis.utils.results_manager">Results Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.utils.html#module-marvis.utils.vlm_prompting">VLM Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.utils.html#module-marvis.utils.model_loader">Model Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.utils.html#module-marvis.utils.metadata_loader">Metadata Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.utils.html#module-marvis.utils.evaluation_args">Evaluation Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.viz.html">marvis.viz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.viz.html#module-marvis.viz.base">Base Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.viz.html#module-marvis.viz.context.composer">Context Composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.viz.html#module-marvis.viz.context.layouts">Layout Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.viz.html#module-marvis.viz.embeddings.tsne">Embedding Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.viz.html#module-marvis.viz.decision.regions">Decision Boundary Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.viz.html#module-marvis.viz.patterns.frequent">Pattern Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.viz.html#module-marvis.viz.tsne_functions">t-SNE Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-reference/marvis.viz.html#module-marvis.viz.utils.common">Utilities</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/resource-management.html">Resource Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technical-guides/resource-management.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-guides/resource-management.html#coming-soon">Coming Soon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-guides/resource-management.html#interim-resources">Interim Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/caching-system.html">Caching System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technical-guides/caching-system.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-guides/caching-system.html#coming-soon">Coming Soon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-guides/caching-system.html#interim-resources">Interim Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technical-guides/evaluation-frameworks.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-guides/evaluation-frameworks.html#coming-soon">Coming Soon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-guides/evaluation-frameworks.html#interim-resources">Interim Resources</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to MARVIS</a></li>
+</ul>
+</div>
+</section>
+<section id="quick-links">
+<h2>🔗 <strong>Quick Links</strong><a class="headerlink" href="#quick-links" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>GitHub Repository</strong>: <a class="reference external" href="https://github.com/penfever/marvis">https://github.com/penfever/marvis</a></p></li>
+<li><p><strong>Issue Tracker</strong>: <a class="reference external" href="https://github.com/penfever/marvis/issues">https://github.com/penfever/marvis/issues</a></p></li>
+<li><p><strong>PyPI Package</strong>: <a class="reference external" href="https://pypi.org/project/marvis/">https://pypi.org/project/marvis/</a></p></li>
+</ul>
+</section>
+<section id="supported-modalities">
+<h2>🏗️ <strong>Supported Modalities</strong><a class="headerlink" href="#supported-modalities" title="Link to this heading"></a></h2>
+<section id="vision">
+<h3>Vision<a class="headerlink" href="#vision" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>CIFAR-10/100, ImageNet, custom image datasets</p></li>
+<li><p>DINOV2 embeddings with t-SNE visualization</p></li>
+<li><p>API model integration (GPT-4V, Gemini Vision)</p></li>
+</ul>
+</section>
+<section id="audio">
+<h3>Audio<a class="headerlink" href="#audio" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>ESC-50, RAVDESS, AudioSet, custom audio datasets</p></li>
+<li><p>Whisper and CLAP embeddings</p></li>
+<li><p>Spectrogram visualization support</p></li>
+</ul>
+</section>
+<section id="tabular">
+<h3>Tabular<a class="headerlink" href="#tabular" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>OpenML datasets, UCI repository, custom CSV data</p></li>
+<li><p>TabPFN embeddings with advanced preprocessing</p></li>
+<li><p>Feature selection and dimensionality reduction</p></li>
+</ul>
+</section>
+</section>
+<section id="getting-help">
+<h2>💡 <strong>Getting Help</strong><a class="headerlink" href="#getting-help" title="Link to this heading"></a></h2>
+<p>If you encounter issues or have questions:</p>
+<ol class="arabic simple">
+<li><p>Check the <a class="reference internal" href="troubleshooting.html"><span class="doc">Troubleshooting Guide</span></a> guide</p></li>
+<li><p>Browse existing <a class="reference external" href="https://github.com/penfever/marvis/issues">GitHub Issues</a></p></li>
+<li><p>Create a new issue with a minimal reproducible example</p></li>
+<li><p>Join our community discussions</p></li>
+</ol>
+<p><strong>License</strong>: MIT License</p>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting-started/installation.html" class="btn btn-neutral float-right" title="Installation Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

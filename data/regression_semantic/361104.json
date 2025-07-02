@@ -1,0 +1,76 @@
+{
+  "dataset_name": "SGEMM_GPU_kernel_performance",
+  "description": "This dataset captures the performance measurements of SGEMM (Single precision General Matrix Multiply) operations on GPU hardware. It contains various parameters that affect the performance of matrix multiplication operations and their resulting execution times. The data represents different configurations of matrix multiplication kernels and their performance on GPU architecture.",
+  "original_source": {
+    "creator": "Mehdi Farajpour Cami, Shervin Hajiamini, Brigitte Jaumard",
+    "institution": "Concordia University, Montreal, Canada",
+    "date": "2014",
+    "publication": "An Efficient Neural Network Approach for GPU Performance Prediction, 2014 IEEE Intl Conf on High Performance Computing and Communications"
+  },
+  "columns": [
+    {
+      "name": "MWG",
+      "semantic_description": "Matrix Width Group - Size of thread block tile for matrix multiplication",
+      "data_type": "integer, categorical parameter"
+    },
+    {
+      "name": "NWG",
+      "semantic_description": "Number Width Group - Another dimension parameter for thread block organization",
+      "data_type": "integer, categorical parameter"
+    },
+    {
+      "name": "KWG",
+      "semantic_description": "Kernel Width Group - Third dimension parameter for thread organization",
+      "data_type": "integer, categorical parameter"
+    },
+    {
+      "name": "MDIMC",
+      "semantic_description": "Matrix Dimension Internal Memory Cache - Memory tiling parameter",
+      "data_type": "integer, categorical parameter"
+    },
+    {
+      "name": "NDIMC",
+      "semantic_description": "Number Dimension Internal Memory Cache - Second memory tiling parameter",
+      "data_type": "integer, categorical parameter"
+    },
+    {
+      "name": "MDIMA",
+      "semantic_description": "Matrix Dimension Internal Memory A - Memory access pattern parameter for matrix A",
+      "data_type": "integer, categorical parameter"
+    },
+    {
+      "name": "NDIMB",
+      "semantic_description": "Number Dimension Internal Memory B - Memory access pattern parameter for matrix B",
+      "data_type": "integer, categorical parameter"
+    },
+    {
+      "name": "KWI",
+      "semantic_description": "Kernel Width Index - Work-item organization parameter",
+      "data_type": "integer, categorical parameter"
+    },
+    {
+      "name": "VWM",
+      "semantic_description": "Vector Width Multiplier - Vectorization parameter for memory operations",
+      "data_type": "integer, categorical parameter"
+    },
+    {
+      "name": "VWN",
+      "semantic_description": "Vector Width Number - Second vectorization parameter",
+      "data_type": "integer, categorical parameter"
+    }
+  ],
+  "target_description": {
+    "name": "Run1",
+    "meaning": "Execution time for the SGEMM operation with given parameters",
+    "units": "milliseconds (ms)",
+    "range": "Positive real numbers, typically between 0 and several hundred milliseconds"
+  },
+  "dataset_history": "The dataset was created to study and optimize GPU performance for matrix multiplication operations, which are fundamental to many scientific computing and machine learning applications. It was collected through systematic benchmarking of different parameter combinations on GPU hardware, specifically targeting the optimization of SGEMM operations in OpenCL implementations.",
+  "inference_notes": "Important considerations include:\n1. The performance measurements are hardware-dependent and were collected on specific GPU architecture\n2. The parameters are not independent - there are complex interactions between them\n3. Some parameter combinations may be invalid or impractical\n4. The dataset is useful for both performance prediction and optimization of GPU kernels\n5. Multiple runs were performed to account for execution time variations\n6. The data represents a systematic exploration of the parameter space rather than random sampling",
+  "_metadata": {
+    "task_id": 361104,
+    "generated_at": "2025-06-22T08:25:36.277862",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

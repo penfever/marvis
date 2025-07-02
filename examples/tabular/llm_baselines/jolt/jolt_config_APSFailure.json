@@ -1,0 +1,17 @@
+{
+  "dataset_name": "APSFailure",
+  "task_prefix": "Air Pressure System (APS) failure prediction for Scania trucks. Dataset contains sensor data and operational parameters to predict component failures for preventive maintenance and cost reduction. Each example contains 4 features. Predict the target class.",
+  "column_descriptions": {
+    "class": "Binary indicator of APS component failure. Positive class indicates APS-related failure, negative indicates other component failures.",
+    "aa_000 to az_xxx": "Anonymized operational sensor readings and counters. Single numerical values representing various truck system measurements like pressure, temperature, mileage, and operational cycles.",
+    "ba_000 to bz_xxx": "Histogram features representing distributions of operational conditions. Each feature contains binned counts of specific measurements over time windows.",
+    "ca_000 to cz_xxx": "Additional anonymized features including derived statistics, aggregated measurements, and complex operational indicators."
+  },
+  "class_names": [
+    "pos",
+    "neg"
+  ],
+  "class_description": "Classes: 'pos' (Positive class - APS component failure detected (1,000 instances in training set, ~1.7%)), 'neg' (Negative class - Failure in components not related to APS (59,000 instances in training set, ~98.3%))",
+  "num_features": 4,
+  "num_classes": 2
+}

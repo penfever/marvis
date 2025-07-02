@@ -1,0 +1,22 @@
+{
+  "dataset_name": "Crime_Data_from_2010",
+  "task_prefix": "This dataset contains detailed crime incident data from the City of Los Angeles from 2010 onwards. It represents individual crime reports with various attributes including victim demographics, crime types, locations, and temporal information. The data is used for crime analysis, public safety planning, and predictive policing applications. Each example contains 9 features. Predict the Victim_Age.",
+  "column_descriptions": {
+    "Date_Rptd": "The date when the crime was reported to the police",
+    "DATE_OCC": "The date when the crime actually occurred",
+    "TIME_OCC": "The time when the crime occurred in 24-hour format",
+    "AREA": "The LAPD patrol area where the crime occurred",
+    "Crm_Cd": "Crime code identifying the type of crime",
+    "Vict_Age": "Age of the victim at the time of the crime",
+    "Vict_Sex": "Gender of the victim",
+    "LAT": "Latitude of crime location (truncated to protect privacy)",
+    "LON": "Longitude of crime location (truncated to protect privacy)"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Victim_Age - The age of the crime victim at the time of the incident. Units: Years. Range: 0-100 (typical range for human ages)",
+  "num_features": 9,
+  "num_classes": 1,
+  "task_id": 363432
+}

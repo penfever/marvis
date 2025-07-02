@@ -1,0 +1,26 @@
+{
+  "dataset_name": "heart_failure_clinical_records",
+  "task_prefix": "A clinical dataset containing medical records of 299 heart failure patients collected at the Faisalabad Institute of Cardiology and at the Allied Hospital in Faisalabad (Punjab, Pakistan) during April-December 2015. The dataset is used to predict mortality by heart failure and includes 13 clinical features that are commonly collected during follow-up visits. Each example contains 13 features. Predict the platelets.",
+  "column_descriptions": {
+    "age": "Age of the patient at the time of data collection",
+    "anaemia": "Decrease of red blood cells or hemoglobin. Indicates if patient has anaemia",
+    "creatinine_phosphokinase": "Level of CPK enzyme in blood, indicating damage to heart muscle",
+    "diabetes": "If the patient has diabetes",
+    "ejection_fraction": "Percentage of blood leaving the heart at each contraction",
+    "high_blood_pressure": "If the patient has hypertension",
+    "platelets": "Platelets count in blood (target variable)",
+    "serum_creatinine": "Level of serum creatinine in blood, indicating kidney function",
+    "serum_sodium": "Level of serum sodium in blood, indicating electrolyte balance",
+    "sex": "Biological sex of the patient",
+    "smoking": "If the patient smokes",
+    "time": "Follow-up period",
+    "death_event": "If the patient died during the follow-up period"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: platelets - Count of platelets in the blood, which are crucial for blood clotting and cardiovascular health. Units: kiloplatelets/mL. Range: 25,100 to 850,000",
+  "num_features": 13,
+  "num_classes": 1,
+  "task_id": 363417
+}

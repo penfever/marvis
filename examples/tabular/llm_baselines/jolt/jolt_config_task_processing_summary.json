@@ -1,0 +1,19 @@
+{
+  "dataset_name": "unknown",
+  "task_prefix": "Each example contains 5 features: Dataset feature 1, Dataset feature 2, Dataset feature 3, Dataset feature 4, Dataset feature 5. Classes: Class_0, Class_1",
+  "column_descriptions": {
+    "feature_1": "Dataset feature 1",
+    "feature_2": "Dataset feature 2",
+    "feature_3": "Dataset feature 3",
+    "feature_4": "Dataset feature 4",
+    "feature_5": "Dataset feature 5"
+  },
+  "class_names": [
+    "Class_0",
+    "Class_1"
+  ],
+  "class_description": "Classes: Class_0, Class_1",
+  "num_features": 5,
+  "num_classes": 2,
+  "task_id": "processing_summary"
+}

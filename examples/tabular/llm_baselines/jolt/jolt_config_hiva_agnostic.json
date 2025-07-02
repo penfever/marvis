@@ -1,0 +1,14 @@
+{
+  "dataset_name": "hiva_agnostic",
+  "task_prefix": "HIV drug discovery dataset for predicting compounds active against AIDS HIV infection. Part of Agnostic Learning vs. Prior Knowledge Challenge, with binary classification of molecular compounds based on chemical descriptors. Each example contains 1 features. Predict the target class.",
+  "column_descriptions": {
+    "V1-V1617": "Binary chemical descriptors and molecular fingerprints. Each variable indicates presence/absence of specific molecular substructures, functional groups, or chemical properties relevant to drug activity."
+  },
+  "class_names": [
+    "1",
+    "-1"
+  ],
+  "class_description": "Classes: '1' (Active compound - shows inhibitory activity against HIV (positive class, ~3.5% of instances)), '-1' (Inactive compound - no significant anti-HIV activity (negative class, ~96.5% of instances))",
+  "num_features": 1,
+  "num_classes": 2
+}

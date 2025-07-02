@@ -1,0 +1,20 @@
+{
+  "dataset_name": "Another-Dataset-on-used-Fiat-500-(1538-rows)",
+  "task_prefix": "Used car pricing dataset containing information about Fiat 500 vehicles listed for sale. The dataset captures various attributes of used Fiat 500 cars to predict their market price. Each example contains 8 features. Predict the target class.",
+  "column_descriptions": {
+    "model": "Specific model/trim level of the Fiat 500.",
+    "year": "Year of manufacture of the vehicle.",
+    "price": "Listed sale price of the vehicle in local currency.",
+    "transmission": "Type of transmission system.",
+    "mileage": "Total distance traveled by the vehicle.",
+    "fuelType": "Type of fuel used by the vehicle.",
+    "mpg": "Fuel efficiency measured in miles per gallon.",
+    "engineSize": "Engine displacement in liters."
+  },
+  "class_names": [
+    "continuous"
+  ],
+  "class_description": "Classes: 'continuous' (Regression target - vehicle price in local currency)",
+  "num_features": 8,
+  "num_classes": 1
+}

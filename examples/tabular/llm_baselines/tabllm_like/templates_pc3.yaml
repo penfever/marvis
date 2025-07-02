@@ -1,0 +1,16 @@
+dataset: pc3
+templates:
+  4674543a-c568-41ab-acc8-0a06ea50249d: !Template
+    name: pc3
+    id: 4674543a-c568-41ab-acc8-0a06ea50249d
+    reference: ''
+    answer_choices: FALSE ||| TRUE
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: FALSE (Module\
+      \ has no reported defects - considered defect-free in testing/operation), TRUE\
+      \ (Module has one or more reported defects - bugs found during testing or deployment)\n\
+      Answer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

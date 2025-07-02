@@ -1,0 +1,21 @@
+{
+  "dataset_name": "sleep-deprivation-and-cognitive-performance",
+  "task_prefix": "A comprehensive dataset examining the relationship between sleep deprivation and cognitive performance metrics. The study collected data from 60 participants to analyze how sleep patterns affect reaction time, cognitive function, and stress levels. The research specifically focuses on measuring various aspects of cognitive decline and emotional regulation under different sleep conditions. Each example contains 8 features. Predict the Stress_Level.",
+  "column_descriptions": {
+    "Age": "Participant's age in years",
+    "Sleep_Duration": "Number of hours of sleep in the previous night",
+    "Sleep_Quality": "Subjective rating of sleep quality",
+    "Reaction_Time": "Measured response time to cognitive stimuli in milliseconds",
+    "Memory_Score": "Performance score on memory-related tasks",
+    "Daytime_Sleepiness": "Measured using Epworth Sleepiness Scale or similar metric",
+    "Gender": "Participant's gender identification",
+    "Additional features": "Remaining features likely include cognitive performance metrics, physiological measurements, and other sleep-related variables (exact names not provided in source)"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Stress_Level - Measured level of psychological stress, likely combining physiological and self-reported metrics. Units: Standardized scale (exact range unknown). Range: Likely 0-100 or similar standardized range",
+  "num_features": 8,
+  "num_classes": 1,
+  "task_id": 363452
+}

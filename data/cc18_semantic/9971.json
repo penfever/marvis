@@ -1,0 +1,74 @@
+{
+  "dataset_name": "ilpd",
+  "description": "Indian Liver Patient Dataset for predicting liver disease. Contains biochemical and demographic data collected from patients in North East Andhra Pradesh, India.",
+  "original_source": {
+    "creator": "Bendi Venkata Ramana, M. Surendra Prasad Babu, N. B. Venkateswarlu",
+    "institution": "Various institutions in Andhra Pradesh",
+    "date": "2012",
+    "publication": "Ramana, B.V., Babu, M.S.P., & Venkateswarlu, N.B. (2012). A Critical Comparative Study of Liver Patients from USA and INDIA: An Exploratory Analysis. International Journal of Computer Science Issues, 9(3)."
+  },
+  "columns": [
+    {
+      "name": "age",
+      "semantic_description": "Age of the patient - any patient whose age exceeded 89 is listed as being of age 90.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "gender",
+      "semantic_description": "Gender of the patient - male or female biological sex.",
+      "data_type": "categorical"
+    },
+    {
+      "name": "total_bilirubin",
+      "semantic_description": "Total bilirubin (mg/dL) - yellowish pigment in blood, elevated levels indicate liver dysfunction.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "direct_bilirubin",
+      "semantic_description": "Direct (conjugated) bilirubin (mg/dL) - water-soluble form processed by liver.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "alkaline_phosphatase",
+      "semantic_description": "Alkaline phosphatase (IU/L) - enzyme elevated in liver disease or bile duct obstruction.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "alanine_transaminase",
+      "semantic_description": "Alanine aminotransferase/SGPT (IU/L) - liver enzyme, elevated levels indicate liver damage.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "aspartate_transaminase",
+      "semantic_description": "Aspartate aminotransferase/SGOT (IU/L) - enzyme released when liver is damaged.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_protein",
+      "semantic_description": "Total proteins (g/dL) - sum of albumin and globulin, indicates liver synthetic function.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "albumin",
+      "semantic_description": "Albumin (g/dL) - protein made by liver, low levels suggest liver disease.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "albumin_globulin_ratio",
+      "semantic_description": "A/G ratio - albumin to globulin ratio, altered in liver disease.",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "yes",
+      "meaning": "Patient has liver disease - confirmed liver patient"
+    },
+    {
+      "name": "no",
+      "meaning": "Patient does not have liver disease - non-liver patient"
+    }
+  ],
+  "dataset_history": "Collected as part of comparative study between USA and Indian liver patients. Original dataset had 583 records with 416 liver patients and 167 non-liver patients. Contains 441 male and 142 female patient records, showing gender imbalance.",
+  "inference_notes": "Dataset shows significant class imbalance with 71.4% liver patients. Gender imbalance (75.6% male) may reflect disease prevalence or sampling bias. Biochemical markers show effectiveness varies by gender, suggesting need for stratified analysis. The albumin/globulin ratio provides integrated measure of liver function. Missing values exist in some biochemical measurements."
+}

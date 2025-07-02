@@ -1,0 +1,18 @@
+dataset: first-order-theorem-proving
+templates:
+  5bb4a818-8e06-4fb2-b57a-c877766eb650: !Template
+    name: first-order-theorem-proving
+    id: 5bb4a818-8e06-4fb2-b57a-c877766eb650
+    reference: ''
+    answer_choices: Heuristic 1 fastest ||| Heuristic 2 fastest ||| Heuristic 3 fastest
+      ||| Heuristic 4 fastest ||| Heuristic 5 fastest ||| Theorem too difficult -
+      decline to prove
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Heuristic 1 fastest, Heuristic 2 fastest, Heuristic 3 fastest, Heuristic 4\
+      \ fastest, Heuristic 5 fastest, Theorem too difficult - decline to prove?\n\
+      Answer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

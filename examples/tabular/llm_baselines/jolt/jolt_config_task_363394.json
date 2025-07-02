@@ -1,0 +1,20 @@
+{
+  "dataset_name": "UCC (Unhealthy Comments Corpus)",
+  "task_prefix": "A large-scale dataset of online comments labeled for various attributes of conversational health. The dataset is designed to help researchers and practitioners develop better systems for detecting and analyzing unhealthy online conversations. Each comment is annotated with multiple labels indicating different aspects of potentially problematic online behavior, with a particular focus on subtle forms of toxicity that may be harder to detect than overt abuse. Each example contains 7 features. Predict the hostile_confidence.",
+  "column_descriptions": {
+    "comment_text": "The actual text content of the online comment",
+    "hostile": "Binary indicator of whether the comment displays hostility or aggressive behavior",
+    "antagonistic": "Indicates if the comment is intentionally provocative, trolling, or insulting",
+    "dismissive": "Shows whether the comment dismisses or invalidates others' viewpoints",
+    "condescending": "Indicates if the comment displays patronizing or superiority-assuming behavior",
+    "sarcastic": "Marks presence of sarcasm or mocking tone",
+    "unhealthy": "Overall assessment of whether the comment contributes to unhealthy conversation"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: hostile_confidence - Confidence score for the hostility assessment of the comment, representing the degree of certainty in the hostile classification. Units: Probability score. Range: 0.0 to 1.0",
+  "num_features": 7,
+  "num_classes": 1,
+  "task_id": 363394
+}

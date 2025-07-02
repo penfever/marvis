@@ -1,0 +1,26 @@
+{
+  "dataset_name": "KDD98",
+  "task_prefix": "Direct marketing dataset from Paralyzed Veterans of America (PVA) for donation prediction. Used in KDD Cup 1998 competition to optimize direct mail campaigns by predicting donor response and donation amounts. Each example contains 13 features. Predict the target class.",
+  "column_descriptions": {
+    "TARGET_B": "Binary indicator of whether the donor responded to the June 1997 mailing campaign. Primary classification target.",
+    "TARGET_D": "Donation amount in dollars if the donor responded. Used for regression to predict donation value.",
+    "RECENCY": "Months since last donation. Key RFM (Recency, Frequency, Monetary) metric for donor behavior.",
+    "FREQUENCY": "Total number of donations to date. Indicates donor loyalty and engagement level.",
+    "MONETARY": "Average donation amount historically. Indicates donor capacity and generosity level.",
+    "LASTGIFT": "Dollar amount of most recent donation. Recent giving behavior indicator.",
+    "RFA_2F": "Frequency status for most recent promotion (June 1997). Part of detailed RFA segmentation.",
+    "HOMEOWNR": "Home ownership status. Wealth and stability indicator.",
+    "GENDER": "Donor gender from overlay demographics. May influence giving patterns.",
+    "AGE": "Donor age from overlay data. Important demographic for donation propensity.",
+    "INCOME": "Estimated household income from demographic overlay. Capacity indicator.",
+    "WEALTH": "Wealth rating from external sources. Additional capacity indicator.",
+    "NUMPROMS": "Number of promotions received in last 12 months. Marketing pressure indicator."
+  },
+  "class_names": [
+    "1",
+    "0"
+  ],
+  "class_description": "Classes: '1' (Donor responded to June 1997 campaign with a donation), '0' (Donor did not respond to June 1997 campaign)",
+  "num_features": 13,
+  "num_classes": 2
+}

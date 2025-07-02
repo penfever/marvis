@@ -1,0 +1,82 @@
+/* Custom CSS for MARVIS documentation */
+
+/* Improve code block styling */
+.highlight {
+    background: #f8f8f8;
+    border: 1px solid #e1e4e5;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 16px 0;
+}
+
+/* Better spacing for lists */
+.rst-content ul li, .rst-content ol li {
+    margin-bottom: 8px;
+}
+
+/* Custom styling for API documentation */
+.rst-content dl:not(.docutils) dt {
+    background: #f0f0f0;
+    border-left: 3px solid #2980b9;
+    padding: 6px 12px;
+}
+
+/* Improve table styling */
+.rst-content table.docutils {
+    border: 1px solid #e1e4e5;
+}
+
+.rst-content table.docutils th {
+    background: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Better admonition styling */
+.rst-content .admonition {
+    margin: 24px 0;
+    padding: 12px;
+    border-left: 4px solid #2980b9;
+    border-radius: 4px;
+}
+
+.rst-content .admonition.note {
+    border-left-color: #17a2b8;
+    background: #d1ecf1;
+}
+
+.rst-content .admonition.warning {
+    border-left-color: #ffc107;
+    background: #fff3cd;
+}
+
+.rst-content .admonition.error {
+    border-left-color: #dc3545;
+    background: #f8d7da;
+}
+
+/* Improve navigation */
+.wy-nav-content {
+    max-width: 1200px;
+}
+
+/* Custom logo area */
+.wy-side-nav-search {
+    background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+}
+
+/* Better code font */
+code, .rst-content tt, .rst-content code {
+    font-family: 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+}
+
+/* Improve version badge */
+.wy-side-nav-search .version {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Better mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .wy-nav-content {
+        padding: 1.618em 1em;
+    }
+}

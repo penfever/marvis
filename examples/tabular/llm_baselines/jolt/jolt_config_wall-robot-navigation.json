@@ -1,0 +1,19 @@
+{
+  "dataset_name": "wall-robot-navigation",
+  "task_prefix": "This dataset contains sensor readings collected from a SCITOS G5 mobile robot navigating through a room following walls in a clockwise direction. The robot uses 24 ultrasound sensors arranged circularly around its waist. The dataset includes simplified distance measurements (front, left, right, back) derived from minimum sensor readings within 60-degree arcs. The task is to predict the appropriate navigation action based on these sensor readings. Each example contains 4 features. Predict the target class.",
+  "column_descriptions": {
+    "feature_1": "SD_front: minimum sensor reading within 60\u00b0 arc at front; SD_left: minimum sensor reading within 60\u00b0 arc at left; SD_right: minimum sensor reading within 60\u00b0 arc at right; SD_back: minimum sensor reading within 60\u00b0 arc at back. All values are real numbers representing distances. (feature 1)",
+    "feature_2": "SD_front: minimum sensor reading within 60\u00b0 arc at front; SD_left: minimum sensor reading within 60\u00b0 arc at left; SD_right: minimum sensor reading within 60\u00b0 arc at right; SD_back: minimum sensor reading within 60\u00b0 arc at back. All values are real numbers representing distances. (feature 2)",
+    "feature_3": "SD_front: minimum sensor reading within 60\u00b0 arc at front; SD_left: minimum sensor reading within 60\u00b0 arc at left; SD_right: minimum sensor reading within 60\u00b0 arc at right; SD_back: minimum sensor reading within 60\u00b0 arc at back. All values are real numbers representing distances. (feature 3)",
+    "feature_4": "SD_front: minimum sensor reading within 60\u00b0 arc at front; SD_left: minimum sensor reading within 60\u00b0 arc at left; SD_right: minimum sensor reading within 60\u00b0 arc at right; SD_back: minimum sensor reading within 60\u00b0 arc at back. All values are real numbers representing distances. (feature 4)"
+  },
+  "class_names": [
+    "Move-Forward",
+    "Slight-Right-Turn",
+    "Sharp-Right-Turn",
+    "Slight-Left-Turn"
+  ],
+  "class_description": "Classes: 'Move-Forward' (Robot navigation action to be taken: Move-Forward), 'Slight-Right-Turn' (Robot navigation action to be taken: Slight-Right-Turn), 'Sharp-Right-Turn' (Robot navigation action to be taken: Sharp-Right-Turn), 'Slight-Left-Turn' (Robot navigation action to be taken: Slight-Left-Turn)",
+  "num_features": 4,
+  "num_classes": 4
+}

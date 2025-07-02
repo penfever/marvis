@@ -1,0 +1,42 @@
+{
+  "dataset_name": "mfeat-fourier",
+  "task_prefix": "Multiple Features Dataset: Fourier coefficients. One of six datasets describing features of handwritten numerals (0-9) extracted from Dutch utility maps. This dataset contains Fourier coefficients of the character shapes, capturing frequency domain characteristics. Each example contains 20 features. Handwritten digit recognition for document processing.",
+  "column_descriptions": {
+    "fourier_coeff_1": "Fourier coefficient 1",
+    "fourier_coeff_2": "Fourier coefficient 2",
+    "fourier_coeff_3": "Fourier coefficient 3",
+    "fourier_coeff_4": "Fourier coefficient 4",
+    "fourier_coeff_5": "Fourier coefficient 5",
+    "fourier_coeff_6": "Fourier coefficient 6",
+    "fourier_coeff_7": "Fourier coefficient 7",
+    "fourier_coeff_8": "Fourier coefficient 8",
+    "fourier_coeff_9": "Fourier coefficient 9",
+    "fourier_coeff_10": "Fourier coefficient 10",
+    "fourier_coeff_11": "Fourier coefficient 11",
+    "fourier_coeff_12": "Fourier coefficient 12",
+    "fourier_coeff_13": "Fourier coefficient 13",
+    "fourier_coeff_14": "Fourier coefficient 14",
+    "fourier_coeff_15": "Fourier coefficient 15",
+    "fourier_coeff_16": "Fourier coefficient 16",
+    "fourier_coeff_17": "Fourier coefficient 17",
+    "fourier_coeff_18": "Fourier coefficient 18",
+    "fourier_coeff_19": "Fourier coefficient 19",
+    "fourier_coeff_20": "Fourier coefficient 20"
+  },
+  "class_names": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '0' (Digit 0), '1' (Digit 1), '2' (Digit 2), '3' (Digit 3), '4' (Digit 4), '5' (Digit 5), '6' (Digit 6), '7' (Digit 7), '8' (Digit 8), '9' (Digit 9)",
+  "num_features": 20,
+  "num_classes": 10,
+  "task_id": "14"
+}

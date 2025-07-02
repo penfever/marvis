@@ -1,0 +1,66 @@
+{
+  "dataset_name": "pakistan_hunger_data",
+  "description": "A comprehensive dataset tracking hunger and nutrition metrics across Pakistan from 2020-2023. The data captures key indicators related to food security, poverty, and child malnutrition, aimed at understanding and addressing nutritional challenges in the country. The dataset is particularly valuable for policy makers and humanitarian organizations working on food security initiatives in Pakistan.",
+  "original_source": {
+    "creator": "Unknown (likely compiled from multiple humanitarian sources)",
+    "institution": "Likely aggregated from WHO, World Bank, and Pakistan Bureau of Statistics data",
+    "date": "2023",
+    "publication": "No direct academic publication found"
+  },
+  "columns": [
+    {
+      "name": "Poverty_Rate",
+      "semantic_description": "Percentage of population living below the national poverty line in Pakistan",
+      "data_type": "Float (percentage between 0-100)"
+    },
+    {
+      "name": "Malnutrition_Rate",
+      "semantic_description": "Prevalence of malnutrition among the general population, including both under-nutrition and micronutrient deficiencies",
+      "data_type": "Float (percentage between 0-100)"
+    },
+    {
+      "name": "Food_Insecurity",
+      "semantic_description": "Percentage of population experiencing moderate to severe food insecurity, measured through access to adequate food",
+      "data_type": "Float (percentage between 0-100)"
+    },
+    {
+      "name": "Clean_Water_Access",
+      "semantic_description": "Percentage of population with access to improved drinking water sources",
+      "data_type": "Float (percentage between 0-100)"
+    },
+    {
+      "name": "Food_Production_Index",
+      "semantic_description": "Index measuring the relative level of aggregate agricultural production compared to a base period",
+      "data_type": "Float (index value)"
+    },
+    {
+      "name": "Healthcare_Access",
+      "semantic_description": "Percentage of population with access to basic healthcare services",
+      "data_type": "Float (percentage between 0-100)"
+    },
+    {
+      "name": "Rural_Population",
+      "semantic_description": "Percentage of total population living in rural areas",
+      "data_type": "Float (percentage between 0-100)"
+    },
+    {
+      "name": "GDP_Per_Capita",
+      "semantic_description": "Gross Domestic Product per capita in USD, indicating economic output and standard of living",
+      "data_type": "Float (USD value)"
+    }
+  ],
+  "target_description": {
+    "name": "Children_Underweight",
+    "meaning": "Percentage of children under 5 years of age who are underweight for their age according to WHO child growth standards",
+    "units": "Percentage",
+    "range": "0-100"
+  },
+  "dataset_history": "The dataset appears to be compiled from various international and national sources tracking hunger and nutrition metrics in Pakistan. It likely combines data from the World Health Organization (WHO), World Bank development indicators, and Pakistan's national statistics bureau. The collection period (2020-2023) coincides with significant global food security challenges, including COVID-19 impacts and economic instability.",
+  "inference_notes": "Important considerations include: 1) Data may have regional variations within Pakistan that are not captured in these national-level metrics, 2) Some metrics like Food_Production_Index may have seasonal variations, 3) Rural vs urban disparities might significantly impact interpretation, 4) COVID-19 period (2020-2021) may show unusual patterns, 5) Data collection methods and definitions may vary between sources, 6) Economic indicators should be considered alongside social metrics for comprehensive analysis. The target variable (Children_Underweight) is a key indicator of long-term nutritional challenges and effectiveness of food security programs.",
+  "_metadata": {
+    "task_id": 363440,
+    "generated_at": "2025-06-22T08:36:22.760868",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

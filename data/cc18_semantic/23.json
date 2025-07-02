@@ -1,0 +1,127 @@
+{
+  "dataset": "cmc",
+  "description": "Contraceptive Method Choice dataset from the 1987 National Indonesia Contraceptive Prevalence Survey. Predicts contraceptive method choice of married women based on demographic and socio-economic characteristics.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Contraceptive+Method+Choice",
+  "openml_task": 23,
+  "openml_dataset": 23,
+  "date_donated": "1997-06-07",
+  "creator": "Tjen-Sien Lim (University of Wisconsin)",
+  "instances": 1473,
+  "features": 9,
+  "target": "Contraceptive_method_used",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "continuous": 2,
+    "categorical": 7
+  },
+  "feature_description": {
+    "Wife's age": "Age of wife in years (numerical)",
+    "Wife's education": "Education level (1=low, 2, 3, 4=high)",
+    "Husband's education": "Education level (1=low, 2, 3, 4=high)",
+    "Number of children ever born": "Number of children (numerical)",
+    "Wife's religion": "Religion (0=Non-Islam, 1=Islam)",
+    "Wife's now working?": "Employment status (0=Yes, 1=No)",
+    "Husband's occupation": "Occupation category (1, 2, 3, 4)",
+    "Standard-of-living index": "Living standard (1=low, 2, 3, 4=high)",
+    "Media exposure": "Exposure to media (0=Good, 1=Not good)"
+  },
+  "instances_per_class": {
+    "No-use": 629,
+    "Long-term": 334,
+    "Short-term": 510
+  },
+  "target_values": {
+    "1": "No-use",
+    "2": "Long-term methods",
+    "3": "Short-term methods"
+  },
+  "domain": "Public Health/Demographics",
+  "use_case": "Family planning programs, healthcare policy development, understanding contraceptive adoption patterns, demographic studies",
+  "dataset_characteristics": "Survey data from married women who were either not pregnant or did not know if they were at the time of interview",
+  "data_collection": "Data collected as part of the 1987 National Indonesia Contraceptive Prevalence Survey",
+  "challenges": "Class imbalance, cultural and religious factors affecting contraceptive choices, limited geographic scope (Indonesia only)",
+  "ethical_considerations": "Sensitive personal health information, cultural and religious considerations, gender-specific data, potential for reinforcing stereotypes",
+  "citations": [
+    {
+      "author": "Tjen-Sien Lim, Wei-Yin Loh, Yu-Shan Shih",
+      "title": "A Comparison of Prediction Accuracy, Complexity, and Training Time of Thirty-three Old and New Classification Algorithms",
+      "venue": "Machine Learning",
+      "volume": "40",
+      "number": "3",
+      "pages": "203-228",
+      "year": "1999"
+    }
+  ],
+  "dataset_name": "cmc",
+  "original_source": {
+    "creator": "Tjen-Sien Lim (University of Wisconsin)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1997-06-07",
+    "publication": "Tjen-Sien Lim, Wei-Yin Loh, Yu-Shan Shih: A Comparison of Prediction Accuracy, Complexity, and Training Time of Thirty-three Old and New Classification Algorithms"
+  },
+  "columns": [
+    {
+      "name": "Wife's age",
+      "semantic_description": "Age of wife in years (numerical)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Wife's education",
+      "semantic_description": "Education level (1=low, 2, 3, 4=high)",
+      "data_type": "binary"
+    },
+    {
+      "name": "Husband's education",
+      "semantic_description": "Education level (1=low, 2, 3, 4=high)",
+      "data_type": "binary"
+    },
+    {
+      "name": "Number of children ever born",
+      "semantic_description": "Number of children (numerical)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Wife's religion",
+      "semantic_description": "Religion (0=Non-Islam, 1=Islam)",
+      "data_type": "binary"
+    },
+    {
+      "name": "Wife's now working?",
+      "semantic_description": "Employment status (0=Yes, 1=No)",
+      "data_type": "binary"
+    },
+    {
+      "name": "Husband's occupation",
+      "semantic_description": "Occupation category (1, 2, 3, 4)",
+      "data_type": "categorical"
+    },
+    {
+      "name": "Standard-of-living index",
+      "semantic_description": "Living standard (1=low, 2, 3, 4=high)",
+      "data_type": "binary"
+    },
+    {
+      "name": "Media exposure",
+      "semantic_description": "Exposure to media (0=Good, 1=Not good)",
+      "data_type": "binary"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "1",
+      "meaning": "No-use"
+    },
+    {
+      "name": "2",
+      "meaning": "Long-term methods"
+    },
+    {
+      "name": "3",
+      "meaning": "Short-term methods"
+    }
+  ],
+  "dataset_history": "Data Collection: Data collected as part of the 1987 National Indonesia Contraceptive Prevalence Survey",
+  "inference_notes": "Challenges: Class imbalance, cultural and religious factors affecting contraceptive choices, limited geographic scope (Indonesia only). Use Case: Family planning programs, healthcare policy development, understanding contraceptive adoption patterns, demographic studies"
+}

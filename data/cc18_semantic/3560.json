@@ -1,0 +1,59 @@
+{
+  "dataset_name": "analcatdata_dmft",
+  "openml_task_id": 3560,
+  "dataset_description": "This dataset is part of the 'Analyzing Categorical Data' collection and relates to dental health measurements using the DMFT (Decayed, Missing, Filled Teeth) index. The DMFT index is a key indicator used in epidemiological studies to assess oral health status in populations, counting the number of decayed, missing (due to caries), and filled teeth.",
+  "dataset_source": "Jeffrey S. Simonoff - 'Analyzing Categorical Data' book, Springer-Verlag",
+  "domain": "Healthcare, Dentistry, Epidemiology",
+  "problem_type": "Multi-class Classification",
+  "input_features": {
+    "number_of_features": 4,
+    "feature_types": "Mixed (Categorical and Numerical)",
+    "feature_description": "Features likely include demographic or health-related variables that may influence dental health outcomes"
+  },
+  "dataset_size": {
+    "instances": 797,
+    "features": 4,
+    "classes": 2
+  },
+  "description": "This dataset is part of the 'Analyzing Categorical Data' collection and relates to dental health measurements using the DMFT (Decayed, Missing, Filled Teeth) index. The DMFT index is a key indicator used in epidemiological studies to assess oral health status in populations, counting the number of decayed, missing (due to caries), and filled teeth.",
+  "original_source": {
+    "creator": "Unknown",
+    "institution": "Unknown",
+    "date": "Unknown",
+    "publication": "Unknown"
+  },
+  "columns": [
+    {
+      "name": "feature_1",
+      "semantic_description": "Features likely include demographic or health-related variables that may influence dental health outcomes (feature 1)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_2",
+      "semantic_description": "Features likely include demographic or health-related variables that may influence dental health outcomes (feature 2)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_3",
+      "semantic_description": "Features likely include demographic or health-related variables that may influence dental health outcomes (feature 3)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_4",
+      "semantic_description": "Features likely include demographic or health-related variables that may influence dental health outcomes (feature 4)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": ">2",
+      "meaning": "DMFT index categorized into classes: >2"
+    },
+    {
+      "name": "<=2",
+      "meaning": "DMFT index categorized into classes: <=2"
+    }
+  ],
+  "dataset_history": "Dataset history not available for analcatdata_dmft",
+  "inference_notes": "Inference notes not available for analcatdata_dmft"
+}

@@ -1,0 +1,128 @@
+{
+  "dataset": "electricity",
+  "description": "The electricity dataset contains data from the Australian New South Wales Electricity Market, where prices are not fixed and are affected by demand and supply. Prices are set every five minutes. The dataset includes electricity transfers between New South Wales and Victoria states to alleviate fluctuations. Each instance represents a 30-minute period with demand, price, and transfer information.",
+  "source": "UCI Machine Learning Repository via OpenML",
+  "source_url": "https://www.openml.org/d/151",
+  "openml_task": 219,
+  "openml_dataset": 151,
+  "date_collected": "May 7, 1996 to December 5, 1998",
+  "creator": "M. Harries, J. Gama, A. Bifet",
+  "instances": 45312,
+  "features": 8,
+  "target": "class",
+  "target_type": "binary",
+  "missing_values": false,
+  "feature_types": {
+    "date": "continuous",
+    "day": "continuous",
+    "period": "continuous",
+    "nswprice": "continuous",
+    "nswdemand": "continuous",
+    "vicprice": "continuous",
+    "vicdemand": "continuous",
+    "transfer": "continuous"
+  },
+  "feature_names": {
+    "date": "Date",
+    "day": "Day of week",
+    "period": "Time period",
+    "nswprice": "New South Wales electricity price",
+    "nswdemand": "New South Wales electricity demand",
+    "vicprice": "Victoria electricity price",
+    "vicdemand": "Victoria electricity demand",
+    "transfer": "Scheduled electricity transfer between states"
+  },
+  "feature_descriptions": {
+    "date": "Date of the measurement, normalized between 0 and 1",
+    "day": "Day of the week (1-7)",
+    "period": "Time of the measurement (1-48) in half hour intervals over 24 hours, normalized between 0 and 1",
+    "nswprice": "Electricity price in New South Wales, normalized between 0 and 1",
+    "nswdemand": "Electricity demand in New South Wales, normalized between 0 and 1",
+    "vicprice": "Electricity price in Victoria, normalized between 0 and 1",
+    "vicdemand": "Electricity demand in Victoria, normalized between 0 and 1",
+    "transfer": "Scheduled electricity transfer between both states, normalized between 0 and 1"
+  },
+  "target_values": {
+    "UP": "Price went up in New South Wales relative to a 24 hour moving average",
+    "DOWN": "Price went down in New South Wales relative to a 24 hour moving average"
+  },
+  "domain": "Energy/Electricity Market",
+  "use_case": "Predicting electricity price movement for market analysis, trading strategies, and understanding demand-supply dynamics in deregulated electricity markets",
+  "ethical_considerations": "The dataset represents real market data and should be used responsibly. Predictions should not be used for market manipulation or unfair trading practices.",
+  "citations": [
+    {
+      "author": "M. Harries",
+      "title": "Splice-2 comparative evaluation: Electricity pricing",
+      "venue": "Technical report, The University of South Wales",
+      "year": "1999"
+    },
+    {
+      "author": "J. Gama, P. Medas, G. Castillo, and P. Rodrigues",
+      "title": "Learning with drift detection",
+      "venue": "SBIA Brazilian Symposium on Artificial Intelligence",
+      "pages": "286-295",
+      "year": "2004"
+    }
+  ],
+  "dataset_name": "electricity",
+  "original_source": {
+    "creator": "M. Harries, J. Gama, A. Bifet",
+    "institution": "UCI Machine Learning Repository via OpenML",
+    "date": "Unknown",
+    "publication": "M. Harries: Splice-2 comparative evaluation: Electricity pricing"
+  },
+  "columns": [
+    {
+      "name": "Date",
+      "semantic_description": "Date of the measurement, normalized between 0 and 1",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Day of week",
+      "semantic_description": "Day of the week (1-7)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Time period",
+      "semantic_description": "Time of the measurement (1-48) in half hour intervals over 24 hours, normalized between 0 and 1",
+      "data_type": "continuous"
+    },
+    {
+      "name": "New South Wales electricity price",
+      "semantic_description": "Electricity price in New South Wales, normalized between 0 and 1",
+      "data_type": "continuous"
+    },
+    {
+      "name": "New South Wales electricity demand",
+      "semantic_description": "Electricity demand in New South Wales, normalized between 0 and 1",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Victoria electricity price",
+      "semantic_description": "Electricity price in Victoria, normalized between 0 and 1",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Victoria electricity demand",
+      "semantic_description": "Electricity demand in Victoria, normalized between 0 and 1",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Scheduled electricity transfer between states",
+      "semantic_description": "Scheduled electricity transfer between both states, normalized between 0 and 1",
+      "data_type": "continuous"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "UP",
+      "meaning": "Price went up in New South Wales relative to a 24 hour moving average"
+    },
+    {
+      "name": "DOWN",
+      "meaning": "Price went down in New South Wales relative to a 24 hour moving average"
+    }
+  ],
+  "dataset_history": "Dataset history not available for electricity",
+  "inference_notes": "Use Case: Predicting electricity price movement for market analysis, trading strategies, and understanding demand-supply dynamics in deregulated electricity markets"
+}

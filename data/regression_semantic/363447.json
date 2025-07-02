@@ -1,0 +1,51 @@
+{
+  "dataset_name": "IoT_Agriculture_2024",
+  "description": "This dataset contains IoT sensor measurements from a smart greenhouse environment, collected to monitor and optimize agricultural conditions. The data comes from various sensors measuring environmental and soil parameters critical for plant growth and agricultural management.",
+  "original_source": {
+    "creator": "Mohammed Ismail Lifta",
+    "institution": "Department of Computer Science, College of Computer Science and Mathematics, Tikrit University, Iraq",
+    "date": "2023-2024",
+    "publication": "Master's thesis research under supervision of Assistant Professor Wissam Dawood Abdullah"
+  },
+  "columns": [
+    {
+      "name": "temperature",
+      "semantic_description": "Ambient temperature measurement inside the greenhouse",
+      "data_type": "numeric (float), likely in Celsius"
+    },
+    {
+      "name": "humidity",
+      "semantic_description": "Relative humidity level in the greenhouse atmosphere",
+      "data_type": "numeric (float), percentage"
+    },
+    {
+      "name": "soil_moisture",
+      "semantic_description": "Moisture content in the soil",
+      "data_type": "numeric (float), percentage"
+    },
+    {
+      "name": "light_intensity",
+      "semantic_description": "Amount of light reaching the plants",
+      "data_type": "numeric (float), likely in lux"
+    },
+    {
+      "name": "remaining_features",
+      "semantic_description": "Note: Exact semantic meaning of remaining numbered features (0-12) cannot be definitively determined without additional documentation",
+      "data_type": "numeric"
+    }
+  ],
+  "target_description": {
+    "name": "water_level",
+    "meaning": "Measurement of water level in the greenhouse irrigation system or soil",
+    "units": "Likely in centimeters or percentage",
+    "range": "Numeric values representing water levels (exact range uncertain without additional documentation)"
+  },
+  "dataset_history": "The dataset was collected as part of a master's thesis research project focused on smart agriculture and IoT applications. Data was gathered from a specially equipped greenhouse using various IoT sensors and monitoring devices. The project appears to be part of broader research into precision agriculture and smart farming techniques at Tikrit University.",
+  "inference_notes": "Important considerations:\n1. The data represents real-world greenhouse conditions and may contain natural environmental variations\n2. Sensor calibration and maintenance details are not provided but could affect measurements\n3. The numbered feature names (0-12) suggest this might be a processed version of the original dataset\n4. The large number of instances (37,922) indicates extensive monitoring over time\n5. The relationship between water level and other environmental parameters is likely complex and non-linear\n6. Local climate conditions in Iraq may influence the patterns in the data",
+  "_metadata": {
+    "task_id": 363447,
+    "generated_at": "2025-06-22T08:37:38.946780",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

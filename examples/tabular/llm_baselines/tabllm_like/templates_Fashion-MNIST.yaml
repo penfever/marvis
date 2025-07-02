@@ -1,0 +1,16 @@
+dataset: Fashion-MNIST
+templates:
+  44b593a1-5fdc-4777-a4c4-ac034d5693d7: !Template
+    name: Fashion-MNIST
+    id: 44b593a1-5fdc-4777-a4c4-ac034d5693d7
+    reference: ''
+    answer_choices: T-shirt/top ||| Trouser ||| Pullover ||| Dress ||| Coat ||| Sandal
+      ||| Shirt ||| Sneaker ||| Bag ||| Ankle boot
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ T-shirt/top, Trouser, Pullover, Dress, Coat, Sandal, Shirt, Sneaker, Bag,\
+      \ Ankle boot?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

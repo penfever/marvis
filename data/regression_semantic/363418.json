@@ -1,0 +1,56 @@
+{
+  "dataset_name": "infrared_thermography_temperature",
+  "description": "This dataset contains thermal imaging measurements and related metadata collected to study the relationship between infrared thermography readings and core body temperature. The data was collected using thermal cameras to measure surface temperatures at various facial points, combined with traditional oral temperature measurements, with the goal of developing non-contact temperature screening methods.",
+  "original_source": {
+    "creator": "Zhou, Yiming and Ghassemi, Patrick and Chen, Maxwell and McBride, Devin and Casamento, Jon P. and Pfefer, Joshua and Wang, Quanzeng",
+    "institution": "U.S. Food and Drug Administration (FDA), Center for Devices and Radiological Health",
+    "date": "2020",
+    "publication": "Clinical evaluation of fever-screening thermography: impact of consensus guidelines and facial measurement location"
+  },
+  "columns": [
+    {
+      "name": "gender",
+      "semantic_description": "Biological sex of the participant",
+      "data_type": "categorical (Male/Female)"
+    },
+    {
+      "name": "age",
+      "semantic_description": "Age of the participant in years",
+      "data_type": "numeric (continuous)"
+    },
+    {
+      "name": "ethnicity",
+      "semantic_description": "Ethnic background of the participant",
+      "data_type": "categorical"
+    },
+    {
+      "name": "ambient_temp",
+      "semantic_description": "Room temperature during measurement",
+      "data_type": "numeric (continuous), degrees Fahrenheit"
+    },
+    {
+      "name": "humidity",
+      "semantic_description": "Relative humidity percentage in the room during measurement",
+      "data_type": "numeric (continuous), percentage"
+    },
+    {
+      "name": "thermal_readings_[various_points]",
+      "semantic_description": "Temperature measurements from different facial locations using thermal imaging",
+      "data_type": "numeric (continuous), degrees Fahrenheit"
+    }
+  ],
+  "target_description": {
+    "name": "aveOralF",
+    "meaning": "Average oral temperature measurement taken as ground truth for core body temperature",
+    "units": "Degrees Fahrenheit",
+    "range": "96.0°F - 101.0°F (typical human oral temperature range)"
+  },
+  "dataset_history": "This dataset was collected during the COVID-19 pandemic to evaluate the effectiveness of thermal imaging for fever screening. The research was conducted to support the development of guidelines for non-contact temperature measurement systems, which became crucial for public health screening during the pandemic. The data collection followed standardized protocols established by international standards organizations.",
+  "inference_notes": "Important considerations include:\n1. Thermal readings can be affected by environmental conditions (ambient temperature, humidity)\n2. Surface temperature measurements may not perfectly correlate with core body temperature\n3. Individual variations in facial anatomy and blood flow patterns may affect readings\n4. Time of day and recent physical activity may influence temperature measurements\n5. The dataset was collected in controlled clinical settings and may not fully represent real-world screening conditions\n6. Measurement distance and angle can affect thermal reading accuracy",
+  "_metadata": {
+    "task_id": 363418,
+    "generated_at": "2025-06-22T08:31:40.553652",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "dataset_name": "medical_charges",
+  "task_prefix": "This dataset contains Medicare inpatient payment and utilization data from the Centers for Medicare & Medicaid Services (CMS). It focuses on tracking hospital charges, Medicare payments, and patient utilization metrics for different medical procedures across various healthcare facilities in the United States. The data is part of the government's effort to increase transparency in healthcare pricing and utilization patterns. Each example contains 4 features. Predict the AverageTotalPayments.",
+  "column_descriptions": {
+    "0": "Likely represents DRG (Diagnosis Related Group) or procedure codes that classify various types of hospital cases",
+    "1": "Possibly represents provider or hospital identifiers, or geographic location codes",
+    "2": "May represent patient demographic information or treatment characteristics",
+    "3": "May represent service metrics like length of stay or complexity indicators"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: AverageTotalPayments - The average total payment amount for the specified medical service or procedure, including both Medicare payments and beneficiary responsibility. Units: US Dollars ($). Range: Likely ranges from hundreds to hundreds of thousands of dollars, depending on procedure complexity",
+  "num_features": 4,
+  "num_classes": 1,
+  "task_id": 361086
+}

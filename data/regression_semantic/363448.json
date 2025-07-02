@@ -1,0 +1,71 @@
+{
+  "dataset_name": "coffee_distribution_across_94_counties",
+  "description": "A comprehensive dataset tracking global coffee production, supply, and distribution metrics across 94 countries over 63 years (1960-2023). The data comes from USDA's official agricultural statistics and captures key coffee trade variables measured in 60kg bags (standard international coffee trade unit). This dataset is valuable for analyzing global coffee market trends, supply chain patterns, and production dynamics.",
+  "original_source": {
+    "creator": "United States Department of Agriculture (USDA) Foreign Agricultural Service",
+    "institution": "USDA",
+    "date": "2023",
+    "publication": "USDA PSD Online Database"
+  },
+  "columns": [
+    {
+      "name": "Beginning_Stocks",
+      "semantic_description": "Inventory of green coffee beans available at start of marketing year",
+      "data_type": "Integer (measured in 1000 60kg bags)"
+    },
+    {
+      "name": "Production",
+      "semantic_description": "Annual coffee production volume in the country",
+      "data_type": "Integer (measured in 1000 60kg bags)"
+    },
+    {
+      "name": "Imports",
+      "semantic_description": "Volume of green coffee imported by the country",
+      "data_type": "Integer (measured in 1000 60kg bags)"
+    },
+    {
+      "name": "Total_Supply",
+      "semantic_description": "Total available coffee supply (Beginning_Stocks + Production + Imports)",
+      "data_type": "Integer (measured in 1000 60kg bags)"
+    },
+    {
+      "name": "Exports",
+      "semantic_description": "Volume of green coffee exported from the country",
+      "data_type": "Integer (measured in 1000 60kg bags)"
+    },
+    {
+      "name": "Domestic_Consumption",
+      "semantic_description": "Volume of coffee consumed within the country",
+      "data_type": "Integer (measured in 1000 60kg bags)"
+    },
+    {
+      "name": "Ending_Stocks",
+      "semantic_description": "Remaining inventory at end of marketing year",
+      "data_type": "Integer (measured in 1000 60kg bags)"
+    },
+    {
+      "name": "Country",
+      "semantic_description": "Name of the coffee producing/trading country",
+      "data_type": "Categorical (94 unique countries)"
+    },
+    {
+      "name": "Year",
+      "semantic_description": "Marketing year for the coffee trade data",
+      "data_type": "Integer (1960-2023)"
+    }
+  ],
+  "target_description": {
+    "name": "Total_Supply",
+    "meaning": "The total available coffee supply in a country, calculated as the sum of beginning stocks, production, and imports. This represents the total coffee volume available for trade and consumption.",
+    "units": "Thousand 60-kg bags",
+    "range": "0 to several million bags, depending on country size and role in coffee trade"
+  },
+  "dataset_history": "The dataset is derived from USDA's Production, Supply and Distribution (PSD) database, which has been maintaining agricultural commodity statistics since the 1960s. The coffee data specifically tracks green (unroasted) coffee beans, which is the primary form for international coffee trade. The USDA collects this data through its global network of agricultural attachés and international cooperators.",
+  "inference_notes": "Important considerations include: 1) Data represents official USDA estimates but actual numbers may vary due to informal trade and reporting delays, 2) Marketing years may vary by country, affecting temporal comparisons, 3) The 60kg bag unit is standard in coffee trade but may mask qualitative differences between coffee types, 4) Some smaller producing countries may have incomplete historical data, 5) Production numbers can be significantly affected by weather events and coffee plant diseases, which are not directly captured in the dataset.",
+  "_metadata": {
+    "task_id": 363448,
+    "generated_at": "2025-06-22T08:38:00.551943",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

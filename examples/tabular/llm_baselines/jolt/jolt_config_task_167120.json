@@ -1,0 +1,16 @@
+{
+  "dataset_name": "numerai28.6",
+  "task_prefix": "Encrypted stock market data from Numerai hedge fund tournament. Features are cleaned, regularized and encrypted global equity data with anonymized feature names. Part of Numerai's crowd-sourced hedge fund competition. Each example contains 2 features. Quantitative trading.",
+  "column_descriptions": {
+    "feature1_to_feature21": "21 anonymized features representing cleaned and regularized global equity market data",
+    "note": "Feature meanings are intentionally obscured as part of the tournament design"
+  },
+  "class_names": [
+    "0",
+    "1"
+  ],
+  "class_description": "Classes: '0' (Negative market movement/return), '1' (Positive market movement/return)",
+  "num_features": 2,
+  "num_classes": 2,
+  "task_id": "167120"
+}

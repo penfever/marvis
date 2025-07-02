@@ -1,0 +1,16 @@
+dataset: mfeat-fourier
+templates:
+  0bbbb769-9119-4106-bd39-97587d300361: !Template
+    name: mfeat-fourier
+    id: 0bbbb769-9119-4106-bd39-97587d300361
+    reference: ''
+    answer_choices: Digit 0 ||| Digit 1 ||| Digit 2 ||| Digit 3 ||| Digit 4 ||| Digit
+      5 ||| Digit 6 ||| Digit 7 ||| Digit 8 ||| Digit 9
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Digit 0, Digit 1, Digit 2, Digit 3, Digit 4, Digit 5, Digit 6, Digit 7, Digit\
+      \ 8, Digit 9?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

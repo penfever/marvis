@@ -1,0 +1,16 @@
+dataset: pc4
+templates:
+  7673d643-8a68-4acb-abe7-073b6f4fce7f: !Template
+    name: pc4
+    id: 7673d643-8a68-4acb-abe7-073b6f4fce7f
+    reference: ''
+    answer_choices: FALSE ||| TRUE
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: FALSE (Module\
+      \ has no reported defects - considered defect-free in testing/operation), TRUE\
+      \ (Module has one or more reported defects - bugs found during testing or deployment)\n\
+      Answer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

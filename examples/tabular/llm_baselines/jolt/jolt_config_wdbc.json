@@ -1,0 +1,43 @@
+{
+  "dataset_name": "wdbc",
+  "task_prefix": "Wisconsin Diagnostic Breast Cancer dataset containing measurements from digitized images of fine needle aspirate (FNA) of breast masses. Features describe characteristics of cell nuclei to classify tumors as malignant or benign. Each example contains 30 features. Predict the target class.",
+  "column_descriptions": {
+    "radius_mean": "Mean of distances from center to points on the perimeter - average size of cell nuclei.",
+    "texture_mean": "Standard deviation of gray-scale values - variation in gray-scale intensities in the cell nuclei image.",
+    "perimeter_mean": "Mean perimeter of cell nuclei - average boundary length of nuclei.",
+    "area_mean": "Mean area of cell nuclei - average size in square units.",
+    "smoothness_mean": "Mean of local variation in radius lengths - measures contour smoothness.",
+    "compactness_mean": "Mean of perimeter\u00b2/area - 1.0 - measures shape compactness.",
+    "concavity_mean": "Mean severity of concave portions of the contour - depth of indentations.",
+    "concave_points_mean": "Mean number of concave portions of the contour - count of indented sections.",
+    "symmetry_mean": "Mean symmetry of cell nuclei - similarity between halves when divided.",
+    "fractal_dimension_mean": "Mean of 'coastline approximation' - 1 - complexity of nuclear boundary.",
+    "radius_se": "Standard error of cell nuclei radius measurements.",
+    "texture_se": "Standard error of gray-scale value standard deviations.",
+    "perimeter_se": "Standard error of cell nuclei perimeter measurements.",
+    "area_se": "Standard error of cell nuclei area measurements.",
+    "smoothness_se": "Standard error of local variation in radius lengths.",
+    "compactness_se": "Standard error of compactness measurements.",
+    "concavity_se": "Standard error of concavity severity measurements.",
+    "concave_points_se": "Standard error of concave portions count.",
+    "symmetry_se": "Standard error of symmetry measurements.",
+    "fractal_dimension_se": "Standard error of fractal dimension measurements.",
+    "radius_worst": "Mean of the three largest radius values - captures extreme cell nuclei sizes.",
+    "texture_worst": "Mean of the three largest texture values - captures extreme gray-scale variations.",
+    "perimeter_worst": "Mean of the three largest perimeter values - captures extreme boundary lengths.",
+    "area_worst": "Mean of the three largest area values - captures extreme nuclei sizes.",
+    "smoothness_worst": "Mean of the three largest smoothness values - captures extreme contour variations.",
+    "compactness_worst": "Mean of the three largest compactness values - captures extreme shape deviations.",
+    "concavity_worst": "Mean of the three largest concavity values - captures deepest indentations.",
+    "concave_points_worst": "Mean of the three largest concave points values - captures most indented contours.",
+    "symmetry_worst": "Mean of the three largest symmetry values - captures most asymmetric nuclei.",
+    "fractal_dimension_worst": "Mean of the three largest fractal dimension values - captures most complex boundaries."
+  },
+  "class_names": [
+    "B",
+    "M"
+  ],
+  "class_description": "Classes: 'B' (Benign - non-cancerous breast mass (357 instances, 62.7%)), 'M' (Malignant - cancerous breast mass (212 instances, 37.3%))",
+  "num_features": 30,
+  "num_classes": 2
+}

@@ -1,0 +1,51 @@
+{
+  "dataset_name": "light_inferred",
+  "description": "This dataset is derived from the LIGHT (Learning in Interactive Games with Humans and Text) project, focusing on analyzing gender bias in persona-based conversations. It contains conversations where personas interact in a fantasy-themed environment. The dataset is specifically processed to study multi-dimensional gender bias by analyzing how language differs based on the speaker's gender, the addressee's gender, and who is being discussed.",
+  "original_source": {
+    "creator": "Emily Dinan, Angela Fan, Ledell Wu, Jason Weston, Douwe Kiela, Adina Williams",
+    "institution": "Facebook AI Research (FAIR)",
+    "date": "2020",
+    "publication": "Multi-Dimensional Gender Bias Classification (ACL 2020)"
+  },
+  "columns": [
+    {
+      "name": "0",
+      "semantic_description": "Likely represents text embeddings or encoded features derived from conversation text",
+      "data_type": "numeric (float)"
+    },
+    {
+      "name": "1",
+      "semantic_description": "Likely represents speaker (AS) characteristics or encoded conversation attributes",
+      "data_type": "numeric (float)"
+    },
+    {
+      "name": "2",
+      "semantic_description": "Likely represents addressee (TO) characteristics or conversation context features",
+      "data_type": "numeric (float)"
+    },
+    {
+      "name": "3",
+      "semantic_description": "Likely represents semantic or contextual features from the conversation",
+      "data_type": "numeric (float)"
+    },
+    {
+      "name": "4",
+      "semantic_description": "Likely represents additional conversation or persona attributes",
+      "data_type": "numeric (float)"
+    }
+  ],
+  "target_description": {
+    "name": "ternary_score",
+    "meaning": "A measure of gender bias in the conversation, likely representing a classification of bias type or intensity",
+    "units": "Normalized score",
+    "range": "Continuous values, likely normalized between specific bounds (exact range uncertain)"
+  },
+  "dataset_history": "The LIGHT dataset was created as part of Facebook AI's broader initiative to study and address gender bias in conversational AI systems. It builds upon the ConvAI2 dataset framework but extends it specifically for fantasy-themed persona-based interactions. The conversations were collected through crowdsourcing, where annotators provided gender labels for both speakers and addressees. The dataset was further processed to include inferred labels about who is being discussed in the conversations.",
+  "inference_notes": "Important considerations:\n1. The features are likely derived from more complex text data through embedding or encoding processes\n2. The original text conversations have been transformed into numerical features for machine learning purposes\n3. The dataset focuses specifically on gender bias in language, so results should be interpreted in this context\n4. The 'inferred' nature of some labels (particularly ABOUT labels) means there may be some inherent uncertainty in the classifications\n5. The fantasy setting of the conversations may influence how gender bias manifests compared to real-world conversations\n6. The ternary_score target variable likely represents a simplified measure of a complex social phenomenon",
+  "_metadata": {
+    "task_id": 363388,
+    "generated_at": "2025-06-22T08:29:06.086646",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

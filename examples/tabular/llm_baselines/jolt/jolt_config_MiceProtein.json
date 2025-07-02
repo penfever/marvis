@@ -1,0 +1,39 @@
+{
+  "dataset_name": "MiceProtein",
+  "task_prefix": "Expression levels of 77 proteins measured in the cerebral cortex of control and Down syndrome (trisomy) mice. Mice were exposed to context fear conditioning to assess associative learning, with some receiving memantine treatment. Each example contains 20 features. Biomarker discovery for Down syndrome.",
+  "column_descriptions": {
+    "protein_1": "Protein expression level 1",
+    "protein_2": "Protein expression level 2",
+    "protein_3": "Protein expression level 3",
+    "protein_4": "Protein expression level 4",
+    "protein_5": "Protein expression level 5",
+    "protein_6": "Protein expression level 6",
+    "protein_7": "Protein expression level 7",
+    "protein_8": "Protein expression level 8",
+    "protein_9": "Protein expression level 9",
+    "protein_10": "Protein expression level 10",
+    "protein_11": "Protein expression level 11",
+    "protein_12": "Protein expression level 12",
+    "protein_13": "Protein expression level 13",
+    "protein_14": "Protein expression level 14",
+    "protein_15": "Protein expression level 15",
+    "protein_16": "Protein expression level 16",
+    "protein_17": "Protein expression level 17",
+    "protein_18": "Protein expression level 18",
+    "protein_19": "Protein expression level 19",
+    "protein_20": "Protein expression level 20"
+  },
+  "class_names": [
+    "c-CS-m",
+    "c-CS-s",
+    "c-SC-m",
+    "c-SC-s",
+    "t-CS-m",
+    "t-CS-s",
+    "t-SC-m",
+    "t-SC-s"
+  ],
+  "class_description": "Classes: 'c-CS-s' (Control mice, stimulated to learn, saline injection (9 mice)), 'c-CS-m' (Control mice, stimulated to learn, memantine injection (10 mice)), 'c-SC-s' (Control mice, not stimulated to learn, saline injection (9 mice)), 'c-SC-m' (Control mice, not stimulated to learn, memantine injection (10 mice)), 't-CS-s' (Trisomy mice, stimulated to learn, saline injection (7 mice)), 't-CS-m' (Trisomy mice, stimulated to learn, memantine injection (9 mice)), 't-SC-s' (Trisomy mice, not stimulated to learn, saline injection (9 mice)), 't-SC-m' (Trisomy mice, not stimulated to learn, memantine injection (9 mice))",
+  "num_features": 20,
+  "num_classes": 8
+}

@@ -1,0 +1,34 @@
+{
+  "dataset_name": "churn",
+  "task_prefix": "Telecommunications customer churn dataset containing telephony account features and usage patterns to predict whether customers will switch providers. Originally used in 'Discovering Knowledge in Data: An Introduction to Data Mining'. Each example contains 20 features. Customer retention.",
+  "column_descriptions": {
+    "state": "State code (numeric encoding)",
+    "account_length": "Length of account in days",
+    "area_code": "Telephone area code (408, 415, 510)",
+    "phone_number": "Phone number (numeric)",
+    "international_plan": "International plan subscription (0=no, 1=yes)",
+    "voice_mail_plan": "Voice mail plan subscription (0=no, 1=yes)",
+    "number_vmail_messages": "Number of voice mail messages",
+    "total_day_minutes": "Total minutes used during day",
+    "total_day_calls": "Total number of calls during day",
+    "total_day_charge": "Total charges for day usage",
+    "total_eve_minutes": "Total minutes used during evening",
+    "total_eve_calls": "Total number of calls during evening",
+    "total_eve_charge": "Total charges for evening usage",
+    "total_night_minutes": "Total minutes used during night",
+    "total_night_calls": "Total number of calls during night",
+    "total_night_charge": "Total charges for night usage",
+    "total_intl_minutes": "Total international minutes",
+    "total_intl_calls": "Total international calls",
+    "total_intl_charge": "Total international charges",
+    "number_customer_service_calls": "Number of calls to customer service"
+  },
+  "class_names": [
+    "0",
+    "1"
+  ],
+  "class_description": "Classes: '0' (No churn (customer retained)), '1' (Churn (customer left))",
+  "num_features": 20,
+  "num_classes": 2,
+  "task_id": "167141"
+}

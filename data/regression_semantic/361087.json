@@ -1,0 +1,96 @@
+{
+  "dataset_name": "MiamiHousing2016",
+  "description": "A comprehensive dataset of single-family home sales in Miami, Florida from 2016. The dataset combines real estate transaction data with environmental and geographical features, including aviation noise impacts and location-based metrics. It's particularly valuable for real estate price prediction and urban housing market analysis.",
+  "original_source": {
+    "creator": "Steven C. Bourassa",
+    "institution": "Florida Atlantic University",
+    "date": "2016",
+    "publication": "Bourassa, S. C., Cantoni, E., & Hoesli, M. (2016). Robust hedonic price indexes. International Journal of Housing Markets and Analysis."
+  },
+  "columns": [
+    {
+      "name": "SALEPRC",
+      "semantic_description": "The actual selling price of the property",
+      "data_type": "numeric (USD)"
+    },
+    {
+      "name": "LIVEAREA",
+      "semantic_description": "Living area of the home in square feet, representing the habitable space",
+      "data_type": "numeric (square feet)"
+    },
+    {
+      "name": "AGE",
+      "semantic_description": "Age of the property in years at the time of sale",
+      "data_type": "numeric (years)"
+    },
+    {
+      "name": "LOTSIZE",
+      "semantic_description": "Total area of the property lot",
+      "data_type": "numeric (square feet)"
+    },
+    {
+      "name": "AIRCOND",
+      "semantic_description": "Presence of air conditioning (binary indicator)",
+      "data_type": "binary (0/1)"
+    },
+    {
+      "name": "BEDS",
+      "semantic_description": "Number of bedrooms in the property",
+      "data_type": "numeric (integer)"
+    },
+    {
+      "name": "BATHS",
+      "semantic_description": "Number of bathrooms in the property",
+      "data_type": "numeric (decimal)"
+    },
+    {
+      "name": "STORIES",
+      "semantic_description": "Number of stories/floors in the house",
+      "data_type": "numeric (integer)"
+    },
+    {
+      "name": "DRIVEWAY",
+      "semantic_description": "Presence of a driveway",
+      "data_type": "binary (0/1)"
+    },
+    {
+      "name": "FULLBASE",
+      "semantic_description": "Presence of a full basement",
+      "data_type": "binary (0/1)"
+    },
+    {
+      "name": "AVNOISE",
+      "semantic_description": "Aviation noise level measurement at the property location",
+      "data_type": "numeric (decibels)"
+    },
+    {
+      "name": "DISTANCE",
+      "semantic_description": "Distance to central business district or key amenities",
+      "data_type": "numeric (miles)"
+    },
+    {
+      "name": "LAT",
+      "semantic_description": "Latitude coordinate of the property",
+      "data_type": "numeric (degrees)"
+    },
+    {
+      "name": "LON",
+      "semantic_description": "Longitude coordinate of the property",
+      "data_type": "numeric (degrees)"
+    }
+  ],
+  "target_description": {
+    "name": "SALEPRC",
+    "meaning": "The final sale price of the residential property, representing the market value agreed upon between buyer and seller",
+    "units": "US Dollars (USD)",
+    "range": "Typically between $100,000 and $2,000,000 for Miami single-family homes in 2016"
+  },
+  "dataset_history": "This dataset was created to study housing market dynamics in Miami and develop robust hedonic pricing models. It combines multiple data sources including property records, environmental measurements, and geographical data. The dataset has been used in several academic studies and has become part of the tabular data benchmark collection for machine learning research.",
+  "inference_notes": "Important considerations include:\n1. The data represents only single-family homes, excluding condos and multi-family units\n2. Aviation noise measurements may have seasonal variations\n3. Property prices in Miami can be influenced by factors not captured in the dataset (e.g., hurricane risk, flood zones)\n4. The 2016 timeframe represents a specific point in Miami's real estate cycle\n5. Distance measurements may not account for actual travel time or accessibility\n6. Some luxury properties or unusual sales may create outliers in the price distribution",
+  "_metadata": {
+    "task_id": 361087,
+    "generated_at": "2025-06-22T07:03:22.497750",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

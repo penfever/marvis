@@ -1,0 +1,51 @@
+{
+  "dataset_name": "climate_change_dataset2020-2024",
+  "description": "A time-series dataset tracking monthly global climate indicators from 2020-2024, focused on measuring various atmospheric and oceanic parameters to study climate change patterns. The dataset specifically emphasizes sea surface temperature predictions using multiple climate variables.",
+  "original_source": {
+    "creator": "Unknown/Not Specified",
+    "institution": "Likely compiled from NOAA/NASA climate data sources",
+    "date": "2024",
+    "publication": "No formal academic publication found"
+  },
+  "columns": [
+    {
+      "name": "Sea_Surface_Temp_degC",
+      "semantic_description": "Average global sea surface temperature measured in degrees Celsius, a key indicator of ocean warming and climate change",
+      "data_type": "float, continuous"
+    },
+    {
+      "name": "CO2_ppm",
+      "semantic_description": "Atmospheric carbon dioxide concentration in parts per million, measuring greenhouse gas levels",
+      "data_type": "float, continuous"
+    },
+    {
+      "name": "Global_Temp_Anomaly",
+      "semantic_description": "Deviation from historical average global temperature, indicating warming or cooling trends",
+      "data_type": "float, continuous"
+    },
+    {
+      "name": "Ocean_Heat_Content",
+      "semantic_description": "Measure of energy stored in ocean waters, indicating long-term warming trends",
+      "data_type": "float, continuous"
+    },
+    {
+      "name": "Note: Remaining features not explicitly named in source data",
+      "semantic_description": "Likely includes atmospheric pressure, humidity, precipitation, wind patterns, and other climate indicators",
+      "data_type": "various numeric types"
+    }
+  ],
+  "target_description": {
+    "name": "Sea_Surface_Temp_degC",
+    "meaning": "Global average sea surface temperature, a critical indicator of ocean warming and climate change impacts",
+    "units": "Degrees Celsius",
+    "range": "Typically between -2°C to 30°C depending on location and season"
+  },
+  "dataset_history": "This dataset appears to be compiled from modern climate monitoring systems and satellites during the 2020-2024 period. It represents a subset of global climate monitoring efforts, focusing on recent changes during a period of increased climate change awareness and monitoring.",
+  "inference_notes": "Important considerations:\n1. Short time span (2020-2024) may limit long-term trend analysis\n2. Monthly aggregation may mask daily variations\n3. Global averages may obscure regional variations\n4. Data likely comes from multiple measurement systems and satellites\n5. Sea surface temperature predictions should consider seasonal cycles and regional effects\n6. Small sample size (45 instances) may limit some modeling approaches\n7. Feature names are not clearly labeled in the source, requiring domain expertise for interpretation",
+  "_metadata": {
+    "task_id": 363436,
+    "generated_at": "2025-06-22T08:34:46.719643",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "dataset": "balance-scale",
+  "description": "Balance Scale Weight & Distance Database generated to model psychological experimental results. Each example represents a balance scale scenario with weights and distances on both sides. The task is to predict whether the scale tips left, tips right, or remains balanced based on the physics principle of torque.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/balance+scale",
+  "openml_task": 11,
+  "openml_dataset": 11,
+  "date_donated": "April 22, 1994",
+  "creator": "Generated to model experiments by Siegler, R. S. (1976), donated by Tim Hume",
+  "instances": 625,
+  "features": 4,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "integer"
+  },
+  "feature_names": {
+    "left-weight": "Left weight",
+    "left-distance": "Left distance",
+    "right-weight": "Right weight",
+    "right-distance": "Right distance"
+  },
+  "feature_descriptions": {
+    "left-weight": "Weight on the left side of the balance scale (1-5)",
+    "left-distance": "Distance of left weight from the fulcrum (1-5)",
+    "right-weight": "Weight on the right side of the balance scale (1-5)",
+    "right-distance": "Distance of right weight from the fulcrum (1-5)"
+  },
+  "class_distribution": {
+    "L": "288 instances (46.08%)",
+    "B": "49 instances (7.84%)",
+    "R": "288 instances (46.08%)"
+  },
+  "physics_rule": "Class is determined by comparing (left-weight * left-distance) vs (right-weight * right-distance). If left product is greater, class is L. If right product is greater, class is R. If equal, class is B.",
+  "target_values": {
+    "L": "Balance scale tips to the left",
+    "B": "Balance scale remains balanced",
+    "R": "Balance scale tips to the right"
+  },
+  "domain": "Psychology/Cognitive Science",
+  "use_case": "Modeling cognitive development and understanding how children learn physical principles. Used to study machine learning approaches to cognitive modeling and rule learning.",
+  "psychological_context": "Based on Siegler's (1976) 'Three Aspects of Cognitive Development' study examining how children develop understanding of balance scale physics",
+  "research_applications": "Used in studies of rule-based learning, cognitive modeling, parallel distributed processing, and unified theories of cognition",
+  "ethical_considerations": "Synthetic dataset with no privacy concerns. Represents simplified physics model useful for educational and research purposes.",
+  "citations": [
+    {
+      "author": "Siegler, R. S.",
+      "title": "Three Aspects of Cognitive Development",
+      "venue": "Cognitive Psychology",
+      "volume": "8",
+      "pages": "481-520",
+      "year": "1976"
+    },
+    {
+      "author": "Shultz, T., Mareschal, D., & Schmidt, W.",
+      "title": "Modeling Cognitive Development on Balance Scale Phenomena",
+      "venue": "Machine Learning",
+      "volume": "16",
+      "pages": "59-88",
+      "year": "1994"
+    }
+  ],
+  "dataset_name": "balance-scale",
+  "original_source": {
+    "creator": "Generated to model experiments by Siegler, R. S. (1976), donated by Tim Hume",
+    "institution": "UCI Machine Learning Repository",
+    "date": "April 22, 1994",
+    "publication": "Siegler, R. S.: Three Aspects of Cognitive Development"
+  },
+  "columns": [
+    {
+      "name": "Left weight",
+      "semantic_description": "Weight on the left side of the balance scale (1-5)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Left distance",
+      "semantic_description": "Distance of left weight from the fulcrum (1-5)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Right weight",
+      "semantic_description": "Weight on the right side of the balance scale (1-5)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Right distance",
+      "semantic_description": "Distance of right weight from the fulcrum (1-5)",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "L",
+      "meaning": "Balance scale tips to the left"
+    },
+    {
+      "name": "B",
+      "meaning": "Balance scale remains balanced"
+    },
+    {
+      "name": "R",
+      "meaning": "Balance scale tips to the right"
+    }
+  ],
+  "dataset_history": "Dataset history not available for balance-scale",
+  "inference_notes": "Applications: Used in studies of rule-based learning, cognitive modeling, parallel distributed processing, and unified theories of cognition. Use Case: Modeling cognitive development and understanding how children learn physical principles. Used to study machine learning approaches to cognitive modeling and rule learning."
+}

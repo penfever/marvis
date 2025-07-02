@@ -1,0 +1,96 @@
+# Project-specific - ignore contents but keep directories
+# IMPORTANT: These patterns exclude the data directories for storing files
+# but do NOT exclude the Python module code in marvis/data/
+/results_llm/*
+/results/*
+/models/*
+!/models/.gitkeep
+/data/*
+!/data/.gitkeep
+/secrets/*
+!/secrets/.gitkeep
+.claude
+CLAUDE.md
+catboost_info
+openml_cc18_analysis_wandb
+cifar10_data
+test_output
+audio_test_data
+esc50_data
+esc50_test_data
+ravdess_data
+cache
+
+# Make sure we don't ignore the marvis/data module
+!marvis/data/
+
+# Include the semantic data files
+!data/cc18_semantic/
+!data/tabarena_semantic/
+!data/regression_semantic/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+tabular-ft-llm/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Model weights and datasets
+*.pt
+*.pth
+*.bin
+*.npz
+*.h5
+*.pkl
+*.tflite
+*.lite
+*.tgz
+*.zip
+*.model
+
+# Log files
+*.log
+logs/
+runs/
+wandb/
+mlruns/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Generated files
+*.npz
+*.npy
+*_outputs/
+*_results/
+marvis_output/
+
+# Specific project-related temp files
+prefix_data.npz
+best_model/
+final_model/
+checkpoint*/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/

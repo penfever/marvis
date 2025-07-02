@@ -1,0 +1,15 @@
+dataset: ozone-level-8hr
+templates:
+  007480a6-d644-410f-9577-7f6f71f16a54: !Template
+    name: ozone-level-8hr
+    id: 007480a6-d644-410f-9577-7f6f71f16a54
+    reference: ''
+    answer_choices: 0 ||| 1
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: 0 (Normal\
+      \ ozone day - ozone levels below threshold), 1 (High ozone day - ozone levels\
+      \ exceed health standards)\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

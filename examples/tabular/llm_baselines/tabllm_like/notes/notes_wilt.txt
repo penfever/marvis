@@ -1,0 +1,10 @@
+['The Feature 1 is 65. The Feature 2 is 67. The Feature 3 is 32. The Feature 4 is 70. The Feature 5 is 18.'] -> n
+['The Feature 1 is 92. The Feature 2 is 25. The Feature 3 is 48. The Feature 4 is 83. The Feature 5 is 57.'] -> w
+['The Feature 1 is 64. The Feature 2 is 87. The Feature 3 is 7. The Feature 4 is 56. The Feature 5 is 60.'] -> w
+['The Feature 1 is 49. The Feature 2 is 79. The Feature 3 is 64. The Feature 4 is 2. The Feature 5 is 35.'] -> n
+['The Feature 1 is 81. The Feature 2 is 34. The Feature 3 is 0. The Feature 4 is 64. The Feature 5 is 9.'] -> n
+['The Feature 1 is 95. The Feature 2 is 52. The Feature 3 is 27. The Feature 4 is 7. The Feature 5 is 54.'] -> w
+['The Feature 1 is 95. The Feature 2 is 54. The Feature 3 is 44. The Feature 4 is 6. The Feature 5 is 93.'] -> n
+['The Feature 1 is 60. The Feature 2 is 71. The Feature 3 is 90. The Feature 4 is 15. The Feature 5 is 86.'] -> n
+['The Feature 1 is 10. The Feature 2 is 77. The Feature 3 is 67. The Feature 4 is 19. The Feature 5 is 19.'] -> n
+['The Feature 1 is 64. The Feature 2 is 87. The Feature 3 is 23. The Feature 4 is 4. The Feature 5 is 72.'] -> n

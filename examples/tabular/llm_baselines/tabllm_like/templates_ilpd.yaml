@@ -1,0 +1,15 @@
+dataset: ilpd
+templates:
+  eb945e76-0e3d-46d1-b14d-13ccbcdb3107: !Template
+    name: ilpd
+    id: eb945e76-0e3d-46d1-b14d-13ccbcdb3107
+    reference: ''
+    answer_choices: yes ||| no
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: yes (Patient\
+      \ has liver disease - confirmed liver patient), no (Patient does not have liver\
+      \ disease - non-liver patient)\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

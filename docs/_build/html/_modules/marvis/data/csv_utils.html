@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.data.csv_utils &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">marvis.data.csv_utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for marvis.data.csv_utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Utilities for loading and handling CSV datasets with precomputed embeddings.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="is_csv_dataset">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.csv_utils.is_csv_dataset">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_csv_dataset</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determine if a dataset ID corresponds to a CSV dataset rather than an OpenML dataset.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        dataset_id: The dataset identifier</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        True if this appears to be a CSV dataset, False if it&#39;s likely an OpenML dataset</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># OpenML datasets are typically numeric IDs</span>
+    <span class="k">if</span> <span class="n">dataset_id</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="c1"># Check for common patterns in CSV dataset names</span>
+    <span class="n">csv_patterns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;episode&quot;</span> <span class="ow">in</span> <span class="n">dataset_id</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+        <span class="s2">&quot;_&quot;</span> <span class="ow">in</span> <span class="n">dataset_id</span><span class="p">,</span>
+        <span class="s2">&quot;-&quot;</span> <span class="ow">in</span> <span class="n">dataset_id</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.csv&#39;</span><span class="p">),</span>
+    <span class="p">]</span>
+    
+    <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">csv_patterns</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="find_csv_file">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.csv_utils.find_csv_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_csv_file</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">search_dirs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Search for a CSV file in multiple directories.</span>
+<span class="sd">    Uses robust resource manager search strategy with fallback to legacy method.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        dataset_id: The dataset identifier</span>
+<span class="sd">        search_dirs: List of directories to search in</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Path to the CSV file if found, None otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Try resource manager first for robust search</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.resource_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_resource_manager</span>
+        <span class="n">resource_manager</span> <span class="o">=</span> <span class="n">get_resource_manager</span><span class="p">()</span>
+        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">resource_manager</span><span class="o">.</span><span class="n">find_csv_file</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">search_dirs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">csv_path</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Resource manager CSV search failed, falling back to legacy method: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Fallback to legacy search method</span>
+    <span class="n">filename_patterns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">_X.csv&quot;</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">_data.csv&quot;</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">_train.csv&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    
+    <span class="c1"># Also check for files with (1), (2), etc. suffixes</span>
+    <span class="n">extended_patterns</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">filename_patterns</span><span class="p">:</span>
+        <span class="n">extended_patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+        <span class="c1"># Add patterns with parentheses suffixes</span>
+        <span class="n">base</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;(1)&#39;</span><span class="p">,</span> <span class="s1">&#39;(2)&#39;</span><span class="p">,</span> <span class="s1">&#39;(3)&#39;</span><span class="p">]:</span>
+            <span class="n">extended_patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base</span><span class="si">}{</span><span class="n">suffix</span><span class="si">}{</span><span class="n">ext</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">search_dir</span> <span class="ow">in</span> <span class="n">search_dirs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">search_dir</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">search_dir</span><span class="p">):</span>
+            <span class="k">continue</span>
+            
+        <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">extended_patterns</span><span class="p">:</span>
+            <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">search_dir</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found CSV file: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">file_path</span>
+                
+        <span class="c1"># Also try glob patterns in case of different naming conventions</span>
+        <span class="k">for</span> <span class="n">base_pattern</span> <span class="ow">in</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">_X*.csv&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">*.csv&quot;</span><span class="p">]:</span>
+            <span class="n">matches</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">search_dir</span><span class="p">,</span> <span class="n">base_pattern</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">matches</span><span class="p">:</span>
+                <span class="c1"># Return the first match, preferring _X files</span>
+                <span class="n">x_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">matches</span> <span class="k">if</span> <span class="s1">&#39;_X&#39;</span> <span class="ow">in</span> <span class="n">m</span> <span class="ow">and</span> <span class="ow">not</span> <span class="s1">&#39;_y&#39;</span> <span class="ow">in</span> <span class="n">m</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">x_files</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found CSV file via glob: </span><span class="si">{</span><span class="n">x_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">x_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">non_y_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">matches</span> <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;_y&#39;</span> <span class="ow">in</span> <span class="n">m</span> <span class="ow">and</span> <span class="ow">not</span> <span class="s1">&#39;_Y&#39;</span> <span class="ow">in</span> <span class="n">m</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">non_y_files</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found CSV file via glob: </span><span class="si">{</span><span class="n">non_y_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">non_y_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="load_csv_dataset">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.csv_utils.load_csv_dataset">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_csv_dataset</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load a dataset from a CSV file.</span>
+<span class="sd">    Handles both single CSV files with features+labels and separate X/y files.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_path: Path to the CSV file</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        X: Features</span>
+<span class="sd">        y: Labels</span>
+<span class="sd">        categorical_indicator: Boolean list indicating categorical features</span>
+<span class="sd">        attribute_names: List of feature names</span>
+<span class="sd">        dataset_name: Name of the dataset (derived from file name)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading CSV dataset from: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Extract dataset name from file path</span>
+    <span class="n">base_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file_path</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># Check if this is an X file with a corresponding y file</span>
+    <span class="k">if</span> <span class="s1">&#39;_X&#39;</span> <span class="ow">in</span> <span class="n">base_name</span><span class="p">:</span>
+        <span class="n">dataset_name</span> <span class="o">=</span> <span class="n">base_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_X&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">y_file_path</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_X.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;_y.csv&#39;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">y_file_path</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading separate X and y files for dataset: </span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Load X and y from separate files</span>
+                <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">y_file_path</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+                
+                <span class="c1"># Validate that X and y have the same number of samples</span>
+                <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mismatch in sample count: X has </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples, y has </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples&quot;</span><span class="p">)</span>
+                    <span class="c1"># Trim to the smaller size</span>
+                    <span class="n">min_samples</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trimming both to </span><span class="si">{</span><span class="n">min_samples</span><span class="si">}</span><span class="s2"> samples&quot;</span><span class="p">)</span>
+                    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">min_samples</span><span class="p">]</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">min_samples</span><span class="p">]</span>
+                
+                <span class="c1"># Create default attribute names</span>
+                <span class="n">attribute_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;feature_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+                
+                <span class="c1"># Determine categorical features (simple heuristic)</span>
+                <span class="n">categorical_indicator</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">col_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="c1"># Consider a column categorical if it has fewer than 10 unique values</span>
+                    <span class="n">unique_vals</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">col_idx</span><span class="p">]))</span>
+                    <span class="n">is_categorical</span> <span class="o">=</span> <span class="n">unique_vals</span> <span class="o">&lt;</span> <span class="mi">10</span>
+                    <span class="n">categorical_indicator</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">is_categorical</span><span class="p">)</span>
+                
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully loaded dataset: </span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset info: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples, </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> features, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="si">}</span><span class="s2"> classes&quot;</span><span class="p">)</span>
+                
+                <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">categorical_indicator</span><span class="p">,</span> <span class="n">attribute_names</span><span class="p">,</span> <span class="n">dataset_name</span>
+                
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading separate X/y files: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load dataset from </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># If not a separate X file, try standard loading</span>
+    <span class="n">dataset_name</span> <span class="o">=</span> <span class="n">base_name</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Read the CSV file</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        
+        <span class="c1"># Assume the last column is the target</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        
+        <span class="c1"># Get feature names</span>
+        <span class="n">attribute_names</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        
+        <span class="c1"># Determine categorical features (simple heuristic)</span>
+        <span class="n">categorical_indicator</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="c1"># Consider a column categorical if it has fewer than 10 unique values</span>
+            <span class="c1"># or if it contains string values</span>
+            <span class="n">unique_vals</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+            <span class="n">is_categorical</span> <span class="o">=</span> <span class="n">unique_vals</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="ow">or</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span>
+            <span class="n">categorical_indicator</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">is_categorical</span><span class="p">)</span>
+            
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully loaded dataset: </span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset info: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples, </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> features, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="si">}</span><span class="s2"> classes&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">categorical_indicator</span><span class="p">,</span> <span class="n">attribute_names</span><span class="p">,</span> <span class="n">dataset_name</span>
+    
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading dataset from </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load dataset from </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="load_dataset_with_metadata">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.csv_utils.load_dataset_with_metadata">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_dataset_with_metadata</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load dataset metadata from a directory containing precomputed embeddings.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        dataset_dir: Directory containing dataset files and metadata</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary containing dataset metadata including ID, name, is_csv flag, etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dataset_info</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="c1"># Extract dataset ID from directory name</span>
+    <span class="n">dataset_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;dataset_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">dataset_info</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset_id</span>
+    <span class="n">dataset_info</span><span class="p">[</span><span class="s1">&#39;embed_dir&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset_dir</span>
+    
+    <span class="c1"># Try to load metadata from dataset_info.json</span>
+    <span class="n">dataset_info_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">,</span> <span class="s2">&quot;dataset_info.json&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dataset_info_file</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dataset_info_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">saved_info</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="n">dataset_info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">saved_info</span><span class="p">)</span>
+                
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error reading dataset info file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># If is_csv is not explicitly set, try to infer it</span>
+    <span class="k">if</span> <span class="s1">&#39;is_csv&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dataset_info</span><span class="p">:</span>
+        <span class="n">dataset_info</span><span class="p">[</span><span class="s1">&#39;is_csv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">is_csv_dataset</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+        
+        <span class="c1"># Also check for source_type field</span>
+        <span class="k">if</span> <span class="n">dataset_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;source_type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;csv&#39;</span><span class="p">:</span>
+            <span class="n">dataset_info</span><span class="p">[</span><span class="s1">&#39;is_csv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    
+    <span class="c1"># Default name to ID if not provided</span>
+    <span class="k">if</span> <span class="s1">&#39;name&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dataset_info</span><span class="p">:</span>
+        <span class="n">dataset_info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset_id</span>
+    
+    <span class="c1"># Check for precomputed embeddings</span>
+    <span class="n">prefix_data_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">,</span> <span class="s2">&quot;prefix_data.npz&quot;</span><span class="p">)</span>
+    <span class="n">embedding_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">,</span> <span class="s2">&quot;*tabpfn_embeddings*.npz&quot;</span><span class="p">))</span>
+    
+    <span class="n">dataset_info</span><span class="p">[</span><span class="s1">&#39;has_embeddings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">prefix_data_file</span><span class="p">)</span> <span class="ow">or</span> 
+        <span class="nb">len</span><span class="p">(</span><span class="n">embedding_files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">dataset_info</span></div>
+
+
+
+<div class="viewcode-block" id="find_csv_with_fallbacks">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.csv_utils.find_csv_with_fallbacks">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_csv_with_fallbacks</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                          <span class="n">primary_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                          <span class="n">data_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                          <span class="n">embed_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find a CSV file using multiple fallback directories.</span>
+<span class="sd">    Uses the new resource manager for robust path resolution.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        dataset_id: The dataset identifier</span>
+<span class="sd">        primary_dir: Primary directory to search (e.g., current embedding directory)</span>
+<span class="sd">        data_dir: Data directory specified by user (e.g., --data_dir)</span>
+<span class="sd">        embed_dir: Embedding directory</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Path to the CSV file if found, None otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Use the new resource manager for robust path resolution</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.resource_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_resource_manager</span>
+        <span class="n">rm</span> <span class="o">=</span> <span class="n">get_resource_manager</span><span class="p">()</span>
+        
+        <span class="c1"># Build additional search directories from the arguments</span>
+        <span class="n">additional_dirs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">[</span><span class="n">primary_dir</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">embed_dir</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">d</span><span class="p">:</span>
+                <span class="n">additional_dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+                <span class="c1"># Also add parent directories</span>
+                <span class="n">parent</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">parent</span> <span class="ow">and</span> <span class="n">parent</span> <span class="o">!=</span> <span class="n">d</span><span class="p">:</span>
+                    <span class="n">additional_dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        
+        <span class="c1"># Use resource manager&#39;s robust CSV finding</span>
+        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">rm</span><span class="o">.</span><span class="n">find_csv_file</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">additional_dirs</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">csv_path</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
+    
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Resource manager CSV search failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">, falling back to legacy method&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Fallback to legacy method</span>
+    <span class="n">search_dirs</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Add directories in order of preference</span>
+    <span class="k">if</span> <span class="n">primary_dir</span><span class="p">:</span>
+        <span class="n">search_dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">primary_dir</span><span class="p">)</span>
+        <span class="c1"># Also check parent directory</span>
+        <span class="n">search_dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">primary_dir</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">embed_dir</span> <span class="ow">and</span> <span class="n">embed_dir</span> <span class="o">!=</span> <span class="n">primary_dir</span><span class="p">:</span>
+        <span class="n">search_dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">embed_dir</span><span class="p">)</span>
+        <span class="n">search_dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">embed_dir</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">data_dir</span><span class="p">:</span>
+        <span class="n">search_dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+    
+    <span class="c1"># Remove duplicates while preserving order</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">unique_dirs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">search_dirs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">d</span> <span class="ow">and</span> <span class="n">d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            <span class="n">unique_dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">find_csv_file</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">unique_dirs</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

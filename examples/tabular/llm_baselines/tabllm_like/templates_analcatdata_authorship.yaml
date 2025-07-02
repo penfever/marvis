@@ -1,0 +1,15 @@
+dataset: analcatdata_authorship
+templates:
+  93048c09-2a93-4d14-896b-521e6eedf6cf: !Template
+    name: analcatdata_authorship
+    id: 93048c09-2a93-4d14-896b-521e6eedf6cf
+    reference: ''
+    answer_choices: Jane Austen ||| Jack London ||| John Milton ||| William Shakespeare
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Jane Austen, Jack London, John Milton, William Shakespeare?\nAnswer: \n|||\n\
+      {{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

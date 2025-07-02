@@ -1,0 +1,17 @@
+{
+  "dataset_name": "sustainable_development_report_zero_hunger",
+  "task_prefix": "This dataset is derived from the Sustainable Development Report (SDR), specifically focusing on SDG 2 (Zero Hunger). It contains metrics and indicators that measure countries' progress towards eliminating hunger, achieving food security, improving nutrition, and promoting sustainable agriculture. The data represents country-level measurements and scores across various hunger and nutrition-related indicators. Each example contains 4 features. Predict the goal_2_score.",
+  "column_descriptions": {
+    "prevalence_undernourishment": "Percentage of population with insufficient caloric intake for an active and healthy life",
+    "stunting_under5": "Percentage of children under 5 years who are stunted (height-for-age ratio more than 2 standard deviations below WHO Child Growth Standards median)",
+    "wasting_under5": "Percentage of children under 5 years who are wasting (weight-for-height ratio more than 2 standard deviations below WHO Child Growth Standards median)",
+    "cereal_yield": "Cereal yield per hectare of harvested land, measuring agricultural productivity"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: goal_2_score - Aggregate score measuring overall progress towards SDG 2 (Zero Hunger), combining various indicators related to hunger, food security, nutrition, and sustainable agriculture. Units: Normalized score. Range: 0-100 (where 100 represents full achievement of SDG 2 targets)",
+  "num_features": 4,
+  "num_classes": 1,
+  "task_id": 363443
+}

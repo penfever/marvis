@@ -1,0 +1,38 @@
+{
+  "dataset_name": "segment",
+  "task_prefix": "Image Segmentation dataset. Contains features extracted from 3x3 pixel regions of 7 outdoor images that were hand-segmented to create pixel classifications. Used for training algorithms to segment images into different regions. Each example contains 19 features. Image segmentation.",
+  "column_descriptions": {
+    "region-centroid-col": "Column of the center pixel of the region",
+    "region-centroid-row": "Row of the center pixel of the region",
+    "region-pixel-count": "Number of pixels in a region (always 9 for 3x3)",
+    "short-line-density-5": "Line extraction result for low contrast lines of length 5",
+    "short-line-density-2": "Line extraction result for high contrast lines",
+    "vedge-mean": "Mean of contrast of horizontally adjacent pixels (vertical edge)",
+    "vedge-sd": "Standard deviation of vertical edge contrast",
+    "hedge-mean": "Mean of contrast of vertically adjacent pixels (horizontal edge)",
+    "hedge-sd": "Standard deviation of horizontal edge contrast",
+    "intensity-mean": "Mean intensity (R+G+B)/3 over the region",
+    "rawred-mean": "Mean of red channel over the region",
+    "rawblue-mean": "Mean of blue channel over the region",
+    "rawgreen-mean": "Mean of green channel over the region",
+    "exred-mean": "Mean of (2R - (G + B)) measure of excess red",
+    "exblue-mean": "Mean of (2B - (G + R)) measure of excess blue",
+    "exgreen-mean": "Mean of (2G - (R + B)) measure of excess green",
+    "value-mean": "Mean of value (from HSV color space)",
+    "saturation-mean": "Mean of saturation (from HSV color space)",
+    "hue-mean": "Mean of hue (from HSV color space)"
+  },
+  "class_names": [
+    "brickface",
+    "cement",
+    "foliage",
+    "grass",
+    "path",
+    "sky",
+    "window"
+  ],
+  "class_description": "Classes: 'brickface' (Brick face regions), 'sky' (Sky regions), 'foliage' (Trees, bushes, and other vegetation), 'cement' (Cement and concrete regions), 'window' (Window regions), 'path' (Path and road regions), 'grass' (Grass regions)",
+  "num_features": 19,
+  "num_classes": 7,
+  "task_id": "146822"
+}

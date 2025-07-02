@@ -1,0 +1,14 @@
+dataset: analcatdata_dmft
+templates:
+  ef5fd190-b3e4-483d-8ed2-492b0aca1650: !Template
+    name: analcatdata_dmft
+    id: ef5fd190-b3e4-483d-8ed2-492b0aca1650
+    reference: ''
+    answer_choices: Class 0 ||| Class 1
+    jinja: "{{note}}\n\nWhat is the class of this instance?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

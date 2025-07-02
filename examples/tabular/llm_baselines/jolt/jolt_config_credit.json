@@ -1,0 +1,29 @@
+{
+  "dataset_name": "credit",
+  "task_prefix": "Credit card default payment data from Taiwan. Contains information on default payments, demographic factors, credit data, payment history, and bill statements of credit card clients to predict default payment next month. Each example contains 16 features. Predict the target class.",
+  "column_descriptions": {
+    "LIMIT_BAL": "Amount of given credit in NT dollars (includes individual and family/supplementary credit).",
+    "SEX": "Gender of credit card holder.",
+    "EDUCATION": "Education level of credit card holder.",
+    "MARRIAGE": "Marital status of credit card holder.",
+    "AGE": "Age of credit card holder in years.",
+    "PAY_0": "Repayment status in September 2005 (-1=pay duly, 1=payment delay for one month, 2=payment delay for two months, ..., 9=payment delay for nine months and above).",
+    "PAY_2": "Repayment status in August 2005 (same scale as PAY_0).",
+    "PAY_3": "Repayment status in July 2005 (same scale as PAY_0).",
+    "PAY_4": "Repayment status in June 2005 (same scale as PAY_0).",
+    "PAY_5": "Repayment status in May 2005 (same scale as PAY_0).",
+    "PAY_6": "Repayment status in April 2005 (same scale as PAY_0).",
+    "BILL_AMT1": "Amount of bill statement in September 2005 (NT dollar).",
+    "BILL_AMT2": "Amount of bill statement in August 2005 (NT dollar).",
+    "BILL_AMT3-BILL_AMT6": "Amount of bill statements from July to April 2005 (NT dollar).",
+    "PAY_AMT1": "Amount of previous payment in September 2005 (NT dollar).",
+    "PAY_AMT2-PAY_AMT6": "Amount of previous payments from August to April 2005 (NT dollar)."
+  },
+  "class_names": [
+    "1",
+    "0"
+  ],
+  "class_description": "Classes: '1' (Default payment next month (22.12% of instances)), '0' (No default payment next month (77.88% of instances))",
+  "num_features": 16,
+  "num_classes": 2
+}

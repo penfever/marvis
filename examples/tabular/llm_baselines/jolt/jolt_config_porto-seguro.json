@@ -1,0 +1,40 @@
+{
+  "dataset_name": "porto-seguro",
+  "task_prefix": "Auto insurance data from Porto Seguro, one of Brazil's largest insurers, to predict the probability that a driver will file an insurance claim in the next year. Dataset contains anonymized driver and vehicle information. Each example contains 27 features. Predict the target class.",
+  "column_descriptions": {
+    "ps_ind_01": "Individual/driver indicator feature. Part of the 'ind' (individual) feature group.",
+    "ps_ind_02_cat": "Categorical individual/driver feature. Suffix '_cat' indicates categorical variable.",
+    "ps_ind_03": "Individual/driver feature, likely demographic or behavioral metric.",
+    "ps_ind_04_cat": "Categorical individual feature with multiple levels.",
+    "ps_ind_05_cat": "Categorical individual feature, possibly driver classification.",
+    "ps_ind_06_bin": "Binary individual/driver feature. Suffix '_bin' indicates binary variable.",
+    "ps_reg_01": "Regional feature, possibly geographic or regulatory information.",
+    "ps_reg_02": "Regional feature, normalized continuous value.",
+    "ps_reg_03": "Regional feature with some outliers, possibly demographic regional data.",
+    "ps_car_01_cat": "Categorical car/vehicle feature, potentially make or model category.",
+    "ps_car_02_cat": "Categorical car feature, binary in nature.",
+    "ps_car_03_cat": "Categorical car feature with missing values (-1).",
+    "ps_car_04_cat": "Categorical car feature with high cardinality (up to 10 levels).",
+    "ps_car_05_cat": "Categorical car feature, binary or low cardinality.",
+    "ps_car_06_cat": "Categorical car feature with very high cardinality (up to 18 levels).",
+    "ps_car_07_cat": "Categorical car feature, binary in nature.",
+    "ps_car_08_cat": "Categorical car feature, binary.",
+    "ps_car_09_cat": "Categorical car feature with moderate cardinality.",
+    "ps_car_10_cat": "Categorical car feature with moderate cardinality.",
+    "ps_car_11_cat": "Categorical car feature with extremely high cardinality (104 levels), likely vehicle model.",
+    "ps_car_11": "Ordinal car feature related to ps_car_11_cat.",
+    "ps_car_12": "Continuous car feature, normalized.",
+    "ps_car_13": "Continuous car feature showing near-normal distribution.",
+    "ps_car_14": "Continuous car feature with some outliers.",
+    "ps_car_15": "Continuous car feature, possibly mileage or age related.",
+    "ps_calc_01-ps_calc_14": "Calculated features derived from other variables. Competition discussions suggest these are engineered features.",
+    "ps_calc_15_bin-ps_calc_20_bin": "Binary calculated features derived from other variables."
+  },
+  "class_names": [
+    "1",
+    "0"
+  ],
+  "class_description": "Classes: '1' (Driver will file an insurance claim next year (3.645% of instances)), '0' (Driver will not file an insurance claim next year (96.355% of instances))",
+  "num_features": 27,
+  "num_classes": 2
+}

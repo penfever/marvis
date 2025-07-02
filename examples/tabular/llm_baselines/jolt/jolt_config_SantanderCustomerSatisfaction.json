@@ -1,0 +1,24 @@
+{
+  "dataset_name": "SantanderCustomerSatisfaction",
+  "task_prefix": "Anonymized bank customer data from Santander Bank to predict customer satisfaction. The dataset contains hundreds of anonymized features representing various aspects of customers' banking relationships and their satisfaction status. Each example contains 11 features. Predict the target class.",
+  "column_descriptions": {
+    "var3": "Anonymized numeric feature. Appears to have strong correlation with customer dissatisfaction. Values range from -999999 to 238 with high concentration near zero.",
+    "var15": "Anonymized numeric feature. Shows age-like distribution pattern with values typically between 0-100.",
+    "imp_ent_var16_ult1": "Likely represents import/amount of entity variable 16 in the last period. Spanish banking terminology suggests transaction or balance information.",
+    "imp_op_var39_comer_ult1": "Import/amount of commercial operations variable 39 in the last period. Possibly related to commercial banking activities.",
+    "imp_op_var41_comer_ult1": "Import/amount of commercial operations variable 41 in the last period. Another commercial banking metric.",
+    "ind_var5": "Binary indicator variable. Likely flags presence/absence of specific product or service.",
+    "ind_var30": "Binary indicator variable. Analysis suggests possible relation to cash products.",
+    "num_var4": "Count variable. Represents number/frequency of specific banking activities or products.",
+    "num_var22_ult1": "Number/count of variable 22 in the last period. Temporal aspect suggests recent activity metric.",
+    "saldo_var5": "Balance of variable 5. 'Saldo' is Spanish for balance, indicating account balance information.",
+    "saldo_medio_var5_ult1": "Average balance of variable 5 in the last period. Represents recent average account balance."
+  },
+  "class_names": [
+    "1",
+    "0"
+  ],
+  "class_description": "Classes: '1' (Unsatisfied customer (3.95% of instances)), '0' (Satisfied customer (96.05% of instances))",
+  "num_features": 11,
+  "num_classes": 2
+}

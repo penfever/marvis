@@ -1,0 +1,33 @@
+{
+  "dataset_name": "Is-this-a-good-customer",
+  "task_prefix": "Bank marketing campaign data from a Portuguese banking institution. The dataset contains results of direct marketing campaigns (phone calls) where the goal is to predict if a client will subscribe to a term deposit. Each example contains 20 features. Predict the target class.",
+  "column_descriptions": {
+    "age": "Age of the client in years.",
+    "job": "Type of job/occupation of the client.",
+    "marital": "Marital status of the client.",
+    "education": "Education level of the client.",
+    "default": "Has credit in default?",
+    "housing": "Has housing loan?",
+    "loan": "Has personal loan?",
+    "contact": "Contact communication type.",
+    "month": "Last contact month of year.",
+    "day_of_week": "Last contact day of the week.",
+    "duration": "Last contact duration in seconds. Important note: highly correlated with target, should only be used for benchmark purposes.",
+    "campaign": "Number of contacts performed during this campaign for this client.",
+    "pdays": "Number of days passed after client was last contacted from previous campaign (999 means client was not previously contacted).",
+    "previous": "Number of contacts performed before this campaign for this client.",
+    "poutcome": "Outcome of the previous marketing campaign.",
+    "emp.var.rate": "Employment variation rate - quarterly indicator.",
+    "cons.price.idx": "Consumer price index - monthly indicator.",
+    "cons.conf.idx": "Consumer confidence index - monthly indicator.",
+    "euribor3m": "Euribor 3 month rate - daily indicator.",
+    "nr.employed": "Number of employees - quarterly indicator."
+  },
+  "class_names": [
+    "yes",
+    "no"
+  ],
+  "class_description": "Classes: 'yes' (Client subscribed to a term deposit (11.3% of instances)), 'no' (Client did not subscribe to a term deposit (88.7% of instances))",
+  "num_features": 20,
+  "num_classes": 2
+}

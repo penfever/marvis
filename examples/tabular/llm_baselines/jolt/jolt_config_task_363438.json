@@ -1,0 +1,19 @@
+{
+  "dataset_name": "reddit_opinion_climate_change",
+  "task_prefix": "A large-scale dataset containing Reddit posts and associated metadata related to climate change discussions. The dataset captures public discourse and engagement metrics around climate change topics on Reddit, providing insights into how online communities discuss and react to climate-related content. Each example contains 6 features. Predict the post_thumbs_ups.",
+  "column_descriptions": {
+    "post_thumbs_ups": "Number of upvotes received by the Reddit post, indicating community agreement or post popularity",
+    "post_title": "The title text of the Reddit post about climate change",
+    "post_body": "The main content text of the Reddit post",
+    "subreddit": "The specific Reddit community where the post was made",
+    "post_date": "Timestamp when the post was created",
+    "comment_count": "Number of comments received on the post"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: post_thumbs_ups - The number of upvotes a post receives, serving as a proxy for community engagement and agreement with the content. Units: Count of upvotes. Range: 0 to potentially thousands, highly variable",
+  "num_features": 6,
+  "num_classes": 1,
+  "task_id": 363438
+}

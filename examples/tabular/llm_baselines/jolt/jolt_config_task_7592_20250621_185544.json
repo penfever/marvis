@@ -1,0 +1,28 @@
+{
+  "dataset_name": "adult",
+  "task_prefix": "Adult income dataset (Census Income). Predicts whether annual income exceeds $50K/yr based on census data extracted from the 1994 US Census database. Each example contains 14 features. Income prediction.",
+  "column_descriptions": {
+    "feature_1": "Feature 1",
+    "feature_2": "Feature 2",
+    "feature_3": "Feature 3",
+    "feature_4": "Feature 4",
+    "feature_5": "Feature 5",
+    "feature_6": "Feature 6",
+    "feature_7": "Feature 7",
+    "feature_8": "Feature 8",
+    "feature_9": "Feature 9",
+    "feature_10": "Feature 10",
+    "feature_11": "Feature 11",
+    "feature_12": "Feature 12",
+    "feature_13": "Feature 13",
+    "feature_14": "Feature 14"
+  },
+  "class_names": [
+    "<=50K",
+    ">50K"
+  ],
+  "class_description": "Classes: '<=50K' (Income less than or equal to $50,000 per year), '>50K' (Income greater than $50,000 per year)",
+  "num_features": 14,
+  "num_classes": 2,
+  "task_id": "7592_20250621_185544"
+}

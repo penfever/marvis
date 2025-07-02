@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.viz.context.composer &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">marvis.viz.context.composer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for marvis.viz.context.composer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Context Composer - The core system for combining multiple visualizations.</span>
+
+<span class="sd">This module provides the main interface for creating complex, multi-visualization</span>
+<span class="sd">contexts that can be consumed by VLM backends for enhanced reasoning.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseVisualization</span><span class="p">,</span> <span class="n">VisualizationConfig</span><span class="p">,</span> <span class="n">VisualizationResult</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.layouts</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutManager</span><span class="p">,</span> <span class="n">LayoutStrategy</span>
+<span class="c1"># Removed PromptGenerator - using unified VLM prompting utilities</span>
+
+<span class="c1"># Import shared styling utilities</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.styling</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">apply_consistent_point_styling</span><span class="p">,</span>
+    <span class="n">apply_consistent_legend_formatting</span><span class="p">,</span>
+    <span class="n">create_distinct_color_map</span><span class="p">,</span>
+    <span class="n">get_class_color_name_map</span>
+<span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="CompositionConfig">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.CompositionConfig">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CompositionConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for context composition.&quot;&quot;&quot;</span>
+    
+    <span class="c1"># Layout options - use sequential (horizontal) as default to match tsne_functions</span>
+    <span class="n">layout_strategy</span><span class="p">:</span> <span class="n">LayoutStrategy</span> <span class="o">=</span> <span class="n">LayoutStrategy</span><span class="o">.</span><span class="n">SEQUENTIAL</span>
+    <span class="n">max_visualizations_per_row</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">subplot_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span>
+    
+    <span class="c1"># Image output</span>
+    <span class="n">composition_figsize</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+    <span class="n">composition_dpi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">max_composition_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4096</span>
+    
+    <span class="c1"># Prompt generation</span>
+    <span class="n">include_individual_descriptions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">include_cross_references</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">reasoning_focus</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;comparison&quot;</span>  <span class="c1"># &quot;comparison&quot;, &quot;consensus&quot;, &quot;divergence&quot;</span>
+    
+    <span class="c1"># Performance options</span>
+    <span class="n">parallel_processing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">cache_transformations</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    
+    <span class="c1"># VLM optimization</span>
+    <span class="n">optimize_for_vlm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">vlm_model_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;general&quot;</span>  <span class="c1"># &quot;general&quot;, &quot;vision_specialist&quot;, &quot;reasoning_focused&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="ContextComposer">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ContextComposer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compose multiple visualizations into a unified context for VLM reasoning.</span>
+<span class="sd">    </span>
+<span class="sd">    This class coordinates multiple visualization methods to create rich,</span>
+<span class="sd">    multi-perspective views of data that enable more sophisticated reasoning</span>
+<span class="sd">    by VLM backends.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="ContextComposer.__init__">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CompositionConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the context composer.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            config: Configuration for composition behavior</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span> <span class="ow">or</span> <span class="n">CompositionConfig</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        
+        <span class="c1"># Initialize sub-components</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layout_manager</span> <span class="o">=</span> <span class="n">LayoutManager</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+        
+        <span class="c1"># State</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseVisualization</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visualization_configs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cached_results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="c1"># Data state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_X_train</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y_train</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_X_test</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fitted</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+    
+<div class="viewcode-block" id="ContextComposer.add_visualization">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.add_visualization">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_visualization</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">viz_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">viz_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">VisualizationConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;ContextComposer&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a visualization method to the composition.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            viz_type: Type of visualization (e.g., &#39;tsne&#39;, &#39;umap&#39;, &#39;pca&#39;)</span>
+<span class="sd">            config: Configuration parameters for the visualization method</span>
+<span class="sd">            viz_config: VisualizationConfig object for the visualization</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Self for method chaining</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Import visualization classes dynamically</span>
+        <span class="n">viz_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_visualization_class</span><span class="p">(</span><span class="n">viz_type</span><span class="p">)</span>
+        
+        <span class="c1"># Create visualization config</span>
+        <span class="k">if</span> <span class="n">viz_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">viz_config</span> <span class="o">=</span> <span class="n">VisualizationConfig</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">config</span><span class="p">:</span>
+                <span class="n">viz_config</span><span class="o">.</span><span class="n">extra_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        
+        <span class="c1"># Handle special cases that require additional parameters</span>
+        <span class="k">if</span> <span class="n">viz_type</span> <span class="o">==</span> <span class="s1">&#39;decision_regions&#39;</span><span class="p">:</span>
+            <span class="c1"># Decision regions requires a classifier instance</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+            
+            <span class="c1"># Get classifier type from config</span>
+            <span class="n">classifier_type</span> <span class="o">=</span> <span class="p">(</span><span class="n">config</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;decision_classifier&#39;</span><span class="p">,</span> <span class="s1">&#39;svm&#39;</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">classifier_type</span> <span class="o">==</span> <span class="s1">&#39;svm&#39;</span><span class="p">:</span>
+                <span class="n">classifier</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">viz_config</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">classifier_type</span> <span class="o">==</span> <span class="s1">&#39;rf&#39;</span><span class="p">:</span>
+                <span class="n">classifier</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">viz_config</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Default to SVM</span>
+                <span class="n">classifier</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">viz_config</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+            
+            <span class="c1"># Create visualization instance with classifier</span>
+            <span class="n">visualization</span> <span class="o">=</span> <span class="n">viz_class</span><span class="p">(</span><span class="n">classifier</span><span class="o">=</span><span class="n">classifier</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">viz_config</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Create standard visualization instance</span>
+            <span class="n">visualization</span> <span class="o">=</span> <span class="n">viz_class</span><span class="p">(</span><span class="n">viz_config</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">visualization</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visualization_configs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">viz_type</span><span class="p">,</span>
+            <span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="n">config</span> <span class="ow">or</span> <span class="p">{},</span>
+            <span class="s1">&#39;viz_config&#39;</span><span class="p">:</span> <span class="n">viz_config</span>
+        <span class="p">})</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added </span><span class="si">{</span><span class="n">viz_type</span><span class="si">}</span><span class="s2"> visualization to composition&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_visualization_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">viz_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the visualization class for a given type string.&quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..embeddings.tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSNEVisualization</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..embeddings.umap</span><span class="w"> </span><span class="kn">import</span> <span class="n">UMAPVisualization</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..embeddings.pca</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCAVisualization</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..embeddings.manifold</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+            <span class="n">LocallyLinearEmbeddingVisualization</span><span class="p">,</span>
+            <span class="n">SpectralEmbeddingVisualization</span><span class="p">,</span>
+            <span class="n">IsomapVisualization</span><span class="p">,</span>
+            <span class="n">MDSVisualization</span>
+        <span class="p">)</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..decision.regions</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionRegionsVisualization</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..patterns.frequent</span><span class="w"> </span><span class="kn">import</span> <span class="n">FrequentPatternsVisualization</span>
+        
+        <span class="n">viz_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;tsne&#39;</span><span class="p">:</span> <span class="n">TSNEVisualization</span><span class="p">,</span>
+            <span class="s1">&#39;umap&#39;</span><span class="p">:</span> <span class="n">UMAPVisualization</span><span class="p">,</span>
+            <span class="s1">&#39;pca&#39;</span><span class="p">:</span> <span class="n">PCAVisualization</span><span class="p">,</span>
+            <span class="s1">&#39;lle&#39;</span><span class="p">:</span> <span class="n">LocallyLinearEmbeddingVisualization</span><span class="p">,</span>
+            <span class="s1">&#39;spectral&#39;</span><span class="p">:</span> <span class="n">SpectralEmbeddingVisualization</span><span class="p">,</span>
+            <span class="s1">&#39;isomap&#39;</span><span class="p">:</span> <span class="n">IsomapVisualization</span><span class="p">,</span>
+            <span class="s1">&#39;mds&#39;</span><span class="p">:</span> <span class="n">MDSVisualization</span><span class="p">,</span>
+            <span class="s1">&#39;decision_regions&#39;</span><span class="p">:</span> <span class="n">DecisionRegionsVisualization</span><span class="p">,</span>
+            <span class="s1">&#39;frequent_patterns&#39;</span><span class="p">:</span> <span class="n">FrequentPatternsVisualization</span><span class="p">,</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="n">viz_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">viz_map</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown visualization type: </span><span class="si">{</span><span class="n">viz_type</span><span class="si">}</span><span class="s2">. &quot;</span>
+                           <span class="sa">f</span><span class="s2">&quot;Available types: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">viz_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">viz_map</span><span class="p">[</span><span class="n">viz_type</span><span class="p">]</span>
+    
+<div class="viewcode-block" id="ContextComposer.fit">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">y_train</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">X_test</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;ContextComposer&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fit all visualization methods on the training data.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            X_train: Training features</span>
+<span class="sd">            y_train: Training targets (optional)</span>
+<span class="sd">            X_test: Test features (optional)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Self for method chaining</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitting </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">)</span><span class="si">}</span><span class="s2"> visualizations...&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_X_train</span> <span class="o">=</span> <span class="n">X_train</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y_train</span> <span class="o">=</span> <span class="n">y_train</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_X_test</span> <span class="o">=</span> <span class="n">X_test</span>
+        
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        
+        <span class="c1"># Fit all visualizations</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">viz</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">):</span>
+            <span class="n">viz_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">X_test</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">viz</span><span class="o">.</span><span class="n">supports_new_data</span><span class="p">:</span>
+                    <span class="c1"># For methods that don&#39;t support new data (like Spectral, t-SNE),</span>
+                    <span class="c1"># fit on combined data and split afterwards (like original t-SNE implementation)</span>
+                    <span class="n">combined_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">y_train</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="c1"># Use -1 for test labels to distinguish from training labels</span>
+                        <span class="n">combined_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_train</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">combined_labels</span> <span class="o">=</span> <span class="kc">None</span>
+                    
+                    <span class="n">combined_transformed</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">combined_data</span><span class="p">,</span> <span class="n">combined_labels</span><span class="p">)</span>
+                    
+                    <span class="c1"># Split back into train and test</span>
+                    <span class="n">n_train</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+                    <span class="n">train_transformed</span> <span class="o">=</span> <span class="n">combined_transformed</span><span class="p">[:</span><span class="n">n_train</span><span class="p">]</span>
+                    <span class="n">test_transformed</span> <span class="o">=</span> <span class="n">combined_transformed</span><span class="p">[</span><span class="n">n_train</span><span class="p">:]</span>
+                    
+                    <span class="c1"># Cache both results</span>
+                    <span class="n">cache_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;viz_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_train&quot;</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">cached_results</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_transformed</span>
+                    <span class="n">cache_key_test</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;viz_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_test&quot;</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">cached_results</span><span class="p">[</span><span class="n">cache_key_test</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_transformed</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Fit and transform training data</span>
+                    <span class="n">train_transformed</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+                    
+                    <span class="c1"># Cache the result</span>
+                    <span class="n">cache_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;viz_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_train&quot;</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">cached_results</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_transformed</span>
+                    
+                    <span class="c1"># Transform test data if available and supported</span>
+                    <span class="k">if</span> <span class="n">X_test</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">viz</span><span class="o">.</span><span class="n">supports_new_data</span><span class="p">:</span>
+                        <span class="n">test_transformed</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+                        <span class="n">cache_key_test</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;viz_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_test&quot;</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">cached_results</span><span class="p">[</span><span class="n">cache_key_test</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_transformed</span>
+                
+                <span class="n">viz_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">viz_start</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitted </span><span class="si">{</span><span class="n">viz</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">viz_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+                
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to fit </span><span class="si">{</span><span class="n">viz</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="c1"># Continue with other visualizations</span>
+                <span class="k">continue</span>
+        
+        <span class="n">total_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitted all visualizations in </span><span class="si">{</span><span class="n">total_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fitted</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    
+<div class="viewcode-block" id="ContextComposer.compose_layout">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.compose_layout">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compose_layout</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">highlight_indices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">highlight_test_indices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">layout_strategy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LayoutStrategy</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">class_names</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">use_semantic_names</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a composed layout of all visualizations.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            highlight_indices: Indices of training points to highlight across all visualizations</span>
+<span class="sd">            highlight_test_indices: Indices of test points to highlight with red X markers</span>
+<span class="sd">            layout_strategy: Override the default layout strategy</span>
+<span class="sd">            class_names: Optional semantic class names for consistent styling</span>
+<span class="sd">            use_semantic_names: Whether to use semantic names in legends</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Composed image</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitted</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Must call fit() before compose_layout()&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No visualizations added to compose&quot;</span><span class="p">)</span>
+        
+        <span class="n">strategy</span> <span class="o">=</span> <span class="n">layout_strategy</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">layout_strategy</span>
+        
+        <span class="c1"># Generate individual visualization results with explicit figure cleanup</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">initial_figures</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">get_fignums</span><span class="p">())</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">viz</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">):</span>
+            <span class="n">train_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;viz_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_train&quot;</span><span class="p">)</span>
+            <span class="n">test_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;viz_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_test&quot;</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">train_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No cached data for visualization </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, skipping&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+            
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Track figures before visualization</span>
+                <span class="n">pre_viz_figures</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">get_fignums</span><span class="p">())</span>
+                
+                <span class="n">result</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">generate_plot</span><span class="p">(</span>
+                    <span class="n">transformed_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span>
+                    <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_y_train</span><span class="p">,</span>
+                    <span class="n">highlight_indices</span><span class="o">=</span><span class="n">highlight_indices</span><span class="p">,</span>
+                    <span class="n">test_data</span><span class="o">=</span><span class="n">test_data</span><span class="p">,</span>
+                    <span class="n">highlight_test_indices</span><span class="o">=</span><span class="n">highlight_test_indices</span><span class="p">,</span>
+                    <span class="n">class_names</span><span class="o">=</span><span class="n">class_names</span><span class="p">,</span>
+                    <span class="n">use_semantic_names</span><span class="o">=</span><span class="n">use_semantic_names</span>
+                <span class="p">)</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                
+                <span class="c1"># Ensure any new figures created are properly closed</span>
+                <span class="n">post_viz_figures</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">get_fignums</span><span class="p">())</span>
+                <span class="n">new_figures</span> <span class="o">=</span> <span class="n">post_viz_figures</span> <span class="o">-</span> <span class="n">pre_viz_figures</span>
+                <span class="k">for</span> <span class="n">fignum</span> <span class="ow">in</span> <span class="n">new_figures</span><span class="p">:</span>
+                    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fignum</span><span class="p">)</span>
+                
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to generate plot for </span><span class="si">{</span><span class="n">viz</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="c1"># Clean up any figures that might have been created during the failed attempt</span>
+                <span class="n">current_figures</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">get_fignums</span><span class="p">())</span>
+                <span class="n">error_figures</span> <span class="o">=</span> <span class="n">current_figures</span> <span class="o">-</span> <span class="n">initial_figures</span>
+                <span class="k">for</span> <span class="n">fignum</span> <span class="ow">in</span> <span class="n">error_figures</span><span class="p">:</span>
+                    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fignum</span><span class="p">)</span>
+                <span class="k">continue</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No visualizations could be generated&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Use layout manager to compose the results</span>
+        <span class="n">composed_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout_manager</span><span class="o">.</span><span class="n">compose_layout</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">strategy</span><span class="p">)</span>
+        
+        <span class="c1"># Final cleanup: close any remaining figures that might have been missed</span>
+        <span class="n">final_figures</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">get_fignums</span><span class="p">())</span>
+        <span class="n">remaining_figures</span> <span class="o">=</span> <span class="n">final_figures</span> <span class="o">-</span> <span class="n">initial_figures</span>
+        <span class="k">if</span> <span class="n">remaining_figures</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Closing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">remaining_figures</span><span class="p">)</span><span class="si">}</span><span class="s2"> remaining figures to prevent memory leaks&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">fignum</span> <span class="ow">in</span> <span class="n">remaining_figures</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fignum</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">composed_image</span></div>
+
+    
+<div class="viewcode-block" id="ContextComposer.get_aggregated_metadata">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.get_aggregated_metadata">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_aggregated_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get aggregated metadata across all visualizations.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with aggregated metadata including visible_classes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitted</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;visible_classes&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;all_classes&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+        
+        <span class="n">all_visible_classes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">plot_types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        
+        <span class="k">for</span> <span class="n">viz</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">viz</span><span class="p">,</span> <span class="s1">&#39;metadata&#39;</span><span class="p">):</span>
+                <span class="n">visible</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;visible_classes&#39;</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="n">all_visible_classes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">visible</span><span class="p">)</span>
+                <span class="n">plot_types</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">viz</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;plot_type&#39;</span><span class="p">,</span> <span class="s1">&#39;classification&#39;</span><span class="p">))</span>
+        
+        <span class="c1"># Determine overall plot type (if mixed, default to classification)</span>
+        <span class="n">overall_plot_type</span> <span class="o">=</span> <span class="s1">&#39;classification&#39;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">overall_plot_type</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">plot_types</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="s1">&#39;regression&#39;</span> <span class="ow">in</span> <span class="n">plot_types</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_types</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Mixed plot types detected in multi-viz composition&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;visible_classes&#39;</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_visible_classes</span><span class="p">)),</span>
+            <span class="s1">&#39;plot_type&#39;</span><span class="p">:</span> <span class="n">overall_plot_type</span><span class="p">,</span>
+            <span class="s1">&#39;n_visualizations&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">),</span>
+            <span class="s1">&#39;visualization_methods&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">viz</span><span class="o">.</span><span class="n">method_name</span> <span class="k">for</span> <span class="n">viz</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">]</span>
+        <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="ContextComposer.generate_reasoning_prompt">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.generate_reasoning_prompt">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_reasoning_prompt</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">highlight_indices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">custom_context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">task_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a comprehensive reasoning prompt for VLM consumption.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            highlight_indices: Indices of points to highlight</span>
+<span class="sd">            custom_context: Additional context about the data or task</span>
+<span class="sd">            task_description: Description of the specific task</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Generated prompt string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitted</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Must call fit() before generate_reasoning_prompt()&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Collect information from all visualizations</span>
+        <span class="n">viz_info</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">viz</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">):</span>
+            <span class="n">train_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;viz_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_train&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">train_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">get_description</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_X_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y_train</span><span class="p">)</span>
+                <span class="n">viz_info</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span>
+                    <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
+                    <span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>
+                    <span class="s1">&#39;transformed_shape&#39;</span><span class="p">:</span> <span class="n">train_data</span><span class="o">.</span><span class="n">shape</span>
+                <span class="p">})</span>
+        
+        <span class="c1"># Generate prompt using unified VLM prompting utilities</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">marvis.utils.vlm_prompting</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_comprehensive_multi_viz_prompt</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">marvis.utils.class_name_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_class_names_to_class_num</span>
+        
+        <span class="c1"># Prepare multi_viz_info for the unified utilities</span>
+        <span class="n">multi_viz_info</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">viz</span> <span class="ow">in</span> <span class="n">viz_info</span><span class="p">:</span>
+            <span class="n">multi_viz_info</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;Unknown&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Visualization of data using </span><span class="si">{</span><span class="n">viz</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;unknown&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> method&quot;</span><span class="p">)</span>
+            <span class="p">})</span>
+        
+        <span class="c1"># Generate class names</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y_train</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_y_train</span><span class="p">))</span>
+            <span class="n">class_names</span> <span class="o">=</span> <span class="n">normalize_class_names_to_class_num</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Class_0&quot;</span><span class="p">,</span> <span class="s2">&quot;Class_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Class_2&quot;</span><span class="p">]</span>  <span class="c1"># Default</span>
+        
+        <span class="c1"># Build dataset description</span>
+        <span class="n">dataset_description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_X_train</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dataset_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Dataset with </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples and </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> features. &quot;</span>
+        
+        <span class="k">if</span> <span class="n">custom_context</span><span class="p">:</span>
+            <span class="n">dataset_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">custom_context</span><span class="si">}</span><span class="s2"> &quot;</span>
+            
+        <span class="k">if</span> <span class="n">task_description</span><span class="p">:</span>
+            <span class="n">dataset_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Task: </span><span class="si">{</span><span class="n">task_description</span><span class="si">}</span><span class="s2">&quot;</span>
+        
+        <span class="c1"># Generate comprehensive multi-viz prompt</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="n">create_comprehensive_multi_viz_prompt</span><span class="p">(</span>
+            <span class="n">class_names</span><span class="o">=</span><span class="n">class_names</span><span class="p">,</span>
+            <span class="n">multi_viz_info</span><span class="o">=</span><span class="n">multi_viz_info</span><span class="p">,</span>
+            <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span>  <span class="c1"># Default to tabular</span>
+            <span class="n">dataset_description</span><span class="o">=</span><span class="n">dataset_description</span><span class="p">,</span>
+            <span class="n">reasoning_focus</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">reasoning_focus</span><span class="p">,</span>
+            <span class="n">data_shape</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_X_train</span><span class="o">.</span><span class="n">shape</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_X_train</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">use_semantic_names</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># Use Class_X format for consistency</span>
+        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">prompt</span></div>
+
+    
+<div class="viewcode-block" id="ContextComposer.reason_over_data">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.reason_over_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reason_over_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">reasoning_chain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">highlight_indices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform multi-visualization reasoning over data.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            X: Input features</span>
+<span class="sd">            y: Optional target values</span>
+<span class="sd">            reasoning_chain: Ordered list of reasoning steps/questions</span>
+<span class="sd">            highlight_indices: Points to highlight for analysis</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary containing composed image, prompt, and analysis</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Fit if not already fitted</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitted</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        
+        <span class="c1"># Generate composed visualization</span>
+        <span class="n">composed_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compose_layout</span><span class="p">(</span><span class="n">highlight_indices</span><span class="o">=</span><span class="n">highlight_indices</span><span class="p">)</span>
+        
+        <span class="c1"># Generate reasoning prompt</span>
+        <span class="n">reasoning_prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_reasoning_prompt</span><span class="p">(</span>
+            <span class="n">highlight_indices</span><span class="o">=</span><span class="n">highlight_indices</span><span class="p">,</span>
+            <span class="n">task_description</span><span class="o">=</span><span class="s2">&quot;Analyze the data patterns across multiple visualization perspectives&quot;</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># Add reasoning chain if provided</span>
+        <span class="k">if</span> <span class="n">reasoning_chain</span><span class="p">:</span>
+            <span class="n">reasoning_prompt</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Specific reasoning steps to consider:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reasoning_chain</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">reasoning_prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        
+        <span class="c1"># Collect metadata from all visualizations</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;n_visualizations&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">),</span>
+            <span class="s1">&#39;visualization_methods&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">viz</span><span class="o">.</span><span class="n">method_name</span> <span class="k">for</span> <span class="n">viz</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">],</span>
+            <span class="s1">&#39;data_shape&#39;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+            <span class="s1">&#39;n_classes&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;highlighted_points&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">highlight_indices</span><span class="p">)</span> <span class="k">if</span> <span class="n">highlight_indices</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;composition_config&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;composed_image&#39;</span><span class="p">:</span> <span class="n">composed_image</span><span class="p">,</span>
+            <span class="s1">&#39;reasoning_prompt&#39;</span><span class="p">:</span> <span class="n">reasoning_prompt</span><span class="p">,</span>
+            <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">,</span>
+            <span class="s1">&#39;individual_results&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cached_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;viz_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_train&quot;</span><span class="p">)</span> 
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">))</span>
+            <span class="p">]</span>
+        <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="ContextComposer.get_visualization_comparison">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.get_visualization_comparison">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_visualization_comparison</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a comparison of all visualization methods.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with comparison metrics and insights</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitted</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Must call fit() before getting comparison&quot;</span><span class="p">)</span>
+        
+        <span class="n">comparison</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;methods&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;capabilities&#39;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s1">&#39;performance&#39;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s1">&#39;recommendations&#39;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">}</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">viz</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualizations</span><span class="p">):</span>
+            <span class="n">method_info</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span>
+                <span class="s1">&#39;supports_3d&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">supports_3d</span><span class="p">,</span>
+                <span class="s1">&#39;supports_regression&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">supports_regression</span><span class="p">,</span>
+                <span class="s1">&#39;supports_new_data&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">supports_new_data</span><span class="p">,</span>
+                <span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="vm">__dict__</span>
+            <span class="p">}</span>
+            
+            <span class="c1"># Add performance metrics if available</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">viz</span><span class="p">,</span> <span class="s1">&#39;_last_fit_time&#39;</span><span class="p">):</span>
+                <span class="n">method_info</span><span class="p">[</span><span class="s1">&#39;fit_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">_last_fit_time</span>
+            
+            <span class="n">comparison</span><span class="p">[</span><span class="s1">&#39;methods&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">method_info</span><span class="p">)</span>
+        
+        <span class="c1"># Generate recommendations based on data characteristics</span>
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_X_train</span><span class="o">.</span><span class="n">shape</span>
+        
+        <span class="k">if</span> <span class="n">n_samples</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="n">comparison</span><span class="p">[</span><span class="s1">&#39;recommendations&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Small dataset: Consider PCA or MDS for stable results&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n_features</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
+            <span class="n">comparison</span><span class="p">[</span><span class="s1">&#39;recommendations&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;High-dimensional data: UMAP or t-SNE may be most effective&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y_train</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_y_train</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">comparison</span><span class="p">[</span><span class="s1">&#39;recommendations&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Many classes: Consider spectral embedding or UMAP&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">comparison</span></div>
+
+    
+<div class="viewcode-block" id="ContextComposer.clear_cache">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.clear_cache">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear cached transformation results.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cached_results</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Cleared visualization cache&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="ContextComposer.get_config">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.get_config">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current configuration.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;composition_config&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span>
+            <span class="s1">&#39;visualizations&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span>
+                <span class="p">}</span>
+                <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">visualization_configs</span>
+            <span class="p">]</span>
+        <span class="p">}</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

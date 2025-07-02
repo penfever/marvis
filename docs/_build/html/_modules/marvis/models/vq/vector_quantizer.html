@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.models.vq.vector_quantizer &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">marvis.models.vq.vector_quantizer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for marvis.models.vq.vector_quantizer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Vector Quantization layer for MARVIS.</span>
+
+<span class="sd">This module implements a Vector Quantization (VQ) layer that maps continuous</span>
+<span class="sd">tabular embeddings to a discrete codebook. The implementation is based on the</span>
+<span class="sd">VQ-VAE approach described in &quot;Neural Discrete Representation Learning&quot; paper</span>
+<span class="sd">and has been adapted for use with tabular embeddings.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn.functional</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">F</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="VectorQuantizer">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.vector_quantizer.VectorQuantizer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">VectorQuantizer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Vector Quantization layer that maps continuous embeddings to a discrete codebook.</span>
+<span class="sd">    </span>
+<span class="sd">    Implements a VQ layer with an optional Exponential Moving Average (EMA) update</span>
+<span class="sd">    rule for the codebook, and a straight-through estimator for backpropagation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="VectorQuantizer.__init__">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.vector_quantizer.VectorQuantizer.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+                <span class="n">embedding_dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
+                <span class="n">num_embeddings</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span> 
+                <span class="n">commitment_cost</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span>
+                <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
+                <span class="n">decay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Vector Quantizer.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            embedding_dim: Dimension of the input embeddings and codebook vectors</span>
+<span class="sd">            num_embeddings: Size of the codebook (number of discrete codes)</span>
+<span class="sd">            commitment_cost: Weight for the commitment loss</span>
+<span class="sd">            epsilon: Small constant for numerical stability</span>
+<span class="sd">            decay: Decay factor for Exponential Moving Average updates (0 for no EMA)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span> <span class="o">=</span> <span class="n">embedding_dim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_embeddings</span> <span class="o">=</span> <span class="n">num_embeddings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">commitment_cost</span> <span class="o">=</span> <span class="n">commitment_cost</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decay</span> <span class="o">=</span> <span class="n">decay</span>
+        
+        <span class="c1"># Initialize the codebook as a learnable parameter</span>
+        <span class="c1"># Using Uniform(-1/k, 1/k) initialization for the codebook, where k is num_embeddings</span>
+        <span class="n">init_bound</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">num_embeddings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">codebook</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_embeddings</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="n">init_bound</span><span class="p">,</span> <span class="n">init_bound</span><span class="p">)</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># Register buffer for codebook usage tracking</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;_codebook_usage&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_embeddings</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;_ema_cluster_size&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_embeddings</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;_ema_w&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_embeddings</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">))</span>
+        
+        <span class="c1"># Counter for usage resets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">usage_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_usage_every</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Reset usage counter every 1000 forward passes</span></div>
+
+    
+<div class="viewcode-block" id="VectorQuantizer.forward">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.vector_quantizer.VectorQuantizer.forward">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">return_indices</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span> 
+                                                                         <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Forward pass that quantizes the input embeddings.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            inputs: Input embeddings of shape [batch_size, embedding_dim]</span>
+<span class="sd">            return_indices: Whether to return the indices of the selected codebook vectors</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            quantized: Quantized embeddings of the same shape as inputs</span>
+<span class="sd">            loss: The VQ loss value (commitment loss + codebook loss)</span>
+<span class="sd">            perplexity: Perplexity of the codes (measures codebook usage)</span>
+<span class="sd">            indices: Indices of the selected codebook vectors (if return_indices=True)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># inputs shape: [batch_size, embedding_dim]</span>
+        <span class="c1"># Ensure input is 2D</span>
+        <span class="n">orig_shape</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">orig_shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">flat_inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">flat_inputs</span> <span class="o">=</span> <span class="n">inputs</span>
+        
+        <span class="c1"># Calculate distances between inputs and codebook vectors</span>
+        <span class="c1"># Using expanded form for better numerical stability</span>
+        <span class="c1"># shape: [batch_size, num_embeddings]</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">flat_inputs</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> \
+                    <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">codebook</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> \
+                    <span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">flat_inputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">codebook</span><span class="o">.</span><span class="n">t</span><span class="p">())</span>
+        
+        <span class="c1"># Find the nearest codebook vector for each input</span>
+        <span class="c1"># shape: [batch_size]</span>
+        <span class="n">encoding_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># Update codebook usage tracking</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_usage</span><span class="p">(</span><span class="n">encoding_indices</span><span class="p">)</span>
+        
+        <span class="c1"># Calculate the perplexity of the quantized distribution</span>
+        <span class="c1"># This measures how many codebook vectors are being used effectively</span>
+        <span class="n">encodings</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">encoding_indices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_embeddings</span><span class="p">,</span> 
+                                <span class="n">device</span><span class="o">=</span><span class="n">inputs</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">encodings</span><span class="o">.</span><span class="n">scatter_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">encoding_indices</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">avg_probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">encodings</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">perplexity</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">avg_probs</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">avg_probs</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)))</span>
+        
+        <span class="c1"># Get the quantized vectors</span>
+        <span class="c1"># shape: [batch_size, embedding_dim]</span>
+        <span class="n">quantized</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_codebook_entries</span><span class="p">(</span><span class="n">encoding_indices</span><span class="p">)</span>
+        
+        <span class="c1"># Update the codebook using Exponential Moving Average when using decay</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_codebook_ema</span><span class="p">(</span><span class="n">flat_inputs</span><span class="p">,</span> <span class="n">encodings</span><span class="p">)</span>
+        
+        <span class="c1"># Compute the VQ loss</span>
+        <span class="c1"># Consists of two terms:</span>
+        <span class="c1"># 1. Commitment loss: encourages the encoder to output vectors close to codebook entries</span>
+        <span class="c1"># 2. Codebook loss: updates the codebook to better match the encoder outputs</span>
+        <span class="n">commitment_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">quantized</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">-</span> <span class="n">flat_inputs</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">codebook_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">quantized</span> <span class="o">-</span> <span class="n">flat_inputs</span><span class="o">.</span><span class="n">detach</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">codebook_loss</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">commitment_cost</span> <span class="o">*</span> <span class="n">commitment_loss</span>
+        
+        <span class="c1"># Straight-through estimator</span>
+        <span class="c1"># Pass gradients from quantized vectors back to inputs</span>
+        <span class="n">quantized</span> <span class="o">=</span> <span class="n">flat_inputs</span> <span class="o">+</span> <span class="p">(</span><span class="n">quantized</span> <span class="o">-</span> <span class="n">flat_inputs</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+        
+        <span class="c1"># Reshape to original shape if needed</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">orig_shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">quantized</span> <span class="o">=</span> <span class="n">quantized</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">orig_shape</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">return_indices</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">quantized</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">perplexity</span><span class="p">,</span> <span class="n">encoding_indices</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">quantized</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">perplexity</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_codebook_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve codebook entries for given indices.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            indices: Tensor of codebook indices</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Corresponding codebook vectors</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># shape: [batch_size, embedding_dim]</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">codebook</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">indices</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_usage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the codebook usage counter.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            indices: Tensor of codebook indices used in this batch</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Count each index once per batch to avoid bias from repeated entries</span>
+        <span class="n">unique_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_codebook_usage</span><span class="p">[</span><span class="n">unique_indices</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="c1"># Periodically log and reset usage to monitor codebook utilization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">usage_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">usage_count</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_usage_every</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">total_used</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_codebook_usage</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">usage_pct</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_used</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_embeddings</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+            
+            <span class="c1"># Log utilization of codebook</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Codebook utilization: </span><span class="si">{</span><span class="n">total_used</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_embeddings</span><span class="si">}</span><span class="s2"> vectors used (</span><span class="si">{</span><span class="n">usage_pct</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
+            
+            <span class="c1"># Check if usage is too low and log a warning</span>
+            <span class="k">if</span> <span class="n">usage_pct</span> <span class="o">&lt;</span> <span class="mi">25</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">usage_count</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_usage_every</span> <span class="o">*</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Low codebook utilization: only </span><span class="si">{</span><span class="n">usage_pct</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% in use. Consider reducing codebook size.&quot;</span><span class="p">)</span>
+            
+            <span class="c1"># Reset usage counter</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_codebook_usage</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_codebook_ema</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flat_inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">encodings</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the codebook using Exponential Moving Average (EMA).</span>
+<span class="sd">        This helps stabilize training by slowly updating the codebook.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            flat_inputs: Input embeddings </span>
+<span class="sd">            encodings: One-hot encodings of selected codebook vectors</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># EMA update for cluster size</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">flat_inputs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="c1"># Sum of encodings is how many times each codebook entry was used</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">encodings</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># Update exponential moving averages</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ema_cluster_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ema_cluster_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay</span> <span class="o">+</span> \
+                                <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span>
+        
+        <span class="c1"># Calculate sum of embeddings per codebook entry</span>
+        <span class="n">dw</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">encodings</span><span class="o">.</span><span class="n">t</span><span class="p">(),</span> <span class="n">flat_inputs</span><span class="p">)</span>
+        
+        <span class="c1"># Update EMA weights</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ema_w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ema_w</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay</span><span class="p">)</span> <span class="o">*</span> <span class="n">dw</span>
+        
+        <span class="c1"># Normalize cluster size to avoid explosion / decay to zero</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ema_cluster_size</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
+        
+        <span class="c1"># Update codebook values</span>
+        <span class="n">updated_codebook</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ema_w</span> <span class="o">/</span> <span class="n">n</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># Replace codebook values with updated ones</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">codebook</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">updated_codebook</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="VectorQuantizer.get_codebook_indices">
+<a class="viewcode-back" href="../../../../api-reference/marvis.models.html#marvis.models.vq.vector_quantizer.VectorQuantizer.get_codebook_indices">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_codebook_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the indices of the nearest codebook entries for the given inputs.</span>
+<span class="sd">        Useful for encoding inputs with the quantizer.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            inputs: Input embeddings</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            indices: Indices of the nearest codebook entries</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Flatten input if needed</span>
+        <span class="n">orig_shape</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">orig_shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">flat_inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">flat_inputs</span> <span class="o">=</span> <span class="n">inputs</span>
+        
+        <span class="c1"># Calculate distances</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">flat_inputs</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> \
+                    <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">codebook</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> \
+                    <span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">flat_inputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">codebook</span><span class="o">.</span><span class="n">t</span><span class="p">())</span>
+        
+        <span class="c1"># Return indices</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

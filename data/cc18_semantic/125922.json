@@ -1,0 +1,275 @@
+{
+  "dataset_name": "texture",
+  "openml_task_id": 125922,
+  "dataset_description": "This dataset contains texture features extracted from Brodatz album images using fourth-order modified moments for characterizing natural micro-textures. The dataset includes 11 different texture classes (Grass lawn, Pressed calf leather, Handmade paper, Raffia looped to a high pile, Cotton canvas, Pigskin, Beach sand, Oriental straw cloth, Oriental grass fiber cloth) with 500 instances per class, totaling 5,500 instances. Each instance is described by 40 attributes representing fourth-order modified moments estimated in four orientations (0°, 45°, 90°, 135°).",
+  "dataset_source": "Brodatz texture album, statistical texture analysis research",
+  "domain": "Computer Vision, Texture Analysis",
+  "problem_type": "Multi-class Classification",
+  "input_features": {
+    "number_of_features": 40,
+    "feature_types": "Continuous numerical",
+    "feature_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775."
+  },
+  "dataset_size": {
+    "instances": 5500,
+    "features": 40,
+    "classes": 11
+  },
+  "description": "This dataset contains texture features extracted from Brodatz album images using fourth-order modified moments for characterizing natural micro-textures. The dataset includes 11 different texture classes (Grass lawn, Pressed calf leather, Handmade paper, Raffia looped to a high pile, Cotton canvas, Pigskin, Beach sand, Oriental straw cloth, Oriental grass fiber cloth) with 500 instances per class, totaling 5,500 instances. Each instance is described by 40 attributes representing fourth-order modified moments estimated in four orientations (0°, 45°, 90°, 135°).",
+  "original_source": {
+    "creator": "Unknown",
+    "institution": "Unknown",
+    "date": "Unknown",
+    "publication": "Unknown"
+  },
+  "columns": [
+    {
+      "name": "feature_1",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 1)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_2",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 2)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_3",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 3)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_4",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 4)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_5",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 5)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_6",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 6)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_7",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 7)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_8",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 8)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_9",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 9)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_10",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 10)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_11",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 11)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_12",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 12)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_13",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 13)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_14",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 14)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_15",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 15)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_16",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 16)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_17",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 17)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_18",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 18)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_19",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 19)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_20",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 20)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_21",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 21)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_22",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 22)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_23",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 23)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_24",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 24)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_25",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 25)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_26",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 26)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_27",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 27)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_28",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 28)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_29",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 29)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_30",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 30)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_31",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 31)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_32",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 32)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_33",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 33)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_34",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 34)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_35",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 35)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_36",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 36)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_37",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 37)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_38",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 38)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_39",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 39)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_40",
+      "semantic_description": "The 40 attributes represent fourth order modified moments (mm4) calculated in four orientations: mm4(000), mm4(001), mm4(002), mm4(011), mm4(012), mm4(022), mm4(111), mm4(112), mm4(122), and mm4(222) at 0°, 45°, 90°, and 135° degrees. Values range from approximately -1.45 to 0.775. (feature 40)",
+      "data_type": "Continuous numerical"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "2",
+      "meaning": "Texture class labels corresponding to different Brodatz texture types: 2"
+    },
+    {
+      "name": "3",
+      "meaning": "Texture class labels corresponding to different Brodatz texture types: 3"
+    },
+    {
+      "name": "4",
+      "meaning": "Texture class labels corresponding to different Brodatz texture types: 4"
+    },
+    {
+      "name": "6",
+      "meaning": "Texture class labels corresponding to different Brodatz texture types: 6"
+    },
+    {
+      "name": "7",
+      "meaning": "Texture class labels corresponding to different Brodatz texture types: 7"
+    },
+    {
+      "name": "8",
+      "meaning": "Texture class labels corresponding to different Brodatz texture types: 8"
+    },
+    {
+      "name": "9",
+      "meaning": "Texture class labels corresponding to different Brodatz texture types: 9"
+    },
+    {
+      "name": "10",
+      "meaning": "Texture class labels corresponding to different Brodatz texture types: 10"
+    },
+    {
+      "name": "12",
+      "meaning": "Texture class labels corresponding to different Brodatz texture types: 12"
+    },
+    {
+      "name": "13",
+      "meaning": "Texture class labels corresponding to different Brodatz texture types: 13"
+    },
+    {
+      "name": "14",
+      "meaning": "Texture class labels corresponding to different Brodatz texture types: 14"
+    }
+  ],
+  "dataset_history": "Dataset history not available for texture",
+  "inference_notes": "Inference notes not available for texture"
+}

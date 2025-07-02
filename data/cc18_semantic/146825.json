@@ -1,0 +1,134 @@
+{
+  "dataset": "Fashion-MNIST",
+  "description": "A dataset of Zalando's article images consisting of 28x28 grayscale images of fashion products. Designed as a drop-in replacement for the original MNIST dataset with identical structure but more challenging classification tasks.",
+  "source": "Zalando Research",
+  "source_url": "https://github.com/zalandoresearch/fashion-mnist",
+  "openml_task": 146825,
+  "openml_dataset": 40996,
+  "date_created": "2017",
+  "creator": {
+    "name": "Han Xiao, Kashif Rasul, Roland Vollgraf",
+    "affiliation": "Zalando Research"
+  },
+  "instances": 70000,
+  "features": 784,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "numeric",
+    "description": "Pixel intensity values (0-255)"
+  },
+  "feature_description": {
+    "pixels": "784 features representing 28x28 grayscale pixel values",
+    "range": "0-255 grayscale intensity values",
+    "structure": "Flattened 2D image array"
+  },
+  "target_values": {
+    "0": "T-shirt/top",
+    "1": "Trouser",
+    "2": "Pullover",
+    "3": "Dress",
+    "4": "Coat",
+    "5": "Sandal",
+    "6": "Shirt",
+    "7": "Sneaker",
+    "8": "Bag",
+    "9": "Ankle boot"
+  },
+  "class_distribution": {
+    "per_class": "7000 instances per class",
+    "balanced": "Perfectly balanced across 10 classes"
+  },
+  "data_splits": {
+    "training": "60000 instances",
+    "test": "10000 instances",
+    "structure": "Same as original MNIST"
+  },
+  "domain": "Computer Vision/Fashion",
+  "use_case": "Image classification, fashion item recognition, e-commerce applications, computer vision benchmarking, deep learning tutorials",
+  "preprocessing": "Images normalized to 28x28 grayscale, center-cropped",
+  "performance_considerations": "More challenging than original MNIST digits, suitable for benchmarking modern algorithms",
+  "advantages": "Drop-in MNIST replacement, real-world objects, balanced classes, standard size, widely adopted benchmark",
+  "challenges": "More complex than digit recognition, intra-class variation, some ambiguous categories (pullover vs coat)",
+  "research_applications": "Deep learning benchmarking, convolutional neural networks, transfer learning, few-shot learning, adversarial examples",
+  "benchmark_results": "State-of-the-art ~95% accuracy with deep CNNs",
+  "ethical_considerations": "Open dataset promoting reproducible research in computer vision",
+  "citations": [
+    {
+      "author": "Han Xiao and Kashif Rasul and Roland Vollgraf",
+      "title": "Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms",
+      "venue": "arXiv",
+      "arxiv": "1708.07747",
+      "year": "2017"
+    }
+  ],
+  "dataset_name": "Fashion-MNIST",
+  "original_source": {
+    "creator": "Han Xiao, Kashif Rasul, Roland Vollgraf",
+    "institution": "Zalando Research",
+    "date": "Unknown",
+    "publication": "Han Xiao and Kashif Rasul and Roland Vollgraf: Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms"
+  },
+  "columns": [
+    {
+      "name": "pixels",
+      "semantic_description": "784 features representing 28x28 grayscale pixel values",
+      "data_type": "numeric"
+    },
+    {
+      "name": "range",
+      "semantic_description": "0-255 grayscale intensity values",
+      "data_type": "numeric"
+    },
+    {
+      "name": "structure",
+      "semantic_description": "Flattened 2D image array",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "T-shirt/top"
+    },
+    {
+      "name": "1",
+      "meaning": "Trouser"
+    },
+    {
+      "name": "2",
+      "meaning": "Pullover"
+    },
+    {
+      "name": "3",
+      "meaning": "Dress"
+    },
+    {
+      "name": "4",
+      "meaning": "Coat"
+    },
+    {
+      "name": "5",
+      "meaning": "Sandal"
+    },
+    {
+      "name": "6",
+      "meaning": "Shirt"
+    },
+    {
+      "name": "7",
+      "meaning": "Sneaker"
+    },
+    {
+      "name": "8",
+      "meaning": "Bag"
+    },
+    {
+      "name": "9",
+      "meaning": "Ankle boot"
+    }
+  ],
+  "dataset_history": "Dataset history not available for Fashion-MNIST",
+  "inference_notes": "Challenges: More complex than digit recognition, intra-class variation, some ambiguous categories (pullover vs coat). Advantages: Drop-in MNIST replacement, real-world objects, balanced classes, standard size, widely adopted benchmark. Applications: Deep learning benchmarking, convolutional neural networks, transfer learning, few-shot learning, adversarial examples. Use Case: Image classification, fashion item recognition, e-commerce applications, computer vision benchmarking, deep learning tutorials"
+}

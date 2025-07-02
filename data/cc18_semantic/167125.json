@@ -1,0 +1,88 @@
+{
+  "dataset": "Internet-Advertisements",
+  "description": "Dataset for predicting whether images on Internet pages are advertisements. Features encode image geometry, URL phrases, anchor text, and surrounding text to classify images as ads or non-ads.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "http://archive.ics.uci.edu/ml/datasets/Internet+Advertisements",
+  "openml_task": 167125,
+  "openml_dataset": 1176,
+  "date_donated": "1998",
+  "creator": {
+    "name": "Nicholas Kushmerick",
+    "email": "nick@ucd.ie",
+    "note": "STANDARD encoding as mentioned in Kushmerick, 1999"
+  },
+  "instances": 3279,
+  "features": 1558,
+  "target": "class",
+  "target_type": "binary",
+  "missing_values": true,
+  "missing_values_rate": "28% of instances have missing continuous features",
+  "feature_types": {
+    "continuous": 3,
+    "binary": 1555,
+    "total": 1558
+  },
+  "feature_description": {
+    "continuous_features": "3 features encoding image geometry (height, width, aspect ratio)",
+    "binary_features": "1555 features indicating presence of specific words/phrases in URL, image URL, alt text, anchor text, and surrounding text",
+    "missing_interpretation": "Missing values should be interpreted as 'unknown'"
+  },
+  "target_values": {
+    "ad": "Image is an advertisement",
+    "nonad": "Image is not an advertisement"
+  },
+  "domain": "Web Mining/Online Advertising",
+  "use_case": "Ad blocking, web content filtering, online advertising analysis, web page classification, content recommendation",
+  "preprocessing": "Features extracted from image properties and surrounding HTML/text context",
+  "encoding": "STANDARD encoding - high-dimensional binary representation",
+  "performance_considerations": "High dimensionality (1558 features), sparse binary features, missing values in continuous features",
+  "advantages": "Real-world web mining problem, comprehensive feature extraction, practical application",
+  "challenges": "High dimensionality, sparsity, missing values, concept drift in web content",
+  "research_applications": "High-dimensional classification, sparse data mining, web content analysis, feature selection",
+  "historical_context": "Early dataset in web mining and online advertising detection",
+  "openml_status": "Deactivated due to validation errors but still accessible",
+  "citations": [
+    {
+      "author": "Nicholas Kushmerick",
+      "title": "Learning to remove Internet advertisements",
+      "venue": "Proceedings of the Third International Conference on Autonomous Agents",
+      "year": "1999"
+    }
+  ],
+  "dataset_name": "Internet-Advertisements",
+  "original_source": {
+    "creator": "Nicholas Kushmerick",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1998",
+    "publication": "Nicholas Kushmerick: Learning to remove Internet advertisements"
+  },
+  "columns": [
+    {
+      "name": "continuous_features",
+      "semantic_description": "3 features encoding image geometry (height, width, aspect ratio)",
+      "data_type": "integer"
+    },
+    {
+      "name": "binary_features",
+      "semantic_description": "1555 features indicating presence of specific words/phrases in URL, image URL, alt text, anchor text, and surrounding text",
+      "data_type": "integer"
+    },
+    {
+      "name": "missing_interpretation",
+      "semantic_description": "Missing values should be interpreted as 'unknown'",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "ad",
+      "meaning": "Image is an advertisement"
+    },
+    {
+      "name": "nonad",
+      "meaning": "Image is not an advertisement"
+    }
+  ],
+  "dataset_history": "Dataset history not available for Internet-Advertisements",
+  "inference_notes": "Challenges: High dimensionality, sparsity, missing values, concept drift in web content. Advantages: Real-world web mining problem, comprehensive feature extraction, practical application. Applications: High-dimensional classification, sparse data mining, web content analysis, feature selection. Use Case: Ad blocking, web content filtering, online advertising analysis, web page classification, content recommendation"
+}

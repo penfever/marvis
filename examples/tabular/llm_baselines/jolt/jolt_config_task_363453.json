@@ -1,0 +1,18 @@
+{
+  "dataset_name": "social-media-impact-on-suicide-rates",
+  "task_prefix": "A dataset examining the relationship between social media usage metrics and changes in suicide rates since 2010. The dataset combines social media engagement statistics with World Health Organization (WHO) suicide rate data to analyze potential correlations between digital platform usage and changes in suicide prevalence. Each example contains 5 features. Predict the suicide_rate_change_since_2010.",
+  "column_descriptions": {
+    "social_media_usage": "Likely represents the percentage of population using social media platforms or average time spent on social media",
+    "engagement_metrics": "Measures of user interaction such as likes, shares, or comments on social platforms",
+    "platform_penetration": "Market penetration or adoption rate of specific social media platforms in the population",
+    "demographic_factor": "Demographic variables that might influence both social media usage and suicide rates",
+    "temporal_metric": "Time-based measurement, possibly year or period of observation"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: suicide_rate_change_since_2010 - Percentage change in suicide rates compared to 2010 baseline levels. Units: Percentage change (%). Range: Likely -100 to +100 percent",
+  "num_features": 5,
+  "num_classes": 1,
+  "task_id": 363453
+}

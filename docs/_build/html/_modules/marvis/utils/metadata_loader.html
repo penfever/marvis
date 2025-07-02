@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.utils.metadata_loader &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">marvis.utils.metadata_loader</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for marvis.utils.metadata_loader</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Metadata loading and management for MARVIS datasets.</span>
+
+<span class="sd">This module provides utilities for loading and managing dataset metadata</span>
+<span class="sd">to enhance VLM prompts with rich contextual information.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">asdict</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ColumnMetadata">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.ColumnMetadata">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ColumnMetadata</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Metadata for a dataset column/feature.&quot;&quot;&quot;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">semantic_description</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">data_type</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
+
+<div class="viewcode-block" id="TargetClassMetadata">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.TargetClassMetadata">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TargetClassMetadata</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Metadata for a target class.&quot;&quot;&quot;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">meaning</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
+
+<div class="viewcode-block" id="DatasetMetadata">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.DatasetMetadata">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DatasetMetadata</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Complete metadata for a dataset.&quot;&quot;&quot;</span>
+    <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">columns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ColumnMetadata</span><span class="p">]</span>
+    <span class="n">target_classes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TargetClassMetadata</span><span class="p">]</span>
+    <span class="n">dataset_history</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">inference_notes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">original_source</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    
+<div class="viewcode-block" id="DatasetMetadata.from_dict">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.DatasetMetadata.from_dict">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;DatasetMetadata&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create DatasetMetadata from dictionary.&quot;&quot;&quot;</span>
+        <span class="c1"># Convert columns</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s1">&#39;columns&#39;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">col_data</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]:</span>
+                <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ColumnMetadata</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">col_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
+                    <span class="n">semantic_description</span><span class="o">=</span><span class="n">col_data</span><span class="p">[</span><span class="s1">&#39;semantic_description&#39;</span><span class="p">],</span>
+                    <span class="n">data_type</span><span class="o">=</span><span class="n">col_data</span><span class="p">[</span><span class="s1">&#39;data_type&#39;</span><span class="p">]</span>
+                <span class="p">))</span>
+        
+        <span class="c1"># Convert target classes</span>
+        <span class="n">target_classes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s1">&#39;target_classes&#39;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">class_data</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;target_classes&#39;</span><span class="p">]:</span>
+                <span class="n">target_classes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TargetClassMetadata</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">class_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
+                    <span class="n">meaning</span><span class="o">=</span><span class="n">class_data</span><span class="p">[</span><span class="s1">&#39;meaning&#39;</span><span class="p">]</span>
+                <span class="p">))</span>
+        
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">dataset_name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dataset_name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+            <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span>
+            <span class="n">target_classes</span><span class="o">=</span><span class="n">target_classes</span><span class="p">,</span>
+            <span class="n">dataset_history</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dataset_history&#39;</span><span class="p">),</span>
+            <span class="n">inference_notes</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;inference_notes&#39;</span><span class="p">),</span>
+            <span class="n">original_source</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;original_source&#39;</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="DatasetMetadata.to_dict">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.DatasetMetadata.to_dict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert to dictionary.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">asdict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="MetadataLoader">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.MetadataLoader">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MetadataLoader</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loader for dataset metadata with caching and automatic detection.&quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="MetadataLoader.__init__">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.MetadataLoader.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata_base_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize metadata loader.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            metadata_base_dir: Base directory for metadata files. If None, uses default.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">metadata_base_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Default to data directory relative to project root for recursive search</span>
+            <span class="n">current_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+            <span class="n">project_root</span> <span class="o">=</span> <span class="n">current_file</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span>  <span class="c1"># Go up from marvis/utils/ to project root</span>
+            <span class="n">metadata_base_dir</span> <span class="o">=</span> <span class="n">project_root</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata_base_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">metadata_base_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Cache loaded metadata</span>
+        
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MetadataLoader initialized with base directory: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata_base_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="MetadataLoader.detect_metadata_file">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.MetadataLoader.detect_metadata_file">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">detect_metadata_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Detect metadata file for a dataset ID using recursive search.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            dataset_id: Dataset identifier (e.g., task ID, dataset name)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Path to metadata file if found, None otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Convert to string</span>
+        <span class="n">dataset_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+        
+        <span class="c1"># First try direct patterns in base directory for backward compatibility</span>
+        <span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_str</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">,</span>           <span class="c1"># Direct match</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">,</span>   <span class="c1"># Lowercase</span>
+            <span class="sa">f</span><span class="s2">&quot;task_</span><span class="si">{</span><span class="n">dataset_str</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">,</span>      <span class="c1"># With task prefix</span>
+            <span class="sa">f</span><span class="s2">&quot;dataset_</span><span class="si">{</span><span class="n">dataset_str</span><span class="si">}</span><span class="s2">.json&quot;</span>    <span class="c1"># With dataset prefix</span>
+        <span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+            <span class="n">candidate_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_base_dir</span> <span class="o">/</span> <span class="n">pattern</span>
+            <span class="k">if</span> <span class="n">candidate_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found metadata file for dataset &#39;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">candidate_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">candidate_path</span>
+        
+        <span class="c1"># If not found in base directory, do recursive search</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_base_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Performing recursive search for dataset &#39;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">&#39; in </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata_base_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+            <span class="c1"># Search for JSON files recursively</span>
+            <span class="k">for</span> <span class="n">json_file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_base_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.json&quot;</span><span class="p">):</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">json_file</span><span class="o">.</span><span class="n">name</span>
+                <span class="n">stem</span> <span class="o">=</span> <span class="n">json_file</span><span class="o">.</span><span class="n">stem</span>  <span class="c1"># filename without extension</span>
+                
+                <span class="c1"># Check if filename matches the dataset_id (prioritize exact matches)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">dataset_str</span> <span class="o">==</span> <span class="n">stem</span> <span class="ow">or</span> 
+                    <span class="n">dataset_str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">stem</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span>
+                    <span class="sa">f</span><span class="s2">&quot;task_</span><span class="si">{</span><span class="n">dataset_str</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="n">stem</span> <span class="ow">or</span>
+                    <span class="sa">f</span><span class="s2">&quot;dataset_</span><span class="si">{</span><span class="n">dataset_str</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="n">stem</span><span class="p">):</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found metadata file for dataset &#39;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">json_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">json_file</span>
+        
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No metadata file found for dataset &#39;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">&#39; in </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata_base_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+    
+<div class="viewcode-block" id="MetadataLoader.load_metadata">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.MetadataLoader.load_metadata">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_metadata</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> 
+        <span class="n">use_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DatasetMetadata</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load dataset metadata from various sources.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            dataset_id: Can be:</span>
+<span class="sd">                - String/int: Dataset ID to auto-detect file</span>
+<span class="sd">                - Path: Direct path to metadata file</span>
+<span class="sd">                - Dict: Metadata dictionary to convert</span>
+<span class="sd">            use_cache: Whether to use cached results</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            DatasetMetadata object if successful, None otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Handle different input types</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="c1"># Direct dictionary input</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">DatasetMetadata</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to parse metadata dictionary: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span>
+        
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
+            <span class="c1"># Direct path input</span>
+            <span class="n">metadata_path</span> <span class="o">=</span> <span class="n">dataset_id</span>
+            <span class="n">cache_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">metadata_path</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># String/int dataset ID - auto-detect</span>
+            <span class="n">dataset_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+            <span class="n">cache_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;auto:</span><span class="si">{</span><span class="n">dataset_str</span><span class="si">}</span><span class="s2">&quot;</span>
+            
+            <span class="c1"># Check cache first</span>
+            <span class="k">if</span> <span class="n">use_cache</span> <span class="ow">and</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using cached metadata for dataset &#39;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span>
+            
+            <span class="c1"># Auto-detect metadata file</span>
+            <span class="n">metadata_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">detect_metadata_file</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">metadata_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+        
+        <span class="c1"># Check cache for file path</span>
+        <span class="k">if</span> <span class="n">use_cache</span> <span class="ow">and</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span>
+        
+        <span class="c1"># Load from file</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">metadata_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">metadata_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            
+            <span class="n">metadata</span> <span class="o">=</span> <span class="n">DatasetMetadata</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">metadata_dict</span><span class="p">)</span>
+            
+            <span class="c1"># Cache the result</span>
+            <span class="k">if</span> <span class="n">use_cache</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata</span>
+            
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully loaded metadata for dataset from </span><span class="si">{</span><span class="n">metadata_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">metadata</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load metadata from </span><span class="si">{</span><span class="n">metadata_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+    
+<div class="viewcode-block" id="MetadataLoader.get_available_datasets">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.MetadataLoader.get_available_datasets">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_available_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get list of datasets with available metadata (recursive search).</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            List of dataset IDs that have metadata files</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_base_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        
+        <span class="n">datasets</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_base_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.json&quot;</span><span class="p">):</span>
+            <span class="c1"># Extract dataset ID from filename (remove .json extension)</span>
+            <span class="n">dataset_id</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">stem</span>
+            
+            <span class="c1"># Remove common prefixes to get clean dataset ID</span>
+            <span class="k">if</span> <span class="n">dataset_id</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;task_&quot;</span><span class="p">):</span>
+                <span class="n">dataset_id</span> <span class="o">=</span> <span class="n">dataset_id</span><span class="p">[</span><span class="mi">5</span><span class="p">:]</span>
+            <span class="k">elif</span> <span class="n">dataset_id</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;dataset_&quot;</span><span class="p">):</span>
+                <span class="n">dataset_id</span> <span class="o">=</span> <span class="n">dataset_id</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span>
+            
+            <span class="n">datasets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">datasets</span><span class="p">)))</span>  <span class="c1"># Remove duplicates and sort</span></div>
+
+    
+<div class="viewcode-block" id="MetadataLoader.clear_cache">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.MetadataLoader.clear_cache">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear the metadata cache.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Metadata cache cleared&quot;</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Global metadata loader instance</span>
+<span class="n">_global_loader</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="get_metadata_loader">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.get_metadata_loader">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_metadata_loader</span><span class="p">(</span><span class="n">metadata_base_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MetadataLoader</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the global metadata loader instance.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        metadata_base_dir: Base directory for metadata files</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        MetadataLoader instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">_global_loader</span>
+    
+    <span class="k">if</span> <span class="n">_global_loader</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">metadata_base_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_global_loader</span> <span class="o">=</span> <span class="n">MetadataLoader</span><span class="p">(</span><span class="n">metadata_base_dir</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">_global_loader</span></div>
+
+
+
+<div class="viewcode-block" id="load_dataset_metadata">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.load_dataset_metadata">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_dataset_metadata</span><span class="p">(</span>
+    <span class="n">dataset_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+    <span class="n">metadata_base_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DatasetMetadata</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convenience function to load dataset metadata.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        dataset_id: Dataset identifier or metadata source</span>
+<span class="sd">        metadata_base_dir: Base directory for metadata files</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        DatasetMetadata object if successful, None otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">get_metadata_loader</span><span class="p">(</span><span class="n">metadata_base_dir</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_metadata</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="create_metadata_summary">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.create_metadata_summary">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_metadata_summary</span><span class="p">(</span><span class="n">metadata</span><span class="p">:</span> <span class="n">DatasetMetadata</span><span class="p">,</span> <span class="n">max_columns</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a concise summary of dataset metadata for use in prompts.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        metadata: DatasetMetadata object</span>
+<span class="sd">        max_columns: Maximum number of columns to include in summary</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Formatted metadata summary string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Dataset name and description</span>
+    <span class="k">if</span> <span class="n">metadata</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">:</span>
+        <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;**Dataset**: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">metadata</span><span class="o">.</span><span class="n">description</span><span class="p">:</span>
+        <span class="c1"># Truncate very long descriptions</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">description</span><span class="p">[:</span><span class="mi">300</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">description</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">300</span> <span class="k">else</span> <span class="n">metadata</span><span class="o">.</span><span class="n">description</span>
+        <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;**Description**: </span><span class="si">{</span><span class="n">desc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Target classes</span>
+    <span class="k">if</span> <span class="n">metadata</span><span class="o">.</span><span class="n">target_classes</span><span class="p">:</span>
+        <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;**Target Classes**:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">target_class</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">target_classes</span><span class="p">:</span>
+            <span class="n">meaning</span> <span class="o">=</span> <span class="n">target_class</span><span class="o">.</span><span class="n">meaning</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_class</span><span class="o">.</span><span class="n">meaning</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="k">else</span> <span class="n">target_class</span><span class="o">.</span><span class="n">meaning</span>
+            <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  • </span><span class="si">{</span><span class="n">target_class</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">meaning</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Column information (limited)</span>
+    <span class="k">if</span> <span class="n">metadata</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">num_columns</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;**Features** (</span><span class="si">{</span><span class="n">num_columns</span><span class="si">}</span><span class="s2"> total):&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Show first max_columns columns</span>
+        <span class="n">columns_to_show</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="n">max_columns</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns_to_show</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">semantic_description</span><span class="p">[:</span><span class="mi">80</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">semantic_description</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">80</span> <span class="k">else</span> <span class="n">col</span><span class="o">.</span><span class="n">semantic_description</span>
+            <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  • </span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">desc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">num_columns</span> <span class="o">&gt;</span> <span class="n">max_columns</span><span class="p">:</span>
+            <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  • ... and </span><span class="si">{</span><span class="n">num_columns</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">max_columns</span><span class="si">}</span><span class="s2"> more features&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Additional context</span>
+    <span class="k">if</span> <span class="n">metadata</span><span class="o">.</span><span class="n">inference_notes</span><span class="p">:</span>
+        <span class="n">notes</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">inference_notes</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">inference_notes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">200</span> <span class="k">else</span> <span class="n">metadata</span><span class="o">.</span><span class="n">inference_notes</span>
+        <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;**Inference Notes**: </span><span class="si">{</span><span class="n">notes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="detect_dataset_id_from_path">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.metadata_loader.detect_dataset_id_from_path">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">detect_dataset_id_from_path</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Try to extract a dataset ID from a file path.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        file_path: Path to a dataset file</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Detected dataset ID if possible, None otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    
+    <span class="c1"># Try to extract from filename</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">stem</span>  <span class="c1"># Remove extension</span>
+    
+    <span class="c1"># Common patterns for dataset files</span>
+    <span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sa">r</span><span class="s1">&#39;task_(\d+)&#39;</span><span class="p">,</span>           <span class="c1"># task_123</span>
+        <span class="sa">r</span><span class="s1">&#39;dataset_(\w+)&#39;</span><span class="p">,</span>        <span class="c1"># dataset_adult</span>
+        <span class="sa">r</span><span class="s1">&#39;(\d+)_&#39;</span><span class="p">,</span>               <span class="c1"># 123_something</span>
+        <span class="sa">r</span><span class="s1">&#39;([^_]+)_data&#39;</span><span class="p">,</span>         <span class="c1"># adult_data</span>
+        <span class="sa">r</span><span class="s1">&#39;([^_]+)_train&#39;</span><span class="p">,</span>        <span class="c1"># adult_train</span>
+        <span class="sa">r</span><span class="s1">&#39;([^_]+)_test&#39;</span>          <span class="c1"># adult_test</span>
+    <span class="p">]</span>
+    
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+    <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># If no pattern matches, try the whole filename</span>
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">filename</span>
+    
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

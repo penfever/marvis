@@ -1,0 +1,46 @@
+{
+  "dataset_name": "google_qa_question_type_reason_explanation",
+  "description": "This dataset is part of a Google Crowdsource initiative focused on question-answer analysis. It contains questions and answers along with various features to predict the reasoning type or explanation category of questions. The dataset is designed to help understand how different types of questions relate to their answers in terms of reasoning patterns.",
+  "original_source": {
+    "creator": "Google Crowdsource Team",
+    "institution": "Google",
+    "date": "2021",
+    "publication": "Baier, S., Chan, Y., Pfisterer, F., Schneider, L., & Bischl, B. (2021). Benchmarking multimodal automl for tabular data with text fields. arXiv preprint arXiv:2111.02705"
+  },
+  "columns": [
+    {
+      "name": "question_text",
+      "semantic_description": "The actual question text submitted by users",
+      "data_type": "text"
+    },
+    {
+      "name": "answer_text",
+      "semantic_description": "The corresponding answer text provided for the question",
+      "data_type": "text"
+    },
+    {
+      "name": "category_features",
+      "semantic_description": "Various categorical features describing the question-answer pair characteristics (exact feature names not provided in source documentation)",
+      "data_type": "categorical"
+    },
+    {
+      "name": "encoded_features",
+      "semantic_description": "Numerical features likely derived from text encoding or embedding (features 0-40)",
+      "data_type": "numeric"
+    }
+  ],
+  "target_description": {
+    "name": "question_type_reason_explanation",
+    "meaning": "Classification of the question type based on the reasoning or explanation pattern required to answer it",
+    "units": "Categorical score/classification",
+    "range": "Unknown specific range - likely categorical labels representing different reasoning types"
+  },
+  "dataset_history": "This dataset was created as part of Google's efforts to understand and categorize question-answer patterns. It was derived from a larger dataset used in a Kaggle competition focused on multi-label classification of question-answer pairs. The dataset represents real-world questions and answers collected through Google's crowdsourcing initiatives, making it particularly valuable for natural language processing and question-answering systems.",
+  "inference_notes": "Important considerations:\n1. The data likely contains subjective labels as question type classification can be interpretative\n2. The features appear to be pre-processed and encoded, possibly using text embedding techniques\n3. The dataset is part of a larger multi-label classification task that was split into separate prediction targets\n4. Being crowdsourced data, there might be quality variations in both questions and answers\n5. The exact meaning of the 41 features is not publicly documented, suggesting they might be derived features from text processing\n6. The dataset is relatively balanced with 4863 instances, making it suitable for supervised learning tasks\n7. Given its source and purpose, the dataset likely contains primarily English language content",
+  "_metadata": {
+    "task_id": 363371,
+    "generated_at": "2025-06-22T08:26:20.205374",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

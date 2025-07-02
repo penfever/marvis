@@ -1,0 +1,24 @@
+{
+  "dataset_name": "jungle_chess_2pcs_raw_endgame_complete",
+  "task_prefix": "Complete endgame tablebase for Jungle Chess (Dou Shou Qi) positions with exactly 2 pieces remaining. Contains all possible legal positions and their game-theoretic outcomes for this traditional Chinese board game variant. Each example contains 9 features. Predict the target class.",
+  "column_descriptions": {
+    "white_piece_type": "Type of the white/red player's piece. In Jungle Chess: Elephant (8), Lion (7), Tiger (6), Panther (5), Dog (4), Wolf (3), Cat (2), or Mouse (1).",
+    "white_piece_file": "File (column) position of white piece on the 7x9 board. Files labeled a-g from left to right.",
+    "white_piece_rank": "Rank (row) position of white piece on the 7x9 board. Ranks numbered 1-9 from white's perspective.",
+    "black_piece_type": "Type of the black/blue player's piece. Same animal hierarchy as white pieces.",
+    "black_piece_file": "File (column) position of black piece on the 7x9 board.",
+    "black_piece_rank": "Rank (row) position of black piece on the 7x9 board.",
+    "side_to_move": "Which player has the turn to move in this position. Critical for position evaluation.",
+    "position_features": "Additional encoded features: proximity to special squares (dens, traps, rivers), piece mobility, capture threats.",
+    "class": "Game-theoretic outcome of the position with perfect play. Win for white, win for black, or draw."
+  },
+  "class_names": [
+    "win",
+    "loss",
+    "draw"
+  ],
+  "class_description": "Classes: 'win' (Position is a forced win for the side to move with perfect play), 'loss' (Position is a forced loss for the side to move (win for opponent) with perfect play), 'draw' (Position is a draw with perfect play by both sides)",
+  "num_features": 9,
+  "num_classes": 3,
+  "task_id": "167119"
+}

@@ -1,0 +1,19 @@
+{
+  "dataset_name": "Violent_Crime_by_County_1975_to_2016",
+  "task_prefix": "A longitudinal dataset tracking property and violent crime statistics across US counties over 41 years (1975-2016). The data combines FBI Uniform Crime Reporting (UCR) statistics with county-level demographic and socioeconomic indicators to enable analysis of crime rate patterns and potential contributing factors. Each example contains 6 features. Predict the PROPERTY_CRIME_TOTALS.",
+  "column_descriptions": {
+    "COUNTY": "County identifier/name within US state",
+    "STATE": "US state where county is located",
+    "YEAR": "Year of recorded statistics",
+    "POPULATION": "Total resident population of county in given year",
+    "VIOLENT_CRIME_TOTAL": "Total number of violent crimes reported (murder, rape, robbery, aggravated assault)",
+    "PROPERTY_CRIME_TOTALS": "Total number of property crimes reported (burglary, larceny-theft, motor vehicle theft)"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: PROPERTY_CRIME_TOTALS - The total count of reported property crimes in a county for a given year, including burglary, larceny-theft, and motor vehicle theft. Units: Number of reported incidents. Range: 0 to several thousand, depending on county size",
+  "num_features": 6,
+  "num_classes": 1,
+  "task_id": 363431
+}

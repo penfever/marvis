@@ -1,0 +1,16 @@
+dataset: mfeat-morphological
+templates:
+  687e06aa-9614-49fe-af0b-5a6f70138ae7: !Template
+    name: mfeat-morphological
+    id: 687e06aa-9614-49fe-af0b-5a6f70138ae7
+    reference: ''
+    answer_choices: Digit 0 ||| Digit 1 ||| Digit 2 ||| Digit 3 ||| Digit 4 ||| Digit
+      5 ||| Digit 6 ||| Digit 7 ||| Digit 8 ||| Digit 9
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Digit 0, Digit 1, Digit 2, Digit 3, Digit 4, Digit 5, Digit 6, Digit 7, Digit\
+      \ 8, Digit 9?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

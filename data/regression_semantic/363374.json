@@ -1,0 +1,71 @@
+{
+  "dataset_name": "women_clothing_review",
+  "description": "This dataset contains customer reviews and ratings for women's clothing items from an e-commerce retailer. It represents real-world customer feedback and purchasing behavior in online fashion retail, combining both textual review content and structured metadata about products and customer interactions.",
+  "original_source": {
+    "creator": "Nick Brooks",
+    "institution": "Originally shared on Kaggle",
+    "date": "2018",
+    "publication": "Referenced in 'Benchmarking multimodal automl for tabular data with text fields' (2021), arXiv:2111.02705"
+  },
+  "columns": [
+    {
+      "name": "Review Text",
+      "semantic_description": "The actual written review provided by the customer describing their experience with the clothing item",
+      "data_type": "text"
+    },
+    {
+      "name": "Title",
+      "semantic_description": "The title/headline of the customer review",
+      "data_type": "text"
+    },
+    {
+      "name": "Department",
+      "semantic_description": "The store department categorization of the reviewed item",
+      "data_type": "categorical (e.g., Dresses, Tops, Intimate, etc.)"
+    },
+    {
+      "name": "Class",
+      "semantic_description": "More specific product classification within department",
+      "data_type": "categorical"
+    },
+    {
+      "name": "Age",
+      "semantic_description": "Age of the reviewer",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Positive Feedback Count",
+      "semantic_description": "Number of other customers who found the review helpful",
+      "data_type": "numeric, integer"
+    },
+    {
+      "name": "Division Name",
+      "semantic_description": "High-level product categorization",
+      "data_type": "categorical"
+    },
+    {
+      "name": "Department Name",
+      "semantic_description": "Specific department name",
+      "data_type": "categorical"
+    },
+    {
+      "name": "Recommended IND",
+      "semantic_description": "Binary indicator if reviewer recommends the product",
+      "data_type": "binary (0/1)"
+    }
+  ],
+  "target_description": {
+    "name": "Rating",
+    "meaning": "Customer satisfaction score given to the product",
+    "units": "Stars",
+    "range": "1-5 stars (integer values)"
+  },
+  "dataset_history": "The dataset was collected from a women's clothing e-commerce website and represents actual customer reviews and ratings. It was initially shared on Kaggle in 2018 and has since been used in various research studies, particularly in multi-modal machine learning applications combining text and tabular data. The retailer's identity remains anonymous to protect business interests.",
+  "inference_notes": "Important considerations include:\n1. Potential selection bias as only customers who chose to write reviews are represented\n2. Class imbalance may exist in ratings (typically more positive than negative reviews in e-commerce)\n3. Text features contain subjective opinions and varying writing styles\n4. Temporal aspects (fashion trends, seasonal variations) may influence ratings\n5. The relationship between positive feedback count and rating may have complex interactions\n6. Department and classification features may have hierarchical relationships\n7. Recommended IND may be strongly correlated with rating",
+  "_metadata": {
+    "task_id": 363374,
+    "generated_at": "2025-06-22T08:27:18.230747",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

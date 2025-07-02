@@ -1,0 +1,19 @@
+{
+  "dataset_name": "ae_price_prediction",
+  "task_prefix": "A retail analytics dataset focused on inner-wear products from American Eagle. The dataset captures various product attributes to predict pricing, representing a real-world e-commerce pricing optimization problem. The data includes both structured product metadata and processed text features from product descriptions. Each example contains 6 features. Predict the price.",
+  "column_descriptions": {
+    "0-3": "Text-derived features from product name and description (likely TF-IDF or embedding vectors)",
+    "4": "Product category encoding",
+    "5-7": "Brand and style-related encoded features",
+    "8": "Customer rating score",
+    "9": "Number of customer reviews",
+    "10-13": "Product attributes (possibly size, color, material, or collection-related features)"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: price - Retail price of the inner-wear item in American Eagle's online store. Units: US Dollars. Range: Likely between $5-$100 based on typical American Eagle pricing",
+  "num_features": 6,
+  "num_classes": 1,
+  "task_id": 363375
+}

@@ -1,0 +1,89 @@
+{
+  "dataset": "climate-model-simulation-crashes",
+  "description": "Dataset containing records of simulation crashes encountered during climate model uncertainty quantification (UQ) ensembles. The data represents the success or failure of climate simulations based on 18 scaled model parameters from the Parallel Ocean Program (POP2) component of the Community Climate System Model (CCSM4).",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/climate+model+simulation+crashes",
+  "openml_task": 146819,
+  "openml_dataset": 40994,
+  "date_donated": "2013-02-05",
+  "creator": {
+    "name": "D. Lucas, R. Klein, J. Tannahill, D. Ivanova, S. Brandon, D. Domyancic, Y. Zhang",
+    "affiliation": "Lawrence Livermore National Laboratory, USA",
+    "note": "Created under US Department of Energy Contract DE-AC52-07NA27344, LLNL UQ Strategic Initiative Project 10-SI-013"
+  },
+  "instances": 540,
+  "features": 18,
+  "target": "outcome",
+  "target_type": "binary",
+  "missing_values": false,
+  "feature_types": {
+    "all": "continuous",
+    "scaled": "all features scaled to [0,1]"
+  },
+  "feature_description": {
+    "parameter_1_to_18": "18 climate model parameters scaled to the interval [0,1], representing various physical and numerical settings in the Parallel Ocean Program (POP2)"
+  },
+  "target_values": {
+    "0": "Simulation failure/crash",
+    "1": "Simulation success"
+  },
+  "class_distribution": {
+    "failures": "46 instances (8.5%)",
+    "successes": "494 instances (91.5%)",
+    "note": "Imbalanced dataset with rare failure events"
+  },
+  "domain": "Climate Science/Computational Modeling",
+  "use_case": "Predicting climate model simulation failures, uncertainty quantification in climate modeling, computational efficiency in climate simulations, parameter sensitivity analysis",
+  "experimental_design": {
+    "method": "Latin hypercube sampling",
+    "ensembles": "3 separate Latin hypercube ensembles",
+    "ensemble_size": "180 members each",
+    "total_simulations": "540",
+    "software": "LLNL's UQ Pipeline software system"
+  },
+  "preprocessing": "Parameter values scaled to [0,1] interval, Latin hypercube design for parameter space exploration",
+  "performance_considerations": "Highly imbalanced classification problem, rare event prediction, small dataset size",
+  "advantages": "Real scientific computing application, systematic experimental design, important for computational efficiency",
+  "challenges": "Class imbalance (8.5% vs 91.5%), limited number of failure examples (46), parameter interpretability",
+  "research_applications": "Rare event prediction, imbalanced classification, scientific computing, uncertainty quantification, computational reliability",
+  "problem_type": "PSPACE-hard",
+  "ethical_considerations": "Climate modeling applications support environmental research and climate change understanding",
+  "citations": [
+    {
+      "author": "Lucas, D. D., Klein, R., Tannahill, J., Ivanova, D., Brandon, S., Domyancic, D., and Zhang, Y.",
+      "title": "Failure analysis of parameter-induced simulation crashes in climate models",
+      "venue": "Geoscientific Model Development",
+      "volume": "6",
+      "pages": "585-623",
+      "year": "2013",
+      "doi": "10.5194/gmdd-6-585-2013",
+      "url": "http://www.geosci-model-dev-discuss.net/6/585/2013/gmdd-6-585-2013.html"
+    }
+  ],
+  "dataset_name": "climate-model-simulation-crashes",
+  "original_source": {
+    "creator": "D. Lucas, R. Klein, J. Tannahill, D. Ivanova, S. Brandon, D. Domyancic, Y. Zhang",
+    "institution": "UCI Machine Learning Repository",
+    "date": "2013-02-05",
+    "publication": "Lucas, D. D., Klein, R., Tannahill, J., Ivanova, D., Brandon, S., Domyancic, D., and Zhang, Y.: Failure analysis of parameter-induced simulation crashes in climate models"
+  },
+  "columns": [
+    {
+      "name": "parameter_1_to_18",
+      "semantic_description": "18 climate model parameters scaled to the interval [0,1], representing various physical and numerical settings in the Parallel Ocean Program (POP2)",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Simulation failure/crash"
+    },
+    {
+      "name": "1",
+      "meaning": "Simulation success"
+    }
+  ],
+  "dataset_history": "Dataset history not available for climate-model-simulation-crashes",
+  "inference_notes": "Challenges: Class imbalance (8.5% vs 91.5%), limited number of failure examples (46), parameter interpretability. Advantages: Real scientific computing application, systematic experimental design, important for computational efficiency. Applications: Rare event prediction, imbalanced classification, scientific computing, uncertainty quantification, computational reliability. Use Case: Predicting climate model simulation failures, uncertainty quantification in climate modeling, computational efficiency in climate simulations, parameter sensitivity analysis"
+}

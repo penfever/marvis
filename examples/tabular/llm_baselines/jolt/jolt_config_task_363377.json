@@ -1,0 +1,19 @@
+{
+  "dataset_name": "mercari_price_suggestion100K",
+  "task_prefix": "This dataset contains product listings from Mercari, Japan's largest community-powered shopping app. It represents a sample of 100,000 product listings with various attributes used to predict selling prices. The dataset was created for developing machine learning models that can automatically suggest prices to sellers, helping them price their items competitively while maximizing their potential earnings. Each example contains 6 features. Predict the log_price.",
+  "column_descriptions": {
+    "name": "The title/name of the product listing as entered by the seller",
+    "item_condition_id": "Rating of the condition of the item (1-5 scale, where 1 is worst and 5 is best condition)",
+    "category_name": "The category path of the listing (e.g., 'Electronics/Computers/Laptops')",
+    "brand_name": "The brand name of the product (if provided by seller)",
+    "shipping": "Shipping cost is paid by seller (1) or buyer (0)",
+    "item_description": "The full text description of the item provided by the seller"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: log_price - Natural logarithm of the product's selling price in USD. Logarithmic transformation is used to normalize the price distribution and handle price skewness. Units: log(USD). Range: Typically between 0 and 10 (corresponding to prices from $1 to ~$22,000)",
+  "num_features": 6,
+  "num_classes": 1,
+  "task_id": 363377
+}

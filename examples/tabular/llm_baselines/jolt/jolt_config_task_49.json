@@ -1,0 +1,23 @@
+{
+  "dataset_name": "tic-tac-toe",
+  "task_prefix": "Complete set of possible board configurations at the end of tic-tac-toe games. Encodes all legal endgame positions where player X moved first. Used for classification of winning positions. Each example contains 9 features. Predict the target class.",
+  "column_descriptions": {
+    "top-left-square": "State of the top-left square of the tic-tac-toe board (position 1,1).",
+    "top-middle-square": "State of the top-middle square of the tic-tac-toe board (position 1,2).",
+    "top-right-square": "State of the top-right square of the tic-tac-toe board (position 1,3).",
+    "middle-left-square": "State of the middle-left square of the tic-tac-toe board (position 2,1).",
+    "middle-middle-square": "State of the center square of the tic-tac-toe board (position 2,2).",
+    "middle-right-square": "State of the middle-right square of the tic-tac-toe board (position 2,3).",
+    "bottom-left-square": "State of the bottom-left square of the tic-tac-toe board (position 3,1).",
+    "bottom-middle-square": "State of the bottom-middle square of the tic-tac-toe board (position 3,2).",
+    "bottom-right-square": "State of the bottom-right square of the tic-tac-toe board (position 3,3)."
+  },
+  "class_names": [
+    "positive",
+    "negative"
+  ],
+  "class_description": "Classes: 'positive' (X wins - player X has achieved three-in-a-row in any direction), 'negative' (X does not win - either O wins or game is a draw)",
+  "num_features": 9,
+  "num_classes": 2,
+  "task_id": "49"
+}

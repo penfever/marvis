@@ -1,0 +1,488 @@
+{
+  "dataset": "analcatdata_authorship",
+  "description": "Literary authorship identification dataset containing word counts from text blocks of 1700 words each from works by Jane Austen, Jack London, John Milton, and William Shakespeare. Features are counts of 69 common function words used to distinguish writing styles between authors.",
+  "source": "Book 'Analyzing Categorical Data' by Jeffrey S. Simonoff",
+  "source_url": "http://www.stern.nyu.edu/~jsimonof/AnalCatData",
+  "openml_task": 3549,
+  "openml_dataset": 458,
+  "date_donated": "2003",
+  "creator": "Roger Peng, Jeffrey S. Simonoff",
+  "instances": 841,
+  "features": 69,
+  "target": "Author",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "integer"
+  },
+  "feature_names": {
+    "a": "Count of 'a'",
+    "all": "Count of 'all'",
+    "also": "Count of 'also'",
+    "an": "Count of 'an'",
+    "and": "Count of 'and'",
+    "any": "Count of 'any'",
+    "are": "Count of 'are'",
+    "as": "Count of 'as'",
+    "at": "Count of 'at'",
+    "be": "Count of 'be'",
+    "been": "Count of 'been'",
+    "but": "Count of 'but'",
+    "by": "Count of 'by'",
+    "can": "Count of 'can'",
+    "do": "Count of 'do'",
+    "down": "Count of 'down'",
+    "even": "Count of 'even'",
+    "every": "Count of 'every'",
+    "for": "Count of 'for'",
+    "from": "Count of 'from'",
+    "had": "Count of 'had'",
+    "has": "Count of 'has'",
+    "have": "Count of 'have'",
+    "her": "Count of 'her'",
+    "his": "Count of 'his'",
+    "if": "Count of 'if'",
+    "in": "Count of 'in'",
+    "into": "Count of 'into'",
+    "is": "Count of 'is'",
+    "it": "Count of 'it'",
+    "its": "Count of 'its'",
+    "may": "Count of 'may'",
+    "more": "Count of 'more'",
+    "must": "Count of 'must'",
+    "my": "Count of 'my'",
+    "no": "Count of 'no'",
+    "not": "Count of 'not'",
+    "now": "Count of 'now'",
+    "of": "Count of 'of'",
+    "on": "Count of 'on'",
+    "one": "Count of 'one'",
+    "only": "Count of 'only'",
+    "or": "Count of 'or'",
+    "our": "Count of 'our'",
+    "should": "Count of 'should'",
+    "so": "Count of 'so'",
+    "some": "Count of 'some'",
+    "such": "Count of 'such'",
+    "than": "Count of 'than'",
+    "that": "Count of 'that'",
+    "the": "Count of 'the'",
+    "their": "Count of 'their'",
+    "then": "Count of 'then'",
+    "there": "Count of 'there'",
+    "things": "Count of 'things'",
+    "this": "Count of 'this'",
+    "to": "Count of 'to'",
+    "up": "Count of 'up'",
+    "upon": "Count of 'upon'",
+    "was": "Count of 'was'",
+    "were": "Count of 'were'",
+    "what": "Count of 'what'",
+    "when": "Count of 'when'",
+    "which": "Count of 'which'",
+    "who": "Count of 'who'",
+    "will": "Count of 'will'",
+    "with": "Count of 'with'",
+    "would": "Count of 'would'",
+    "your": "Count of 'your'"
+  },
+  "feature_descriptions": {
+    "all_features": "Integer counts of function word occurrences within 1700-word text blocks. Function words are common words that primarily serve grammatical purposes rather than conveying content."
+  },
+  "feature_scale": "Raw counts of word occurrences per 1700-word block",
+  "target_values": {
+    "Austen": "Jane Austen",
+    "London": "Jack London",
+    "Milton": "John Milton",
+    "Shakespeare": "William Shakespeare"
+  },
+  "domain": "Natural Language Processing/Digital Humanities",
+  "use_case": "Authorship attribution and stylometric analysis for literary works. Applications include identifying anonymous texts, detecting plagiarism, forensic linguistics, and studying evolution of writing styles.",
+  "data_generation": "Text blocks of exactly 1700 words extracted from various works by each author. Function word counts computed for each block, focusing on style-independent grammatical patterns rather than content words.",
+  "ethical_considerations": "Authorship attribution should be used responsibly, particularly for contemporary texts where privacy may be a concern. Historical literary analysis should acknowledge cultural and temporal contexts.",
+  "citations": [
+    {
+      "author": "Roger D. Peng and Hengartner, N. W.",
+      "title": "Quantitative analysis of literary styles",
+      "venue": "The American Statistician",
+      "volume": "56",
+      "number": "3",
+      "pages": "175-185",
+      "year": "2002"
+    }
+  ],
+  "dataset_name": "analcatdata_authorship",
+  "original_source": {
+    "creator": "Roger Peng, Jeffrey S. Simonoff",
+    "institution": "Book 'Analyzing Categorical Data' by Jeffrey S. Simonoff",
+    "date": "2003",
+    "publication": "Roger D. Peng and Hengartner, N. W.: Quantitative analysis of literary styles"
+  },
+  "columns": [
+    {
+      "name": "Count of 'a'",
+      "semantic_description": "Feature: Count of 'a'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'all'",
+      "semantic_description": "Feature: Count of 'all'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'also'",
+      "semantic_description": "Feature: Count of 'also'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'an'",
+      "semantic_description": "Feature: Count of 'an'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'and'",
+      "semantic_description": "Feature: Count of 'and'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'any'",
+      "semantic_description": "Feature: Count of 'any'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'are'",
+      "semantic_description": "Feature: Count of 'are'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'as'",
+      "semantic_description": "Feature: Count of 'as'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'at'",
+      "semantic_description": "Feature: Count of 'at'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'be'",
+      "semantic_description": "Feature: Count of 'be'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'been'",
+      "semantic_description": "Feature: Count of 'been'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'but'",
+      "semantic_description": "Feature: Count of 'but'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'by'",
+      "semantic_description": "Feature: Count of 'by'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'can'",
+      "semantic_description": "Feature: Count of 'can'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'do'",
+      "semantic_description": "Feature: Count of 'do'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'down'",
+      "semantic_description": "Feature: Count of 'down'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'even'",
+      "semantic_description": "Feature: Count of 'even'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'every'",
+      "semantic_description": "Feature: Count of 'every'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'for'",
+      "semantic_description": "Feature: Count of 'for'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'from'",
+      "semantic_description": "Feature: Count of 'from'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'had'",
+      "semantic_description": "Feature: Count of 'had'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'has'",
+      "semantic_description": "Feature: Count of 'has'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'have'",
+      "semantic_description": "Feature: Count of 'have'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'her'",
+      "semantic_description": "Feature: Count of 'her'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'his'",
+      "semantic_description": "Feature: Count of 'his'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'if'",
+      "semantic_description": "Feature: Count of 'if'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'in'",
+      "semantic_description": "Feature: Count of 'in'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'into'",
+      "semantic_description": "Feature: Count of 'into'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'is'",
+      "semantic_description": "Feature: Count of 'is'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'it'",
+      "semantic_description": "Feature: Count of 'it'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'its'",
+      "semantic_description": "Feature: Count of 'its'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'may'",
+      "semantic_description": "Feature: Count of 'may'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'more'",
+      "semantic_description": "Feature: Count of 'more'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'must'",
+      "semantic_description": "Feature: Count of 'must'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'my'",
+      "semantic_description": "Feature: Count of 'my'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'no'",
+      "semantic_description": "Feature: Count of 'no'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'not'",
+      "semantic_description": "Feature: Count of 'not'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'now'",
+      "semantic_description": "Feature: Count of 'now'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'of'",
+      "semantic_description": "Feature: Count of 'of'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'on'",
+      "semantic_description": "Feature: Count of 'on'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'one'",
+      "semantic_description": "Feature: Count of 'one'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'only'",
+      "semantic_description": "Feature: Count of 'only'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'or'",
+      "semantic_description": "Feature: Count of 'or'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'our'",
+      "semantic_description": "Feature: Count of 'our'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'should'",
+      "semantic_description": "Feature: Count of 'should'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'so'",
+      "semantic_description": "Feature: Count of 'so'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'some'",
+      "semantic_description": "Feature: Count of 'some'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'such'",
+      "semantic_description": "Feature: Count of 'such'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'than'",
+      "semantic_description": "Feature: Count of 'than'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'that'",
+      "semantic_description": "Feature: Count of 'that'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'the'",
+      "semantic_description": "Feature: Count of 'the'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'their'",
+      "semantic_description": "Feature: Count of 'their'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'then'",
+      "semantic_description": "Feature: Count of 'then'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'there'",
+      "semantic_description": "Feature: Count of 'there'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'things'",
+      "semantic_description": "Feature: Count of 'things'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'this'",
+      "semantic_description": "Feature: Count of 'this'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'to'",
+      "semantic_description": "Feature: Count of 'to'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'up'",
+      "semantic_description": "Feature: Count of 'up'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'upon'",
+      "semantic_description": "Feature: Count of 'upon'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'was'",
+      "semantic_description": "Feature: Count of 'was'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'were'",
+      "semantic_description": "Feature: Count of 'were'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'what'",
+      "semantic_description": "Feature: Count of 'what'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'when'",
+      "semantic_description": "Feature: Count of 'when'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'which'",
+      "semantic_description": "Feature: Count of 'which'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'who'",
+      "semantic_description": "Feature: Count of 'who'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'will'",
+      "semantic_description": "Feature: Count of 'will'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'with'",
+      "semantic_description": "Feature: Count of 'with'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'would'",
+      "semantic_description": "Feature: Count of 'would'",
+      "data_type": "integer"
+    },
+    {
+      "name": "Count of 'your'",
+      "semantic_description": "Feature: Count of 'your'",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "Austen",
+      "meaning": "Jane Austen"
+    },
+    {
+      "name": "London",
+      "meaning": "Jack London"
+    },
+    {
+      "name": "Milton",
+      "meaning": "John Milton"
+    },
+    {
+      "name": "Shakespeare",
+      "meaning": "William Shakespeare"
+    }
+  ],
+  "dataset_history": "Dataset history not available for analcatdata_authorship",
+  "inference_notes": "Use Case: Authorship attribution and stylometric analysis for literary works. Applications include identifying anonymous texts, detecting plagiarism, forensic linguistics, and studying evolution of writing styles."
+}

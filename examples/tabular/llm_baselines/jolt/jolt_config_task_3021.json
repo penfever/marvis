@@ -1,0 +1,43 @@
+{
+  "dataset_name": "sick",
+  "task_prefix": "Thyroid disease dataset for predicting various thyroid conditions. Contains clinical measurements and patient information to classify thyroid function as sick (various thyroid conditions) or negative (normal). Each example contains 29 features. Clinical decision support.",
+  "column_descriptions": {
+    "age": "Patient age in years (continuous)",
+    "sex": "Gender (M/F)",
+    "on_thyroxine": "Currently on thyroxine medication (f/t)",
+    "query_on_thyroxine": "Query about thyroxine (f/t)",
+    "on_antithyroid_medication": "On antithyroid medication (f/t)",
+    "sick": "Patient sick (f/t)",
+    "pregnant": "Pregnancy status (f/t)",
+    "thyroid_surgery": "Previous thyroid surgery (f/t)",
+    "I131_treatment": "Radioactive iodine treatment (f/t)",
+    "query_hypothyroid": "Query about hypothyroid (f/t)",
+    "query_hyperthyroid": "Query about hyperthyroid (f/t)",
+    "lithium": "Taking lithium (f/t)",
+    "goitre": "Presence of goitre (f/t)",
+    "tumor": "Thyroid tumor (f/t)",
+    "hypopituitary": "Hypopituitary condition (f/t)",
+    "psych": "Psychological symptoms (f/t)",
+    "TSH_measured": "TSH test performed (f/t)",
+    "TSH": "Thyroid stimulating hormone level (continuous)",
+    "T3_measured": "T3 test performed (f/t)",
+    "T3": "Triiodothyronine level (continuous)",
+    "TT4_measured": "Total T4 test performed (f/t)",
+    "TT4": "Total thyroxine level (continuous)",
+    "T4U_measured": "T4U test performed (f/t)",
+    "T4U": "Thyroxine utilization rate (continuous)",
+    "FTI_measured": "FTI test performed (f/t)",
+    "FTI": "Free Thyroxine Index (continuous)",
+    "TBG_measured": "TBG test performed (f/t)",
+    "TBG": "Thyroid binding globulin (continuous)",
+    "referral_source": "Source of referral (WEST, STMW, SVHC, SVI, SVHD, other)"
+  },
+  "class_names": [
+    "negative",
+    "sick"
+  ],
+  "class_description": "Classes: 'negative' (Normal thyroid function), 'sick' (Thyroid disease present)",
+  "num_features": 29,
+  "num_classes": 2,
+  "task_id": "3021"
+}

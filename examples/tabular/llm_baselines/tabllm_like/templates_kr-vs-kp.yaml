@@ -1,0 +1,15 @@
+dataset: kr-vs-kp
+templates:
+  5fc8277d-5f23-4766-8af3-99fbdbd0709a: !Template
+    name: kr-vs-kp
+    id: 5fc8277d-5f23-4766-8af3-99fbdbd0709a
+    reference: ''
+    answer_choices: won ||| nowin
+    jinja: "{{note}}\n\nCan White force a win in this chess endgame position? Answer\
+      \ with 'won' if White can win, or 'nowin' if not.\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

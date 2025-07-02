@@ -1,0 +1,70 @@
+{
+  "dataset_name": "all-natural-disasters-19002021-eosdis",
+  "description": "A comprehensive global dataset tracking natural disasters from 1900-2021 using EOSDIS (Earth Observing System Data and Information System) data. The dataset captures various types of natural disasters, their impacts, and related parameters to help understand patterns and consequences of climate-related catastrophes worldwide.",
+  "original_source": {
+    "creator": "Baris Dincer",
+    "institution": "NASA EOSDIS (Earth Observing System Data and Information System)",
+    "date": "2021",
+    "publication": "Originally compiled from NASA EOSDIS data systems and EM-DAT (Emergency Events Database)"
+  },
+  "columns": [
+    {
+      "name": "Year",
+      "semantic_description": "Calendar year when the disaster occurred",
+      "data_type": "integer (1900-2021)"
+    },
+    {
+      "name": "Country",
+      "semantic_description": "Nation where the disaster occurred",
+      "data_type": "string"
+    },
+    {
+      "name": "Disaster_Type",
+      "semantic_description": "Classification of natural disaster (e.g., flood, earthquake, drought)",
+      "data_type": "categorical string"
+    },
+    {
+      "name": "Total_Deaths",
+      "semantic_description": "Number of people who lost their lives due to the disaster",
+      "data_type": "integer"
+    },
+    {
+      "name": "Total_Affected",
+      "semantic_description": "Total number of people impacted by the disaster including injured, homeless, and displaced",
+      "data_type": "integer (target variable)"
+    },
+    {
+      "name": "Total_Damages_USD",
+      "semantic_description": "Economic impact in US dollars",
+      "data_type": "float"
+    }
+  ],
+  "target_description": {
+    "name": "Total_Affected",
+    "meaning": "The total number of people impacted by a natural disaster, including those injured, rendered homeless, or requiring immediate assistance during emergency period",
+    "units": "Number of people",
+    "range": "0 to several millions"
+  },
+  "dataset_history": "This dataset was compiled using NASA's EOSDIS system, which integrates Earth observation data from multiple satellites and ground stations. It combines this with historical disaster records from EM-DAT (The International Disaster Database) to create a comprehensive view of natural disasters over more than a century. The data serves as a crucial resource for climate change research, disaster preparedness, and policy making.",
+  "inference_notes": {
+    "limitations": [
+      "Reporting bias: Earlier years may have less complete data due to limited recording capabilities",
+      "Geographic bias: Developed countries might have more detailed reporting",
+      "Definition variations: What constitutes 'affected' may vary between countries and time periods",
+      "Economic impact normalization: Monetary values need adjustment for inflation"
+    ],
+    "usage_considerations": [
+      "Consider temporal trends when analyzing the data",
+      "Account for population growth when comparing historical impacts",
+      "Be aware of potential underreporting in developing regions",
+      "Consider using log transformations for monetary and impact values due to large ranges"
+    ],
+    "data_quality": "The dataset has been cleaned to remove null values, but users should still validate extreme values and consider the historical context of the recordings"
+  },
+  "_metadata": {
+    "task_id": 363435,
+    "generated_at": "2025-06-22T08:34:28.891387",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

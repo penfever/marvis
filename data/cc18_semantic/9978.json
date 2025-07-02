@@ -1,0 +1,329 @@
+{
+  "dataset_name": "ozone-level-8hr",
+  "description": "Ground ozone level detection dataset for predicting high ozone days. Contains meteorological measurements and ozone readings from Houston, Galveston, and Brazoria area, used for air quality forecasting.",
+  "original_source": {
+    "creator": "Kun Zhang, Wei Fan, XiaoJing Yuan",
+    "institution": "Xavier University of Louisiana, IBM T.J. Watson Research, University of Houston",
+    "date": "2008",
+    "publication": "Zhang, K., Fan, W. (2008). Forecasting skewed biased stochastic ozone days: analyses, solutions and beyond. Knowledge and Information Systems, 14(3), 299-326."
+  },
+  "columns": [
+    {
+      "name": "Date",
+      "semantic_description": "Date of measurement - temporal identifier for the observation.",
+      "data_type": "date"
+    },
+    {
+      "name": "WSR0",
+      "semantic_description": "Wind speed resultant at time 0 - combined wind speed measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR1",
+      "semantic_description": "Wind speed resultant at time 1 - subsequent wind measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR2",
+      "semantic_description": "Wind speed resultant at time 2 - wind speed progression.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR3",
+      "semantic_description": "Wind speed resultant at time 3 - continuing wind pattern.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR4",
+      "semantic_description": "Wind speed resultant at time 4 - wind measurement series.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR5",
+      "semantic_description": "Wind speed resultant at time 5 - wind speed temporal data.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR6",
+      "semantic_description": "Wind speed resultant at time 6 - wind measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR7",
+      "semantic_description": "Wind speed resultant at time 7 - wind speed data point.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR8",
+      "semantic_description": "Wind speed resultant at time 8 - wind measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR9",
+      "semantic_description": "Wind speed resultant at time 9 - wind speed observation.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR10",
+      "semantic_description": "Wind speed resultant at time 10 - wind measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR11",
+      "semantic_description": "Wind speed resultant at time 11 - wind speed data.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR12",
+      "semantic_description": "Wind speed resultant at time 12 - midday wind measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR13",
+      "semantic_description": "Wind speed resultant at time 13 - afternoon wind speed.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR14",
+      "semantic_description": "Wind speed resultant at time 14 - wind measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR15",
+      "semantic_description": "Wind speed resultant at time 15 - mid-afternoon wind.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR16",
+      "semantic_description": "Wind speed resultant at time 16 - late afternoon wind.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR17",
+      "semantic_description": "Wind speed resultant at time 17 - wind speed data.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR18",
+      "semantic_description": "Wind speed resultant at time 18 - evening wind measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR19",
+      "semantic_description": "Wind speed resultant at time 19 - wind speed observation.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR20",
+      "semantic_description": "Wind speed resultant at time 20 - late evening wind.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR21",
+      "semantic_description": "Wind speed resultant at time 21 - wind measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR22",
+      "semantic_description": "Wind speed resultant at time 22 - night wind speed.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR23",
+      "semantic_description": "Wind speed resultant at time 23 - late night wind.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR_PK",
+      "semantic_description": "Peak wind speed resultant - maximum wind speed of the day.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSR_AV",
+      "semantic_description": "Average wind speed resultant - daily mean wind speed.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "T_PK",
+      "semantic_description": "Peak temperature - maximum temperature of the day.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "T_AV",
+      "semantic_description": "Average temperature - daily mean temperature.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "T85",
+      "semantic_description": "Temperature at 850 hPa level - upper air temperature.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "RH85",
+      "semantic_description": "Relative humidity at 850 hPa - upper air moisture.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "U85",
+      "semantic_description": "U wind component at 850 hPa - east-west wind at altitude.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "V85",
+      "semantic_description": "V wind component at 850 hPa - north-south wind at altitude.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "HT85",
+      "semantic_description": "Geopotential height at 850 hPa - atmospheric pressure height.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "T70",
+      "semantic_description": "Temperature at 700 hPa level - mid-level atmospheric temperature.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "RH70",
+      "semantic_description": "Relative humidity at 700 hPa - mid-level moisture content.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "U70",
+      "semantic_description": "U wind component at 700 hPa - mid-level east-west wind.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "V70",
+      "semantic_description": "V wind component at 700 hPa - mid-level north-south wind.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "HT70",
+      "semantic_description": "Geopotential height at 700 hPa - mid-level pressure height.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "T50",
+      "semantic_description": "Temperature at 500 hPa level (~5500m) - upper atmospheric temperature.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "RH50",
+      "semantic_description": "Relative humidity at 500 hPa - upper air moisture content.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "U50",
+      "semantic_description": "U wind component at 500 hPa - upper level east-west wind.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "V50",
+      "semantic_description": "V wind component at 500 hPa - upper level north-south wind.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "HT50",
+      "semantic_description": "Geopotential height at 500 hPa - upper level pressure height.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "KI",
+      "semantic_description": "K-Index - atmospheric instability indicator for thunderstorm potential.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "TT",
+      "semantic_description": "T-Totals index - convective storm prediction parameter.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "SLP",
+      "semantic_description": "Sea level pressure - surface atmospheric pressure.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "SLP_",
+      "semantic_description": "Sea level pressure change from previous day - pressure tendency.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Precp",
+      "semantic_description": "Precipitation amount - rainfall/moisture indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "T_range",
+      "semantic_description": "Temperature range - difference between daily max and min temperature.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "P_range",
+      "semantic_description": "Pressure range - variation in atmospheric pressure.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "H_range",
+      "semantic_description": "Humidity range - variation in relative humidity.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSa",
+      "semantic_description": "Wind speed near sunrise (09-12 UTC) - morning wind conditions.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "WSp",
+      "semantic_description": "Wind speed mid-day (15-21 UTC) - afternoon wind conditions.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Tmax",
+      "semantic_description": "Maximum temperature in degrees F - daily high temperature.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Tb",
+      "semantic_description": "Base temperature (50°F) - threshold for net ozone production.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "SRd",
+      "semantic_description": "Solar radiation total for the day - photochemical reaction driver.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Upwind",
+      "semantic_description": "Upwind ozone background level - transported ozone concentration.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "EmFactor",
+      "semantic_description": "Precursor emissions related factor - local pollution contribution.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "O3_prev",
+      "semantic_description": "Previous day ozone level - temporal dependency indicator.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "O3_local",
+      "semantic_description": "Local ozone measurement - current observation point.",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Normal ozone day - ozone levels below threshold"
+    },
+    {
+      "name": "1",
+      "meaning": "High ozone day - ozone levels exceed health standards"
+    }
+  ],
+  "dataset_history": "Collected from 1998 to 2004 in the Houston-Galveston-Brazoria area, a region with significant air quality challenges. Data supports Texas Commission on Environmental Quality (TCEQ) forecasting efforts. Research addressed the challenging problem of predicting rare high-ozone events with skewed class distribution.",
+  "inference_notes": "Contains 2536 instances with highly imbalanced classes (~90% normal days, ~10% ozone days). Missing values require imputation using temporal averages. Meteorological features at multiple atmospheric levels capture complex ozone formation dynamics. Wind speed and temperature patterns are critical predictors. The dataset demonstrates challenges in forecasting rare environmental events with severe health impacts."
+}

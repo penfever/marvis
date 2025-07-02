@@ -1,0 +1,18 @@
+{
+  "dataset_name": "balance-scale",
+  "task_prefix": "Balance Scale Weight & Distance Database generated to model psychological experimental results. Each example represents a balance scale scenario with weights and distances on both sides. The task is to predict whether the scale tips left, tips right, or remains balanced based on the physics principle of torque. Each example contains 4 features. Modeling cognitive development and understanding how children learn physical principles. Used to study machine learning approaches to cognitive modeling and rule learning..",
+  "column_descriptions": {
+    "Left weight": "Weight on the left side of the balance scale (1-5)",
+    "Left distance": "Distance of left weight from the fulcrum (1-5)",
+    "Right weight": "Weight on the right side of the balance scale (1-5)",
+    "Right distance": "Distance of right weight from the fulcrum (1-5)"
+  },
+  "class_names": [
+    "B",
+    "L",
+    "R"
+  ],
+  "class_description": "Classes: 'L' (Balance scale tips to the left), 'B' (Balance scale remains balanced), 'R' (Balance scale tips to the right)",
+  "num_features": 4,
+  "num_classes": 3
+}

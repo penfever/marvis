@@ -1,0 +1,18 @@
+{
+  "dataset_name": "biosses",
+  "task_prefix": "BIOSSES (Biomedical Semantic Similarity Estimation System) is a dataset for evaluating semantic similarity between biomedical sentences. It contains pairs of biomedical sentences with human-annotated similarity scores, designed to help develop and evaluate natural language processing systems in the biomedical domain. Each example contains 5 features. Predict the label.",
+  "column_descriptions": {
+    "0": "First sentence from the biomedical text pair",
+    "1": "Second sentence from the biomedical text pair",
+    "2": "Preprocessed version of first sentence",
+    "3": "Preprocessed version of second sentence",
+    "4": "Additional metadata or processing information"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: label - Human-annotated semantic similarity score between the sentence pairs. Units: Normalized similarity score. Range: 0.0 to 1.0 (where 0 indicates no similarity and 1 indicates identical meaning)",
+  "num_features": 5,
+  "num_classes": 1,
+  "task_id": 363426
+}

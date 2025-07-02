@@ -1,0 +1,109 @@
+{
+  "dataset": "cnae-9",
+  "description": "Free text business descriptions of Brazilian companies categorized into 9 categories from the National Classification of Economic Activities (CNAE). Documents were preprocessed to remove prepositions, transform words to canonical form, and represent as term frequency vectors. The dataset is highly sparse with 99.22% zeros.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/CNAE-9",
+  "openml_task": 9981,
+  "openml_dataset": 1468,
+  "date_donated": "2010",
+  "creator": "Patrick Marques Ciarelli, Elias Oliveira (Federal University of Espirito Santo)",
+  "instances": 1080,
+  "features": 856,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "integer"
+  },
+  "feature_names": {
+    "word1-word856": "Term frequency features"
+  },
+  "feature_descriptions": {
+    "all_features": "Integer values representing word frequencies in each document. Each feature corresponds to a specific word in the vocabulary, with values indicating how many times that word appears in the document."
+  },
+  "feature_scale": "Non-negative integers representing term frequencies",
+  "target_values": {
+    "1": "Category 1",
+    "2": "Category 2",
+    "3": "Category 3",
+    "4": "Category 4",
+    "5": "Category 5",
+    "6": "Category 6",
+    "7": "Category 7",
+    "8": "Category 8",
+    "9": "Category 9"
+  },
+  "domain": "Natural Language Processing/Text Classification",
+  "use_case": "Automatic classification of business activities based on textual descriptions. Applications include business registry organization, economic analysis, market research, and automated categorization of companies for regulatory compliance.",
+  "data_generation": "Brazilian company descriptions preprocessed by keeping only letters, removing prepositions, transforming to canonical form, and creating term frequency vectors. Results in highly sparse representation.",
+  "ethical_considerations": "Dataset represents Brazilian business descriptions and may have language and cultural specificities. Classification systems should be validated for different languages and business contexts before deployment.",
+  "citations": [
+    {
+      "author": "Patrick Marques Ciarelli and Elias Oliveira",
+      "title": "Agglomeration and Elimination of Terms for Dimensionality Reduction",
+      "venue": "Ninth International Conference on Intelligent Systems Design and Applications",
+      "pages": "547-552",
+      "year": "2009"
+    },
+    {
+      "author": "Patrick Marques Ciarelli, Elias Oliveira, and Evandro O. T. Salles",
+      "title": "An Evolving System Based on Probabilistic Neural Network",
+      "venue": "Brazilian Symposium on Artificial Neural Network",
+      "year": "2010"
+    }
+  ],
+  "dataset_name": "cnae-9",
+  "original_source": {
+    "creator": "Patrick Marques Ciarelli, Elias Oliveira (Federal University of Espirito Santo)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "2010",
+    "publication": "Patrick Marques Ciarelli and Elias Oliveira: Agglomeration and Elimination of Terms for Dimensionality Reduction"
+  },
+  "columns": [
+    {
+      "name": "Term frequency features",
+      "semantic_description": "Feature: Term frequency features",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "1",
+      "meaning": "Category 1"
+    },
+    {
+      "name": "2",
+      "meaning": "Category 2"
+    },
+    {
+      "name": "3",
+      "meaning": "Category 3"
+    },
+    {
+      "name": "4",
+      "meaning": "Category 4"
+    },
+    {
+      "name": "5",
+      "meaning": "Category 5"
+    },
+    {
+      "name": "6",
+      "meaning": "Category 6"
+    },
+    {
+      "name": "7",
+      "meaning": "Category 7"
+    },
+    {
+      "name": "8",
+      "meaning": "Category 8"
+    },
+    {
+      "name": "9",
+      "meaning": "Category 9"
+    }
+  ],
+  "dataset_history": "Dataset history not available for cnae-9",
+  "inference_notes": "Use Case: Automatic classification of business activities based on textual descriptions. Applications include business registry organization, economic analysis, market research, and automated categorization of companies for regulatory compliance."
+}

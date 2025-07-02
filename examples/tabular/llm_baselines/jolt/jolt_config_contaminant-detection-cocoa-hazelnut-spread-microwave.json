@@ -1,0 +1,21 @@
+{
+  "dataset_name": "contaminant-detection-cocoa-hazelnut-spread-microwave",
+  "task_prefix": "Microwave sensing dataset for detecting contaminants in packaged cocoa-hazelnut spread jars using scattering parameters. Designed for real-time quality control in food manufacturing using non-invasive microwave technology at 10.0 GHz. Each example contains 8 features. Predict the target class.",
+  "column_descriptions": {
+    "S_parameters": "6x6 matrix of complex scattering parameters from microwave antenna array. Each S_ij represents transmission/reflection coefficients between antenna pairs i and j.",
+    "magnitude_features": "Magnitude components of S-parameters in dB. Represents signal attenuation through the jar and contents.",
+    "phase_features": "Phase components of S-parameters in degrees. Captures wave propagation delays indicating material properties.",
+    "frequency": "Operating frequency of microwave system. Fixed at 10.0 GHz for optimal penetration and sensitivity.",
+    "jar_position": "Position of jar on conveyor belt relative to antenna array. Affects signal path geometry.",
+    "contaminant_type": "Type of foreign object present: none, plastic, glass, metal, or other low-density materials.",
+    "contaminant_size": "Physical dimensions of contaminant if present. Measured in millimeters.",
+    "contaminated": "Binary label indicating presence (1) or absence (0) of any contaminant. Target variable for detection."
+  },
+  "class_names": [
+    "0",
+    "1"
+  ],
+  "class_description": "Classes: '0' (Uncontaminated jar - safe for consumption), '1' (Contaminated jar - contains foreign object requiring removal from production line)",
+  "num_features": 8,
+  "num_classes": 2
+}

@@ -1,0 +1,15 @@
+dataset: wilt
+templates:
+  20c2ed5b-340f-4fb8-83a6-2a708dbc0153: !Template
+    name: wilt
+    id: 20c2ed5b-340f-4fb8-83a6-2a708dbc0153
+    reference: ''
+    answer_choices: Other land cover (non-diseased) ||| Diseased trees (wilt)
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Other land cover (non-diseased), Diseased trees (wilt)?\nAnswer: \n|||\n{{\
+      \ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

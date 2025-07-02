@@ -1,0 +1,37 @@
+{
+  "dataset_name": "segment",
+  "task_prefix": "Image Segmentation dataset. Contains features extracted from 3x3 pixel regions of 7 outdoor images that were hand-segmented to create pixel classifications. Used for training algorithms to segment images into different regions. Each example contains 19 features. Image segmentation.",
+  "column_descriptions": {
+    "feature_1": "Feature 1",
+    "feature_2": "Feature 2",
+    "feature_3": "Feature 3",
+    "feature_4": "Feature 4",
+    "feature_5": "Feature 5",
+    "feature_6": "Feature 6",
+    "feature_7": "Feature 7",
+    "feature_8": "Feature 8",
+    "feature_9": "Feature 9",
+    "feature_10": "Feature 10",
+    "feature_11": "Feature 11",
+    "feature_12": "Feature 12",
+    "feature_13": "Feature 13",
+    "feature_14": "Feature 14",
+    "feature_15": "Feature 15",
+    "feature_16": "Feature 16",
+    "feature_17": "Feature 17",
+    "feature_18": "Feature 18",
+    "feature_19": "Feature 19"
+  },
+  "class_names": [
+    "brickface",
+    "cement",
+    "foliage",
+    "grass",
+    "path",
+    "sky",
+    "window"
+  ],
+  "class_description": "Classes: 'brickface' (Brick face regions), 'sky' (Sky regions), 'foliage' (Trees, bushes, and other vegetation), 'cement' (Cement and concrete regions), 'window' (Window regions), 'path' (Path and road regions), 'grass' (Grass regions)",
+  "num_features": 19,
+  "num_classes": 7
+}

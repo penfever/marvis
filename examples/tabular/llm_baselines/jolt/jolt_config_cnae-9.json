@@ -1,0 +1,21 @@
+{
+  "dataset_name": "cnae-9",
+  "task_prefix": "Free text business descriptions of Brazilian companies categorized into 9 categories from the National Classification of Economic Activities (CNAE). Documents were preprocessed to remove prepositions, transform words to canonical form, and represent as term frequency vectors. The dataset is highly sparse with 99.22% zeros. Each example contains 1 features. Automatic classification of business activities based on textual descriptions. Applications include business registry organization.",
+  "column_descriptions": {
+    "Term frequency features": "Feature: Term frequency features"
+  },
+  "class_names": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '1' (Category 1), '2' (Category 2), '3' (Category 3), '4' (Category 4), '5' (Category 5), '6' (Category 6), '7' (Category 7), '8' (Category 8), '9' (Category 9)",
+  "num_features": 1,
+  "num_classes": 9
+}

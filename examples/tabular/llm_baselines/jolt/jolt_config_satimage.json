@@ -1,0 +1,18 @@
+{
+  "dataset_name": "satimage",
+  "task_prefix": "Landsat satellite image dataset consisting of multi-spectral values of pixels in 3x3 neighborhoods. The database contains spectral data from four digital images of the same scene in different spectral bands (two visible, two near-infrared). The task is to predict the soil type classification of the central pixel based on multi-spectral values. Each example contains 1 features. Land cover classification from satellite imagery. Applications include agricultural monitoring.",
+  "column_descriptions": {
+    "Multi-spectral pixel values": "Feature: Multi-spectral pixel values"
+  },
+  "class_names": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "7"
+  ],
+  "class_description": "Classes: '1' (Red soil), '2' (Cotton crop), '3' (Grey soil), '4' (Damp grey soil), '5' (Soil with vegetation stubble), '7' (Very damp grey soil)",
+  "num_features": 1,
+  "num_classes": 6
+}

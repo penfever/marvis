@@ -1,0 +1,17 @@
+{
+  "dataset_name": "analcatdata_dmft",
+  "task_prefix": "This dataset is part of the 'Analyzing Categorical Data' collection and relates to dental health measurements using the DMFT (Decayed, Missing, Filled Teeth) index. The DMFT index is a key indicator used in epidemiological studies to assess oral health status in populations, counting the number of decayed, missing (due to caries), and filled teeth. Each example contains 4 features. Predict the target class.",
+  "column_descriptions": {
+    "feature_1": "Features likely include demographic or health-related variables that may influence dental health outcomes (feature 1)",
+    "feature_2": "Features likely include demographic or health-related variables that may influence dental health outcomes (feature 2)",
+    "feature_3": "Features likely include demographic or health-related variables that may influence dental health outcomes (feature 3)",
+    "feature_4": "Features likely include demographic or health-related variables that may influence dental health outcomes (feature 4)"
+  },
+  "class_names": [
+    ">2",
+    "<=2"
+  ],
+  "class_description": "Classes: '>2' (DMFT index categorized into classes: >2), '<=2' (DMFT index categorized into classes: <=2)",
+  "num_features": 4,
+  "num_classes": 2
+}

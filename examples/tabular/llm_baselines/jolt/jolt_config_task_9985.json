@@ -1,0 +1,38 @@
+{
+  "dataset_name": "first-order-theorem-proving",
+  "task_prefix": "Machine learning dataset for automated theorem proving. Predicts which of five heuristics will give the fastest proof when used by a first-order prover, with a sixth option to decline attempting a proof if the theorem is too difficult. Each example contains 20 features. Automated theorem proving.",
+  "column_descriptions": {
+    "feature_1": "Feature 1",
+    "feature_2": "Feature 2",
+    "feature_3": "Feature 3",
+    "feature_4": "Feature 4",
+    "feature_5": "Feature 5",
+    "feature_6": "Feature 6",
+    "feature_7": "Feature 7",
+    "feature_8": "Feature 8",
+    "feature_9": "Feature 9",
+    "feature_10": "Feature 10",
+    "feature_11": "Feature 11",
+    "feature_12": "Feature 12",
+    "feature_13": "Feature 13",
+    "feature_14": "Feature 14",
+    "feature_15": "Feature 15",
+    "feature_16": "Feature 16",
+    "feature_17": "Feature 17",
+    "feature_18": "Feature 18",
+    "feature_19": "Feature 19",
+    "feature_20": "Feature 20"
+  },
+  "class_names": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "class_description": "Classes: '1' (Heuristic 1 fastest), '2' (Heuristic 2 fastest), '3' (Heuristic 3 fastest), '4' (Heuristic 4 fastest), '5' (Heuristic 5 fastest), '6' (Theorem too difficult - decline to prove)",
+  "num_features": 20,
+  "num_classes": 6,
+  "task_id": "9985"
+}

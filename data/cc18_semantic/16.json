@@ -1,0 +1,433 @@
+{
+  "dataset": "mfeat-karhunen",
+  "description": "Multiple Features Dataset: Karhunen-Loève coefficients. One of six datasets describing features of handwritten numerals (0-9) extracted from Dutch utility maps. This dataset contains features from the Karhunen-Loève Transform, representing linear projections onto eigenvectors of the covariance matrix.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Multiple+Features",
+  "openml_task": 16,
+  "openml_dataset": 16,
+  "date_donated": "1998",
+  "creator": "Robert P.W. Duin (Delft University of Technology)",
+  "instances": 2000,
+  "features": 64,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "continuous"
+  },
+  "feature_extraction": "Karhunen-Loève Transform (KLT)",
+  "feature_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis.",
+  "instances_per_class": 200,
+  "target_values": {
+    "0": "Digit 0",
+    "1": "Digit 1",
+    "2": "Digit 2",
+    "3": "Digit 3",
+    "4": "Digit 4",
+    "5": "Digit 5",
+    "6": "Digit 6",
+    "7": "Digit 7",
+    "8": "Digit 8",
+    "9": "Digit 9"
+  },
+  "domain": "Computer Vision/Pattern Recognition",
+  "use_case": "Handwritten digit recognition for document processing, postal automation, bank check processing, and form digitization",
+  "dataset_family": {
+    "description": "Part of the Multiple Features dataset collection",
+    "other_datasets": [
+      "mfeat-fourier (76 Fourier coefficients)",
+      "mfeat-factors (216 profile correlations)",
+      "mfeat-pixel (240 pixel averages)",
+      "mfeat-zernike (47 Zernike moments)",
+      "mfeat-morphological (6 morphological features)"
+    ],
+    "note": "Corresponding patterns in different datasets represent the same original character"
+  },
+  "data_collection": "Handwritten numerals extracted from a collection of Dutch utility maps, digitized in binary images",
+  "mathematical_background": "Karhunen-Loève Transform is equivalent to PCA, providing optimal linear features in terms of reconstruction error",
+  "ethical_considerations": "Dataset represents Dutch handwriting styles and may not generalize to other writing systems or cultural contexts",
+  "citations": [
+    {
+      "author": "M. van Breukelen, R.P.W. Duin, D.M.J. Tax, and J.E. den Hartog",
+      "title": "Handwritten digit recognition by combined classifiers",
+      "venue": "Kybernetika",
+      "volume": "34",
+      "number": "4",
+      "pages": "381-386",
+      "year": "1998"
+    }
+  ],
+  "dataset_name": "mfeat-karhunen",
+  "original_source": {
+    "creator": "Robert P.W. Duin (Delft University of Technology)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1998",
+    "publication": "M. van Breukelen, R.P.W. Duin, D.M.J. Tax, and J.E. den Hartog: Handwritten digit recognition by combined classifiers"
+  },
+  "columns": [
+    {
+      "name": "Feature 1",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 1)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 2",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 2)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 3",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 3)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 4",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 4)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 5",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 5)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 6",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 6)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 7",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 7)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 8",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 8)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 9",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 9)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 10",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 10)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 11",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 11)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 12",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 12)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 13",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 13)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 14",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 14)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 15",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 15)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 16",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 16)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 17",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 17)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 18",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 18)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 19",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 19)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 20",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 20)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 21",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 21)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 22",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 22)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 23",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 23)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 24",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 24)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 25",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 25)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 26",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 26)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 27",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 27)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 28",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 28)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 29",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 29)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 30",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 30)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 31",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 31)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 32",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 32)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 33",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 33)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 34",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 34)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 35",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 35)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 36",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 36)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 37",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 37)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 38",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 38)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 39",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 39)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 40",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 40)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 41",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 41)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 42",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 42)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 43",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 43)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 44",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 44)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 45",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 45)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 46",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 46)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 47",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 47)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 48",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 48)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 49",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 49)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 50",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 50)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 51",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 51)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 52",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 52)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 53",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 53)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 54",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 54)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 55",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 55)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 56",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 56)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 57",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 57)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 58",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 58)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 59",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 59)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 60",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 60)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 61",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 61)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 62",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 62)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 63",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 63)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Feature 64",
+      "semantic_description": "64 Karhunen-Loève coefficients extracted from handwritten digit images. The KLT is a linear transformation that projects the image data onto the eigenvectors of the covariance matrix, effectively performing Principal Component Analysis. (feature 64)",
+      "data_type": "continuous"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Digit 0"
+    },
+    {
+      "name": "1",
+      "meaning": "Digit 1"
+    },
+    {
+      "name": "2",
+      "meaning": "Digit 2"
+    },
+    {
+      "name": "3",
+      "meaning": "Digit 3"
+    },
+    {
+      "name": "4",
+      "meaning": "Digit 4"
+    },
+    {
+      "name": "5",
+      "meaning": "Digit 5"
+    },
+    {
+      "name": "6",
+      "meaning": "Digit 6"
+    },
+    {
+      "name": "7",
+      "meaning": "Digit 7"
+    },
+    {
+      "name": "8",
+      "meaning": "Digit 8"
+    },
+    {
+      "name": "9",
+      "meaning": "Digit 9"
+    }
+  ],
+  "dataset_history": "Data Collection: Handwritten numerals extracted from a collection of Dutch utility maps, digitized in binary images",
+  "inference_notes": "Use Case: Handwritten digit recognition for document processing, postal automation, bank check processing, and form digitization"
+}

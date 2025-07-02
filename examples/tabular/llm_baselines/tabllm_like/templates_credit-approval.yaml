@@ -1,0 +1,14 @@
+dataset: credit-approval
+templates:
+  c37e4e8d-ac0f-434d-a6c3-d81f69ed1e11: !Template
+    name: credit-approval
+    id: c37e4e8d-ac0f-434d-a6c3-d81f69ed1e11
+    reference: ''
+    answer_choices: Credit approved ||| Credit denied
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Credit approved, Credit denied?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

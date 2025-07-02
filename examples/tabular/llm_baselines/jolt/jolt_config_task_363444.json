@@ -1,0 +1,15 @@
+{
+  "dataset_name": "methane_emissions_rice_crop",
+  "task_prefix": "This dataset contains measurements and factors related to methane (CH4) emissions from rice paddies. Rice cultivation is a significant source of anthropogenic methane emissions, and this data helps understand and predict emission patterns based on various environmental and agricultural factors. The data appears to be compiled from FAO (Food and Agriculture Organization) sources. Each example contains 2 features. Predict the Value.",
+  "column_descriptions": {
+    "Value": "The measured methane emission value from rice cultivation",
+    "Features 0-16": "Likely includes environmental factors such as temperature, soil properties, water management practices, fertilizer application, and cultivation period. Without explicit feature names, exact meanings cannot be determined. Common variables in rice methane emission studies include:"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Value - Methane emission rate from rice paddy fields. Units: Likely kg CH4 per hectare per day or similar standardized unit. Range: Unknown without access to raw data, but typical rice paddy emissions range from 0 to 60 kg CH4/ha/day",
+  "num_features": 2,
+  "num_classes": 1,
+  "task_id": 363444
+}

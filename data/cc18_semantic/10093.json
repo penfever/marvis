@@ -1,0 +1,87 @@
+{
+  "dataset": "banknote-authentication",
+  "description": "The banknote authentication dataset contains features extracted from images of genuine and forged banknote specimens using Wavelet Transform tool. Data were collected from 400x400 pixel grayscale images at 660 dpi resolution taken with an industrial camera for print inspection. The dataset is used to distinguish between authentic and counterfeit banknotes.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/banknote+authentication",
+  "openml_task": 10093,
+  "openml_dataset": 1462,
+  "date_donated": "2012",
+  "creator": "Volker Lohweg (University of Applied Sciences, Ostwestfalen-Lippe)",
+  "instances": 1372,
+  "features": 4,
+  "target": "Class",
+  "target_type": "binary",
+  "missing_values": false,
+  "feature_types": {
+    "V1": "continuous",
+    "V2": "continuous",
+    "V3": "continuous",
+    "V4": "continuous"
+  },
+  "feature_names": {
+    "V1": "Variance of Wavelet Transformed image",
+    "V2": "Skewness of Wavelet Transformed image",
+    "V3": "Curtosis of Wavelet Transformed image",
+    "V4": "Entropy of image"
+  },
+  "feature_descriptions": {
+    "V1": "Statistical measure of dispersion in pixel intensities after wavelet transformation",
+    "V2": "Measure of asymmetry in the distribution of pixel intensities after wavelet transformation",
+    "V3": "Measure of the tailedness of the probability distribution of pixel intensities after wavelet transformation",
+    "V4": "Measure of randomness or information content in the image"
+  },
+  "target_values": {
+    "0": "Forged/counterfeit banknote",
+    "1": "Genuine/authentic banknote"
+  },
+  "domain": "Finance/Security",
+  "use_case": "Authentication of banknotes to detect counterfeits using image processing features",
+  "ethical_considerations": "The dataset should be used responsibly to improve banknote security features and counterfeit detection systems. Misuse for creating counterfeits is illegal and unethical.",
+  "citations": [
+    {
+      "title": "UCI Machine Learning Repository",
+      "url": "https://archive.ics.uci.edu/ml/citation_policy.html"
+    }
+  ],
+  "dataset_name": "banknote-authentication",
+  "original_source": {
+    "creator": "Volker Lohweg (University of Applied Sciences, Ostwestfalen-Lippe)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "2012",
+    "publication": "Unknown: UCI Machine Learning Repository"
+  },
+  "columns": [
+    {
+      "name": "Variance of Wavelet Transformed image",
+      "semantic_description": "Statistical measure of dispersion in pixel intensities after wavelet transformation",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Skewness of Wavelet Transformed image",
+      "semantic_description": "Measure of asymmetry in the distribution of pixel intensities after wavelet transformation",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Curtosis of Wavelet Transformed image",
+      "semantic_description": "Measure of the tailedness of the probability distribution of pixel intensities after wavelet transformation",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Entropy of image",
+      "semantic_description": "Measure of randomness or information content in the image",
+      "data_type": "continuous"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Forged/counterfeit banknote"
+    },
+    {
+      "name": "1",
+      "meaning": "Genuine/authentic banknote"
+    }
+  ],
+  "dataset_history": "Dataset history not available for banknote-authentication",
+  "inference_notes": "Use Case: Authentication of banknotes to detect counterfeits using image processing features"
+}

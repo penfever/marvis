@@ -1,0 +1,19 @@
+{
+  "dataset_name": "infrared_thermography_temperature",
+  "task_prefix": "This dataset contains thermal imaging measurements and related metadata collected to study the relationship between infrared thermography readings and core body temperature. The data was collected using thermal cameras to measure surface temperatures at various facial points, combined with traditional oral temperature measurements, with the goal of developing non-contact temperature screening methods. Each example contains 6 features. Predict the aveOralF.",
+  "column_descriptions": {
+    "gender": "Biological sex of the participant",
+    "age": "Age of the participant in years",
+    "ethnicity": "Ethnic background of the participant",
+    "ambient_temp": "Room temperature during measurement",
+    "humidity": "Relative humidity percentage in the room during measurement",
+    "thermal_readings_[various_points]": "Temperature measurements from different facial locations using thermal imaging"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: aveOralF - Average oral temperature measurement taken as ground truth for core body temperature. Units: Degrees Fahrenheit. Range: 96.0\u00b0F - 101.0\u00b0F (typical human oral temperature range)",
+  "num_features": 6,
+  "num_classes": 1,
+  "task_id": 363418
+}

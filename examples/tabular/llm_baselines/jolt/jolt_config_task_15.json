@@ -1,0 +1,23 @@
+{
+  "dataset_name": "breast-w",
+  "task_prefix": "Wisconsin Breast Cancer (Original) dataset containing features computed from digitized images of fine needle aspirates (FNA) of breast masses. Features describe characteristics of cell nuclei present in the image. The task is to classify tumors as benign or malignant based on cytological characteristics. Each example contains 9 features. Breast cancer diagnosis support system to assist medical professionals in distinguishing between benign and malignant breast tumors based on cell characteristics from FNA samples.",
+  "column_descriptions": {
+    "Clump thickness": "Assessment of the thickness of clumps of cells (1-10)",
+    "Uniformity of cell size": "Evaluation of whether cells are uniform in size (1-10)",
+    "Uniformity of cell shape": "Evaluation of whether cells are uniform in shape (1-10)",
+    "Marginal adhesion": "How much cells on the outside of the epithelial tend to stick together (1-10)",
+    "Single epithelial cell size": "Size of epithelial cells (1-10)",
+    "Bare nuclei": "Nuclei not surrounded by cytoplasm (1-10)",
+    "Bland chromatin": "Uniform texture of the nucleus (1-10)",
+    "Normal nucleoli": "Small structures in nucleus where ribosomes are made (1-10)",
+    "Mitoses": "Cell division process (1-10)"
+  },
+  "class_names": [
+    "2",
+    "4"
+  ],
+  "class_description": "Classes: '2' (Benign tumor), '4' (Malignant tumor)",
+  "num_features": 9,
+  "num_classes": 2,
+  "task_id": "15"
+}

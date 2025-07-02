@@ -1,0 +1,18 @@
+{
+  "dataset_name": "google_qa_answer_type_reason_explanation",
+  "task_prefix": "This dataset is derived from the Google QUEST Q&A Labeling challenge, focusing on measuring subjective aspects of question-answering quality. It contains features extracted from question-answer pairs from websites like Stack Exchange, analyzing how well answers address questions across different domains. The specific target variable focuses on classifying the reasoning/explanation type provided in answers. Each example contains 5 features. Predict the answer_type_reason_explanation.",
+  "column_descriptions": {
+    "question_title": "The main title/headline of the question as posted on the Q&A platform",
+    "question_body": "The detailed content/description of the question",
+    "answer_content": "The full text of the answer provided",
+    "category": "The topic/domain category of the question (e.g., technology, science, etc.)",
+    "encoded_features_0-37": "BERT/NLP-derived numerical features encoding semantic aspects of the question-answer pair relationship"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: answer_type_reason_explanation - Measures the degree to which the answer provides reasoning and explanations rather than just facts or statements. Units: Normalized score between 0 and 1. Range: 0.0 (no explanation/reasoning) to 1.0 (comprehensive explanation with clear reasoning)",
+  "num_features": 5,
+  "num_classes": 1,
+  "task_id": 363370
+}

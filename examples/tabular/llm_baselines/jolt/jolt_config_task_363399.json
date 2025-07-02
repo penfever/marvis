@@ -1,0 +1,24 @@
+{
+  "dataset_name": "QSAR_Bioconcentration_regression",
+  "task_prefix": "This dataset contains molecular descriptors and bioconcentration factors (BCF) for various chemical compounds. It's used to develop Quantitative Structure-Activity Relationship (QSAR) models to predict how chemicals accumulate in aquatic organisms relative to their concentration in water. This is crucial for environmental risk assessment and toxicology studies. Each example contains 11 features. Predict the logBCF.",
+  "column_descriptions": {
+    "CIC0": "Complementary Information Content index (neighborhood symmetry of 0-order)",
+    "SM1_Dz(Z)": "Another 2D matrix-based descriptor variant",
+    "GATS1i": "Geary autocorrelation of lag 1 weighted by ionization potential",
+    "NdsCH": "Count of CH groups with double bonds",
+    "NdssC": "Count of carbon atoms with two single bonds",
+    "MLOGP": "Moriguchi octanol-water partition coefficient, measure of molecular lipophilicity",
+    "GATS1e": "Geary autocorrelation of lag 1 weighted by Sanderson electronegativity",
+    "NaasC": "Count of carbon atoms with aromatic bonds",
+    "GATS2i": "Geary autocorrelation of lag 2 weighted by ionization potential",
+    "SpMax_A": "Leading eigenvalue from adjacency matrix",
+    "Gmin": "Minimum E-state value in molecule"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: logBCF - Logarithm of the Bioconcentration Factor, which measures the ratio of chemical concentration in an aquatic organism versus the water. Units: log(L/kg). Range: Typically between -0.5 to 5.0",
+  "num_features": 11,
+  "num_classes": 1,
+  "task_id": 363399
+}

@@ -1,0 +1,41 @@
+{
+  "dataset_name": "mfeat-karhunen",
+  "task_prefix": "Multiple Features Dataset: Karhunen-Lo\u00e8ve coefficients. One of six datasets describing features of handwritten numerals (0-9) extracted from Dutch utility maps. This dataset contains features from the Karhunen-Lo\u00e8ve Transform, representing linear projections onto eigenvectors of the covariance matrix. Each example contains 20 features. Handwritten digit recognition for document processing.",
+  "column_descriptions": {
+    "kl_coeff_1": "Karhunen-Lo\u00e8ve coefficient 1",
+    "kl_coeff_2": "Karhunen-Lo\u00e8ve coefficient 2",
+    "kl_coeff_3": "Karhunen-Lo\u00e8ve coefficient 3",
+    "kl_coeff_4": "Karhunen-Lo\u00e8ve coefficient 4",
+    "kl_coeff_5": "Karhunen-Lo\u00e8ve coefficient 5",
+    "kl_coeff_6": "Karhunen-Lo\u00e8ve coefficient 6",
+    "kl_coeff_7": "Karhunen-Lo\u00e8ve coefficient 7",
+    "kl_coeff_8": "Karhunen-Lo\u00e8ve coefficient 8",
+    "kl_coeff_9": "Karhunen-Lo\u00e8ve coefficient 9",
+    "kl_coeff_10": "Karhunen-Lo\u00e8ve coefficient 10",
+    "kl_coeff_11": "Karhunen-Lo\u00e8ve coefficient 11",
+    "kl_coeff_12": "Karhunen-Lo\u00e8ve coefficient 12",
+    "kl_coeff_13": "Karhunen-Lo\u00e8ve coefficient 13",
+    "kl_coeff_14": "Karhunen-Lo\u00e8ve coefficient 14",
+    "kl_coeff_15": "Karhunen-Lo\u00e8ve coefficient 15",
+    "kl_coeff_16": "Karhunen-Lo\u00e8ve coefficient 16",
+    "kl_coeff_17": "Karhunen-Lo\u00e8ve coefficient 17",
+    "kl_coeff_18": "Karhunen-Lo\u00e8ve coefficient 18",
+    "kl_coeff_19": "Karhunen-Lo\u00e8ve coefficient 19",
+    "kl_coeff_20": "Karhunen-Lo\u00e8ve coefficient 20"
+  },
+  "class_names": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '0' (Digit 0), '1' (Digit 1), '2' (Digit 2), '3' (Digit 3), '4' (Digit 4), '5' (Digit 5), '6' (Digit 6), '7' (Digit 7), '8' (Digit 8), '9' (Digit 9)",
+  "num_features": 20,
+  "num_classes": 10
+}

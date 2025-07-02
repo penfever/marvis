@@ -1,0 +1,494 @@
+{
+  "dataset": "mfeat-fourier",
+  "description": "Multiple Features Dataset: Fourier coefficients. One of six datasets describing features of handwritten numerals (0-9) extracted from Dutch utility maps. This dataset contains Fourier coefficients of the character shapes, capturing frequency domain characteristics.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Multiple+Features",
+  "openml_task": 14,
+  "openml_dataset": 14,
+  "date_donated": "1998",
+  "creator": "Robert P.W. Duin (Delft University of Technology)",
+  "instances": 2000,
+  "features": 76,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "continuous"
+  },
+  "feature_extraction": "Fourier Transform",
+  "feature_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain.",
+  "instances_per_class": 200,
+  "target_values": {
+    "0": "Digit 0",
+    "1": "Digit 1",
+    "2": "Digit 2",
+    "3": "Digit 3",
+    "4": "Digit 4",
+    "5": "Digit 5",
+    "6": "Digit 6",
+    "7": "Digit 7",
+    "8": "Digit 8",
+    "9": "Digit 9"
+  },
+  "domain": "Computer Vision/Pattern Recognition",
+  "use_case": "Handwritten digit recognition for document processing, postal automation, bank check processing, and form digitization",
+  "dataset_family": {
+    "description": "Part of the Multiple Features dataset collection",
+    "other_datasets": [
+      "mfeat-karhunen (64 Karhunen-Loève coefficients)",
+      "mfeat-factors (216 profile correlations)",
+      "mfeat-pixel (240 pixel averages)",
+      "mfeat-zernike (47 Zernike moments)",
+      "mfeat-morphological (6 morphological features)"
+    ],
+    "note": "Corresponding patterns in different datasets represent the same original character"
+  },
+  "data_collection": "Handwritten numerals extracted from a collection of Dutch utility maps, digitized in binary images",
+  "mathematical_background": "Fourier coefficients provide rotation-invariant features and capture periodic patterns in the digit shapes",
+  "advantages": "Fourier features are particularly effective at capturing smooth contours and periodic patterns in handwritten digits",
+  "ethical_considerations": "Dataset represents Dutch handwriting styles and may not generalize to other writing systems or cultural contexts",
+  "citations": [
+    {
+      "author": "M. van Breukelen, R.P.W. Duin, D.M.J. Tax, and J.E. den Hartog",
+      "title": "Handwritten digit recognition by combined classifiers",
+      "venue": "Kybernetika",
+      "volume": "34",
+      "number": "4",
+      "pages": "381-386",
+      "year": "1998"
+    }
+  ],
+  "dataset_name": "mfeat-fourier",
+  "original_source": {
+    "creator": "Robert P.W. Duin (Delft University of Technology)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1998",
+    "publication": "M. van Breukelen, R.P.W. Duin, D.M.J. Tax, and J.E. den Hartog: Handwritten digit recognition by combined classifiers"
+  },
+  "columns": [
+    {
+      "name": "Fourier coefficient 1",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 1)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 2",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 2)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 3",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 3)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 4",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 4)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 5",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 5)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 6",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 6)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 7",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 7)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 8",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 8)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 9",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 9)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 10",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 10)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 11",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 11)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 12",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 12)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 13",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 13)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 14",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 14)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 15",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 15)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 16",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 16)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 17",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 17)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 18",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 18)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 19",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 19)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 20",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 20)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 21",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 21)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 22",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 22)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 23",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 23)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 24",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 24)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 25",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 25)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 26",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 26)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 27",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 27)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 28",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 28)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 29",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 29)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 30",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 30)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 31",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 31)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 32",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 32)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 33",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 33)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 34",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 34)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 35",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 35)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 36",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 36)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 37",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 37)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 38",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 38)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 39",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 39)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 40",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 40)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 41",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 41)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 42",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 42)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 43",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 43)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 44",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 44)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 45",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 45)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 46",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 46)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 47",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 47)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 48",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 48)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 49",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 49)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 50",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 50)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 51",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 51)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 52",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 52)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 53",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 53)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 54",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 54)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 55",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 55)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 56",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 56)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 57",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 57)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 58",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 58)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 59",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 59)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 60",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 60)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 61",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 61)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 62",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 62)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 63",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 63)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 64",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 64)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 65",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 65)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 66",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 66)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 67",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 67)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 68",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 68)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 69",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 69)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 70",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 70)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 71",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 71)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 72",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 72)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 73",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 73)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 74",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 74)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 75",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 75)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Fourier coefficient 76",
+      "semantic_description": "76 Fourier coefficients of the character shapes. These coefficients represent the frequency components of the digit contours, providing a compact representation of shape information in the frequency domain. (coefficient 76)",
+      "data_type": "continuous"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Digit 0"
+    },
+    {
+      "name": "1",
+      "meaning": "Digit 1"
+    },
+    {
+      "name": "2",
+      "meaning": "Digit 2"
+    },
+    {
+      "name": "3",
+      "meaning": "Digit 3"
+    },
+    {
+      "name": "4",
+      "meaning": "Digit 4"
+    },
+    {
+      "name": "5",
+      "meaning": "Digit 5"
+    },
+    {
+      "name": "6",
+      "meaning": "Digit 6"
+    },
+    {
+      "name": "7",
+      "meaning": "Digit 7"
+    },
+    {
+      "name": "8",
+      "meaning": "Digit 8"
+    },
+    {
+      "name": "9",
+      "meaning": "Digit 9"
+    }
+  ],
+  "dataset_history": "Data Collection: Handwritten numerals extracted from a collection of Dutch utility maps, digitized in binary images",
+  "inference_notes": "Advantages: Fourier features are particularly effective at capturing smooth contours and periodic patterns in handwritten digits. Use Case: Handwritten digit recognition for document processing, postal automation, bank check processing, and form digitization"
+}

@@ -1,0 +1,34 @@
+{
+  "dataset_name": "telco-customer-churn",
+  "task_prefix": "IBM sample dataset containing telecommunications customer information and service details to predict customer churn. Includes demographic info, services subscribed, and billing information for customer retention analysis. Each example contains 21 features. Predict the target class.",
+  "column_descriptions": {
+    "customerID": "Unique identifier for each customer. Used for tracking individual customers.",
+    "gender": "Customer's gender. Basic demographic information.",
+    "SeniorCitizen": "Customer is a senior citizen (65+ years). binary demographic indicator.",
+    "Partner": "Customer has a partner/spouse. household composition indicator.",
+    "Dependents": "Customer has dependents. family status indicator.",
+    "tenure": "Number of months customer has stayed with the company. Key loyalty indicator.",
+    "PhoneService": "Customer has phone service. basic service indicator.",
+    "MultipleLines": "Customer has multiple phone lines. service complexity indicator.",
+    "InternetService": "Type of internet service customer has. Core service offering.",
+    "OnlineSecurity": "Customer has online security add-on. value-added service.",
+    "OnlineBackup": "Customer has online backup add-on. value-added service.",
+    "DeviceProtection": "Customer has device protection add-on. value-added service.",
+    "TechSupport": "Customer has tech support add-on. service quality indicator.",
+    "StreamingTV": "Customer has streaming tv service. entertainment service.",
+    "StreamingMovies": "Customer has streaming movies service. entertainment service.",
+    "Contract": "Type of customer contract. Commitment level indicator.",
+    "PaperlessBilling": "Customer has paperless billing. digital engagement indicator.",
+    "PaymentMethod": "Customer's payment method. Financial relationship indicator.",
+    "MonthlyCharges": "Amount charged to customer monthly. Current revenue indicator.",
+    "TotalCharges": "Total amount charged to customer. Lifetime value indicator.",
+    "Churn": "Customer churned in the last month. target variable."
+  },
+  "class_names": [
+    "Yes",
+    "No"
+  ],
+  "class_description": "Classes: 'Yes' (Customer churned - left the company within the last month), 'No' (Customer retained - still with the company)",
+  "num_features": 21,
+  "num_classes": 2
+}

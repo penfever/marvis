@@ -1,0 +1,65 @@
+{
+  "dataset_name": "diabetes",
+  "description": "Pima Indians Diabetes Database for predicting onset of diabetes mellitus. Contains diagnostic measurements from female patients of Pima Indian heritage near Phoenix, Arizona, USA.",
+  "original_source": {
+    "creator": "National Institute of Diabetes and Digestive and Kidney Diseases",
+    "donor": "Vincent Sigillito",
+    "institution": "Johns Hopkins University Applied Physics Laboratory",
+    "date": "May 9, 1990",
+    "publication": "Smith, J.W., Everhart, J.E., Dickson, W.C., Knowler, W.C., & Johannes, R.S. (1988). Using the ADAP learning algorithm to forecast the onset of diabetes mellitus. Proceedings of the Symposium on Computer Applications and Medical Care (pp. 261-265)."
+  },
+  "columns": [
+    {
+      "name": "preg",
+      "semantic_description": "Number of times pregnant - pregnancy count for the patient.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "plas",
+      "semantic_description": "Plasma glucose concentration at 2 hours in an oral glucose tolerance test (mg/dl).",
+      "data_type": "numeric"
+    },
+    {
+      "name": "pres",
+      "semantic_description": "Diastolic blood pressure (mm Hg) - minimum arterial pressure during heart relaxation.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "skin",
+      "semantic_description": "Triceps skin fold thickness (mm) - measure of subcutaneous fat.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "insu",
+      "semantic_description": "2-Hour serum insulin (mu U/ml) - insulin level after glucose tolerance test.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "mass",
+      "semantic_description": "Body mass index - weight in kg/(height in m)^2, indicator of body fat.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "pedi",
+      "semantic_description": "Diabetes pedigree function - genetic influence score based on family history.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "age",
+      "semantic_description": "Age in years - patient age at time of examination.",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "tested_negative",
+      "meaning": "Patient tested negative for diabetes according to WHO criteria"
+    },
+    {
+      "name": "tested_positive",
+      "meaning": "Patient shows signs of diabetes (2-hour post-load plasma glucose >= 200 mg/dl)"
+    }
+  ],
+  "dataset_history": "Collected from a larger database with constraints: all patients are females at least 21 years old of Pima Indian heritage. The Pima population has the highest reported prevalence of diabetes globally. Original ADAP algorithm achieved 76% sensitivity and specificity using 576 training instances.",
+  "inference_notes": "Dataset contains 768 instances with 500 negative and 268 positive cases (34.9% diabetes rate). All patients from homogeneous population reduces confounding variables. The diabetes pedigree function synthesizes family history into a single genetic risk score. Zero values in some fields (e.g., glucose, blood pressure) likely represent missing data rather than actual zeros, requiring careful preprocessing."
+}

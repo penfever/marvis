@@ -1,0 +1,91 @@
+{
+  "dataset_name": "heart_failure_clinical_records",
+  "description": "A clinical dataset containing medical records of 299 heart failure patients collected at the Faisalabad Institute of Cardiology and at the Allied Hospital in Faisalabad (Punjab, Pakistan) during April-December 2015. The dataset is used to predict mortality by heart failure and includes 13 clinical features that are commonly collected during follow-up visits.",
+  "original_source": {
+    "creator": "Davide Chicco and Giuseppe Jurman",
+    "institution": "Faisalabad Institute of Cardiology and Allied Hospital, Faisalabad",
+    "date": "2015",
+    "publication": "Chicco, D., Jurman, G. Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020)"
+  },
+  "columns": [
+    {
+      "name": "age",
+      "semantic_description": "Age of the patient at the time of data collection",
+      "data_type": "numeric (years)"
+    },
+    {
+      "name": "anaemia",
+      "semantic_description": "Decrease of red blood cells or hemoglobin. Indicates if patient has anaemia",
+      "data_type": "binary (0 = no, 1 = yes)"
+    },
+    {
+      "name": "creatinine_phosphokinase",
+      "semantic_description": "Level of CPK enzyme in blood, indicating damage to heart muscle",
+      "data_type": "numeric (mcg/L)"
+    },
+    {
+      "name": "diabetes",
+      "semantic_description": "If the patient has diabetes",
+      "data_type": "binary (0 = no, 1 = yes)"
+    },
+    {
+      "name": "ejection_fraction",
+      "semantic_description": "Percentage of blood leaving the heart at each contraction",
+      "data_type": "numeric (percentage)"
+    },
+    {
+      "name": "high_blood_pressure",
+      "semantic_description": "If the patient has hypertension",
+      "data_type": "binary (0 = no, 1 = yes)"
+    },
+    {
+      "name": "platelets",
+      "semantic_description": "Platelets count in blood (target variable)",
+      "data_type": "numeric (kiloplatelets/mL)"
+    },
+    {
+      "name": "serum_creatinine",
+      "semantic_description": "Level of serum creatinine in blood, indicating kidney function",
+      "data_type": "numeric (mg/dL)"
+    },
+    {
+      "name": "serum_sodium",
+      "semantic_description": "Level of serum sodium in blood, indicating electrolyte balance",
+      "data_type": "numeric (mEq/L)"
+    },
+    {
+      "name": "sex",
+      "semantic_description": "Biological sex of the patient",
+      "data_type": "binary (0 = female, 1 = male)"
+    },
+    {
+      "name": "smoking",
+      "semantic_description": "If the patient smokes",
+      "data_type": "binary (0 = no, 1 = yes)"
+    },
+    {
+      "name": "time",
+      "semantic_description": "Follow-up period",
+      "data_type": "numeric (days)"
+    },
+    {
+      "name": "death_event",
+      "semantic_description": "If the patient died during the follow-up period",
+      "data_type": "binary (0 = no, 1 = yes)"
+    }
+  ],
+  "target_description": {
+    "name": "platelets",
+    "meaning": "Count of platelets in the blood, which are crucial for blood clotting and cardiovascular health",
+    "units": "kiloplatelets/mL",
+    "range": "25,100 to 850,000"
+  },
+  "dataset_history": "The dataset was collected during a study of heart failure patients in Pakistan during 2015. It represents a comprehensive clinical follow-up of patients with various cardiovascular conditions and comorbidities. The data was collected to study mortality prediction in heart failure patients and has become an important benchmark dataset for medical predictive modeling.",
+  "inference_notes": "The dataset has some important considerations: 1) It represents a specific geographic population in Pakistan, which may affect generalizability, 2) The follow-up period varies among patients, 3) Some features like smoking status are self-reported and may have reporting bias, 4) The dataset is relatively small (299 instances) which may affect model robustness, 5) There's class imbalance in the death_event outcome which should be considered in classification tasks.",
+  "_metadata": {
+    "task_id": 363417,
+    "generated_at": "2025-06-22T08:31:19.076066",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

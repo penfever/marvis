@@ -1,0 +1,204 @@
+{
+  "dataset_name": "kr-vs-kp",
+  "description": "Chess endgame dataset representing King+Rook versus King+Pawn positions. Contains 3,196 chess positions where White (with King and Rook) faces Black (with King and Pawn on a7, one square from promotion). The task is to classify whether White can force a win or if the position is drawn/lost.",
+  "original_source": {
+    "creator": "Unknown",
+    "institution": "Unknown",
+    "date": "Unknown",
+    "publication": "Unknown"
+  },
+  "columns": [
+    {
+      "name": "bkblk",
+      "semantic_description": "Whether the black king is blocked from moving to certain squares",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "bknwy",
+      "semantic_description": "Whether the black king is not in white's way to the promotion square",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "bkon8",
+      "semantic_description": "Whether the black king is positioned on the 8th rank",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "bkona",
+      "semantic_description": "Whether the black king is positioned on the a-file",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "bkspr",
+      "semantic_description": "Whether the black king has spare moves or space to maneuver",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "bkxbq",
+      "semantic_description": "Whether the black king attacks a bishop or queen square (likely a key square)",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "bkxcr",
+      "semantic_description": "Whether the black king attacks a castle/corner square or the rook",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "bkxwp",
+      "semantic_description": "Whether the black king would attack a white pawn (hypothetical as White has no pawn)",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "blxwp",
+      "semantic_description": "Whether black attacks white pawn (hypothetical positional feature)",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "bxqsq",
+      "semantic_description": "Whether black attacks the queening square (a8)",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "cntxt",
+      "semantic_description": "Context or control feature capturing positional characteristics",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "dsopp",
+      "semantic_description": "Distance-based opposition between the kings",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "dwipd",
+      "semantic_description": "Distance with interposed piece or doubled pieces",
+      "data_type": "categorical (g/l)"
+    },
+    {
+      "name": "hdchk",
+      "semantic_description": "Whether the position had a check in the recent move sequence",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "katri",
+      "semantic_description": "King attack triangle - zone-based encoding of king positions",
+      "data_type": "categorical (b/n/w)"
+    },
+    {
+      "name": "mulch",
+      "semantic_description": "Whether multiple checks are possible in the position",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "qxmsq",
+      "semantic_description": "Whether a queen would attack a marked square (theoretical feature)",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "r2ar8",
+      "semantic_description": "Whether the rook can attack the 8th rank in 2 moves",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "reskd",
+      "semantic_description": "Whether the rook restricts the enemy king's defensive options",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "reskr",
+      "semantic_description": "Whether the rook restricts king or rook movement patterns",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "rimmx",
+      "semantic_description": "Whether the rook has immediate maximum activity or range",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "rkxwp",
+      "semantic_description": "Whether the rook attacks a white pawn square",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "rxmsq",
+      "semantic_description": "Whether the rook attacks a marked square (likely promotion-related)",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "simpl",
+      "semantic_description": "Whether the position is simple or simplified",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "skach",
+      "semantic_description": "Whether a skewer attack with check is possible",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "skewr",
+      "semantic_description": "Whether a skewer tactic is present in the position",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "skrxp",
+      "semantic_description": "Whether a skewer allows the rook to attack the pawn",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "spcop",
+      "semantic_description": "Space or copy operation - likely related to king maneuvering space",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "stlmt",
+      "semantic_description": "Whether stalemate is possible or threatened",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "thrsk",
+      "semantic_description": "Whether there is a threat of skewer in the position",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "wkcti",
+      "semantic_description": "Whether the white king has central initiative",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "wkna8",
+      "semantic_description": "Whether the white king is near the a8 promotion square",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "wknck",
+      "semantic_description": "Whether the white king is near check positions or corner",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "wkovl",
+      "semantic_description": "Whether the white king controls an oval or zone of squares",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "wkpos",
+      "semantic_description": "Whether the white king has a favorable position",
+      "data_type": "binary (t/f)"
+    },
+    {
+      "name": "wtoeg",
+      "semantic_description": "Whether white can reach the edge or escape to safety",
+      "data_type": "binary (t/f)"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "won",
+      "meaning": "White can force a win from this position - the rook and king can stop the pawn and checkmate"
+    },
+    {
+      "name": "nowin",
+      "meaning": "White cannot win - Black's pawn will promote or the position is drawn"
+    }
+  ],
+  "dataset_history": "Developed by Alen Shapiro in 1983 as part of his Ph.D. thesis 'The Role of Structured Induction in Expert Systems' at University of Edinburgh. Used to demonstrate structured induction methodology for extracting expert knowledge. The endgame was chosen as it was difficult enough to challenge master players but tractable for analysis. Became a standard UCI benchmark dataset.",
+  "inference_notes": "The exact semantic meanings of all 36 attributes are documented in Shapiro's 1987 book 'Structured Induction in Expert Systems' (Addison-Wesley) but this source is not readily available digitally. The attribute names follow clear patterns: 'bk' prefix for black king features, 'wk' for white king, 'r' for rook-related features. Many attributes encode chess concepts like opposition, zugzwang, skewer tactics, and control of key squares. The binary encoding (t/f) simplifies complex positional judgments. Some attributes like 'bkxwp' and 'rkxwp' reference white pawns that don't exist in this endgame, suggesting these may be generalized features from a broader chess encoding system."
+}

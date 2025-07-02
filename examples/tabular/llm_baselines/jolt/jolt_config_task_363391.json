@@ -1,0 +1,19 @@
+{
+  "dataset_name": "jigsaw-unintended-bias-in-toxicity",
+  "task_prefix": "A large-scale dataset of online comments labeled for toxicity and identity mentions, created to help develop machine learning models that can detect toxic comments while minimizing unintended bias against mentions of frequently attacked identities. The dataset contains comments from the Civil Comments platform with human-annotated labels for toxicity and various identity attributes. Each example contains 6 features. Predict the toxicity.",
+  "column_descriptions": {
+    "comment_text": "The raw text of the online comment",
+    "toxicity": "The primary toxicity score indicating how toxic the comment is, based on human rater consensus",
+    "severe_toxicity": "Score for comments that are considered very hateful/toxic",
+    "identity_attack": "Score indicating whether the comment attacks someone's identity (e.g., race, religion, etc.)",
+    "insult": "Score indicating whether the comment is an insult",
+    "threat": "Score indicating whether the comment contains threats"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: toxicity - A measure of how toxic, rude, disrespectful, or unreasonable a comment is likely to make someone leave a discussion. Units: Probability score. Range: 0.0 (not toxic) to 1.0 (very toxic)",
+  "num_features": 6,
+  "num_classes": 1,
+  "task_id": 363391
+}

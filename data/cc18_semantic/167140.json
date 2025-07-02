@@ -1,0 +1,92 @@
+{
+  "dataset": "dna",
+  "description": "Primate splice-junction gene sequences (DNA) for identifying boundaries between exons and introns. The StatLog version processes DNA sequences into 180 binary indicator variables representing the presence of specific nucleotides at specific positions.",
+  "source": "Penn Machine Learning Benchmarks (PMLB) / StatLog",
+  "source_url": "https://github.com/EpistasisLab/penn-ml-benchmarks",
+  "openml_task": 167140,
+  "openml_dataset": 40670,
+  "original_source": {
+    "creator": "Ross King",
+    "institution": "Penn Machine Learning Benchmarks (PMLB) / StatLog",
+    "date": "Unknown",
+    "publication": "G. Towell, M. Noordewier, and J. Shavlik: Molecular Biology (Splice-junction Gene Sequences)"
+  },
+  "date_created": "Originally from StatLog project",
+  "creator": {
+    "name": "Ross King",
+    "note": "Based on data from Genbank 64.1",
+    "original_donors": "G. Towell, M. Noordewier, and J. Shavlik"
+  },
+  "instances": 3186,
+  "features": 180,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "binary",
+    "description": "180 binary indicator variables"
+  },
+  "feature_description": {
+    "features": "180 binary features encoding DNA sequence information, representing nucleotide patterns around splice junctions"
+  },
+  "target_values": {
+    "ei": "Exon-Intron boundary (donor sites)",
+    "ie": "Intron-Exon boundary (acceptor sites)",
+    "n": "Neither (no splice junction)"
+  },
+  "class_distribution": {
+    "ei": "767 instances (24.1%)",
+    "ie": "768 instances (24.1%)",
+    "n": "1651 instances (51.8%)"
+  },
+  "domain": "Bioinformatics/Genomics",
+  "use_case": "Gene structure prediction, splice site recognition, genomic sequence analysis, protein synthesis understanding",
+  "biological_context": {
+    "splice_junctions": "Points where superfluous DNA is removed during protein creation",
+    "exons": "Parts of DNA retained after splicing",
+    "introns": "Parts of DNA that are spliced out",
+    "importance": "Critical for understanding gene expression and protein synthesis"
+  },
+  "preprocessing": "Original sequences processed into binary features by StatLog project, encoding presence/absence of nucleotide patterns",
+  "original_data": "Raw sequences still available at UCI repository",
+  "performance_considerations": "High-dimensional binary data (180 features), relatively balanced three-class problem",
+  "advantages": "Well-studied benchmark, biological significance, processed features available",
+  "challenges": "High dimensionality, understanding feature encoding, biological interpretation",
+  "research_applications": "Sequence classification, bioinformatics, feature selection in high-dimensional spaces, pattern recognition in biological sequences",
+  "statlog_modifications": "Converted from raw sequences to 180 binary indicator variables",
+  "citations": [
+    {
+      "author": "G. Towell, M. Noordewier, and J. Shavlik",
+      "title": "Molecular Biology (Splice-junction Gene Sequences)",
+      "source": "UCI Machine Learning Repository",
+      "note": "Original splice-junction dataset"
+    },
+    {
+      "note": "StatLog project processed version included in MLbench and PMLB"
+    }
+  ],
+  "dataset_name": "dna",
+  "columns": [
+    {
+      "name": "features",
+      "semantic_description": "180 binary features encoding DNA sequence information, representing nucleotide patterns around splice junctions",
+      "data_type": "binary"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "ei",
+      "meaning": "Exon-Intron boundary (donor sites)"
+    },
+    {
+      "name": "ie",
+      "meaning": "Intron-Exon boundary (acceptor sites)"
+    },
+    {
+      "name": "n",
+      "meaning": "Neither (no splice junction)"
+    }
+  ],
+  "dataset_history": "Dataset history not available for dna",
+  "inference_notes": "Challenges: High dimensionality, understanding feature encoding, biological interpretation. Advantages: Well-studied benchmark, biological significance, processed features available. Applications: Sequence classification, bioinformatics, feature selection in high-dimensional spaces, pattern recognition in biological sequences. Use Case: Gene structure prediction, splice site recognition, genomic sequence analysis, protein synthesis understanding"
+}

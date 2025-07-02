@@ -1,0 +1,16 @@
+dataset: balance-scale
+templates:
+  c9b5ce63-14e0-4554-87f2-968c92abfe57: !Template
+    name: balance-scale
+    id: c9b5ce63-14e0-4554-87f2-968c92abfe57
+    reference: ''
+    answer_choices: Balance scale remains balanced ||| Balance scale tips to the left
+      ||| Balance scale tips to the right
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Balance scale remains balanced, Balance scale tips to the left, Balance scale\
+      \ tips to the right?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

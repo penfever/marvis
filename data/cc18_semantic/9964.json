@@ -1,0 +1,1351 @@
+{
+  "dataset_name": "semeion",
+  "openml_task_id": 9964,
+  "dataset_description": "The Semeion dataset contains handwritten digits (0-9) from around 80 persons. Each digit was scanned and stretched into a 16x16 pixel rectangular box in grayscale (256 values), then binarized using a fixed threshold. Each person wrote all digits 0-9 twice: once normally (with accuracy) and once quickly (without accuracy). This results in 1,593 handwritten digit images represented as binary pixel values.",
+  "dataset_source": "Tattile Srl, Brescia, Italy; donated to Semeion Research Center of Sciences of Communication, Rome",
+  "domain": "Computer Vision, Handwritten Character Recognition",
+  "problem_type": "Multi-class Classification",
+  "input_features": {
+    "number_of_features": 256,
+    "feature_types": "Binary (0/1)",
+    "feature_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold."
+  },
+  "dataset_size": {
+    "instances": 1593,
+    "features": 256,
+    "classes": 10
+  },
+  "description": "The Semeion dataset contains handwritten digits (0-9) from around 80 persons. Each digit was scanned and stretched into a 16x16 pixel rectangular box in grayscale (256 values), then binarized using a fixed threshold. Each person wrote all digits 0-9 twice: once normally (with accuracy) and once quickly (without accuracy). This results in 1,593 handwritten digit images represented as binary pixel values.",
+  "original_source": {
+    "creator": "Unknown",
+    "institution": "Unknown",
+    "date": "Unknown",
+    "publication": "Unknown"
+  },
+  "columns": [
+    {
+      "name": "feature_1",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 1)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_2",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 2)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_3",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 3)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_4",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 4)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_5",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 5)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_6",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 6)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_7",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 7)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_8",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 8)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_9",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 9)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_10",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 10)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_11",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 11)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_12",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 12)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_13",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 13)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_14",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 14)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_15",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 15)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_16",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 16)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_17",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 17)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_18",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 18)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_19",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 19)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_20",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 20)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_21",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 21)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_22",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 22)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_23",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 23)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_24",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 24)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_25",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 25)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_26",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 26)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_27",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 27)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_28",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 28)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_29",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 29)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_30",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 30)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_31",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 31)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_32",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 32)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_33",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 33)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_34",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 34)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_35",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 35)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_36",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 36)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_37",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 37)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_38",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 38)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_39",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 39)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_40",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 40)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_41",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 41)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_42",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 42)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_43",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 43)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_44",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 44)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_45",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 45)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_46",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 46)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_47",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 47)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_48",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 48)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_49",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 49)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_50",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 50)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_51",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 51)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_52",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 52)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_53",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 53)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_54",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 54)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_55",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 55)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_56",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 56)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_57",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 57)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_58",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 58)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_59",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 59)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_60",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 60)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_61",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 61)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_62",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 62)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_63",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 63)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_64",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 64)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_65",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 65)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_66",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 66)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_67",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 67)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_68",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 68)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_69",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 69)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_70",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 70)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_71",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 71)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_72",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 72)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_73",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 73)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_74",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 74)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_75",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 75)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_76",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 76)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_77",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 77)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_78",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 78)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_79",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 79)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_80",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 80)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_81",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 81)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_82",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 82)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_83",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 83)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_84",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 84)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_85",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 85)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_86",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 86)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_87",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 87)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_88",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 88)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_89",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 89)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_90",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 90)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_91",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 91)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_92",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 92)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_93",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 93)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_94",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 94)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_95",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 95)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_96",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 96)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_97",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 97)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_98",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 98)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_99",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 99)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_100",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 100)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_101",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 101)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_102",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 102)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_103",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 103)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_104",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 104)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_105",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 105)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_106",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 106)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_107",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 107)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_108",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 108)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_109",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 109)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_110",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 110)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_111",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 111)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_112",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 112)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_113",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 113)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_114",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 114)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_115",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 115)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_116",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 116)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_117",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 117)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_118",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 118)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_119",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 119)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_120",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 120)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_121",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 121)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_122",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 122)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_123",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 123)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_124",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 124)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_125",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 125)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_126",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 126)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_127",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 127)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_128",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 128)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_129",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 129)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_130",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 130)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_131",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 131)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_132",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 132)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_133",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 133)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_134",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 134)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_135",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 135)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_136",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 136)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_137",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 137)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_138",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 138)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_139",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 139)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_140",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 140)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_141",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 141)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_142",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 142)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_143",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 143)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_144",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 144)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_145",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 145)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_146",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 146)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_147",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 147)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_148",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 148)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_149",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 149)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_150",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 150)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_151",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 151)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_152",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 152)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_153",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 153)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_154",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 154)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_155",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 155)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_156",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 156)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_157",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 157)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_158",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 158)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_159",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 159)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_160",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 160)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_161",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 161)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_162",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 162)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_163",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 163)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_164",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 164)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_165",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 165)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_166",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 166)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_167",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 167)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_168",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 168)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_169",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 169)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_170",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 170)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_171",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 171)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_172",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 172)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_173",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 173)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_174",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 174)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_175",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 175)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_176",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 176)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_177",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 177)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_178",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 178)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_179",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 179)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_180",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 180)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_181",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 181)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_182",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 182)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_183",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 183)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_184",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 184)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_185",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 185)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_186",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 186)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_187",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 187)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_188",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 188)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_189",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 189)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_190",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 190)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_191",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 191)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_192",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 192)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_193",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 193)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_194",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 194)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_195",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 195)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_196",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 196)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_197",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 197)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_198",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 198)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_199",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 199)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_200",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 200)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_201",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 201)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_202",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 202)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_203",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 203)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_204",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 204)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_205",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 205)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_206",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 206)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_207",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 207)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_208",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 208)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_209",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 209)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_210",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 210)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_211",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 211)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_212",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 212)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_213",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 213)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_214",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 214)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_215",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 215)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_216",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 216)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_217",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 217)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_218",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 218)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_219",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 219)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_220",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 220)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_221",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 221)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_222",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 222)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_223",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 223)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_224",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 224)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_225",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 225)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_226",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 226)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_227",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 227)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_228",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 228)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_229",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 229)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_230",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 230)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_231",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 231)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_232",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 232)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_233",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 233)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_234",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 234)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_235",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 235)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_236",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 236)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_237",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 237)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_238",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 238)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_239",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 239)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_240",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 240)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_241",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 241)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_242",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 242)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_243",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 243)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_244",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 244)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_245",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 245)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_246",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 246)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_247",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 247)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_248",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 248)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_249",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 249)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_250",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 250)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_251",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 251)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_252",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 252)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_253",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 253)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_254",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 254)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_255",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 255)",
+      "data_type": "Binary (0/1)"
+    },
+    {
+      "name": "feature_256",
+      "semantic_description": "Each feature represents a pixel in the 16x16 image grid. Values are binary: 0 for pixels below threshold 127 in grayscale, 1 for pixels above threshold. (feature 256)",
+      "data_type": "Binary (0/1)"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Handwritten digit class (0-9): 0"
+    },
+    {
+      "name": "1",
+      "meaning": "Handwritten digit class (0-9): 1"
+    },
+    {
+      "name": "2",
+      "meaning": "Handwritten digit class (0-9): 2"
+    },
+    {
+      "name": "3",
+      "meaning": "Handwritten digit class (0-9): 3"
+    },
+    {
+      "name": "4",
+      "meaning": "Handwritten digit class (0-9): 4"
+    },
+    {
+      "name": "5",
+      "meaning": "Handwritten digit class (0-9): 5"
+    },
+    {
+      "name": "6",
+      "meaning": "Handwritten digit class (0-9): 6"
+    },
+    {
+      "name": "7",
+      "meaning": "Handwritten digit class (0-9): 7"
+    },
+    {
+      "name": "8",
+      "meaning": "Handwritten digit class (0-9): 8"
+    },
+    {
+      "name": "9",
+      "meaning": "Handwritten digit class (0-9): 9"
+    }
+  ],
+  "dataset_history": "Dataset history not available for semeion",
+  "inference_notes": "Inference notes not available for semeion"
+}

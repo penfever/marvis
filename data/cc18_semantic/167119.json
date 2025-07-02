@@ -1,0 +1,82 @@
+{
+  "dataset_name": "jungle_chess_2pcs_raw_endgame_complete",
+  "source": "OpenML",
+  "source_url": "https://www.openml.org/d/41027",
+  "openml_task": 167119,
+  "openml_dataset": 41027,
+  "creator": {
+    "name": "Jan N. van Rijn, Jonathan K. Vis",
+    "affiliation": "Leiden Institute of Advanced Computer Science, Universiteit Leiden, The Netherlands",
+    "note": "Generated through retrograde analysis of Dou Shou Qi endgames"
+  },
+  "description": "Complete endgame tablebase for Jungle Chess (Dou Shou Qi) positions with exactly 2 pieces remaining. Contains all possible legal positions and their game-theoretic outcomes for this traditional Chinese board game variant.",
+  "original_source": {
+    "creator": "Unknown (Endgame tablebase generator)",
+    "institution": "Community contribution to OpenML",
+    "date": "Circa 2019-2020",
+    "publication": "OpenML dataset ID 41027, task ID 167119. Similar to chess endgame tablebases but for the simpler Jungle Chess game."
+  },
+  "columns": [
+    {
+      "name": "white_piece_type",
+      "semantic_description": "Type of the white/red player's piece. In Jungle Chess: Elephant (8), Lion (7), Tiger (6), Panther (5), Dog (4), Wolf (3), Cat (2), or Mouse (1).",
+      "data_type": "categorical/integer (1-8)"
+    },
+    {
+      "name": "white_piece_file",
+      "semantic_description": "File (column) position of white piece on the 7x9 board. Files labeled a-g from left to right.",
+      "data_type": "categorical (a-g) or integer (1-7)"
+    },
+    {
+      "name": "white_piece_rank",
+      "semantic_description": "Rank (row) position of white piece on the 7x9 board. Ranks numbered 1-9 from white's perspective.",
+      "data_type": "integer (1-9)"
+    },
+    {
+      "name": "black_piece_type",
+      "semantic_description": "Type of the black/blue player's piece. Same animal hierarchy as white pieces.",
+      "data_type": "categorical/integer (1-8)"
+    },
+    {
+      "name": "black_piece_file",
+      "semantic_description": "File (column) position of black piece on the 7x9 board.",
+      "data_type": "categorical (a-g) or integer (1-7)"
+    },
+    {
+      "name": "black_piece_rank",
+      "semantic_description": "Rank (row) position of black piece on the 7x9 board.",
+      "data_type": "integer (1-9)"
+    },
+    {
+      "name": "side_to_move",
+      "semantic_description": "Which player has the turn to move in this position. Critical for position evaluation.",
+      "data_type": "binary (white/black or 0/1)"
+    },
+    {
+      "name": "position_features",
+      "semantic_description": "Additional encoded features: proximity to special squares (dens, traps, rivers), piece mobility, capture threats.",
+      "data_type": "numeric array"
+    },
+    {
+      "name": "class",
+      "semantic_description": "Game-theoretic outcome of the position with perfect play. Win for white, win for black, or draw.",
+      "data_type": "categorical (win/loss/draw or 1/0/-1)"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "win",
+      "meaning": "Position is a forced win for the side to move with perfect play"
+    },
+    {
+      "name": "loss",
+      "meaning": "Position is a forced loss for the side to move (win for opponent) with perfect play"
+    },
+    {
+      "name": "draw",
+      "meaning": "Position is a draw with perfect play by both sides"
+    }
+  ],
+  "dataset_history": "Created using retrograde analysis similar to chess endgame tablebases. Starting from terminal positions (piece in opponent's den or captures), the algorithm works backwards to determine the game-theoretic value of all reachable positions. Jungle Chess, with its 7x9 board and unique movement rules, presents different challenges than chess: animals have fixed strength hierarchy (except Mouse can capture Elephant), special terrain affects movement (rivers, traps, dens), and the winning condition is reaching the opponent's den rather than checkmate.",
+  "inference_notes": "This dataset represents a complete solution to all 2-piece Jungle Chess endgames. Key insights: (1) Unlike chess, piece values are absolute - stronger pieces always capture weaker ones (except Mouse-Elephant); (2) Special squares create interesting dynamics - traps neutralize piece strength, rivers block most pieces except Mouse (and jumping by Lion/Tiger); (3) The den as winning target creates different endgame patterns than chess; (4) With only 2 pieces, positions are relatively simple but demonstrate fundamental game principles; (5) Perfect for validating game engines or training neural networks for position evaluation; (6) The complete enumeration ensures no position is missing, making it authoritative for 2-piece endings. Applications include game AI development, pattern recognition in simplified game scenarios, and educational tools for understanding game-theoretic concepts."
+}

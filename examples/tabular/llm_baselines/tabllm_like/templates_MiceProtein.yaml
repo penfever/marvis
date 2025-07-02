@@ -1,0 +1,28 @@
+dataset: MiceProtein
+templates:
+  c7ea72ac-7481-47c6-b39e-72edfa38b80a: !Template
+    name: MiceProtein
+    id: c7ea72ac-7481-47c6-b39e-72edfa38b80a
+    reference: ''
+    answer_choices: Control mice, stimulated to learn, memantine injection (10 mice)
+      ||| Control mice, stimulated to learn, saline injection (9 mice) ||| Control
+      mice, not stimulated to learn, memantine injection (10 mice) ||| Control mice,
+      not stimulated to learn, saline injection (9 mice) ||| Trisomy mice, stimulated
+      to learn, memantine injection (9 mice) ||| Trisomy mice, stimulated to learn,
+      saline injection (7 mice) ||| Trisomy mice, not stimulated to learn, memantine
+      injection (9 mice) ||| Trisomy mice, not stimulated to learn, saline injection
+      (9 mice)
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Control mice, stimulated to learn, memantine injection (10 mice), Control\
+      \ mice, stimulated to learn, saline injection (9 mice), Control mice, not stimulated\
+      \ to learn, memantine injection (10 mice), Control mice, not stimulated to learn,\
+      \ saline injection (9 mice), Trisomy mice, stimulated to learn, memantine injection\
+      \ (9 mice), Trisomy mice, stimulated to learn, saline injection (7 mice), Trisomy\
+      \ mice, not stimulated to learn, memantine injection (9 mice), Trisomy mice,\
+      \ not stimulated to learn, saline injection (9 mice)?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

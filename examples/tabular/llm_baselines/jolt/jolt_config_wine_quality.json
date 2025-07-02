@@ -1,0 +1,29 @@
+{
+  "dataset_name": "wine_quality",
+  "task_prefix": "Wine quality assessment based on physicochemical properties of Portuguese Vinho Verde wines. Contains both red (1599) and white (4898) wine samples with objective laboratory tests predicting subjective quality ratings from wine experts. Each example contains 11 features. Predict the target class.",
+  "column_descriptions": {
+    "fixed_acidity": "Non-volatile acids (g/dm\u00b3) primarily tartaric acid. Contributes to wine's crisp, tart taste and pH stability.",
+    "volatile_acidity": "Amount of acetic acid (g/dm\u00b3). High levels lead to unpleasant vinegar taste; indicator of spoilage.",
+    "citric_acid": "Citric acid content (g/dm\u00b3). Adds freshness and flavor; typically lower than other acids in wine.",
+    "residual_sugar": "Sugar remaining after fermentation (g/dm\u00b3). Affects sweetness perception; wines >45g/L considered sweet.",
+    "chlorides": "Sodium chloride content (g/dm\u00b3). High levels indicate contamination or salty taste; affects mouthfeel.",
+    "free_sulfur_dioxide": "Free SO2 (mg/dm\u00b3). Prevents microbial growth and oxidation; perceptible >50 mg/L as pungent smell.",
+    "total_sulfur_dioxide": "Total SO2 content (mg/dm\u00b3). Sum of free and bound forms; EU legal limit varies by wine type.",
+    "density": "Wine density (g/cm\u00b3). Depends on alcohol and sugar content; useful for determining wine style.",
+    "pH": "Acidity level on pH scale. Most wines 3.0-4.0; affects taste, color stability, and microbial safety.",
+    "sulphates": "Potassium sulphate content (g/dm\u00b3). Wine additive contributing to SO2 levels; antimicrobial agent.",
+    "alcohol": "Alcohol content (% by volume). Results from sugar fermentation; affects body, taste, and preservation."
+  },
+  "class_names": [
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '3' (Very poor quality wine (30 instances, 0.6%)), '4' (Poor quality wine (216 instances, 4.3%)), '5' (Below average quality wine (2138 instances, 42.6%)), '6' (Average quality wine (2836 instances, 43.6%)), '7' (Above average quality wine (1079 instances, 16.5%)), '8' (Good quality wine (193 instances, 3.0%)), '9' (Excellent quality wine (5 instances, 0.1%))",
+  "num_features": 11,
+  "num_classes": 7
+}

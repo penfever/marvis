@@ -1,0 +1,227 @@
+{
+  "dataset": "pendigits",
+  "description": "Pen-Based Recognition of Handwritten Digits dataset. Contains coordinate information from pen trajectories captured while writing digits 0-9 on a pressure-sensitive tablet. The data represents the dynamic movement of pen strokes rather than static images.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Pen-Based+Recognition+of+Handwritten+Digits",
+  "openml_task": 32,
+  "openml_dataset": 32,
+  "date_donated": "July 1998",
+  "creator": "E. Alpaydin, F. Alimoglu (Bogazici University, Turkey)",
+  "instances": 10992,
+  "training_instances": 7494,
+  "test_instances": 3498,
+  "features": 16,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "integer"
+  },
+  "feature_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment.",
+  "data_collection": {
+    "writers": 44,
+    "samples_per_writer": 250,
+    "device": "WACOM tablet",
+    "resolution": "500 x 500 pixels",
+    "normalization": "Scaled to maximum of 100",
+    "resampling": "Spatial resampling to 8 points using linear interpolation"
+  },
+  "feature_structure": {
+    "points": 8,
+    "coordinates_per_point": 2,
+    "total_features": 16,
+    "ordering": "x1, y1, x2, y2, ..., x8, y8"
+  },
+  "instances_per_class": {
+    "training": {
+      "0": 780,
+      "1": 779,
+      "2": 780,
+      "3": 719,
+      "4": 780,
+      "5": 720,
+      "6": 720,
+      "7": 778,
+      "8": 719,
+      "9": 719
+    },
+    "test": {
+      "0": 363,
+      "1": 364,
+      "2": 364,
+      "3": 336,
+      "4": 364,
+      "5": 335,
+      "6": 336,
+      "7": 364,
+      "8": 336,
+      "9": 336
+    }
+  },
+  "target_values": {
+    "0": "Digit 0",
+    "1": "Digit 1",
+    "2": "Digit 2",
+    "3": "Digit 3",
+    "4": "Digit 4",
+    "5": "Digit 5",
+    "6": "Digit 6",
+    "7": "Digit 7",
+    "8": "Digit 8",
+    "9": "Digit 9"
+  },
+  "domain": "Computer Vision/Pattern Recognition",
+  "use_case": "Online handwriting recognition for pen-based interfaces, digital signature verification, tablet input systems, and educational applications",
+  "dynamic_vs_static": "Unlike static digit recognition, this dataset captures the temporal dynamics of writing, including stroke order and velocity information",
+  "reported_accuracy": "k-NN achieves 97.74% accuracy with k=1 using Euclidean distance",
+  "experimental_notes": "Spatial resampling (T=8 points) provided best trade-off between accuracy and complexity compared to T=12 or T=16",
+  "ethical_considerations": "Dataset may reflect writing styles specific to the participant pool and may not generalize across different cultures or writing systems",
+  "citations": [
+    {
+      "author": "F. Alimoglu",
+      "title": "Combining Multiple Classifiers for Pen-Based Handwritten Digit Recognition",
+      "venue": "MSc Thesis, Bogazici University",
+      "year": "1996"
+    },
+    {
+      "author": "F. Alimoglu, E. Alpaydin",
+      "title": "Methods of Combining Multiple Classifiers Based on Different Representations for Pen-based Handwriting Recognition",
+      "venue": "Proceedings of the Fifth Turkish Artificial Intelligence and Artificial Neural Networks Symposium (TAINN 96)",
+      "location": "Istanbul, Turkey",
+      "year": "1996"
+    }
+  ],
+  "dataset_name": "pendigits",
+  "original_source": {
+    "creator": "E. Alpaydin, F. Alimoglu (Bogazici University, Turkey)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "July 1998",
+    "publication": "F. Alimoglu: Combining Multiple Classifiers for Pen-Based Handwritten Digit Recognition"
+  },
+  "columns": [
+    {
+      "name": "Feature 1",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 1)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 2",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 2)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 3",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 3)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 4",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 4)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 5",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 5)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 6",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 6)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 7",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 7)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 8",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 8)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 9",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 9)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 10",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 10)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 11",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 11)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 12",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 12)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 13",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 13)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 14",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 14)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 15",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 15)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Feature 16",
+      "semantic_description": "16 features representing 8 (x,y) coordinate pairs sampled along the pen trajectory. Features are resampled spatially at regular arc-length intervals rather than temporal intervals for better alignment. (feature 16)",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Digit 0"
+    },
+    {
+      "name": "1",
+      "meaning": "Digit 1"
+    },
+    {
+      "name": "2",
+      "meaning": "Digit 2"
+    },
+    {
+      "name": "3",
+      "meaning": "Digit 3"
+    },
+    {
+      "name": "4",
+      "meaning": "Digit 4"
+    },
+    {
+      "name": "5",
+      "meaning": "Digit 5"
+    },
+    {
+      "name": "6",
+      "meaning": "Digit 6"
+    },
+    {
+      "name": "7",
+      "meaning": "Digit 7"
+    },
+    {
+      "name": "8",
+      "meaning": "Digit 8"
+    },
+    {
+      "name": "9",
+      "meaning": "Digit 9"
+    }
+  ],
+  "dataset_history": "Data Collection: {'writers': 44, 'samples_per_writer': 250, 'device': 'WACOM tablet', 'resolution': '500 x 500 pixels', 'normalization': 'Scaled to maximum of 100', 'resampling': 'Spatial resampling to 8 points using linear interpolation'}",
+  "inference_notes": "Use Case: Online handwriting recognition for pen-based interfaces, digital signature verification, tablet input systems, and educational applications"
+}

@@ -1,0 +1,18 @@
+dataset: segment
+templates:
+  9f75add4-6f94-401e-a809-670ef9f0e66e: !Template
+    name: segment
+    id: 9f75add4-6f94-401e-a809-670ef9f0e66e
+    reference: ''
+    answer_choices: Brick face regions ||| Cement and concrete regions ||| Trees,
+      bushes, and other vegetation ||| Grass regions ||| Path and road regions |||
+      Sky regions ||| Window regions
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Brick face regions, Cement and concrete regions, Trees, bushes, and other\
+      \ vegetation, Grass regions, Path and road regions, Sky regions, Window regions?\n\
+      Answer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

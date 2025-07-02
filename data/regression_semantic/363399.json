@@ -1,0 +1,91 @@
+{
+  "dataset_name": "QSAR_Bioconcentration_regression",
+  "description": "This dataset contains molecular descriptors and bioconcentration factors (BCF) for various chemical compounds. It's used to develop Quantitative Structure-Activity Relationship (QSAR) models to predict how chemicals accumulate in aquatic organisms relative to their concentration in water. This is crucial for environmental risk assessment and toxicology studies.",
+  "original_source": {
+    "creator": "Rajarshi Guha and David Gramatica",
+    "institution": "Indiana University & University of Insubria",
+    "date": "2008",
+    "publication": "Predictive QSAR modeling of BCF for regulatory purposes: Selection of robust molecular descriptors and statistical approaches"
+  },
+  "columns": [
+    {
+      "name": "CIC0",
+      "semantic_description": "Complementary Information Content index (neighborhood symmetry of 0-order)",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "SM1_Dz(Z)",
+      "semantic_description": "2D matrix-based descriptor representing molecular size and atomic properties",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "GATS1i",
+      "semantic_description": "Geary autocorrelation of lag 1 weighted by ionization potential",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "NdsCH",
+      "semantic_description": "Count of CH groups with double bonds",
+      "data_type": "numeric, discrete"
+    },
+    {
+      "name": "NdssC",
+      "semantic_description": "Count of carbon atoms with two single bonds",
+      "data_type": "numeric, discrete"
+    },
+    {
+      "name": "MLOGP",
+      "semantic_description": "Moriguchi octanol-water partition coefficient, measure of molecular lipophilicity",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "SM1_Dz(Z)",
+      "semantic_description": "2D matrix-based descriptor for molecular size",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "GATS1e",
+      "semantic_description": "Geary autocorrelation of lag 1 weighted by Sanderson electronegativity",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "NaasC",
+      "semantic_description": "Count of carbon atoms with aromatic bonds",
+      "data_type": "numeric, discrete"
+    },
+    {
+      "name": "GATS2i",
+      "semantic_description": "Geary autocorrelation of lag 2 weighted by ionization potential",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "SpMax_A",
+      "semantic_description": "Leading eigenvalue from adjacency matrix",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "SM1_Dz(Z)",
+      "semantic_description": "Another 2D matrix-based descriptor variant",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "Gmin",
+      "semantic_description": "Minimum E-state value in molecule",
+      "data_type": "numeric, continuous"
+    }
+  ],
+  "target_description": {
+    "name": "logBCF",
+    "meaning": "Logarithm of the Bioconcentration Factor, which measures the ratio of chemical concentration in an aquatic organism versus the water",
+    "units": "log(L/kg)",
+    "range": "Typically between -0.5 to 5.0"
+  },
+  "dataset_history": "This dataset was compiled to support the development of QSAR models for predicting bioconcentration factors, which became increasingly important after the implementation of REACH legislation in the EU requiring assessment of chemical bioaccumulation potential. The data combines experimental BCF measurements with computed molecular descriptors.",
+  "inference_notes": "Important considerations include:\n1. The dataset contains only organic compounds\n2. Molecular descriptors are computed using standardized chemical structures\n3. BCF values are experimental measurements which may have some inherent measurement uncertainty\n4. The model assumes chemical equilibrium conditions\n5. Predictions may be less reliable for compounds structurally dissimilar to the training set\n6. The dataset is relatively well-balanced across the BCF range",
+  "_metadata": {
+    "task_id": 363399,
+    "generated_at": "2025-06-22T08:30:55.282888",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

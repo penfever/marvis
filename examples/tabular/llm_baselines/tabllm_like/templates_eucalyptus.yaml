@@ -1,0 +1,14 @@
+dataset: eucalyptus
+templates:
+  0ce2b3ec-96d3-49d5-94d5-66141b41d311: !Template
+    name: eucalyptus
+    id: 0ce2b3ec-96d3-49d5-94d5-66141b41d311
+    reference: ''
+    answer_choices: Class 0 ||| Class 1
+    jinja: "{{note}}\n\nWhat is the class of this instance?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

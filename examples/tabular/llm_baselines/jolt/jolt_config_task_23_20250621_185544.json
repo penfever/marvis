@@ -1,0 +1,24 @@
+{
+  "dataset_name": "cmc",
+  "task_prefix": "Contraceptive Method Choice dataset from the 1987 National Indonesia Contraceptive Prevalence Survey. Predicts contraceptive method choice of married women based on demographic and socio-economic characteristics. Each example contains 9 features. Family planning programs.",
+  "column_descriptions": {
+    "feature_1": "Feature 1",
+    "feature_2": "Feature 2",
+    "feature_3": "Feature 3",
+    "feature_4": "Feature 4",
+    "feature_5": "Feature 5",
+    "feature_6": "Feature 6",
+    "feature_7": "Feature 7",
+    "feature_8": "Feature 8",
+    "feature_9": "Feature 9"
+  },
+  "class_names": [
+    "1",
+    "2",
+    "3"
+  ],
+  "class_description": "Classes: '1' (No-use), '2' (Long-term methods), '3' (Short-term methods)",
+  "num_features": 9,
+  "num_classes": 3,
+  "task_id": "23_20250621_185544"
+}

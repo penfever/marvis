@@ -1,0 +1,61 @@
+{
+  "dataset_name": "UCC (Unhealthy Comments Corpus)",
+  "description": "A large-scale dataset of online comments labeled for various attributes of conversational health. The dataset is designed to help researchers and practitioners develop better systems for detecting and analyzing unhealthy online conversations. Each comment is annotated with multiple labels indicating different aspects of potentially problematic online behavior, with a particular focus on subtle forms of toxicity that may be harder to detect than overt abuse.",
+  "original_source": {
+    "creator": "Conversation AI team",
+    "institution": "Google/Jigsaw",
+    "date": "2021",
+    "publication": "Building Healthier Online Conversations (Jigsaw/Google Research)"
+  },
+  "columns": [
+    {
+      "name": "comment_text",
+      "semantic_description": "The actual text content of the online comment",
+      "data_type": "text"
+    },
+    {
+      "name": "hostile",
+      "semantic_description": "Binary indicator of whether the comment displays hostility or aggressive behavior",
+      "data_type": "binary (0/1)"
+    },
+    {
+      "name": "antagonistic",
+      "semantic_description": "Indicates if the comment is intentionally provocative, trolling, or insulting",
+      "data_type": "binary (0/1)"
+    },
+    {
+      "name": "dismissive",
+      "semantic_description": "Shows whether the comment dismisses or invalidates others' viewpoints",
+      "data_type": "binary (0/1)"
+    },
+    {
+      "name": "condescending",
+      "semantic_description": "Indicates if the comment displays patronizing or superiority-assuming behavior",
+      "data_type": "binary (0/1)"
+    },
+    {
+      "name": "sarcastic",
+      "semantic_description": "Marks presence of sarcasm or mocking tone",
+      "data_type": "binary (0/1)"
+    },
+    {
+      "name": "unhealthy",
+      "semantic_description": "Overall assessment of whether the comment contributes to unhealthy conversation",
+      "data_type": "binary (0/1)"
+    }
+  ],
+  "target_description": {
+    "name": "hostile_confidence",
+    "meaning": "Confidence score for the hostility assessment of the comment, representing the degree of certainty in the hostile classification",
+    "units": "Probability score",
+    "range": "0.0 to 1.0"
+  },
+  "dataset_history": "The UCC dataset was developed as part of broader efforts to combat online toxicity and promote healthier online conversations. It emerged from the recognition that many existing datasets focus on obvious forms of toxicity while missing more subtle forms of problematic behavior. The data was collected from various online platforms and annotated by trained raters using a detailed rubric for different aspects of conversational health.",
+  "inference_notes": "Important considerations include:\n1. Subjective nature of annotations - what constitutes 'hostile' or 'unhealthy' can vary by context and culture\n2. Potential annotation biases based on annotator demographics and perspectives\n3. Comments are in English, limiting cross-cultural applicability\n4. Dataset focuses on subtle forms of toxicity, which may be harder to detect than obvious abuse\n5. Confidence scores reflect annotator agreement levels\n6. Context of original conversations may be partially lost\n7. Models trained on this data should be used as aids for human moderation rather than autonomous decision makers",
+  "_metadata": {
+    "task_id": 363394,
+    "generated_at": "2025-06-22T08:30:07.770130",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

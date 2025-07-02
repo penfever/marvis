@@ -1,0 +1,16 @@
+dataset: dna
+templates:
+  d30d58ce-dd4f-4843-af90-350265c0ddb6: !Template
+    name: dna
+    id: d30d58ce-dd4f-4843-af90-350265c0ddb6
+    reference: ''
+    answer_choices: Exon-Intron boundary (donor sites) ||| Intron-Exon boundary (acceptor
+      sites) ||| Neither (no splice junction)
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Exon-Intron boundary (donor sites), Intron-Exon boundary (acceptor sites),\
+      \ Neither (no splice junction)?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

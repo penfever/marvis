@@ -1,0 +1,16 @@
+dataset: splice
+templates:
+  fcbcc1b3-f68b-43c9-8796-8ab233a35c01: !Template
+    name: splice
+    id: fcbcc1b3-f68b-43c9-8796-8ab233a35c01
+    reference: ''
+    answer_choices: Exon-Intron boundary (donor site) ||| Intron-Exon boundary (acceptor
+      site) ||| Neither (no splice site)
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Exon-Intron boundary (donor site), Intron-Exon boundary (acceptor site), Neither\
+      \ (no splice site)?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

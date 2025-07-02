@@ -1,0 +1,71 @@
+{
+  "dataset_name": "bookprice_prediction",
+  "description": "A multimodal dataset combining text and tabular data to predict book prices. The dataset contains various features about books including textual information (titles, authors, descriptions) and numerical metrics (ratings, reviews). It was designed to test machine learning models' ability to handle both structured and unstructured data in price prediction tasks.",
+  "original_source": {
+    "creator": "MachineHack",
+    "institution": "MachineHack Competition Platform",
+    "date": "2019",
+    "publication": "Referenced in 'Benchmarking multimodal automl for tabular data with text fields' (2021), arXiv:2111.02705"
+  },
+  "columns": [
+    {
+      "name": "Title",
+      "semantic_description": "The full title of the book",
+      "data_type": "text"
+    },
+    {
+      "name": "Author",
+      "semantic_description": "Name of the book's author(s)",
+      "data_type": "text"
+    },
+    {
+      "name": "Edition",
+      "semantic_description": "Edition number or version of the book",
+      "data_type": "text/categorical"
+    },
+    {
+      "name": "Reviews",
+      "semantic_description": "Number of customer reviews received",
+      "data_type": "numeric (integer)"
+    },
+    {
+      "name": "Ratings",
+      "semantic_description": "Average customer rating score",
+      "data_type": "numeric (float), likely 1-5 scale"
+    },
+    {
+      "name": "Synopsis",
+      "semantic_description": "Book description or summary text",
+      "data_type": "text"
+    },
+    {
+      "name": "Genre",
+      "semantic_description": "Book category or literary genre",
+      "data_type": "categorical"
+    },
+    {
+      "name": "BookCategory",
+      "semantic_description": "Broader classification of book type",
+      "data_type": "categorical"
+    },
+    {
+      "name": "Price",
+      "semantic_description": "Retail price of the book (target variable)",
+      "data_type": "numeric (float)"
+    }
+  ],
+  "target_description": {
+    "name": "Price",
+    "meaning": "The retail price of the book in the marketplace",
+    "units": "Currency (likely Indian Rupees given the source)",
+    "range": "Positive real numbers, specific range not provided but typical for book retail prices"
+  },
+  "dataset_history": "The dataset was originally created for a MachineHack prediction competition in 2019. It later gained academic attention as part of research into multimodal AutoML systems, particularly in the context of handling mixed data types (text and tabular). The dataset represents real-world book pricing data, likely collected from online bookstores or retail platforms.",
+  "inference_notes": "Important considerations include:\n1. Text features require appropriate preprocessing and embedding techniques\n2. Price distributions may be skewed due to market factors\n3. Temporal aspects (like publication date) might affect pricing but may not be explicitly captured\n4. Genre and category features likely have hierarchical relationships\n5. Reviews and ratings may have complex non-linear relationships with price\n6. The dataset specifically challenges models to handle both structured and unstructured data effectively\n7. Given the Indian origin, cultural and market-specific factors may influence pricing patterns",
+  "_metadata": {
+    "task_id": 363372,
+    "generated_at": "2025-06-22T08:26:39.186771",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

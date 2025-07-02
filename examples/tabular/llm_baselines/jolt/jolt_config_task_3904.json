@@ -1,0 +1,35 @@
+{
+  "dataset_name": "jm1",
+  "task_prefix": "NASA Metrics Data Program defect dataset for software quality prediction. Contains McCabe and Halstead metrics extracted from C language modules of a real-time predictive ground system used for satellite simulations. Each example contains 21 features. Software defect prediction.",
+  "column_descriptions": {
+    "loc": "McCabe's line count of code",
+    "v(g)": "McCabe's cyclomatic complexity",
+    "ev(g)": "McCabe's essential complexity",
+    "iv(g)": "McCabe's design complexity",
+    "n": "Halstead's total operators + operands",
+    "v": "Halstead's volume",
+    "l": "Halstead's program length",
+    "d": "Halstead's difficulty",
+    "i": "Halstead's intelligence",
+    "e": "Halstead's effort",
+    "b": "Halstead's delivered bugs estimate",
+    "t": "Halstead's time estimator",
+    "lOCode": "Halstead's line count",
+    "lOComment": "Halstead's count of lines of comments",
+    "lOBlank": "Halstead's count of blank lines",
+    "lOCodeAndComment": "Lines of code and comment",
+    "uniq_Op": "Unique operators",
+    "uniq_Opnd": "Unique operands",
+    "total_Op": "Total operators",
+    "total_Opnd": "Total operands",
+    "branchCount": "Number of branches in flow graph"
+  },
+  "class_names": [
+    "false",
+    "true"
+  ],
+  "class_description": "Classes: 'false' (No defects (19.35%)), 'true' (Has defects (80.65%))",
+  "num_features": 21,
+  "num_classes": 2,
+  "task_id": "3904"
+}

@@ -1,0 +1,1729 @@
+purchase_price,maintenance_cost,doors,persons,trunk_size,safety,class
+very high,very high,2,2,small,low,unacceptable
+very high,very high,2,2,small,medium,unacceptable
+very high,very high,2,2,small,high,unacceptable
+very high,very high,2,2,medium,low,unacceptable
+very high,very high,2,2,medium,medium,unacceptable
+very high,very high,2,2,medium,high,unacceptable
+very high,very high,2,2,big,low,unacceptable
+very high,very high,2,2,big,medium,unacceptable
+very high,very high,2,2,big,high,unacceptable
+very high,very high,2,4,small,low,unacceptable
+very high,very high,2,4,small,medium,unacceptable
+very high,very high,2,4,small,high,unacceptable
+very high,very high,2,4,medium,low,unacceptable
+very high,very high,2,4,medium,medium,unacceptable
+very high,very high,2,4,medium,high,unacceptable
+very high,very high,2,4,big,low,unacceptable
+very high,very high,2,4,big,medium,unacceptable
+very high,very high,2,4,big,high,unacceptable
+very high,very high,2,more than 4,small,low,unacceptable
+very high,very high,2,more than 4,small,medium,unacceptable
+very high,very high,2,more than 4,small,high,unacceptable
+very high,very high,2,more than 4,medium,low,unacceptable
+very high,very high,2,more than 4,medium,medium,unacceptable
+very high,very high,2,more than 4,medium,high,unacceptable
+very high,very high,2,more than 4,big,low,unacceptable
+very high,very high,2,more than 4,big,medium,unacceptable
+very high,very high,2,more than 4,big,high,unacceptable
+very high,very high,3,2,small,low,unacceptable
+very high,very high,3,2,small,medium,unacceptable
+very high,very high,3,2,small,high,unacceptable
+very high,very high,3,2,medium,low,unacceptable
+very high,very high,3,2,medium,medium,unacceptable
+very high,very high,3,2,medium,high,unacceptable
+very high,very high,3,2,big,low,unacceptable
+very high,very high,3,2,big,medium,unacceptable
+very high,very high,3,2,big,high,unacceptable
+very high,very high,3,4,small,low,unacceptable
+very high,very high,3,4,small,medium,unacceptable
+very high,very high,3,4,small,high,unacceptable
+very high,very high,3,4,medium,low,unacceptable
+very high,very high,3,4,medium,medium,unacceptable
+very high,very high,3,4,medium,high,unacceptable
+very high,very high,3,4,big,low,unacceptable
+very high,very high,3,4,big,medium,unacceptable
+very high,very high,3,4,big,high,unacceptable
+very high,very high,3,more than 4,small,low,unacceptable
+very high,very high,3,more than 4,small,medium,unacceptable
+very high,very high,3,more than 4,small,high,unacceptable
+very high,very high,3,more than 4,medium,low,unacceptable
+very high,very high,3,more than 4,medium,medium,unacceptable
+very high,very high,3,more than 4,medium,high,unacceptable
+very high,very high,3,more than 4,big,low,unacceptable
+very high,very high,3,more than 4,big,medium,unacceptable
+very high,very high,3,more than 4,big,high,unacceptable
+very high,very high,4,2,small,low,unacceptable
+very high,very high,4,2,small,medium,unacceptable
+very high,very high,4,2,small,high,unacceptable
+very high,very high,4,2,medium,low,unacceptable
+very high,very high,4,2,medium,medium,unacceptable
+very high,very high,4,2,medium,high,unacceptable
+very high,very high,4,2,big,low,unacceptable
+very high,very high,4,2,big,medium,unacceptable
+very high,very high,4,2,big,high,unacceptable
+very high,very high,4,4,small,low,unacceptable
+very high,very high,4,4,small,medium,unacceptable
+very high,very high,4,4,small,high,unacceptable
+very high,very high,4,4,medium,low,unacceptable
+very high,very high,4,4,medium,medium,unacceptable
+very high,very high,4,4,medium,high,unacceptable
+very high,very high,4,4,big,low,unacceptable
+very high,very high,4,4,big,medium,unacceptable
+very high,very high,4,4,big,high,unacceptable
+very high,very high,4,more than 4,small,low,unacceptable
+very high,very high,4,more than 4,small,medium,unacceptable
+very high,very high,4,more than 4,small,high,unacceptable
+very high,very high,4,more than 4,medium,low,unacceptable
+very high,very high,4,more than 4,medium,medium,unacceptable
+very high,very high,4,more than 4,medium,high,unacceptable
+very high,very high,4,more than 4,big,low,unacceptable
+very high,very high,4,more than 4,big,medium,unacceptable
+very high,very high,4,more than 4,big,high,unacceptable
+very high,very high,5 or more,2,small,low,unacceptable
+very high,very high,5 or more,2,small,medium,unacceptable
+very high,very high,5 or more,2,small,high,unacceptable
+very high,very high,5 or more,2,medium,low,unacceptable
+very high,very high,5 or more,2,medium,medium,unacceptable
+very high,very high,5 or more,2,medium,high,unacceptable
+very high,very high,5 or more,2,big,low,unacceptable
+very high,very high,5 or more,2,big,medium,unacceptable
+very high,very high,5 or more,2,big,high,unacceptable
+very high,very high,5 or more,4,small,low,unacceptable
+very high,very high,5 or more,4,small,medium,unacceptable
+very high,very high,5 or more,4,small,high,unacceptable
+very high,very high,5 or more,4,medium,low,unacceptable
+very high,very high,5 or more,4,medium,medium,unacceptable
+very high,very high,5 or more,4,medium,high,unacceptable
+very high,very high,5 or more,4,big,low,unacceptable
+very high,very high,5 or more,4,big,medium,unacceptable
+very high,very high,5 or more,4,big,high,unacceptable
+very high,very high,5 or more,more than 4,small,low,unacceptable
+very high,very high,5 or more,more than 4,small,medium,unacceptable
+very high,very high,5 or more,more than 4,small,high,unacceptable
+very high,very high,5 or more,more than 4,medium,low,unacceptable
+very high,very high,5 or more,more than 4,medium,medium,unacceptable
+very high,very high,5 or more,more than 4,medium,high,unacceptable
+very high,very high,5 or more,more than 4,big,low,unacceptable
+very high,very high,5 or more,more than 4,big,medium,unacceptable
+very high,very high,5 or more,more than 4,big,high,unacceptable
+very high,high,2,2,small,low,unacceptable
+very high,high,2,2,small,medium,unacceptable
+very high,high,2,2,small,high,unacceptable
+very high,high,2,2,medium,low,unacceptable
+very high,high,2,2,medium,medium,unacceptable
+very high,high,2,2,medium,high,unacceptable
+very high,high,2,2,big,low,unacceptable
+very high,high,2,2,big,medium,unacceptable
+very high,high,2,2,big,high,unacceptable
+very high,high,2,4,small,low,unacceptable
+very high,high,2,4,small,medium,unacceptable
+very high,high,2,4,small,high,unacceptable
+very high,high,2,4,medium,low,unacceptable
+very high,high,2,4,medium,medium,unacceptable
+very high,high,2,4,medium,high,unacceptable
+very high,high,2,4,big,low,unacceptable
+very high,high,2,4,big,medium,unacceptable
+very high,high,2,4,big,high,unacceptable
+very high,high,2,more than 4,small,low,unacceptable
+very high,high,2,more than 4,small,medium,unacceptable
+very high,high,2,more than 4,small,high,unacceptable
+very high,high,2,more than 4,medium,low,unacceptable
+very high,high,2,more than 4,medium,medium,unacceptable
+very high,high,2,more than 4,medium,high,unacceptable
+very high,high,2,more than 4,big,low,unacceptable
+very high,high,2,more than 4,big,medium,unacceptable
+very high,high,2,more than 4,big,high,unacceptable
+very high,high,3,2,small,low,unacceptable
+very high,high,3,2,small,medium,unacceptable
+very high,high,3,2,small,high,unacceptable
+very high,high,3,2,medium,low,unacceptable
+very high,high,3,2,medium,medium,unacceptable
+very high,high,3,2,medium,high,unacceptable
+very high,high,3,2,big,low,unacceptable
+very high,high,3,2,big,medium,unacceptable
+very high,high,3,2,big,high,unacceptable
+very high,high,3,4,small,low,unacceptable
+very high,high,3,4,small,medium,unacceptable
+very high,high,3,4,small,high,unacceptable
+very high,high,3,4,medium,low,unacceptable
+very high,high,3,4,medium,medium,unacceptable
+very high,high,3,4,medium,high,unacceptable
+very high,high,3,4,big,low,unacceptable
+very high,high,3,4,big,medium,unacceptable
+very high,high,3,4,big,high,unacceptable
+very high,high,3,more than 4,small,low,unacceptable
+very high,high,3,more than 4,small,medium,unacceptable
+very high,high,3,more than 4,small,high,unacceptable
+very high,high,3,more than 4,medium,low,unacceptable
+very high,high,3,more than 4,medium,medium,unacceptable
+very high,high,3,more than 4,medium,high,unacceptable
+very high,high,3,more than 4,big,low,unacceptable
+very high,high,3,more than 4,big,medium,unacceptable
+very high,high,3,more than 4,big,high,unacceptable
+very high,high,4,2,small,low,unacceptable
+very high,high,4,2,small,medium,unacceptable
+very high,high,4,2,small,high,unacceptable
+very high,high,4,2,medium,low,unacceptable
+very high,high,4,2,medium,medium,unacceptable
+very high,high,4,2,medium,high,unacceptable
+very high,high,4,2,big,low,unacceptable
+very high,high,4,2,big,medium,unacceptable
+very high,high,4,2,big,high,unacceptable
+very high,high,4,4,small,low,unacceptable
+very high,high,4,4,small,medium,unacceptable
+very high,high,4,4,small,high,unacceptable
+very high,high,4,4,medium,low,unacceptable
+very high,high,4,4,medium,medium,unacceptable
+very high,high,4,4,medium,high,unacceptable
+very high,high,4,4,big,low,unacceptable
+very high,high,4,4,big,medium,unacceptable
+very high,high,4,4,big,high,unacceptable
+very high,high,4,more than 4,small,low,unacceptable
+very high,high,4,more than 4,small,medium,unacceptable
+very high,high,4,more than 4,small,high,unacceptable
+very high,high,4,more than 4,medium,low,unacceptable
+very high,high,4,more than 4,medium,medium,unacceptable
+very high,high,4,more than 4,medium,high,unacceptable
+very high,high,4,more than 4,big,low,unacceptable
+very high,high,4,more than 4,big,medium,unacceptable
+very high,high,4,more than 4,big,high,unacceptable
+very high,high,5 or more,2,small,low,unacceptable
+very high,high,5 or more,2,small,medium,unacceptable
+very high,high,5 or more,2,small,high,unacceptable
+very high,high,5 or more,2,medium,low,unacceptable
+very high,high,5 or more,2,medium,medium,unacceptable
+very high,high,5 or more,2,medium,high,unacceptable
+very high,high,5 or more,2,big,low,unacceptable
+very high,high,5 or more,2,big,medium,unacceptable
+very high,high,5 or more,2,big,high,unacceptable
+very high,high,5 or more,4,small,low,unacceptable
+very high,high,5 or more,4,small,medium,unacceptable
+very high,high,5 or more,4,small,high,unacceptable
+very high,high,5 or more,4,medium,low,unacceptable
+very high,high,5 or more,4,medium,medium,unacceptable
+very high,high,5 or more,4,medium,high,unacceptable
+very high,high,5 or more,4,big,low,unacceptable
+very high,high,5 or more,4,big,medium,unacceptable
+very high,high,5 or more,4,big,high,unacceptable
+very high,high,5 or more,more than 4,small,low,unacceptable
+very high,high,5 or more,more than 4,small,medium,unacceptable
+very high,high,5 or more,more than 4,small,high,unacceptable
+very high,high,5 or more,more than 4,medium,low,unacceptable
+very high,high,5 or more,more than 4,medium,medium,unacceptable
+very high,high,5 or more,more than 4,medium,high,unacceptable
+very high,high,5 or more,more than 4,big,low,unacceptable
+very high,high,5 or more,more than 4,big,medium,unacceptable
+very high,high,5 or more,more than 4,big,high,unacceptable
+very high,medium,2,2,small,low,unacceptable
+very high,medium,2,2,small,medium,unacceptable
+very high,medium,2,2,small,high,unacceptable
+very high,medium,2,2,medium,low,unacceptable
+very high,medium,2,2,medium,medium,unacceptable
+very high,medium,2,2,medium,high,unacceptable
+very high,medium,2,2,big,low,unacceptable
+very high,medium,2,2,big,medium,unacceptable
+very high,medium,2,2,big,high,unacceptable
+very high,medium,2,4,small,low,unacceptable
+very high,medium,2,4,small,medium,unacceptable
+very high,medium,2,4,small,high,acceptable
+very high,medium,2,4,medium,low,unacceptable
+very high,medium,2,4,medium,medium,unacceptable
+very high,medium,2,4,medium,high,acceptable
+very high,medium,2,4,big,low,unacceptable
+very high,medium,2,4,big,medium,acceptable
+very high,medium,2,4,big,high,acceptable
+very high,medium,2,more than 4,small,low,unacceptable
+very high,medium,2,more than 4,small,medium,unacceptable
+very high,medium,2,more than 4,small,high,unacceptable
+very high,medium,2,more than 4,medium,low,unacceptable
+very high,medium,2,more than 4,medium,medium,unacceptable
+very high,medium,2,more than 4,medium,high,acceptable
+very high,medium,2,more than 4,big,low,unacceptable
+very high,medium,2,more than 4,big,medium,acceptable
+very high,medium,2,more than 4,big,high,acceptable
+very high,medium,3,2,small,low,unacceptable
+very high,medium,3,2,small,medium,unacceptable
+very high,medium,3,2,small,high,unacceptable
+very high,medium,3,2,medium,low,unacceptable
+very high,medium,3,2,medium,medium,unacceptable
+very high,medium,3,2,medium,high,unacceptable
+very high,medium,3,2,big,low,unacceptable
+very high,medium,3,2,big,medium,unacceptable
+very high,medium,3,2,big,high,unacceptable
+very high,medium,3,4,small,low,unacceptable
+very high,medium,3,4,small,medium,unacceptable
+very high,medium,3,4,small,high,acceptable
+very high,medium,3,4,medium,low,unacceptable
+very high,medium,3,4,medium,medium,unacceptable
+very high,medium,3,4,medium,high,acceptable
+very high,medium,3,4,big,low,unacceptable
+very high,medium,3,4,big,medium,acceptable
+very high,medium,3,4,big,high,acceptable
+very high,medium,3,more than 4,small,low,unacceptable
+very high,medium,3,more than 4,small,medium,unacceptable
+very high,medium,3,more than 4,small,high,acceptable
+very high,medium,3,more than 4,medium,low,unacceptable
+very high,medium,3,more than 4,medium,medium,acceptable
+very high,medium,3,more than 4,medium,high,acceptable
+very high,medium,3,more than 4,big,low,unacceptable
+very high,medium,3,more than 4,big,medium,acceptable
+very high,medium,3,more than 4,big,high,acceptable
+very high,medium,4,2,small,low,unacceptable
+very high,medium,4,2,small,medium,unacceptable
+very high,medium,4,2,small,high,unacceptable
+very high,medium,4,2,medium,low,unacceptable
+very high,medium,4,2,medium,medium,unacceptable
+very high,medium,4,2,medium,high,unacceptable
+very high,medium,4,2,big,low,unacceptable
+very high,medium,4,2,big,medium,unacceptable
+very high,medium,4,2,big,high,unacceptable
+very high,medium,4,4,small,low,unacceptable
+very high,medium,4,4,small,medium,unacceptable
+very high,medium,4,4,small,high,acceptable
+very high,medium,4,4,medium,low,unacceptable
+very high,medium,4,4,medium,medium,acceptable
+very high,medium,4,4,medium,high,acceptable
+very high,medium,4,4,big,low,unacceptable
+very high,medium,4,4,big,medium,acceptable
+very high,medium,4,4,big,high,acceptable
+very high,medium,4,more than 4,small,low,unacceptable
+very high,medium,4,more than 4,small,medium,unacceptable
+very high,medium,4,more than 4,small,high,acceptable
+very high,medium,4,more than 4,medium,low,unacceptable
+very high,medium,4,more than 4,medium,medium,acceptable
+very high,medium,4,more than 4,medium,high,acceptable
+very high,medium,4,more than 4,big,low,unacceptable
+very high,medium,4,more than 4,big,medium,acceptable
+very high,medium,4,more than 4,big,high,acceptable
+very high,medium,5 or more,2,small,low,unacceptable
+very high,medium,5 or more,2,small,medium,unacceptable
+very high,medium,5 or more,2,small,high,unacceptable
+very high,medium,5 or more,2,medium,low,unacceptable
+very high,medium,5 or more,2,medium,medium,unacceptable
+very high,medium,5 or more,2,medium,high,unacceptable
+very high,medium,5 or more,2,big,low,unacceptable
+very high,medium,5 or more,2,big,medium,unacceptable
+very high,medium,5 or more,2,big,high,unacceptable
+very high,medium,5 or more,4,small,low,unacceptable
+very high,medium,5 or more,4,small,medium,unacceptable
+very high,medium,5 or more,4,small,high,acceptable
+very high,medium,5 or more,4,medium,low,unacceptable
+very high,medium,5 or more,4,medium,medium,acceptable
+very high,medium,5 or more,4,medium,high,acceptable
+very high,medium,5 or more,4,big,low,unacceptable
+very high,medium,5 or more,4,big,medium,acceptable
+very high,medium,5 or more,4,big,high,acceptable
+very high,medium,5 or more,more than 4,small,low,unacceptable
+very high,medium,5 or more,more than 4,small,medium,unacceptable
+very high,medium,5 or more,more than 4,small,high,acceptable
+very high,medium,5 or more,more than 4,medium,low,unacceptable
+very high,medium,5 or more,more than 4,medium,medium,acceptable
+very high,medium,5 or more,more than 4,medium,high,acceptable
+very high,medium,5 or more,more than 4,big,low,unacceptable
+very high,medium,5 or more,more than 4,big,medium,acceptable
+very high,medium,5 or more,more than 4,big,high,acceptable
+very high,low,2,2,small,low,unacceptable
+very high,low,2,2,small,medium,unacceptable
+very high,low,2,2,small,high,unacceptable
+very high,low,2,2,medium,low,unacceptable
+very high,low,2,2,medium,medium,unacceptable
+very high,low,2,2,medium,high,unacceptable
+very high,low,2,2,big,low,unacceptable
+very high,low,2,2,big,medium,unacceptable
+very high,low,2,2,big,high,unacceptable
+very high,low,2,4,small,low,unacceptable
+very high,low,2,4,small,medium,unacceptable
+very high,low,2,4,small,high,acceptable
+very high,low,2,4,medium,low,unacceptable
+very high,low,2,4,medium,medium,unacceptable
+very high,low,2,4,medium,high,acceptable
+very high,low,2,4,big,low,unacceptable
+very high,low,2,4,big,medium,acceptable
+very high,low,2,4,big,high,acceptable
+very high,low,2,more than 4,small,low,unacceptable
+very high,low,2,more than 4,small,medium,unacceptable
+very high,low,2,more than 4,small,high,unacceptable
+very high,low,2,more than 4,medium,low,unacceptable
+very high,low,2,more than 4,medium,medium,unacceptable
+very high,low,2,more than 4,medium,high,acceptable
+very high,low,2,more than 4,big,low,unacceptable
+very high,low,2,more than 4,big,medium,acceptable
+very high,low,2,more than 4,big,high,acceptable
+very high,low,3,2,small,low,unacceptable
+very high,low,3,2,small,medium,unacceptable
+very high,low,3,2,small,high,unacceptable
+very high,low,3,2,medium,low,unacceptable
+very high,low,3,2,medium,medium,unacceptable
+very high,low,3,2,medium,high,unacceptable
+very high,low,3,2,big,low,unacceptable
+very high,low,3,2,big,medium,unacceptable
+very high,low,3,2,big,high,unacceptable
+very high,low,3,4,small,low,unacceptable
+very high,low,3,4,small,medium,unacceptable
+very high,low,3,4,small,high,acceptable
+very high,low,3,4,medium,low,unacceptable
+very high,low,3,4,medium,medium,unacceptable
+very high,low,3,4,medium,high,acceptable
+very high,low,3,4,big,low,unacceptable
+very high,low,3,4,big,medium,acceptable
+very high,low,3,4,big,high,acceptable
+very high,low,3,more than 4,small,low,unacceptable
+very high,low,3,more than 4,small,medium,unacceptable
+very high,low,3,more than 4,small,high,acceptable
+very high,low,3,more than 4,medium,low,unacceptable
+very high,low,3,more than 4,medium,medium,acceptable
+very high,low,3,more than 4,medium,high,acceptable
+very high,low,3,more than 4,big,low,unacceptable
+very high,low,3,more than 4,big,medium,acceptable
+very high,low,3,more than 4,big,high,acceptable
+very high,low,4,2,small,low,unacceptable
+very high,low,4,2,small,medium,unacceptable
+very high,low,4,2,small,high,unacceptable
+very high,low,4,2,medium,low,unacceptable
+very high,low,4,2,medium,medium,unacceptable
+very high,low,4,2,medium,high,unacceptable
+very high,low,4,2,big,low,unacceptable
+very high,low,4,2,big,medium,unacceptable
+very high,low,4,2,big,high,unacceptable
+very high,low,4,4,small,low,unacceptable
+very high,low,4,4,small,medium,unacceptable
+very high,low,4,4,small,high,acceptable
+very high,low,4,4,medium,low,unacceptable
+very high,low,4,4,medium,medium,acceptable
+very high,low,4,4,medium,high,acceptable
+very high,low,4,4,big,low,unacceptable
+very high,low,4,4,big,medium,acceptable
+very high,low,4,4,big,high,acceptable
+very high,low,4,more than 4,small,low,unacceptable
+very high,low,4,more than 4,small,medium,unacceptable
+very high,low,4,more than 4,small,high,acceptable
+very high,low,4,more than 4,medium,low,unacceptable
+very high,low,4,more than 4,medium,medium,acceptable
+very high,low,4,more than 4,medium,high,acceptable
+very high,low,4,more than 4,big,low,unacceptable
+very high,low,4,more than 4,big,medium,acceptable
+very high,low,4,more than 4,big,high,acceptable
+very high,low,5 or more,2,small,low,unacceptable
+very high,low,5 or more,2,small,medium,unacceptable
+very high,low,5 or more,2,small,high,unacceptable
+very high,low,5 or more,2,medium,low,unacceptable
+very high,low,5 or more,2,medium,medium,unacceptable
+very high,low,5 or more,2,medium,high,unacceptable
+very high,low,5 or more,2,big,low,unacceptable
+very high,low,5 or more,2,big,medium,unacceptable
+very high,low,5 or more,2,big,high,unacceptable
+very high,low,5 or more,4,small,low,unacceptable
+very high,low,5 or more,4,small,medium,unacceptable
+very high,low,5 or more,4,small,high,acceptable
+very high,low,5 or more,4,medium,low,unacceptable
+very high,low,5 or more,4,medium,medium,acceptable
+very high,low,5 or more,4,medium,high,acceptable
+very high,low,5 or more,4,big,low,unacceptable
+very high,low,5 or more,4,big,medium,acceptable
+very high,low,5 or more,4,big,high,acceptable
+very high,low,5 or more,more than 4,small,low,unacceptable
+very high,low,5 or more,more than 4,small,medium,unacceptable
+very high,low,5 or more,more than 4,small,high,acceptable
+very high,low,5 or more,more than 4,medium,low,unacceptable
+very high,low,5 or more,more than 4,medium,medium,acceptable
+very high,low,5 or more,more than 4,medium,high,acceptable
+very high,low,5 or more,more than 4,big,low,unacceptable
+very high,low,5 or more,more than 4,big,medium,acceptable
+very high,low,5 or more,more than 4,big,high,acceptable
+high,very high,2,2,small,low,unacceptable
+high,very high,2,2,small,medium,unacceptable
+high,very high,2,2,small,high,unacceptable
+high,very high,2,2,medium,low,unacceptable
+high,very high,2,2,medium,medium,unacceptable
+high,very high,2,2,medium,high,unacceptable
+high,very high,2,2,big,low,unacceptable
+high,very high,2,2,big,medium,unacceptable
+high,very high,2,2,big,high,unacceptable
+high,very high,2,4,small,low,unacceptable
+high,very high,2,4,small,medium,unacceptable
+high,very high,2,4,small,high,unacceptable
+high,very high,2,4,medium,low,unacceptable
+high,very high,2,4,medium,medium,unacceptable
+high,very high,2,4,medium,high,unacceptable
+high,very high,2,4,big,low,unacceptable
+high,very high,2,4,big,medium,unacceptable
+high,very high,2,4,big,high,unacceptable
+high,very high,2,more than 4,small,low,unacceptable
+high,very high,2,more than 4,small,medium,unacceptable
+high,very high,2,more than 4,small,high,unacceptable
+high,very high,2,more than 4,medium,low,unacceptable
+high,very high,2,more than 4,medium,medium,unacceptable
+high,very high,2,more than 4,medium,high,unacceptable
+high,very high,2,more than 4,big,low,unacceptable
+high,very high,2,more than 4,big,medium,unacceptable
+high,very high,2,more than 4,big,high,unacceptable
+high,very high,3,2,small,low,unacceptable
+high,very high,3,2,small,medium,unacceptable
+high,very high,3,2,small,high,unacceptable
+high,very high,3,2,medium,low,unacceptable
+high,very high,3,2,medium,medium,unacceptable
+high,very high,3,2,medium,high,unacceptable
+high,very high,3,2,big,low,unacceptable
+high,very high,3,2,big,medium,unacceptable
+high,very high,3,2,big,high,unacceptable
+high,very high,3,4,small,low,unacceptable
+high,very high,3,4,small,medium,unacceptable
+high,very high,3,4,small,high,unacceptable
+high,very high,3,4,medium,low,unacceptable
+high,very high,3,4,medium,medium,unacceptable
+high,very high,3,4,medium,high,unacceptable
+high,very high,3,4,big,low,unacceptable
+high,very high,3,4,big,medium,unacceptable
+high,very high,3,4,big,high,unacceptable
+high,very high,3,more than 4,small,low,unacceptable
+high,very high,3,more than 4,small,medium,unacceptable
+high,very high,3,more than 4,small,high,unacceptable
+high,very high,3,more than 4,medium,low,unacceptable
+high,very high,3,more than 4,medium,medium,unacceptable
+high,very high,3,more than 4,medium,high,unacceptable
+high,very high,3,more than 4,big,low,unacceptable
+high,very high,3,more than 4,big,medium,unacceptable
+high,very high,3,more than 4,big,high,unacceptable
+high,very high,4,2,small,low,unacceptable
+high,very high,4,2,small,medium,unacceptable
+high,very high,4,2,small,high,unacceptable
+high,very high,4,2,medium,low,unacceptable
+high,very high,4,2,medium,medium,unacceptable
+high,very high,4,2,medium,high,unacceptable
+high,very high,4,2,big,low,unacceptable
+high,very high,4,2,big,medium,unacceptable
+high,very high,4,2,big,high,unacceptable
+high,very high,4,4,small,low,unacceptable
+high,very high,4,4,small,medium,unacceptable
+high,very high,4,4,small,high,unacceptable
+high,very high,4,4,medium,low,unacceptable
+high,very high,4,4,medium,medium,unacceptable
+high,very high,4,4,medium,high,unacceptable
+high,very high,4,4,big,low,unacceptable
+high,very high,4,4,big,medium,unacceptable
+high,very high,4,4,big,high,unacceptable
+high,very high,4,more than 4,small,low,unacceptable
+high,very high,4,more than 4,small,medium,unacceptable
+high,very high,4,more than 4,small,high,unacceptable
+high,very high,4,more than 4,medium,low,unacceptable
+high,very high,4,more than 4,medium,medium,unacceptable
+high,very high,4,more than 4,medium,high,unacceptable
+high,very high,4,more than 4,big,low,unacceptable
+high,very high,4,more than 4,big,medium,unacceptable
+high,very high,4,more than 4,big,high,unacceptable
+high,very high,5 or more,2,small,low,unacceptable
+high,very high,5 or more,2,small,medium,unacceptable
+high,very high,5 or more,2,small,high,unacceptable
+high,very high,5 or more,2,medium,low,unacceptable
+high,very high,5 or more,2,medium,medium,unacceptable
+high,very high,5 or more,2,medium,high,unacceptable
+high,very high,5 or more,2,big,low,unacceptable
+high,very high,5 or more,2,big,medium,unacceptable
+high,very high,5 or more,2,big,high,unacceptable
+high,very high,5 or more,4,small,low,unacceptable
+high,very high,5 or more,4,small,medium,unacceptable
+high,very high,5 or more,4,small,high,unacceptable
+high,very high,5 or more,4,medium,low,unacceptable
+high,very high,5 or more,4,medium,medium,unacceptable
+high,very high,5 or more,4,medium,high,unacceptable
+high,very high,5 or more,4,big,low,unacceptable
+high,very high,5 or more,4,big,medium,unacceptable
+high,very high,5 or more,4,big,high,unacceptable
+high,very high,5 or more,more than 4,small,low,unacceptable
+high,very high,5 or more,more than 4,small,medium,unacceptable
+high,very high,5 or more,more than 4,small,high,unacceptable
+high,very high,5 or more,more than 4,medium,low,unacceptable
+high,very high,5 or more,more than 4,medium,medium,unacceptable
+high,very high,5 or more,more than 4,medium,high,unacceptable
+high,very high,5 or more,more than 4,big,low,unacceptable
+high,very high,5 or more,more than 4,big,medium,unacceptable
+high,very high,5 or more,more than 4,big,high,unacceptable
+high,high,2,2,small,low,unacceptable
+high,high,2,2,small,medium,unacceptable
+high,high,2,2,small,high,unacceptable
+high,high,2,2,medium,low,unacceptable
+high,high,2,2,medium,medium,unacceptable
+high,high,2,2,medium,high,unacceptable
+high,high,2,2,big,low,unacceptable
+high,high,2,2,big,medium,unacceptable
+high,high,2,2,big,high,unacceptable
+high,high,2,4,small,low,unacceptable
+high,high,2,4,small,medium,unacceptable
+high,high,2,4,small,high,acceptable
+high,high,2,4,medium,low,unacceptable
+high,high,2,4,medium,medium,unacceptable
+high,high,2,4,medium,high,acceptable
+high,high,2,4,big,low,unacceptable
+high,high,2,4,big,medium,acceptable
+high,high,2,4,big,high,acceptable
+high,high,2,more than 4,small,low,unacceptable
+high,high,2,more than 4,small,medium,unacceptable
+high,high,2,more than 4,small,high,unacceptable
+high,high,2,more than 4,medium,low,unacceptable
+high,high,2,more than 4,medium,medium,unacceptable
+high,high,2,more than 4,medium,high,acceptable
+high,high,2,more than 4,big,low,unacceptable
+high,high,2,more than 4,big,medium,acceptable
+high,high,2,more than 4,big,high,acceptable
+high,high,3,2,small,low,unacceptable
+high,high,3,2,small,medium,unacceptable
+high,high,3,2,small,high,unacceptable
+high,high,3,2,medium,low,unacceptable
+high,high,3,2,medium,medium,unacceptable
+high,high,3,2,medium,high,unacceptable
+high,high,3,2,big,low,unacceptable
+high,high,3,2,big,medium,unacceptable
+high,high,3,2,big,high,unacceptable
+high,high,3,4,small,low,unacceptable
+high,high,3,4,small,medium,unacceptable
+high,high,3,4,small,high,acceptable
+high,high,3,4,medium,low,unacceptable
+high,high,3,4,medium,medium,unacceptable
+high,high,3,4,medium,high,acceptable
+high,high,3,4,big,low,unacceptable
+high,high,3,4,big,medium,acceptable
+high,high,3,4,big,high,acceptable
+high,high,3,more than 4,small,low,unacceptable
+high,high,3,more than 4,small,medium,unacceptable
+high,high,3,more than 4,small,high,acceptable
+high,high,3,more than 4,medium,low,unacceptable
+high,high,3,more than 4,medium,medium,acceptable
+high,high,3,more than 4,medium,high,acceptable
+high,high,3,more than 4,big,low,unacceptable
+high,high,3,more than 4,big,medium,acceptable
+high,high,3,more than 4,big,high,acceptable
+high,high,4,2,small,low,unacceptable
+high,high,4,2,small,medium,unacceptable
+high,high,4,2,small,high,unacceptable
+high,high,4,2,medium,low,unacceptable
+high,high,4,2,medium,medium,unacceptable
+high,high,4,2,medium,high,unacceptable
+high,high,4,2,big,low,unacceptable
+high,high,4,2,big,medium,unacceptable
+high,high,4,2,big,high,unacceptable
+high,high,4,4,small,low,unacceptable
+high,high,4,4,small,medium,unacceptable
+high,high,4,4,small,high,acceptable
+high,high,4,4,medium,low,unacceptable
+high,high,4,4,medium,medium,acceptable
+high,high,4,4,medium,high,acceptable
+high,high,4,4,big,low,unacceptable
+high,high,4,4,big,medium,acceptable
+high,high,4,4,big,high,acceptable
+high,high,4,more than 4,small,low,unacceptable
+high,high,4,more than 4,small,medium,unacceptable
+high,high,4,more than 4,small,high,acceptable
+high,high,4,more than 4,medium,low,unacceptable
+high,high,4,more than 4,medium,medium,acceptable
+high,high,4,more than 4,medium,high,acceptable
+high,high,4,more than 4,big,low,unacceptable
+high,high,4,more than 4,big,medium,acceptable
+high,high,4,more than 4,big,high,acceptable
+high,high,5 or more,2,small,low,unacceptable
+high,high,5 or more,2,small,medium,unacceptable
+high,high,5 or more,2,small,high,unacceptable
+high,high,5 or more,2,medium,low,unacceptable
+high,high,5 or more,2,medium,medium,unacceptable
+high,high,5 or more,2,medium,high,unacceptable
+high,high,5 or more,2,big,low,unacceptable
+high,high,5 or more,2,big,medium,unacceptable
+high,high,5 or more,2,big,high,unacceptable
+high,high,5 or more,4,small,low,unacceptable
+high,high,5 or more,4,small,medium,unacceptable
+high,high,5 or more,4,small,high,acceptable
+high,high,5 or more,4,medium,low,unacceptable
+high,high,5 or more,4,medium,medium,acceptable
+high,high,5 or more,4,medium,high,acceptable
+high,high,5 or more,4,big,low,unacceptable
+high,high,5 or more,4,big,medium,acceptable
+high,high,5 or more,4,big,high,acceptable
+high,high,5 or more,more than 4,small,low,unacceptable
+high,high,5 or more,more than 4,small,medium,unacceptable
+high,high,5 or more,more than 4,small,high,acceptable
+high,high,5 or more,more than 4,medium,low,unacceptable
+high,high,5 or more,more than 4,medium,medium,acceptable
+high,high,5 or more,more than 4,medium,high,acceptable
+high,high,5 or more,more than 4,big,low,unacceptable
+high,high,5 or more,more than 4,big,medium,acceptable
+high,high,5 or more,more than 4,big,high,acceptable
+high,medium,2,2,small,low,unacceptable
+high,medium,2,2,small,medium,unacceptable
+high,medium,2,2,small,high,unacceptable
+high,medium,2,2,medium,low,unacceptable
+high,medium,2,2,medium,medium,unacceptable
+high,medium,2,2,medium,high,unacceptable
+high,medium,2,2,big,low,unacceptable
+high,medium,2,2,big,medium,unacceptable
+high,medium,2,2,big,high,unacceptable
+high,medium,2,4,small,low,unacceptable
+high,medium,2,4,small,medium,unacceptable
+high,medium,2,4,small,high,acceptable
+high,medium,2,4,medium,low,unacceptable
+high,medium,2,4,medium,medium,unacceptable
+high,medium,2,4,medium,high,acceptable
+high,medium,2,4,big,low,unacceptable
+high,medium,2,4,big,medium,acceptable
+high,medium,2,4,big,high,acceptable
+high,medium,2,more than 4,small,low,unacceptable
+high,medium,2,more than 4,small,medium,unacceptable
+high,medium,2,more than 4,small,high,unacceptable
+high,medium,2,more than 4,medium,low,unacceptable
+high,medium,2,more than 4,medium,medium,unacceptable
+high,medium,2,more than 4,medium,high,acceptable
+high,medium,2,more than 4,big,low,unacceptable
+high,medium,2,more than 4,big,medium,acceptable
+high,medium,2,more than 4,big,high,acceptable
+high,medium,3,2,small,low,unacceptable
+high,medium,3,2,small,medium,unacceptable
+high,medium,3,2,small,high,unacceptable
+high,medium,3,2,medium,low,unacceptable
+high,medium,3,2,medium,medium,unacceptable
+high,medium,3,2,medium,high,unacceptable
+high,medium,3,2,big,low,unacceptable
+high,medium,3,2,big,medium,unacceptable
+high,medium,3,2,big,high,unacceptable
+high,medium,3,4,small,low,unacceptable
+high,medium,3,4,small,medium,unacceptable
+high,medium,3,4,small,high,acceptable
+high,medium,3,4,medium,low,unacceptable
+high,medium,3,4,medium,medium,unacceptable
+high,medium,3,4,medium,high,acceptable
+high,medium,3,4,big,low,unacceptable
+high,medium,3,4,big,medium,acceptable
+high,medium,3,4,big,high,acceptable
+high,medium,3,more than 4,small,low,unacceptable
+high,medium,3,more than 4,small,medium,unacceptable
+high,medium,3,more than 4,small,high,acceptable
+high,medium,3,more than 4,medium,low,unacceptable
+high,medium,3,more than 4,medium,medium,acceptable
+high,medium,3,more than 4,medium,high,acceptable
+high,medium,3,more than 4,big,low,unacceptable
+high,medium,3,more than 4,big,medium,acceptable
+high,medium,3,more than 4,big,high,acceptable
+high,medium,4,2,small,low,unacceptable
+high,medium,4,2,small,medium,unacceptable
+high,medium,4,2,small,high,unacceptable
+high,medium,4,2,medium,low,unacceptable
+high,medium,4,2,medium,medium,unacceptable
+high,medium,4,2,medium,high,unacceptable
+high,medium,4,2,big,low,unacceptable
+high,medium,4,2,big,medium,unacceptable
+high,medium,4,2,big,high,unacceptable
+high,medium,4,4,small,low,unacceptable
+high,medium,4,4,small,medium,unacceptable
+high,medium,4,4,small,high,acceptable
+high,medium,4,4,medium,low,unacceptable
+high,medium,4,4,medium,medium,acceptable
+high,medium,4,4,medium,high,acceptable
+high,medium,4,4,big,low,unacceptable
+high,medium,4,4,big,medium,acceptable
+high,medium,4,4,big,high,acceptable
+high,medium,4,more than 4,small,low,unacceptable
+high,medium,4,more than 4,small,medium,unacceptable
+high,medium,4,more than 4,small,high,acceptable
+high,medium,4,more than 4,medium,low,unacceptable
+high,medium,4,more than 4,medium,medium,acceptable
+high,medium,4,more than 4,medium,high,acceptable
+high,medium,4,more than 4,big,low,unacceptable
+high,medium,4,more than 4,big,medium,acceptable
+high,medium,4,more than 4,big,high,acceptable
+high,medium,5 or more,2,small,low,unacceptable
+high,medium,5 or more,2,small,medium,unacceptable
+high,medium,5 or more,2,small,high,unacceptable
+high,medium,5 or more,2,medium,low,unacceptable
+high,medium,5 or more,2,medium,medium,unacceptable
+high,medium,5 or more,2,medium,high,unacceptable
+high,medium,5 or more,2,big,low,unacceptable
+high,medium,5 or more,2,big,medium,unacceptable
+high,medium,5 or more,2,big,high,unacceptable
+high,medium,5 or more,4,small,low,unacceptable
+high,medium,5 or more,4,small,medium,unacceptable
+high,medium,5 or more,4,small,high,acceptable
+high,medium,5 or more,4,medium,low,unacceptable
+high,medium,5 or more,4,medium,medium,acceptable
+high,medium,5 or more,4,medium,high,acceptable
+high,medium,5 or more,4,big,low,unacceptable
+high,medium,5 or more,4,big,medium,acceptable
+high,medium,5 or more,4,big,high,acceptable
+high,medium,5 or more,more than 4,small,low,unacceptable
+high,medium,5 or more,more than 4,small,medium,unacceptable
+high,medium,5 or more,more than 4,small,high,acceptable
+high,medium,5 or more,more than 4,medium,low,unacceptable
+high,medium,5 or more,more than 4,medium,medium,acceptable
+high,medium,5 or more,more than 4,medium,high,acceptable
+high,medium,5 or more,more than 4,big,low,unacceptable
+high,medium,5 or more,more than 4,big,medium,acceptable
+high,medium,5 or more,more than 4,big,high,acceptable
+high,low,2,2,small,low,unacceptable
+high,low,2,2,small,medium,unacceptable
+high,low,2,2,small,high,unacceptable
+high,low,2,2,medium,low,unacceptable
+high,low,2,2,medium,medium,unacceptable
+high,low,2,2,medium,high,unacceptable
+high,low,2,2,big,low,unacceptable
+high,low,2,2,big,medium,unacceptable
+high,low,2,2,big,high,unacceptable
+high,low,2,4,small,low,unacceptable
+high,low,2,4,small,medium,unacceptable
+high,low,2,4,small,high,acceptable
+high,low,2,4,medium,low,unacceptable
+high,low,2,4,medium,medium,unacceptable
+high,low,2,4,medium,high,acceptable
+high,low,2,4,big,low,unacceptable
+high,low,2,4,big,medium,acceptable
+high,low,2,4,big,high,acceptable
+high,low,2,more than 4,small,low,unacceptable
+high,low,2,more than 4,small,medium,unacceptable
+high,low,2,more than 4,small,high,unacceptable
+high,low,2,more than 4,medium,low,unacceptable
+high,low,2,more than 4,medium,medium,unacceptable
+high,low,2,more than 4,medium,high,acceptable
+high,low,2,more than 4,big,low,unacceptable
+high,low,2,more than 4,big,medium,acceptable
+high,low,2,more than 4,big,high,acceptable
+high,low,3,2,small,low,unacceptable
+high,low,3,2,small,medium,unacceptable
+high,low,3,2,small,high,unacceptable
+high,low,3,2,medium,low,unacceptable
+high,low,3,2,medium,medium,unacceptable
+high,low,3,2,medium,high,unacceptable
+high,low,3,2,big,low,unacceptable
+high,low,3,2,big,medium,unacceptable
+high,low,3,2,big,high,unacceptable
+high,low,3,4,small,low,unacceptable
+high,low,3,4,small,medium,unacceptable
+high,low,3,4,small,high,acceptable
+high,low,3,4,medium,low,unacceptable
+high,low,3,4,medium,medium,unacceptable
+high,low,3,4,medium,high,acceptable
+high,low,3,4,big,low,unacceptable
+high,low,3,4,big,medium,acceptable
+high,low,3,4,big,high,acceptable
+high,low,3,more than 4,small,low,unacceptable
+high,low,3,more than 4,small,medium,unacceptable
+high,low,3,more than 4,small,high,acceptable
+high,low,3,more than 4,medium,low,unacceptable
+high,low,3,more than 4,medium,medium,acceptable
+high,low,3,more than 4,medium,high,acceptable
+high,low,3,more than 4,big,low,unacceptable
+high,low,3,more than 4,big,medium,acceptable
+high,low,3,more than 4,big,high,acceptable
+high,low,4,2,small,low,unacceptable
+high,low,4,2,small,medium,unacceptable
+high,low,4,2,small,high,unacceptable
+high,low,4,2,medium,low,unacceptable
+high,low,4,2,medium,medium,unacceptable
+high,low,4,2,medium,high,unacceptable
+high,low,4,2,big,low,unacceptable
+high,low,4,2,big,medium,unacceptable
+high,low,4,2,big,high,unacceptable
+high,low,4,4,small,low,unacceptable
+high,low,4,4,small,medium,unacceptable
+high,low,4,4,small,high,acceptable
+high,low,4,4,medium,low,unacceptable
+high,low,4,4,medium,medium,acceptable
+high,low,4,4,medium,high,acceptable
+high,low,4,4,big,low,unacceptable
+high,low,4,4,big,medium,acceptable
+high,low,4,4,big,high,acceptable
+high,low,4,more than 4,small,low,unacceptable
+high,low,4,more than 4,small,medium,unacceptable
+high,low,4,more than 4,small,high,acceptable
+high,low,4,more than 4,medium,low,unacceptable
+high,low,4,more than 4,medium,medium,acceptable
+high,low,4,more than 4,medium,high,acceptable
+high,low,4,more than 4,big,low,unacceptable
+high,low,4,more than 4,big,medium,acceptable
+high,low,4,more than 4,big,high,acceptable
+high,low,5 or more,2,small,low,unacceptable
+high,low,5 or more,2,small,medium,unacceptable
+high,low,5 or more,2,small,high,unacceptable
+high,low,5 or more,2,medium,low,unacceptable
+high,low,5 or more,2,medium,medium,unacceptable
+high,low,5 or more,2,medium,high,unacceptable
+high,low,5 or more,2,big,low,unacceptable
+high,low,5 or more,2,big,medium,unacceptable
+high,low,5 or more,2,big,high,unacceptable
+high,low,5 or more,4,small,low,unacceptable
+high,low,5 or more,4,small,medium,unacceptable
+high,low,5 or more,4,small,high,acceptable
+high,low,5 or more,4,medium,low,unacceptable
+high,low,5 or more,4,medium,medium,acceptable
+high,low,5 or more,4,medium,high,acceptable
+high,low,5 or more,4,big,low,unacceptable
+high,low,5 or more,4,big,medium,acceptable
+high,low,5 or more,4,big,high,acceptable
+high,low,5 or more,more than 4,small,low,unacceptable
+high,low,5 or more,more than 4,small,medium,unacceptable
+high,low,5 or more,more than 4,small,high,acceptable
+high,low,5 or more,more than 4,medium,low,unacceptable
+high,low,5 or more,more than 4,medium,medium,acceptable
+high,low,5 or more,more than 4,medium,high,acceptable
+high,low,5 or more,more than 4,big,low,unacceptable
+high,low,5 or more,more than 4,big,medium,acceptable
+high,low,5 or more,more than 4,big,high,acceptable
+medium,very high,2,2,small,low,unacceptable
+medium,very high,2,2,small,medium,unacceptable
+medium,very high,2,2,small,high,unacceptable
+medium,very high,2,2,medium,low,unacceptable
+medium,very high,2,2,medium,medium,unacceptable
+medium,very high,2,2,medium,high,unacceptable
+medium,very high,2,2,big,low,unacceptable
+medium,very high,2,2,big,medium,unacceptable
+medium,very high,2,2,big,high,unacceptable
+medium,very high,2,4,small,low,unacceptable
+medium,very high,2,4,small,medium,unacceptable
+medium,very high,2,4,small,high,acceptable
+medium,very high,2,4,medium,low,unacceptable
+medium,very high,2,4,medium,medium,unacceptable
+medium,very high,2,4,medium,high,acceptable
+medium,very high,2,4,big,low,unacceptable
+medium,very high,2,4,big,medium,acceptable
+medium,very high,2,4,big,high,acceptable
+medium,very high,2,more than 4,small,low,unacceptable
+medium,very high,2,more than 4,small,medium,unacceptable
+medium,very high,2,more than 4,small,high,unacceptable
+medium,very high,2,more than 4,medium,low,unacceptable
+medium,very high,2,more than 4,medium,medium,unacceptable
+medium,very high,2,more than 4,medium,high,acceptable
+medium,very high,2,more than 4,big,low,unacceptable
+medium,very high,2,more than 4,big,medium,acceptable
+medium,very high,2,more than 4,big,high,acceptable
+medium,very high,3,2,small,low,unacceptable
+medium,very high,3,2,small,medium,unacceptable
+medium,very high,3,2,small,high,unacceptable
+medium,very high,3,2,medium,low,unacceptable
+medium,very high,3,2,medium,medium,unacceptable
+medium,very high,3,2,medium,high,unacceptable
+medium,very high,3,2,big,low,unacceptable
+medium,very high,3,2,big,medium,unacceptable
+medium,very high,3,2,big,high,unacceptable
+medium,very high,3,4,small,low,unacceptable
+medium,very high,3,4,small,medium,unacceptable
+medium,very high,3,4,small,high,acceptable
+medium,very high,3,4,medium,low,unacceptable
+medium,very high,3,4,medium,medium,unacceptable
+medium,very high,3,4,medium,high,acceptable
+medium,very high,3,4,big,low,unacceptable
+medium,very high,3,4,big,medium,acceptable
+medium,very high,3,4,big,high,acceptable
+medium,very high,3,more than 4,small,low,unacceptable
+medium,very high,3,more than 4,small,medium,unacceptable
+medium,very high,3,more than 4,small,high,acceptable
+medium,very high,3,more than 4,medium,low,unacceptable
+medium,very high,3,more than 4,medium,medium,acceptable
+medium,very high,3,more than 4,medium,high,acceptable
+medium,very high,3,more than 4,big,low,unacceptable
+medium,very high,3,more than 4,big,medium,acceptable
+medium,very high,3,more than 4,big,high,acceptable
+medium,very high,4,2,small,low,unacceptable
+medium,very high,4,2,small,medium,unacceptable
+medium,very high,4,2,small,high,unacceptable
+medium,very high,4,2,medium,low,unacceptable
+medium,very high,4,2,medium,medium,unacceptable
+medium,very high,4,2,medium,high,unacceptable
+medium,very high,4,2,big,low,unacceptable
+medium,very high,4,2,big,medium,unacceptable
+medium,very high,4,2,big,high,unacceptable
+medium,very high,4,4,small,low,unacceptable
+medium,very high,4,4,small,medium,unacceptable
+medium,very high,4,4,small,high,acceptable
+medium,very high,4,4,medium,low,unacceptable
+medium,very high,4,4,medium,medium,acceptable
+medium,very high,4,4,medium,high,acceptable
+medium,very high,4,4,big,low,unacceptable
+medium,very high,4,4,big,medium,acceptable
+medium,very high,4,4,big,high,acceptable
+medium,very high,4,more than 4,small,low,unacceptable
+medium,very high,4,more than 4,small,medium,unacceptable
+medium,very high,4,more than 4,small,high,acceptable
+medium,very high,4,more than 4,medium,low,unacceptable
+medium,very high,4,more than 4,medium,medium,acceptable
+medium,very high,4,more than 4,medium,high,acceptable
+medium,very high,4,more than 4,big,low,unacceptable
+medium,very high,4,more than 4,big,medium,acceptable
+medium,very high,4,more than 4,big,high,acceptable
+medium,very high,5 or more,2,small,low,unacceptable
+medium,very high,5 or more,2,small,medium,unacceptable
+medium,very high,5 or more,2,small,high,unacceptable
+medium,very high,5 or more,2,medium,low,unacceptable
+medium,very high,5 or more,2,medium,medium,unacceptable
+medium,very high,5 or more,2,medium,high,unacceptable
+medium,very high,5 or more,2,big,low,unacceptable
+medium,very high,5 or more,2,big,medium,unacceptable
+medium,very high,5 or more,2,big,high,unacceptable
+medium,very high,5 or more,4,small,low,unacceptable
+medium,very high,5 or more,4,small,medium,unacceptable
+medium,very high,5 or more,4,small,high,acceptable
+medium,very high,5 or more,4,medium,low,unacceptable
+medium,very high,5 or more,4,medium,medium,acceptable
+medium,very high,5 or more,4,medium,high,acceptable
+medium,very high,5 or more,4,big,low,unacceptable
+medium,very high,5 or more,4,big,medium,acceptable
+medium,very high,5 or more,4,big,high,acceptable
+medium,very high,5 or more,more than 4,small,low,unacceptable
+medium,very high,5 or more,more than 4,small,medium,unacceptable
+medium,very high,5 or more,more than 4,small,high,acceptable
+medium,very high,5 or more,more than 4,medium,low,unacceptable
+medium,very high,5 or more,more than 4,medium,medium,acceptable
+medium,very high,5 or more,more than 4,medium,high,acceptable
+medium,very high,5 or more,more than 4,big,low,unacceptable
+medium,very high,5 or more,more than 4,big,medium,acceptable
+medium,very high,5 or more,more than 4,big,high,acceptable
+medium,high,2,2,small,low,unacceptable
+medium,high,2,2,small,medium,unacceptable
+medium,high,2,2,small,high,unacceptable
+medium,high,2,2,medium,low,unacceptable
+medium,high,2,2,medium,medium,unacceptable
+medium,high,2,2,medium,high,unacceptable
+medium,high,2,2,big,low,unacceptable
+medium,high,2,2,big,medium,unacceptable
+medium,high,2,2,big,high,unacceptable
+medium,high,2,4,small,low,unacceptable
+medium,high,2,4,small,medium,unacceptable
+medium,high,2,4,small,high,acceptable
+medium,high,2,4,medium,low,unacceptable
+medium,high,2,4,medium,medium,unacceptable
+medium,high,2,4,medium,high,acceptable
+medium,high,2,4,big,low,unacceptable
+medium,high,2,4,big,medium,acceptable
+medium,high,2,4,big,high,acceptable
+medium,high,2,more than 4,small,low,unacceptable
+medium,high,2,more than 4,small,medium,unacceptable
+medium,high,2,more than 4,small,high,unacceptable
+medium,high,2,more than 4,medium,low,unacceptable
+medium,high,2,more than 4,medium,medium,unacceptable
+medium,high,2,more than 4,medium,high,acceptable
+medium,high,2,more than 4,big,low,unacceptable
+medium,high,2,more than 4,big,medium,acceptable
+medium,high,2,more than 4,big,high,acceptable
+medium,high,3,2,small,low,unacceptable
+medium,high,3,2,small,medium,unacceptable
+medium,high,3,2,small,high,unacceptable
+medium,high,3,2,medium,low,unacceptable
+medium,high,3,2,medium,medium,unacceptable
+medium,high,3,2,medium,high,unacceptable
+medium,high,3,2,big,low,unacceptable
+medium,high,3,2,big,medium,unacceptable
+medium,high,3,2,big,high,unacceptable
+medium,high,3,4,small,low,unacceptable
+medium,high,3,4,small,medium,unacceptable
+medium,high,3,4,small,high,acceptable
+medium,high,3,4,medium,low,unacceptable
+medium,high,3,4,medium,medium,unacceptable
+medium,high,3,4,medium,high,acceptable
+medium,high,3,4,big,low,unacceptable
+medium,high,3,4,big,medium,acceptable
+medium,high,3,4,big,high,acceptable
+medium,high,3,more than 4,small,low,unacceptable
+medium,high,3,more than 4,small,medium,unacceptable
+medium,high,3,more than 4,small,high,acceptable
+medium,high,3,more than 4,medium,low,unacceptable
+medium,high,3,more than 4,medium,medium,acceptable
+medium,high,3,more than 4,medium,high,acceptable
+medium,high,3,more than 4,big,low,unacceptable
+medium,high,3,more than 4,big,medium,acceptable
+medium,high,3,more than 4,big,high,acceptable
+medium,high,4,2,small,low,unacceptable
+medium,high,4,2,small,medium,unacceptable
+medium,high,4,2,small,high,unacceptable
+medium,high,4,2,medium,low,unacceptable
+medium,high,4,2,medium,medium,unacceptable
+medium,high,4,2,medium,high,unacceptable
+medium,high,4,2,big,low,unacceptable
+medium,high,4,2,big,medium,unacceptable
+medium,high,4,2,big,high,unacceptable
+medium,high,4,4,small,low,unacceptable
+medium,high,4,4,small,medium,unacceptable
+medium,high,4,4,small,high,acceptable
+medium,high,4,4,medium,low,unacceptable
+medium,high,4,4,medium,medium,acceptable
+medium,high,4,4,medium,high,acceptable
+medium,high,4,4,big,low,unacceptable
+medium,high,4,4,big,medium,acceptable
+medium,high,4,4,big,high,acceptable
+medium,high,4,more than 4,small,low,unacceptable
+medium,high,4,more than 4,small,medium,unacceptable
+medium,high,4,more than 4,small,high,acceptable
+medium,high,4,more than 4,medium,low,unacceptable
+medium,high,4,more than 4,medium,medium,acceptable
+medium,high,4,more than 4,medium,high,acceptable
+medium,high,4,more than 4,big,low,unacceptable
+medium,high,4,more than 4,big,medium,acceptable
+medium,high,4,more than 4,big,high,acceptable
+medium,high,5 or more,2,small,low,unacceptable
+medium,high,5 or more,2,small,medium,unacceptable
+medium,high,5 or more,2,small,high,unacceptable
+medium,high,5 or more,2,medium,low,unacceptable
+medium,high,5 or more,2,medium,medium,unacceptable
+medium,high,5 or more,2,medium,high,unacceptable
+medium,high,5 or more,2,big,low,unacceptable
+medium,high,5 or more,2,big,medium,unacceptable
+medium,high,5 or more,2,big,high,unacceptable
+medium,high,5 or more,4,small,low,unacceptable
+medium,high,5 or more,4,small,medium,unacceptable
+medium,high,5 or more,4,small,high,acceptable
+medium,high,5 or more,4,medium,low,unacceptable
+medium,high,5 or more,4,medium,medium,acceptable
+medium,high,5 or more,4,medium,high,acceptable
+medium,high,5 or more,4,big,low,unacceptable
+medium,high,5 or more,4,big,medium,acceptable
+medium,high,5 or more,4,big,high,acceptable
+medium,high,5 or more,more than 4,small,low,unacceptable
+medium,high,5 or more,more than 4,small,medium,unacceptable
+medium,high,5 or more,more than 4,small,high,acceptable
+medium,high,5 or more,more than 4,medium,low,unacceptable
+medium,high,5 or more,more than 4,medium,medium,acceptable
+medium,high,5 or more,more than 4,medium,high,acceptable
+medium,high,5 or more,more than 4,big,low,unacceptable
+medium,high,5 or more,more than 4,big,medium,acceptable
+medium,high,5 or more,more than 4,big,high,acceptable
+medium,medium,2,2,small,low,unacceptable
+medium,medium,2,2,small,medium,unacceptable
+medium,medium,2,2,small,high,unacceptable
+medium,medium,2,2,medium,low,unacceptable
+medium,medium,2,2,medium,medium,unacceptable
+medium,medium,2,2,medium,high,unacceptable
+medium,medium,2,2,big,low,unacceptable
+medium,medium,2,2,big,medium,unacceptable
+medium,medium,2,2,big,high,unacceptable
+medium,medium,2,4,small,low,unacceptable
+medium,medium,2,4,small,medium,acceptable
+medium,medium,2,4,small,high,acceptable
+medium,medium,2,4,medium,low,unacceptable
+medium,medium,2,4,medium,medium,acceptable
+medium,medium,2,4,medium,high,acceptable
+medium,medium,2,4,big,low,unacceptable
+medium,medium,2,4,big,medium,acceptable
+medium,medium,2,4,big,high,very good
+medium,medium,2,more than 4,small,low,unacceptable
+medium,medium,2,more than 4,small,medium,unacceptable
+medium,medium,2,more than 4,small,high,unacceptable
+medium,medium,2,more than 4,medium,low,unacceptable
+medium,medium,2,more than 4,medium,medium,acceptable
+medium,medium,2,more than 4,medium,high,acceptable
+medium,medium,2,more than 4,big,low,unacceptable
+medium,medium,2,more than 4,big,medium,acceptable
+medium,medium,2,more than 4,big,high,very good
+medium,medium,3,2,small,low,unacceptable
+medium,medium,3,2,small,medium,unacceptable
+medium,medium,3,2,small,high,unacceptable
+medium,medium,3,2,medium,low,unacceptable
+medium,medium,3,2,medium,medium,unacceptable
+medium,medium,3,2,medium,high,unacceptable
+medium,medium,3,2,big,low,unacceptable
+medium,medium,3,2,big,medium,unacceptable
+medium,medium,3,2,big,high,unacceptable
+medium,medium,3,4,small,low,unacceptable
+medium,medium,3,4,small,medium,acceptable
+medium,medium,3,4,small,high,acceptable
+medium,medium,3,4,medium,low,unacceptable
+medium,medium,3,4,medium,medium,acceptable
+medium,medium,3,4,medium,high,acceptable
+medium,medium,3,4,big,low,unacceptable
+medium,medium,3,4,big,medium,acceptable
+medium,medium,3,4,big,high,very good
+medium,medium,3,more than 4,small,low,unacceptable
+medium,medium,3,more than 4,small,medium,acceptable
+medium,medium,3,more than 4,small,high,acceptable
+medium,medium,3,more than 4,medium,low,unacceptable
+medium,medium,3,more than 4,medium,medium,acceptable
+medium,medium,3,more than 4,medium,high,very good
+medium,medium,3,more than 4,big,low,unacceptable
+medium,medium,3,more than 4,big,medium,acceptable
+medium,medium,3,more than 4,big,high,very good
+medium,medium,4,2,small,low,unacceptable
+medium,medium,4,2,small,medium,unacceptable
+medium,medium,4,2,small,high,unacceptable
+medium,medium,4,2,medium,low,unacceptable
+medium,medium,4,2,medium,medium,unacceptable
+medium,medium,4,2,medium,high,unacceptable
+medium,medium,4,2,big,low,unacceptable
+medium,medium,4,2,big,medium,unacceptable
+medium,medium,4,2,big,high,unacceptable
+medium,medium,4,4,small,low,unacceptable
+medium,medium,4,4,small,medium,acceptable
+medium,medium,4,4,small,high,acceptable
+medium,medium,4,4,medium,low,unacceptable
+medium,medium,4,4,medium,medium,acceptable
+medium,medium,4,4,medium,high,very good
+medium,medium,4,4,big,low,unacceptable
+medium,medium,4,4,big,medium,acceptable
+medium,medium,4,4,big,high,very good
+medium,medium,4,more than 4,small,low,unacceptable
+medium,medium,4,more than 4,small,medium,acceptable
+medium,medium,4,more than 4,small,high,acceptable
+medium,medium,4,more than 4,medium,low,unacceptable
+medium,medium,4,more than 4,medium,medium,acceptable
+medium,medium,4,more than 4,medium,high,very good
+medium,medium,4,more than 4,big,low,unacceptable
+medium,medium,4,more than 4,big,medium,acceptable
+medium,medium,4,more than 4,big,high,very good
+medium,medium,5 or more,2,small,low,unacceptable
+medium,medium,5 or more,2,small,medium,unacceptable
+medium,medium,5 or more,2,small,high,unacceptable
+medium,medium,5 or more,2,medium,low,unacceptable
+medium,medium,5 or more,2,medium,medium,unacceptable
+medium,medium,5 or more,2,medium,high,unacceptable
+medium,medium,5 or more,2,big,low,unacceptable
+medium,medium,5 or more,2,big,medium,unacceptable
+medium,medium,5 or more,2,big,high,unacceptable
+medium,medium,5 or more,4,small,low,unacceptable
+medium,medium,5 or more,4,small,medium,acceptable
+medium,medium,5 or more,4,small,high,acceptable
+medium,medium,5 or more,4,medium,low,unacceptable
+medium,medium,5 or more,4,medium,medium,acceptable
+medium,medium,5 or more,4,medium,high,very good
+medium,medium,5 or more,4,big,low,unacceptable
+medium,medium,5 or more,4,big,medium,acceptable
+medium,medium,5 or more,4,big,high,very good
+medium,medium,5 or more,more than 4,small,low,unacceptable
+medium,medium,5 or more,more than 4,small,medium,acceptable
+medium,medium,5 or more,more than 4,small,high,acceptable
+medium,medium,5 or more,more than 4,medium,low,unacceptable
+medium,medium,5 or more,more than 4,medium,medium,acceptable
+medium,medium,5 or more,more than 4,medium,high,very good
+medium,medium,5 or more,more than 4,big,low,unacceptable
+medium,medium,5 or more,more than 4,big,medium,acceptable
+medium,medium,5 or more,more than 4,big,high,very good
+medium,low,2,2,small,low,unacceptable
+medium,low,2,2,small,medium,unacceptable
+medium,low,2,2,small,high,unacceptable
+medium,low,2,2,medium,low,unacceptable
+medium,low,2,2,medium,medium,unacceptable
+medium,low,2,2,medium,high,unacceptable
+medium,low,2,2,big,low,unacceptable
+medium,low,2,2,big,medium,unacceptable
+medium,low,2,2,big,high,unacceptable
+medium,low,2,4,small,low,unacceptable
+medium,low,2,4,small,medium,acceptable
+medium,low,2,4,small,high,good
+medium,low,2,4,medium,low,unacceptable
+medium,low,2,4,medium,medium,acceptable
+medium,low,2,4,medium,high,good
+medium,low,2,4,big,low,unacceptable
+medium,low,2,4,big,medium,good
+medium,low,2,4,big,high,very good
+medium,low,2,more than 4,small,low,unacceptable
+medium,low,2,more than 4,small,medium,unacceptable
+medium,low,2,more than 4,small,high,unacceptable
+medium,low,2,more than 4,medium,low,unacceptable
+medium,low,2,more than 4,medium,medium,acceptable
+medium,low,2,more than 4,medium,high,good
+medium,low,2,more than 4,big,low,unacceptable
+medium,low,2,more than 4,big,medium,good
+medium,low,2,more than 4,big,high,very good
+medium,low,3,2,small,low,unacceptable
+medium,low,3,2,small,medium,unacceptable
+medium,low,3,2,small,high,unacceptable
+medium,low,3,2,medium,low,unacceptable
+medium,low,3,2,medium,medium,unacceptable
+medium,low,3,2,medium,high,unacceptable
+medium,low,3,2,big,low,unacceptable
+medium,low,3,2,big,medium,unacceptable
+medium,low,3,2,big,high,unacceptable
+medium,low,3,4,small,low,unacceptable
+medium,low,3,4,small,medium,acceptable
+medium,low,3,4,small,high,good
+medium,low,3,4,medium,low,unacceptable
+medium,low,3,4,medium,medium,acceptable
+medium,low,3,4,medium,high,good
+medium,low,3,4,big,low,unacceptable
+medium,low,3,4,big,medium,good
+medium,low,3,4,big,high,very good
+medium,low,3,more than 4,small,low,unacceptable
+medium,low,3,more than 4,small,medium,acceptable
+medium,low,3,more than 4,small,high,good
+medium,low,3,more than 4,medium,low,unacceptable
+medium,low,3,more than 4,medium,medium,good
+medium,low,3,more than 4,medium,high,very good
+medium,low,3,more than 4,big,low,unacceptable
+medium,low,3,more than 4,big,medium,good
+medium,low,3,more than 4,big,high,very good
+medium,low,4,2,small,low,unacceptable
+medium,low,4,2,small,medium,unacceptable
+medium,low,4,2,small,high,unacceptable
+medium,low,4,2,medium,low,unacceptable
+medium,low,4,2,medium,medium,unacceptable
+medium,low,4,2,medium,high,unacceptable
+medium,low,4,2,big,low,unacceptable
+medium,low,4,2,big,medium,unacceptable
+medium,low,4,2,big,high,unacceptable
+medium,low,4,4,small,low,unacceptable
+medium,low,4,4,small,medium,acceptable
+medium,low,4,4,small,high,good
+medium,low,4,4,medium,low,unacceptable
+medium,low,4,4,medium,medium,good
+medium,low,4,4,medium,high,very good
+medium,low,4,4,big,low,unacceptable
+medium,low,4,4,big,medium,good
+medium,low,4,4,big,high,very good
+medium,low,4,more than 4,small,low,unacceptable
+medium,low,4,more than 4,small,medium,acceptable
+medium,low,4,more than 4,small,high,good
+medium,low,4,more than 4,medium,low,unacceptable
+medium,low,4,more than 4,medium,medium,good
+medium,low,4,more than 4,medium,high,very good
+medium,low,4,more than 4,big,low,unacceptable
+medium,low,4,more than 4,big,medium,good
+medium,low,4,more than 4,big,high,very good
+medium,low,5 or more,2,small,low,unacceptable
+medium,low,5 or more,2,small,medium,unacceptable
+medium,low,5 or more,2,small,high,unacceptable
+medium,low,5 or more,2,medium,low,unacceptable
+medium,low,5 or more,2,medium,medium,unacceptable
+medium,low,5 or more,2,medium,high,unacceptable
+medium,low,5 or more,2,big,low,unacceptable
+medium,low,5 or more,2,big,medium,unacceptable
+medium,low,5 or more,2,big,high,unacceptable
+medium,low,5 or more,4,small,low,unacceptable
+medium,low,5 or more,4,small,medium,acceptable
+medium,low,5 or more,4,small,high,good
+medium,low,5 or more,4,medium,low,unacceptable
+medium,low,5 or more,4,medium,medium,good
+medium,low,5 or more,4,medium,high,very good
+medium,low,5 or more,4,big,low,unacceptable
+medium,low,5 or more,4,big,medium,good
+medium,low,5 or more,4,big,high,very good
+medium,low,5 or more,more than 4,small,low,unacceptable
+medium,low,5 or more,more than 4,small,medium,acceptable
+medium,low,5 or more,more than 4,small,high,good
+medium,low,5 or more,more than 4,medium,low,unacceptable
+medium,low,5 or more,more than 4,medium,medium,good
+medium,low,5 or more,more than 4,medium,high,very good
+medium,low,5 or more,more than 4,big,low,unacceptable
+medium,low,5 or more,more than 4,big,medium,good
+medium,low,5 or more,more than 4,big,high,very good
+low,very high,2,2,small,low,unacceptable
+low,very high,2,2,small,medium,unacceptable
+low,very high,2,2,small,high,unacceptable
+low,very high,2,2,medium,low,unacceptable
+low,very high,2,2,medium,medium,unacceptable
+low,very high,2,2,medium,high,unacceptable
+low,very high,2,2,big,low,unacceptable
+low,very high,2,2,big,medium,unacceptable
+low,very high,2,2,big,high,unacceptable
+low,very high,2,4,small,low,unacceptable
+low,very high,2,4,small,medium,unacceptable
+low,very high,2,4,small,high,acceptable
+low,very high,2,4,medium,low,unacceptable
+low,very high,2,4,medium,medium,unacceptable
+low,very high,2,4,medium,high,acceptable
+low,very high,2,4,big,low,unacceptable
+low,very high,2,4,big,medium,acceptable
+low,very high,2,4,big,high,acceptable
+low,very high,2,more than 4,small,low,unacceptable
+low,very high,2,more than 4,small,medium,unacceptable
+low,very high,2,more than 4,small,high,unacceptable
+low,very high,2,more than 4,medium,low,unacceptable
+low,very high,2,more than 4,medium,medium,unacceptable
+low,very high,2,more than 4,medium,high,acceptable
+low,very high,2,more than 4,big,low,unacceptable
+low,very high,2,more than 4,big,medium,acceptable
+low,very high,2,more than 4,big,high,acceptable
+low,very high,3,2,small,low,unacceptable
+low,very high,3,2,small,medium,unacceptable
+low,very high,3,2,small,high,unacceptable
+low,very high,3,2,medium,low,unacceptable
+low,very high,3,2,medium,medium,unacceptable
+low,very high,3,2,medium,high,unacceptable
+low,very high,3,2,big,low,unacceptable
+low,very high,3,2,big,medium,unacceptable
+low,very high,3,2,big,high,unacceptable
+low,very high,3,4,small,low,unacceptable
+low,very high,3,4,small,medium,unacceptable
+low,very high,3,4,small,high,acceptable
+low,very high,3,4,medium,low,unacceptable
+low,very high,3,4,medium,medium,unacceptable
+low,very high,3,4,medium,high,acceptable
+low,very high,3,4,big,low,unacceptable
+low,very high,3,4,big,medium,acceptable
+low,very high,3,4,big,high,acceptable
+low,very high,3,more than 4,small,low,unacceptable
+low,very high,3,more than 4,small,medium,unacceptable
+low,very high,3,more than 4,small,high,acceptable
+low,very high,3,more than 4,medium,low,unacceptable
+low,very high,3,more than 4,medium,medium,acceptable
+low,very high,3,more than 4,medium,high,acceptable
+low,very high,3,more than 4,big,low,unacceptable
+low,very high,3,more than 4,big,medium,acceptable
+low,very high,3,more than 4,big,high,acceptable
+low,very high,4,2,small,low,unacceptable
+low,very high,4,2,small,medium,unacceptable
+low,very high,4,2,small,high,unacceptable
+low,very high,4,2,medium,low,unacceptable
+low,very high,4,2,medium,medium,unacceptable
+low,very high,4,2,medium,high,unacceptable
+low,very high,4,2,big,low,unacceptable
+low,very high,4,2,big,medium,unacceptable
+low,very high,4,2,big,high,unacceptable
+low,very high,4,4,small,low,unacceptable
+low,very high,4,4,small,medium,unacceptable
+low,very high,4,4,small,high,acceptable
+low,very high,4,4,medium,low,unacceptable
+low,very high,4,4,medium,medium,acceptable
+low,very high,4,4,medium,high,acceptable
+low,very high,4,4,big,low,unacceptable
+low,very high,4,4,big,medium,acceptable
+low,very high,4,4,big,high,acceptable
+low,very high,4,more than 4,small,low,unacceptable
+low,very high,4,more than 4,small,medium,unacceptable
+low,very high,4,more than 4,small,high,acceptable
+low,very high,4,more than 4,medium,low,unacceptable
+low,very high,4,more than 4,medium,medium,acceptable
+low,very high,4,more than 4,medium,high,acceptable
+low,very high,4,more than 4,big,low,unacceptable
+low,very high,4,more than 4,big,medium,acceptable
+low,very high,4,more than 4,big,high,acceptable
+low,very high,5 or more,2,small,low,unacceptable
+low,very high,5 or more,2,small,medium,unacceptable
+low,very high,5 or more,2,small,high,unacceptable
+low,very high,5 or more,2,medium,low,unacceptable
+low,very high,5 or more,2,medium,medium,unacceptable
+low,very high,5 or more,2,medium,high,unacceptable
+low,very high,5 or more,2,big,low,unacceptable
+low,very high,5 or more,2,big,medium,unacceptable
+low,very high,5 or more,2,big,high,unacceptable
+low,very high,5 or more,4,small,low,unacceptable
+low,very high,5 or more,4,small,medium,unacceptable
+low,very high,5 or more,4,small,high,acceptable
+low,very high,5 or more,4,medium,low,unacceptable
+low,very high,5 or more,4,medium,medium,acceptable
+low,very high,5 or more,4,medium,high,acceptable
+low,very high,5 or more,4,big,low,unacceptable
+low,very high,5 or more,4,big,medium,acceptable
+low,very high,5 or more,4,big,high,acceptable
+low,very high,5 or more,more than 4,small,low,unacceptable
+low,very high,5 or more,more than 4,small,medium,unacceptable
+low,very high,5 or more,more than 4,small,high,acceptable
+low,very high,5 or more,more than 4,medium,low,unacceptable
+low,very high,5 or more,more than 4,medium,medium,acceptable
+low,very high,5 or more,more than 4,medium,high,acceptable
+low,very high,5 or more,more than 4,big,low,unacceptable
+low,very high,5 or more,more than 4,big,medium,acceptable
+low,very high,5 or more,more than 4,big,high,acceptable
+low,high,2,2,small,low,unacceptable
+low,high,2,2,small,medium,unacceptable
+low,high,2,2,small,high,unacceptable
+low,high,2,2,medium,low,unacceptable
+low,high,2,2,medium,medium,unacceptable
+low,high,2,2,medium,high,unacceptable
+low,high,2,2,big,low,unacceptable
+low,high,2,2,big,medium,unacceptable
+low,high,2,2,big,high,unacceptable
+low,high,2,4,small,low,unacceptable
+low,high,2,4,small,medium,acceptable
+low,high,2,4,small,high,acceptable
+low,high,2,4,medium,low,unacceptable
+low,high,2,4,medium,medium,acceptable
+low,high,2,4,medium,high,acceptable
+low,high,2,4,big,low,unacceptable
+low,high,2,4,big,medium,acceptable
+low,high,2,4,big,high,very good
+low,high,2,more than 4,small,low,unacceptable
+low,high,2,more than 4,small,medium,unacceptable
+low,high,2,more than 4,small,high,unacceptable
+low,high,2,more than 4,medium,low,unacceptable
+low,high,2,more than 4,medium,medium,acceptable
+low,high,2,more than 4,medium,high,acceptable
+low,high,2,more than 4,big,low,unacceptable
+low,high,2,more than 4,big,medium,acceptable
+low,high,2,more than 4,big,high,very good
+low,high,3,2,small,low,unacceptable
+low,high,3,2,small,medium,unacceptable
+low,high,3,2,small,high,unacceptable
+low,high,3,2,medium,low,unacceptable
+low,high,3,2,medium,medium,unacceptable
+low,high,3,2,medium,high,unacceptable
+low,high,3,2,big,low,unacceptable
+low,high,3,2,big,medium,unacceptable
+low,high,3,2,big,high,unacceptable
+low,high,3,4,small,low,unacceptable
+low,high,3,4,small,medium,acceptable
+low,high,3,4,small,high,acceptable
+low,high,3,4,medium,low,unacceptable
+low,high,3,4,medium,medium,acceptable
+low,high,3,4,medium,high,acceptable
+low,high,3,4,big,low,unacceptable
+low,high,3,4,big,medium,acceptable
+low,high,3,4,big,high,very good
+low,high,3,more than 4,small,low,unacceptable
+low,high,3,more than 4,small,medium,acceptable
+low,high,3,more than 4,small,high,acceptable
+low,high,3,more than 4,medium,low,unacceptable
+low,high,3,more than 4,medium,medium,acceptable
+low,high,3,more than 4,medium,high,very good
+low,high,3,more than 4,big,low,unacceptable
+low,high,3,more than 4,big,medium,acceptable
+low,high,3,more than 4,big,high,very good
+low,high,4,2,small,low,unacceptable
+low,high,4,2,small,medium,unacceptable
+low,high,4,2,small,high,unacceptable
+low,high,4,2,medium,low,unacceptable
+low,high,4,2,medium,medium,unacceptable
+low,high,4,2,medium,high,unacceptable
+low,high,4,2,big,low,unacceptable
+low,high,4,2,big,medium,unacceptable
+low,high,4,2,big,high,unacceptable
+low,high,4,4,small,low,unacceptable
+low,high,4,4,small,medium,acceptable
+low,high,4,4,small,high,acceptable
+low,high,4,4,medium,low,unacceptable
+low,high,4,4,medium,medium,acceptable
+low,high,4,4,medium,high,very good
+low,high,4,4,big,low,unacceptable
+low,high,4,4,big,medium,acceptable
+low,high,4,4,big,high,very good
+low,high,4,more than 4,small,low,unacceptable
+low,high,4,more than 4,small,medium,acceptable
+low,high,4,more than 4,small,high,acceptable
+low,high,4,more than 4,medium,low,unacceptable
+low,high,4,more than 4,medium,medium,acceptable
+low,high,4,more than 4,medium,high,very good
+low,high,4,more than 4,big,low,unacceptable
+low,high,4,more than 4,big,medium,acceptable
+low,high,4,more than 4,big,high,very good
+low,high,5 or more,2,small,low,unacceptable
+low,high,5 or more,2,small,medium,unacceptable
+low,high,5 or more,2,small,high,unacceptable
+low,high,5 or more,2,medium,low,unacceptable
+low,high,5 or more,2,medium,medium,unacceptable
+low,high,5 or more,2,medium,high,unacceptable
+low,high,5 or more,2,big,low,unacceptable
+low,high,5 or more,2,big,medium,unacceptable
+low,high,5 or more,2,big,high,unacceptable
+low,high,5 or more,4,small,low,unacceptable
+low,high,5 or more,4,small,medium,acceptable
+low,high,5 or more,4,small,high,acceptable
+low,high,5 or more,4,medium,low,unacceptable
+low,high,5 or more,4,medium,medium,acceptable
+low,high,5 or more,4,medium,high,very good
+low,high,5 or more,4,big,low,unacceptable
+low,high,5 or more,4,big,medium,acceptable
+low,high,5 or more,4,big,high,very good
+low,high,5 or more,more than 4,small,low,unacceptable
+low,high,5 or more,more than 4,small,medium,acceptable
+low,high,5 or more,more than 4,small,high,acceptable
+low,high,5 or more,more than 4,medium,low,unacceptable
+low,high,5 or more,more than 4,medium,medium,acceptable
+low,high,5 or more,more than 4,medium,high,very good
+low,high,5 or more,more than 4,big,low,unacceptable
+low,high,5 or more,more than 4,big,medium,acceptable
+low,high,5 or more,more than 4,big,high,very good
+low,medium,2,2,small,low,unacceptable
+low,medium,2,2,small,medium,unacceptable
+low,medium,2,2,small,high,unacceptable
+low,medium,2,2,medium,low,unacceptable
+low,medium,2,2,medium,medium,unacceptable
+low,medium,2,2,medium,high,unacceptable
+low,medium,2,2,big,low,unacceptable
+low,medium,2,2,big,medium,unacceptable
+low,medium,2,2,big,high,unacceptable
+low,medium,2,4,small,low,unacceptable
+low,medium,2,4,small,medium,acceptable
+low,medium,2,4,small,high,good
+low,medium,2,4,medium,low,unacceptable
+low,medium,2,4,medium,medium,acceptable
+low,medium,2,4,medium,high,good
+low,medium,2,4,big,low,unacceptable
+low,medium,2,4,big,medium,good
+low,medium,2,4,big,high,very good
+low,medium,2,more than 4,small,low,unacceptable
+low,medium,2,more than 4,small,medium,unacceptable
+low,medium,2,more than 4,small,high,unacceptable
+low,medium,2,more than 4,medium,low,unacceptable
+low,medium,2,more than 4,medium,medium,acceptable
+low,medium,2,more than 4,medium,high,good
+low,medium,2,more than 4,big,low,unacceptable
+low,medium,2,more than 4,big,medium,good
+low,medium,2,more than 4,big,high,very good
+low,medium,3,2,small,low,unacceptable
+low,medium,3,2,small,medium,unacceptable
+low,medium,3,2,small,high,unacceptable
+low,medium,3,2,medium,low,unacceptable
+low,medium,3,2,medium,medium,unacceptable
+low,medium,3,2,medium,high,unacceptable
+low,medium,3,2,big,low,unacceptable
+low,medium,3,2,big,medium,unacceptable
+low,medium,3,2,big,high,unacceptable
+low,medium,3,4,small,low,unacceptable
+low,medium,3,4,small,medium,acceptable
+low,medium,3,4,small,high,good
+low,medium,3,4,medium,low,unacceptable
+low,medium,3,4,medium,medium,acceptable
+low,medium,3,4,medium,high,good
+low,medium,3,4,big,low,unacceptable
+low,medium,3,4,big,medium,good
+low,medium,3,4,big,high,very good
+low,medium,3,more than 4,small,low,unacceptable
+low,medium,3,more than 4,small,medium,acceptable
+low,medium,3,more than 4,small,high,good
+low,medium,3,more than 4,medium,low,unacceptable
+low,medium,3,more than 4,medium,medium,good
+low,medium,3,more than 4,medium,high,very good
+low,medium,3,more than 4,big,low,unacceptable
+low,medium,3,more than 4,big,medium,good
+low,medium,3,more than 4,big,high,very good
+low,medium,4,2,small,low,unacceptable
+low,medium,4,2,small,medium,unacceptable
+low,medium,4,2,small,high,unacceptable
+low,medium,4,2,medium,low,unacceptable
+low,medium,4,2,medium,medium,unacceptable
+low,medium,4,2,medium,high,unacceptable
+low,medium,4,2,big,low,unacceptable
+low,medium,4,2,big,medium,unacceptable
+low,medium,4,2,big,high,unacceptable
+low,medium,4,4,small,low,unacceptable
+low,medium,4,4,small,medium,acceptable
+low,medium,4,4,small,high,good
+low,medium,4,4,medium,low,unacceptable
+low,medium,4,4,medium,medium,good
+low,medium,4,4,medium,high,very good
+low,medium,4,4,big,low,unacceptable
+low,medium,4,4,big,medium,good
+low,medium,4,4,big,high,very good
+low,medium,4,more than 4,small,low,unacceptable
+low,medium,4,more than 4,small,medium,acceptable
+low,medium,4,more than 4,small,high,good
+low,medium,4,more than 4,medium,low,unacceptable
+low,medium,4,more than 4,medium,medium,good
+low,medium,4,more than 4,medium,high,very good
+low,medium,4,more than 4,big,low,unacceptable
+low,medium,4,more than 4,big,medium,good
+low,medium,4,more than 4,big,high,very good
+low,medium,5 or more,2,small,low,unacceptable
+low,medium,5 or more,2,small,medium,unacceptable
+low,medium,5 or more,2,small,high,unacceptable
+low,medium,5 or more,2,medium,low,unacceptable
+low,medium,5 or more,2,medium,medium,unacceptable
+low,medium,5 or more,2,medium,high,unacceptable
+low,medium,5 or more,2,big,low,unacceptable
+low,medium,5 or more,2,big,medium,unacceptable
+low,medium,5 or more,2,big,high,unacceptable
+low,medium,5 or more,4,small,low,unacceptable
+low,medium,5 or more,4,small,medium,acceptable
+low,medium,5 or more,4,small,high,good
+low,medium,5 or more,4,medium,low,unacceptable
+low,medium,5 or more,4,medium,medium,good
+low,medium,5 or more,4,medium,high,very good
+low,medium,5 or more,4,big,low,unacceptable
+low,medium,5 or more,4,big,medium,good
+low,medium,5 or more,4,big,high,very good
+low,medium,5 or more,more than 4,small,low,unacceptable
+low,medium,5 or more,more than 4,small,medium,acceptable
+low,medium,5 or more,more than 4,small,high,good
+low,medium,5 or more,more than 4,medium,low,unacceptable
+low,medium,5 or more,more than 4,medium,medium,good
+low,medium,5 or more,more than 4,medium,high,very good
+low,medium,5 or more,more than 4,big,low,unacceptable
+low,medium,5 or more,more than 4,big,medium,good
+low,medium,5 or more,more than 4,big,high,very good
+low,low,2,2,small,low,unacceptable
+low,low,2,2,small,medium,unacceptable
+low,low,2,2,small,high,unacceptable
+low,low,2,2,medium,low,unacceptable
+low,low,2,2,medium,medium,unacceptable
+low,low,2,2,medium,high,unacceptable
+low,low,2,2,big,low,unacceptable
+low,low,2,2,big,medium,unacceptable
+low,low,2,2,big,high,unacceptable
+low,low,2,4,small,low,unacceptable
+low,low,2,4,small,medium,acceptable
+low,low,2,4,small,high,good
+low,low,2,4,medium,low,unacceptable
+low,low,2,4,medium,medium,acceptable
+low,low,2,4,medium,high,good
+low,low,2,4,big,low,unacceptable
+low,low,2,4,big,medium,good
+low,low,2,4,big,high,very good
+low,low,2,more than 4,small,low,unacceptable
+low,low,2,more than 4,small,medium,unacceptable
+low,low,2,more than 4,small,high,unacceptable
+low,low,2,more than 4,medium,low,unacceptable
+low,low,2,more than 4,medium,medium,acceptable
+low,low,2,more than 4,medium,high,good
+low,low,2,more than 4,big,low,unacceptable
+low,low,2,more than 4,big,medium,good
+low,low,2,more than 4,big,high,very good
+low,low,3,2,small,low,unacceptable
+low,low,3,2,small,medium,unacceptable
+low,low,3,2,small,high,unacceptable
+low,low,3,2,medium,low,unacceptable
+low,low,3,2,medium,medium,unacceptable
+low,low,3,2,medium,high,unacceptable
+low,low,3,2,big,low,unacceptable
+low,low,3,2,big,medium,unacceptable
+low,low,3,2,big,high,unacceptable
+low,low,3,4,small,low,unacceptable
+low,low,3,4,small,medium,acceptable
+low,low,3,4,small,high,good
+low,low,3,4,medium,low,unacceptable
+low,low,3,4,medium,medium,acceptable
+low,low,3,4,medium,high,good
+low,low,3,4,big,low,unacceptable
+low,low,3,4,big,medium,good
+low,low,3,4,big,high,very good
+low,low,3,more than 4,small,low,unacceptable
+low,low,3,more than 4,small,medium,acceptable
+low,low,3,more than 4,small,high,good
+low,low,3,more than 4,medium,low,unacceptable
+low,low,3,more than 4,medium,medium,good
+low,low,3,more than 4,medium,high,very good
+low,low,3,more than 4,big,low,unacceptable
+low,low,3,more than 4,big,medium,good
+low,low,3,more than 4,big,high,very good
+low,low,4,2,small,low,unacceptable
+low,low,4,2,small,medium,unacceptable
+low,low,4,2,small,high,unacceptable
+low,low,4,2,medium,low,unacceptable
+low,low,4,2,medium,medium,unacceptable
+low,low,4,2,medium,high,unacceptable
+low,low,4,2,big,low,unacceptable
+low,low,4,2,big,medium,unacceptable
+low,low,4,2,big,high,unacceptable
+low,low,4,4,small,low,unacceptable
+low,low,4,4,small,medium,acceptable
+low,low,4,4,small,high,good
+low,low,4,4,medium,low,unacceptable
+low,low,4,4,medium,medium,good
+low,low,4,4,medium,high,very good
+low,low,4,4,big,low,unacceptable
+low,low,4,4,big,medium,good
+low,low,4,4,big,high,very good
+low,low,4,more than 4,small,low,unacceptable
+low,low,4,more than 4,small,medium,acceptable
+low,low,4,more than 4,small,high,good
+low,low,4,more than 4,medium,low,unacceptable
+low,low,4,more than 4,medium,medium,good
+low,low,4,more than 4,medium,high,very good
+low,low,4,more than 4,big,low,unacceptable
+low,low,4,more than 4,big,medium,good
+low,low,4,more than 4,big,high,very good
+low,low,5 or more,2,small,low,unacceptable
+low,low,5 or more,2,small,medium,unacceptable
+low,low,5 or more,2,small,high,unacceptable
+low,low,5 or more,2,medium,low,unacceptable
+low,low,5 or more,2,medium,medium,unacceptable
+low,low,5 or more,2,medium,high,unacceptable
+low,low,5 or more,2,big,low,unacceptable
+low,low,5 or more,2,big,medium,unacceptable
+low,low,5 or more,2,big,high,unacceptable
+low,low,5 or more,4,small,low,unacceptable
+low,low,5 or more,4,small,medium,acceptable
+low,low,5 or more,4,small,high,good
+low,low,5 or more,4,medium,low,unacceptable
+low,low,5 or more,4,medium,medium,good
+low,low,5 or more,4,medium,high,very good
+low,low,5 or more,4,big,low,unacceptable
+low,low,5 or more,4,big,medium,good
+low,low,5 or more,4,big,high,very good
+low,low,5 or more,more than 4,small,low,unacceptable
+low,low,5 or more,more than 4,small,medium,acceptable
+low,low,5 or more,more than 4,small,high,good
+low,low,5 or more,more than 4,medium,low,unacceptable
+low,low,5 or more,more than 4,medium,medium,good
+low,low,5 or more,more than 4,medium,high,very good
+low,low,5 or more,more than 4,big,low,unacceptable
+low,low,5 or more,more than 4,big,medium,good
+low,low,5 or more,more than 4,big,high,very good

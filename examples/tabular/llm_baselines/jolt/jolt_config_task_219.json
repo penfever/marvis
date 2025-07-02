@@ -1,0 +1,22 @@
+{
+  "dataset_name": "electricity",
+  "task_prefix": "The electricity dataset contains data from the Australian New South Wales Electricity Market, where prices are not fixed and are affected by demand and supply. Prices are set every five minutes. The dataset includes electricity transfers between New South Wales and Victoria states to alleviate fluctuations. Each instance represents a 30-minute period with demand, price, and transfer information. Each example contains 8 features. Predicting electricity price movement for market analysis.",
+  "column_descriptions": {
+    "Date": "Date of the measurement, normalized between 0 and 1",
+    "Day of week": "Day of the week (1-7)",
+    "Time period": "Time of the measurement (1-48) in half hour intervals over 24 hours, normalized between 0 and 1",
+    "New South Wales electricity price": "Electricity price in New South Wales, normalized between 0 and 1",
+    "New South Wales electricity demand": "Electricity demand in New South Wales, normalized between 0 and 1",
+    "Victoria electricity price": "Electricity price in Victoria, normalized between 0 and 1",
+    "Victoria electricity demand": "Electricity demand in Victoria, normalized between 0 and 1",
+    "Scheduled electricity transfer between states": "Scheduled electricity transfer between both states, normalized between 0 and 1"
+  },
+  "class_names": [
+    "DOWN",
+    "UP"
+  ],
+  "class_description": "Classes: 'UP' (Price went up in New South Wales relative to a 24 hour moving average), 'DOWN' (Price went down in New South Wales relative to a 24 hour moving average)",
+  "num_features": 8,
+  "num_classes": 2,
+  "task_id": "219"
+}

@@ -1,0 +1,18 @@
+dataset: steel-plates-fault
+templates:
+  a1367ad3-d255-4d20-8c88-6935f74648f8: !Template
+    name: steel-plates-fault
+    id: a1367ad3-d255-4d20-8c88-6935f74648f8
+    reference: ''
+    answer_choices: Bump defects ||| Dirt-related defects ||| K-shaped scratch defect
+      ||| Other types of faults ||| Pastry-type defect ||| Stain defects ||| Z-shaped
+      scratch defect
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Bump defects, Dirt-related defects, K-shaped scratch defect, Other types of\
+      \ faults, Pastry-type defect, Stain defects, Z-shaped scratch defect?\nAnswer:\
+      \ \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

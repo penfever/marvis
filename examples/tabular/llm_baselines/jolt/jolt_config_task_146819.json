@@ -1,0 +1,15 @@
+{
+  "dataset_name": "climate-model-simulation-crashes",
+  "task_prefix": "Dataset containing records of simulation crashes encountered during climate model uncertainty quantification (UQ) ensembles. The data represents the success or failure of climate simulations based on 18 scaled model parameters from the Parallel Ocean Program (POP2) component of the Community Climate System Model (CCSM4). Each example contains 1 features. Predicting climate model simulation failures.",
+  "column_descriptions": {
+    "parameter_1_to_18": "18 climate model parameters scaled to the interval [0,1], representing various physical and numerical settings in the Parallel Ocean Program (POP2)"
+  },
+  "class_names": [
+    "0",
+    "1"
+  ],
+  "class_description": "Classes: '0' (Simulation failure/crash), '1' (Simulation success)",
+  "num_features": 1,
+  "num_classes": 2,
+  "task_id": "146819"
+}

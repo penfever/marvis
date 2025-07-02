@@ -1,0 +1,61 @@
+{
+  "dataset_name": "sulfur",
+  "description": "This dataset comes from a sulfur recovery unit (SRU) in chemical processing. SRUs are critical environmental protection systems that remove harmful sulfur compounds from acid gas streams in industrial processes, particularly in oil refineries and natural gas plants. The system converts toxic hydrogen sulfide (H2S) into elemental sulfur, which can be safely handled and sold as a chemical product.",
+  "original_source": {
+    "creator": "Unknown (likely industrial process data)",
+    "institution": "Referenced in work by Leo Grinsztajn et al.",
+    "date": "Unknown (dataset published to OpenML in recent years)",
+    "publication": "Used in 'A Benchmark of Tabular Deep Learning' (https://github.com/LeoGrin/tabular-benchmark)"
+  },
+  "columns": [
+    {
+      "name": "0",
+      "semantic_description": "Gas flow rate input parameter (likely acid gas feed)",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "1",
+      "semantic_description": "Gas flow rate input parameter (likely air or oxygen feed)",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "2",
+      "semantic_description": "Gas flow rate input parameter (specific stream unknown)",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "3",
+      "semantic_description": "Gas flow rate input parameter (specific stream unknown)",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "4",
+      "semantic_description": "Gas flow rate input parameter (specific stream unknown)",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "5",
+      "semantic_description": "Process parameter (likely temperature or pressure)",
+      "data_type": "numeric, continuous"
+    },
+    {
+      "name": "6",
+      "semantic_description": "Process parameter (likely temperature or pressure)",
+      "data_type": "numeric, continuous"
+    }
+  ],
+  "target_description": {
+    "name": "y1",
+    "meaning": "H2S concentration in output stream - a measure of process efficiency and environmental compliance",
+    "units": "Likely parts per million (ppm) or percentage",
+    "range": "Non-negative values, specific range unknown but typically regulated to be below environmental limits"
+  },
+  "dataset_history": "This dataset appears to be collected from real industrial process monitoring of a sulfur recovery unit. It was included in a benchmark study of tabular deep learning models. SRU data is valuable for process optimization and environmental compliance monitoring.",
+  "inference_notes": "Important considerations:\n1. Data likely represents steady-state operation of the SRU\n2. Feature relationships are likely non-linear due to complex chemical reactions\n3. Target variable (H2S concentration) is critical for environmental compliance\n4. Original feature names were anonymized, limiting detailed interpretation\n5. Dataset may not capture all process upsets or edge cases\n6. Time series aspects of the process may have been removed in preprocessing\n7. Model predictions should be interpreted with safety margins for environmental compliance",
+  "_metadata": {
+    "task_id": 361085,
+    "generated_at": "2025-06-22T07:02:45.374077",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

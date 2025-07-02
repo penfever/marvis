@@ -1,0 +1,22 @@
+{
+  "dataset_name": "climate_insights_dataset",
+  "task_prefix": "A synthetic dataset created to study climate change impacts by modeling relationships between various climate indicators including temperature patterns, CO2 emissions, and sea level rise. The dataset is designed for educational and analytical purposes to understand the interconnections between different climate change factors. Each example contains 9 features. Predict the Sea_Level_Rise.",
+  "column_descriptions": {
+    "Temperature_Anomaly": "Deviation from historical average temperature baseline, indicating global temperature change",
+    "CO2_Emissions": "Carbon dioxide emissions levels, representing human-caused greenhouse gas emissions",
+    "Ocean_Heat": "Heat content in upper ocean layers, indicating thermal energy absorption",
+    "Arctic_Ice": "Arctic sea ice extent, measuring ice coverage in northern polar region",
+    "Precipitation": "Global precipitation patterns and intensity",
+    "Greenhouse_Gas": "Composite measure of greenhouse gas concentrations in atmosphere",
+    "Land_Temperature": "Surface temperature measurements over land areas",
+    "Ocean_Acidification": "pH levels in ocean water indicating acidification from CO2 absorption",
+    "Global_Temperature": "Combined land and ocean temperature measurements"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Sea_Level_Rise - Change in global mean sea level relative to a historical baseline, indicating the combined effect of thermal expansion of oceans and melting of land-based ice. Units: millimeters (mm). Range: Typically 0-500mm for recent historical measurements, but may vary in synthetic data",
+  "num_features": 9,
+  "num_classes": 1,
+  "task_id": 363437
+}

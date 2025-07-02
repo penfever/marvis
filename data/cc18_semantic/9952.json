@@ -1,0 +1,49 @@
+{
+  "dataset_name": "phoneme",
+  "description": "Speech recognition dataset for distinguishing between nasal and oral vowels. Created as part of the European ESPRIT 5516 ROARS project for French and Spanish speech recognition.",
+  "original_source": {
+    "creator": "Dominique Van Cappel",
+    "institution": "THOMSON-SINTRA",
+    "date": "1993",
+    "publication": "Alinat, P. (1993). Periodic Progress Report 4, ROARS Project ESPRIT II-Number 5516. Thomson report TS.ASM 93/S/EGS/NC/079."
+  },
+  "columns": [
+    {
+      "name": "V1",
+      "semantic_description": "Normalized amplitude of the first harmonic (AH1/Ene) - ratio of first harmonic amplitude to total energy.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "V2",
+      "semantic_description": "Normalized amplitude of the second harmonic (AH2/Ene) - ratio of second harmonic amplitude to total energy.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "V3",
+      "semantic_description": "Normalized amplitude of the third harmonic (AH3/Ene) - ratio of third harmonic amplitude to total energy.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "V4",
+      "semantic_description": "Normalized amplitude of the fourth harmonic (AH4/Ene) - ratio of fourth harmonic amplitude to total energy.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "V5",
+      "semantic_description": "Normalized amplitude of the fifth harmonic (AH5/Ene) - ratio of fifth harmonic amplitude to total energy.",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Nasal vowels - sounds produced with airflow through nose and mouth"
+    },
+    {
+      "name": "1",
+      "meaning": "Oral vowels - sounds produced with airflow only through mouth"
+    }
+  ],
+  "dataset_history": "Developed for analytical speech recognition systems that model articulatory processes. Data from 1809 isolated syllables with three observations per vowel: at maximum energy and 8ms before/after. Original 5427 instances reduced to 5404 after removing zero-amplitude cases. Part of ELENA benchmarking project.",
+  "inference_notes": "Contains 5404 instances with approximately 70% nasal (3818) and 30% oral (1586) vowels, showing class imbalance. Harmonics are signed values: positive for local spectrum maxima, negative otherwise. Based on cochlear spectra using MEL-scale filters to simulate auditory response. The 8ms sampling interval captures vowel dynamics. Normalization by total energy makes features speaker-independent."
+}

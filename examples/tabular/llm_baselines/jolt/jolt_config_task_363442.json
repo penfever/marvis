@@ -1,0 +1,19 @@
+{
+  "dataset_name": "world_food_wealth_bank",
+  "task_prefix": "A comprehensive agricultural and economic dataset that tracks global food production, land usage, and related economic indicators across multiple decades. The dataset combines statistics from various agricultural sectors including crop production, livestock, land utilization, and population metrics to support analysis of global food security and agricultural economics. Each example contains 6 features. Predict the Value.",
+  "column_descriptions": {
+    "0": "Likely represents temporal information (year or date) given the multi-decade span of the dataset",
+    "1": "Likely represents geographical or regional identifier for the data point",
+    "2": "Possibly represents crop or livestock category identifier",
+    "3": "May represent land usage category or measurement type",
+    "4": "Could represent a specific measurement category or subcategory",
+    "5": "Additional classification or contextual variable"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Value - Numerical measurement representing the quantity or metric being tracked (could be production volume, economic value, or other agricultural/economic indicator). Units: Variable depending on measurement type (tons, hectares, monetary units, etc.). Range: Likely varies significantly based on measurement type and category",
+  "num_features": 6,
+  "num_classes": 1,
+  "task_id": 363442
+}

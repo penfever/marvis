@@ -1,0 +1,15 @@
+dataset: churn
+templates:
+  edb00d42-a399-453e-90ef-c8edd167283a: !Template
+    name: churn
+    id: edb00d42-a399-453e-90ef-c8edd167283a
+    reference: ''
+    answer_choices: No churn (customer retained) ||| Churn (customer left)
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ No churn (customer retained), Churn (customer left)?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

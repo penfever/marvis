@@ -1,0 +1,211 @@
+{
+  "dataset_name": "GesturePhaseSegmentationProcessed",
+  "openml_task_id": 14969,
+  "dataset_description": "This dataset contains processed features extracted from videos of people performing gestures, aimed at studying gesture phase segmentation. The processed data includes velocity and acceleration measurements of hands and wrists during gesture performance. The goal is to classify different phases of gesture execution, which is important for gesture recognition and human-computer interaction applications.",
+  "dataset_source": "University of São Paulo, Brazil - Gesture recognition research",
+  "domain": "Human-Computer Interaction, Gesture Recognition",
+  "problem_type": "Multi-class Classification",
+  "input_features": {
+    "number_of_features": 32,
+    "feature_types": "Continuous numerical",
+    "feature_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features."
+  },
+  "dataset_size": {
+    "instances": 9873,
+    "features": 32,
+    "classes": 5
+  },
+  "description": "This dataset contains processed features extracted from videos of people performing gestures, aimed at studying gesture phase segmentation. The processed data includes velocity and acceleration measurements of hands and wrists during gesture performance. The goal is to classify different phases of gesture execution, which is important for gesture recognition and human-computer interaction applications.",
+  "original_source": {
+    "creator": "Unknown",
+    "institution": "Unknown",
+    "date": "Unknown",
+    "publication": "Unknown"
+  },
+  "columns": [
+    {
+      "name": "feature_1",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 1)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_2",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 2)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_3",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 3)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_4",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 4)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_5",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 5)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_6",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 6)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_7",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 7)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_8",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 8)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_9",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 9)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_10",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 10)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_11",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 11)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_12",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 12)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_13",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 13)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_14",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 14)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_15",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 15)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_16",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 16)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_17",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 17)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_18",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 18)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_19",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 19)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_20",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 20)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_21",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 21)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_22",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 22)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_23",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 23)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_24",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 24)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_25",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 25)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_26",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 26)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_27",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 27)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_28",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 28)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_29",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 29)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_30",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 30)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_31",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 31)",
+      "data_type": "Continuous numerical"
+    },
+    {
+      "name": "feature_32",
+      "semantic_description": "Processed features including vectorial velocities (x,y,z coordinates) and accelerations for left and right hands and wrists. Features 1-12 are velocities, 13-24 are accelerations, and 25-32 are additional derived features. (feature 32)",
+      "data_type": "Continuous numerical"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "D",
+      "meaning": "Gesture phase labels representing different stages of gesture execution: D"
+    },
+    {
+      "name": "P",
+      "meaning": "Gesture phase labels representing different stages of gesture execution: P"
+    },
+    {
+      "name": "S",
+      "meaning": "Gesture phase labels representing different stages of gesture execution: S"
+    },
+    {
+      "name": "H",
+      "meaning": "Gesture phase labels representing different stages of gesture execution: H"
+    },
+    {
+      "name": "R",
+      "meaning": "Gesture phase labels representing different stages of gesture execution: R"
+    }
+  ],
+  "dataset_history": "Dataset history not available for GesturePhaseSegmentationProcessed",
+  "inference_notes": "Inference notes not available for GesturePhaseSegmentationProcessed"
+}

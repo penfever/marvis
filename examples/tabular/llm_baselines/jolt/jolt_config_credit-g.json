@@ -1,0 +1,33 @@
+{
+  "dataset_name": "credit-g",
+  "task_prefix": "German Credit dataset classifying bank customers as good or bad credit risks based on personal and financial attributes. Used to assess creditworthiness of loan applicants with an asymmetric cost matrix where misclassifying bad customers as good is 5x more costly than the reverse. Each example contains 20 features. Predict the target class.",
+  "column_descriptions": {
+    "checking_status": "Status of existing checking account in Deutsche Mark. Indicates financial stability and cash flow management ability.",
+    "duration": "Duration of credit in months. Longer durations indicate higher total risk exposure for the lender.",
+    "credit_history": "Past credit behavior. Critical indicator of likelihood to repay based on historical performance.",
+    "purpose": "Purpose of the credit. Different purposes have varying risk profiles and importance to borrower.",
+    "credit_amount": "Requested credit amount in Deutsche Mark. Higher amounts represent greater risk exposure.",
+    "savings_status": "Status of savings accounts/bonds. Indicates financial reserves and ability to handle emergencies.",
+    "employment": "Present employment duration in years. Job stability indicates income reliability.",
+    "installment_commitment": "Installment rate as percentage of disposable income. Higher percentages indicate greater financial strain.",
+    "personal_status": "Combined personal status and sex. Demographics affecting financial obligations and stability.",
+    "other_parties": "Other debtors or guarantors. Indicates shared responsibility or additional security.",
+    "residence_since": "Present residence duration in years. Residential stability indicates life stability.",
+    "property_magnitude": "Most valuable property owned. Major assets provide security and indicate financial capacity.",
+    "age": "Age in years. Reflects life stage, earning potential, and credit experience.",
+    "other_payment_plans": "Other installment plans. Multiple credit obligations increase default risk.",
+    "housing": "Housing situation. Ownership indicates stability and wealth accumulation.",
+    "existing_credits": "Number of existing credits at this bank. Multiple loans indicate higher debt burden.",
+    "job": "Job category indicating skill level and income stability. Higher skills typically mean better income.",
+    "num_dependents": "Number of people financially dependent on applicant. More dependents mean higher expenses.",
+    "own_telephone": "Telephone ownership in 1990s Germany. Indicator of financial stability and reachability.",
+    "foreign_worker": "Foreign worker status. May affect income stability and credit access."
+  },
+  "class_names": [
+    "good",
+    "bad"
+  ],
+  "class_description": "Classes: 'good' (Good credit risk - likely to repay loan without issues (70% of instances)), 'bad' (Bad credit risk - likely to default or have payment problems (30% of instances))",
+  "num_features": 20,
+  "num_classes": 2
+}

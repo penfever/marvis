@@ -1,0 +1,20 @@
+{
+  "dataset_name": "sulfur",
+  "task_prefix": "This dataset comes from a sulfur recovery unit (SRU) in chemical processing. SRUs are critical environmental protection systems that remove harmful sulfur compounds from acid gas streams in industrial processes, particularly in oil refineries and natural gas plants. The system converts toxic hydrogen sulfide (H2S) into elemental sulfur, which can be safely handled and sold as a chemical product. Each example contains 7 features. Predict the y1.",
+  "column_descriptions": {
+    "0": "Gas flow rate input parameter (likely acid gas feed)",
+    "1": "Gas flow rate input parameter (likely air or oxygen feed)",
+    "2": "Gas flow rate input parameter (specific stream unknown)",
+    "3": "Gas flow rate input parameter (specific stream unknown)",
+    "4": "Gas flow rate input parameter (specific stream unknown)",
+    "5": "Process parameter (likely temperature or pressure)",
+    "6": "Process parameter (likely temperature or pressure)"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: y1 - H2S concentration in output stream - a measure of process efficiency and environmental compliance. Units: Likely parts per million (ppm) or percentage. Range: Non-negative values, specific range unknown but typically regulated to be below environmental limits",
+  "num_features": 7,
+  "num_classes": 1,
+  "task_id": 361085
+}

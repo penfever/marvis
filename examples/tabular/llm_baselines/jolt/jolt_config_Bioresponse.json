@@ -1,0 +1,15 @@
+{
+  "dataset_name": "Bioresponse",
+  "task_prefix": "Predict biological response of molecules from their chemical properties. Dataset from Boehringer Ingelheim pharmaceutical company used in a Kaggle competition to identify molecules eliciting desired biological responses. Each example contains 2 features. Predict the target class.",
+  "column_descriptions": {
+    "Activity": "Experimental biological response indicator. Binary flag showing whether the molecule elicited the desired biological response in laboratory testing.",
+    "D1 through D1776": "Molecular descriptors capturing various chemical properties. These are calculated features representing molecular characteristics like size, shape, elemental composition, topology, and physicochemical properties. Descriptors have been normalized and anonymized for proprietary reasons."
+  },
+  "class_names": [
+    "1",
+    "0"
+  ],
+  "class_description": "Classes: '1' (Molecule elicited the desired biological response (positive class)), '0' (Molecule did not elicit the desired biological response (negative class))",
+  "num_features": 2,
+  "num_classes": 2
+}

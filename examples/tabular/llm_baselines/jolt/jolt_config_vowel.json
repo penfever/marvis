@@ -1,0 +1,35 @@
+{
+  "dataset_name": "vowel",
+  "task_prefix": "Speaker-independent recognition of eleven steady-state vowels of British English. Features are derived from spectral analysis of vowel sounds, with contextual information about speaker gender and identity. Each example contains 13 features. Vowel recognition systems.",
+  "column_descriptions": {
+    "feature_1": "Feature 1",
+    "feature_2": "Feature 2",
+    "feature_3": "Feature 3",
+    "feature_4": "Feature 4",
+    "feature_5": "Feature 5",
+    "feature_6": "Feature 6",
+    "feature_7": "Feature 7",
+    "feature_8": "Feature 8",
+    "feature_9": "Feature 9",
+    "feature_10": "Feature 10",
+    "feature_11": "Feature 11",
+    "feature_12": "Feature 12",
+    "feature_13": "Feature 13"
+  },
+  "class_names": [
+    "0",
+    "1",
+    "10",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '0' (hid (as in 'heed')), '1' (hId (as in 'hid')), '2' (hEd (as in 'head')), '3' (hAd (as in 'had')), '4' (hYd (as in 'hard')), '5' (had (as in 'hod')), '6' (hOd (as in 'hoard')), '7' (hUd (as in 'hood')), '8' (hud (as in 'who'd')), '9' (hed (as in 'heard')), '10' (had (as in 'hud'))",
+  "num_features": 13,
+  "num_classes": 11
+}

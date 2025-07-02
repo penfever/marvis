@@ -1,0 +1,14 @@
+dataset: semeion
+templates:
+  d06bff8c-a1a6-48d8-929c-5e1de77b4f63: !Template
+    name: semeion
+    id: d06bff8c-a1a6-48d8-929c-5e1de77b4f63
+    reference: ''
+    answer_choices: Class 0 ||| Class 1
+    jinja: "{{note}}\n\nWhat is the class of this instance?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

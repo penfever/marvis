@@ -1,0 +1,16 @@
+dataset: wdbc
+templates:
+  65bce7d5-7805-4306-82e1-ce940077d3d5: !Template
+    name: wdbc
+    id: 65bce7d5-7805-4306-82e1-ce940077d3d5
+    reference: ''
+    answer_choices: B ||| M
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: B (Benign\
+      \ - non-cancerous breast mass (357 instances, 62.7%)), M (Malignant - cancerous\
+      \ breast mass (212 instances, 37.3%))\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

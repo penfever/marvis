@@ -1,0 +1,21 @@
+{
+  "dataset_name": "concrete_compressive_strength",
+  "task_prefix": "High-performance concrete mixture data for predicting compressive strength. Contains quantities of raw materials (cement, water, etc.) and age to predict the resulting concrete strength, a critical parameter in civil engineering. Each example contains 9 features. Predict the target class.",
+  "column_descriptions": {
+    "Cement": "Cement content (component 1) - primary binding material in concrete. Higher amounts generally increase strength.",
+    "BlastFurnaceSlag": "Blast furnace slag (component 2) - industrial byproduct used as partial cement replacement. Improves durability and long-term strength.",
+    "FlyAsh": "Fly ash (component 3) - coal combustion byproduct used as supplementary cementitious material. Enhances workability and durability.",
+    "Water": "Water content (component 4) - activates cement hydration. Water-cement ratio is crucial for strength development.",
+    "Superplasticizer": "Superplasticizer (component 5) - chemical admixture that improves workability without adding water. Allows lower water-cement ratios.",
+    "CoarseAggregate": "Coarse aggregate (component 6) - large particles (gravel/crushed stone) providing bulk and strength to concrete.",
+    "FineAggregate": "Fine aggregate (component 7) - sand that fills voids between coarse aggregates and improves workability.",
+    "Age": "Age of concrete in days. Concrete strength increases with curing time, typically tested at 28 days.",
+    "CompressiveStrength": "Concrete compressive strength in MPa (megapascals). Target variable measured using cylindrical specimens (15cm x 30cm)."
+  },
+  "class_names": [
+    "continuous"
+  ],
+  "class_description": "Classes: 'continuous' (Regression target - compressive strength in MPa)",
+  "num_features": 9,
+  "num_classes": 1
+}

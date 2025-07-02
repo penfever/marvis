@@ -1,0 +1,21 @@
+{
+  "dataset_name": "diabetes",
+  "task_prefix": "Pima Indians Diabetes dataset predicting diabetes onset based on diagnostic measurements. Focuses on females at least 21 years old of Pima Indian heritage, a population with high diabetes prevalence due to genetic predisposition and dietary changes. Each example contains 8 features. Predict the target class.",
+  "column_descriptions": {
+    "preg": "Number of times pregnant. Pregnancy affects glucose metabolism and is a risk factor for gestational diabetes leading to Type 2 diabetes.",
+    "plas": "Plasma glucose concentration at 2 hours in an oral glucose tolerance test (mg/dl). Primary diagnostic criterion for diabetes when \u2265200 mg/dl.",
+    "pres": "Diastolic blood pressure (mm Hg). Hypertension is both a risk factor for and complication of diabetes.",
+    "skin": "Triceps skin fold thickness (mm). Proxy measure for body fat; obesity is major diabetes risk factor.",
+    "insu": "2-Hour serum insulin (\u03bcU/ml). Indicates pancreatic function and insulin resistance.",
+    "mass": "Body mass index (weight in kg/(height in m)\u00b2). Key indicator of obesity and diabetes risk.",
+    "pedi": "Diabetes pedigree function. Scores likelihood of diabetes based on family history using genetic relationships.",
+    "age": "Age in years. Diabetes risk increases with age, especially after 45."
+  },
+  "class_names": [
+    "tested_negative",
+    "tested_positive"
+  ],
+  "class_description": "Classes: 'tested_negative' (No diabetes according to WHO criteria (500 instances, 65.1%)), 'tested_positive' (Diabetes present - 2hr glucose \u2265200 mg/dl at any survey exam (268 instances, 34.9%))",
+  "num_features": 8,
+  "num_classes": 2
+}

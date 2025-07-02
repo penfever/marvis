@@ -1,0 +1,18 @@
+{
+  "dataset_name": "opensubtitles_inferred",
+  "task_prefix": "This dataset is derived from OpenSubtitles, a large collection of movie subtitles. It focuses on analyzing character dialogue and gender representation in movie subtitles, specifically looking at gender bias and character interactions. The dataset has been processed to identify character mentions and infer gender information, with the goal of studying gender-based patterns in movie dialogues. Each example contains 5 features. Predict the ternary_score.",
+  "column_descriptions": {
+    "0": "Likely represents text embeddings or encoded features from subtitle dialogue",
+    "1": "Likely represents text embeddings or encoded features from subtitle dialogue",
+    "2": "Likely represents text embeddings or encoded features from subtitle dialogue",
+    "3": "Likely represents text embeddings or encoded features from subtitle dialogue",
+    "4": "Likely represents text embeddings or encoded features from subtitle dialogue"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: ternary_score - A score that appears to measure some aspect of gender representation or character interaction in the dialogue, possibly on a three-level scale. Units: Normalized score (inferred). Range: Unknown, likely normalized values",
+  "num_features": 5,
+  "num_classes": 1,
+  "task_id": 363389
+}

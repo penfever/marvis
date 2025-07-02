@@ -1,0 +1,18 @@
+{
+  "dataset_name": "superconduct",
+  "task_prefix": "A materials science dataset containing properties of superconducting materials and their critical temperatures. The dataset is used to predict the temperature at which materials transition to a superconducting state based on various physical and chemical properties. This is valuable for materials discovery and design of new superconductors. Each example contains 5 features. Predict the criticaltemp.",
+  "column_descriptions": {
+    "Features 0-8": "Number of atoms for different elements in the superconducting compound",
+    "Features 9-21": "Atomic mass properties and statistics (mean, standard deviation, etc.) of constituent elements",
+    "Features 22-39": "Electron configuration properties including valence electrons and electron affinity",
+    "Features 40-55": "Atomic radius and density characteristics of constituent elements",
+    "Features 56-80": "Derived features including thermal conductivity, atomic orbital radii, and other physical properties"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: criticaltemp - Critical temperature at which the material transitions to a superconducting state (loses electrical resistance). Units: Kelvin (K). Range: 0 to approximately 180 K",
+  "num_features": 5,
+  "num_classes": 1,
+  "task_id": 361088
+}

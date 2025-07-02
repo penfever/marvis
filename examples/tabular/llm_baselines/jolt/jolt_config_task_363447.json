@@ -1,0 +1,18 @@
+{
+  "dataset_name": "IoT_Agriculture_2024",
+  "task_prefix": "This dataset contains IoT sensor measurements from a smart greenhouse environment, collected to monitor and optimize agricultural conditions. The data comes from various sensors measuring environmental and soil parameters critical for plant growth and agricultural management. Each example contains 5 features. Predict the water_level.",
+  "column_descriptions": {
+    "temperature": "Ambient temperature measurement inside the greenhouse",
+    "humidity": "Relative humidity level in the greenhouse atmosphere",
+    "soil_moisture": "Moisture content in the soil",
+    "light_intensity": "Amount of light reaching the plants",
+    "remaining_features": "Note: Exact semantic meaning of remaining numbered features (0-12) cannot be definitively determined without additional documentation"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: water_level - Measurement of water level in the greenhouse irrigation system or soil. Units: Likely in centimeters or percentage. Range: Numeric values representing water levels (exact range uncertain without additional documentation)",
+  "num_features": 5,
+  "num_classes": 1,
+  "task_id": 363447
+}

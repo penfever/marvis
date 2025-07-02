@@ -1,0 +1,16 @@
+dataset: phoneme
+templates:
+  23a435f4-8b1b-446d-8a59-a75867b4aa24: !Template
+    name: phoneme
+    id: 23a435f4-8b1b-446d-8a59-a75867b4aa24
+    reference: ''
+    answer_choices: 0 ||| 1
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: 0 (Nasal\
+      \ vowels - sounds produced with airflow through nose and mouth), 1 (Oral vowels\
+      \ - sounds produced with airflow only through mouth)\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

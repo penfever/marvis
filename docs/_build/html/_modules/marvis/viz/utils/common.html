@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.viz.utils.common &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">marvis.viz.utils.common</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for marvis.viz.utils.common</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Visualization utilities for MARVIS.</span>
+
+<span class="sd">This module provides common functionality for saving and processing</span>
+<span class="sd">visualizations across different MARVIS implementations.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="c1"># Import JSON serialization utility</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">...utils.json_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_for_json_serialization</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="managed_figure">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.utils.common.managed_figure">[docs]</a>
+<span class="nd">@contextmanager</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">managed_figure</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Context manager for matplotlib figures that ensures proper cleanup.</span>
+<span class="sd">    </span>
+<span class="sd">    Usage:</span>
+<span class="sd">        with managed_figure(figsize=(10, 8)) as fig:</span>
+<span class="sd">            # Use figure</span>
+<span class="sd">            pass</span>
+<span class="sd">        # Figure is automatically closed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">fig</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="managed_subplots">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.utils.common.managed_subplots">[docs]</a>
+<span class="nd">@contextmanager</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">managed_subplots</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Context manager for matplotlib subplots that ensures proper cleanup.</span>
+<span class="sd">    </span>
+<span class="sd">    Usage:</span>
+<span class="sd">        with managed_subplots(2, 2, figsize=(12, 10)) as (fig, axes):</span>
+<span class="sd">            # Use figure and axes</span>
+<span class="sd">            pass</span>
+<span class="sd">        # Figure is automatically closed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ensure_figure_closed">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.utils.common.ensure_figure_closed">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">ensure_figure_closed</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator that ensures any figures created in a function are properly closed.</span>
+<span class="sd">    This helps prevent memory leaks from matplotlib figures.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">initial_figures</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">get_fignums</span><span class="p">())</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="c1"># Close any new figures that were created</span>
+            <span class="n">current_figures</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">get_fignums</span><span class="p">())</span>
+            <span class="n">new_figures</span> <span class="o">=</span> <span class="n">current_figures</span> <span class="o">-</span> <span class="n">initial_figures</span>
+            <span class="k">for</span> <span class="n">fignum</span> <span class="ow">in</span> <span class="n">new_figures</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fignum</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span></div>
+
+
+
+<div class="viewcode-block" id="cleanup_matplotlib_figures">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.utils.common.cleanup_matplotlib_figures">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cleanup_matplotlib_figures</span><span class="p">(</span><span class="n">warn_threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clean up all current matplotlib figures and warn if many are open.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        warn_threshold: Number of figures above which to issue a warning</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">current_figures</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_fignums</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_figures</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">warn_threshold</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">current_figures</span><span class="p">)</span><span class="si">}</span><span class="s2"> open matplotlib figures, closing all to prevent memory leaks&quot;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">fignum</span> <span class="ow">in</span> <span class="n">current_figures</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fignum</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_figures</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="force_matplotlib_cleanup">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.utils.common.force_matplotlib_cleanup">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">force_matplotlib_cleanup</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Force cleanup of all matplotlib figures and clear internal state.</span>
+<span class="sd">    Use this as a last resort when memory issues persist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Close all figures</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Clear matplotlib cache if available</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">font_manager</span>
+        <span class="n">font_manager</span><span class="o">.</span><span class="n">_get_fontconfig_fonts</span><span class="o">.</span><span class="n">cache_clear</span><span class="p">()</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="k">pass</span>
+    
+    <span class="c1"># Clear any remaining figure manager references</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib._pylab_helpers</span>
+        <span class="n">matplotlib</span><span class="o">.</span><span class="n">_pylab_helpers</span><span class="o">.</span><span class="n">Gcf</span><span class="o">.</span><span class="n">figs</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="plot_to_image">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.utils.common.plot_to_image">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_to_image</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> 
+    <span class="n">dpi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> 
+    <span class="n">force_rgb</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="n">max_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="nb">format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;png&#39;</span><span class="p">,</span>
+    <span class="n">close_fig</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert matplotlib figure to PIL Image with optional processing.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        fig: Matplotlib figure</span>
+<span class="sd">        dpi: Resolution for image conversion</span>
+<span class="sd">        force_rgb: Convert RGBA to RGB if needed</span>
+<span class="sd">        max_size: Maximum width/height (resizes if larger)</span>
+<span class="sd">        format: Image format (&#39;png&#39;, &#39;jpg&#39;, etc.)</span>
+<span class="sd">        close_fig: Whether to close the figure after conversion</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        PIL Image object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Convert plot to image</span>
+        <span class="n">img_buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">img_buffer</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="n">img_buffer</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_buffer</span><span class="p">)</span>
+        
+        <span class="c1"># Convert RGBA to RGB if needed</span>
+        <span class="k">if</span> <span class="n">force_rgb</span> <span class="ow">and</span> <span class="n">image</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;RGBA&#39;</span><span class="p">:</span>
+            <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+            <span class="n">rgb_image</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">rgb_image</span>
+        
+        <span class="c1"># Resize image if needed</span>
+        <span class="k">if</span> <span class="n">max_size</span> <span class="ow">and</span> <span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">&gt;</span> <span class="n">max_size</span> <span class="ow">or</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span> <span class="o">&gt;</span> <span class="n">max_size</span><span class="p">):</span>
+            <span class="n">ratio</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">max_size</span> <span class="o">/</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">max_size</span> <span class="o">/</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+            <span class="n">new_width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">)</span>
+            <span class="n">new_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">)</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">new_width</span><span class="p">,</span> <span class="n">new_height</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">Resampling</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">image</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="c1"># Close figure to prevent memory leaks</span>
+        <span class="k">if</span> <span class="n">close_fig</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="save_visualization_with_metadata">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.utils.common.save_visualization_with_metadata">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_visualization_with_metadata</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span>
+    <span class="n">save_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">force_rgb</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">close_fig</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save visualization figure with optional metadata.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        fig: Matplotlib figure to save</span>
+<span class="sd">        save_path: Path to save the image</span>
+<span class="sd">        metadata: Optional metadata to save alongside</span>
+<span class="sd">        dpi: Resolution for saving</span>
+<span class="sd">        force_rgb: Convert to RGB mode</span>
+<span class="sd">        max_size: Maximum image size</span>
+<span class="sd">        close_fig: Whether to close the figure after saving</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary with save information (path, size, etc.)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Ensure directory exists</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">save_path</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Convert to image and save (this will also close the figure)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">plot_to_image</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">,</span> <span class="n">force_rgb</span><span class="o">=</span><span class="n">force_rgb</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="n">max_size</span><span class="p">,</span> <span class="n">close_fig</span><span class="o">=</span><span class="n">close_fig</span><span class="p">)</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
+    
+    <span class="c1"># Save metadata if provided</span>
+    <span class="k">if</span> <span class="n">metadata</span><span class="p">:</span>
+        <span class="n">metadata_path</span> <span class="o">=</span> <span class="n">save_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.png&#39;</span><span class="p">,</span> <span class="s1">&#39;_metadata.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;_metadata.json&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">metadata_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="c1"># Ensure metadata is JSON serializable</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">convert_for_json_serialization</span><span class="p">(</span><span class="n">metadata</span><span class="p">),</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="n">save_path</span><span class="p">,</span>
+        <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
+        <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+        <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="n">image</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+        <span class="s1">&#39;dpi&#39;</span><span class="p">:</span> <span class="n">dpi</span><span class="p">,</span>
+        <span class="s1">&#39;metadata_saved&#39;</span><span class="p">:</span> <span class="n">metadata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="create_output_directories">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.utils.common.create_output_directories">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_output_directories</span><span class="p">(</span><span class="n">base_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">subdirs</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create standardized output directory structure.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        base_dir: Base output directory</span>
+<span class="sd">        subdirs: List of subdirectory names to create</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary mapping subdir names to full paths</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dir_paths</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">for</span> <span class="n">subdir</span> <span class="ow">in</span> <span class="n">subdirs</span><span class="p">:</span>
+        <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="n">subdir</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">dir_paths</span><span class="p">[</span><span class="n">subdir</span><span class="p">]</span> <span class="o">=</span> <span class="n">full_path</span>
+    
+    <span class="k">return</span> <span class="n">dir_paths</span></div>
+
+
+
+<div class="viewcode-block" id="generate_visualization_filename">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.utils.common.generate_visualization_filename">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_visualization_filename</span><span class="p">(</span>
+    <span class="n">sample_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">backend</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;tsne&quot;</span><span class="p">,</span>
+    <span class="n">dimensions</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;2d&quot;</span><span class="p">,</span> 
+    <span class="n">use_knn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">nn_k</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">extension</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;png&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate standardized filename for visualization saves.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        sample_index: Index of the sample</span>
+<span class="sd">        backend: Backend used (tsne, pca, etc.)</span>
+<span class="sd">        dimensions: Dimensionality (2d, 3d)</span>
+<span class="sd">        use_knn: Whether KNN connections are shown</span>
+<span class="sd">        nn_k: Number of KNN neighbors (if use_knn=True)</span>
+<span class="sd">        extension: File extension</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Standardized filename</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sample_</span><span class="si">{</span><span class="n">sample_index</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">backend</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">dimensions</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+    <span class="k">if</span> <span class="n">use_knn</span> <span class="ow">and</span> <span class="n">nn_k</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">filename</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;_knn</span><span class="si">{</span><span class="n">nn_k</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+    <span class="n">filename</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;.</span><span class="si">{</span><span class="n">extension</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+    <span class="k">return</span> <span class="n">filename</span></div>
+
+
+
+<div class="viewcode-block" id="close_figure_safely">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.utils.common.close_figure_safely">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">close_figure_safely</span><span class="p">(</span><span class="n">fig</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Safely close matplotlib figure if it exists.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        fig: Matplotlib figure to close (can be None)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

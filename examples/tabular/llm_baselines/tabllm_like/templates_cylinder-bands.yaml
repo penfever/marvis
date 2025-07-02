@@ -1,0 +1,15 @@
+dataset: cylinder-bands
+templates:
+  9eba2887-ad4c-42c2-a62e-ac5d38d25a97: !Template
+    name: cylinder-bands
+    id: 9eba2887-ad4c-42c2-a62e-ac5d38d25a97
+    reference: ''
+    answer_choices: Cylinder banding defect present ||| No cylinder banding defect
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Cylinder banding defect present, No cylinder banding defect?\nAnswer: \n|||\n\
+      {{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

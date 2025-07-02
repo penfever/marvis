@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.viz.embeddings.manifold &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">marvis.viz.embeddings.manifold</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for marvis.viz.embeddings.manifold</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">sklearn.manifold visualization implementations.</span>
+
+<span class="sd">This module provides wrappers for various manifold learning methods from</span>
+<span class="sd">scikit-learn, including LocallyLinearEmbedding, SpectralEmbedding, Isomap, and MDS.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.manifold</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">LocallyLinearEmbedding</span><span class="p">,</span>
+    <span class="n">SpectralEmbedding</span><span class="p">,</span> 
+    <span class="n">Isomap</span><span class="p">,</span>
+    <span class="n">MDS</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseVisualization</span><span class="p">,</span> <span class="n">VisualizationResult</span>
+
+<span class="c1"># Import shared styling utilities</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.styling</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">apply_consistent_point_styling</span><span class="p">,</span>
+    <span class="n">apply_consistent_legend_formatting</span><span class="p">,</span>
+    <span class="n">create_distinct_color_map</span><span class="p">,</span>
+    <span class="n">create_regression_color_map</span>
+<span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="LocallyLinearEmbeddingVisualization">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.embeddings.manifold.LocallyLinearEmbeddingVisualization">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">LocallyLinearEmbeddingVisualization</span><span class="p">(</span><span class="n">BaseVisualization</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Locally Linear Embedding (LLE) visualization.</span>
+<span class="sd">    </span>
+<span class="sd">    LLE attempts to preserve local linear structure by reconstructing each</span>
+<span class="sd">    point from its neighbors. Supports standard, modified, Hessian, and LTSA variants.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">extra_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;standard&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;LLE-</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_3d</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_new_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># LLE doesn&#39;t support transform on new data</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_transformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create LLE transformer.&quot;&quot;&quot;</span>
+        
+        <span class="n">lle_params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+            <span class="s1">&#39;n_components&#39;</span><span class="p">:</span> <span class="mi">3</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s1">&#39;reg&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;reg&#39;</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">),</span>
+            <span class="s1">&#39;eigen_solver&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;eigen_solver&#39;</span><span class="p">,</span> <span class="s1">&#39;auto&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;tol&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tol&#39;</span><span class="p">,</span> <span class="mf">1e-6</span><span class="p">),</span>
+            <span class="s1">&#39;max_iter&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_iter&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;standard&#39;</span><span class="p">),</span>  <span class="c1"># standard, modified, hessian, ltsa</span>
+            <span class="s1">&#39;hessian_tol&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hessian_tol&#39;</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">),</span>
+            <span class="s1">&#39;modified_tol&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;modified_tol&#39;</span><span class="p">,</span> <span class="mf">1e-12</span><span class="p">),</span>
+            <span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="s1">&#39;n_jobs&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_jobs&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># Remove None values</span>
+        <span class="n">lle_params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">lle_params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating LLE with parameters: </span><span class="si">{</span><span class="n">lle_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">LocallyLinearEmbedding</span><span class="p">(</span><span class="o">**</span><span class="n">lle_params</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_default_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n_features</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get default description for LLE.&quot;&quot;&quot;</span>
+        <span class="n">components</span> <span class="o">=</span> <span class="s2">&quot;3D&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="s2">&quot;2D&quot;</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">extra_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;standard&#39;</span><span class="p">)</span>
+        
+        <span class="n">method_descriptions</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;standard&#39;</span><span class="p">:</span> <span class="s2">&quot;standard LLE preserves local linear structure&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;modified&#39;</span><span class="p">:</span> <span class="s2">&quot;modified LLE adds regularization for stability&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;hessian&#39;</span><span class="p">:</span> <span class="s2">&quot;Hessian LLE uses local Hessian information&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;ltsa&#39;</span><span class="p">:</span> <span class="s2">&quot;LTSA (Local Tangent Space Alignment) aligns local tangent spaces&quot;</span>
+        <span class="p">}</span>
+        
+        <span class="n">description</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;LLE </span><span class="si">{</span><span class="n">components</span><span class="si">}</span><span class="s2"> embedding of </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2"> samples from </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2"> dimensions. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">method_descriptions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="p">)</span><span class="si">}</span><span class="s2"> by reconstructing each point &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;from its local neighborhood.&quot;</span>
+        <span class="p">)</span>
+        
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">extra_params</span>
+        <span class="k">if</span> <span class="s1">&#39;n_neighbors&#39;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+            <span class="n">description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; Using </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> neighbors for local reconstruction.&quot;</span>
+        
+        <span class="k">return</span> <span class="n">description</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_quality_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">VisualizationResult</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add LLE-specific quality metrics.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Reconstruction error</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span> <span class="s1">&#39;reconstruction_error_&#39;</span><span class="p">):</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">reconstruction_error</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">reconstruction_error_</span><span class="p">)</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;reconstruction_error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">reconstruction_error_</span><span class="p">)</span>
+            
+            <span class="c1"># LLE parameters</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">n_neighbors</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">method</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;regularization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">reg</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added LLE quality metrics: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="SpectralEmbeddingVisualization">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.embeddings.manifold.SpectralEmbeddingVisualization">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpectralEmbeddingVisualization</span><span class="p">(</span><span class="n">BaseVisualization</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Spectral Embedding visualization.</span>
+<span class="sd">    </span>
+<span class="sd">    Spectral embedding uses graph Laplacian eigendecomposition to find</span>
+<span class="sd">    a low-dimensional representation that preserves the graph structure.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Spectral&quot;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_3d</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_new_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Spectral embedding doesn&#39;t support transform on new data</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_transformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create Spectral Embedding transformer.&quot;&quot;&quot;</span>
+        
+        <span class="n">spectral_params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="s1">&#39;n_components&#39;</span><span class="p">:</span> <span class="mi">3</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s1">&#39;affinity&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;affinity&#39;</span><span class="p">,</span> <span class="s1">&#39;nearest_neighbors&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="s1">&#39;eigen_solver&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;eigen_solver&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="s1">&#39;n_jobs&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_jobs&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># Handle affinity-specific parameters</span>
+        <span class="k">if</span> <span class="n">spectral_params</span><span class="p">[</span><span class="s1">&#39;affinity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;nearest_neighbors&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">spectral_params</span><span class="p">[</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">spectral_params</span><span class="p">[</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_samples&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">))))</span>
+        
+        <span class="c1"># Remove None values</span>
+        <span class="n">spectral_params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">spectral_params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating Spectral Embedding with parameters: </span><span class="si">{</span><span class="n">spectral_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">SpectralEmbedding</span><span class="p">(</span><span class="o">**</span><span class="n">spectral_params</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_default_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n_features</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get default description for Spectral Embedding.&quot;&quot;&quot;</span>
+        <span class="n">components</span> <span class="o">=</span> <span class="s2">&quot;3D&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="s2">&quot;2D&quot;</span>
+        <span class="n">affinity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">extra_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;affinity&#39;</span><span class="p">,</span> <span class="s1">&#39;nearest_neighbors&#39;</span><span class="p">)</span>
+        
+        <span class="n">description</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Spectral </span><span class="si">{</span><span class="n">components</span><span class="si">}</span><span class="s2"> embedding of </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2"> samples from </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2"> dimensions. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Spectral embedding uses graph Laplacian eigendecomposition to preserve &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;the manifold structure using </span><span class="si">{</span><span class="n">affinity</span><span class="si">}</span><span class="s2"> affinity.&quot;</span>
+        <span class="p">)</span>
+        
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">extra_params</span>
+        <span class="k">if</span> <span class="s1">&#39;n_neighbors&#39;</span> <span class="ow">in</span> <span class="n">params</span> <span class="ow">and</span> <span class="n">affinity</span> <span class="o">==</span> <span class="s1">&#39;nearest_neighbors&#39;</span><span class="p">:</span>
+            <span class="n">description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; Using </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> neighbors for graph construction.&quot;</span>
+        
+        <span class="k">return</span> <span class="n">description</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_quality_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">VisualizationResult</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add Spectral Embedding-specific quality metrics.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Spectral embedding parameters</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;affinity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">affinity</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span> <span class="s1">&#39;n_neighbors&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added Spectral Embedding quality metrics: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="IsomapVisualization">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.embeddings.manifold.IsomapVisualization">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">IsomapVisualization</span><span class="p">(</span><span class="n">BaseVisualization</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Isomap visualization.</span>
+<span class="sd">    </span>
+<span class="sd">    Isomap preserves geodesic distances on the manifold by computing</span>
+<span class="sd">    shortest paths on the neighborhood graph.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Isomap&quot;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_3d</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_new_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>  <span class="c1"># Isomap supports transform on new data</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_transformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create Isomap transformer.&quot;&quot;&quot;</span>
+        
+        <span class="n">isomap_params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+            <span class="s1">&#39;n_components&#39;</span><span class="p">:</span> <span class="mi">3</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s1">&#39;eigen_solver&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;eigen_solver&#39;</span><span class="p">,</span> <span class="s1">&#39;auto&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;tol&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tol&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="s1">&#39;max_iter&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_iter&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="s1">&#39;path_method&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;path_method&#39;</span><span class="p">,</span> <span class="s1">&#39;auto&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;neighbors_algorithm&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;neighbors_algorithm&#39;</span><span class="p">,</span> <span class="s1">&#39;auto&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;n_jobs&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_jobs&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="s1">&#39;metric&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;metric&#39;</span><span class="p">,</span> <span class="s1">&#39;minkowski&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># Remove None values</span>
+        <span class="n">isomap_params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">isomap_params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating Isomap with parameters: </span><span class="si">{</span><span class="n">isomap_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">Isomap</span><span class="p">(</span><span class="o">**</span><span class="n">isomap_params</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_default_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n_features</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get default description for Isomap.&quot;&quot;&quot;</span>
+        <span class="n">components</span> <span class="o">=</span> <span class="s2">&quot;3D&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="s2">&quot;2D&quot;</span>
+        
+        <span class="n">description</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Isomap </span><span class="si">{</span><span class="n">components</span><span class="si">}</span><span class="s2"> embedding of </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2"> samples from </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2"> dimensions. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Isomap preserves geodesic distances on the manifold by computing shortest &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;paths through the neighborhood graph.&quot;</span>
+        <span class="p">)</span>
+        
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">extra_params</span>
+        <span class="k">if</span> <span class="s1">&#39;n_neighbors&#39;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+            <span class="n">description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; Using </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> neighbors for graph construction.&quot;</span>
+        
+        <span class="k">return</span> <span class="n">description</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_quality_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">VisualizationResult</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add Isomap-specific quality metrics.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Reconstruction error</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span> <span class="s1">&#39;reconstruction_error_&#39;</span><span class="p">):</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">reconstruction_error</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">reconstruction_error_</span><span class="p">)</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;reconstruction_error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">reconstruction_error_</span><span class="p">)</span>
+            
+            <span class="c1"># Isomap parameters</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">n_neighbors</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;path_method&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">path_method</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;metric&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">metric</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added Isomap quality metrics: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="MDSVisualization">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.embeddings.manifold.MDSVisualization">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MDSVisualization</span><span class="p">(</span><span class="n">BaseVisualization</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Multidimensional Scaling (MDS) visualization.</span>
+<span class="sd">    </span>
+<span class="sd">    MDS preserves pairwise distances between points. Supports both</span>
+<span class="sd">    metric and non-metric variants.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">extra_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;metric&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;MDS&quot;</span> <span class="k">if</span> <span class="n">metric</span> <span class="k">else</span> <span class="s2">&quot;Non-metric MDS&quot;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_3d</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">supports_new_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># MDS doesn&#39;t support transform on new data</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_transformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create MDS transformer.&quot;&quot;&quot;</span>
+        
+        <span class="n">mds_params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;n_components&#39;</span><span class="p">:</span> <span class="mi">3</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s1">&#39;metric&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;metric&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+            <span class="s1">&#39;n_init&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_init&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="s1">&#39;max_iter&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_iter&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span>
+            <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;verbose&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="s1">&#39;eps&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;eps&#39;</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">),</span>
+            <span class="s1">&#39;n_jobs&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_jobs&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="s1">&#39;dissimilarity&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dissimilarity&#39;</span><span class="p">,</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># Remove None values</span>
+        <span class="n">mds_params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">mds_params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating MDS with parameters: </span><span class="si">{</span><span class="n">mds_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">MDS</span><span class="p">(</span><span class="o">**</span><span class="n">mds_params</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_default_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n_features</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get default description for MDS.&quot;&quot;&quot;</span>
+        <span class="n">components</span> <span class="o">=</span> <span class="s2">&quot;3D&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="s2">&quot;2D&quot;</span>
+        <span class="n">metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">extra_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;metric&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">variant</span> <span class="o">=</span> <span class="s2">&quot;metric&quot;</span> <span class="k">if</span> <span class="n">metric</span> <span class="k">else</span> <span class="s2">&quot;non-metric&quot;</span>
+        
+        <span class="n">description</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variant</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s2"> MDS </span><span class="si">{</span><span class="n">components</span><span class="si">}</span><span class="s2"> embedding of </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2"> samples from </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2"> dimensions. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;MDS preserves pairwise distances between points&quot;</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">metric</span><span class="p">:</span>
+            <span class="n">description</span> <span class="o">+=</span> <span class="s2">&quot; using exact distance preservation.&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">description</span> <span class="o">+=</span> <span class="s2">&quot; using rank-order distance preservation.&quot;</span>
+        
+        <span class="k">return</span> <span class="n">description</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_quality_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">VisualizationResult</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add MDS-specific quality metrics.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Stress (final value)</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span> <span class="s1">&#39;stress_&#39;</span><span class="p">):</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">stress</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">stress_</span><span class="p">)</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;stress&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">stress_</span><span class="p">)</span>
+            
+            <span class="c1"># Number of iterations</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span> <span class="s1">&#39;n_iter_&#39;</span><span class="p">):</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;n_iterations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">n_iter_</span><span class="p">)</span>
+            
+            <span class="c1"># MDS parameters</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;metric&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">metric</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;dissimilarity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">dissimilarity</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added MDS quality metrics: stress = </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">stress</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># Convenience functions for creating manifold visualizations</span>
+<div class="viewcode-block" id="create_manifold_comparison">
+<a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.embeddings.manifold.create_manifold_comparison">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_manifold_comparison</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">methods</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_3d</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a comparison of multiple manifold learning methods.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        X_train: Training data</span>
+<span class="sd">        y_train: Training labels</span>
+<span class="sd">        X_test: Test data (optional)</span>
+<span class="sd">        methods: List of methods to compare (default: all available)</span>
+<span class="sd">        use_3d: Whether to use 3D embeddings</span>
+<span class="sd">        random_state: Random seed</span>
+<span class="sd">        **kwargs: Additional parameters for methods</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary with results for each method</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="n">VisualizationConfig</span>
+    
+    <span class="k">if</span> <span class="n">methods</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lle&#39;</span><span class="p">,</span> <span class="s1">&#39;spectral&#39;</span><span class="p">,</span> <span class="s1">&#39;isomap&#39;</span><span class="p">,</span> <span class="s1">&#39;mds&#39;</span><span class="p">]</span>
+    
+    <span class="n">method_classes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;lle&#39;</span><span class="p">:</span> <span class="n">LocallyLinearEmbeddingVisualization</span><span class="p">,</span>
+        <span class="s1">&#39;spectral&#39;</span><span class="p">:</span> <span class="n">SpectralEmbeddingVisualization</span><span class="p">,</span>
+        <span class="s1">&#39;isomap&#39;</span><span class="p">:</span> <span class="n">IsomapVisualization</span><span class="p">,</span>
+        <span class="s1">&#39;mds&#39;</span><span class="p">:</span> <span class="n">MDSVisualization</span>
+    <span class="p">}</span>
+    
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">method_classes</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">, skipping&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Create configuration</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">VisualizationConfig</span><span class="p">(</span>
+                <span class="n">use_3d</span><span class="o">=</span><span class="n">use_3d</span><span class="p">,</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+                <span class="n">extra_params</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s1">_params&#39;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="p">)</span>
+            
+            <span class="c1"># Create visualization</span>
+            <span class="n">viz</span> <span class="o">=</span> <span class="n">method_classes</span><span class="p">[</span><span class="n">method</span><span class="p">](</span><span class="n">config</span><span class="p">)</span>
+            
+            <span class="c1"># Fit and transform</span>
+            <span class="n">train_embedding</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+            
+            <span class="c1"># Transform test data if supported</span>
+            <span class="n">test_embedding</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">X_test</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">viz</span><span class="o">.</span><span class="n">supports_new_data</span><span class="p">:</span>
+                <span class="n">test_embedding</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+            
+            <span class="c1"># Generate plot</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">generate_plot</span><span class="p">(</span>
+                <span class="n">transformed_data</span><span class="o">=</span><span class="n">train_embedding</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
+                <span class="n">test_data</span><span class="o">=</span><span class="n">test_embedding</span>
+            <span class="p">)</span>
+            
+            <span class="n">results</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;train_embedding&#39;</span><span class="p">:</span> <span class="n">train_embedding</span><span class="p">,</span>
+                <span class="s1">&#39;test_embedding&#39;</span><span class="p">:</span> <span class="n">test_embedding</span><span class="p">,</span>
+                <span class="s1">&#39;visualization_result&#39;</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
+                <span class="s1">&#39;transformer&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span>
+                <span class="s1">&#39;supports_new_data&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">supports_new_data</span>
+            <span class="p">}</span>
+            
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully created </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2"> visualization&quot;</span><span class="p">)</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to create </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2"> visualization: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+    
+    <span class="k">return</span> <span class="n">results</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

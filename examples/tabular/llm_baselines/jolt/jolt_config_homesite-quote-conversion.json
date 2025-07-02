@@ -1,0 +1,22 @@
+{
+  "dataset_name": "homesite-quote-conversion",
+  "task_prefix": "Insurance quote conversion prediction dataset from Homesite, a leading provider of homeowners insurance. Contains anonymized customer and quote information to predict whether a quoted insurance policy will result in a purchase. Each example contains 9 features. Predict the target class.",
+  "column_descriptions": {
+    "QuoteNumber": "Unique identifier for each insurance quote. Links customer interaction with outcome.",
+    "Original_Quote_Date": "Date when the insurance quote was originally generated. Allows temporal analysis and seasonality detection.",
+    "QuoteConversion_Flag": "Binary target indicating whether the customer purchased the quoted policy (1) or not (0).",
+    "Field1-Field10": "Anonymized coverage information fields. Likely includes coverage types, limits, deductibles, and policy options.",
+    "CoverageField1-CoverageField8": "Specific coverage-related features. May represent different types of protection (dwelling, personal property, liability).",
+    "SalesField1-SalesField8": "Sales channel and process information. Could include agent details, quote source, marketing campaign identifiers.",
+    "PersonalField1-PersonalField84": "Anonymized personal customer information. Likely includes demographics, credit indicators, prior insurance history.",
+    "PropertyField1-PropertyField29": "Property characteristics. May include home age, size, construction type, safety features, location risk factors.",
+    "GeographicField1-GeographicField62": "Location-based features. Could include risk scores, distance to coast/fire stations, neighborhood statistics."
+  },
+  "class_names": [
+    "0",
+    "1"
+  ],
+  "class_description": "Classes: '0' (Quote not converted - Customer did not purchase the insurance policy), '1' (Quote converted - Customer purchased the insurance policy)",
+  "num_features": 9,
+  "num_classes": 2
+}

@@ -1,0 +1,56 @@
+{
+  "dataset_name": "reddit_opinion_climate_change",
+  "description": "A large-scale dataset containing Reddit posts and associated metadata related to climate change discussions. The dataset captures public discourse and engagement metrics around climate change topics on Reddit, providing insights into how online communities discuss and react to climate-related content.",
+  "original_source": {
+    "creator": "Unknown (Dataset appears to be algorithmically collected)",
+    "institution": "Likely independent research project",
+    "date": "Ongoing (Updated daily as per description)",
+    "publication": "No formal academic publication found"
+  },
+  "columns": [
+    {
+      "name": "post_thumbs_ups",
+      "semantic_description": "Number of upvotes received by the Reddit post, indicating community agreement or post popularity",
+      "data_type": "Integer (≥0)"
+    },
+    {
+      "name": "post_title",
+      "semantic_description": "The title text of the Reddit post about climate change",
+      "data_type": "String"
+    },
+    {
+      "name": "post_body",
+      "semantic_description": "The main content text of the Reddit post",
+      "data_type": "String"
+    },
+    {
+      "name": "subreddit",
+      "semantic_description": "The specific Reddit community where the post was made",
+      "data_type": "Categorical string"
+    },
+    {
+      "name": "post_date",
+      "semantic_description": "Timestamp when the post was created",
+      "data_type": "DateTime"
+    },
+    {
+      "name": "comment_count",
+      "semantic_description": "Number of comments received on the post",
+      "data_type": "Integer (≥0)"
+    }
+  ],
+  "target_description": {
+    "name": "post_thumbs_ups",
+    "meaning": "The number of upvotes a post receives, serving as a proxy for community engagement and agreement with the content",
+    "units": "Count of upvotes",
+    "range": "0 to potentially thousands, highly variable"
+  },
+  "dataset_history": "This dataset appears to be an automated collection of Reddit posts related to climate change discussions. It represents a contemporary snapshot of public discourse on climate change on one of the world's largest social media platforms. The daily updates suggest it's an ongoing project to track evolving public opinion and discussion patterns.",
+  "inference_notes": "Important considerations include:\n1. Reddit's demographic biases (predominantly younger, male, Western users)\n2. Potential sampling biases based on keyword selection for climate-related content\n3. Vote manipulation and bot activity may affect metrics\n4. Temporal patterns may be significant (daily/seasonal variations)\n5. Community-specific norms in different subreddits may affect voting patterns\n6. Not all features from the original 24 could be definitively identified without direct access to the complete data dictionary\n7. The large number of instances (>1M) suggests good statistical power but may include noise and duplicate content",
+  "_metadata": {
+    "task_id": 363438,
+    "generated_at": "2025-06-22T08:35:27.873995",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

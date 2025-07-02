@@ -1,0 +1,56 @@
+{
+  "dataset_name": "Violent_Crime_by_County_1975_to_2016",
+  "description": "A longitudinal dataset tracking property and violent crime statistics across US counties over 41 years (1975-2016). The data combines FBI Uniform Crime Reporting (UCR) statistics with county-level demographic and socioeconomic indicators to enable analysis of crime rate patterns and potential contributing factors.",
+  "original_source": {
+    "creator": "FBI Uniform Crime Reporting Program",
+    "institution": "Federal Bureau of Investigation & National Archive of Criminal Justice Data",
+    "date": "2016 (last update)",
+    "publication": "FBI UCR Annual Crime Reports"
+  },
+  "columns": [
+    {
+      "name": "COUNTY",
+      "semantic_description": "County identifier/name within US state",
+      "data_type": "categorical (string)"
+    },
+    {
+      "name": "STATE",
+      "semantic_description": "US state where county is located",
+      "data_type": "categorical (string)"
+    },
+    {
+      "name": "YEAR",
+      "semantic_description": "Year of recorded statistics",
+      "data_type": "numeric (1975-2016)"
+    },
+    {
+      "name": "POPULATION",
+      "semantic_description": "Total resident population of county in given year",
+      "data_type": "numeric (integer)"
+    },
+    {
+      "name": "VIOLENT_CRIME_TOTAL",
+      "semantic_description": "Total number of violent crimes reported (murder, rape, robbery, aggravated assault)",
+      "data_type": "numeric (integer)"
+    },
+    {
+      "name": "PROPERTY_CRIME_TOTALS",
+      "semantic_description": "Total number of property crimes reported (burglary, larceny-theft, motor vehicle theft)",
+      "data_type": "numeric (integer)"
+    }
+  ],
+  "target_description": {
+    "name": "PROPERTY_CRIME_TOTALS",
+    "meaning": "The total count of reported property crimes in a county for a given year, including burglary, larceny-theft, and motor vehicle theft",
+    "units": "Number of reported incidents",
+    "range": "0 to several thousand, depending on county size"
+  },
+  "dataset_history": "This dataset was compiled from the FBI's Uniform Crime Reporting (UCR) Program, which has been collecting standardized crime statistics from law enforcement agencies across the United States since 1930. The county-level focus provides a more granular view than state-level statistics, while the long time period (41 years) enables analysis of long-term trends and patterns in crime rates.",
+  "inference_notes": "Important considerations include:\n1. Reporting inconsistencies between jurisdictions and over time\n2. Not all crimes are reported to law enforcement\n3. Changes in crime definitions and reporting standards over the time period\n4. Population changes can affect raw crime counts\n5. Socioeconomic factors not captured in the data may influence crime rates\n6. Some counties may have missing data for certain years\n7. Rural vs urban differences in reporting capabilities and practices",
+  "_metadata": {
+    "task_id": 363431,
+    "generated_at": "2025-06-22T08:32:22.835590",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

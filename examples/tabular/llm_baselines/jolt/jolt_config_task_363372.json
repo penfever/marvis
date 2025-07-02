@@ -1,0 +1,22 @@
+{
+  "dataset_name": "bookprice_prediction",
+  "task_prefix": "A multimodal dataset combining text and tabular data to predict book prices. The dataset contains various features about books including textual information (titles, authors, descriptions) and numerical metrics (ratings, reviews). It was designed to test machine learning models' ability to handle both structured and unstructured data in price prediction tasks. Each example contains 9 features. Predict the Price.",
+  "column_descriptions": {
+    "Title": "The full title of the book",
+    "Author": "Name of the book's author(s)",
+    "Edition": "Edition number or version of the book",
+    "Reviews": "Number of customer reviews received",
+    "Ratings": "Average customer rating score",
+    "Synopsis": "Book description or summary text",
+    "Genre": "Book category or literary genre",
+    "BookCategory": "Broader classification of book type",
+    "Price": "Retail price of the book (target variable)"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Price - The retail price of the book in the marketplace. Units: Currency (likely Indian Rupees given the source). Range: Positive real numbers, specific range not provided but typical for book retail prices",
+  "num_features": 9,
+  "num_classes": 1,
+  "task_id": 363372
+}

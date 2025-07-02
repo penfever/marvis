@@ -1,0 +1,14 @@
+dataset: GesturePhaseSegmentationProcessed
+templates:
+  a768b827-f230-4093-ac02-fbb2cb8a1078: !Template
+    name: GesturePhaseSegmentationProcessed
+    id: a768b827-f230-4093-ac02-fbb2cb8a1078
+    reference: ''
+    answer_choices: Class 0 ||| Class 1
+    jinja: "{{note}}\n\nWhat is the class of this instance?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

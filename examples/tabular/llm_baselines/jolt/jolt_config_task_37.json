@@ -1,0 +1,22 @@
+{
+  "dataset_name": "diabetes",
+  "task_prefix": "Pima Indians Diabetes Database for predicting onset of diabetes mellitus. Contains diagnostic measurements from female patients of Pima Indian heritage near Phoenix, Arizona, USA. Each example contains 8 features. Predict the target class.",
+  "column_descriptions": {
+    "preg": "Number of times pregnant - pregnancy count for the patient.",
+    "plas": "Plasma glucose concentration at 2 hours in an oral glucose tolerance test (mg/dl).",
+    "pres": "Diastolic blood pressure (mm Hg) - minimum arterial pressure during heart relaxation.",
+    "skin": "Triceps skin fold thickness (mm) - measure of subcutaneous fat.",
+    "insu": "2-Hour serum insulin (mu U/ml) - insulin level after glucose tolerance test.",
+    "mass": "Body mass index - weight in kg/(height in m)^2, indicator of body fat.",
+    "pedi": "Diabetes pedigree function - genetic influence score based on family history.",
+    "age": "Age in years - patient age at time of examination."
+  },
+  "class_names": [
+    "tested_negative",
+    "tested_positive"
+  ],
+  "class_description": "Classes: 'tested_negative' (Patient tested negative for diabetes according to WHO criteria), 'tested_positive' (Patient shows signs of diabetes (2-hour post-load plasma glucose >= 200 mg/dl))",
+  "num_features": 8,
+  "num_classes": 2,
+  "task_id": "37"
+}

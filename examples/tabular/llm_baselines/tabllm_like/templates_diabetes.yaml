@@ -1,0 +1,16 @@
+dataset: diabetes
+templates:
+  26d3a706-ec13-4509-bdfa-039ba866db94: !Template
+    name: diabetes
+    id: 26d3a706-ec13-4509-bdfa-039ba866db94
+    reference: ''
+    answer_choices: tested_negative ||| tested_positive
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: tested_negative\
+      \ (Patient tested negative for diabetes according to WHO criteria), tested_positive\
+      \ (Patient shows signs of diabetes (2-hour post-load plasma glucose >= 200 mg/dl))\n\
+      Answer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

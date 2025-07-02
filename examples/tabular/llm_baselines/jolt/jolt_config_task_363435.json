@@ -1,0 +1,19 @@
+{
+  "dataset_name": "all-natural-disasters-19002021-eosdis",
+  "task_prefix": "A comprehensive global dataset tracking natural disasters from 1900-2021 using EOSDIS (Earth Observing System Data and Information System) data. The dataset captures various types of natural disasters, their impacts, and related parameters to help understand patterns and consequences of climate-related catastrophes worldwide. Each example contains 6 features. Predict the Total_Affected.",
+  "column_descriptions": {
+    "Year": "Calendar year when the disaster occurred",
+    "Country": "Nation where the disaster occurred",
+    "Disaster_Type": "Classification of natural disaster (e.g., flood, earthquake, drought)",
+    "Total_Deaths": "Number of people who lost their lives due to the disaster",
+    "Total_Affected": "Total number of people impacted by the disaster including injured, homeless, and displaced",
+    "Total_Damages_USD": "Economic impact in US dollars"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Total_Affected - The total number of people impacted by a natural disaster, including those injured, rendered homeless, or requiring immediate assistance during emergency period. Units: Number of people. Range: 0 to several millions",
+  "num_features": 6,
+  "num_classes": 1,
+  "task_id": 363435
+}

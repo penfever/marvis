@@ -1,0 +1,615 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuration Guide &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Vision Classification Guide" href="../user-guide/vision/index.html" />
+    <link rel="prev" title="Quick Start Guide" href="quick-start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-methods">Configuration Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#constructor-parameters">Constructor Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-files">Configuration Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#yaml-configuration">YAML Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#json-configuration">JSON Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment Variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-configuration">System Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-environment">Python Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modality-specific-configuration">Modality-Specific Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tabular-data-configuration">Tabular Data Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#audio-configuration">Audio Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vision-configuration">Vision Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-configurations">Performance Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#development-fast-configuration">Development/Fast Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#production-high-quality-configuration">Production/High-Quality Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-constrained-configuration">Memory-Constrained Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-and-platform-configuration">Hardware and Platform Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#device-selection">Device Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-selection">Backend Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apple-silicon-configuration">Apple Silicon Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvidia-gpu-configuration">NVIDIA GPU Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-model-configurations">API Model Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#openai-configuration">OpenAI Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#google-gemini-configuration">Google Gemini Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#validate-configuration">Validate Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-profiles">Configuration Profiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#development-profile">Development Profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#production-profile">Production Profile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-configuration-issues">Common Configuration Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Configuration Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting-started/configuration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuration-guide">
+<h1>Configuration Guide<a class="headerlink" href="#configuration-guide" title="Link to this heading"></a></h1>
+<p>This guide covers how to configure MARVIS for optimal performance across different use cases.</p>
+<section id="configuration-methods">
+<h2>Configuration Methods<a class="headerlink" href="#configuration-methods" title="Link to this heading"></a></h2>
+<p>MARVIS can be configured through multiple methods:</p>
+<ol class="arabic simple">
+<li><p><strong>Constructor Parameters</strong> - Direct parameter passing</p></li>
+<li><p><strong>Configuration Files</strong> - YAML/JSON configuration files</p></li>
+<li><p><strong>Environment Variables</strong> - System environment variables</p></li>
+<li><p><strong>Runtime Settings</strong> - Dynamic configuration changes</p></li>
+</ol>
+</section>
+<section id="constructor-parameters">
+<h2>Constructor Parameters<a class="headerlink" href="#constructor-parameters" title="Link to this heading"></a></h2>
+<p>The most direct way to configure MARVIS:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">vlm_model_id</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span><span class="p">,</span>
+    <span class="n">use_3d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">use_knn_connections</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">nn_k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">max_vlm_image_size</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
+    <span class="n">gpu_memory_utilization</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">cache_dir</span><span class="o">=</span><span class="s2">&quot;./cache&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-files">
+<h2>Configuration Files<a class="headerlink" href="#configuration-files" title="Link to this heading"></a></h2>
+<section id="yaml-configuration">
+<h3>YAML Configuration<a class="headerlink" href="#yaml-configuration" title="Link to this heading"></a></h3>
+<p>Create <code class="docutils literal notranslate"><span class="pre">marvis_config.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core settings</span>
+<span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tabular&quot;</span>
+<span class="nt">vlm_model_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span>
+
+<span class="c1"># Visualization settings</span>
+<span class="nt">use_3d</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">use_knn_connections</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">nn_k</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="nt">tsne_perplexity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="nt">tsne_n_iter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+
+<span class="c1"># Multi-visualization</span>
+<span class="nt">enable_multi_viz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">visualization_methods</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;tsne&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;pca&quot;</span><span class="p p-Indicator">]</span>
+<span class="nt">layout_strategy</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;adaptive_grid&quot;</span>
+<span class="nt">reasoning_focus</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;classification&quot;</span>
+
+<span class="c1"># Performance settings</span>
+<span class="nt">max_vlm_image_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2048</span>
+<span class="nt">image_dpi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="nt">gpu_memory_utilization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.8</span>
+<span class="nt">tensor_parallel_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="c1"># Resource management</span>
+<span class="nt">cache_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;./cache&quot;</span>
+<span class="nt">max_tabpfn_samples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000</span>
+
+<span class="c1"># API settings</span>
+<span class="nt">enable_thinking</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<p>Load configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;marvis_config.yaml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="json-configuration">
+<h3>JSON Configuration<a class="headerlink" href="#json-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;modality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vision&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;vlm_model_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;dinov2_model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dinov2_vitb14&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;use_3d&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;max_vlm_image_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;cache_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./vision_cache&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="environment-variables">
+<h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading"></a></h2>
+<section id="system-configuration">
+<h3>System Configuration<a class="headerlink" href="#system-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># API Keys</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-openai-api-key&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GOOGLE_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-google-api-key&quot;</span>
+
+<span class="c1"># Cache and data directories</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MARVIS_CACHE_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/cache&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MARVIS_DATA_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/data&quot;</span>
+
+<span class="c1"># CUDA settings</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="s2">&quot;0,1&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CUDA_DEVICE_ORDER</span><span class="o">=</span><span class="s2">&quot;PCI_BUS_ID&quot;</span>
+
+<span class="c1"># Model settings</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MARVIS_DEFAULT_VLM</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MARVIS_MAX_IMAGE_SIZE</span><span class="o">=</span><span class="s2">&quot;2048&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="python-environment">
+<h3>Python Environment<a class="headerlink" href="#python-environment" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Set environment variables in Python</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MARVIS_CACHE_DIR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;./cache&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MARVIS_MAX_IMAGE_SIZE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;1024&quot;</span>
+
+<span class="c1"># MARVIS will automatically use these settings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="modality-specific-configuration">
+<h2>Modality-Specific Configuration<a class="headerlink" href="#modality-specific-configuration" title="Link to this heading"></a></h2>
+<section id="tabular-data-configuration">
+<h3>Tabular Data Configuration<a class="headerlink" href="#tabular-data-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optimal for tabular data</span>
+<span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tabular&quot;</span>
+<span class="nt">embedding_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">max_tabpfn_samples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000</span>
+<span class="nt">use_semantic_names</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="c1"># TabPFN-specific settings</span>
+<span class="nt">tabular_config</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">feature_selection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">normalize_features</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">handle_categorical</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</section>
+<section id="audio-configuration">
+<h3>Audio Configuration<a class="headerlink" href="#audio-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optimal for audio data</span>
+<span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;audio&quot;</span>
+<span class="nt">embedding_model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;whisper&quot;</span>
+<span class="nt">whisper_model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;large-v2&quot;</span>
+<span class="nt">include_spectrogram</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">audio_duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30.0</span>
+
+<span class="c1"># Audio-specific settings</span>
+<span class="nt">audio_config</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sample_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16000</span>
+<span class="w">  </span><span class="nt">n_mels</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">  </span><span class="nt">hop_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512</span>
+</pre></div>
+</div>
+</section>
+<section id="vision-configuration">
+<h3>Vision Configuration<a class="headerlink" href="#vision-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optimal for vision data</span>
+<span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vision&quot;</span>
+<span class="nt">dinov2_model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;dinov2_vitb14&quot;</span>
+<span class="nt">max_train_plot_samples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+
+<span class="c1"># Vision-specific settings</span>
+<span class="nt">vision_config</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">image_size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">224</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">224</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">normalize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">augment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-configurations">
+<h2>Performance Configurations<a class="headerlink" href="#performance-configurations" title="Link to this heading"></a></h2>
+<section id="development-fast-configuration">
+<h3>Development/Fast Configuration<a class="headerlink" href="#development-fast-configuration" title="Link to this heading"></a></h3>
+<p>For quick testing and development:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fast configuration for development</span>
+<span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tabular&quot;</span>
+<span class="nt">vlm_model_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span><span class="w">  </span><span class="c1"># Smaller model</span>
+<span class="nt">tsne_n_iter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">250</span><span class="w">  </span><span class="c1"># Fewer iterations</span>
+<span class="nt">max_vlm_image_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512</span><span class="w">  </span><span class="c1"># Smaller images</span>
+<span class="nt">max_tabpfn_samples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span><span class="w">  </span><span class="c1"># Fewer samples</span>
+<span class="nt">gpu_memory_utilization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span><span class="w">  </span><span class="c1"># Conservative</span>
+</pre></div>
+</div>
+</section>
+<section id="production-high-quality-configuration">
+<h3>Production/High-Quality Configuration<a class="headerlink" href="#production-high-quality-configuration" title="Link to this heading"></a></h3>
+<p>For production use with best quality:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Production configuration</span>
+<span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tabular&quot;</span>
+<span class="nt">vlm_model_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Qwen/Qwen2.5-VL-32B-Instruct&quot;</span><span class="w">  </span><span class="c1"># Larger model</span>
+<span class="nt">tsne_n_iter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w">  </span><span class="c1"># More iterations</span>
+<span class="nt">max_vlm_image_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4096</span><span class="w">  </span><span class="c1"># High resolution</span>
+<span class="nt">max_tabpfn_samples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span><span class="w">  </span><span class="c1"># More samples</span>
+<span class="nt">gpu_memory_utilization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.9</span><span class="w">  </span><span class="c1"># Aggressive</span>
+
+<span class="c1"># Quality settings</span>
+<span class="nt">enable_multi_viz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">visualization_methods</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;pca&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;tsne&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;umap&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;spectral&quot;</span><span class="p p-Indicator">]</span>
+<span class="nt">reasoning_focus</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;consensus&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="memory-constrained-configuration">
+<h3>Memory-Constrained Configuration<a class="headerlink" href="#memory-constrained-configuration" title="Link to this heading"></a></h3>
+<p>For limited memory environments:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Memory-efficient configuration</span>
+<span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tabular&quot;</span>
+<span class="nt">vlm_model_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span>
+<span class="nt">max_vlm_image_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256</span><span class="w">  </span><span class="c1"># Very small images</span>
+<span class="nt">max_tabpfn_samples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span><span class="w">  </span><span class="c1"># Limited samples</span>
+<span class="nt">gpu_memory_utilization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.4</span><span class="w">  </span><span class="c1"># Very conservative</span>
+<span class="nt">tensor_parallel_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">  </span><span class="c1"># Single GPU</span>
+
+<span class="c1"># Disable memory-intensive features</span>
+<span class="nt">enable_multi_viz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">use_3d</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="hardware-and-platform-configuration">
+<h2>Hardware and Platform Configuration<a class="headerlink" href="#hardware-and-platform-configuration" title="Link to this heading"></a></h2>
+<section id="device-selection">
+<h3>Device Selection<a class="headerlink" href="#device-selection" title="Link to this heading"></a></h3>
+<p>MARVIS automatically detects the optimal device for your hardware:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Automatic device detection (default)</span>
+<span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;auto&quot;</span><span class="w">  </span><span class="c1"># Automatically selects MPS on Mac, CUDA on Linux/Windows, CPU otherwise</span>
+
+<span class="c1"># Explicit device selection</span>
+<span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mps&quot;</span><span class="w">   </span><span class="c1"># Force Metal Performance Shaders (Apple Silicon)</span>
+<span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cuda&quot;</span><span class="w">  </span><span class="c1"># Force CUDA (NVIDIA GPUs)</span>
+<span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cpu&quot;</span><span class="w">   </span><span class="c1"># Force CPU-only execution</span>
+</pre></div>
+</div>
+</section>
+<section id="backend-selection">
+<h3>Backend Selection<a class="headerlink" href="#backend-selection" title="Link to this heading"></a></h3>
+<p>Choose between VLLM (fast) and transformers (compatible) backends:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Backend configuration</span>
+<span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;auto&quot;</span><span class="w">         </span><span class="c1"># Automatically choose best backend</span>
+<span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vllm&quot;</span><span class="w">         </span><span class="c1"># Force VLLM (CUDA only, fastest)</span>
+<span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;transformers&quot;</span><span class="w"> </span><span class="c1"># Force transformers (MPS/CUDA/CPU compatible)</span>
+</pre></div>
+</div>
+</section>
+<section id="apple-silicon-configuration">
+<h3>Apple Silicon Configuration<a class="headerlink" href="#apple-silicon-configuration" title="Link to this heading"></a></h3>
+<p>Optimized settings for M1/M2/M3/M4 Macs:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apple Silicon optimized</span>
+<span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mps&quot;</span>
+<span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;transformers&quot;</span><span class="w">  </span><span class="c1"># VLLM doesn&#39;t support MPS</span>
+<span class="nt">torch_dtype</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;float32&quot;</span><span class="w">   </span><span class="c1"># MPS performs better with float32</span>
+<span class="nt">low_cpu_mem_usage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="c1"># Force transformers backend via environment</span>
+<span class="c1"># export VLLM_AVAILABLE=false</span>
+</pre></div>
+</div>
+</section>
+<section id="nvidia-gpu-configuration">
+<h3>NVIDIA GPU Configuration<a class="headerlink" href="#nvidia-gpu-configuration" title="Link to this heading"></a></h3>
+<p>Settings for CUDA-enabled GPUs:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># NVIDIA GPU optimized</span>
+<span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cuda&quot;</span>
+<span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vllm&quot;</span><span class="w">  </span><span class="c1"># Use VLLM for fastest inference</span>
+<span class="nt">torch_dtype</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bfloat16&quot;</span><span class="w">  </span><span class="c1"># Better numerical stability than float16</span>
+<span class="nt">tensor_parallel_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">  </span><span class="c1"># Multi-GPU if available</span>
+<span class="nt">gpu_memory_utilization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.9</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="api-model-configurations">
+<h2>API Model Configurations<a class="headerlink" href="#api-model-configurations" title="Link to this heading"></a></h2>
+<section id="openai-configuration">
+<h3>OpenAI Configuration<a class="headerlink" href="#openai-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># OpenAI GPT-4V configuration</span>
+<span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vision&quot;</span>
+<span class="nt">openai_model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-4o&quot;</span>
+<span class="nt">enable_thinking</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">max_vlm_image_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2048</span>
+
+<span class="c1"># API-specific settings</span>
+<span class="nt">api_config</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">max_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4096</span>
+<span class="w">  </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w">  </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+</pre></div>
+</div>
+</section>
+<section id="google-gemini-configuration">
+<h3>Google Gemini Configuration<a class="headerlink" href="#google-gemini-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Google Gemini configuration</span>
+<span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vision&quot;</span>
+<span class="nt">gemini_model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gemini-2.0-flash-exp&quot;</span>
+<span class="nt">enable_thinking</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="c1"># Gemini-specific settings</span>
+<span class="nt">gemini_config</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">safety_settings</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;low&quot;</span>
+<span class="w">  </span><span class="nt">candidate_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration-validation">
+<h2>Configuration Validation<a class="headerlink" href="#configuration-validation" title="Link to this heading"></a></h2>
+<section id="validate-configuration">
+<h3>Validate Configuration<a class="headerlink" href="#validate-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+
+<span class="c1"># Load and validate configuration</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config.yaml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✓ Configuration valid&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✗ Configuration error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✗ Unexpected error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration-profiles">
+<h2>Configuration Profiles<a class="headerlink" href="#configuration-profiles" title="Link to this heading"></a></h2>
+<p>Create reusable configuration profiles:</p>
+<section id="development-profile">
+<h3>Development Profile<a class="headerlink" href="#development-profile" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># dev_config.py</span>
+<span class="n">DEV_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;modality&quot;</span><span class="p">:</span> <span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;vlm_model_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tsne_n_iter&quot;</span><span class="p">:</span> <span class="mi">250</span><span class="p">,</span>
+    <span class="s2">&quot;max_vlm_image_size&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span>
+    <span class="s2">&quot;gpu_memory_utilization&quot;</span><span class="p">:</span> <span class="mf">0.6</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="production-profile">
+<h3>Production Profile<a class="headerlink" href="#production-profile" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># prod_config.py</span>
+<span class="n">PROD_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;modality&quot;</span><span class="p">:</span> <span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;vlm_model_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Qwen/Qwen2.5-VL-32B-Instruct&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tsne_n_iter&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="s2">&quot;max_vlm_image_size&quot;</span><span class="p">:</span> <span class="mi">2048</span><span class="p">,</span>
+    <span class="s2">&quot;gpu_memory_utilization&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+    <span class="s2">&quot;enable_multi_viz&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;visualization_methods&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;pca&quot;</span><span class="p">,</span> <span class="s2">&quot;tsne&quot;</span><span class="p">,</span> <span class="s2">&quot;umap&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Use profiles:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dev_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEV_CONFIG</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">prod_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">PROD_CONFIG</span>
+
+<span class="c1"># Choose profile based on environment</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MARVIS_ENV&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;production&quot;</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">PROD_CONFIG</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">DEV_CONFIG</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Start with Defaults</strong>: Begin with default configurations and adjust as needed</p></li>
+<li><p><strong>Profile by Use Case</strong>: Create specific profiles for development, testing, and production</p></li>
+<li><p><strong>Monitor Resources</strong>: Adjust memory and GPU utilization based on your hardware</p></li>
+<li><p><strong>Cache Settings</strong>: Always configure caching for repeated experiments</p></li>
+<li><p><strong>Validate Early</strong>: Test configurations with small datasets before scaling up</p></li>
+<li><p><strong>Document Changes</strong>: Keep track of configuration changes and their impacts</p></li>
+</ol>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-configuration-issues">
+<h3>Common Configuration Issues<a class="headerlink" href="#common-configuration-issues" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><strong>Invalid Model ID</strong></dt><dd><p>Check that the model ID exists on HuggingFace Hub or your local system.</p>
+</dd>
+<dt><strong>Memory Errors</strong></dt><dd><p>Reduce <code class="docutils literal notranslate"><span class="pre">max_vlm_image_size</span></code>, <code class="docutils literal notranslate"><span class="pre">max_tabpfn_samples</span></code>, or <code class="docutils literal notranslate"><span class="pre">gpu_memory_utilization</span></code>.</p>
+</dd>
+<dt><strong>API Key Issues</strong></dt><dd><p>Ensure API keys are set correctly and have the necessary permissions.</p>
+</dd>
+<dt><strong>Cache Permission Errors</strong></dt><dd><p>Check that the cache directory is writable and has sufficient space.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Performance Tuning</strong>: <a class="reference internal" href="../technical-guides/resource-management.html"><span class="doc">Resource Management</span></a></p></li>
+<li><p><strong>Caching Setup</strong>: <a class="reference internal" href="../technical-guides/caching-system.html"><span class="doc">Caching System</span></a></p></li>
+<li><p><strong>Troubleshooting</strong>: <a class="reference internal" href="../troubleshooting.html"><span class="doc">Troubleshooting Guide</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quick-start.html" class="btn btn-neutral float-left" title="Quick Start Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../user-guide/vision/index.html" class="btn btn-neutral float-right" title="Vision Classification Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

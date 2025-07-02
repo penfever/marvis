@@ -1,0 +1,43 @@
+{
+  "dataset_name": "PhishingWebsites",
+  "task_prefix": "This dataset contains features extracted from websites to identify phishing attempts. It addresses the challenge of detecting fraudulent websites that attempt to steal sensitive information by mimicking legitimate sites. The dataset includes various URL-based, domain-based, and page-based features that have proven effective in distinguishing phishing websites from legitimate ones. Each example contains 30 features. Predict the target class.",
+  "column_descriptions": {
+    "feature_1": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 1)",
+    "feature_2": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 2)",
+    "feature_3": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 3)",
+    "feature_4": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 4)",
+    "feature_5": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 5)",
+    "feature_6": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 6)",
+    "feature_7": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 7)",
+    "feature_8": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 8)",
+    "feature_9": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 9)",
+    "feature_10": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 10)",
+    "feature_11": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 11)",
+    "feature_12": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 12)",
+    "feature_13": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 13)",
+    "feature_14": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 14)",
+    "feature_15": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 15)",
+    "feature_16": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 16)",
+    "feature_17": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 17)",
+    "feature_18": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 18)",
+    "feature_19": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 19)",
+    "feature_20": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 20)",
+    "feature_21": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 21)",
+    "feature_22": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 22)",
+    "feature_23": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 23)",
+    "feature_24": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 24)",
+    "feature_25": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 25)",
+    "feature_26": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 26)",
+    "feature_27": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 27)",
+    "feature_28": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 28)",
+    "feature_29": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 29)",
+    "feature_30": "Features related to URL structure, domain registration, page content, and technical indicators. Each feature is categorical with values typically representing presence/absence or risk levels of phishing indicators. (feature 30)"
+  },
+  "class_names": [
+    "-1",
+    "1"
+  ],
+  "class_description": "Classes: '-1' (Website classification: -1 for phishing, 1 for legitimate: -1), '1' (Website classification: -1 for phishing, 1 for legitimate: 1)",
+  "num_features": 30,
+  "num_classes": 2
+}

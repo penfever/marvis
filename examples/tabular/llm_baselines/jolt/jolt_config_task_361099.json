@@ -1,0 +1,22 @@
+{
+  "dataset_name": "Bike_Sharing_Demand",
+  "task_prefix": "This dataset contains hourly rental data spanning two years from the Capital Bikeshare system in Washington, D.C. It captures how different environmental and seasonal factors affect bicycle rental behavior. The data has been collected to help predict bike rental demand, which is crucial for bike sharing systems to optimize their fleet management and service quality. Each example contains 9 features. Predict the count.",
+  "column_descriptions": {
+    "datetime": "Timestamp for the rental record, indicating date and hour",
+    "season": "Season of the year (1:spring, 2:summer, 3:fall, 4:winter)",
+    "holiday": "Day is a holiday or not",
+    "workingday": "Day is a working day (not weekend or holiday)",
+    "weather": "Weather condition (1: Clear/Few clouds, 2: Mist/Cloudy, 3: Light Snow/Rain, 4: Heavy Rain/Snow)",
+    "temp": "Normalized temperature in Celsius",
+    "atemp": "Normalized feeling temperature in Celsius (accounts for humidity and wind)",
+    "humidity": "Relative humidity percentage",
+    "windspeed": "Normalized wind speed"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: count - Total number of bikes rented during the specific hour. Units: Number of bicycles. Range: 0 to approximately 1000 bikes per hour",
+  "num_features": 9,
+  "num_classes": 1,
+  "task_id": 361099
+}

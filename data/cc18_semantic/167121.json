@@ -1,0 +1,99 @@
+{
+  "dataset": "Devnagari-Script",
+  "description": "Handwritten Devanagari character dataset containing grayscale images of 46 characters including consonants 'ka' to 'gya' and digits 0-9. Large-scale dataset for Devanagari script recognition.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Devanagari+Handwritten+Character+Dataset",
+  "openml_task": 167121,
+  "openml_dataset": 40923,
+  "creator": {
+    "name": "S. Acharya, A.K. Pant, P.K. Gyawali",
+    "note": "Originally created for deep learning research on Devanagari script"
+  },
+  "instances": 92000,
+  "features": 1024,
+  "target": "character",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "numeric",
+    "description": "Grayscale pixel values (0-255)"
+  },
+  "feature_description": {
+    "pixels": "1024 features representing 32x32 grayscale pixel values",
+    "structure": "Flattened 2D image array",
+    "preprocessing": "Images preprocessed to 32x32 resolution"
+  },
+  "target_values": {
+    "classes": 46,
+    "characters": "36 consonants (ka to gya) + 10 digits (0-9)",
+    "script": "Devanagari (used for Hindi, Nepali, Marathi, etc.)"
+  },
+  "class_distribution": {
+    "per_class": "2000 examples per character",
+    "balanced": "Perfectly balanced across all 46 classes"
+  },
+  "data_splits": {
+    "training": "78200 images (85%)",
+    "test": "13800 images (15%)",
+    "split_method": "Standard train-test split"
+  },
+  "domain": "Optical Character Recognition/Handwriting Recognition",
+  "use_case": "Devanagari OCR, handwriting recognition, document digitization, multilingual text processing, educational applications",
+  "cultural_significance": "Devanagari is used by over 600 million people for languages including Hindi, Nepali, Marathi",
+  "preprocessing": "Handwritten samples collected and normalized to 32x32 grayscale images",
+  "performance_considerations": "Large dataset size, 46-way classification, handwriting variation",
+  "advantages": "Large scale dataset, balanced classes, standardized format, culturally important script",
+  "challenges": "High number of classes (46), handwriting style variations, similar looking characters",
+  "research_applications": "Deep learning for Indic scripts, multilingual OCR, transfer learning for related scripts, handwriting analysis",
+  "data_collection": "Collected from over 100 native writers",
+  "related_work": "Important for digitizing historical texts and modern documents in Devanagari",
+  "citations": [
+    {
+      "author": "S. Acharya, A.K. Pant and P.K. Gyawali",
+      "title": "Deep Learning Based Large Scale Handwritten Devanagari Character Recognition",
+      "venue": "Proceedings of the 9th International Conference on Software, Knowledge, Information Management and Applications (SKIMA)",
+      "pages": "121-126",
+      "year": "2015"
+    }
+  ],
+  "dataset_name": "Devnagari-Script",
+  "original_source": {
+    "creator": "S. Acharya, A.K. Pant, P.K. Gyawali",
+    "institution": "UCI Machine Learning Repository",
+    "date": "Unknown",
+    "publication": "S. Acharya, A.K. Pant and P.K. Gyawali: Deep Learning Based Large Scale Handwritten Devanagari Character Recognition"
+  },
+  "columns": [
+    {
+      "name": "pixels",
+      "semantic_description": "1024 features representing 32x32 grayscale pixel values",
+      "data_type": "numeric"
+    },
+    {
+      "name": "structure",
+      "semantic_description": "Flattened 2D image array",
+      "data_type": "integer"
+    },
+    {
+      "name": "preprocessing",
+      "semantic_description": "Images preprocessed to 32x32 resolution",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "classes",
+      "meaning": "46"
+    },
+    {
+      "name": "characters",
+      "meaning": "36 consonants (ka to gya) + 10 digits (0-9)"
+    },
+    {
+      "name": "script",
+      "meaning": "Devanagari (used for Hindi, Nepali, Marathi, etc.)"
+    }
+  ],
+  "dataset_history": "Data Collection: Collected from over 100 native writers",
+  "inference_notes": "Challenges: High number of classes (46), handwriting style variations, similar looking characters. Advantages: Large scale dataset, balanced classes, standardized format, culturally important script. Applications: Deep learning for Indic scripts, multilingual OCR, transfer learning for related scripts, handwriting analysis. Use Case: Devanagari OCR, handwriting recognition, document digitization, multilingual text processing, educational applications"
+}

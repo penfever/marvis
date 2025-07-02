@@ -1,0 +1,38 @@
+{
+  "dataset_name": "har",
+  "task_prefix": "Human Activity Recognition database from recordings of 30 subjects performing activities of daily living while carrying a waist-mounted smartphone with embedded inertial sensors (accelerometer and gyroscope). Each example contains 20 features. Activity monitoring for healthcare.",
+  "column_descriptions": {
+    "feature_1": "accel_x measurement",
+    "feature_2": "accel_y measurement",
+    "feature_3": "accel_z measurement",
+    "feature_4": "gyro_x measurement",
+    "feature_5": "gyro_y measurement",
+    "feature_6": "gyro_z measurement",
+    "feature_7": "Sensor feature 7",
+    "feature_8": "Sensor feature 8",
+    "feature_9": "Sensor feature 9",
+    "feature_10": "Sensor feature 10",
+    "feature_11": "Sensor feature 11",
+    "feature_12": "Sensor feature 12",
+    "feature_13": "Sensor feature 13",
+    "feature_14": "Sensor feature 14",
+    "feature_15": "Sensor feature 15",
+    "feature_16": "Sensor feature 16",
+    "feature_17": "Sensor feature 17",
+    "feature_18": "Sensor feature 18",
+    "feature_19": "Sensor feature 19",
+    "feature_20": "Sensor feature 20"
+  },
+  "class_names": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "class_description": "Classes: '1' (WALKING), '2' (WALKING_UPSTAIRS), '3' (WALKING_DOWNSTAIRS), '4' (SITTING), '5' (STANDING), '6' (LAYING)",
+  "num_features": 20,
+  "num_classes": 6,
+  "task_id": "14970"
+}

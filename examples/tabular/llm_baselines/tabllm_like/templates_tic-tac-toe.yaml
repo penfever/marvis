@@ -1,0 +1,16 @@
+dataset: tic-tac-toe
+templates:
+  c0bf947f-541f-4376-a3fb-88d5dbe9ebf3: !Template
+    name: tic-tac-toe
+    id: c0bf947f-541f-4376-a3fb-88d5dbe9ebf3
+    reference: ''
+    answer_choices: positive ||| negative
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: positive\
+      \ (X wins - player X has achieved three-in-a-row in any direction), negative\
+      \ (X does not win - either O wins or game is a draw)\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

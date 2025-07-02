@@ -1,0 +1,725 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Troubleshooting Guide &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=251ceabf" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="Examples" href="examples/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#importerror-no-module-named-marvis">ImportError: No module named ‘marvis’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cuda-gpu-issues">CUDA/GPU Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#model-loading-issues">Model Loading Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#huggingface-model-download-failures">HuggingFace Model Download Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-too-large-for-memory">Model Too Large for Memory</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-integration-issues">API Integration Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#openai-api-errors">OpenAI API Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#google-gemini-api-errors">Google Gemini API Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-processing-issues">Data Processing Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tabpfn-embedding-errors">TabPFN Embedding Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#audio-processing-errors">Audio Processing Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#image-processing-errors">Image Processing Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-issues">Performance Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#slow-training-inference">Slow Training/Inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#high-memory-usage">High Memory Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-issues">Configuration Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#invalid-configuration">Invalid Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-variable-issues">Environment Variable Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#visualization-issues">Visualization Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#empty-or-corrupted-visualizations">Empty or Corrupted Visualizations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#d-visualization-not-working">3D Visualization Not Working</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging-tips">Debugging Tips</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#enable-detailed-logging">Enable Detailed Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-system-resources">Check System Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-with-minimal-examples">Test with Minimal Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-additional-help">Getting Additional Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#community-resources">Community Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-bug-reports">Creating Bug Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-monitoring">Performance Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#common-error-messages">Common Error Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Troubleshooting Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/troubleshooting.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="troubleshooting-guide">
+<h1>Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Link to this heading"></a></h1>
+<p>Common issues and their solutions when using MARVIS.</p>
+<section id="installation-issues">
+<h2>Installation Issues<a class="headerlink" href="#installation-issues" title="Link to this heading"></a></h2>
+<section id="importerror-no-module-named-marvis">
+<h3>ImportError: No module named ‘marvis’<a class="headerlink" href="#importerror-no-module-named-marvis" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: MARVIS module not found after installation.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Verify installation</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>marvis
+</pre></div>
+</div>
+</li>
+<li><p><strong>Reinstall in editable mode</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/marvis
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p><strong>Check Python path</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="cuda-gpu-issues">
+<h3>CUDA/GPU Issues<a class="headerlink" href="#cuda-gpu-issues" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: CUDA out of memory errors.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Reduce GPU memory utilization</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">gpu_memory_utilization</span><span class="o">=</span><span class="mf">0.6</span>  <span class="c1"># Reduce from default 0.9</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Use smaller images</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">max_vlm_image_size</span><span class="o">=</span><span class="mi">512</span>  <span class="c1"># Reduce from default 2048</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Enable CPU fallback</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span>  <span class="c1"># Force CPU usage</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="model-loading-issues">
+<h2>Model Loading Issues<a class="headerlink" href="#model-loading-issues" title="Link to this heading"></a></h2>
+<section id="huggingface-model-download-failures">
+<h3>HuggingFace Model Download Failures<a class="headerlink" href="#huggingface-model-download-failures" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: Models fail to download from HuggingFace Hub.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Check internet connection</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ping<span class="w"> </span>huggingface.co
+</pre></div>
+</div>
+</li>
+<li><p><strong>Clear HuggingFace cache</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>~/.cache/huggingface/
+</pre></div>
+</div>
+</li>
+<li><p><strong>Set HuggingFace token</strong> (for gated models):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">HUGGINGFACE_HUB_TOKEN</span><span class="o">=</span><span class="s2">&quot;your-token&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="model-too-large-for-memory">
+<h3>Model Too Large for Memory<a class="headerlink" href="#model-too-large-for-memory" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: VLM models are too large for available memory.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Use smaller models</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">vlm_model_id</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span>  <span class="c1"># Instead of 32B</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Enable tensor parallelism</strong> (multiple GPUs):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">tensor_parallel_size</span><span class="o">=</span><span class="mi">2</span>  <span class="c1"># Use 2 GPUs</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="api-integration-issues">
+<h2>API Integration Issues<a class="headerlink" href="#api-integration-issues" title="Link to this heading"></a></h2>
+<section id="openai-api-errors">
+<h3>OpenAI API Errors<a class="headerlink" href="#openai-api-errors" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: OpenAI API calls failing.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Check API key</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="nv">$OPENAI_API_KEY</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify account balance</strong>: Check your OpenAI account billing.</p></li>
+<li><p><strong>Handle rate limits</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="n">openai_model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">)</span>
+    <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">openai</span><span class="o">.</span><span class="n">RateLimitError</span><span class="p">:</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>  <span class="c1"># Wait and retry</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="google-gemini-api-errors">
+<h3>Google Gemini API Errors<a class="headerlink" href="#google-gemini-api-errors" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: Gemini API calls failing.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Check API key</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="nv">$GOOGLE_API_KEY</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify API access</strong>: Ensure Gemini API is enabled in Google Cloud Console.</p></li>
+<li><p><strong>Handle safety filters</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">gemini_model</span><span class="o">=</span><span class="s2">&quot;gemini-2.0-flash-exp&quot;</span><span class="p">,</span>
+    <span class="c1"># Adjust safety settings if needed</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="data-processing-issues">
+<h2>Data Processing Issues<a class="headerlink" href="#data-processing-issues" title="Link to this heading"></a></h2>
+<section id="tabpfn-embedding-errors">
+<h3>TabPFN Embedding Errors<a class="headerlink" href="#tabpfn-embedding-errors" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: TabPFN fails to generate embeddings.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Check data size</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset size: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># TabPFN works best with &lt; 3000 samples</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Reduce sample size</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">max_tabpfn_samples</span><span class="o">=</span><span class="mi">1000</span>  <span class="c1"># Reduce from default 3000</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Handle categorical data</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="c1"># Encode categorical columns</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_columns</span><span class="p">:</span>
+    <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+    <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="audio-processing-errors">
+<h3>Audio Processing Errors<a class="headerlink" href="#audio-processing-errors" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: Audio files fail to load or process.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Check audio format</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file<span class="w"> </span>audio_file.wav
+</pre></div>
+</div>
+</li>
+<li><p><strong>Convert audio format</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg<span class="w"> </span>-i<span class="w"> </span>input.mp3<span class="w"> </span>-ar<span class="w"> </span><span class="m">16000</span><span class="w"> </span>-ac<span class="w"> </span><span class="m">1</span><span class="w"> </span>output.wav
+</pre></div>
+</div>
+</li>
+<li><p><strong>Handle missing audio files</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">audio_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">audio_paths</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">p</span><span class="p">)]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="image-processing-errors">
+<h3>Image Processing Errors<a class="headerlink" href="#image-processing-errors" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: Images fail to load or are corrupt.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Validate image files</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_image</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">verify</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Handle corrupt images</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">valid_images</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">image_paths</span> <span class="k">if</span> <span class="n">validate_image</span><span class="p">(</span><span class="n">p</span><span class="p">)]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="performance-issues">
+<h2>Performance Issues<a class="headerlink" href="#performance-issues" title="Link to this heading"></a></h2>
+<section id="slow-training-inference">
+<h3>Slow Training/Inference<a class="headerlink" href="#slow-training-inference" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: MARVIS is running slower than expected.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Enable caching</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">cache_dir</span><span class="o">=</span><span class="s2">&quot;./marvis_cache&quot;</span>  <span class="c1"># Enable caching</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Reduce t-SNE iterations</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">tsne_n_iter</span><span class="o">=</span><span class="mi">250</span>  <span class="c1"># Reduce from default 1000</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Use smaller perplexity</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">tsne_perplexity</span><span class="o">=</span><span class="mi">15</span>  <span class="c1"># Reduce from default 30</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="high-memory-usage">
+<h3>High Memory Usage<a class="headerlink" href="#high-memory-usage" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: MARVIS uses too much memory.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Limit embedding samples</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">max_tabpfn_samples</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="n">max_train_plot_samples</span><span class="o">=</span><span class="mi">500</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Disable multi-visualization</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">enable_multi_viz</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Use smaller image sizes</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">max_vlm_image_size</span><span class="o">=</span><span class="mi">256</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="configuration-issues">
+<h2>Configuration Issues<a class="headerlink" href="#configuration-issues" title="Link to this heading"></a></h2>
+<section id="invalid-configuration">
+<h3>Invalid Configuration<a class="headerlink" href="#invalid-configuration" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: Configuration parameters are rejected.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Validate parameters</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Configuration error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Check parameter types</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ensure correct types</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;modality&quot;</span><span class="p">:</span> <span class="s2">&quot;tabular&quot;</span><span class="p">,</span>        <span class="c1"># str</span>
+    <span class="s2">&quot;use_3d&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>              <span class="c1"># bool</span>
+    <span class="s2">&quot;tsne_perplexity&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>        <span class="c1"># int</span>
+    <span class="s2">&quot;gpu_memory_utilization&quot;</span><span class="p">:</span> <span class="mf">0.8</span> <span class="c1"># float</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="environment-variable-issues">
+<h3>Environment Variable Issues<a class="headerlink" href="#environment-variable-issues" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: Environment variables not being recognized.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Check variable names</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>MARVIS
+env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>OPENAI
+env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>GOOGLE
+</pre></div>
+</div>
+</li>
+<li><p><strong>Set in Python</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;your-key&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="visualization-issues">
+<h2>Visualization Issues<a class="headerlink" href="#visualization-issues" title="Link to this heading"></a></h2>
+<section id="empty-or-corrupted-visualizations">
+<h3>Empty or Corrupted Visualizations<a class="headerlink" href="#empty-or-corrupted-visualizations" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: t-SNE plots are empty or corrupted.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Check data dimensions</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Embeddings shape: </span><span class="si">{</span><span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Labels shape: </span><span class="si">{</span><span class="n">labels</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Validate perplexity</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perplexity should be &lt; n_samples / 3</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
+<span class="n">max_perplexity</span> <span class="o">=</span> <span class="n">n_samples</span> <span class="o">//</span> <span class="mi">3</span>
+<span class="n">perplexity</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_perplexity</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Check for NaN values</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NaN in embeddings: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="d-visualization-not-working">
+<h3>3D Visualization Not Working<a class="headerlink" href="#d-visualization-not-working" title="Link to this heading"></a></h3>
+<p><strong>Problem</strong>: 3D visualizations fail to render.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Check matplotlib backend</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">get_backend</span><span class="p">())</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Update dependencies</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>matplotlib
+</pre></div>
+</div>
+</li>
+<li><p><strong>Use 2D fallback</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="n">use_3d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="debugging-tips">
+<h2>Debugging Tips<a class="headerlink" href="#debugging-tips" title="Link to this heading"></a></h2>
+<section id="enable-detailed-logging">
+<h3>Enable Detailed Logging<a class="headerlink" href="#enable-detailed-logging" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="c1"># MARVIS will now show detailed debug information</span>
+</pre></div>
+</div>
+</section>
+<section id="check-system-resources">
+<h3>Check System Resources<a class="headerlink" href="#check-system-resources" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">psutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CPU usage: </span><span class="si">{</span><span class="n">psutil</span><span class="o">.</span><span class="n">cpu_percent</span><span class="p">()</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Memory usage: </span><span class="si">{</span><span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">percent</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU memory: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">memory_allocated</span><span class="p">()</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">max_memory_allocated</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="test-with-minimal-examples">
+<h3>Test with Minimal Examples<a class="headerlink" href="#test-with-minimal-examples" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Minimal test case</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">tsne_n_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>  <span class="c1"># Minimal iterations</span>
+    <span class="n">max_vlm_image_size</span><span class="o">=</span><span class="mi">256</span>  <span class="c1"># Small images</span>
+<span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✓ Basic functionality working&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✗ Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="getting-additional-help">
+<h2>Getting Additional Help<a class="headerlink" href="#getting-additional-help" title="Link to this heading"></a></h2>
+<section id="community-resources">
+<h3>Community Resources<a class="headerlink" href="#community-resources" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>GitHub Issues</strong>: <a class="reference external" href="https://github.com/penfever/marvis/issues">https://github.com/penfever/marvis/issues</a></p></li>
+<li><p><strong>Documentation</strong>: <a class="reference external" href="https://marvis.readthedocs.io">https://marvis.readthedocs.io</a></p></li>
+<li><p><strong>Examples</strong>: Check <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory</p></li>
+</ol>
+</section>
+<section id="creating-bug-reports">
+<h3>Creating Bug Reports<a class="headerlink" href="#creating-bug-reports" title="Link to this heading"></a></h3>
+<p>When reporting bugs, please include:</p>
+<ol class="arabic">
+<li><p><strong>System information</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Platform: </span><span class="si">{</span><span class="n">platform</span><span class="o">.</span><span class="n">platform</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PyTorch: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CUDA available: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Minimal reproducible example</strong></p></li>
+<li><p><strong>Full error traceback</strong></p></li>
+<li><p><strong>Configuration used</strong></p></li>
+<li><p><strong>Steps to reproduce</strong></p></li>
+</ol>
+</section>
+<section id="performance-monitoring">
+<h3>Performance Monitoring<a class="headerlink" href="#performance-monitoring" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">psutil</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">monitor_performance</span><span class="p">():</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">start_memory</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">used</span>
+
+    <span class="c1"># Your MARVIS code here</span>
+    <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">end_memory</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">used</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution time: </span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Memory used: </span><span class="si">{</span><span class="p">(</span><span class="n">end_memory</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_memory</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="common-error-messages">
+<h2>Common Error Messages<a class="headerlink" href="#common-error-messages" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Error Message</p></th>
+<th class="head"><p>Solution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CUDA</span> <span class="pre">out</span> <span class="pre">of</span> <span class="pre">memory</span></code></p></td>
+<td><p>Reduce <code class="docutils literal notranslate"><span class="pre">gpu_memory_utilization</span></code> or <code class="docutils literal notranslate"><span class="pre">max_vlm_image_size</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'marvis'</span></code></p></td>
+<td><p>Reinstall with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">key</span> <span class="pre">not</span> <span class="pre">found</span></code></p></td>
+<td><p>Set environment variables for API keys</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">not</span> <span class="pre">found</span></code></p></td>
+<td><p>Check model ID spelling and HuggingFace availability</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Invalid</span> <span class="pre">perplexity</span></code></p></td>
+<td><p>Reduce perplexity or increase dataset size</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TabPFN</span> <span class="pre">embedding</span> <span class="pre">failed</span></code></p></td>
+<td><p>Reduce <code class="docutils literal notranslate"><span class="pre">max_tabpfn_samples</span></code> or check data format</p></td>
+</tr>
+</tbody>
+</table>
+<p>This troubleshooting guide covers the most common issues. For additional help, please check our GitHub issues or create a new issue with detailed information about your problem.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples/index.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

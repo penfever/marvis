@@ -1,0 +1,15 @@
+dataset: cmc
+templates:
+  44d2ddc9-5f70-4b94-bf7e-a0e345da423b: !Template
+    name: cmc
+    id: 44d2ddc9-5f70-4b94-bf7e-a0e345da423b
+    reference: ''
+    answer_choices: No-use ||| Long-term methods ||| Short-term methods
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ No-use, Long-term methods, Short-term methods?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

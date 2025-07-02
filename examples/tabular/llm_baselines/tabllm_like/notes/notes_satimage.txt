@@ -1,0 +1,10 @@
+['The Feature: Multi-spectral pixel values is 21.'] -> 3
+['The Feature: Multi-spectral pixel values is 40.'] -> 2
+['The Feature: Multi-spectral pixel values is 31.'] -> 1
+['The Feature: Multi-spectral pixel values is 83.'] -> 3
+['The Feature: Multi-spectral pixel values is 20.'] -> 4
+['The Feature: Multi-spectral pixel values is 42.'] -> 7
+['The Feature: Multi-spectral pixel values is 90.'] -> 5
+['The Feature: Multi-spectral pixel values is 25.'] -> 3
+['The Feature: Multi-spectral pixel values is 62.'] -> 7
+['The Feature: Multi-spectral pixel values is 56.'] -> 3

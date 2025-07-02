@@ -1,0 +1,134 @@
+{
+  "dataset_name": "pc1-software-defect-prediction",
+  "description": "NASA Metrics Data Program defect dataset from flight software for an earth-orbiting satellite. Contains static code metrics extracted using McCabe and Halstead analyzers to predict software modules likely to contain defects.",
+  "original_source": {
+    "creator": "Mike Chapman, NASA",
+    "institution": "NASA Metrics Data Program",
+    "date": "2004",
+    "publication": "Sayyad Shirabad, J. and Menzies, T.J. (2005) The PROMISE Repository of Software Engineering Databases. School of Information Technology and Engineering, University of Ottawa, Canada."
+  },
+  "columns": [
+    {
+      "name": "loc",
+      "semantic_description": "McCabe's line count of code. Physical lines of code in the module, including executable statements.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "v(g)",
+      "semantic_description": "McCabe cyclomatic complexity. Number of linearly independent paths through the code, calculated as edges - nodes + 2. Higher values indicate more complex control flow.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "ev(g)",
+      "semantic_description": "McCabe essential complexity. Measures the structuredness of code by counting irreducible control structures. High values indicate unstructured 'spaghetti' code.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "iv(g)",
+      "semantic_description": "McCabe design complexity. Cyclomatic complexity of a module's design-reduced flowgraph, measuring integration complexity with other modules.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "n",
+      "semantic_description": "Halstead total operators + operands. Sum of all operators and operands in the code.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "v",
+      "semantic_description": "Halstead volume. Program size measure calculated as n * log2(n1 + n2), where n1 and n2 are unique operators and operands.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "l",
+      "semantic_description": "Halstead program length. Estimated program length based on unique operators and operands.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "d",
+      "semantic_description": "Halstead difficulty. Measure of how difficult the program is to write or understand, calculated as (n1/2) * (N2/n2).",
+      "data_type": "numeric"
+    },
+    {
+      "name": "i",
+      "semantic_description": "Halstead intelligence. Inverse of difficulty, representing the clarity or ease of understanding the code.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "e",
+      "semantic_description": "Halstead effort. Mental effort required to develop the program, calculated as difficulty * volume.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "b",
+      "semantic_description": "Halstead error estimate. Estimated number of bugs, calculated as e^(2/3) / 3000.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "t",
+      "semantic_description": "Halstead time estimator. Estimated time to program in seconds, calculated as effort / 18.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "lOCode",
+      "semantic_description": "Halstead's line count. Count of lines containing actual code.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "lOComment",
+      "semantic_description": "Halstead's count of lines of comments. Documentation within the code.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "lOBlank",
+      "semantic_description": "Halstead's count of blank lines. White space for code readability.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "lOCodeAndComment",
+      "semantic_description": "Count of lines containing both code and comments.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "uniq_Op",
+      "semantic_description": "Number of unique operators. Distinct operators used in the module (e.g., +, -, *, /, if, while).",
+      "data_type": "numeric"
+    },
+    {
+      "name": "uniq_Opnd",
+      "semantic_description": "Number of unique operands. Distinct variables and constants in the module.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_Op",
+      "semantic_description": "Total count of operators. All operator occurrences including repetitions.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_Opnd",
+      "semantic_description": "Total count of operands. All operand occurrences including repetitions.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "branchCount",
+      "semantic_description": "Number of branches in the flow graph. Count of decision points in the code.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "defects",
+      "semantic_description": "Binary indicator of whether the module has one or more reported defects. Target variable for prediction.",
+      "data_type": "binary (false/true)"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "false",
+      "meaning": "Module has no reported defects"
+    },
+    {
+      "name": "true",
+      "meaning": "Module has one or more reported defects"
+    }
+  ],
+  "dataset_history": "Part of NASA's Metrics Data Program, collected to study relationships between code complexity metrics and software quality. The data comes from flight software for an earth-orbiting satellite, representing real mission-critical code where defects have serious consequences. McCabe metrics were proposed in 1976 based on graph theory to measure control flow complexity. Halstead metrics, introduced in 1977, treat programs as collections of operators and operands to derive various complexity measures. Both metric suites aim to objectively quantify properties associated with error-prone code.",
+  "inference_notes": "This dataset exemplifies early software engineering efforts to predict defects using static code analysis. The combination of McCabe and Halstead metrics captures different aspects of complexity: McCabe focuses on control flow paths while Halstead emphasizes computational complexity. Key insights: (1) High cyclomatic complexity (v(g)) indicates many execution paths, making testing difficult; (2) Essential complexity (ev(g)) reveals poorly structured code; (3) Halstead effort (e) correlates with cognitive load on developers; (4) The dataset has class imbalance typical in defect prediction. Successful models often find that loc, v(g), and e are strong predictors. The metrics are language-agnostic but were extracted from C code. Modern applications extend these concepts with additional metrics like object-oriented complexity measures."
+}

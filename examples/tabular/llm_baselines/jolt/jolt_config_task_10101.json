@@ -1,0 +1,18 @@
+{
+  "dataset_name": "blood-transfusion-service-center",
+  "task_prefix": "Blood donation records from the Blood Transfusion Service Center in Hsin-Chu City, Taiwan. Mobile blood donation bus visits one university campus approximately every three months. Task is to predict whether a donor will donate blood in the next campaign. Each example contains 4 features. Predict the target class.",
+  "column_descriptions": {
+    "Recency": "Months since the donor's last blood donation. Lower values indicate more recent donations, suggesting higher engagement with donation campaigns.",
+    "Frequency": "Total number of times the donor has donated blood. Captures the donor's lifetime donation behavior and commitment level.",
+    "Monetary": "Total volume of blood donated in cubic centimeters (c.c.). In Taiwan, standard donation is 250cc per session. Directly proportional to frequency since each donation has fixed volume.",
+    "Time": "Months since the donor's first blood donation. Represents how long the donor has been in the donation system, indicating donor relationship duration."
+  },
+  "class_names": [
+    "1",
+    "0"
+  ],
+  "class_description": "Classes: '1' (Donor donated blood in March 2007 target campaign (24% of instances)), '0' (Donor did not donate blood in March 2007 target campaign (76% of instances))",
+  "num_features": 4,
+  "num_classes": 2,
+  "task_id": "10101"
+}

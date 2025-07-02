@@ -1,0 +1,294 @@
+{
+  "dataset": "letter",
+  "description": "Letter recognition dataset where the objective is to identify black-and-white rectangular pixel displays as one of the 26 capital letters in the English alphabet. Character images were based on 20 different fonts with random distortions to produce 20,000 unique stimuli. Each stimulus was converted into 16 primitive numerical attributes using statistical moments and edge counts.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Letter+Recognition",
+  "openml_task": 6,
+  "openml_dataset": 6,
+  "date_donated": "January 1991",
+  "creator": "David J. Slate (Odesta Corporation)",
+  "instances": 20000,
+  "features": 16,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "integer"
+  },
+  "feature_names": {
+    "x-box": "Horizontal position of box",
+    "y-box": "Vertical position of box",
+    "width": "Width of box",
+    "high": "Height of box",
+    "onpix": "Total number of on pixels",
+    "x-bar": "Mean x of on pixels in box",
+    "y-bar": "Mean y of on pixels in box",
+    "x2bar": "Mean x variance",
+    "y2bar": "Mean y variance",
+    "xybar": "Mean x y correlation",
+    "x2ybr": "Mean of x * x * y",
+    "xy2br": "Mean of x * y * y",
+    "x-ege": "Mean edge count left to right",
+    "xegvy": "Correlation of x-ege with y",
+    "y-ege": "Mean edge count bottom to top",
+    "yegvx": "Correlation of y-ege with x"
+  },
+  "feature_descriptions": {
+    "x-box": "Horizontal position of the containing box (integer)",
+    "y-box": "Vertical position of the containing box (integer)",
+    "width": "Width of the containing box in pixels (integer)",
+    "high": "Height of the containing box in pixels (integer)",
+    "onpix": "Total count of pixels that are 'on' in the bounding box (integer)",
+    "x-bar": "Mean x coordinate of all 'on' pixels in the box (integer)",
+    "y-bar": "Mean y coordinate of all 'on' pixels in the box (integer)",
+    "x2bar": "Mean x variance of the pixel distribution (integer)",
+    "y2bar": "Mean y variance of the pixel distribution (integer)",
+    "xybar": "Mean correlation between x and y coordinates (integer)",
+    "x2ybr": "Mean value of x squared times y (integer)",
+    "xy2br": "Mean value of x times y squared (integer)",
+    "x-ege": "Mean count of edges from left to right (integer)",
+    "xegvy": "Correlation between x-edge count and y coordinate (integer)",
+    "y-ege": "Mean count of edges from bottom to top (integer)",
+    "yegvx": "Correlation between y-edge count and x coordinate (integer)"
+  },
+  "feature_scale": "All features scaled to integers from 0 through 15",
+  "target_values": {
+    "A": "Letter A",
+    "B": "Letter B",
+    "C": "Letter C",
+    "D": "Letter D",
+    "E": "Letter E",
+    "F": "Letter F",
+    "G": "Letter G",
+    "H": "Letter H",
+    "I": "Letter I",
+    "J": "Letter J",
+    "K": "Letter K",
+    "L": "Letter L",
+    "M": "Letter M",
+    "N": "Letter N",
+    "O": "Letter O",
+    "P": "Letter P",
+    "Q": "Letter Q",
+    "R": "Letter R",
+    "S": "Letter S",
+    "T": "Letter T",
+    "U": "Letter U",
+    "V": "Letter V",
+    "W": "Letter W",
+    "X": "Letter X",
+    "Y": "Letter Y",
+    "Z": "Letter Z"
+  },
+  "domain": "Computer Vision/Pattern Recognition",
+  "use_case": "Optical character recognition (OCR) for identifying capital letters from pixel displays. Applications include document digitization, automated mail sorting, and text extraction from images.",
+  "data_generation": "Images captured at 128x128 pixels, quantized to 64 gray levels, thresholded to binary, and processed with HIPS (Hierarchical Image Processing System) extension BINATTS",
+  "ethical_considerations": "Dataset represents only capital letters in English alphabet, limiting applicability to other scripts or languages. Care should be taken when deploying in multilingual contexts.",
+  "citations": [
+    {
+      "author": "P. W. Frey and D. J. Slate",
+      "title": "Letter Recognition Using Holland-style Adaptive Classifiers",
+      "venue": "Machine Learning",
+      "volume": "6",
+      "number": "2",
+      "year": "1991"
+    }
+  ],
+  "dataset_name": "letter",
+  "original_source": {
+    "creator": "David J. Slate (Odesta Corporation)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "January 1991",
+    "publication": "P. W. Frey and D. J. Slate: Letter Recognition Using Holland-style Adaptive Classifiers"
+  },
+  "columns": [
+    {
+      "name": "Horizontal position of box",
+      "semantic_description": "Horizontal position of the containing box (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Vertical position of box",
+      "semantic_description": "Vertical position of the containing box (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Width of box",
+      "semantic_description": "Width of the containing box in pixels (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Height of box",
+      "semantic_description": "Height of the containing box in pixels (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Total number of on pixels",
+      "semantic_description": "Total count of pixels that are 'on' in the bounding box (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Mean x of on pixels in box",
+      "semantic_description": "Mean x coordinate of all 'on' pixels in the box (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Mean y of on pixels in box",
+      "semantic_description": "Mean y coordinate of all 'on' pixels in the box (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Mean x variance",
+      "semantic_description": "Mean x variance of the pixel distribution (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Mean y variance",
+      "semantic_description": "Mean y variance of the pixel distribution (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Mean x y correlation",
+      "semantic_description": "Mean correlation between x and y coordinates (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Mean of x * x * y",
+      "semantic_description": "Mean value of x squared times y (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Mean of x * y * y",
+      "semantic_description": "Mean value of x times y squared (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Mean edge count left to right",
+      "semantic_description": "Mean count of edges from left to right (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Correlation of x-ege with y",
+      "semantic_description": "Correlation between x-edge count and y coordinate (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Mean edge count bottom to top",
+      "semantic_description": "Mean count of edges from bottom to top (integer)",
+      "data_type": "integer"
+    },
+    {
+      "name": "Correlation of y-ege with x",
+      "semantic_description": "Correlation between y-edge count and x coordinate (integer)",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "A",
+      "meaning": "Letter A"
+    },
+    {
+      "name": "B",
+      "meaning": "Letter B"
+    },
+    {
+      "name": "C",
+      "meaning": "Letter C"
+    },
+    {
+      "name": "D",
+      "meaning": "Letter D"
+    },
+    {
+      "name": "E",
+      "meaning": "Letter E"
+    },
+    {
+      "name": "F",
+      "meaning": "Letter F"
+    },
+    {
+      "name": "G",
+      "meaning": "Letter G"
+    },
+    {
+      "name": "H",
+      "meaning": "Letter H"
+    },
+    {
+      "name": "I",
+      "meaning": "Letter I"
+    },
+    {
+      "name": "J",
+      "meaning": "Letter J"
+    },
+    {
+      "name": "K",
+      "meaning": "Letter K"
+    },
+    {
+      "name": "L",
+      "meaning": "Letter L"
+    },
+    {
+      "name": "M",
+      "meaning": "Letter M"
+    },
+    {
+      "name": "N",
+      "meaning": "Letter N"
+    },
+    {
+      "name": "O",
+      "meaning": "Letter O"
+    },
+    {
+      "name": "P",
+      "meaning": "Letter P"
+    },
+    {
+      "name": "Q",
+      "meaning": "Letter Q"
+    },
+    {
+      "name": "R",
+      "meaning": "Letter R"
+    },
+    {
+      "name": "S",
+      "meaning": "Letter S"
+    },
+    {
+      "name": "T",
+      "meaning": "Letter T"
+    },
+    {
+      "name": "U",
+      "meaning": "Letter U"
+    },
+    {
+      "name": "V",
+      "meaning": "Letter V"
+    },
+    {
+      "name": "W",
+      "meaning": "Letter W"
+    },
+    {
+      "name": "X",
+      "meaning": "Letter X"
+    },
+    {
+      "name": "Y",
+      "meaning": "Letter Y"
+    },
+    {
+      "name": "Z",
+      "meaning": "Letter Z"
+    }
+  ],
+  "dataset_history": "Dataset history not available for letter",
+  "inference_notes": "Use Case: Optical character recognition (OCR) for identifying capital letters from pixel displays. Applications include document digitization, automated mail sorting, and text extraction from images."
+}

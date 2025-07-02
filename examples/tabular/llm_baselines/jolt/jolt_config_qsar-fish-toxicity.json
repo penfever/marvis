@@ -1,0 +1,20 @@
+{
+  "dataset_name": "qsar-fish-toxicity",
+  "task_prefix": "Quantitative Structure-Activity Relationship (QSAR) dataset for predicting acute aquatic toxicity (LC50) of chemicals towards the fathead minnow (Pimephales promelas). Contains molecular descriptors calculated from chemical structures. Each example contains 7 features. Predict the target class.",
+  "column_descriptions": {
+    "CIC0": "Complementary Information Content index of 0-order. Information-theoretic descriptor measuring molecular complexity based on atom connectivity.",
+    "SM1_Dz(Z)": "Spectral moment of order 1 from Barysz matrix weighted by atomic number. 2D matrix-based descriptor capturing electronic distribution.",
+    "GATS1i": "Geary autocorrelation of lag 1 weighted by ionization potential. 2D autocorrelation descriptor reflecting spatial distribution of atomic properties.",
+    "NdsCH": "Number of atoms of type dsCH. Atom-type count representing secondary carbon with one hydrogen (=CH- groups).",
+    "NdssC": "Number of atoms of type dssC. Atom-type count representing secondary carbon with no hydrogens (=C< groups).",
+    "MLOGP": "Moriguchi octanol-water partition coefficient. Molecular property predicting lipophilicity, crucial for bioaccumulation and membrane permeability.",
+    "LC50": "Negative logarithm of the molar concentration causing 50% mortality in test fish over 96 hours. Higher values indicate greater toxicity."
+  },
+  "class_names": [
+    "Class_0",
+    "Class_1"
+  ],
+  "class_description": "Classes: Class_0, Class_1",
+  "num_features": 7,
+  "num_classes": 2
+}

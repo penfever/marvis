@@ -1,0 +1,38 @@
+{
+  "dataset_name": "pendigits",
+  "task_prefix": "Pen-Based Recognition of Handwritten Digits dataset. Contains coordinate information from pen trajectories captured while writing digits 0-9 on a pressure-sensitive tablet. The data represents the dynamic movement of pen strokes rather than static images. Each example contains 16 features. Online handwriting recognition for pen-based interfaces.",
+  "column_descriptions": {
+    "x1": "X coordinate of point 1",
+    "y1": "Y coordinate of point 1",
+    "x2": "X coordinate of point 2",
+    "y2": "Y coordinate of point 2",
+    "x3": "X coordinate of point 3",
+    "y3": "Y coordinate of point 3",
+    "x4": "X coordinate of point 4",
+    "y4": "Y coordinate of point 4",
+    "x5": "X coordinate of point 5",
+    "y5": "Y coordinate of point 5",
+    "x6": "X coordinate of point 6",
+    "y6": "Y coordinate of point 6",
+    "x7": "X coordinate of point 7",
+    "y7": "Y coordinate of point 7",
+    "x8": "X coordinate of point 8",
+    "y8": "Y coordinate of point 8"
+  },
+  "class_names": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '0' (Digit 0), '1' (Digit 1), '2' (Digit 2), '3' (Digit 3), '4' (Digit 4), '5' (Digit 5), '6' (Digit 6), '7' (Digit 7), '8' (Digit 8), '9' (Digit 9)",
+  "num_features": 16,
+  "num_classes": 10,
+  "task_id": "32"
+}

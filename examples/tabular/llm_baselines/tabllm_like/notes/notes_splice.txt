@@ -1,0 +1,10 @@
+['The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_2.'] -> IE
+['The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_2.'] -> EI
+['The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_2.'] -> N
+['The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_2.'] -> IE
+['The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_3.'] -> N
+['The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_1.'] -> EI
+['The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_3.'] -> N
+['The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_1.'] -> N
+['The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_1.'] -> EI
+['The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_1.'] -> EI

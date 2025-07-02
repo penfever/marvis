@@ -1,0 +1,10 @@
+['The Feature: Term frequency features is 14.'] -> 5
+['The Feature: Term frequency features is 58.'] -> 6
+['The Feature: Term frequency features is 51.'] -> 9
+['The Feature: Term frequency features is 5.'] -> 8
+['The Feature: Term frequency features is 48.'] -> 6
+['The Feature: Term frequency features is 84.'] -> 6
+['The Feature: Term frequency features is 63.'] -> 3
+['The Feature: Term frequency features is 19.'] -> 5
+['The Feature: Term frequency features is 3.'] -> 7
+['The Feature: Term frequency features is 12.'] -> 4

@@ -1,0 +1,17 @@
+dataset: qsar-biodeg
+templates:
+  96e17005-7d3e-4cfb-b026-f828f7b1d93f: !Template
+    name: qsar-biodeg
+    id: 96e17005-7d3e-4cfb-b026-f828f7b1d93f
+    reference: ''
+    answer_choices: RB ||| NRB
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: RB (Ready\
+      \ Biodegradable - chemicals that degrade rapidly under aerobic conditions (356\
+      \ instances, 33.7%)), NRB (Not Ready Biodegradable - chemicals that do not degrade\
+      \ readily in the environment (699 instances, 66.3%))\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

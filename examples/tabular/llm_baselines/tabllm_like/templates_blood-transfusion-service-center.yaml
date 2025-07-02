@@ -1,0 +1,16 @@
+dataset: blood-transfusion-service-center
+templates:
+  f3e4e212-2f6e-4646-b4e3-77b71a42ca5b: !Template
+    name: blood-transfusion-service-center
+    id: f3e4e212-2f6e-4646-b4e3-77b71a42ca5b
+    reference: ''
+    answer_choices: 1 ||| 0
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: 1 (Donor\
+      \ donated blood in March 2007 target campaign (24% of instances)), 0 (Donor\
+      \ did not donate blood in March 2007 target campaign (76% of instances))\nAnswer:\
+      \ \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

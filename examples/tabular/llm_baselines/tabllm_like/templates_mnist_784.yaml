@@ -1,0 +1,16 @@
+dataset: mnist_784
+templates:
+  b13820a6-ef7e-40e5-8951-a0aad15e2986: !Template
+    name: mnist_784
+    id: b13820a6-ef7e-40e5-8951-a0aad15e2986
+    reference: ''
+    answer_choices: Digit 0 ||| Digit 1 ||| Digit 2 ||| Digit 3 ||| Digit 4 ||| Digit
+      5 ||| Digit 6 ||| Digit 7 ||| Digit 8 ||| Digit 9
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Digit 0, Digit 1, Digit 2, Digit 3, Digit 4, Digit 5, Digit 6, Digit 7, Digit\
+      \ 8, Digit 9?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

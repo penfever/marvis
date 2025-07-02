@@ -1,0 +1,16 @@
+{
+  "dataset_name": "dna",
+  "task_prefix": "Primate splice-junction gene sequences (DNA) for identifying boundaries between exons and introns. The StatLog version processes DNA sequences into 180 binary indicator variables representing the presence of specific nucleotides at specific positions. Each example contains 1 features. Gene structure prediction.",
+  "column_descriptions": {
+    "features": "180 binary features encoding DNA sequence information, representing nucleotide patterns around splice junctions"
+  },
+  "class_names": [
+    "ei",
+    "ie",
+    "n"
+  ],
+  "class_description": "Classes: 'ei' (Exon-Intron boundary (donor sites)), 'ie' (Intron-Exon boundary (acceptor sites)), 'n' (Neither (no splice junction))",
+  "num_features": 1,
+  "num_classes": 3,
+  "task_id": "167140"
+}

@@ -1,0 +1,21 @@
+dataset: isolet
+templates:
+  256833b7-a8f8-4cae-97d3-4e6db050c987: !Template
+    name: isolet
+    id: 256833b7-a8f8-4cae-97d3-4e6db050c987
+    reference: ''
+    answer_choices: Letter A ||| Letter J ||| Letter K ||| Letter L ||| Letter M |||
+      Letter N ||| Letter O ||| Letter P ||| Letter Q ||| Letter R ||| Letter S |||
+      Letter B ||| Letter T ||| Letter U ||| Letter V ||| Letter W ||| Letter X |||
+      Letter Y ||| Letter Z ||| Letter C ||| Letter D ||| Letter E ||| Letter F |||
+      Letter G ||| Letter H ||| Letter I
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Letter A, Letter J, Letter K, Letter L, Letter M, Letter N, Letter O, Letter\
+      \ P, Letter Q, Letter R, Letter S, Letter B, Letter T, Letter U, Letter V, Letter\
+      \ W, Letter X, Letter Y, Letter Z, Letter C, Letter D, Letter E, Letter F, Letter\
+      \ G, Letter H, Letter I?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

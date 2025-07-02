@@ -1,0 +1,17 @@
+{
+  "dataset_name": "google_qa_question_type_reason_explanation",
+  "task_prefix": "This dataset is part of a Google Crowdsource initiative focused on question-answer analysis. It contains questions and answers along with various features to predict the reasoning type or explanation category of questions. The dataset is designed to help understand how different types of questions relate to their answers in terms of reasoning patterns. Each example contains 4 features. Predict the question_type_reason_explanation.",
+  "column_descriptions": {
+    "question_text": "The actual question text submitted by users",
+    "answer_text": "The corresponding answer text provided for the question",
+    "category_features": "Various categorical features describing the question-answer pair characteristics (exact feature names not provided in source documentation)",
+    "encoded_features": "Numerical features likely derived from text encoding or embedding (features 0-40)"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: question_type_reason_explanation - Classification of the question type based on the reasoning or explanation pattern required to answer it. Units: Categorical score/classification. Range: Unknown specific range - likely categorical labels representing different reasoning types",
+  "num_features": 4,
+  "num_classes": 1,
+  "task_id": 363371
+}

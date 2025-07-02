@@ -1,0 +1,201 @@
+{
+  "dataset": "vehicle",
+  "description": "The Statlog Vehicle Silhouettes dataset contains features extracted from 2D silhouettes of four types of vehicles. The purpose is to classify vehicle silhouettes using shape features extracted by the HIPS (Hierarchical Image Processing System) extension BINATTS, which combines classical moment-based measures and heuristic shape descriptors.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Statlog+(Vehicle+Silhouettes)",
+  "openml_task": 53,
+  "openml_dataset": 54,
+  "date_collected": "1986-1987",
+  "creator": "JP Siebert (Turing Institute)",
+  "instances": 946,
+  "features": 18,
+  "target": "Class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "continuous"
+  },
+  "feature_names": {
+    "COMPACTNESS": "Compactness measure",
+    "CIRCULARITY": "Circularity measure",
+    "DISTANCE_CIRCULARITY": "Distance circularity",
+    "RADIUS_RATIO": "Radius ratio",
+    "PR.AXIS_ASPECT_RATIO": "Principal axis aspect ratio",
+    "MAX.LENGTH_ASPECT_RATIO": "Maximum length aspect ratio",
+    "SCATTER_RATIO": "Scatter ratio",
+    "ELONGATEDNESS": "Elongatedness measure",
+    "PR.AXIS_RECTANGULARITY": "Principal axis rectangularity",
+    "MAX.LENGTH_RECTANGULARITY": "Maximum length rectangularity",
+    "SCALED_VARIANCE_MAJOR": "Scaled variance along major axis",
+    "SCALED_VARIANCE_MINOR": "Scaled variance along minor axis",
+    "SCALED_RADIUS_OF_GYRATION": "Scaled radius of gyration",
+    "SKEWNESS_ABOUT_MAJOR": "Skewness about major axis",
+    "SKEWNESS_ABOUT_MINOR": "Skewness about minor axis",
+    "KURTOSIS_ABOUT_MAJOR": "Kurtosis about major axis",
+    "KURTOSIS_ABOUT_MINOR": "Kurtosis about minor axis",
+    "HOLLOWS_RATIO": "Hollows ratio"
+  },
+  "feature_descriptions": {
+    "COMPACTNESS": "(average perimeter)^2/area - measures how compact the shape is",
+    "CIRCULARITY": "(average radius)^2/area - measures how circular the shape is",
+    "DISTANCE_CIRCULARITY": "Area/(distance circularity)^2",
+    "RADIUS_RATIO": "(max radius - min radius)/average radius",
+    "PR.AXIS_ASPECT_RATIO": "Ratio of principal axes lengths",
+    "MAX.LENGTH_ASPECT_RATIO": "Ratio based on maximum length measurements",
+    "SCATTER_RATIO": "Inertia about minor axis/area",
+    "ELONGATEDNESS": "Area/(shrink width)^2 - measures shape elongation",
+    "PR.AXIS_RECTANGULARITY": "Area/(pr.axis length * pr.axis width)",
+    "MAX.LENGTH_RECTANGULARITY": "Area/(max length * max width)",
+    "SCALED_VARIANCE_MAJOR": "Second order moment about major axis scaled by area",
+    "SCALED_VARIANCE_MINOR": "Second order moment about minor axis scaled by area",
+    "SCALED_RADIUS_OF_GYRATION": "(mavar + mivar)/area",
+    "SKEWNESS_ABOUT_MAJOR": "Third order moment about major axis",
+    "SKEWNESS_ABOUT_MINOR": "Third order moment about minor axis",
+    "KURTOSIS_ABOUT_MAJOR": "Fourth order moment about major axis",
+    "KURTOSIS_ABOUT_MINOR": "Fourth order moment about minor axis",
+    "HOLLOWS_RATIO": "Area of hollows/area of bounding polygon"
+  },
+  "target_values": {
+    "bus": "Double decker bus",
+    "van": "Chevrolet van",
+    "saab": "Saab 9000",
+    "opel": "Opel Manta 400"
+  },
+  "domain": "Computer Vision/Object Recognition",
+  "use_case": "Vehicle type classification from silhouettes for applications in traffic monitoring, automated toll systems, parking management, and security surveillance",
+  "data_collection": {
+    "image_resolution": "128x128 pixels",
+    "quantization": "64 gray levels",
+    "rotation": "Full 360 degree rotation captured",
+    "sets": "Two sets (e2 and e3) of 60 images each per vehicle"
+  },
+  "expected_difficulty": "Bus and van expected to be easily distinguishable from cars, but distinguishing between the two car models (Saab and Opel) expected to be more challenging",
+  "ethical_considerations": "Dataset uses toy models rather than real vehicles, limiting real-world applicability. Care should be taken when generalizing to actual vehicle recognition systems.",
+  "citations": [
+    {
+      "author": "Siebert, JP",
+      "title": "Vehicle Recognition Using Rule Based Methods",
+      "venue": "Turing Institute Research Memorandum TIRM-87-018",
+      "year": "1987"
+    }
+  ],
+  "dataset_name": "vehicle",
+  "original_source": {
+    "creator": "JP Siebert (Turing Institute)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "Unknown",
+    "publication": "Siebert, JP: Vehicle Recognition Using Rule Based Methods"
+  },
+  "columns": [
+    {
+      "name": "Compactness measure",
+      "semantic_description": "(average perimeter)^2/area - measures how compact the shape is",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Circularity measure",
+      "semantic_description": "(average radius)^2/area - measures how circular the shape is",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Distance circularity",
+      "semantic_description": "Area/(distance circularity)^2",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Radius ratio",
+      "semantic_description": "(max radius - min radius)/average radius",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Principal axis aspect ratio",
+      "semantic_description": "Ratio of principal axes lengths",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Maximum length aspect ratio",
+      "semantic_description": "Ratio based on maximum length measurements",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Scatter ratio",
+      "semantic_description": "Inertia about minor axis/area",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Elongatedness measure",
+      "semantic_description": "Area/(shrink width)^2 - measures shape elongation",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Principal axis rectangularity",
+      "semantic_description": "Area/(pr.axis length * pr.axis width)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Maximum length rectangularity",
+      "semantic_description": "Area/(max length * max width)",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Scaled variance along major axis",
+      "semantic_description": "Second order moment about major axis scaled by area",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Scaled variance along minor axis",
+      "semantic_description": "Second order moment about minor axis scaled by area",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Scaled radius of gyration",
+      "semantic_description": "(mavar + mivar)/area",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Skewness about major axis",
+      "semantic_description": "Third order moment about major axis",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Skewness about minor axis",
+      "semantic_description": "Third order moment about minor axis",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Kurtosis about major axis",
+      "semantic_description": "Fourth order moment about major axis",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Kurtosis about minor axis",
+      "semantic_description": "Fourth order moment about minor axis",
+      "data_type": "continuous"
+    },
+    {
+      "name": "Hollows ratio",
+      "semantic_description": "Area of hollows/area of bounding polygon",
+      "data_type": "continuous"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "bus",
+      "meaning": "Double decker bus"
+    },
+    {
+      "name": "van",
+      "meaning": "Chevrolet van"
+    },
+    {
+      "name": "saab",
+      "meaning": "Saab 9000"
+    },
+    {
+      "name": "opel",
+      "meaning": "Opel Manta 400"
+    }
+  ],
+  "dataset_history": "Data Collection: {'image_resolution': '128x128 pixels', 'quantization': '64 gray levels', 'rotation': 'Full 360 degree rotation captured', 'sets': 'Two sets (e2 and e3) of 60 images each per vehicle'}",
+  "inference_notes": "Use Case: Vehicle type classification from silhouettes for applications in traffic monitoring, automated toll systems, parking management, and security surveillance"
+}

@@ -1,0 +1,14 @@
+{
+  "dataset_name": "KDDCup09_appetency",
+  "task_prefix": "Customer relationship management dataset for predicting appetency (likelihood to buy a product) in telecom industry. Part of KDD Cup 2009 focusing on customer behavior prediction from large-scale, noisy, incomplete real-world data. Each example contains 1 features. Predict the target class.",
+  "column_descriptions": {
+    "Var1-Var230": "Anonymized customer features including demographics, usage patterns, billing information, service subscriptions, and behavioral indicators. Mix of numerical and categorical variables with high missing rate."
+  },
+  "class_names": [
+    "1",
+    "-1"
+  ],
+  "class_description": "Classes: '1' (Positive appetency - customer likely to buy new product/service (1.8% of instances)), '-1' (Negative appetency - customer unlikely to buy new product/service (98.2% of instances))",
+  "num_features": 1,
+  "num_classes": 2
+}

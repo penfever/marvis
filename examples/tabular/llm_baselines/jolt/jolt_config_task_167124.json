@@ -1,0 +1,26 @@
+{
+  "dataset_name": "CIFAR_10",
+  "task_prefix": "The CIFAR-10 dataset consists of 60000 32x32 color images in 10 mutually exclusive classes. A labeled subset of the 80 million tiny images dataset, it is one of the most widely used benchmarks for image classification. Each example contains 4 features. Image classification.",
+  "column_descriptions": {
+    "structure": "3072 features = 32x32 pixels \u00d7 3 color channels (RGB)",
+    "ordering": "First 1024: red channel, next 1024: green channel, last 1024: blue channel",
+    "storage": "Row-major order within each channel",
+    "values": "8-bit color depth (0-255)"
+  },
+  "class_names": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '0' (airplane), '1' (automobile), '2' (bird), '3' (cat), '4' (deer), '5' (dog), '6' (frog), '7' (horse), '8' (ship), '9' (truck)",
+  "num_features": 4,
+  "num_classes": 10,
+  "task_id": "167124"
+}

@@ -1,0 +1,15 @@
+dataset: climate-model-simulation-crashes
+templates:
+  b32bf96c-9163-413d-877f-0951153447ec: !Template
+    name: climate-model-simulation-crashes
+    id: b32bf96c-9163-413d-877f-0951153447ec
+    reference: ''
+    answer_choices: Simulation failure/crash ||| Simulation success
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Simulation failure/crash, Simulation success?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

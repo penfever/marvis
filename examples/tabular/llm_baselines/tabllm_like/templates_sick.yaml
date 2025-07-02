@@ -1,0 +1,15 @@
+dataset: sick
+templates:
+  5e333d0f-12ad-44b9-a842-e603023c184c: !Template
+    name: sick
+    id: 5e333d0f-12ad-44b9-a842-e603023c184c
+    reference: ''
+    answer_choices: Normal thyroid function ||| Thyroid disease present
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Normal thyroid function, Thyroid disease present?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

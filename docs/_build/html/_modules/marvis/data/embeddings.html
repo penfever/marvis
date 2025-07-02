@@ -1,0 +1,999 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.data.embeddings &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">marvis.data.embeddings</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for marvis.data.embeddings</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Tabular, image, and audio embedding extraction and processing utilities.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">RobustScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torchvision.transforms</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">transforms</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;generate_dataset_hash&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;get_tabpfn_embeddings&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;get_embeddings_in_chunks&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;resize_embeddings&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prepare_tabpfn_embeddings_for_prefix&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;get_dinov2_embeddings&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;load_dinov2_model&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prepare_image_for_dinov2&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Audio embeddings are in separate module to avoid heavy dependencies</span>
+<span class="c1"># from marvis.data.audio_embeddings import get_whisper_embeddings, load_whisper_model</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="generate_dataset_hash">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.embeddings.generate_dataset_hash">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_dataset_hash</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a unique hash for a dataset configuration based on its properties.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X: Feature matrix</span>
+<span class="sd">        y: Labels</span>
+<span class="sd">        embedding_size: Size of the embeddings to be generated</span>
+<span class="sd">        dataset_name: Optional name of the dataset</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        hash_str: A unique string hash for this dataset configuration</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get data properties</span>
+    <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+
+    <span class="c1"># Convert inputs to numpy arrays if they aren&#39;t already</span>
+    <span class="c1"># This handles pandas Series, DataFrame, Categorical, etc.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">X_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">X_np</span> <span class="o">=</span> <span class="n">X</span>
+        
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">y_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">y_np</span> <span class="o">=</span> <span class="n">y</span>
+    
+    <span class="c1"># Create a dictionary with all relevant properties</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;n_samples&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_samples</span><span class="p">),</span>
+        <span class="s2">&quot;n_features&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_features</span><span class="p">),</span>
+        <span class="s2">&quot;n_classes&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_classes</span><span class="p">),</span>
+        <span class="s2">&quot;class_distribution&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_np</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">))},</span>
+        <span class="s2">&quot;embedding_size&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">embedding_size</span><span class="p">),</span>
+        <span class="c1"># Convert to float32 to ensure consistent representation across platforms</span>
+        <span class="s2">&quot;data_hash&quot;</span><span class="p">:</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">X_np</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">tobytes</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">10</span><span class="p">],</span>
+        <span class="c1"># Use string representation to avoid tobytes() issues with categorical types</span>
+        <span class="s2">&quot;label_hash&quot;</span><span class="p">:</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">y_np</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">10</span><span class="p">],</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">dataset_name</span><span class="p">:</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;dataset_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset_name</span>
+
+    <span class="c1"># Convert to a string and hash it</span>
+    <span class="n">config_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">hash_obj</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">config_str</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+    <span class="n">hash_str</span> <span class="o">=</span> <span class="n">hash_obj</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">hash_str</span></div>
+
+
+<div class="viewcode-block" id="get_tabpfn_embeddings">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.embeddings.get_tabpfn_embeddings">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_tabpfn_embeddings</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">max_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">,</span>
+    <span class="n">embedding_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="n">cache_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dataset_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">force_recompute</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">task_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;classification&quot;</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get TabPFN embeddings with improved class balance checking and caching.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X_train: Training features</span>
+<span class="sd">        y_train: Training labels</span>
+<span class="sd">        X_test: Test features</span>
+<span class="sd">        max_samples: Maximum number of samples to use from training set</span>
+<span class="sd">        embedding_size: Size of the output embeddings</span>
+<span class="sd">        cache_dir: Directory to store cached embeddings. If None, caching is disabled.</span>
+<span class="sd">        dataset_name: Optional name of the dataset for the cache filename</span>
+<span class="sd">        force_recompute: If True, ignore cache and recompute embeddings</span>
+<span class="sd">        task_type: Type of task - &quot;classification&quot; or &quot;regression&quot;</span>
+<span class="sd">        seed: Random seed for reproducible feature selection and sampling</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        train_embeddings: TabPFN embeddings for training set</span>
+<span class="sd">        val_embeddings: Always None (validation embeddings no longer generated)</span>
+<span class="sd">        test_embeddings: TabPFN embeddings for test set</span>
+<span class="sd">        tabpfn: Fitted TabPFN model</span>
+<span class="sd">        y_train_sample: Labels for the sampled training set</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">task_type</span> <span class="o">==</span> <span class="s2">&quot;regression&quot;</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">tabpfn</span><span class="w"> </span><span class="kn">import</span> <span class="n">TabPFNRegressor</span>
+            <span class="n">TabPFNModel</span> <span class="o">=</span> <span class="n">TabPFNRegressor</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">tabpfn</span><span class="w"> </span><span class="kn">import</span> <span class="n">TabPFNClassifier</span>  
+            <span class="n">TabPFNModel</span> <span class="o">=</span> <span class="n">TabPFNClassifier</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;TabPFN package is required to get embeddings. Install it with &#39;pip install tabpfn&#39;.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Setup caching if enabled</span>
+    <span class="n">cache_file</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">cache_metadata</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;dataset_name&quot;</span><span class="p">:</span> <span class="n">dataset_name</span> <span class="ow">or</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;embedding_size&quot;</span><span class="p">:</span> <span class="n">embedding_size</span><span class="p">,</span>
+        <span class="s2">&quot;max_samples&quot;</span><span class="p">:</span> <span class="n">max_samples</span><span class="p">,</span>
+        <span class="s2">&quot;task_type&quot;</span><span class="p">:</span> <span class="n">task_type</span><span class="p">,</span>
+        <span class="s2">&quot;n_train&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span>
+        <span class="s2">&quot;n_test&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span>
+        <span class="s2">&quot;n_features&quot;</span><span class="p">:</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">cache_dir</span><span class="p">:</span>
+        <span class="c1"># Try to use the new resource manager for caching</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.resource_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_resource_manager</span>
+            <span class="n">rm</span> <span class="o">=</span> <span class="n">get_resource_manager</span><span class="p">()</span>
+            <span class="n">use_managed_cache</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">use_managed_cache</span> <span class="o">=</span> <span class="kc">False</span>
+        
+        <span class="k">if</span> <span class="n">use_managed_cache</span><span class="p">:</span>
+            <span class="c1"># Generate cache key using resource manager</span>
+            <span class="n">cache_key</span> <span class="o">=</span> <span class="n">rm</span><span class="o">.</span><span class="n">cache_manager</span><span class="o">.</span><span class="n">get_cache_key</span><span class="p">(</span>
+                <span class="n">dataset_name</span><span class="o">=</span><span class="n">dataset_name</span> <span class="ow">or</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+                <span class="n">embedding_size</span><span class="o">=</span><span class="n">embedding_size</span><span class="p">,</span>
+                <span class="n">max_samples</span><span class="o">=</span><span class="n">max_samples</span><span class="p">,</span>
+                <span class="n">task_type</span><span class="o">=</span><span class="n">task_type</span><span class="p">,</span>
+                <span class="n">n_features</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">data_hash</span><span class="o">=</span><span class="n">generate_dataset_hash</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Legacy caching approach</span>
+            <span class="c1"># Generate a unique hash for this dataset configuration</span>
+            <span class="n">dataset_hash</span> <span class="o">=</span> <span class="n">generate_dataset_hash</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
+            <span class="c1"># Create cache directory if it doesn&#39;t exist</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">cache_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">use_managed_cache</span><span class="p">:</span>
+            <span class="c1"># Check managed cache</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">force_recompute</span> <span class="ow">and</span> <span class="n">rm</span><span class="o">.</span><span class="n">cache_manager</span><span class="o">.</span><span class="n">cache_exists</span><span class="p">(</span><span class="s1">&#39;embeddings&#39;</span><span class="p">,</span> <span class="n">cache_key</span><span class="p">,</span> <span class="s1">&#39;.npz&#39;</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading cached TabPFN embeddings from managed cache&quot;</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">cache_data</span> <span class="o">=</span> <span class="n">rm</span><span class="o">.</span><span class="n">cache_manager</span><span class="o">.</span><span class="n">load_from_cache</span><span class="p">(</span><span class="s1">&#39;embeddings&#39;</span><span class="p">,</span> <span class="n">cache_key</span><span class="p">,</span> <span class="s1">&#39;.npz&#39;</span><span class="p">)</span>
+                    
+                    <span class="k">if</span> <span class="n">cache_data</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cache_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                        <span class="c1"># Extract embeddings and metadata</span>
+                        <span class="n">train_embeddings</span> <span class="o">=</span> <span class="n">cache_data</span><span class="p">[</span><span class="s2">&quot;train_embeddings&quot;</span><span class="p">]</span>
+                        <span class="c1"># val_embeddings removed - skip loading it</span>
+                        <span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">cache_data</span><span class="p">[</span><span class="s2">&quot;test_embeddings&quot;</span><span class="p">]</span>
+                        <span class="n">y_train_sample</span> <span class="o">=</span> <span class="n">cache_data</span><span class="p">[</span><span class="s2">&quot;y_train_sample&quot;</span><span class="p">]</span>
+                        <span class="n">cache_metadata</span> <span class="o">=</span> <span class="n">cache_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+                        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded embeddings from managed cache - Train: </span><span class="si">{</span><span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Val: None, Test: </span><span class="si">{</span><span class="n">test_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cache metadata: </span><span class="si">{</span><span class="n">cache_metadata</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                        <span class="c1"># Create a dummy TabPFN model since we don&#39;t need to fit anymore</span>
+                        <span class="k">if</span> <span class="n">task_type</span> <span class="o">==</span> <span class="s2">&quot;regression&quot;</span><span class="p">:</span>
+                            <span class="n">tabpfn</span> <span class="o">=</span> <span class="n">TabPFNModel</span><span class="p">(</span>
+                                <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
+                                <span class="n">n_estimators</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                                <span class="n">ignore_pretraining_limits</span><span class="o">=</span><span class="kc">True</span>
+                            <span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">tabpfn</span> <span class="o">=</span> <span class="n">TabPFNModel</span><span class="p">(</span>
+                                <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
+                                <span class="n">n_estimators</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                                <span class="n">ignore_pretraining_limits</span><span class="o">=</span><span class="kc">True</span>
+                            <span class="p">)</span>
+
+                        <span class="c1"># Check if the loaded embeddings match the expected embedding size</span>
+                        <span class="k">if</span> <span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">embedding_size</span><span class="p">:</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cached embeddings size (</span><span class="si">{</span><span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">) doesn&#39;t match requested size (</span><span class="si">{</span><span class="n">embedding_size</span><span class="si">}</span><span class="s2">). Resizing...&quot;</span><span class="p">)</span>
+                            <span class="c1"># Resize them (using the same resize code as below)</span>
+                            <span class="n">train_embeddings</span><span class="p">,</span> <span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">resize_embeddings</span><span class="p">(</span>
+                                <span class="n">train_embeddings</span><span class="p">,</span> <span class="n">test_embeddings</span><span class="p">,</span> <span class="n">embedding_size</span>
+                            <span class="p">)</span>
+
+                        <span class="k">return</span> <span class="n">train_embeddings</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">test_embeddings</span><span class="p">,</span> <span class="n">tabpfn</span><span class="p">,</span> <span class="n">y_train_sample</span>
+
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading cached embeddings from managed cache: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">. Recomputing...&quot;</span><span class="p">)</span>
+                    <span class="c1"># Continue with normal computation if loading fails</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Legacy cache approach</span>
+            <span class="c1"># Define cache filename</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">_&quot;</span> <span class="k">if</span> <span class="n">dataset_name</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">cache_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cache_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">tabpfn_embeddings_</span><span class="si">{</span><span class="n">dataset_hash</span><span class="si">}</span><span class="s2">.npz&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Check if cache file exists and we&#39;re not forcing recomputation</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">cache_file</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force_recompute</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading cached TabPFN embeddings from </span><span class="si">{</span><span class="n">cache_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">cache</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">cache_file</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+                    <span class="c1"># Extract embeddings and metadata</span>
+                    <span class="n">train_embeddings</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="s2">&quot;train_embeddings&quot;</span><span class="p">]</span>
+                    <span class="c1"># val_embeddings removed - skip loading it</span>
+                    <span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="s2">&quot;test_embeddings&quot;</span><span class="p">]</span>
+                    <span class="n">y_train_sample</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="s2">&quot;y_train_sample&quot;</span><span class="p">]</span>
+                    <span class="n">cache_metadata</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="s2">&quot;metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;metadata&quot;</span> <span class="ow">in</span> <span class="n">cache</span> <span class="k">else</span> <span class="p">{}</span>
+
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded embeddings from cache - Train: </span><span class="si">{</span><span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Val: None, Test: </span><span class="si">{</span><span class="n">test_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cache metadata: </span><span class="si">{</span><span class="n">cache_metadata</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                    <span class="c1"># Create a dummy TabPFN model since we don&#39;t need to fit anymore</span>
+                    <span class="n">tabpfn</span> <span class="o">=</span> <span class="n">TabPFNModel</span><span class="p">(</span>
+                        <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
+                        <span class="n">n_estimators</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                        <span class="n">ignore_pretraining_limits</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span>
+
+                    <span class="c1"># Check if the loaded embeddings match the expected embedding size</span>
+                    <span class="k">if</span> <span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">embedding_size</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cached embeddings size (</span><span class="si">{</span><span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">) doesn&#39;t match requested size (</span><span class="si">{</span><span class="n">embedding_size</span><span class="si">}</span><span class="s2">). Resizing...&quot;</span><span class="p">)</span>
+                        <span class="c1"># Resize them (using the same resize code as below)</span>
+                        <span class="n">train_embeddings</span><span class="p">,</span> <span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">resize_embeddings</span><span class="p">(</span>
+                            <span class="n">train_embeddings</span><span class="p">,</span> <span class="n">test_embeddings</span><span class="p">,</span> <span class="n">embedding_size</span>
+                        <span class="p">)</span>
+
+                    <span class="k">return</span> <span class="n">train_embeddings</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">test_embeddings</span><span class="p">,</span> <span class="n">tabpfn</span><span class="p">,</span> <span class="n">y_train_sample</span>
+
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading cached embeddings: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">. Recomputing...&quot;</span><span class="p">)</span>
+                    <span class="c1"># Continue with normal computation if loading fails</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Fitting TabPFN and extracting embeddings&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Log original target distribution</span>
+    <span class="k">if</span> <span class="n">task_type</span> <span class="o">==</span> <span class="s2">&quot;classification&quot;</span><span class="p">:</span>
+        <span class="n">unique_classes</span><span class="p">,</span> <span class="n">class_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">class_dist</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">,</span> <span class="n">class_counts</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original train set class distribution: </span><span class="si">{</span><span class="n">class_dist</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Validate class distribution for stratified sampling</span>
+        <span class="n">MIN_SAMPLES_PER_CLASS</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">min_class_count</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">class_counts</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">min_class_count</span> <span class="o">&lt;</span> <span class="n">MIN_SAMPLES_PER_CLASS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Minimum class count is </span><span class="si">{</span><span class="n">min_class_count</span><span class="si">}</span><span class="s2">, which is less than </span><span class="si">{</span><span class="n">MIN_SAMPLES_PER_CLASS</span><span class="si">}</span><span class="s2"> required for stratified sampling&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Only </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">)</span><span class="si">}</span><span class="s2"> unique classes found, need at least 2 classes&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># For regression, log target statistics</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original train set target statistics: min=</span><span class="si">{</span><span class="n">y_train</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, max=</span><span class="si">{</span><span class="n">y_train</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, mean=</span><span class="si">{</span><span class="n">y_train</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, std=</span><span class="si">{</span><span class="n">y_train</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">unique_classes</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Not needed for regression</span>
+
+    <span class="c1"># Handle dimensionality reduction if feature count is very high</span>
+    <span class="n">MAX_FEATURES_FOR_TABPFN</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># TabPFN typically works well with less than 1000 features</span>
+    <span class="k">if</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">MAX_FEATURES_FOR_TABPFN</span><span class="p">:</span>
+        <span class="c1"># As a last resort, just select a random subset of features</span>
+        <span class="n">n_components</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">MAX_FEATURES_FOR_TABPFN</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_random_state</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">create_random_state</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="n">selected_features</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">n_components</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="n">selected_features</span><span class="p">]</span>
+        <span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="n">selected_features</span><span class="p">]</span>
+
+    <span class="c1"># Sample if dataset is too large</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_samples</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+        
+        <span class="n">sample_ratio</span> <span class="o">=</span> <span class="n">max_samples</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">task_type</span> <span class="o">==</span> <span class="s2">&quot;classification&quot;</span><span class="p">:</span>
+            <span class="c1"># Check if we need to adjust sample size to ensure at least 2 samples per class</span>
+            <span class="n">min_expected_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">min_class_count</span> <span class="o">*</span> <span class="n">sample_ratio</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">min_expected_samples</span> <span class="o">&lt;</span> <span class="n">MIN_SAMPLES_PER_CLASS</span><span class="p">:</span>
+                <span class="c1"># Adjust sample size to ensure minimum class representation</span>
+                <span class="n">required_ratio</span> <span class="o">=</span> <span class="n">MIN_SAMPLES_PER_CLASS</span> <span class="o">/</span> <span class="n">min_class_count</span>
+                <span class="n">adjusted_max_samples</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span> <span class="o">*</span> <span class="n">required_ratio</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">))</span>  <span class="c1"># Add 10% buffer</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Adjusting sample size from </span><span class="si">{</span><span class="n">max_samples</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">adjusted_max_samples</span><span class="si">}</span><span class="s2"> to ensure minimum class representation&quot;</span><span class="p">)</span>
+                <span class="n">sample_ratio</span> <span class="o">=</span> <span class="n">adjusted_max_samples</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+            
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Split with stratification to maintain class distribution</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">X_train_sample</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">y_train_sample</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+                    <span class="n">test_size</span><span class="o">=</span><span class="n">sample_ratio</span><span class="p">,</span>
+                    <span class="n">stratify</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
+                    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># If stratified sampling fails, fall back to random sampling</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stratified sampling failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">. Using random sampling.&quot;</span><span class="p">)</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">X_train_sample</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">y_train_sample</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+                    <span class="n">test_size</span><span class="o">=</span><span class="n">sample_ratio</span><span class="p">,</span>
+                    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># For regression, use simple random sampling</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">X_train_sample</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">y_train_sample</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+                <span class="n">test_size</span><span class="o">=</span><span class="n">sample_ratio</span><span class="p">,</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+            <span class="p">)</span>
+            
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sampled </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train_sample</span><span class="p">)</span><span class="si">}</span><span class="s2"> training samples from </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span><span class="si">}</span><span class="s2"> total samples&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">X_train_sample</span> <span class="o">=</span> <span class="n">X_train</span>
+        <span class="n">y_train_sample</span> <span class="o">=</span> <span class="n">y_train</span>
+
+    <span class="c1"># Verify the sampled distribution for classification</span>
+    <span class="k">if</span> <span class="n">task_type</span> <span class="o">==</span> <span class="s2">&quot;classification&quot;</span><span class="p">:</span>
+        <span class="n">sampled_classes</span><span class="p">,</span> <span class="n">sampled_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_train_sample</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sampled train set class distribution: </span><span class="si">{</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">sampled_classes</span><span class="p">,</span><span class="w"> </span><span class="n">sampled_counts</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sampled train set target statistics: min=</span><span class="si">{</span><span class="n">y_train_sample</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, max=</span><span class="si">{</span><span class="n">y_train_sample</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, mean=</span><span class="si">{</span><span class="n">y_train_sample</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Initialize and fit TabPFN</span>
+    <span class="n">N_ensemble</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">tabpfn</span> <span class="o">=</span> <span class="n">TabPFNModel</span><span class="p">(</span>
+        <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
+        <span class="n">n_estimators</span><span class="o">=</span><span class="n">N_ensemble</span><span class="p">,</span>
+        <span class="n">ignore_pretraining_limits</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">tabpfn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_sample</span><span class="p">,</span> <span class="n">y_train_sample</span><span class="p">)</span>
+
+    <span class="c1"># Extract embeddings - Process X_train_sample normally, use chunks for test set</span>
+    <span class="n">train_embeddings_raw</span> <span class="o">=</span> <span class="n">tabpfn</span><span class="o">.</span><span class="n">get_embeddings</span><span class="p">(</span><span class="n">X_train_sample</span><span class="p">)</span>
+    <span class="n">val_embeddings_raw</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># No validation embeddings generated</span>
+    <span class="n">test_embeddings_raw</span> <span class="o">=</span> <span class="n">get_embeddings_in_chunks</span><span class="p">(</span><span class="n">tabpfn</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">dataset_name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Raw embedding shapes - Train: </span><span class="si">{</span><span class="n">train_embeddings_raw</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Val: None, Test: </span><span class="si">{</span><span class="n">test_embeddings_raw</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Fix test embeddings shape if it&#39;s inconsistent (TabPFN single sample issue)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_embeddings_raw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_embeddings_raw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="c1"># Test embeddings are missing the sample dimension, add it back</span>
+        <span class="n">test_embeddings_raw</span> <span class="o">=</span> <span class="n">test_embeddings_raw</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># (8, 192) -&gt; (8, 1, 192)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fixed test embeddings shape: </span><span class="si">{</span><span class="n">test_embeddings_raw</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Process embeddings - average across ensemble members if available</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_embeddings_raw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">train_embeddings_raw</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Averaging embeddings across ensemble members&quot;</span><span class="p">)</span>
+        <span class="n">train_embeddings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_embeddings_raw</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">val_embeddings</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_embeddings_raw</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># For backward compatibility, handle original format</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_embeddings_raw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">train_embeddings</span> <span class="o">=</span> <span class="n">train_embeddings_raw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">val_embeddings</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">test_embeddings_raw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">train_embeddings</span> <span class="o">=</span> <span class="n">train_embeddings_raw</span>
+            <span class="n">val_embeddings</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">test_embeddings_raw</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processed embedding shapes - Train: </span><span class="si">{</span><span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Val: None, Test: </span><span class="si">{</span><span class="n">test_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Standardize embeddings using RobustScaler (less sensitive to outliers)</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">RobustScaler</span><span class="p">()</span>
+    <span class="c1"># Reshape to 2D if needed for RobustScaler</span>
+    <span class="n">original_train_shape</span> <span class="o">=</span> <span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">original_test_shape</span> <span class="o">=</span> <span class="n">test_embeddings</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="c1"># Check if we need to reshape for standardization</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">train_embeddings</span> <span class="o">=</span> <span class="n">train_embeddings</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">test_embeddings</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">test_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Fit on train embeddings and transform all sets</span>
+    <span class="n">train_embeddings</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_embeddings</span><span class="p">)</span>
+    <span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_embeddings</span><span class="p">)</span>
+    <span class="n">val_embeddings</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># No validation embeddings to transform</span>
+    
+    <span class="c1"># Log scaling statistics</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RobustScaler statistics - Center (median): </span><span class="si">{</span><span class="n">scaler</span><span class="o">.</span><span class="n">center_</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">... Scale (IQR): </span><span class="si">{</span><span class="n">scaler</span><span class="o">.</span><span class="n">scale_</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Reshape back if needed</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">original_train_shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">train_embeddings</span> <span class="o">=</span> <span class="n">train_embeddings</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">original_train_shape</span><span class="p">)</span>
+        <span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">test_embeddings</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">original_test_shape</span><span class="p">)</span>
+
+    <span class="c1"># Get the embedding dimension (the last dimension)</span>
+    <span class="n">embedding_dim</span> <span class="o">=</span> <span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Resize embeddings to target size if needed</span>
+    <span class="k">if</span> <span class="n">embedding_dim</span> <span class="o">!=</span> <span class="n">embedding_size</span><span class="p">:</span>
+        <span class="n">train_embeddings</span><span class="p">,</span> <span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">resize_embeddings</span><span class="p">(</span>
+            <span class="n">train_embeddings</span><span class="p">,</span> <span class="n">test_embeddings</span><span class="p">,</span> <span class="n">embedding_size</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Cache the embeddings if cache_dir is provided</span>
+    <span class="k">if</span> <span class="n">cache_dir</span><span class="p">:</span>
+        <span class="c1"># Add timestamp to metadata</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+        <span class="n">cache_metadata</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span>
+            <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+        <span class="p">})</span>
+        
+        <span class="k">if</span> <span class="n">use_managed_cache</span><span class="p">:</span>
+            <span class="c1"># Save to managed cache</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving TabPFN embeddings to managed cache&quot;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">cache_data</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;train_embeddings&quot;</span><span class="p">:</span> <span class="n">train_embeddings</span><span class="p">,</span>
+                    <span class="s2">&quot;val_embeddings&quot;</span><span class="p">:</span> <span class="n">val_embeddings</span><span class="p">,</span>
+                    <span class="s2">&quot;test_embeddings&quot;</span><span class="p">:</span> <span class="n">test_embeddings</span><span class="p">,</span>
+                    <span class="s2">&quot;y_train_sample&quot;</span><span class="p">:</span> <span class="n">y_train_sample</span><span class="p">,</span>
+                    <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="n">cache_metadata</span>
+                <span class="p">}</span>
+                
+                <span class="n">success</span> <span class="o">=</span> <span class="n">rm</span><span class="o">.</span><span class="n">cache_manager</span><span class="o">.</span><span class="n">save_to_cache</span><span class="p">(</span><span class="s1">&#39;embeddings&#39;</span><span class="p">,</span> <span class="n">cache_key</span><span class="p">,</span> <span class="n">cache_data</span><span class="p">,</span> <span class="s1">&#39;.npz&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully saved embeddings to managed cache&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to save embeddings to managed cache&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error saving embeddings to managed cache: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Legacy cache saving</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving TabPFN embeddings to cache: </span><span class="si">{</span><span class="n">cache_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Save to cache</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span>
+                    <span class="n">cache_file</span><span class="p">,</span>
+                    <span class="n">train_embeddings</span><span class="o">=</span><span class="n">train_embeddings</span><span class="p">,</span>
+                    <span class="n">test_embeddings</span><span class="o">=</span><span class="n">test_embeddings</span><span class="p">,</span>
+                    <span class="n">y_train_sample</span><span class="o">=</span><span class="n">y_train_sample</span><span class="p">,</span>
+                    <span class="n">metadata</span><span class="o">=</span><span class="n">cache_metadata</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error saving embeddings to cache: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final embedding shapes - Train: </span><span class="si">{</span><span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Val: None, Test: </span><span class="si">{</span><span class="n">test_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">train_embeddings</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">test_embeddings</span><span class="p">,</span> <span class="n">tabpfn</span><span class="p">,</span> <span class="n">y_train_sample</span></div>
+
+
+<div class="viewcode-block" id="get_embeddings_in_chunks">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.embeddings.get_embeddings_in_chunks">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_embeddings_in_chunks</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> 
+    <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+    <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;dataset&quot;</span><span class="p">,</span> 
+    <span class="n">max_chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">,</span> 
+    <span class="n">embedding_method</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process embeddings for larger datasets in chunks to avoid memory issues.</span>
+<span class="sd">    </span>
+<span class="sd">    This function is designed to process large datasets in manageable chunks,</span>
+<span class="sd">    reducing memory usage and preventing out-of-memory errors. It&#39;s particularly</span>
+<span class="sd">    useful for validation and test sets that might be too large to process at once.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        model: Fitted model with get_embeddings method or custom function</span>
+<span class="sd">        X: Feature matrix to get embeddings for</span>
+<span class="sd">        dataset_name: Name of the dataset for logging (for informational purposes)</span>
+<span class="sd">        max_chunk_size: Maximum number of samples to process in a single chunk</span>
+<span class="sd">        embedding_method: Optional custom function to get embeddings (default: model.get_embeddings)</span>
+<span class="sd">            If provided, will be called as: embedding_method(model, X_chunk)</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Processed embeddings as a numpy array</span>
+<span class="sd">    </span>
+<span class="sd">    Example:</span>
+<span class="sd">        ```python</span>
+<span class="sd">        # Using default method (model.get_embeddings)</span>
+<span class="sd">        test_embeddings = get_embeddings_in_chunks(tabpfn, X_test, &quot;test&quot;, max_chunk_size=2000)</span>
+<span class="sd">        </span>
+<span class="sd">        # Using custom embedding function</span>
+<span class="sd">        def custom_embedder(model, data):</span>
+<span class="sd">            return model.embed_data(data, special_flag=True)</span>
+<span class="sd">            </span>
+<span class="sd">        test_embeddings = get_embeddings_in_chunks(model, X_test, &quot;test&quot;, </span>
+<span class="sd">                                                 max_chunk_size=1500,</span>
+<span class="sd">                                                 embedding_method=custom_embedder)</span>
+<span class="sd">        ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">total_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    
+    <span class="c1"># Define the embedding function</span>
+    <span class="k">if</span> <span class="n">embedding_method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_emb</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">get_embeddings</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">get_emb</span> <span class="o">=</span> <span class="n">embedding_method</span>
+    
+    <span class="c1"># If the dataset is small enough, process it all at once</span>
+    <span class="k">if</span> <span class="n">total_samples</span> <span class="o">&lt;=</span> <span class="n">max_chunk_size</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_emb</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+    
+    <span class="c1"># Otherwise, process in chunks</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing </span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2"> embeddings in chunks (total: </span><span class="si">{</span><span class="n">total_samples</span><span class="si">}</span><span class="s2"> samples)&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Calculate number of chunks needed</span>
+    <span class="n">n_chunks</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_samples</span> <span class="o">+</span> <span class="n">max_chunk_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">max_chunk_size</span>  <span class="c1"># Ceiling division</span>
+    <span class="n">chunk_embeddings</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks</span><span class="p">):</span>
+        <span class="n">start_idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">max_chunk_size</span>
+        <span class="n">end_idx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">max_chunk_size</span><span class="p">,</span> <span class="n">total_samples</span><span class="p">)</span>
+        <span class="n">current_chunk_size</span> <span class="o">=</span> <span class="n">end_idx</span> <span class="o">-</span> <span class="n">start_idx</span>
+        
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing </span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2"> chunk </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_chunks</span><span class="si">}</span><span class="s2">: samples </span><span class="si">{</span><span class="n">start_idx</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">end_idx</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">X_chunk</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span>
+        
+        <span class="c1"># Get embeddings using either model.get_embeddings or the custom method</span>
+        <span class="n">chunk_embedding</span> <span class="o">=</span> <span class="n">get_emb</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_chunk</span><span class="p">)</span>
+        <span class="n">chunk_embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk_embedding</span><span class="p">)</span>
+        
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processed chunk </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> with shape: </span><span class="si">{</span><span class="n">chunk_embedding</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Concatenate chunks along the appropriate axis</span>
+    <span class="c1"># The embeddings array shape can be either (n_samples, emb_size) or (n_ensemble, n_samples, emb_size)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk_embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># Shape is (n_ensemble, n_samples, emb_size)</span>
+        <span class="c1"># Concatenate along axis 1 (sample dimension)</span>
+        <span class="n">concatenated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">chunk_embeddings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Shape is (n_samples, emb_size)</span>
+        <span class="c1"># Concatenate along axis 0 (sample dimension)</span>
+        <span class="n">concatenated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">chunk_embeddings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final concatenated </span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2"> embeddings shape: </span><span class="si">{</span><span class="n">concatenated</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">concatenated</span></div>
+
+
+<div class="viewcode-block" id="resize_embeddings">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.embeddings.resize_embeddings">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">resize_embeddings</span><span class="p">(</span><span class="n">train_embeddings</span><span class="p">,</span> <span class="n">test_embeddings</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function to resize embeddings to target size.&quot;&quot;&quot;</span>
+    <span class="n">embedding_dim</span> <span class="o">=</span> <span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Resizing embeddings from </span><span class="si">{</span><span class="n">embedding_dim</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">embedding_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create new arrays with target size</span>
+    <span class="n">train_embeddings_resized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">train_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">embedding_size</span><span class="p">))</span>
+    <span class="n">test_embeddings_resized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">test_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">embedding_size</span><span class="p">))</span>
+
+    <span class="c1"># Copy over the data (either truncate or zero-pad)</span>
+    <span class="n">copy_dim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">embedding_dim</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">)</span>
+    <span class="n">train_embeddings_resized</span><span class="p">[:,</span> <span class="p">:</span><span class="n">copy_dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_embeddings</span><span class="p">[:,</span> <span class="p">:</span><span class="n">copy_dim</span><span class="p">]</span>
+    <span class="n">test_embeddings_resized</span><span class="p">[:,</span> <span class="p">:</span><span class="n">copy_dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_embeddings</span><span class="p">[:,</span> <span class="p">:</span><span class="n">copy_dim</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">train_embeddings_resized</span><span class="p">,</span> <span class="n">test_embeddings_resized</span></div>
+
+
+
+<div class="viewcode-block" id="prepare_tabpfn_embeddings_for_prefix">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.embeddings.prepare_tabpfn_embeddings_for_prefix">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">prepare_tabpfn_embeddings_for_prefix</span><span class="p">(</span>
+    <span class="n">train_embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+    <span class="n">y_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+    <span class="n">num_embeddings</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prepare TabPFN embeddings to be used as prefix, sampling from all classes.</span>
+<span class="sd">    Ensures the returned class labels match the embeddings.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        train_embeddings: TabPFN embeddings for train set with shape [n_samples, embedding_dim]</span>
+<span class="sd">        y_train: Labels for the corresponding train embeddings</span>
+<span class="sd">        num_embeddings: Total number of embeddings to include (not per class)</span>
+<span class="sd">        random_state: Random seed for reproducible sampling</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        embeddings: Array of shape [num_embeddings, embedding_dim]</span>
+<span class="sd">        class_labels: Array of shape [num_embeddings] with corresponding labels</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Make sure y_train matches the length of train_embeddings</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_embeddings</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Length of y_train (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span><span class="si">}</span><span class="s2">) doesn&#39;t match train_embeddings (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">train_embeddings</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Initialize random state for reproducible sampling</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    
+    <span class="n">unique_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+    <span class="n">num_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">)</span>
+    
+    <span class="c1"># Calculate how many examples to take from each class</span>
+    <span class="n">embeddings_per_class</span> <span class="o">=</span> <span class="n">num_embeddings</span> <span class="o">//</span> <span class="n">num_classes</span>
+    <span class="n">remainder</span> <span class="o">=</span> <span class="n">num_embeddings</span> <span class="o">%</span> <span class="n">num_classes</span>
+    
+    <span class="c1"># Initialize arrays to hold selected embeddings and their labels</span>
+    <span class="n">selected_embeddings</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">selected_labels</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Sample from each class</span>
+    <span class="k">for</span> <span class="n">class_idx</span><span class="p">,</span> <span class="n">class_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">):</span>
+        <span class="c1"># Get indices of samples from this class within the embeddings array</span>
+        <span class="n">class_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">class_label</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="c1"># Determine how many to take from this class (distribute remainder)</span>
+        <span class="n">n_to_take</span> <span class="o">=</span> <span class="n">embeddings_per_class</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">class_idx</span> <span class="o">&lt;</span> <span class="n">remainder</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># If we don&#39;t have enough samples in this class, take all and repeat</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_indices</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n_to_take</span><span class="p">:</span>
+            <span class="c1"># Take all available samples</span>
+            <span class="n">selected_indices</span> <span class="o">=</span> <span class="n">class_indices</span>
+            <span class="c1"># Repeat to reach desired count</span>
+            <span class="n">repeats_needed</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n_to_take</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_indices</span><span class="p">)))</span>
+            <span class="n">selected_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">selected_indices</span><span class="p">,</span> <span class="n">repeats_needed</span><span class="p">)[:</span><span class="n">n_to_take</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Random sample without replacement</span>
+            <span class="n">selected_indices</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">class_indices</span><span class="p">,</span> <span class="n">n_to_take</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+        <span class="c1"># Add selected embeddings and their labels</span>
+        <span class="n">selected_embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_embeddings</span><span class="p">[</span><span class="n">selected_indices</span><span class="p">])</span>
+        <span class="n">selected_labels</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">class_label</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">selected_indices</span><span class="p">))</span>
+    
+    <span class="c1"># Concatenate all selected embeddings</span>
+    <span class="n">combined_embeddings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">selected_embeddings</span><span class="p">)</span>
+    <span class="n">combined_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">selected_labels</span><span class="p">)</span>
+    
+    <span class="c1"># Verify shapes</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">combined_embeddings</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">combined_labels</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Mismatch between embeddings (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">combined_embeddings</span><span class="p">)</span><span class="si">}</span><span class="s2">) and labels (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">combined_labels</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+    
+    <span class="k">return</span> <span class="n">combined_embeddings</span><span class="p">,</span> <span class="n">combined_labels</span></div>
+
+
+
+<div class="viewcode-block" id="load_dinov2_model">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.embeddings.load_dinov2_model">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_dinov2_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;dinov2_vitb14&quot;</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load a DINOV2 model for image embedding extraction.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        model_name: Name of the DINOV2 model to load. Options:</span>
+<span class="sd">            Standard models:</span>
+<span class="sd">            - &quot;dinov2_vits14&quot;: ViT-Small with patch size 14</span>
+<span class="sd">            - &quot;dinov2_vitb14&quot;: ViT-Base with patch size 14  </span>
+<span class="sd">            - &quot;dinov2_vitl14&quot;: ViT-Large with patch size 14</span>
+<span class="sd">            - &quot;dinov2_vitg14&quot;: ViT-Giant with patch size 14</span>
+<span class="sd">            </span>
+<span class="sd">            Models with registers (improved training stability):</span>
+<span class="sd">            - &quot;dinov2_vits14_reg&quot;: ViT-Small with registers</span>
+<span class="sd">            - &quot;dinov2_vitb14_reg&quot;: ViT-Base with registers</span>
+<span class="sd">            - &quot;dinov2_vitl14_reg&quot;: ViT-Large with registers  </span>
+<span class="sd">            - &quot;dinov2_vitg14_reg&quot;: ViT-Giant with registers</span>
+<span class="sd">            </span>
+<span class="sd">            Linear classifier variants (with classification head):</span>
+<span class="sd">            - &quot;dinov2_vits14_lc&quot;: ViT-Small with linear classifier</span>
+<span class="sd">            - &quot;dinov2_vitb14_lc&quot;: ViT-Base with linear classifier</span>
+<span class="sd">            - &quot;dinov2_vitl14_lc&quot;: ViT-Large with linear classifier</span>
+<span class="sd">            - &quot;dinov2_vitg14_lc&quot;: ViT-Giant with linear classifier</span>
+<span class="sd">            </span>
+<span class="sd">        device: Device to load the model on. If None, auto-detects optimal device</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Loaded DINOV2 model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.device_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure_device_for_model</span><span class="p">,</span> <span class="n">log_device_usage</span><span class="p">,</span> <span class="n">setup_device_environment</span>
+    
+    <span class="c1"># Configure device for DINOV2</span>
+    <span class="n">device</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">configure_device_for_model</span><span class="p">(</span><span class="s1">&#39;dinov2&#39;</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+    <span class="n">setup_device_environment</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">log_device_usage</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DINOV2 </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Load model from torch.hub</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;facebookresearch/dinov2&#39;</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+        
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded DINOV2 model </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">model</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load DINOV2 model </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span></div>
+
+
+
+<div class="viewcode-block" id="prepare_image_for_dinov2">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.embeddings.prepare_image_for_dinov2">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">prepare_image_for_dinov2</span><span class="p">(</span><span class="n">image_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">224</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prepare an image for DINOV2 processing.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        image_path: Path to the image file</span>
+<span class="sd">        size: Target size for the image (DINOV2 expects 224x224)</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Preprocessed image tensor ready for DINOV2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define the transforms (same as used in DINOV2 training)</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)),</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+        <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span> <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">])</span>
+    <span class="p">])</span>
+    
+    <span class="c1"># Load and preprocess image</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+    <span class="n">image_tensor</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Add batch dimension</span>
+    
+    <span class="k">return</span> <span class="n">image_tensor</span></div>
+
+
+
+<div class="viewcode-block" id="get_dinov2_embeddings">
+<a class="viewcode-back" href="../../../api-reference/marvis.data.html#marvis.data.embeddings.get_dinov2_embeddings">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_dinov2_embeddings</span><span class="p">(</span>
+    <span class="n">image_paths</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;dinov2_vitb14&quot;</span><span class="p">,</span>
+    <span class="n">embedding_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="n">cache_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dataset_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">force_recompute</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span>
+    <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract DINOV2 embeddings from a list of image paths.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        image_paths: List of paths to image files</span>
+<span class="sd">        model_name: DINOV2 model variant to use</span>
+<span class="sd">        embedding_size: Target size for output embeddings (will resize if needed)</span>
+<span class="sd">        cache_dir: Directory to store cached embeddings</span>
+<span class="sd">        dataset_name: Name for caching purposes</span>
+<span class="sd">        force_recompute: Whether to ignore cache and recompute</span>
+<span class="sd">        batch_size: Number of images to process at once</span>
+<span class="sd">        device: Device to run inference on</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        embeddings: Array of shape [n_images, embedding_size]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.device_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure_device_for_model</span><span class="p">,</span> <span class="n">log_device_usage</span>
+    
+    <span class="c1"># Configure device and batch size for DINOV2</span>
+    <span class="n">device</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="n">configure_device_for_model</span><span class="p">(</span><span class="s1">&#39;dinov2&#39;</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
+    <span class="n">log_device_usage</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DINOV2 embeddings </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;batch_size&#39;</span><span class="p">:</span> <span class="n">batch_size</span><span class="p">})</span>
+    
+    <span class="c1"># Setup caching if enabled</span>
+    <span class="n">cache_file</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">cache_dir</span> <span class="ow">and</span> <span class="n">dataset_name</span><span class="p">:</span>
+        <span class="c1"># Generate hash based on image paths and model</span>
+        <span class="n">paths_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">image_paths</span><span class="p">))</span>
+        <span class="n">paths_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">paths_str</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
+        
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">cache_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">cache_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cache_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">_dinov2_</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">paths_hash</span><span class="si">}</span><span class="s2">.npz&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Check cache</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">cache_file</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force_recompute</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading cached DINOV2 embeddings from </span><span class="si">{</span><span class="n">cache_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">cache</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">cache_file</span><span class="p">)</span>
+                <span class="n">embeddings</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="s2">&quot;embeddings&quot;</span><span class="p">]</span>
+                
+                <span class="c1"># Resize if needed</span>
+                <span class="k">if</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">embedding_size</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cached embeddings size (</span><span class="si">{</span><span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">) doesn&#39;t match requested size (</span><span class="si">{</span><span class="n">embedding_size</span><span class="si">}</span><span class="s2">). Resizing...&quot;</span><span class="p">)</span>
+                    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">resize_single_embedding_set</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">)</span>
+                
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded embeddings from cache: </span><span class="si">{</span><span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">embeddings</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading cached embeddings: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">. Recomputing...&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Load model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">load_dinov2_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+    
+    <span class="c1"># Process images in batches</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extracting DINOV2 embeddings for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">)</span><span class="si">}</span><span class="s2"> images using </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">all_embeddings</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">):</span>
+        <span class="n">batch_paths</span> <span class="o">=</span> <span class="n">image_paths</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing batch </span><span class="si">{</span><span class="n">i</span><span class="o">//</span><span class="n">batch_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">batch_size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="n">batch_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Prepare batch</span>
+        <span class="n">batch_tensors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">img_path</span> <span class="ow">in</span> <span class="n">batch_paths</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">img_tensor</span> <span class="o">=</span> <span class="n">prepare_image_for_dinov2</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+                <span class="n">batch_tensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img_tensor</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load image </span><span class="si">{</span><span class="n">img_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">. Using zero tensor.&quot;</span><span class="p">)</span>
+                <span class="c1"># Create a zero tensor as fallback</span>
+                <span class="n">batch_tensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
+        
+        <span class="c1"># Stack batch and move to device</span>
+        <span class="n">batch_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">batch_tensors</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Extract embeddings</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">batch_embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">batch_tensor</span><span class="p">)</span>
+            
+        <span class="c1"># Move to CPU and convert to numpy</span>
+        <span class="n">batch_embeddings</span> <span class="o">=</span> <span class="n">batch_embeddings</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="n">all_embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch_embeddings</span><span class="p">)</span>
+    
+    <span class="c1"># Concatenate all embeddings</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">all_embeddings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extracted raw embeddings: </span><span class="si">{</span><span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Resize if needed</span>
+    <span class="k">if</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">embedding_size</span><span class="p">:</span>
+        <span class="n">embeddings</span> <span class="o">=</span> <span class="n">resize_single_embedding_set</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Resized embeddings to: </span><span class="si">{</span><span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Cache the embeddings</span>
+    <span class="k">if</span> <span class="n">cache_file</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving DINOV2 embeddings to cache: </span><span class="si">{</span><span class="n">cache_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">cache_file</span><span class="p">,</span> <span class="n">embeddings</span><span class="o">=</span><span class="n">embeddings</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error saving embeddings to cache: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">embeddings</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">resize_single_embedding_set</span><span class="p">(</span><span class="n">embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">target_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Resize a single set of embeddings to target size.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        embeddings: Input embeddings of shape [n_samples, original_size]</span>
+<span class="sd">        target_size: Target embedding size</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Resized embeddings of shape [n_samples, target_size]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">original_size</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">resized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">target_size</span><span class="p">))</span>
+    
+    <span class="c1"># Copy over the data (either truncate or zero-pad)</span>
+    <span class="n">copy_size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">original_size</span><span class="p">,</span> <span class="n">target_size</span><span class="p">)</span>
+    <span class="n">resized</span><span class="p">[:,</span> <span class="p">:</span><span class="n">copy_size</span><span class="p">]</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[:,</span> <span class="p">:</span><span class="n">copy_size</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">resized</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

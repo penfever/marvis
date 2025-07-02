@@ -1,0 +1,16 @@
+dataset: adult
+templates:
+  ac20d268-3da5-4976-844f-aceea005f7b3: !Template
+    name: adult
+    id: ac20d268-3da5-4976-844f-aceea005f7b3
+    reference: ''
+    answer_choices: Income less than or equal to $50,000 per year ||| Income greater
+      than $50,000 per year
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Income less than or equal to $50,000 per year, Income greater than $50,000\
+      \ per year?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

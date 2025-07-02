@@ -1,0 +1,43 @@
+{
+  "dataset_name": "sick",
+  "task_prefix": "Thyroid disease dataset for predicting various thyroid conditions. Contains clinical measurements and patient information to classify thyroid function as sick (various thyroid conditions) or negative (normal). Each example contains 29 features. Clinical decision support.",
+  "column_descriptions": {
+    "feature_1": "Feature 1",
+    "feature_2": "Feature 2",
+    "feature_3": "Feature 3",
+    "feature_4": "Feature 4",
+    "feature_5": "Feature 5",
+    "feature_6": "Feature 6",
+    "feature_7": "Feature 7",
+    "feature_8": "Feature 8",
+    "feature_9": "Feature 9",
+    "feature_10": "Feature 10",
+    "feature_11": "Feature 11",
+    "feature_12": "Feature 12",
+    "feature_13": "Feature 13",
+    "feature_14": "Feature 14",
+    "feature_15": "Feature 15",
+    "feature_16": "Feature 16",
+    "feature_17": "Feature 17",
+    "feature_18": "Feature 18",
+    "feature_19": "Feature 19",
+    "feature_20": "Feature 20",
+    "feature_21": "Feature 21",
+    "feature_22": "Feature 22",
+    "feature_23": "Feature 23",
+    "feature_24": "Feature 24",
+    "feature_25": "Feature 25",
+    "feature_26": "Feature 26",
+    "feature_27": "Feature 27",
+    "feature_28": "Feature 28",
+    "feature_29": "Feature 29"
+  },
+  "class_names": [
+    "negative",
+    "sick"
+  ],
+  "class_description": "Classes: 'negative' (Normal thyroid function), 'sick' (Thyroid disease present)",
+  "num_features": 29,
+  "num_classes": 2,
+  "task_id": "3021_20250621_185544"
+}

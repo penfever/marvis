@@ -1,0 +1,22 @@
+{
+  "dataset_name": "coffee_distribution_across_94_counties",
+  "task_prefix": "A comprehensive dataset tracking global coffee production, supply, and distribution metrics across 94 countries over 63 years (1960-2023). The data comes from USDA's official agricultural statistics and captures key coffee trade variables measured in 60kg bags (standard international coffee trade unit). This dataset is valuable for analyzing global coffee market trends, supply chain patterns, and production dynamics. Each example contains 9 features. Predict the Total_Supply.",
+  "column_descriptions": {
+    "Beginning_Stocks": "Inventory of green coffee beans available at start of marketing year",
+    "Production": "Annual coffee production volume in the country",
+    "Imports": "Volume of green coffee imported by the country",
+    "Total_Supply": "Total available coffee supply (Beginning_Stocks + Production + Imports)",
+    "Exports": "Volume of green coffee exported from the country",
+    "Domestic_Consumption": "Volume of coffee consumed within the country",
+    "Ending_Stocks": "Remaining inventory at end of marketing year",
+    "Country": "Name of the coffee producing/trading country",
+    "Year": "Marketing year for the coffee trade data"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Total_Supply - The total available coffee supply in a country, calculated as the sum of beginning stocks, production, and imports. This represents the total coffee volume available for trade and consumption.. Units: Thousand 60-kg bags. Range: 0 to several million bags, depending on country size and role in coffee trade",
+  "num_features": 9,
+  "num_classes": 1,
+  "task_id": 363448
+}

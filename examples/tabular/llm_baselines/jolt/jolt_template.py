@@ -1,0 +1,21 @@
+python run_jolt.py --experiment_name medals \
+  --data_path data/medals.csv \
+  --llm_type gemma-2-2B-instruct \
+  --output_dir output \
+  --num_samples 1 \
+  --batch_size 5 \
+  --mode sample_logpy \
+  --num_decimal_places_x 0 \
+  --num_decimal_places_y 0 \
+  --y_column_types numerical numerical \
+  --y_column_names 'Silver Medal Count' 'Gold Medal Count' \
+  --max_generated_length 25 \
+  --header_option headers_as_item_prefix \
+  --top_k 1 \
+  --prefix 'Each example contains five columns: Olympic Year, Country, Bronze Medal Count, Silver Medal Count, and Gold Medal Count that describe what type and how many medals a country won at the Olympic games that year.  Predict the number of silver and gold medals won by that country in that year.\n' \
+  --columns_to_ignore Country_Label \
+  --csv_split_option fixed_indices \
+  --train_start_index 10 \
+  --train_end_index 80 \
+  --test_start_index 0 \
+  --test_end_index 10

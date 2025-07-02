@@ -1,0 +1,23 @@
+{
+  "dataset_name": "SGEMM_GPU_kernel_performance",
+  "task_prefix": "This dataset captures the performance measurements of SGEMM (Single precision General Matrix Multiply) operations on GPU hardware. It contains various parameters that affect the performance of matrix multiplication operations and their resulting execution times. The data represents different configurations of matrix multiplication kernels and their performance on GPU architecture. Each example contains 10 features. Predict the Run1.",
+  "column_descriptions": {
+    "MWG": "Matrix Width Group - Size of thread block tile for matrix multiplication",
+    "NWG": "Number Width Group - Another dimension parameter for thread block organization",
+    "KWG": "Kernel Width Group - Third dimension parameter for thread organization",
+    "MDIMC": "Matrix Dimension Internal Memory Cache - Memory tiling parameter",
+    "NDIMC": "Number Dimension Internal Memory Cache - Second memory tiling parameter",
+    "MDIMA": "Matrix Dimension Internal Memory A - Memory access pattern parameter for matrix A",
+    "NDIMB": "Number Dimension Internal Memory B - Memory access pattern parameter for matrix B",
+    "KWI": "Kernel Width Index - Work-item organization parameter",
+    "VWM": "Vector Width Multiplier - Vectorization parameter for memory operations",
+    "VWN": "Vector Width Number - Second vectorization parameter"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Run1 - Execution time for the SGEMM operation with given parameters. Units: milliseconds (ms). Range: Positive real numbers, typically between 0 and several hundred milliseconds",
+  "num_features": 10,
+  "num_classes": 1,
+  "task_id": 361104
+}

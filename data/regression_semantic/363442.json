@@ -1,0 +1,56 @@
+{
+  "dataset_name": "world_food_wealth_bank",
+  "description": "A comprehensive agricultural and economic dataset that tracks global food production, land usage, and related economic indicators across multiple decades. The dataset combines statistics from various agricultural sectors including crop production, livestock, land utilization, and population metrics to support analysis of global food security and agricultural economics.",
+  "original_source": {
+    "creator": "World Bank Group",
+    "institution": "World Bank & Food and Agriculture Organization (FAO)",
+    "date": "2022",
+    "publication": "World Bank Article on Food Security (August 15, 2022)"
+  },
+  "columns": [
+    {
+      "name": "0",
+      "semantic_description": "Likely represents temporal information (year or date) given the multi-decade span of the dataset",
+      "data_type": "numeric/temporal (exact format uncertain)"
+    },
+    {
+      "name": "1",
+      "semantic_description": "Likely represents geographical or regional identifier for the data point",
+      "data_type": "categorical/identifier"
+    },
+    {
+      "name": "2",
+      "semantic_description": "Possibly represents crop or livestock category identifier",
+      "data_type": "categorical"
+    },
+    {
+      "name": "3",
+      "semantic_description": "May represent land usage category or measurement type",
+      "data_type": "categorical"
+    },
+    {
+      "name": "4",
+      "semantic_description": "Could represent a specific measurement category or subcategory",
+      "data_type": "categorical"
+    },
+    {
+      "name": "5",
+      "semantic_description": "Additional classification or contextual variable",
+      "data_type": "categorical/numeric (uncertain)"
+    }
+  ],
+  "target_description": {
+    "name": "Value",
+    "meaning": "Numerical measurement representing the quantity or metric being tracked (could be production volume, economic value, or other agricultural/economic indicator)",
+    "units": "Variable depending on measurement type (tons, hectares, monetary units, etc.)",
+    "range": "Likely varies significantly based on measurement type and category"
+  },
+  "dataset_history": "The dataset appears to be compiled from World Bank and FAO historical records, combining multiple agricultural and economic indicators. It was created to support analysis of global food security, agricultural production trends, and economic development patterns over approximately 60-70 years. The data collection spans 150+ unique crops and 50+ livestock elements, making it a comprehensive resource for agricultural economic analysis.",
+  "inference_notes": "Important considerations:\n1. The dataset likely combines multiple data sources and collection methodologies over its temporal span\n2. Different regions may have varying data quality and collection standards\n3. Historical data may have inconsistencies or gaps, especially for earlier periods\n4. The large number of instances (1.7M+) suggests detailed granularity but may require careful aggregation for analysis\n5. Feature names are numeric (0-5) which limits immediate interpretability without additional context\n6. The combination of agricultural and economic data may require domain expertise for proper interpretation\n7. Different measurement units and scales across variables may necessitate careful normalization",
+  "_metadata": {
+    "task_id": 363442,
+    "generated_at": "2025-06-22T08:36:43.343336",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

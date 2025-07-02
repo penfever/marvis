@@ -1,0 +1,86 @@
+{
+  "dataset": "numerai28.6",
+  "description": "Encrypted stock market data from Numerai hedge fund tournament. Features are cleaned, regularized and encrypted global equity data with anonymized feature names. Part of Numerai's crowd-sourced hedge fund competition.",
+  "source": "Numerai / Kaggle",
+  "source_url": "https://www.kaggle.com/numerai/encrypted-stock-market-data-from-numerai",
+  "openml_task": 167120,
+  "openml_dataset": 23517,
+  "date_uploaded": "2016-07-07",
+  "creator": {
+    "name": "Numerai",
+    "affiliation": "Numerai (crowd-sourced hedge fund)",
+    "note": "Features are encrypted/anonymized for proprietary reasons"
+  },
+  "instances": 96320,
+  "features": 21,
+  "target": "target",
+  "target_type": "binary",
+  "missing_values": false,
+  "feature_types": {
+    "all": "continuous",
+    "encrypted": true
+  },
+  "feature_description": {
+    "feature1_to_feature21": "21 anonymized features representing cleaned and regularized global equity market data",
+    "note": "Feature meanings are intentionally obscured as part of the tournament design"
+  },
+  "target_values": {
+    "0": "Negative market movement/return",
+    "1": "Positive market movement/return"
+  },
+  "domain": "Finance/Stock Market Prediction",
+  "use_case": "Quantitative trading, market prediction, crowd-sourced hedge fund strategies, financial machine learning",
+  "competition_context": {
+    "platform": "Numerai tournament",
+    "goal": "Build models to predict market movements",
+    "approach": "Crowd-sourced data science for hedge fund trading",
+    "encryption": "Features encrypted to prevent reverse engineering while maintaining predictive relationships"
+  },
+  "preprocessing": "Data is pre-cleaned, regularized, and encrypted by Numerai",
+  "performance_considerations": "Cannot interpret features directly, must rely on statistical patterns",
+  "advantages": "Real financial data, large dataset, professionally cleaned, unique crowd-sourcing approach",
+  "challenges": "Feature interpretation impossible, black-box modeling only, proprietary nature",
+  "research_applications": "Financial prediction, ensemble methods, feature engineering on encrypted data, transfer learning",
+  "ethical_considerations": "Part of innovative crowd-sourced hedge fund model, democratizing quantitative finance",
+  "version_note": "Version 28.6 of Numerai tournament data",
+  "citations": [
+    {
+      "source": "Numerai",
+      "title": "Encrypted Stock Market Training Data from Numerai",
+      "platform": "Kaggle",
+      "year": "2016",
+      "url": "https://www.kaggle.com/numerai/encrypted-stock-market-data-from-numerai"
+    }
+  ],
+  "dataset_name": "numerai28.6",
+  "original_source": {
+    "creator": "Numerai",
+    "institution": "Numerai / Kaggle",
+    "date": "Unknown",
+    "publication": "Unknown: Encrypted Stock Market Training Data from Numerai"
+  },
+  "columns": [
+    {
+      "name": "feature1_to_feature21",
+      "semantic_description": "21 anonymized features representing cleaned and regularized global equity market data",
+      "data_type": "numeric"
+    },
+    {
+      "name": "note",
+      "semantic_description": "Feature meanings are intentionally obscured as part of the tournament design",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Negative market movement/return"
+    },
+    {
+      "name": "1",
+      "meaning": "Positive market movement/return"
+    }
+  ],
+  "dataset_history": "Dataset history not available for numerai28.6",
+  "inference_notes": "Challenges: Feature interpretation impossible, black-box modeling only, proprietary nature. Advantages: Real financial data, large dataset, professionally cleaned, unique crowd-sourcing approach. Applications: Financial prediction, ensemble methods, feature engineering on encrypted data, transfer learning. Use Case: Quantitative trading, market prediction, crowd-sourced hedge fund strategies, financial machine learning"
+}

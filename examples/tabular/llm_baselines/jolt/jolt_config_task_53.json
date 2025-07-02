@@ -1,0 +1,34 @@
+{
+  "dataset_name": "vehicle",
+  "task_prefix": "The Statlog Vehicle Silhouettes dataset contains features extracted from 2D silhouettes of four types of vehicles. The purpose is to classify vehicle silhouettes using shape features extracted by the HIPS (Hierarchical Image Processing System) extension BINATTS, which combines classical moment-based measures and heuristic shape descriptors. Each example contains 18 features. Vehicle type classification from silhouettes for applications in traffic monitoring.",
+  "column_descriptions": {
+    "Compactness measure": "(average perimeter)^2/area - measures how compact the shape is",
+    "Circularity measure": "(average radius)^2/area - measures how circular the shape is",
+    "Distance circularity": "Area/(distance circularity)^2",
+    "Radius ratio": "(max radius - min radius)/average radius",
+    "Principal axis aspect ratio": "Ratio of principal axes lengths",
+    "Maximum length aspect ratio": "Ratio based on maximum length measurements",
+    "Scatter ratio": "Inertia about minor axis/area",
+    "Elongatedness measure": "Area/(shrink width)^2 - measures shape elongation",
+    "Principal axis rectangularity": "Area/(pr.axis length * pr.axis width)",
+    "Maximum length rectangularity": "Area/(max length * max width)",
+    "Scaled variance along major axis": "Second order moment about major axis scaled by area",
+    "Scaled variance along minor axis": "Second order moment about minor axis scaled by area",
+    "Scaled radius of gyration": "(mavar + mivar)/area",
+    "Skewness about major axis": "Third order moment about major axis",
+    "Skewness about minor axis": "Third order moment about minor axis",
+    "Kurtosis about major axis": "Fourth order moment about major axis",
+    "Kurtosis about minor axis": "Fourth order moment about minor axis",
+    "Hollows ratio": "Area of hollows/area of bounding polygon"
+  },
+  "class_names": [
+    "bus",
+    "opel",
+    "saab",
+    "van"
+  ],
+  "class_description": "Classes: 'bus' (Double decker bus), 'van' (Chevrolet van), 'saab' (Saab 9000), 'opel' (Opel Manta 400)",
+  "num_features": 18,
+  "num_classes": 4,
+  "task_id": "53"
+}

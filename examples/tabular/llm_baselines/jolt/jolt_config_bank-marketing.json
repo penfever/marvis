@@ -1,0 +1,33 @@
+{
+  "dataset_name": "bank-marketing",
+  "task_prefix": "Portuguese bank telemarketing campaign data for predicting term deposit subscriptions. Records direct marketing campaigns (phone calls) with goal of assessing whether client will subscribe to term deposit product. Each example contains 20 features. Predict the target class.",
+  "column_descriptions": {
+    "age": "Client's age in years. Different age groups have varying savings behaviors and financial product needs.",
+    "job": "Type of job/occupation. Indicates income stability and financial capacity for savings products.",
+    "marital": "Marital status. Affects financial responsibilities and savings decisions.",
+    "education": "Education level. Higher education often correlates with financial literacy and income.",
+    "default": "Has credit in default. Indicates financial distress affecting ability to invest.",
+    "housing": "Has housing loan. Major debt affecting disposable income for savings.",
+    "loan": "Has personal loan. Additional debt burden reducing savings capacity.",
+    "contact": "Contact communication type. Cellular contact often more effective than telephone.",
+    "month": "Last contact month of year. Seasonal patterns in marketing effectiveness.",
+    "day_of_week": "Last contact day of week. Timing affects contact success and decision-making.",
+    "duration": "Last contact duration in seconds. Longer calls indicate interest but unknown before call ends.",
+    "campaign": "Number of contacts during this campaign. Too many contacts may annoy clients.",
+    "pdays": "Days since previous campaign contact (999 means not previously contacted). Recent contact may influence decision.",
+    "previous": "Number of contacts before this campaign. History of engagement with bank.",
+    "poutcome": "Outcome of previous marketing campaign. Past success predicts future response.",
+    "emp.var.rate": "Employment variation rate - quarterly indicator. Economic context affects savings decisions.",
+    "cons.price.idx": "Consumer price index - monthly indicator. Inflation impacts savings attractiveness.",
+    "cons.conf.idx": "Consumer confidence index - monthly indicator. Confidence drives investment behavior.",
+    "euribor3m": "Euribor 3 month rate - daily indicator. Interest rates affect term deposit attractiveness.",
+    "nr.employed": "Number of employees - quarterly indicator. Employment levels indicate economic health."
+  },
+  "class_names": [
+    "yes",
+    "no"
+  ],
+  "class_description": "Classes: 'yes' (Client subscribed to term deposit (11.3% of instances)), 'no' (Client did not subscribe to term deposit (88.7% of instances))",
+  "num_features": 20,
+  "num_classes": 2
+}

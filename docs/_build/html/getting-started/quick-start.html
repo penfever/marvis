@@ -1,0 +1,515 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Start Guide &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Configuration Guide" href="configuration.html" />
+    <link rel="prev" title="Installation Guide" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#second-example-tabular-data">30-Second Example: Tabular Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vision-classification">Vision Classification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#image-classification-with-cifar-10">Image Classification with CIFAR-10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-image-dataset">Custom Image Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#audio-classification">Audio Classification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quick-audio-test">Quick Audio Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-audio-dataset">Custom Audio Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-features">Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multi-visualization-framework">Multi-Visualization Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-model-integration">API Model Integration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#openai-gpt-4v">OpenAI GPT-4V</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#google-gemini">Google Gemini</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#resource-management">Resource Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluation-workflows">Evaluation Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#openml-cc18-benchmark">OpenML CC18 Benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-evaluation">Custom Evaluation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-examples">Configuration Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-files">Configuration Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#interactive-notebooks">Interactive Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#jupyter-examples">Jupyter Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-tips">Performance Tips</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#speed-optimization">Speed Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-optimization">Memory Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#need-help">Need Help?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quick Start Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting-started/quick-start.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quick-start-guide">
+<h1>Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Link to this heading"></a></h1>
+<p>This guide gets you up and running with MARVIS in minutes across all supported modalities.</p>
+<section id="second-example-tabular-data">
+<h2>30-Second Example: Tabular Data<a class="headerlink" href="#second-example-tabular-data" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
+
+<span class="c1"># Create sample data</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Create and train classifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy: </span><span class="si">{</span><span class="p">(</span><span class="n">predictions</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="vision-classification">
+<h2>Vision Classification<a class="headerlink" href="#vision-classification" title="Link to this heading"></a></h2>
+<section id="image-classification-with-cifar-10">
+<h3>Image Classification with CIFAR-10<a class="headerlink" href="#image-classification-with-cifar-10" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quick test with CIFAR-10</span>
+python<span class="w"> </span>examples/vision/evaluate_all_vision.py<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--datasets<span class="w"> </span>cifar10<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--models<span class="w"> </span>marvis_tsne<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--quick_test
+
+<span class="c1"># Advanced: 3D visualization with KNN connections</span>
+python<span class="w"> </span>examples/vision/evaluate_all_vision.py<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--datasets<span class="w"> </span>cifar10<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--models<span class="w"> </span>marvis_tsne<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--use_3d<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--use_knn_connections<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--knn_k<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-image-dataset">
+<h3>Custom Image Dataset<a class="headerlink" href="#custom-image-dataset" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># Prepare image paths and labels</span>
+<span class="n">image_paths</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;path/to/cat1.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;path/to/cat2.jpg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;path/to/dog1.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;path/to/dog2.jpg&quot;</span>
+<span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">]</span>
+
+<span class="c1"># Create vision classifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;vision&quot;</span><span class="p">,</span>
+    <span class="n">vlm_model_id</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span><span class="p">,</span>
+    <span class="n">use_3d</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="c1"># Fit and predict</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">image_paths</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">image_paths</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="audio-classification">
+<h2>Audio Classification<a class="headerlink" href="#audio-classification" title="Link to this heading"></a></h2>
+<section id="quick-audio-test">
+<h3>Quick Audio Test<a class="headerlink" href="#quick-audio-test" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test ESC-50 and RAVDESS datasets</span>
+python<span class="w"> </span>examples/audio/evaluate_all_audio.py<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--datasets<span class="w"> </span>esc50<span class="w"> </span>ravdess<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--models<span class="w"> </span>marvis_tsne
+
+<span class="c1"># Test with CLAP embeddings</span>
+python<span class="w"> </span>examples/audio/evaluate_all_audio.py<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--datasets<span class="w"> </span>esc50<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--embedding_type<span class="w"> </span>clap<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--models<span class="w"> </span>marvis_tsne
+</pre></div>
+</div>
+</section>
+<section id="custom-audio-dataset">
+<h3>Custom Audio Dataset<a class="headerlink" href="#custom-audio-dataset" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+
+<span class="c1"># Prepare audio file paths and labels</span>
+<span class="n">audio_paths</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;path/to/speech1.wav&quot;</span><span class="p">,</span> <span class="s2">&quot;path/to/speech2.wav&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;path/to/music1.wav&quot;</span><span class="p">,</span> <span class="s2">&quot;path/to/music2.wav&quot;</span>
+<span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;speech&quot;</span><span class="p">,</span> <span class="s2">&quot;speech&quot;</span><span class="p">,</span> <span class="s2">&quot;music&quot;</span><span class="p">,</span> <span class="s2">&quot;music&quot;</span><span class="p">]</span>
+
+<span class="c1"># Create audio classifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;audio&quot;</span><span class="p">,</span>
+    <span class="n">embedding_model</span><span class="o">=</span><span class="s2">&quot;whisper&quot;</span><span class="p">,</span>  <span class="c1"># or &quot;clap&quot;</span>
+    <span class="n">whisper_model</span><span class="o">=</span><span class="s2">&quot;large-v2&quot;</span><span class="p">,</span>
+    <span class="n">include_spectrogram</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Fit and predict</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">audio_paths</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">audio_paths</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-features">
+<h2>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading"></a></h2>
+<section id="multi-visualization-framework">
+<h3>Multi-Visualization Framework<a class="headerlink" href="#multi-visualization-framework" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+
+<span class="c1"># Create multi-visualization classifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">enable_multi_viz</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">visualization_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pca&quot;</span><span class="p">,</span> <span class="s2">&quot;tsne&quot;</span><span class="p">,</span> <span class="s2">&quot;umap&quot;</span><span class="p">],</span>
+    <span class="n">layout_strategy</span><span class="o">=</span><span class="s2">&quot;adaptive_grid&quot;</span><span class="p">,</span>
+    <span class="n">reasoning_focus</span><span class="o">=</span><span class="s2">&quot;comparison&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Fit with multiple visualization perspectives</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Get detailed analysis</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">return_detailed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="api-model-integration">
+<h3>API Model Integration<a class="headerlink" href="#api-model-integration" title="Link to this heading"></a></h3>
+<section id="openai-gpt-4v">
+<h4>OpenAI GPT-4V<a class="headerlink" href="#openai-gpt-4v" title="Link to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;your-api-key&quot;</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;vision&quot;</span><span class="p">,</span>
+    <span class="n">api_model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>  <span class="c1"># Auto-detects as OpenAI</span>
+    <span class="n">enable_thinking</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="google-gemini">
+<h4>Google Gemini<a class="headerlink" href="#google-gemini" title="Link to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;GOOGLE_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;your-api-key&quot;</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;vision&quot;</span><span class="p">,</span>
+    <span class="n">gemini_model</span><span class="o">=</span><span class="s2">&quot;gemini-2.0-flash-exp&quot;</span><span class="p">,</span>
+    <span class="n">enable_thinking</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="resource-management">
+<h3>Resource Management<a class="headerlink" href="#resource-management" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+
+<span class="c1"># Optimize for limited resources</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">max_vlm_image_size</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>  <span class="c1"># Reduce image size</span>
+    <span class="n">gpu_memory_utilization</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>  <span class="c1"># Conservative GPU usage</span>
+    <span class="n">cache_dir</span><span class="o">=</span><span class="s2">&quot;./marvis_cache&quot;</span><span class="p">,</span>  <span class="c1"># Enable caching</span>
+    <span class="n">max_tabpfn_samples</span><span class="o">=</span><span class="mi">1000</span>  <span class="c1"># Limit embedding samples</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="evaluation-workflows">
+<h2>Evaluation Workflows<a class="headerlink" href="#evaluation-workflows" title="Link to this heading"></a></h2>
+<section id="openml-cc18-benchmark">
+<h3>OpenML CC18 Benchmark<a class="headerlink" href="#openml-cc18-benchmark" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run on OpenML CC18 suite</span>
+python<span class="w"> </span>examples/tabular/openml_cc18/run_openml_cc18_tabular.py<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--models<span class="w"> </span>marvis_tsne<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--task_ids<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--use_3d<span class="w"> </span><span class="se">\\</span>
+<span class="w">    </span>--use_knn_connections
+</pre></div>
+</div>
+</section>
+<section id="custom-evaluation">
+<h3>Custom Evaluation<a class="headerlink" href="#custom-evaluation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="c1"># Create classifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">)</span>
+
+<span class="c1"># Cross-validation</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CV Accuracy: </span><span class="si">{</span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">scores</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Detailed evaluation</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">return_detailed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;predictions&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration-examples">
+<h2>Configuration Examples<a class="headerlink" href="#configuration-examples" title="Link to this heading"></a></h2>
+<section id="configuration-files">
+<h3>Configuration Files<a class="headerlink" href="#configuration-files" title="Link to this heading"></a></h3>
+<p>Create <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># MARVIS Configuration</span>
+<span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tabular&quot;</span>
+<span class="nt">vlm_model_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span>
+
+<span class="c1"># Visualization settings</span>
+<span class="nt">use_3d</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">use_knn_connections</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">knn_k</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+
+<span class="c1"># Performance settings</span>
+<span class="nt">max_vlm_image_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2048</span>
+<span class="nt">gpu_memory_utilization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.8</span>
+
+<span class="c1"># Cache settings</span>
+<span class="nt">cache_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;./cache&quot;</span>
+
+<span class="c1"># Multi-viz settings</span>
+<span class="nt">enable_multi_viz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">visualization_methods</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;tsne&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;pca&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>Load configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config.yaml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="environment-variables">
+<h3>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># API Keys</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-openai-key&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GOOGLE_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-google-key&quot;</span>
+
+<span class="c1"># Cache directory</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MARVIS_CACHE_DIR</span><span class="o">=</span><span class="s2">&quot;./cache&quot;</span>
+
+<span class="c1"># CUDA settings</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="s2">&quot;0&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="interactive-notebooks">
+<h2>Interactive Notebooks<a class="headerlink" href="#interactive-notebooks" title="Link to this heading"></a></h2>
+<section id="jupyter-examples">
+<h3>Jupyter Examples<a class="headerlink" href="#jupyter-examples" title="Link to this heading"></a></h3>
+<p>Check out our interactive notebooks:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">notebooks/Getting_Started.ipynb</span></code> - Complete walkthrough</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/unified_marvis_example.py</span></code> - Multi-modal example</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/tabular/pfn_knn_expts.ipynb</span></code> - TabPFN experiments</p></li>
+</ul>
+<p>Run with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook<span class="w"> </span>notebooks/Getting_Started.ipynb
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-tips">
+<h2>Performance Tips<a class="headerlink" href="#performance-tips" title="Link to this heading"></a></h2>
+<section id="speed-optimization">
+<h3>Speed Optimization<a class="headerlink" href="#speed-optimization" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fast configuration for development</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">tsne_n_iter</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>  <span class="c1"># Reduce iterations</span>
+    <span class="n">max_vlm_image_size</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>  <span class="c1"># Smaller images</span>
+    <span class="n">vlm_model_id</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span>  <span class="c1"># Smaller model</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="memory-optimization">
+<h3>Memory Optimization<a class="headerlink" href="#memory-optimization" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Memory-efficient configuration</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">max_tabpfn_samples</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>  <span class="c1"># Limit samples</span>
+    <span class="n">gpu_memory_utilization</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>  <span class="c1"># Conservative GPU usage</span>
+    <span class="n">tensor_parallel_size</span><span class="o">=</span><span class="mi">1</span>  <span class="c1"># Single GPU</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>Now that you’re familiar with the basics:</p>
+<ol class="arabic simple">
+<li><p><strong>Explore Modalities</strong>: Dive deeper into <a class="reference internal" href="../user-guide/vision/index.html"><span class="doc">Vision Classification Guide</span></a>, <a class="reference internal" href="../user-guide/audio/index.html"><span class="doc">Audio Classification Guide</span></a>, or <a class="reference internal" href="../user-guide/tabular/index.html"><span class="doc">Tabular Data Classification Guide</span></a></p></li>
+<li><p><strong>Advanced Features</strong>: Learn about <a class="reference internal" href="../technical-guides/resource-management.html"><span class="doc">Resource Management</span></a> and <a class="reference internal" href="../technical-guides/caching-system.html"><span class="doc">Caching System</span></a></p></li>
+<li><p><strong>Tutorials</strong>: Follow comprehensive <a class="reference internal" href="../tutorials/basic-classification.html"><span class="doc">Basic Classification Tutorial</span></a> tutorials</p></li>
+<li><p><strong>API Reference</strong>: Browse the complete <a class="reference internal" href="../api-reference/marvis.models.html"><span class="doc">marvis.models</span></a> documentation</p></li>
+</ol>
+</section>
+<section id="need-help">
+<h2>Need Help?<a class="headerlink" href="#need-help" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Troubleshooting</strong>: <a class="reference internal" href="../troubleshooting.html"><span class="doc">Troubleshooting Guide</span></a></p></li>
+<li><p><strong>Examples</strong>: <a class="reference internal" href="../examples/index.html"><span class="doc">Examples</span></a></p></li>
+<li><p><strong>GitHub Issues</strong>: <a class="reference external" href="https://github.com/penfever/marvis/issues">https://github.com/penfever/marvis/issues</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="configuration.html" class="btn btn-neutral float-right" title="Configuration Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

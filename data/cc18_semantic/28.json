@@ -1,0 +1,113 @@
+{
+  "dataset": "optdigits",
+  "description": "Optical Recognition of Handwritten Digits dataset containing handwritten digit samples (0-9) from 43 people. Images were preprocessed from 32x32 bitmaps divided into 4x4 non-overlapping blocks, counting pixels in each block to generate 8x8 input matrices with integer values 0-16. This dimensionality reduction provides invariance to small distortions.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/optical+recognition+of+handwritten+digits",
+  "openml_task": 28,
+  "openml_dataset": 28,
+  "date_donated": "July 1998",
+  "creator": "E. Alpaydin, C. Kaynak (Bogazici University)",
+  "instances": 5620,
+  "features": 64,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "integer"
+  },
+  "feature_names": {
+    "input1-input64": "Pixel counts in 8x8 blocks"
+  },
+  "feature_descriptions": {
+    "input1-input64": "Integer values (0-16) representing the count of 'on' pixels in each 4x4 block of the original 32x32 image, arranged in an 8x8 grid"
+  },
+  "feature_scale": "All features are integers in range 0-16",
+  "target_values": {
+    "0": "Digit 0",
+    "1": "Digit 1",
+    "2": "Digit 2",
+    "3": "Digit 3",
+    "4": "Digit 4",
+    "5": "Digit 5",
+    "6": "Digit 6",
+    "7": "Digit 7",
+    "8": "Digit 8",
+    "9": "Digit 9"
+  },
+  "domain": "Computer Vision/Pattern Recognition",
+  "use_case": "Optical character recognition (OCR) for handwritten digit recognition. Applications include postal code reading, bank check processing, form digitization, and automated document processing.",
+  "data_generation": "Original images from preprinted forms scanned and processed using NIST preprocessing routines. 32x32 bitmaps divided into non-overlapping 4x4 blocks with pixel counting in each block.",
+  "ethical_considerations": "Dataset represents handwritten digits from a specific population (30 training, 13 test contributors). Performance may vary for different handwriting styles or populations not represented in the original sample.",
+  "citations": [
+    {
+      "author": "E. Alpaydin and C. Kaynak",
+      "title": "Cascading Classifiers",
+      "venue": "Kybernetika",
+      "year": "1998"
+    },
+    {
+      "author": "C. Kaynak",
+      "title": "Methods of Combining Multiple Classifiers and Their Applications to Handwritten Digit Recognition",
+      "venue": "MSc Thesis, Institute of Graduate Studies in Science and Engineering, Bogazici University",
+      "year": "1995"
+    }
+  ],
+  "dataset_name": "optdigits",
+  "original_source": {
+    "creator": "E. Alpaydin, C. Kaynak (Bogazici University)",
+    "institution": "UCI Machine Learning Repository",
+    "date": "July 1998",
+    "publication": "E. Alpaydin and C. Kaynak: Cascading Classifiers"
+  },
+  "columns": [
+    {
+      "name": "Pixel counts in 8x8 blocks",
+      "semantic_description": "Integer values (0-16) representing the count of 'on' pixels in each 4x4 block of the original 32x32 image, arranged in an 8x8 grid",
+      "data_type": "integer"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Digit 0"
+    },
+    {
+      "name": "1",
+      "meaning": "Digit 1"
+    },
+    {
+      "name": "2",
+      "meaning": "Digit 2"
+    },
+    {
+      "name": "3",
+      "meaning": "Digit 3"
+    },
+    {
+      "name": "4",
+      "meaning": "Digit 4"
+    },
+    {
+      "name": "5",
+      "meaning": "Digit 5"
+    },
+    {
+      "name": "6",
+      "meaning": "Digit 6"
+    },
+    {
+      "name": "7",
+      "meaning": "Digit 7"
+    },
+    {
+      "name": "8",
+      "meaning": "Digit 8"
+    },
+    {
+      "name": "9",
+      "meaning": "Digit 9"
+    }
+  ],
+  "dataset_history": "Dataset history not available for optdigits",
+  "inference_notes": "Use Case: Optical character recognition (OCR) for handwritten digit recognition. Applications include postal code reading, bank check processing, form digitization, and automated document processing."
+}

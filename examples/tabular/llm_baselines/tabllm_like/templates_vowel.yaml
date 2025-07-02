@@ -1,0 +1,20 @@
+dataset: vowel
+templates:
+  c9f32526-4f2b-43c9-b53f-ea6e41dacdf6: !Template
+    name: vowel
+    id: c9f32526-4f2b-43c9-b53f-ea6e41dacdf6
+    reference: ''
+    answer_choices: hid (as in 'heed') ||| hId (as in 'hid') ||| had (as in 'hud')
+      ||| hEd (as in 'head') ||| hAd (as in 'had') ||| hYd (as in 'hard') ||| had
+      (as in 'hod') ||| hOd (as in 'hoard') ||| hUd (as in 'hood') ||| hud (as in
+      'who'd') ||| hed (as in 'heard')
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ hid (as in 'heed'), hId (as in 'hid'), had (as in 'hud'), hEd (as in 'head'),\
+      \ hAd (as in 'had'), hYd (as in 'hard'), had (as in 'hod'), hOd (as in 'hoard'),\
+      \ hUd (as in 'hood'), hud (as in 'who'd'), hed (as in 'heard')?\nAnswer: \n\
+      |||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

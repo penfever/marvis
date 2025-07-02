@@ -1,0 +1,20 @@
+{
+  "dataset_name": "particulate-matter-ukair-2017",
+  "task_prefix": "This dataset contains hourly measurements of particulate matter (PM10) air pollution across monitoring stations in Great Britain during 2017. It's part of the UK's national air quality monitoring network and is used to track air pollution levels, assess compliance with air quality standards, and study environmental health impacts. Each example contains 7 features. Predict the PM10_particulate_matter_Hourly_measured.",
+  "column_descriptions": {
+    "Site ID": "Unique identifier for the air quality monitoring station",
+    "Location": "Geographic location or name of the monitoring station",
+    "Date Time": "Timestamp of the measurement in hourly intervals",
+    "Site Type": "Classification of monitoring station (e.g., urban, rural, roadside)",
+    "Latitude": "Geographic latitude coordinate of the monitoring station",
+    "Longitude": "Geographic longitude coordinate of the monitoring station",
+    "Region": "Administrative region or area where the station is located"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: PM10_particulate_matter_Hourly_measured - Concentration of particulate matter with diameter less than 10 micrometers (PM10) in the air. Units: micrograms per cubic meter (\u03bcg/m\u00b3). Range: 0-1000 \u03bcg/m\u00b3 (typical range 0-100 \u03bcg/m\u00b3)",
+  "num_features": 7,
+  "num_classes": 1,
+  "task_id": 361103
+}

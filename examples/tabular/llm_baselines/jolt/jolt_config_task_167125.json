@@ -1,0 +1,17 @@
+{
+  "dataset_name": "Internet-Advertisements",
+  "task_prefix": "Dataset for predicting whether images on Internet pages are advertisements. Features encode image geometry, URL phrases, anchor text, and surrounding text to classify images as ads or non-ads. Each example contains 3 features. Ad blocking.",
+  "column_descriptions": {
+    "continuous_features": "3 features encoding image geometry (height, width, aspect ratio)",
+    "binary_features": "1555 features indicating presence of specific words/phrases in URL, image URL, alt text, anchor text, and surrounding text",
+    "missing_interpretation": "Missing values should be interpreted as 'unknown'"
+  },
+  "class_names": [
+    "ad",
+    "nonad"
+  ],
+  "class_description": "Classes: 'ad' (Image is an advertisement), 'nonad' (Image is not an advertisement)",
+  "num_features": 3,
+  "num_classes": 2,
+  "task_id": "167125"
+}

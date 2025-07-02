@@ -1,0 +1,18 @@
+{
+  "dataset_name": "banknote-authentication",
+  "task_prefix": "The banknote authentication dataset contains features extracted from images of genuine and forged banknote specimens using Wavelet Transform tool. Data were collected from 400x400 pixel grayscale images at 660 dpi resolution taken with an industrial camera for print inspection. The dataset is used to distinguish between authentic and counterfeit banknotes. Each example contains 4 features. Authentication of banknotes to detect counterfeits using image processing features.",
+  "column_descriptions": {
+    "Variance of Wavelet Transformed image": "Statistical measure of dispersion in pixel intensities after wavelet transformation",
+    "Skewness of Wavelet Transformed image": "Measure of asymmetry in the distribution of pixel intensities after wavelet transformation",
+    "Curtosis of Wavelet Transformed image": "Measure of the tailedness of the probability distribution of pixel intensities after wavelet transformation",
+    "Entropy of image": "Measure of randomness or information content in the image"
+  },
+  "class_names": [
+    "0",
+    "1"
+  ],
+  "class_description": "Classes: '0' (Forged/counterfeit banknote), '1' (Genuine/authentic banknote)",
+  "num_features": 4,
+  "num_classes": 2,
+  "task_id": "10093"
+}

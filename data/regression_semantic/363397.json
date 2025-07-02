@@ -1,0 +1,36 @@
+{
+  "dataset_name": "Phenotype_202",
+  "description": "This dataset contains phenotypic and sequencing statistics for 202 yellow drum (Nibea albiflora) individuals, focusing on survival characteristics and various biological measurements. The data is part of a larger study on fish genetics and phenotypic traits that impact survival in aquaculture environments.",
+  "original_source": {
+    "creator": "Zhaofang Han et al.",
+    "institution": "Yellow Sea Fisheries Research Institute, Chinese Academy of Fishery Sciences",
+    "date": "2020",
+    "publication": "Figshare dataset: 'Phenotypic descriptives of 202 yellow drum individuals' (DOI: 10.6084/m9.figshare.12317489.v2)"
+  },
+  "columns": [
+    {
+      "name": "Survive_time",
+      "semantic_description": "Duration of survival for the yellow drum specimen",
+      "data_type": "Numeric (continuous)"
+    },
+    {
+      "name": "Features 0-47",
+      "semantic_description": "Various phenotypic measurements and sequencing statistics of the yellow drum specimens. Exact semantic meaning of individual features not explicitly provided in available documentation",
+      "data_type": "Numeric (likely mix of continuous and discrete measurements)"
+    }
+  ],
+  "target_description": {
+    "name": "Survive_time",
+    "meaning": "The length of time a yellow drum individual survived under study conditions",
+    "units": "Likely days or hours (not explicitly specified in documentation)",
+    "range": "Continuous positive values (exact range not specified in documentation)"
+  },
+  "dataset_history": "This dataset was collected as part of a larger research effort studying yellow drum (Nibea albiflora), an economically important marine fish species in East Asia. The data collection was performed to understand survival characteristics and their relationship with various phenotypic traits, which is crucial for aquaculture optimization and breeding programs. The dataset was later adapted for machine learning purposes and uploaded to OpenML.",
+  "inference_notes": "Important considerations:\n1. The dataset has been cleaned to remove NaN values specifically in the target variable (Survive_time)\n2. The original feature names and their specific meanings are not provided in the OpenML documentation\n3. The data represents biological measurements, which typically have natural variability and potential measurement uncertainties\n4. The dataset is relatively small (180 instances) which may impact model generalization\n5. Without detailed feature descriptions, careful feature selection and domain expertise may be required for meaningful analysis\n6. The data appears to be from a controlled study environment, which may affect generalizability to wild populations",
+  "_metadata": {
+    "task_id": 363397,
+    "generated_at": "2025-06-22T08:30:31.460400",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "dataset_name": "splice",
+  "task_prefix": "DNA splice-junction gene sequences dataset for recognizing boundaries between exons (retained after splicing) and introns (spliced out) in primate DNA sequences. Contains 60-nucleotide sequences centered around splice junctions, with the task of classifying exon/intron boundaries (EI sites) and intron/exon boundaries (IE sites). Each example contains 1 features. Gene structure prediction and annotation in genomic sequences. Applications include identifying protein-coding regions.",
+  "column_descriptions": {
+    "DNA nucleotides at positions -30 to +29 relative to splice junction": "Feature: DNA nucleotides at positions -30 to +29 relative to splice junction"
+  },
+  "class_names": [
+    "EI",
+    "IE",
+    "N"
+  ],
+  "class_description": "Classes: 'EI' (Exon-Intron boundary (donor site)), 'IE' (Intron-Exon boundary (acceptor site)), 'N' (Neither (no splice site))",
+  "num_features": 1,
+  "num_classes": 3,
+  "task_id": "45"
+}

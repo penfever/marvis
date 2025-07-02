@@ -1,0 +1,51 @@
+{
+  "dataset_name": "news_popularity2",
+  "description": "A dataset focused on predicting the social media popularity of online news articles from Mashable.com. It contains features extracted from article metadata and content characteristics to predict how many times an article will be shared on social media platforms. The dataset represents real-world digital journalism data from 2013-2015.",
+  "original_source": {
+    "creator": "Kelwin Fernandes, Pedro Vinagre, Paulo Cortez",
+    "institution": "University of Porto & LIAAD-INESC TEC, Portugal",
+    "date": "2015",
+    "publication": "A Proactive Intelligent Decision Support System for Predicting the Popularity of Online News (2015), Communications in Computer and Information Science"
+  },
+  "columns": [
+    {
+      "name": "0",
+      "semantic_description": "Number of words in the article title",
+      "data_type": "numeric, positive integer"
+    },
+    {
+      "name": "1",
+      "semantic_description": "Average length of words in the article title",
+      "data_type": "numeric, float"
+    },
+    {
+      "name": "2",
+      "semantic_description": "Number of keywords associated with the article",
+      "data_type": "numeric, positive integer"
+    },
+    {
+      "name": "3",
+      "semantic_description": "Article category (encoded numerically)",
+      "data_type": "numeric, categorical encoding"
+    },
+    {
+      "name": "4",
+      "semantic_description": "Day of week when the article was published (encoded numerically)",
+      "data_type": "numeric, categorical encoding (1-7)"
+    }
+  ],
+  "target_description": {
+    "name": "log_shares",
+    "meaning": "Natural logarithm of the number of times the article was shared on social media platforms",
+    "units": "log(number of shares)",
+    "range": "Typically between 0 and 12 (corresponding to 1 to ~160k shares)"
+  },
+  "dataset_history": "This dataset was created to study the relationship between article characteristics and their viral potential on social media. It was collected from Mashable.com during 2013-2015 using their public API and web scraping techniques. The dataset has become a benchmark for studying content virality prediction and digital journalism analytics.",
+  "inference_notes": "Important considerations include:\n1. The logarithmic transformation of shares helps handle the highly skewed nature of viral content distribution\n2. The predictive power is intentionally limited to pre-publication features to enable proactive decision making\n3. There may be temporal effects and changing social media dynamics not captured in the features\n4. The dataset represents a specific time period and single news source, which may limit generalizability\n5. The relationship between article characteristics and sharing behavior is inherently noisy and influenced by many external factors not captured in the dataset",
+  "_metadata": {
+    "task_id": 363376,
+    "generated_at": "2025-06-22T08:27:59.285255",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

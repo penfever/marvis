@@ -1,0 +1,15 @@
+{
+  "dataset_name": "temperature_emissions_environmental_trends_2000_2024",
+  "task_prefix": "This appears to be an environmental dataset tracking various climate, emissions, and forest coverage metrics over time. The dataset focuses on the relationship between environmental factors and forest area coverage, which is a critical indicator of ecosystem health and carbon sequestration capacity. Each example contains 2 features. Predict the Forest_Area_pct.",
+  "column_descriptions": {
+    "Forest_Area_pct": "Percentage of land area covered by forests in a given region",
+    "Feature names 0-9": "Without access to the original feature names, these likely represent various environmental metrics such as: temperature measurements, greenhouse gas emissions, precipitation levels, land use changes, or other environmental indicators. The specific mapping is not available in the current documentation."
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Forest_Area_pct - The percentage of total land area that is covered by forest. This is a key indicator of environmental health, biodiversity, and carbon sequestration capacity. Units: Percentage (%). Range: 0-100%",
+  "num_features": 2,
+  "num_classes": 1,
+  "task_id": 363439
+}

@@ -1,0 +1,28 @@
+{
+  "dataset_name": "climate_change_impact_on_agriculture_2024",
+  "task_prefix": "A synthetic dataset designed to model the relationship between climate change variables and agricultural economic impacts. The dataset simulates real-world patterns of how climate variations affect agricultural productivity and resulting economic consequences across different regions and farming conditions. Each example contains 15 features. Predict the Economic_Impact_Million_USD.",
+  "column_descriptions": {
+    "Temperature_Change": "Average temperature deviation from historical baseline in degrees Celsius",
+    "Precipitation_Change": "Percentage change in annual precipitation compared to historical average",
+    "Extreme_Weather_Events": "Number of extreme weather events (droughts, floods, storms) per year",
+    "Soil_Quality_Index": "Composite measure of soil health including organic content, pH, and nutrient levels",
+    "Crop_Diversity_Index": "Measure of agricultural biodiversity in the region",
+    "Irrigation_Access": "Percentage of agricultural land with irrigation access",
+    "Technology_Adoption_Level": "Index of modern agricultural technology implementation",
+    "Farm_Size_Hectares": "Average size of farming operations in the region",
+    "Growing_Season_Length": "Number of days suitable for crop growth annually",
+    "Market_Access_Score": "Measure of farmers' ability to reach markets and sell produce",
+    "Agricultural_GDP_Percentage": "Agriculture's contribution to regional GDP",
+    "Farmer_Education_Level": "Average years of formal education among farmers",
+    "Adaptation_Investment": "Annual investment in climate adaptation measures",
+    "Insurance_Coverage": "Percentage of farms with climate-related insurance",
+    "Previous_Year_Impact": "Economic impact from climate events in previous year"
+  },
+  "class_names": [
+    "continuous_value"
+  ],
+  "class_description": "Target: Economic_Impact_Million_USD - Projected economic impact of climate change on agricultural production. Units: Millions of US Dollars. Range: Likely negative to positive values, representing losses and gains",
+  "num_features": 15,
+  "num_classes": 1,
+  "task_id": 363434
+}

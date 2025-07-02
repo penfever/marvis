@@ -1,0 +1,150 @@
+{
+  "dataset": "CIFAR_10",
+  "description": "The CIFAR-10 dataset consists of 60000 32x32 color images in 10 mutually exclusive classes. A labeled subset of the 80 million tiny images dataset, it is one of the most widely used benchmarks for image classification.",
+  "source": "Canadian Institute for Advanced Research / University of Toronto",
+  "source_url": "https://www.cs.toronto.edu/~kriz/cifar.html",
+  "openml_task": 167124,
+  "openml_dataset": 40927,
+  "date_created": "2009",
+  "creator": {
+    "name": "Alex Krizhevsky, Vinod Nair, Geoffrey Hinton",
+    "affiliation": "University of Toronto",
+    "note": "Collected by Alex Krizhevsky"
+  },
+  "instances": 60000,
+  "features": 3072,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "numeric",
+    "description": "RGB pixel values (0-255)"
+  },
+  "feature_description": {
+    "structure": "3072 features = 32x32 pixels × 3 color channels (RGB)",
+    "ordering": "First 1024: red channel, next 1024: green channel, last 1024: blue channel",
+    "storage": "Row-major order within each channel",
+    "values": "8-bit color depth (0-255)"
+  },
+  "target_values": {
+    "0": "airplane",
+    "1": "automobile",
+    "2": "bird",
+    "3": "cat",
+    "4": "deer",
+    "5": "dog",
+    "6": "frog",
+    "7": "horse",
+    "8": "ship",
+    "9": "truck"
+  },
+  "class_distribution": {
+    "per_class": "6000 images per class",
+    "balanced": "Perfectly balanced across 10 classes",
+    "total": "60000 images"
+  },
+  "data_splits": {
+    "training": "50000 images (5000 per class)",
+    "test": "10000 images (1000 per class)",
+    "organization": "5 training batches + 1 test batch"
+  },
+  "domain": "Computer Vision/Natural Images",
+  "use_case": "Image classification, object recognition, computer vision benchmarking, CNN development, transfer learning",
+  "image_characteristics": {
+    "size": "32x32 pixels",
+    "color": "RGB (3 channels)",
+    "content": "Natural images of common objects",
+    "quality": "Low resolution but recognizable"
+  },
+  "preprocessing": "Collected from 80 million tiny images dataset, labeled by paid students",
+  "performance_considerations": "Small image size challenges feature extraction, natural image complexity",
+  "advantages": "Standard benchmark, balanced classes, manageable size, color images, widely studied",
+  "challenges": "Low resolution (32x32), some ambiguous images, intra-class variation, limited size for modern deep learning",
+  "research_applications": "CNN architecture development, data augmentation techniques, regularization methods, neural architecture search",
+  "benchmark_status": "Fundamental benchmark in computer vision, extensively studied",
+  "state_of_art": "~99% accuracy with modern deep learning and data augmentation",
+  "related_datasets": "CIFAR-100 (100 classes), SVHN, Tiny ImageNet",
+  "class_hierarchy_note": "Classes are mutually exclusive (e.g., automobile excludes trucks)",
+  "citations": [
+    {
+      "author": "Alex Krizhevsky",
+      "title": "Learning Multiple Layers of Features from Tiny Images",
+      "type": "Technical Report",
+      "institution": "University of Toronto",
+      "year": "2009"
+    }
+  ],
+  "dataset_name": "CIFAR_10",
+  "original_source": {
+    "creator": "Alex Krizhevsky, Vinod Nair, Geoffrey Hinton",
+    "institution": "Canadian Institute for Advanced Research / University of Toronto",
+    "date": "Unknown",
+    "publication": "Alex Krizhevsky: Learning Multiple Layers of Features from Tiny Images"
+  },
+  "columns": [
+    {
+      "name": "structure",
+      "semantic_description": "3072 features = 32x32 pixels × 3 color channels (RGB)",
+      "data_type": "numeric"
+    },
+    {
+      "name": "ordering",
+      "semantic_description": "First 1024: red channel, next 1024: green channel, last 1024: blue channel",
+      "data_type": "numeric"
+    },
+    {
+      "name": "storage",
+      "semantic_description": "Row-major order within each channel",
+      "data_type": "numeric"
+    },
+    {
+      "name": "values",
+      "semantic_description": "8-bit color depth (0-255)",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "airplane"
+    },
+    {
+      "name": "1",
+      "meaning": "automobile"
+    },
+    {
+      "name": "2",
+      "meaning": "bird"
+    },
+    {
+      "name": "3",
+      "meaning": "cat"
+    },
+    {
+      "name": "4",
+      "meaning": "deer"
+    },
+    {
+      "name": "5",
+      "meaning": "dog"
+    },
+    {
+      "name": "6",
+      "meaning": "frog"
+    },
+    {
+      "name": "7",
+      "meaning": "horse"
+    },
+    {
+      "name": "8",
+      "meaning": "ship"
+    },
+    {
+      "name": "9",
+      "meaning": "truck"
+    }
+  ],
+  "dataset_history": "Dataset history not available for CIFAR_10",
+  "inference_notes": "Challenges: Low resolution (32x32), some ambiguous images, intra-class variation, limited size for modern deep learning. Advantages: Standard benchmark, balanced classes, manageable size, color images, widely studied. Applications: CNN architecture development, data augmentation techniques, regularization methods, neural architecture search. Use Case: Image classification, object recognition, computer vision benchmarking, CNN development, transfer learning"
+}

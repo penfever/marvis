@@ -1,0 +1,1279 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.utils.vlm_prompting &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">marvis.utils.vlm_prompting</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for marvis.utils.vlm_prompting</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Unified VLM prompting utilities for MARVIS.</span>
+
+<span class="sd">This module provides consistent prompting strategies across different modalities</span>
+<span class="sd">(tabular, audio, image) for Vision Language Model classification tasks.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_metadata_summary">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.create_metadata_summary">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_metadata_summary</span><span class="p">(</span><span class="n">metadata</span><span class="p">:</span> <span class="s1">&#39;DatasetMetadata&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a concise metadata summary for VLM prompts.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        metadata: DatasetMetadata object with rich dataset information</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Formatted metadata summary for inclusion in prompts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">metadata</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        
+    <span class="n">summary_parts</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Dataset description</span>
+    <span class="k">if</span> <span class="n">metadata</span><span class="o">.</span><span class="n">description</span><span class="p">:</span>
+        <span class="n">summary_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">description</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Key features (top 3-5 most informative)</span>
+    <span class="k">if</span> <span class="n">metadata</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">feature_descriptions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>  <span class="c1"># Limit to avoid prompt bloat</span>
+            <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">semantic_description</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">semantic_description</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">:</span>
+                <span class="n">feature_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">col</span><span class="o">.</span><span class="n">semantic_description</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">feature_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">feature_descriptions</span><span class="p">:</span>
+            <span class="n">summary_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Key features: </span><span class="si">{</span><span class="s1">&#39;; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">feature_descriptions</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Target classes with meanings</span>
+    <span class="k">if</span> <span class="n">metadata</span><span class="o">.</span><span class="n">target_classes</span><span class="p">:</span>
+        <span class="n">class_meanings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">target_class</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">target_classes</span><span class="p">[:</span><span class="mi">10</span><span class="p">]:</span>  <span class="c1"># Limit to avoid bloat</span>
+            <span class="k">if</span> <span class="n">target_class</span><span class="o">.</span><span class="n">meaning</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_class</span><span class="o">.</span><span class="n">meaning</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>
+                <span class="n">class_meanings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">target_class</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;: </span><span class="si">{</span><span class="n">target_class</span><span class="o">.</span><span class="n">meaning</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">class_meanings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">target_class</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">class_meanings</span><span class="p">:</span>
+            <span class="n">summary_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Classes: </span><span class="si">{</span><span class="s1">&#39;; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">class_meanings</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Domain context from inference notes</span>
+    <span class="k">if</span> <span class="n">metadata</span><span class="o">.</span><span class="n">inference_notes</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">inference_notes</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="n">summary_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Context: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">inference_notes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="s2">&quot; | &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">summary_parts</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="validate_and_clean_class_names">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.validate_and_clean_class_names">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_and_clean_class_names</span><span class="p">(</span><span class="n">class_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate and clean class names for semantic naming.</span>
+<span class="sd">    </span>
+<span class="sd">    Requirements:</span>
+<span class="sd">    1. Unique names</span>
+<span class="sd">    2. Only ASCII characters  </span>
+<span class="sd">    3. Less than 30 characters per name</span>
+<span class="sd">    4. No whitespace (replace with underscores)</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        class_names: List of class names to validate</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        List of cleaned and validated class names</span>
+<span class="sd">        </span>
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If validation fails</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">class_names</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">class_names</span>
+        
+    <span class="n">cleaned_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">seen_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">class_names</span><span class="p">):</span>
+        <span class="c1"># Convert to string if not already</span>
+        <span class="n">name_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        
+        <span class="c1"># Replace whitespace with underscores and remove/replace special characters</span>
+        <span class="n">cleaned_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">name_str</span><span class="p">)</span>
+        <span class="c1"># Replace common special characters with underscores</span>
+        <span class="n">cleaned_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[/</span><span class="se">\\</span><span class="s1">|,.;:!@#$%^&amp;*()+=\[\]</span><span class="si">{}</span><span class="s1">&quot;`~&lt;&gt;?]&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">cleaned_name</span><span class="p">)</span>
+        <span class="c1"># Remove multiple consecutive underscores</span>
+        <span class="n">cleaned_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;_+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">cleaned_name</span><span class="p">)</span>
+        <span class="c1"># Remove leading/trailing underscores</span>
+        <span class="n">cleaned_name</span> <span class="o">=</span> <span class="n">cleaned_name</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># Check ASCII only</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cleaned_name</span><span class="o">.</span><span class="n">isascii</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Class name at index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> contains non-ASCII characters: &#39;</span><span class="si">{</span><span class="n">name_str</span><span class="si">}</span><span class="s2">&#39; -&gt; &#39;</span><span class="si">{</span><span class="n">cleaned_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Check length and truncate if necessary</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cleaned_name</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">:</span>
+            <span class="n">original_name</span> <span class="o">=</span> <span class="n">cleaned_name</span>
+            <span class="n">cleaned_name</span> <span class="o">=</span> <span class="n">cleaned_name</span><span class="p">[:</span><span class="mi">27</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Class name at index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> too long (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">original_name</span><span class="p">)</span><span class="si">}</span><span class="s2"> chars), truncated: &#39;</span><span class="si">{</span><span class="n">original_name</span><span class="si">}</span><span class="s2">&#39; -&gt; &#39;</span><span class="si">{</span><span class="n">cleaned_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Ensure not empty after cleaning</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cleaned_name</span> <span class="ow">or</span> <span class="n">cleaned_name</span> <span class="o">==</span> <span class="s1">&#39;_&#39;</span><span class="p">:</span>
+            <span class="n">cleaned_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;class_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Empty class name at index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, using fallback: &#39;</span><span class="si">{</span><span class="n">cleaned_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Check uniqueness</span>
+        <span class="k">if</span> <span class="n">cleaned_name</span> <span class="ow">in</span> <span class="n">seen_names</span><span class="p">:</span>
+            <span class="c1"># Make unique by appending counter, ensuring we stay under 30 chars</span>
+            <span class="n">original_cleaned</span> <span class="o">=</span> <span class="n">cleaned_name</span>
+            <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">cleaned_name</span> <span class="ow">in</span> <span class="n">seen_names</span><span class="p">:</span>
+                <span class="n">suffix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;_</span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">original_cleaned</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">suffix</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">:</span>
+                    <span class="c1"># Truncate base name to fit suffix</span>
+                    <span class="n">base_name</span> <span class="o">=</span> <span class="n">original_cleaned</span><span class="p">[:</span><span class="mi">30</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">suffix</span><span class="p">)]</span>
+                    <span class="n">cleaned_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_name</span><span class="si">}{</span><span class="n">suffix</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">cleaned_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">original_cleaned</span><span class="si">}{</span><span class="n">suffix</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duplicate class name &#39;</span><span class="si">{</span><span class="n">original_cleaned</span><span class="si">}</span><span class="s2">&#39; at index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, using &#39;</span><span class="si">{</span><span class="n">cleaned_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        
+        <span class="n">seen_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cleaned_name</span><span class="p">)</span>
+        <span class="n">cleaned_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cleaned_name</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">cleaned_names</span></div>
+
+
+
+<div class="viewcode-block" id="create_classification_prompt">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.create_classification_prompt">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_classification_prompt</span><span class="p">(</span>
+    <span class="n">class_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">use_knn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">use_3d</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">nn_k</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">legend_text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">include_spectrogram</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">dataset_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_semantic_names</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">multi_viz_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dataset_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a classification prompt for VLM based on modality and visualization type.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        class_names: List of class names/labels</span>
+<span class="sd">        modality: Type of data (&quot;tabular&quot;, &quot;audio&quot;, &quot;image&quot;)</span>
+<span class="sd">        use_knn: Whether KNN connections are shown</span>
+<span class="sd">        use_3d: Whether 3D visualization is used</span>
+<span class="sd">        nn_k: Number of nearest neighbors (if use_knn=True)</span>
+<span class="sd">        legend_text: Legend text from the visualization</span>
+<span class="sd">        include_spectrogram: Whether spectrogram is included (for audio)</span>
+<span class="sd">        dataset_description: Optional description of the dataset/task</span>
+<span class="sd">        use_semantic_names: Whether to use semantic class names in prompts (default: False uses &quot;Class X&quot;)</span>
+<span class="sd">        multi_viz_info: Optional list of visualization method information for multi-viz prompts</span>
+<span class="sd">        dataset_metadata: Optional structured metadata summary for domain context</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Formatted prompt string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Format class list consistently - class names are already validated at source</span>
+    <span class="k">if</span> <span class="n">use_semantic_names</span><span class="p">:</span>
+        <span class="c1"># Use semantic class names when use_semantic_names=True</span>
+        <span class="n">class_list_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;&#39;</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">class_names</span><span class="p">])</span>
+        <span class="n">class_format_example</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">class_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&quot;, &quot;</span><span class="si">{</span><span class="n">class_names</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&quot;, etc.&#39;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="k">else</span> <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">class_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Default: Always use &quot;Class_X&quot; format for consistency with legends</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.class_name_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_class_names_to_class_num</span>
+        <span class="n">fallback_names</span> <span class="o">=</span> <span class="n">normalize_class_names_to_class_num</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">))</span>
+        <span class="n">class_list_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;&#39;</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">fallback_names</span><span class="p">])</span>
+        <span class="n">class_format_example</span> <span class="o">=</span> <span class="s1">&#39;&quot;Class_0&quot;, &quot;Class_1&quot;, &quot;Class_2&quot;&#39;</span>
+    
+    <span class="c1"># Create modality-specific description</span>
+    <span class="k">if</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;audio&quot;</span><span class="p">:</span>
+        <span class="n">data_description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Looking at this</span><span class="si">{</span><span class="s1">&#39;enhanced&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;3D &#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">t-SNE visualization of audio classification data, you can see:</span>
+
+<span class="s2">1. Colored points representing training audio samples, where each color corresponds to a different class</span>
+<span class="s2">2. </span><span class="si">{</span><span class="s1">&#39;Gray square points representing test audio samples&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Test points (if any) shown as gray squares&#39;</span><span class="si">}</span>
+<span class="s2">3. One red star point which is the query audio sample I want you to classify&quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">use_3d</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">4. Four different views of the same 3D space: Isometric, Front (XZ), Side (YZ), and Top (XY)&quot;</span>
+            
+        <span class="k">if</span> <span class="n">use_knn</span> <span class="ow">and</span> <span class="n">nn_k</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="mi">5</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">4</span><span class="si">}</span><span class="s2">. A pie chart showing the distribution of the </span><span class="si">{</span><span class="n">nn_k</span><span class="si">}</span><span class="s2"> nearest neighbors by class&quot;</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="mi">6</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">5</span><span class="si">}</span><span class="s2">. The pie chart includes class counts, percentages, and average distances to neighbors&quot;</span>
+            
+        <span class="k">if</span> <span class="n">include_spectrogram</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="mi">7</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">5</span><span class="si">}</span><span class="s2">. Audio spectrogram of the query sample shown below the t-SNE plot&quot;</span>
+            
+    <span class="k">elif</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;tabular&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">multi_viz_info</span><span class="p">:</span>
+            <span class="c1"># Multi-visualization description</span>
+            <span class="n">viz_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">viz</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">viz</span> <span class="ow">in</span> <span class="n">multi_viz_info</span><span class="p">]</span>
+            <span class="n">data_description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Looking at these </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">)</span><span class="si">}</span><span class="s2"> different visualizations (</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">viz_names</span><span class="p">)</span><span class="si">}</span><span class="s2">) of the same tabular classification data:</span>
+
+<span class="s2">Each visualization shows:</span>
+<span class="s2">1. Colored points representing training data, where each color corresponds to a different class</span>
+<span class="s2">2. Gray square points representing test data  </span>
+<span class="s2">3. One red star point which is the query point I want you to classify</span>
+
+<span class="s2">The multiple visualizations provide different perspectives on the same underlying data structure:&quot;&quot;&quot;</span>
+            
+            <span class="c1"># Add method-specific descriptions</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">viz</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">method</span> <span class="o">=</span> <span class="n">viz</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;PCA&#39;</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Shows linear relationships and directions of maximum variance&quot;</span>
+                <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;TSNE&#39;</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Preserves local neighborhood structures, excellent for revealing clusters&quot;</span>
+                <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;UMAP&#39;</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Preserves both local and global structure with clearer cluster separation&quot;</span>
+                <span class="k">elif</span> <span class="s1">&#39;SPECTRAL&#39;</span> <span class="ow">in</span> <span class="n">method</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Reveals manifold structure using graph-based relationships&quot;</span>
+                <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;ISOMAP&#39;</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Preserves geodesic distances along the data manifold&quot;</span>
+                <span class="k">elif</span> <span class="s1">&#39;LLE&#39;</span> <span class="ow">in</span> <span class="n">method</span> <span class="ow">or</span> <span class="s1">&#39;LOCALLY&#39;</span> <span class="ow">in</span> <span class="n">method</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Reconstructs local geometry of the data manifold&quot;</span>
+                <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;MDS&#39;</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Preserves pairwise distances between data points&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: </span><span class="si">{</span><span class="n">viz</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Alternative perspective on data structure&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Single visualization description</span>
+            <span class="n">data_description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Looking at this</span><span class="si">{</span><span class="s1">&#39;enhanced&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;3D &#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">t-SNE visualization of tabular data, you can see:</span>
+
+<span class="s2">1. Colored points representing training data, where each color corresponds to a different class</span>
+<span class="s2">2. Gray square points representing test data  </span>
+<span class="s2">3. One red star point which is the query point I want you to classify&quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">use_3d</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">4. Four different views of the same 3D space: Isometric, Front (XZ), Side (YZ), and Top (XY)&quot;</span>
+            
+        <span class="k">if</span> <span class="n">use_knn</span> <span class="ow">and</span> <span class="n">nn_k</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="mi">5</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">4</span><span class="si">}</span><span class="s2">. A pie chart showing the distribution of the </span><span class="si">{</span><span class="n">nn_k</span><span class="si">}</span><span class="s2"> nearest neighbors by class&quot;</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="mi">6</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">5</span><span class="si">}</span><span class="s2">. The pie chart includes class counts, percentages, and average distances to neighbors&quot;</span>
+            
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># image or other</span>
+        <span class="n">data_description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Looking at this</span><span class="si">{</span><span class="s1">&#39;enhanced&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;3D &#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">t-SNE visualization of </span><span class="si">{</span><span class="n">modality</span><span class="si">}</span><span class="s2"> data, you can see:</span>
+
+<span class="s2">1. Colored points representing training samples, where each color corresponds to a different class</span>
+<span class="s2">2. Gray square points representing test samples  </span>
+<span class="s2">3. One red star point which is the query sample I want you to classify&quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">use_3d</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">4. Four different views of the same 3D space: Isometric, Front (XZ), Side (YZ), and Top (XY)&quot;</span>
+            
+        <span class="k">if</span> <span class="n">use_knn</span> <span class="ow">and</span> <span class="n">nn_k</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="mi">5</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">4</span><span class="si">}</span><span class="s2">. A pie chart showing the distribution of the </span><span class="si">{</span><span class="n">nn_k</span><span class="si">}</span><span class="s2"> nearest neighbors by class&quot;</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="mi">6</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">5</span><span class="si">}</span><span class="s2">. The pie chart includes class counts, percentages, and average distances to neighbors&quot;</span>
+
+    <span class="c1"># Add legend text if provided</span>
+    <span class="k">if</span> <span class="n">legend_text</span><span class="p">:</span>
+        <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="si">{</span><span class="n">legend_text</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Add dataset description and metadata if provided</span>
+    <span class="n">dataset_context</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">dataset_description</span> <span class="ow">or</span> <span class="n">dataset_metadata</span><span class="p">:</span>
+        <span class="n">context_parts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">dataset_description</span><span class="p">:</span>
+            <span class="n">context_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dataset_description</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dataset_metadata</span><span class="p">:</span>
+            <span class="n">context_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">dataset_metadata</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">dataset_context</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Dataset Context: </span><span class="si">{</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">context_parts</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Create modality-specific important notes</span>
+    <span class="k">if</span> <span class="n">use_knn</span><span class="p">:</span>
+        <span class="n">important_note</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">IMPORTANT: The pie chart shows the class distribution of the </span><span class="si">{</span><span class="n">nn_k</span><span class="si">}</span><span class="s2"> nearest neighbors found in the original </span><span class="si">{</span><span class="s1">&#39;Whisper &#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;audio&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="s1">&#39;high-dimensional &#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;tabular&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">embedding space, NOT just based on the </span><span class="si">{</span><span class="s1">&#39;3D&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;2D&#39;</span><span class="si">}</span><span class="s2"> visualization space. Smaller average distances indicate higher similarity.&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">important_note</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="c1"># Create analysis instructions</span>
+    <span class="k">if</span> <span class="n">multi_viz_info</span><span class="p">:</span>
+        <span class="c1"># Multi-visualization analysis</span>
+        <span class="n">viz_list</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">viz</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">viz</span> <span class="ow">in</span> <span class="n">multi_viz_info</span><span class="p">])</span>
+        <span class="n">analysis_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Based on the position of the red star (query </span><span class="si">{</span><span class="s1">&#39;audio sample&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;audio&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;point&#39;</span><span class="si">}</span><span class="s2">) across ALL </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">)</span><span class="si">}</span><span class="s2"> visualization methods (</span><span class="si">{</span><span class="n">viz_list</span><span class="si">}</span><span class="s2">), which class should this query </span><span class="si">{</span><span class="s1">&#39;audio sample&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;audio&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;point&#39;</span><span class="si">}</span><span class="s2"> belong to?&quot;</span>
+        
+        <span class="n">considerations</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;The spatial relationships across all </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">)</span><span class="si">}</span><span class="s2"> visualization methods&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Which colored class clusters the red star is consistently closest to across multiple methods&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Patterns that appear in multiple visualizations (these are more reliable than method-specific patterns)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;How different visualization methods agree or disagree about the query point&#39;s classification&quot;</span>
+        <span class="p">]</span>
+        
+        <span class="c1"># Add method-specific considerations</span>
+        <span class="n">linear_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pca&#39;</span><span class="p">]]</span>
+        <span class="n">nonlinear_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;tsne&#39;</span><span class="p">,</span> <span class="s1">&#39;umap&#39;</span><span class="p">,</span> <span class="s1">&#39;isomap&#39;</span><span class="p">,</span> <span class="s1">&#39;lle&#39;</span><span class="p">]]</span>
+        
+        <span class="k">if</span> <span class="n">linear_methods</span> <span class="ow">and</span> <span class="n">nonlinear_methods</span><span class="p">:</span>
+            <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Whether linear methods (PCA) and nonlinear methods show consistent or different cluster assignments&quot;</span><span class="p">)</span>
+        
+        <span class="n">local_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;tsne&#39;</span><span class="p">,</span> <span class="s1">&#39;lle&#39;</span><span class="p">]]</span>
+        <span class="n">global_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;umap&#39;</span><span class="p">,</span> <span class="s1">&#39;isomap&#39;</span><span class="p">,</span> <span class="s1">&#39;mds&#39;</span><span class="p">]]</span>
+        
+        <span class="k">if</span> <span class="n">local_methods</span> <span class="ow">and</span> <span class="n">global_methods</span><span class="p">:</span>
+            <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;How local structure methods (t-SNE, LLE) compare with global structure methods (UMAP, Isomap)&quot;</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="n">include_spectrogram</span> <span class="ow">and</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;audio&quot;</span><span class="p">:</span>
+            <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The audio spectrogram patterns that might provide additional context&quot;</span><span class="p">)</span>
+            
+    <span class="k">elif</span> <span class="n">use_knn</span><span class="p">:</span>
+        <span class="n">analysis_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Based on BOTH the spatial position in the t-SNE visualization AND the explicit nearest neighbor connections, which class should this query </span><span class="si">{</span><span class="s1">&#39;audio sample&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;audio&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;point&#39;</span><span class="si">}</span><span class="s2"> belong to?&quot;</span>
+        
+        <span class="n">considerations</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The spatial clustering patterns&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot; across all four 3D views&quot;</span> <span class="k">if</span> <span class="n">use_3d</span> <span class="k">else</span> <span class="s2">&quot; in the t-SNE visualization&quot;</span><span class="p">)]</span>
+        <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Which classes the nearest neighbors (connected by red lines) belong to&quot;</span><span class="p">)</span>
+        <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The relative importance of close neighbors (thicker lines)&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">include_spectrogram</span> <span class="ow">and</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;audio&quot;</span><span class="p">:</span>
+            <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The audio spectrogram patterns that might provide additional context&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">analysis_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Based on the position of the red star (query </span><span class="si">{</span><span class="s1">&#39;audio sample&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;audio&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;point&#39;</span><span class="si">}</span><span class="s2">) relative to the colored training points</span><span class="si">{</span><span class="s1">&#39; across ALL viewing angles&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">, which class should this query </span><span class="si">{</span><span class="s1">&#39;audio sample&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;audio&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;point&#39;</span><span class="si">}</span><span class="s2"> belong to?&quot;</span>
+        
+        <span class="n">considerations</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;The spatial relationships in </span><span class="si">{</span><span class="s1">&#39;3D space by examining all four views&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;the t-SNE visualization&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+        <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Which colored class clusters the red star is closest to or embedded within&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">include_spectrogram</span> <span class="ow">and</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;audio&quot;</span><span class="p">:</span>
+            <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The audio spectrogram patterns that might provide additional context&quot;</span><span class="p">)</span>
+
+    <span class="n">consider_text</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">consideration</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">consideration</span> <span class="ow">in</span> <span class="n">considerations</span><span class="p">])</span>
+
+    <span class="c1"># Create response format instruction</span>
+    <span class="k">if</span> <span class="n">multi_viz_info</span><span class="p">:</span>
+        <span class="n">viz_list</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">viz</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">viz</span> <span class="ow">in</span> <span class="n">multi_viz_info</span><span class="p">])</span>
+        <span class="n">analysis_type</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;multi-visualization analysis across </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">)</span><span class="si">}</span><span class="s2"> methods (</span><span class="si">{</span><span class="n">viz_list</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="k">elif</span> <span class="n">use_knn</span><span class="p">:</span>
+        <span class="n">analysis_type</span> <span class="o">=</span> <span class="s2">&quot;spatial clustering AND the pie chart neighbor analysis&quot;</span>
+    <span class="k">elif</span> <span class="n">use_3d</span><span class="p">:</span>
+        <span class="n">analysis_type</span> <span class="o">=</span> <span class="s2">&quot;3D spatial clustering patterns you observe across the multiple views&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">analysis_type</span> <span class="o">=</span> <span class="s2">&quot;spatial clustering patterns you observe&quot;</span>
+    
+    <span class="n">spectrogram_text</span> <span class="o">=</span> <span class="s2">&quot; and spectrogram analysis&quot;</span> <span class="k">if</span> <span class="n">include_spectrogram</span> <span class="ow">and</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;audio&quot;</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">response_format</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Please respond with just the class label (e.g., </span><span class="si">{</span><span class="n">class_format_example</span><span class="si">}</span><span class="s1">) followed by a brief explanation of your reasoning based on the </span><span class="si">{</span><span class="n">analysis_type</span><span class="si">}{</span><span class="n">spectrogram_text</span><span class="si">}</span><span class="s1">.&#39;</span>
+
+    <span class="c1"># Combine all parts</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="si">{</span><span class="n">data_description</span><span class="si">}{</span><span class="n">dataset_context</span><span class="si">}{</span><span class="n">important_note</span><span class="si">}</span>
+
+<span class="si">{</span><span class="n">analysis_prompt</span><span class="si">}</span>
+
+<span class="s2">Consider:</span>
+<span class="si">{</span><span class="n">consider_text</span><span class="si">}</span>
+
+<span class="si">{</span><span class="n">response_format</span><span class="si">}</span>
+
+<span class="s2">Format your response as: &quot;Class: [class_label] | Reasoning: [brief explanation]&quot; &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">prompt</span></div>
+
+
+
+<div class="viewcode-block" id="create_regression_prompt">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.create_regression_prompt">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_regression_prompt</span><span class="p">(</span>
+    <span class="n">target_stats</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">use_knn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">use_3d</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">nn_k</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">legend_text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">include_spectrogram</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">dataset_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">multi_viz_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dataset_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a regression prompt for VLM based on modality and visualization type.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        target_stats: Statistics about the target variable (min, max, mean, std, etc.)</span>
+<span class="sd">        modality: Type of data (&quot;tabular&quot;, &quot;audio&quot;, &quot;image&quot;)</span>
+<span class="sd">        use_knn: Whether KNN connections are shown</span>
+<span class="sd">        use_3d: Whether 3D visualization is used</span>
+<span class="sd">        nn_k: Number of nearest neighbors (if use_knn=True)</span>
+<span class="sd">        legend_text: Legend text from the visualization</span>
+<span class="sd">        include_spectrogram: Whether spectrogram is included (for audio)</span>
+<span class="sd">        dataset_description: Optional description of the dataset/task</span>
+<span class="sd">        multi_viz_info: Optional list of visualization method information for multi-viz prompts</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Formatted prompt string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Extract target range and statistics</span>
+    <span class="n">target_min</span> <span class="o">=</span> <span class="n">target_stats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">target_max</span> <span class="o">=</span> <span class="n">target_stats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">target_mean</span> <span class="o">=</span> <span class="n">target_stats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">target_min</span> <span class="o">+</span> <span class="n">target_max</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">target_std</span> <span class="o">=</span> <span class="n">target_stats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">target_max</span> <span class="o">-</span> <span class="n">target_min</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span>
+    
+    <span class="c1"># Format target range description</span>
+    <span class="n">range_desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;between </span><span class="si">{</span><span class="n">target_min</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">target_max</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">if</span> <span class="n">target_stats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dtype&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">):</span>
+        <span class="n">range_desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;between </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">target_min</span><span class="p">)</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">target_max</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+    <span class="n">stats_desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;(mean: </span><span class="si">{</span><span class="n">target_mean</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">, std: </span><span class="si">{</span><span class="n">target_std</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">)&quot;</span>
+    
+    <span class="c1"># Create modality-specific description</span>
+    <span class="k">if</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;audio&quot;</span><span class="p">:</span>
+        <span class="n">data_description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Looking at this</span><span class="si">{</span><span class="s1">&#39;enhanced&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;3D &#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">t-SNE visualization of audio regression data, you can see:</span>
+
+<span class="s2">1. Colored points representing training audio samples, where the color intensity/gradient corresponds to different target values</span>
+<span class="s2">2. </span><span class="si">{</span><span class="s1">&#39;Gray square points representing test audio samples&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Test points (if any) shown as gray squares&#39;</span><span class="si">}</span>
+<span class="s2">3. One red star point which is the query audio sample I want you to predict a value for&quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">use_3d</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">4. Four different views of the same 3D space: Isometric, Front (XZ), Side (YZ), and Top (XY)&quot;</span>
+            
+        <span class="k">if</span> <span class="n">use_knn</span> <span class="ow">and</span> <span class="n">nn_k</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="mi">5</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">4</span><span class="si">}</span><span class="s2">. A summary showing the </span><span class="si">{</span><span class="n">nn_k</span><span class="si">}</span><span class="s2"> nearest neighbors with their target values and distances&quot;</span>
+            
+        <span class="k">if</span> <span class="n">include_spectrogram</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="mi">6</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">4</span><span class="si">}</span><span class="s2">. Audio spectrogram of the query sample shown below the t-SNE plot&quot;</span>
+            
+    <span class="k">elif</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;tabular&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">multi_viz_info</span><span class="p">:</span>
+            <span class="c1"># Multi-visualization description for regression</span>
+            <span class="n">viz_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">viz</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">viz</span> <span class="ow">in</span> <span class="n">multi_viz_info</span><span class="p">]</span>
+            <span class="n">data_description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Looking at these </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">)</span><span class="si">}</span><span class="s2"> different visualizations (</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">viz_names</span><span class="p">)</span><span class="si">}</span><span class="s2">) of the same tabular regression data:</span>
+
+<span class="s2">Each visualization shows:</span>
+<span class="s2">1. Colored points representing training data, where the color intensity/gradient corresponds to different target values</span>
+<span class="s2">2. Gray square points representing test data  </span>
+<span class="s2">3. One red star point which is the query point I want you to predict a value for</span>
+
+<span class="s2">The multiple visualizations provide different perspectives on how the target values are distributed in the data structure:&quot;&quot;&quot;</span>
+            
+            <span class="c1"># Add method-specific descriptions for regression</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">viz</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">method</span> <span class="o">=</span> <span class="n">viz</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;PCA&#39;</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Shows linear relationships between features and target values&quot;</span>
+                <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;TSNE&#39;</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Reveals local patterns in target value distribution&quot;</span>
+                <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;UMAP&#39;</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Preserves both local and global target value structure&quot;</span>
+                <span class="k">elif</span> <span class="s1">&#39;SPECTRAL&#39;</span> <span class="ow">in</span> <span class="n">method</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Shows manifold-based target value relationships&quot;</span>
+                <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;ISOMAP&#39;</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Preserves geodesic relationships in target space&quot;</span>
+                <span class="k">elif</span> <span class="s1">&#39;LLE&#39;</span> <span class="ow">in</span> <span class="n">method</span> <span class="ow">or</span> <span class="s1">&#39;LOCALLY&#39;</span> <span class="ow">in</span> <span class="n">method</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Reconstructs local target value geometry&quot;</span>
+                <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;MDS&#39;</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: Preserves target value distances between points&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- **</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">**: </span><span class="si">{</span><span class="n">viz</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Alternative perspective on target distribution&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Single visualization description for regression</span>
+            <span class="n">data_description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Looking at this</span><span class="si">{</span><span class="s1">&#39;enhanced&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;3D &#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">t-SNE visualization of tabular regression data, you can see:</span>
+
+<span class="s2">1. Colored points representing training data, where the color intensity/gradient corresponds to different target values</span>
+<span class="s2">2. Gray square points representing test data  </span>
+<span class="s2">3. One red star point which is the query point I want you to predict a value for&quot;&quot;&quot;</span>
+            
+            <span class="k">if</span> <span class="n">use_3d</span><span class="p">:</span>
+                <span class="n">data_description</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">4. Four different views of the same 3D space: Isometric, Front (XZ), Side (YZ), and Top (XY)&quot;</span>
+                
+            <span class="k">if</span> <span class="n">use_knn</span> <span class="ow">and</span> <span class="n">nn_k</span><span class="p">:</span>
+                <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="mi">5</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">4</span><span class="si">}</span><span class="s2">. A summary showing the </span><span class="si">{</span><span class="n">nn_k</span><span class="si">}</span><span class="s2"> nearest neighbors with their target values and distances&quot;</span>
+            
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># image or other</span>
+        <span class="n">data_description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Looking at this</span><span class="si">{</span><span class="s1">&#39;enhanced&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_knn</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;3D &#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">t-SNE visualization of </span><span class="si">{</span><span class="n">modality</span><span class="si">}</span><span class="s2"> regression data, you can see:</span>
+
+<span class="s2">1. Colored points representing training samples, where the color intensity/gradient corresponds to different target values</span>
+<span class="s2">2. Gray square points representing test samples  </span>
+<span class="s2">3. One red star point which is the query sample I want you to predict a value for&quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">use_3d</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">4. Four different views of the same 3D space: Isometric, Front (XZ), Side (YZ), and Top (XY)&quot;</span>
+            
+        <span class="k">if</span> <span class="n">use_knn</span> <span class="ow">and</span> <span class="n">nn_k</span><span class="p">:</span>
+            <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="mi">5</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">4</span><span class="si">}</span><span class="s2">. A summary showing the </span><span class="si">{</span><span class="n">nn_k</span><span class="si">}</span><span class="s2"> nearest neighbors with their target values and distances&quot;</span>
+
+    <span class="c1"># Add legend text if provided</span>
+    <span class="k">if</span> <span class="n">legend_text</span><span class="p">:</span>
+        <span class="n">data_description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="si">{</span><span class="n">legend_text</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Add dataset description and metadata if provided</span>
+    <span class="n">dataset_context</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">dataset_description</span><span class="p">:</span>
+        <span class="n">dataset_context</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Dataset Context: </span><span class="si">{</span><span class="n">dataset_description</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Create modality-specific important notes</span>
+    <span class="k">if</span> <span class="n">use_knn</span><span class="p">:</span>
+        <span class="n">important_note</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">IMPORTANT: The neighbor analysis shows the target values of the </span><span class="si">{</span><span class="n">nn_k</span><span class="si">}</span><span class="s2"> nearest neighbors found in the original </span><span class="si">{</span><span class="s1">&#39;Whisper &#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;audio&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="s1">&#39;high-dimensional &#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;tabular&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">embedding space, NOT just based on the </span><span class="si">{</span><span class="s1">&#39;3D&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;2D&#39;</span><span class="si">}</span><span class="s2"> visualization space. Smaller distances indicate higher similarity.&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">important_note</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">IMPORTANT: The color gradient in the visualization represents the target values, with the colormap typically ranging from low values (cooler colors) to high values (warmer colors).&quot;</span>
+
+    <span class="c1"># Create analysis instructions</span>
+    <span class="k">if</span> <span class="n">multi_viz_info</span><span class="p">:</span>
+        <span class="c1"># Multi-visualization analysis for regression</span>
+        <span class="n">viz_list</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">viz</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">viz</span> <span class="ow">in</span> <span class="n">multi_viz_info</span><span class="p">])</span>
+        <span class="n">analysis_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Based on the position of the red star (query </span><span class="si">{</span><span class="s1">&#39;audio sample&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;audio&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;point&#39;</span><span class="si">}</span><span class="s2">) across ALL </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">)</span><span class="si">}</span><span class="s2"> visualization methods (</span><span class="si">{</span><span class="n">viz_list</span><span class="si">}</span><span class="s2">), what value should I predict? The target values in this dataset range </span><span class="si">{</span><span class="n">range_desc</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">stats_desc</span><span class="si">}</span><span class="s2">.&quot;</span>
+        
+        <span class="n">considerations</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;The spatial relationships and color patterns across all </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">)</span><span class="si">}</span><span class="s2"> visualization methods&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;The color intensity/gradient patterns that are consistent across multiple visualizations&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;How different visualization methods represent the target value distribution in their respective spaces&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Target value trends that appear reliable across multiple methods (these are more trustworthy than method-specific patterns)&quot;</span>
+        <span class="p">]</span>
+        
+        <span class="c1"># Add method-specific considerations for regression</span>
+        <span class="n">linear_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pca&#39;</span><span class="p">]]</span>
+        <span class="n">nonlinear_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;tsne&#39;</span><span class="p">,</span> <span class="s1">&#39;umap&#39;</span><span class="p">,</span> <span class="s1">&#39;isomap&#39;</span><span class="p">,</span> <span class="s1">&#39;lle&#39;</span><span class="p">]]</span>
+        
+        <span class="k">if</span> <span class="n">linear_methods</span> <span class="ow">and</span> <span class="n">nonlinear_methods</span><span class="p">:</span>
+            <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Whether linear methods (PCA) and nonlinear methods show similar target value predictions&quot;</span><span class="p">)</span>
+        
+        <span class="n">local_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;tsne&#39;</span><span class="p">,</span> <span class="s1">&#39;lle&#39;</span><span class="p">]]</span>
+        <span class="n">global_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;umap&#39;</span><span class="p">,</span> <span class="s1">&#39;isomap&#39;</span><span class="p">,</span> <span class="s1">&#39;mds&#39;</span><span class="p">]]</span>
+        
+        <span class="k">if</span> <span class="n">local_methods</span> <span class="ow">and</span> <span class="n">global_methods</span><span class="p">:</span>
+            <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;How local structure methods (t-SNE, LLE) compare with global methods (UMAP, Isomap) for target value estimation&quot;</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="n">include_spectrogram</span> <span class="ow">and</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;audio&quot;</span><span class="p">:</span>
+            <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The audio spectrogram patterns that might provide additional context&quot;</span><span class="p">)</span>
+            
+    <span class="k">elif</span> <span class="n">use_knn</span><span class="p">:</span>
+        <span class="n">analysis_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Based on BOTH the spatial position in the t-SNE visualization AND the target values of the nearest neighbors, what value should I predict for this query </span><span class="si">{</span><span class="s1">&#39;audio sample&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;audio&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;point&#39;</span><span class="si">}</span><span class="s2">? The target values in this dataset range </span><span class="si">{</span><span class="n">range_desc</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">stats_desc</span><span class="si">}</span><span class="s2">.&quot;</span>
+        
+        <span class="n">considerations</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The spatial clustering patterns&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot; across all four 3D views&quot;</span> <span class="k">if</span> <span class="n">use_3d</span> <span class="k">else</span> <span class="s2">&quot; in the t-SNE visualization&quot;</span><span class="p">)]</span>
+        <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The target values of the nearest neighbors (connected by red lines)&quot;</span><span class="p">)</span>
+        <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The distance-weighted average of the nearest neighbor values&quot;</span><span class="p">)</span>
+        <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The color intensity/gradient of nearby training points&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">include_spectrogram</span> <span class="ow">and</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;audio&quot;</span><span class="p">:</span>
+            <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The audio spectrogram patterns that might provide additional context&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">analysis_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Based on the position of the red star (query </span><span class="si">{</span><span class="s1">&#39;audio sample&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">modality</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;audio&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;point&#39;</span><span class="si">}</span><span class="s2">) relative to the colored training points</span><span class="si">{</span><span class="s1">&#39; across ALL viewing angles&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">, what value should I predict? The target values in this dataset range </span><span class="si">{</span><span class="n">range_desc</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">stats_desc</span><span class="si">}</span><span class="s2">.&quot;</span>
+        
+        <span class="n">considerations</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;The spatial relationships in </span><span class="si">{</span><span class="s1">&#39;3D space by examining all four views&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">use_3d</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;the t-SNE visualization&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+        <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The color intensity/gradient of the nearby training points&quot;</span><span class="p">)</span>
+        <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Which areas of the colormap the red star is positioned within or closest to&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">include_spectrogram</span> <span class="ow">and</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;audio&quot;</span><span class="p">:</span>
+            <span class="n">considerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;The audio spectrogram patterns that might provide additional context&quot;</span><span class="p">)</span>
+
+    <span class="n">consider_text</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">consideration</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">consideration</span> <span class="ow">in</span> <span class="n">considerations</span><span class="p">])</span>
+
+    <span class="c1"># Create response format instruction</span>
+    <span class="k">if</span> <span class="n">multi_viz_info</span><span class="p">:</span>
+        <span class="n">viz_list</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">viz</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">viz</span> <span class="ow">in</span> <span class="n">multi_viz_info</span><span class="p">])</span>
+        <span class="n">analysis_type</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;multi-visualization analysis across </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">)</span><span class="si">}</span><span class="s2"> methods (</span><span class="si">{</span><span class="n">viz_list</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="k">elif</span> <span class="n">use_knn</span><span class="p">:</span>
+        <span class="n">analysis_type</span> <span class="o">=</span> <span class="s2">&quot;spatial clustering AND the neighbor value analysis&quot;</span>
+    <span class="k">elif</span> <span class="n">use_3d</span><span class="p">:</span>
+        <span class="n">analysis_type</span> <span class="o">=</span> <span class="s2">&quot;3D spatial clustering and color patterns you observe across the multiple views&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">analysis_type</span> <span class="o">=</span> <span class="s2">&quot;spatial clustering and color gradient patterns you observe&quot;</span>
+    
+    <span class="n">spectrogram_text</span> <span class="o">=</span> <span class="s2">&quot; and spectrogram analysis&quot;</span> <span class="k">if</span> <span class="n">include_spectrogram</span> <span class="ow">and</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;audio&quot;</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">response_format</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Please respond with just the predicted numerical value followed by a brief explanation of your reasoning based on the </span><span class="si">{</span><span class="n">analysis_type</span><span class="si">}{</span><span class="n">spectrogram_text</span><span class="si">}</span><span class="s1">.&#39;</span>
+
+    <span class="c1"># Combine all parts</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="si">{</span><span class="n">data_description</span><span class="si">}{</span><span class="n">dataset_context</span><span class="si">}{</span><span class="n">important_note</span><span class="si">}</span>
+
+<span class="si">{</span><span class="n">analysis_prompt</span><span class="si">}</span>
+
+<span class="s2">Consider:</span>
+<span class="si">{</span><span class="n">consider_text</span><span class="si">}</span>
+
+<span class="si">{</span><span class="n">response_format</span><span class="si">}</span>
+
+<span class="s2">Format your response as: &quot;Value: [predicted_value] | Reasoning: [brief explanation]&quot; &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">prompt</span></div>
+
+
+
+<div class="viewcode-block" id="normalize_class_name">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.normalize_class_name">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">normalize_class_name</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Normalize a class name for fuzzy matching by converting to lowercase</span>
+<span class="sd">    and standardizing separators.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        name: Class name to normalize</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Normalized class name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+    
+    <span class="c1"># Convert to lowercase and replace various separators with underscores</span>
+    <span class="n">normalized</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="c1"># Replace spaces, hyphens, dots, and multiple underscores with single underscore</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+    <span class="n">normalized</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\s\-\.]+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">normalized</span><span class="p">)</span>
+    <span class="n">normalized</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;_+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">normalized</span><span class="p">)</span>
+    <span class="c1"># Remove leading/trailing underscores</span>
+    <span class="n">normalized</span> <span class="o">=</span> <span class="n">normalized</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">normalized</span></div>
+
+
+
+<div class="viewcode-block" id="find_best_class_match">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.find_best_class_match">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_best_class_match</span><span class="p">(</span><span class="n">class_part</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">unique_classes</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">logger_instance</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find the best matching class using various fuzzy matching strategies.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        class_part: Extracted class part from VLM response</span>
+<span class="sd">        unique_classes: List of valid class labels</span>
+<span class="sd">        logger_instance: Logger for debugging</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Best matching class or None if no good match found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">class_part</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">unique_classes</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="n">class_part_clean</span> <span class="o">=</span> <span class="n">class_part</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">class_part_lower</span> <span class="o">=</span> <span class="n">class_part_clean</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">class_part_norm</span> <span class="o">=</span> <span class="n">normalize_class_name</span><span class="p">(</span><span class="n">class_part_clean</span><span class="p">)</span>
+    
+    <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Finding match for: &#39;</span><span class="si">{</span><span class="n">class_part_clean</span><span class="si">}</span><span class="s2">&#39; (normalized: &#39;</span><span class="si">{</span><span class="n">class_part_norm</span><span class="si">}</span><span class="s2">&#39;)&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Strategy 1: Exact match (case-insensitive)</span>
+    <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">unique_classes</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">class_part_lower</span><span class="p">:</span>
+            <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exact match: &#39;</span><span class="si">{</span><span class="n">class_part_clean</span><span class="si">}</span><span class="s2">&#39; -&gt; </span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">cls</span>
+    
+    <span class="c1"># Strategy 2: Normalized match (handles spaces/underscores/hyphens)</span>
+    <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">unique_classes</span><span class="p">:</span>
+        <span class="n">cls_norm</span> <span class="o">=</span> <span class="n">normalize_class_name</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">cls</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">cls_norm</span> <span class="o">==</span> <span class="n">class_part_norm</span> <span class="ow">and</span> <span class="n">cls_norm</span><span class="p">:</span>  <span class="c1"># Ensure not empty</span>
+            <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Normalized match: &#39;</span><span class="si">{</span><span class="n">class_part_clean</span><span class="si">}</span><span class="s2">&#39; -&gt; </span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2"> (both normalize to &#39;</span><span class="si">{</span><span class="n">cls_norm</span><span class="si">}</span><span class="s2">&#39;)&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">cls</span>
+    
+    <span class="c1"># Strategy 3: Partial match - class name appears at start of response part</span>
+    <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">unique_classes</span><span class="p">:</span>
+        <span class="n">cls_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">class_part_lower</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">cls_str</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">cls_str</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># Avoid very short matches</span>
+            <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Partial match (starts with): &#39;</span><span class="si">{</span><span class="n">class_part_clean</span><span class="si">}</span><span class="s2">&#39; -&gt; </span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">cls</span>
+    
+    <span class="c1"># Strategy 4: Partial match - normalized version starts with class name</span>
+    <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">unique_classes</span><span class="p">:</span>
+        <span class="n">cls_norm</span> <span class="o">=</span> <span class="n">normalize_class_name</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">cls</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">class_part_norm</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">cls_norm</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">cls_norm</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># Avoid very short matches</span>
+            <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Partial normalized match: &#39;</span><span class="si">{</span><span class="n">class_part_clean</span><span class="si">}</span><span class="s2">&#39; -&gt; </span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">cls</span>
+    
+    <span class="c1"># Strategy 5: Substring match with word boundaries (more strict)</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+    <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">unique_classes</span><span class="p">:</span>
+        <span class="n">cls_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="c1"># Create pattern that matches whole words and handles common separators</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\b&#39;</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">cls_str</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\ &#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;[\s_\-]*&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\-&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;[\s_\-]*&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;\b&#39;</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">class_part_lower</span><span class="p">):</span>
+            <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Word boundary match: &#39;</span><span class="si">{</span><span class="n">class_part_clean</span><span class="si">}</span><span class="s2">&#39; -&gt; </span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">cls</span>
+    
+    <span class="c1"># Strategy 6: Flexible substring matching for complex class names</span>
+    <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">unique_classes</span><span class="p">:</span>
+        <span class="n">cls_norm</span> <span class="o">=</span> <span class="n">normalize_class_name</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">cls</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">cls_norm</span> <span class="ow">in</span> <span class="n">class_part_norm</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">cls_norm</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># Avoid very short matches</span>
+            <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Substring normalized match: &#39;</span><span class="si">{</span><span class="n">class_part_clean</span><span class="si">}</span><span class="s2">&#39; -&gt; </span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">cls</span>
+    
+    <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No match found for: &#39;</span><span class="si">{</span><span class="n">class_part_clean</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="parse_vlm_response">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.parse_vlm_response">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_vlm_response</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">unique_classes</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">logger_instance</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_semantic_names</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">task_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;classification&quot;</span><span class="p">,</span> <span class="n">target_stats</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color_to_class_map</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse VLM response to extract the predicted class or value.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        response: Raw VLM response string</span>
+<span class="sd">        unique_classes: List of valid class labels (for classification)</span>
+<span class="sd">        logger_instance: Logger for debugging</span>
+<span class="sd">        use_semantic_names: Whether semantic names were used in the prompt</span>
+<span class="sd">        task_type: &quot;classification&quot; or &quot;regression&quot;</span>
+<span class="sd">        target_stats: Statistics about target variable (for regression)</span>
+<span class="sd">        color_to_class_map: Optional mapping from color names to class labels (e.g., {&quot;Blue&quot;: 0, &quot;Color_111&quot;: 5})</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Predicted class (for classification) or numerical value (for regression)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">logger_instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">logger_instance</span> <span class="o">=</span> <span class="n">logger</span>
+        
+    <span class="n">response_lower</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parsing VLM response: &#39;</span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&#39; (task_type=</span><span class="si">{</span><span class="n">task_type</span><span class="si">}</span><span class="s2">, use_semantic_names=</span><span class="si">{</span><span class="n">use_semantic_names</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Handle regression tasks</span>
+    <span class="k">if</span> <span class="n">task_type</span> <span class="o">==</span> <span class="s2">&quot;regression&quot;</span><span class="p">:</span>
+        <span class="c1"># Try to parse structured response format first</span>
+        <span class="k">if</span> <span class="s2">&quot;value:&quot;</span> <span class="ow">in</span> <span class="n">response_lower</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Extract text after &quot;value:&quot; - handle various separators</span>
+                <span class="n">response_parts</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">response_parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c1"># Split on common separators like |, \n, or just take first part</span>
+                    <span class="n">after_value</span> <span class="o">=</span> <span class="n">response_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="c1"># Split on | but handle cases where there&#39;s no | </span>
+                    <span class="k">if</span> <span class="s2">&quot;|&quot;</span> <span class="ow">in</span> <span class="n">after_value</span><span class="p">:</span>
+                        <span class="n">value_part</span> <span class="o">=</span> <span class="n">after_value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># Take everything until newline or reasoning keywords</span>
+                        <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+                        <span class="c1"># Split on common reasoning indicators</span>
+                        <span class="n">reasoning_split</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s*(?:\||reasoning|because|since|explanation|rationale|the\s|this\s)&#39;</span><span class="p">,</span> <span class="n">after_value</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+                        <span class="n">value_part</span> <span class="o">=</span> <span class="n">reasoning_split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    
+                    <span class="c1"># Try to parse as float</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">parsed_value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value_part</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                        <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parsed structured value: &#39;</span><span class="si">{</span><span class="n">value_part</span><span class="si">}</span><span class="s2">&#39; -&gt; </span><span class="si">{</span><span class="n">parsed_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">parsed_value</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                        
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger_instance</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error parsing structured value response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Fallback: Use the regression prediction parser</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">.llm_evaluation_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_regression_prediction</span>
+            <span class="n">parsed_value</span> <span class="o">=</span> <span class="n">parse_regression_prediction</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">target_stats</span><span class="p">)</span>
+            <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fallback regression parsing: &#39;</span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&#39; -&gt; </span><span class="si">{</span><span class="n">parsed_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">parsed_value</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="c1"># If import fails, use a simplified numeric extraction</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+            <span class="n">numeric_patterns</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="sa">r</span><span class="s1">&#39;[-+]?(?:\d+\.?\d*|\d*\.?\d+)(?:[eE][-+]?\d+)?&#39;</span><span class="p">,</span>  <span class="c1"># General numeric pattern</span>
+                <span class="sa">r</span><span class="s1">&#39;(\d+\.?\d*|\d*\.?\d+)&#39;</span><span class="p">,</span>  <span class="c1"># Simple decimal numbers</span>
+                <span class="sa">r</span><span class="s1">&#39;[-+]?\d+&#39;</span><span class="p">,</span>  <span class="c1"># Integers</span>
+            <span class="p">]</span>
+            
+            <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">numeric_patterns</span><span class="p">:</span>
+                <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">matches</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">parsed_value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fallback numeric extraction: &#39;</span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&#39; -&gt; </span><span class="si">{</span><span class="n">parsed_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">parsed_value</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">continue</span>
+            
+            <span class="c1"># Final fallback for regression</span>
+            <span class="k">if</span> <span class="n">target_stats</span> <span class="ow">and</span> <span class="s1">&#39;mean&#39;</span> <span class="ow">in</span> <span class="n">target_stats</span><span class="p">:</span>
+                <span class="n">logger_instance</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not parse value from response: &#39;</span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&#39;. Using target mean: </span><span class="si">{</span><span class="n">target_stats</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">target_stats</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger_instance</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not parse value from response: &#39;</span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&#39;. Using fallback: 0.0&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="mf">0.0</span>
+    
+    <span class="c1"># Classification parsing starts here</span>
+    
+    <span class="c1"># Try to parse structured response format first</span>
+    <span class="k">if</span> <span class="s2">&quot;class:&quot;</span> <span class="ow">in</span> <span class="n">response_lower</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Extract text after &quot;class:&quot; - handle various separators</span>
+            <span class="n">response_parts</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">response_parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># Split on common separators like |, \n, or just take first part</span>
+                <span class="n">after_class</span> <span class="o">=</span> <span class="n">response_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="c1"># Split on | but handle cases where there&#39;s no | </span>
+                <span class="k">if</span> <span class="s2">&quot;|&quot;</span> <span class="ow">in</span> <span class="n">after_class</span><span class="p">:</span>
+                    <span class="n">class_part</span> <span class="o">=</span> <span class="n">after_class</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Take everything until newline or reasoning keywords</span>
+                    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+                    <span class="c1"># Split on common reasoning indicators (more robust)</span>
+                    <span class="n">reasoning_split</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s*(?:\||reasoning|because|since|explanation|rationale|the\s|this\s)&#39;</span><span class="p">,</span> <span class="n">after_class</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+                    <span class="n">class_part</span> <span class="o">=</span> <span class="n">reasoning_split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                
+                <span class="c1"># Remove quotes if present</span>
+                <span class="n">class_part</span> <span class="o">=</span> <span class="n">class_part</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                
+                <span class="c1"># First, try color name matching if color mapping is provided</span>
+                <span class="k">if</span> <span class="n">color_to_class_map</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">color_name</span><span class="p">,</span> <span class="n">class_label</span> <span class="ow">in</span> <span class="n">color_to_class_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="k">if</span> <span class="n">class_part</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">color_name</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                            <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Color name match found: </span><span class="si">{</span><span class="n">class_part</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">class_label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                            <span class="k">return</span> <span class="n">class_label</span>
+                
+                <span class="c1"># Then, try direct exact matching (handles cases like &quot;Class_562&quot;)</span>
+                <span class="k">for</span> <span class="n">unique_class</span> <span class="ow">in</span> <span class="n">unique_classes</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">class_part</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">unique_class</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                        <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Direct match found: </span><span class="si">{</span><span class="n">class_part</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">unique_class</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">unique_class</span>
+                
+                <span class="c1"># If using &quot;Class X&quot; format, extract the number (handle both &quot;class 6&quot; and &quot;class_6&quot;) </span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">use_semantic_names</span><span class="p">:</span>
+                    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+                    <span class="c1"># Try to extract number from various class formats</span>
+                    <span class="n">class_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;class[_\s]*(\d+)&#39;</span><span class="p">,</span> <span class="n">class_part</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+                    <span class="k">if</span> <span class="n">class_match</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">class_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">class_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+                            <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">class_num</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">):</span>
+                                <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parsed Class </span><span class="si">{</span><span class="n">class_num</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">unique_classes</span><span class="p">[</span><span class="n">class_num</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                                <span class="k">return</span> <span class="n">unique_classes</span><span class="p">[</span><span class="n">class_num</span><span class="p">]</span>
+                        <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">IndexError</span><span class="p">):</span>
+                            <span class="k">pass</span>
+                
+                <span class="c1"># Try to match with available classes using improved fuzzy matching</span>
+                <span class="c1"># (This now works for both semantic and non-semantic names)</span>
+                <span class="n">best_match</span> <span class="o">=</span> <span class="n">find_best_class_match</span><span class="p">(</span><span class="n">class_part</span><span class="p">,</span> <span class="n">unique_classes</span><span class="p">,</span> <span class="n">logger_instance</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">best_match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">best_match</span>
+                        
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger_instance</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error parsing structured response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Fallback: Look for &quot;Class X&quot; pattern anywhere in response</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">use_semantic_names</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+        <span class="c1"># Enhanced regex to handle both &quot;class 6&quot;, &quot;class_6&quot;, &quot;Class 6&quot;, &quot;Class_6&quot; patterns</span>
+        <span class="n">class_patterns</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">r</span><span class="s1">&#39;\bclass[_\s]+(\d+)\b&#39;</span><span class="p">,</span>  <span class="c1"># matches &quot;class 6&quot;, &quot;class_6&quot;, etc.</span>
+            <span class="sa">r</span><span class="s1">&#39;\bclass(\d+)\b&#39;</span><span class="p">,</span>        <span class="c1"># matches &quot;class6&quot; (no separator)</span>
+            <span class="sa">r</span><span class="s1">&#39;class[_\s]*:?[_\s]*(\d+)&#39;</span><span class="p">,</span> <span class="c1"># matches &quot;class: 6&quot;, &quot;class_: 6&quot;, etc.</span>
+        <span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">class_patterns</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">response_lower</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">class_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+                    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">class_num</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">):</span>
+                        <span class="n">logger_instance</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found Class </span><span class="si">{</span><span class="n">class_num</span><span class="si">}</span><span class="s2"> pattern -&gt; </span><span class="si">{</span><span class="n">unique_classes</span><span class="p">[</span><span class="n">class_num</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">unique_classes</span><span class="p">[</span><span class="n">class_num</span><span class="p">]</span>
+                <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">IndexError</span><span class="p">):</span>
+                    <span class="k">continue</span>
+    
+    <span class="c1"># Final fallback: Return appropriate default based on naming convention</span>
+    <span class="k">if</span> <span class="n">use_semantic_names</span><span class="p">:</span>
+        <span class="c1"># For semantic names, return the first class name</span>
+        <span class="n">logger_instance</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not parse class from response: &#39;</span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&#39;. Using fallback: </span><span class="si">{</span><span class="n">unique_classes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">unique_classes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># For &quot;Class X&quot; format, return index 0 (which should map to unique_classes[0])</span>
+        <span class="c1"># But log it in the expected &quot;Class X&quot; format for consistency</span>
+        <span class="n">logger_instance</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not parse class from response: &#39;</span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&#39;. Using fallback: Class_0&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">unique_classes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="create_direct_classification_prompt">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.create_direct_classification_prompt">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_direct_classification_prompt</span><span class="p">(</span>
+    <span class="n">class_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">dataset_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_semantic_names</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a direct image classification prompt for VLM (not t-SNE visualization).</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        class_names: List of class names/labels</span>
+<span class="sd">        dataset_description: Optional description of the dataset/task</span>
+<span class="sd">        use_semantic_names: Whether semantic names were used (for consistency)</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Formatted prompt string for direct image classification</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">class_list_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;&#39;</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">class_names</span><span class="p">])</span>
+    
+    <span class="n">dataset_context</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">dataset_description</span><span class="p">:</span>
+        <span class="n">dataset_context</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Dataset Context: </span><span class="si">{</span><span class="n">dataset_description</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+    <span class="n">prompt_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Please classify this image into one of the available categories.</span>
+
+<span class="s2">Available classes: </span><span class="si">{</span><span class="n">class_list_str</span><span class="si">}{</span><span class="n">dataset_context</span><span class="si">}</span>
+
+<span class="s2">Look at the image carefully and determine which class it belongs to based on the visual content you can observe.</span>
+
+<span class="s2">Please respond with just the class label followed by a brief explanation of your reasoning based on what you see in the image.</span>
+
+<span class="s2">Format your response as: &quot;Class: [class_label] | Reasoning: [brief explanation]&quot; &quot;&quot;&quot;</span>
+    
+    <span class="k">return</span> <span class="n">prompt_text</span></div>
+
+
+
+<div class="viewcode-block" id="create_direct_regression_prompt">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.create_direct_regression_prompt">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_direct_regression_prompt</span><span class="p">(</span>
+    <span class="n">target_stats</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">dataset_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a direct image regression prompt for VLM (not t-SNE visualization).</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        target_stats: Statistics about the target variable (min, max, mean, std, etc.)</span>
+<span class="sd">        dataset_description: Optional description of the dataset/task</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Formatted prompt string for direct image regression</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Extract target range and statistics</span>
+    <span class="n">target_min</span> <span class="o">=</span> <span class="n">target_stats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">target_max</span> <span class="o">=</span> <span class="n">target_stats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">target_mean</span> <span class="o">=</span> <span class="n">target_stats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">target_min</span> <span class="o">+</span> <span class="n">target_max</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">target_std</span> <span class="o">=</span> <span class="n">target_stats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">target_max</span> <span class="o">-</span> <span class="n">target_min</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span>
+    
+    <span class="c1"># Format target range description</span>
+    <span class="n">range_desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;between </span><span class="si">{</span><span class="n">target_min</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">target_max</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">if</span> <span class="n">target_stats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dtype&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">):</span>
+        <span class="n">range_desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;between </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">target_min</span><span class="p">)</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">target_max</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+    <span class="n">stats_desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;(mean: </span><span class="si">{</span><span class="n">target_mean</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">, std: </span><span class="si">{</span><span class="n">target_std</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">)&quot;</span>
+    
+    <span class="n">dataset_context</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">dataset_description</span><span class="p">:</span>
+        <span class="n">dataset_context</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Dataset Context: </span><span class="si">{</span><span class="n">dataset_description</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+    <span class="n">prompt_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Please predict a numerical value for this image based on its visual content.</span>
+
+<span class="s2">Target value range: </span><span class="si">{</span><span class="n">range_desc</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">stats_desc</span><span class="si">}{</span><span class="n">dataset_context</span><span class="si">}</span>
+
+<span class="s2">Look at the image carefully and predict what numerical value it should have based on the visual patterns, features, or characteristics you can observe.</span>
+
+<span class="s2">Please respond with just the predicted numerical value followed by a brief explanation of your reasoning based on what you see in the image.</span>
+
+<span class="s2">Format your response as: &quot;Value: [predicted_value] | Reasoning: [brief explanation]&quot; &quot;&quot;&quot;</span>
+    
+    <span class="k">return</span> <span class="n">prompt_text</span></div>
+
+
+
+<div class="viewcode-block" id="generate_multi_viz_reasoning_guidance">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.generate_multi_viz_reasoning_guidance">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_multi_viz_reasoning_guidance</span><span class="p">(</span>
+    <span class="n">multi_viz_info</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> 
+    <span class="n">reasoning_focus</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;comparison&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate advanced reasoning guidance for multi-visualization contexts.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        multi_viz_info: List of visualization method information</span>
+<span class="sd">        reasoning_focus: Type of reasoning to emphasize (&quot;comparison&quot;, &quot;consensus&quot;, &quot;divergence&quot;)</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Formatted reasoning guidance string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+    
+    <span class="n">guidance_parts</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Method-specific descriptions</span>
+    <span class="n">guidance_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;**Visualization Method Details:**&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">viz</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">viz</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. **</span><span class="si">{</span><span class="n">viz</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">**: &quot;</span>
+        
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;tsne&#39;</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">+=</span> <span class="s2">&quot;t-SNE preserves local neighborhood structures and is excellent for revealing clusters and local patterns.&quot;</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;umap&#39;</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">+=</span> <span class="s2">&quot;UMAP preserves both local and global structure, often showing clearer cluster separation than t-SNE.&quot;</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;pca&#39;</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">+=</span> <span class="s2">&quot;PCA shows linear relationships and the directions of maximum variance in the data.&quot;</span>
+        <span class="k">elif</span> <span class="s1">&#39;spectral&#39;</span> <span class="ow">in</span> <span class="n">method</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">+=</span> <span class="s2">&quot;Spectral embedding reveals the manifold structure using graph-based relationships.&quot;</span>
+        <span class="k">elif</span> <span class="s1">&#39;lle&#39;</span> <span class="ow">in</span> <span class="n">method</span> <span class="ow">or</span> <span class="s1">&#39;locally&#39;</span> <span class="ow">in</span> <span class="n">method</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">+=</span> <span class="s2">&quot;Locally Linear Embedding reconstructs the local geometry of the data manifold.&quot;</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;isomap&#39;</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">+=</span> <span class="s2">&quot;Isomap preserves geodesic distances along the data manifold.&quot;</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;mds&#39;</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">+=</span> <span class="s2">&quot;MDS preserves pairwise distances between data points in the reduced space.&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Visualization using </span><span class="si">{</span><span class="n">viz</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> method.&quot;</span>
+            
+        <span class="n">guidance_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span>
+    
+    <span class="c1"># Cross-visualization analysis</span>
+    <span class="n">guidance_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**Cross-Visualization Analysis:**&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Method comparison analysis</span>
+    <span class="n">linear_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pca&#39;</span><span class="p">]]</span>
+    <span class="n">nonlinear_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;tsne&#39;</span><span class="p">,</span> <span class="s1">&#39;umap&#39;</span><span class="p">,</span> <span class="s1">&#39;isomap&#39;</span><span class="p">,</span> <span class="s1">&#39;lle&#39;</span><span class="p">]]</span>
+    
+    <span class="k">if</span> <span class="n">linear_methods</span> <span class="ow">and</span> <span class="n">nonlinear_methods</span><span class="p">:</span>
+        <span class="n">guidance_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;- Compare the linear perspective (PCA) with nonlinear methods to understand if the data has inherent nonlinear structure.&quot;</span><span class="p">)</span>
+    
+    <span class="n">local_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;tsne&#39;</span><span class="p">,</span> <span class="s1">&#39;lle&#39;</span><span class="p">]]</span>
+    <span class="n">global_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;umap&#39;</span><span class="p">,</span> <span class="s1">&#39;isomap&#39;</span><span class="p">,</span> <span class="s1">&#39;mds&#39;</span><span class="p">]]</span>
+    
+    <span class="k">if</span> <span class="n">local_methods</span> <span class="ow">and</span> <span class="n">global_methods</span><span class="p">:</span>
+        <span class="n">guidance_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;- Local structure preserving methods (t-SNE, LLE) may show different cluster arrangements than global methods (UMAP, Isomap, MDS).&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># General cross-method guidance</span>
+    <span class="n">guidance_parts</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+        <span class="s2">&quot;- Look for consistent cluster patterns across methods - clusters that appear in multiple visualizations are likely genuine data structures.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;- Points that appear as outliers in multiple visualizations are likely true outliers in the data.&quot;</span>
+    <span class="p">])</span>
+    
+    <span class="c1"># Method-specific comparisons</span>
+    <span class="n">methods_present</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">multi_viz_info</span><span class="p">]</span>
+    <span class="n">method_pairs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;tsne&#39;</span><span class="p">,</span> <span class="s1">&#39;umap&#39;</span><span class="p">,</span> <span class="s2">&quot;t-SNE may show tighter clusters while UMAP preserves more global structure&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;pca&#39;</span><span class="p">,</span> <span class="s1">&#39;tsne&#39;</span><span class="p">,</span> <span class="s2">&quot;PCA shows linear separability while t-SNE reveals nonlinear cluster structure&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;isomap&#39;</span><span class="p">,</span> <span class="s1">&#39;lle&#39;</span><span class="p">,</span> <span class="s2">&quot;Isomap preserves geodesic distances while LLE focuses on local linearity&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">method1</span><span class="p">,</span> <span class="n">method2</span><span class="p">,</span> <span class="n">insight</span> <span class="ow">in</span> <span class="n">method_pairs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">method1</span> <span class="ow">in</span> <span class="n">methods_present</span> <span class="ow">and</span> <span class="n">method2</span> <span class="ow">in</span> <span class="n">methods_present</span><span class="p">:</span>
+            <span class="n">guidance_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">insight</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Reasoning focus guidance</span>
+    <span class="n">guidance_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**Reasoning Focus - </span><span class="si">{</span><span class="n">reasoning_focus</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s2">:**&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">reasoning_focus</span> <span class="o">==</span> <span class="s2">&quot;comparison&quot;</span><span class="p">:</span>
+        <span class="n">guidance_parts</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+            <span class="s2">&quot;Compare and contrast the patterns shown in each visualization:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- Which methods show similar cluster structures?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- Where do the methods disagree, and what might this indicate?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- Are there patterns visible in some methods but not others?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- How do the relative positions of clusters change across methods?&quot;</span>
+        <span class="p">])</span>
+    <span class="k">elif</span> <span class="n">reasoning_focus</span> <span class="o">==</span> <span class="s2">&quot;consensus&quot;</span><span class="p">:</span>
+        <span class="n">guidance_parts</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+            <span class="s2">&quot;Look for patterns that are consistent across multiple visualizations:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- Which clusters appear in most or all visualizations?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- What data structures are reliably preserved across methods?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- Which relationships between data points are method-independent?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- What can you confidently conclude about the data structure?&quot;</span>
+        <span class="p">])</span>
+    <span class="k">elif</span> <span class="n">reasoning_focus</span> <span class="o">==</span> <span class="s2">&quot;divergence&quot;</span><span class="p">:</span>
+        <span class="n">guidance_parts</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+            <span class="s2">&quot;Focus on where the visualizations show different patterns:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- Which methods reveal unique perspectives on the data?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- Where do visualizations disagree about cluster boundaries or outliers?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- What might cause these differences (method assumptions, parameter settings)?&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- How can these differences inform our understanding of the data complexity?&quot;</span>
+        <span class="p">])</span>
+    
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">guidance_parts</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="create_comprehensive_multi_viz_prompt">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.create_comprehensive_multi_viz_prompt">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_comprehensive_multi_viz_prompt</span><span class="p">(</span>
+    <span class="n">class_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">multi_viz_info</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+    <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">dataset_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">reasoning_focus</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;comparison&quot;</span><span class="p">,</span>
+    <span class="n">data_shape</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_semantic_names</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a comprehensive prompt for multi-visualization analysis.</span>
+<span class="sd">    </span>
+<span class="sd">    This function integrates the advanced prompting logic from the removed PromptGenerator</span>
+<span class="sd">    into the unified VLM prompting system.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        class_names: List of class names</span>
+<span class="sd">        multi_viz_info: List of visualization method information</span>
+<span class="sd">        modality: Data modality</span>
+<span class="sd">        dataset_description: Description of the dataset</span>
+<span class="sd">        reasoning_focus: Type of reasoning emphasis</span>
+<span class="sd">        data_shape: Shape of the original data</span>
+<span class="sd">        use_semantic_names: Whether to use semantic class names</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Comprehensive multi-visualization prompt</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Use the existing create_classification_prompt as the base</span>
+    <span class="n">base_prompt</span> <span class="o">=</span> <span class="n">create_classification_prompt</span><span class="p">(</span>
+        <span class="n">class_names</span><span class="o">=</span><span class="n">class_names</span><span class="p">,</span>
+        <span class="n">modality</span><span class="o">=</span><span class="n">modality</span><span class="p">,</span>
+        <span class="n">dataset_description</span><span class="o">=</span><span class="n">dataset_description</span><span class="p">,</span>
+        <span class="n">use_semantic_names</span><span class="o">=</span><span class="n">use_semantic_names</span><span class="p">,</span>
+        <span class="n">multi_viz_info</span><span class="o">=</span><span class="n">multi_viz_info</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Add advanced multi-viz reasoning guidance</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">reasoning_guidance</span> <span class="o">=</span> <span class="n">generate_multi_viz_reasoning_guidance</span><span class="p">(</span><span class="n">multi_viz_info</span><span class="p">,</span> <span class="n">reasoning_focus</span><span class="p">)</span>
+        
+        <span class="c1"># Insert the advanced guidance before the final instructions</span>
+        <span class="k">if</span> <span class="s2">&quot;Format your response as:&quot;</span> <span class="ow">in</span> <span class="n">base_prompt</span><span class="p">:</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="n">base_prompt</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;Format your response as:&quot;</span><span class="p">)</span>
+            <span class="n">enhanced_prompt</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">reasoning_guidance</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Format your response as:&quot;</span> <span class="o">+</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">enhanced_prompt</span> <span class="o">=</span> <span class="n">base_prompt</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">reasoning_guidance</span>
+            
+        <span class="k">return</span> <span class="n">enhanced_prompt</span>
+    
+    <span class="k">return</span> <span class="n">base_prompt</span></div>
+
+
+
+<div class="viewcode-block" id="create_vlm_conversation">
+<a class="viewcode-back" href="../../../api-reference/marvis.utils.html#marvis.utils.vlm_prompting.create_vlm_conversation">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_vlm_conversation</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a conversation structure for VLM input.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        image: PIL Image object</span>
+<span class="sd">        prompt: Text prompt string</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Conversation structure for VLM</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">image</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

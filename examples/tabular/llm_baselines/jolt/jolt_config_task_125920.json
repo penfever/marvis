@@ -1,0 +1,27 @@
+{
+  "dataset_name": "dresses-sales",
+  "task_prefix": "Dataset containing attributes of dresses and their sales-based recommendations. Sales are monitored on alternate days. The dataset helps predict dress recommendations based on various fashion attributes. Each example contains 13 features. Fashion product recommendation.",
+  "column_descriptions": {
+    "Style": "Fashion style categories: Bohemia, brief, casual, cute, fashion, flare, novelty, OL, party, sexy, vintage, work",
+    "Price": "Price range: Low, Average, Medium, High, Very-High",
+    "Rating": "Customer rating from 1-5",
+    "Size": "Size options: S, M, L, XL, Free",
+    "Season": "Seasonal category: Autumn, Winter, Spring, Summer",
+    "NeckLine": "Neckline style: O-neck, backless, board-neck, Bowneck, halter, mandarin-collar, open, peterpan-collar, ruffled, scoop, slash-neck, square-collar, sweetheart, turndowncollar, V-neck",
+    "SleeveLength": "Sleeve length: full, half, halfsleeves, butterfly, sleeveless, short, threequarter, turndown, null",
+    "waiseline": "Waist style: dropped, empire, natural, princess, null",
+    "Material": "Fabric material: wool, cotton, mix, etc.",
+    "FabricType": "Fabric type: chiffon, dobby, poplin, satin, knitted, jersey, flannel, corduroy, etc.",
+    "Decoration": "Decorative elements: applique, beading, bow, button, cascading, crystal, draped, embroidery, feathers, flowers, etc.",
+    "Pattern Type": "Pattern design",
+    "Recommendation": "Binary target indicating whether the dress is recommended based on sales (0 or 1)"
+  },
+  "class_names": [
+    "0",
+    "1"
+  ],
+  "class_description": "Classes: '0' (Not recommended), '1' (Recommended)",
+  "num_features": 13,
+  "num_classes": 2,
+  "task_id": "125920"
+}

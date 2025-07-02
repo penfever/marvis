@@ -1,0 +1,1090 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marvis.models &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=251ceabf" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="marvis.data" href="marvis.data.html" />
+    <link rel="prev" title="Custom Datasets Tutorial" href="../tutorials/custom-datasets.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">marvis.models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main-classifier">Main Classifier</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#marvis.models.marvis_tsne.MarvisTsneClassifier"><code class="docutils literal notranslate"><span class="pre">MarvisTsneClassifier</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.__init__"><code class="docutils literal notranslate"><span class="pre">MarvisTsneClassifier.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.fit"><code class="docutils literal notranslate"><span class="pre">MarvisTsneClassifier.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.predict"><code class="docutils literal notranslate"><span class="pre">MarvisTsneClassifier.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.evaluate"><code class="docutils literal notranslate"><span class="pre">MarvisTsneClassifier.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.get_config"><code class="docutils literal notranslate"><span class="pre">MarvisTsneClassifier.get_config()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-marvis.models.knn_utils">KNN Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.knn_utils.find_knn_in_embedding_space"><code class="docutils literal notranslate"><span class="pre">find_knn_in_embedding_space()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.knn_utils.find_influential_training_points"><code class="docutils literal notranslate"><span class="pre">find_influential_training_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.knn_utils.get_neighbor_distances_and_indices"><code class="docutils literal notranslate"><span class="pre">get_neighbor_distances_and_indices()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-marvis.models.vq">Vector Quantization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.vq.vector_quantizer.VectorQuantizer"><code class="docutils literal notranslate"><span class="pre">VectorQuantizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.vq.VectorQuantizer"><code class="docutils literal notranslate"><span class="pre">VectorQuantizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.vq.QwenWithVQPrefixEmbedding"><code class="docutils literal notranslate"><span class="pre">QwenWithVQPrefixEmbedding</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.vq.prepare_qwen_with_vq_prefix_embedding"><code class="docutils literal notranslate"><span class="pre">prepare_qwen_with_vq_prefix_embedding()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#marvis.models.vq.load_vq_pretrained_model"><code class="docutils literal notranslate"><span class="pre">load_vq_pretrained_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#model-configuration">Model Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#core-parameters">Core Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualization-parameters">Visualization Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-model-parameters">API Model Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resource-management">Resource Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modality-specific-parameters">Modality-Specific Parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#audio-parameters">Audio Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vision-parameters">Vision Parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-classification">Basic Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-configuration">Advanced Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-visualization">Multi-Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-model-usage">API Model Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#audio-classification">Audio Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vision-classification">Vision Classification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">marvis.models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api-reference/marvis.models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="marvis-models">
+<h1>marvis.models<a class="headerlink" href="#marvis-models" title="Link to this heading"></a></h1>
+<p>Core classification models and utilities for multi-modal data.</p>
+<section id="main-classifier">
+<h2>Main Classifier<a class="headerlink" href="#main-classifier" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="marvis.models.marvis_tsne.MarvisTsneClassifier">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">marvis.models.marvis_tsne.</span></span><span class="sig-name descname"><span class="pre">MarvisTsneClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'tabular'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlm_model_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Qwen/Qwen2.5-VL-32B-Instruct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tsne_perplexity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tsne_max_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_3d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_knn_connections</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_test_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_vlm_image_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_rgb_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tabpfn_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_semantic_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlm_backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_parallel_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpu_memory_utilization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_thinking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">openai_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gemini_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_model_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_multi_viz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visualization_methods</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_strategy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'adaptive_grid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reasoning_focus</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'classification'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_viz_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'whisper'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whisper_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'large-v2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'encoder_last'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clap_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2023'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_spectrogram</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_few_shot_examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balanced_few_shot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dinov2_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dinov2_vitb14'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dinov2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bioclip2_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'hf-hub:imageomics/bioclip-2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bioclip2_batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_pca_backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.13)"><span class="pre">Path</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_load_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_base_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semantic_axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semantic_axes_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pca_loadings'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/marvis_tsne.html#MarvisTsneClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.marvis_tsne.MarvisTsneClassifier" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Unified MARVIS t-SNE classifier for tabular, audio, and vision data.</p>
+<p>This classifier:
+1. Generates embeddings using modality-specific methods (TabPFN, Whisper, CLAP, etc.)
+2. Creates t-SNE visualizations with training and test points
+3. Uses a Vision Language Model to classify test points based on their position</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.fit" title="marvis.models.marvis_tsne.MarvisTsneClassifier.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X_train, y_train[, X_test, class_names, ...])</p></td>
+<td><p>Fit the MARVIS t-SNE model for both classification and regression.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.predict" title="marvis.models.marvis_tsne.MarvisTsneClassifier.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X_test[, y_test, return_detailed, ...])</p></td>
+<td><p>Make predictions using the fitted MARVIS t-SNE classifier.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.evaluate" title="marvis.models.marvis_tsne.MarvisTsneClassifier.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>(X_test, y_test[, return_detailed, ...])</p></td>
+<td><p>Evaluate the classifier on test data.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.marvis_tsne.MarvisTsneClassifier.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'tabular'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlm_model_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Qwen/Qwen2.5-VL-32B-Instruct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tsne_perplexity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tsne_max_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_3d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_knn_connections</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_test_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_vlm_image_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_rgb_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tabpfn_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_semantic_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlm_backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_parallel_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpu_memory_utilization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_thinking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">openai_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gemini_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_model_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_multi_viz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visualization_methods</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_strategy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'adaptive_grid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reasoning_focus</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'classification'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_viz_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'whisper'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whisper_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'large-v2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'encoder_last'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clap_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2023'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_spectrogram</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_few_shot_examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balanced_few_shot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dinov2_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dinov2_vitb14'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'dinov2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bioclip2_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'hf-hub:imageomics/bioclip-2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bioclip2_batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_pca_backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.13)"><span class="pre">Path</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_load_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_base_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semantic_axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semantic_axes_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pca_loadings'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/marvis_tsne.html#MarvisTsneClassifier.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize MARVIS t-SNE classifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>modality</strong> – Data modality (“tabular”, “audio”, “vision”)</p></li>
+<li><p><strong>vlm_model_id</strong> – Vision Language Model identifier (for local models)</p></li>
+<li><p><strong>embedding_size</strong> – Size of embeddings for TabPFN</p></li>
+<li><p><strong>tsne_perplexity</strong> – t-SNE perplexity parameter</p></li>
+<li><p><strong>tsne_n_iter</strong> – Number of t-SNE iterations</p></li>
+<li><p><strong>use_3d_tsne</strong> – Whether to use 3D t-SNE visualization</p></li>
+<li><p><strong>use_knn_connections</strong> – Whether to show KNN connections</p></li>
+<li><p><strong>knn_k</strong> – Number of nearest neighbors for KNN</p></li>
+<li><p><strong>max_vlm_image_size</strong> – Maximum image size for VLM</p></li>
+<li><p><strong>image_dpi</strong> – DPI for generated images</p></li>
+<li><p><strong>force_rgb_mode</strong> – Whether to force RGB mode for images</p></li>
+<li><p><strong>zoom_factor</strong> – Zoom factor for all visualizations</p></li>
+<li><p><strong>max_tabpfn_samples</strong> – Maximum samples for TabPFN (tabular only)</p></li>
+<li><p><strong>cache_dir</strong> – Directory for caching embeddings</p></li>
+<li><p><strong>use_semantic_names</strong> – Whether to use semantic class names</p></li>
+<li><p><strong>device</strong> – Device for computation</p></li>
+<li><p><strong>backend</strong> – Backend for VLM loading</p></li>
+<li><p><strong>vlm_backend</strong> – Alias for backend (for backward compatibility)</p></li>
+<li><p><strong>tensor_parallel_size</strong> – Tensor parallel size for distributed inference</p></li>
+<li><p><strong>gpu_memory_utilization</strong> – GPU memory utilization factor</p></li>
+<li><p><strong>enable_thinking</strong> – Enable thinking mode for compatible API models</p></li>
+<li><p><strong>openai_model</strong> – OpenAI model identifier (e.g., ‘gpt-4o’, ‘gpt-4.1’)</p></li>
+<li><p><strong>gemini_model</strong> – Gemini model identifier (e.g., ‘gemini-2.5-pro’, ‘gemini-2.5-flash’)</p></li>
+<li><p><strong>api_model</strong> – Generic API model identifier (auto-detects provider)</p></li>
+<li><p><strong>seed</strong> – Random seed</p></li>
+<li><p><strong>max_model_len</strong> – Maximum model length for VLM engine</p></li>
+<li><p><strong>enable_multi_viz</strong> – Whether to use multi-visualization framework (default: False for backward compatibility)</p></li>
+<li><p><strong>visualization_methods</strong> – List of visualization methods to use (e.g., [‘tsne’, ‘pca’, ‘umap’])</p></li>
+<li><p><strong>layout_strategy</strong> – Layout strategy for multi-visualization composition</p></li>
+<li><p><strong>reasoning_focus</strong> – Focus for multi-visualization reasoning (classification, comparison, etc.)</p></li>
+<li><p><strong>multi_viz_config</strong> – Additional configuration for multi-visualization</p></li>
+<li><p><strong>parameters</strong> (<em>Metadata and enhancement</em>) – embedding_model: Audio embedding model (‘whisper’ or ‘clap’)
+whisper_model: Whisper model variant (if using Whisper)
+embedding_layer: Which Whisper layer to extract
+clap_version: CLAP model version (if using CLAP)
+include_spectrogram: Whether to include spectrogram in prompts
+audio_duration: Maximum audio duration to process
+num_few_shot_examples: Number of few-shot examples for audio
+balanced_few_shot: Whether to balance few-shot examples</p></li>
+<li><p><strong>parameters</strong> – dinov2_model: DINOV2 model variant (if embedding_backend=”dinov2”)
+embedding_backend: Vision embedding backend (“dinov2” or “bioclip2”)
+bioclip2_model: BioCLIP2 model variant (if embedding_backend=”bioclip2”)
+bioclip2_batch_size: Batch size for BioCLIP2 embedding extraction (default: 128)
+use_pca_backend: Use PCA instead of t-SNE</p></li>
+<li><p><strong>parameters</strong> – dataset_metadata: Path or dict with dataset metadata
+auto_load_metadata: Automatically load metadata if available
+metadata_base_dir: Base directory for metadata files
+use_metadata: Incorporate semantic feature names and domain context into prompts
+semantic_axes: Compute factor weighting of named features to improve visualization legends</p></li>
+<li><p><strong>**kwargs</strong> – Additional modality-specific arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.marvis_tsne.MarvisTsneClassifier.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/marvis_tsne.html#MarvisTsneClassifier.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.fit" title="Link to this definition"></a></dt>
+<dd><p>Fit the MARVIS t-SNE model for both classification and regression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> – Training features</p></li>
+<li><p><strong>y_train</strong> – Training labels/targets</p></li>
+<li><p><strong>X_test</strong> – Test features (optional, for creating visualizations)</p></li>
+<li><p><strong>class_names</strong> – Class names (optional, for classification)</p></li>
+<li><p><strong>task_type</strong> – ‘classification’ or ‘regression’ (auto-detected if None)</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.marvis_tsne.MarvisTsneClassifier.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_detailed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visualization_save_cadence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/marvis_tsne.html#MarvisTsneClassifier.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.predict" title="Link to this definition"></a></dt>
+<dd><p>Make predictions using the fitted MARVIS t-SNE classifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_test</strong> – Test features (not used directly, embeddings already computed in fit)</p></li>
+<li><p><strong>y_test</strong> – Test labels (for evaluation)</p></li>
+<li><p><strong>return_detailed</strong> – Whether to return detailed prediction information</p></li>
+<li><p><strong>save_outputs</strong> – Whether to save visualizations and outputs</p></li>
+<li><p><strong>output_dir</strong> – Directory to save outputs</p></li>
+<li><p><strong>visualization_save_cadence</strong> – Save visualizations for every N samples (default: 10)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>predictions or detailed results dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.marvis_tsne.MarvisTsneClassifier.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_detailed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visualization_save_cadence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/marvis_tsne.html#MarvisTsneClassifier.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.evaluate" title="Link to this definition"></a></dt>
+<dd><p>Evaluate the classifier on test data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_test</strong> – Test features</p></li>
+<li><p><strong>y_test</strong> – Test labels</p></li>
+<li><p><strong>return_detailed</strong> – Whether to return detailed results</p></li>
+<li><p><strong>save_outputs</strong> – Whether to save outputs</p></li>
+<li><p><strong>output_dir</strong> – Directory to save outputs</p></li>
+<li><p><strong>visualization_save_cadence</strong> – Save visualizations for every N samples (default: 10)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with evaluation metrics</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.marvis_tsne.MarvisTsneClassifier.get_config">
+<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/marvis_tsne.html#MarvisTsneClassifier.get_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.marvis_tsne.MarvisTsneClassifier.get_config" title="Link to this definition"></a></dt>
+<dd><p>Get configuration dictionary.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="utility-functions">
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Link to this heading"></a></h2>
+<section id="module-marvis.models.knn_utils">
+<span id="knn-utilities"></span><h3>KNN Utilities<a class="headerlink" href="#module-marvis.models.knn_utils" title="Link to this heading"></a></h3>
+<p>KNN utilities for TabPFN embeddings analysis.</p>
+<p>This module provides utilities for performing K-nearest neighbors analysis
+on TabPFN embeddings, including finding nearest neighbors and analyzing
+influential training points.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="marvis.models.knn_utils.find_knn_in_embedding_space">
+<span class="sig-prename descclassname"><span class="pre">marvis.models.knn_utils.</span></span><span class="sig-name descname"><span class="pre">find_knn_in_embedding_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">query_embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/marvis/models/knn_utils.html#find_knn_in_embedding_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.knn_utils.find_knn_in_embedding_space" title="Link to this definition"></a></dt>
+<dd><p>Find K-nearest neighbors for query points in the embedding space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>train_embeddings</strong> – Training embeddings [n_train, embedding_dim]</p></li>
+<li><p><strong>query_embeddings</strong> – Query embeddings [n_query, embedding_dim]</p></li>
+<li><p><strong>k</strong> – Number of nearest neighbors to find</p></li>
+<li><p><strong>metric</strong> – Distance metric (‘euclidean’, ‘cosine’, ‘manhattan’, etc.)</p></li>
+<li><p><strong>normalize</strong> – Whether to normalize embeddings before KNN</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Distance to k-nearest neighbors [n_query, k]
+indices: Indices of k-nearest neighbors in train_embeddings [n_query, k]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>distances</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="marvis.models.knn_utils.find_influential_training_points">
+<span class="sig-prename descclassname"><span class="pre">marvis.models.knn_utils.</span></span><span class="sig-name descname"><span class="pre">find_influential_training_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">influence_threshold_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/marvis/models/knn_utils.html#find_influential_training_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.knn_utils.find_influential_training_points" title="Link to this definition"></a></dt>
+<dd><p>Find influential training points based on KNN analysis.</p>
+<p>This function identifies training points that are frequently selected as
+nearest neighbors for validation points, indicating their importance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>train_embeddings</strong> – Training embeddings [n_train, embedding_dim]</p></li>
+<li><p><strong>val_embeddings</strong> – Validation embeddings [n_val, embedding_dim]</p></li>
+<li><p><strong>k</strong> – Number of nearest neighbors to consider</p></li>
+<li><p><strong>influence_threshold_factor</strong> – Multiplier for influence threshold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Indices of influential training points
+metadata: Dictionary with analysis metadata</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>influential_indices</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="marvis.models.knn_utils.get_neighbor_distances_and_indices">
+<span class="sig-prename descclassname"><span class="pre">marvis.models.knn_utils.</span></span><span class="sig-name descname"><span class="pre">get_neighbor_distances_and_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_class_distribution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/marvis/models/knn_utils.html#get_neighbor_distances_and_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.knn_utils.get_neighbor_distances_and_indices" title="Link to this definition"></a></dt>
+<dd><p>Get detailed neighbor information for each test point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>train_embeddings</strong> – Training embeddings [n_train, embedding_dim]</p></li>
+<li><p><strong>test_embeddings</strong> – Test embeddings [n_test, embedding_dim]</p></li>
+<li><p><strong>train_labels</strong> – Training labels [n_train]</p></li>
+<li><p><strong>k</strong> – Number of nearest neighbors</p></li>
+<li><p><strong>return_class_distribution</strong> – Whether to include class distribution info</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing neighbor information for each test point</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-marvis.models.vq">
+<span id="vector-quantization"></span><h3>Vector Quantization<a class="headerlink" href="#module-marvis.models.vq" title="Link to this heading"></a></h3>
+<p>Vector Quantization (VQ) models for MARVIS.</p>
+<p>This module contains implementations of the vector quantization approach for
+tabular embeddings in language models.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="marvis.models.vq.vector_quantizer.VectorQuantizer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">marvis.models.vq.vector_quantizer.</span></span><span class="sig-name descname"><span class="pre">VectorQuantizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commitment_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/vector_quantizer.html#VectorQuantizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.vector_quantizer.VectorQuantizer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a></p>
+<p>Vector Quantization layer that maps continuous embeddings to a discrete codebook.</p>
+<p>Implements a VQ layer with an optional Exponential Moving Average (EMA) update
+rule for the codebook, and a straight-through estimator for backpropagation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.vector_quantizer.VectorQuantizer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commitment_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/vector_quantizer.html#VectorQuantizer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.vector_quantizer.VectorQuantizer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the Vector Quantizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>embedding_dim</strong> – Dimension of the input embeddings and codebook vectors</p></li>
+<li><p><strong>num_embeddings</strong> – Size of the codebook (number of discrete codes)</p></li>
+<li><p><strong>commitment_cost</strong> – Weight for the commitment loss</p></li>
+<li><p><strong>epsilon</strong> – Small constant for numerical stability</p></li>
+<li><p><strong>decay</strong> – Decay factor for Exponential Moving Average updates (0 for no EMA)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.vector_quantizer.VectorQuantizer.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_indices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/marvis/models/vq/vector_quantizer.html#VectorQuantizer.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.vector_quantizer.VectorQuantizer.forward" title="Link to this definition"></a></dt>
+<dd><p>Forward pass that quantizes the input embeddings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inputs</strong> – Input embeddings of shape [batch_size, embedding_dim]</p></li>
+<li><p><strong>return_indices</strong> – Whether to return the indices of the selected codebook vectors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Quantized embeddings of the same shape as inputs
+loss: The VQ loss value (commitment loss + codebook loss)
+perplexity: Perplexity of the codes (measures codebook usage)
+indices: Indices of the selected codebook vectors (if return_indices=True)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>quantized</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.vector_quantizer.VectorQuantizer.get_codebook_indices">
+<span class="sig-name descname"><span class="pre">get_codebook_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/marvis/models/vq/vector_quantizer.html#VectorQuantizer.get_codebook_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.vector_quantizer.VectorQuantizer.get_codebook_indices" title="Link to this definition"></a></dt>
+<dd><p>Get the indices of the nearest codebook entries for the given inputs.
+Useful for encoding inputs with the quantizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputs</strong> – Input embeddings</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Indices of the nearest codebook entries</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>indices</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vector quantization modules are available for advanced use cases.</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="marvis.models.vq.VectorQuantizer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">marvis.models.vq.</span></span><span class="sig-name descname"><span class="pre">VectorQuantizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commitment_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/vector_quantizer.html#VectorQuantizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.VectorQuantizer" title="Link to this definition"></a></dt>
+<dd><p>Vector Quantization layer that maps continuous embeddings to a discrete codebook.</p>
+<p>Implements a VQ layer with an optional Exponential Moving Average (EMA) update
+rule for the codebook, and a straight-through estimator for backpropagation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.VectorQuantizer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commitment_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/vector_quantizer.html#VectorQuantizer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.VectorQuantizer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the Vector Quantizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>embedding_dim</strong> – Dimension of the input embeddings and codebook vectors</p></li>
+<li><p><strong>num_embeddings</strong> – Size of the codebook (number of discrete codes)</p></li>
+<li><p><strong>commitment_cost</strong> – Weight for the commitment loss</p></li>
+<li><p><strong>epsilon</strong> – Small constant for numerical stability</p></li>
+<li><p><strong>decay</strong> – Decay factor for Exponential Moving Average updates (0 for no EMA)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.VectorQuantizer.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_indices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/marvis/models/vq/vector_quantizer.html#VectorQuantizer.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.VectorQuantizer.forward" title="Link to this definition"></a></dt>
+<dd><p>Forward pass that quantizes the input embeddings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inputs</strong> – Input embeddings of shape [batch_size, embedding_dim]</p></li>
+<li><p><strong>return_indices</strong> – Whether to return the indices of the selected codebook vectors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Quantized embeddings of the same shape as inputs
+loss: The VQ loss value (commitment loss + codebook loss)
+perplexity: Perplexity of the codes (measures codebook usage)
+indices: Indices of the selected codebook vectors (if return_indices=True)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>quantized</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.VectorQuantizer.get_codebook_indices">
+<span class="sig-name descname"><span class="pre">get_codebook_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.7)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/marvis/models/vq/vector_quantizer.html#VectorQuantizer.get_codebook_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.VectorQuantizer.get_codebook_indices" title="Link to this definition"></a></dt>
+<dd><p>Get the indices of the nearest codebook entries for the given inputs.
+Useful for encoding inputs with the quantizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputs</strong> – Input embeddings</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Indices of the nearest codebook entries</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>indices</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="marvis.models.vq.QwenWithVQPrefixEmbedding">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">marvis.models.vq.</span></span><span class="sig-name descname"><span class="pre">QwenWithVQPrefixEmbedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix_start_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix_end_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_token_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vq_num_embeddings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vq_commitment_cost</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vq_decay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/qwen_vq.html#QwenWithVQPrefixEmbedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.QwenWithVQPrefixEmbedding" title="Link to this definition"></a></dt>
+<dd><p>Wrapper for Qwen model with vector-quantized prefix embedding capability.
+Enables the model to accept tabular embeddings as quantized prefix inputs.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.QwenWithVQPrefixEmbedding.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix_start_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix_end_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_token_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vq_num_embeddings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vq_commitment_cost</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vq_decay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/qwen_vq.html#QwenWithVQPrefixEmbedding.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.QwenWithVQPrefixEmbedding.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the QwenWithVQPrefixEmbedding model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base_model</strong> – The base Qwen model</p></li>
+<li><p><strong>embedding_size</strong> – Size of the input embeddings from TabPFN</p></li>
+<li><p><strong>prefix_start_id</strong> – Token ID for prefix start marker</p></li>
+<li><p><strong>prefix_end_id</strong> – Token ID for prefix end marker</p></li>
+<li><p><strong>class_token_ids</strong> – List of token IDs for class tokens</p></li>
+<li><p><strong>vq_num_embeddings</strong> – Size of the codebook for vector quantization</p></li>
+<li><p><strong>vq_commitment_cost</strong> – Weight for the commitment loss in VQ</p></li>
+<li><p><strong>vq_decay</strong> – Decay factor for EMA updates of the codebook (0 for no EMA)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.QwenWithVQPrefixEmbedding.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attention_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs_embeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_vq_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/qwen_vq.html#QwenWithVQPrefixEmbedding.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.QwenWithVQPrefixEmbedding.forward" title="Link to this definition"></a></dt>
+<dd><p>Forward pass with vector-quantized embedding prefix integration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_ids</strong> – Input token IDs</p></li>
+<li><p><strong>attention_mask</strong> – Attention mask</p></li>
+<li><p><strong>prefix_data</strong> – Tabular embedding data to use as prefix</p></li>
+<li><p><strong>inputs_embeds</strong> – Input embeddings (optional)</p></li>
+<li><p><strong>return_vq_loss</strong> – Whether to return VQ loss in output</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments for the base model</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Model outputs from the base model with optional VQ loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.QwenWithVQPrefixEmbedding.from_pretrained">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_pretrained</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pretrained_model_path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/qwen_vq.html#QwenWithVQPrefixEmbedding.from_pretrained"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.QwenWithVQPrefixEmbedding.from_pretrained" title="Link to this definition"></a></dt>
+<dd><p>Load a pretrained model from a directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pretrained_model_path</strong> – Path to the pretrained model</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments for from_pretrained</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded QwenWithVQPrefixEmbedding model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.QwenWithVQPrefixEmbedding.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/qwen_vq.html#QwenWithVQPrefixEmbedding.generate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.QwenWithVQPrefixEmbedding.generate" title="Link to this definition"></a></dt>
+<dd><p>Generate output sequences using the base model’s generate method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> – Positional arguments for generate</p></li>
+<li><p><strong>**kwargs</strong> – Keyword arguments for generate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Generated token sequences</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.QwenWithVQPrefixEmbedding.get_input_embeddings">
+<span class="sig-name descname"><span class="pre">get_input_embeddings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/qwen_vq.html#QwenWithVQPrefixEmbedding.get_input_embeddings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.QwenWithVQPrefixEmbedding.get_input_embeddings" title="Link to this definition"></a></dt>
+<dd><p>Get input embeddings from base model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.QwenWithVQPrefixEmbedding.prepare_inputs_for_generation">
+<span class="sig-name descname"><span class="pre">prepare_inputs_for_generation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/qwen_vq.html#QwenWithVQPrefixEmbedding.prepare_inputs_for_generation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.QwenWithVQPrefixEmbedding.prepare_inputs_for_generation" title="Link to this definition"></a></dt>
+<dd><p>Pass through prepare_inputs_for_generation from base model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.QwenWithVQPrefixEmbedding.save_pretrained">
+<span class="sig-name descname"><span class="pre">save_pretrained</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_directory</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/qwen_vq.html#QwenWithVQPrefixEmbedding.save_pretrained"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.QwenWithVQPrefixEmbedding.save_pretrained" title="Link to this definition"></a></dt>
+<dd><p>Save the model including vector quantizer and embedding projector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_directory</strong> – Directory to save the model</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments for save_pretrained</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="marvis.models.vq.QwenWithVQPrefixEmbedding.to">
+<span class="sig-name descname"><span class="pre">to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/qwen_vq.html#QwenWithVQPrefixEmbedding.to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.QwenWithVQPrefixEmbedding.to" title="Link to this definition"></a></dt>
+<dd><p>Override to method to ensure all components move to the correct device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>device</strong> – The target device</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The model on the target device</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="marvis.models.vq.prepare_qwen_with_vq_prefix_embedding">
+<span class="sig-prename descclassname"><span class="pre">marvis.models.vq.</span></span><span class="sig-name descname"><span class="pre">prepare_qwen_with_vq_prefix_embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">192</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Qwen/Qwen2.5-3B-Instruct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vq_num_embeddings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vq_commitment_cost</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vq_decay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/marvis/models/vq/qwen_vq.html#prepare_qwen_with_vq_prefix_embedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.prepare_qwen_with_vq_prefix_embedding" title="Link to this definition"></a></dt>
+<dd><p>Prepare Qwen model with vector-quantized prefix embedding capability and class tokens.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>embedding_size</strong> – Size of the input embeddings from TabPFN</p></li>
+<li><p><strong>model_id</strong> – Hugging Face model ID for the Qwen model</p></li>
+<li><p><strong>vq_num_embeddings</strong> – Size of the codebook for vector quantization</p></li>
+<li><p><strong>vq_commitment_cost</strong> – Weight for the commitment loss in VQ</p></li>
+<li><p><strong>vq_decay</strong> – Decay factor for EMA updates of the codebook (0 for no EMA)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>QwenWithVQPrefixEmbedding model
+tokenizer: Tokenizer for the model
+prefix_start_id: Token ID for prefix start marker
+prefix_end_id: Token ID for prefix end marker
+class_token_ids: List of token IDs for class tokens</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="marvis.models.vq.load_vq_pretrained_model">
+<span class="sig-prename descclassname"><span class="pre">marvis.models.vq.</span></span><span class="sig-name descname"><span class="pre">load_vq_pretrained_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch v2.7)"><span class="pre">Module</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/marvis/models/vq/qwen_vq.html#load_vq_pretrained_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#marvis.models.vq.load_vq_pretrained_model" title="Link to this definition"></a></dt>
+<dd><p>Load a pretrained Vector-Quantized MARVIS model from a checkpoint directory.</p>
+<p>This function handles different model loading scenarios for VQ models:
+1. Models saved with vector_quantizer.pt (saved using QwenWithVQPrefixEmbedding.save_pretrained)
+2. Custom models requiring initialization using prepare_qwen_with_vq_prefix_embedding
+3. Fallback to standard model loading if this is not a VQ model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_path</strong> – Path to the pretrained model directory</p></li>
+<li><p><strong>device_map</strong> – Device mapping strategy for model loading</p></li>
+<li><p><strong>embedding_size</strong> – Size of the embeddings (for initialization if needed)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded model (either VQ or standard)
+tokenizer: Tokenizer for the model
+prefix_start_id: Token ID for prefix start marker
+prefix_end_id: Token ID for prefix end marker
+class_token_ids: List of token IDs for class tokens
+is_vq: Boolean indicating whether this is a VQ model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>model</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="model-configuration">
+<h2>Model Configuration<a class="headerlink" href="#model-configuration" title="Link to this heading"></a></h2>
+<p>The main classifier accepts the following key parameters:</p>
+<section id="core-parameters">
+<h3>Core Parameters<a class="headerlink" href="#core-parameters" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 15.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">modality</span></code></p></td>
+<td><p>str</p></td>
+<td><p>Data modality: <code class="docutils literal notranslate"><span class="pre">&quot;tabular&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;audio&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;vision&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vlm_model_id</span></code></p></td>
+<td><p>str</p></td>
+<td><p>Vision Language Model identifier (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">use_3d</span></code></p></td>
+<td><p>bool</p></td>
+<td><p>Whether to use 3D visualizations (default: False)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">use_knn_connections</span></code></p></td>
+<td><p>bool</p></td>
+<td><p>Whether to show KNN connections in visualizations (default: False)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="visualization-parameters">
+<h3>Visualization Parameters<a class="headerlink" href="#visualization-parameters" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 15.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tsne_perplexity</span></code></p></td>
+<td><p>int</p></td>
+<td><p>t-SNE perplexity parameter (default: 30)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tsne_n_iter</span></code></p></td>
+<td><p>int</p></td>
+<td><p>Number of t-SNE iterations (default: 1000)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enable_multi_viz</span></code></p></td>
+<td><p>bool</p></td>
+<td><p>Enable multi-visualization framework (default: False)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">visualization_methods</span></code></p></td>
+<td><p>List[str]</p></td>
+<td><p>Visualization methods to use (e.g., <code class="docutils literal notranslate"><span class="pre">[&quot;pca&quot;,</span> <span class="pre">&quot;tsne&quot;,</span> <span class="pre">&quot;umap&quot;]</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="api-model-parameters">
+<h3>API Model Parameters<a class="headerlink" href="#api-model-parameters" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 15.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">api_model</span></code></p></td>
+<td><p>str</p></td>
+<td><p>Generic API model (auto-detects provider)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">openai_model</span></code></p></td>
+<td><p>str</p></td>
+<td><p>OpenAI model (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;gpt-4o&quot;</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gemini_model</span></code></p></td>
+<td><p>str</p></td>
+<td><p>Google Gemini model (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;gemini-2.0-flash-exp&quot;</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">enable_thinking</span></code></p></td>
+<td><p>bool</p></td>
+<td><p>Enable thinking mode for API models (default: True)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resource-management">
+<h3>Resource Management<a class="headerlink" href="#resource-management" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 15.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max_vlm_image_size</span></code></p></td>
+<td><p>int</p></td>
+<td><p>Maximum image size for VLM (default: 2048)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gpu_memory_utilization</span></code></p></td>
+<td><p>float</p></td>
+<td><p>GPU memory utilization factor (default: 0.9)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cache_dir</span></code></p></td>
+<td><p>str</p></td>
+<td><p>Directory for caching embeddings</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max_tabpfn_samples</span></code></p></td>
+<td><p>int</p></td>
+<td><p>Maximum samples for TabPFN (default: 3000)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="modality-specific-parameters">
+<h3>Modality-Specific Parameters<a class="headerlink" href="#modality-specific-parameters" title="Link to this heading"></a></h3>
+<section id="audio-parameters">
+<h4>Audio Parameters<a class="headerlink" href="#audio-parameters" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 15.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">embedding_model</span></code></p></td>
+<td><p>str</p></td>
+<td><p>Audio embedding model: <code class="docutils literal notranslate"><span class="pre">&quot;whisper&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;clap&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">whisper_model</span></code></p></td>
+<td><p>str</p></td>
+<td><p>Whisper model variant (default: <code class="docutils literal notranslate"><span class="pre">&quot;large-v2&quot;</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">include_spectrogram</span></code></p></td>
+<td><p>bool</p></td>
+<td><p>Include spectrogram in prompts (default: True)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vision-parameters">
+<h4>Vision Parameters<a class="headerlink" href="#vision-parameters" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 15.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dinov2_model</span></code></p></td>
+<td><p>str</p></td>
+<td><p>DINOV2 model variant (default: <code class="docutils literal notranslate"><span class="pre">&quot;dinov2_vitb14&quot;</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">use_pca_backend</span></code></p></td>
+<td><p>bool</p></td>
+<td><p>Use PCA instead of t-SNE (default: False)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<section id="basic-classification">
+<h3>Basic Classification<a class="headerlink" href="#basic-classification" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
+
+<span class="c1"># Create sample data</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Basic classifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-configuration">
+<h3>Advanced Configuration<a class="headerlink" href="#advanced-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Advanced classifier with 3D visualization</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">vlm_model_id</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-VL-3B-Instruct&quot;</span><span class="p">,</span>
+    <span class="n">use_3d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">use_knn_connections</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">knn_k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">tsne_perplexity</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+    <span class="n">max_vlm_image_size</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>
+    <span class="n">cache_dir</span><span class="o">=</span><span class="s2">&quot;./cache&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-visualization">
+<h3>Multi-Visualization<a class="headerlink" href="#multi-visualization" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multi-visualization framework</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+    <span class="n">enable_multi_viz</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">visualization_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pca&quot;</span><span class="p">,</span> <span class="s2">&quot;tsne&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">],</span>
+    <span class="n">layout_strategy</span><span class="o">=</span><span class="s2">&quot;adaptive_grid&quot;</span><span class="p">,</span>
+    <span class="n">reasoning_focus</span><span class="o">=</span><span class="s2">&quot;comparison&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="api-model-usage">
+<h3>API Model Usage<a class="headerlink" href="#api-model-usage" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># OpenAI GPT-4V</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;vision&quot;</span><span class="p">,</span>
+    <span class="n">openai_model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">enable_thinking</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Google Gemini</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;vision&quot;</span><span class="p">,</span>
+    <span class="n">gemini_model</span><span class="o">=</span><span class="s2">&quot;gemini-2.0-flash-exp&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="audio-classification">
+<h3>Audio Classification<a class="headerlink" href="#audio-classification" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Whisper embeddings</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;audio&quot;</span><span class="p">,</span>
+    <span class="n">embedding_model</span><span class="o">=</span><span class="s2">&quot;whisper&quot;</span><span class="p">,</span>
+    <span class="n">whisper_model</span><span class="o">=</span><span class="s2">&quot;large-v2&quot;</span><span class="p">,</span>
+    <span class="n">include_spectrogram</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># CLAP embeddings</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;audio&quot;</span><span class="p">,</span>
+    <span class="n">embedding_model</span><span class="o">=</span><span class="s2">&quot;clap&quot;</span><span class="p">,</span>
+    <span class="n">clap_version</span><span class="o">=</span><span class="s2">&quot;2023&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="vision-classification">
+<h3>Vision Classification<a class="headerlink" href="#vision-classification" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># DINOV2 embeddings</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+    <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;vision&quot;</span><span class="p">,</span>
+    <span class="n">dinov2_model</span><span class="o">=</span><span class="s2">&quot;dinov2_vitb14&quot;</span><span class="p">,</span>
+    <span class="n">use_3d</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="error-handling">
+<h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading"></a></h2>
+<p>Common exceptions and how to handle them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">marvis.models.marvis_tsne</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarvisTsneClassifier</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span>
+        <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;tabular&quot;</span><span class="p">,</span>
+        <span class="n">vlm_model_id</span><span class="o">=</span><span class="s2">&quot;invalid-model&quot;</span>
+    <span class="p">)</span>
+    <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Configuration error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Runtime error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Start Simple</strong>: Begin with basic configuration and add complexity gradually</p></li>
+<li><p><strong>Cache Embeddings</strong>: Use <code class="docutils literal notranslate"><span class="pre">cache_dir</span></code> to avoid recomputing embeddings</p></li>
+<li><p><strong>Monitor Resources</strong>: Adjust <code class="docutils literal notranslate"><span class="pre">gpu_memory_utilization</span></code> based on your hardware</p></li>
+<li><p><strong>Use Appropriate Models</strong>: Smaller models for development, larger for production</p></li>
+<li><p><strong>Validate Data</strong>: Ensure your data format matches the expected modality</p></li>
+</ol>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../user-guide/tabular/index.html"><span class="doc">Tabular Data Classification Guide</span></a> - Tabular data guide</p></li>
+<li><p><a class="reference internal" href="../user-guide/vision/index.html"><span class="doc">Vision Classification Guide</span></a> - Vision data guide</p></li>
+<li><p><a class="reference internal" href="../user-guide/audio/index.html"><span class="doc">Audio Classification Guide</span></a> - Audio data guide</p></li>
+<li><p><a class="reference internal" href="../technical-guides/resource-management.html"><span class="doc">Resource Management</span></a> - Resource optimization</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tutorials/custom-datasets.html" class="btn btn-neutral float-left" title="Custom Datasets Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="marvis.data.html" class="btn btn-neutral float-right" title="marvis.data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

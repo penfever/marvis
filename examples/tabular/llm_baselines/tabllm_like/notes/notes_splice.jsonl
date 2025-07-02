@@ -1,0 +1,10 @@
+{"dataset": "splice", "dataset_id": 45, "note": "The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_2.", "target": "IE", "row_index": 0, "synthetic": true}
+{"dataset": "splice", "dataset_id": 45, "note": "The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_2.", "target": "EI", "row_index": 1, "synthetic": true}
+{"dataset": "splice", "dataset_id": 45, "note": "The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_2.", "target": "N", "row_index": 2, "synthetic": true}
+{"dataset": "splice", "dataset_id": 45, "note": "The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_2.", "target": "IE", "row_index": 3, "synthetic": true}
+{"dataset": "splice", "dataset_id": 45, "note": "The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_3.", "target": "N", "row_index": 4, "synthetic": true}
+{"dataset": "splice", "dataset_id": 45, "note": "The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_1.", "target": "EI", "row_index": 5, "synthetic": true}
+{"dataset": "splice", "dataset_id": 45, "note": "The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_3.", "target": "N", "row_index": 6, "synthetic": true}
+{"dataset": "splice", "dataset_id": 45, "note": "The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_1.", "target": "N", "row_index": 7, "synthetic": true}
+{"dataset": "splice", "dataset_id": 45, "note": "The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_1.", "target": "EI", "row_index": 8, "synthetic": true}
+{"dataset": "splice", "dataset_id": 45, "note": "The Feature: DNA nucleotides at positions -30 to +29 relative to splice junction is category_1.", "target": "EI", "row_index": 9, "synthetic": true}

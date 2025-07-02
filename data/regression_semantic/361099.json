@@ -1,0 +1,71 @@
+{
+  "dataset_name": "Bike_Sharing_Demand",
+  "description": "This dataset contains hourly rental data spanning two years from the Capital Bikeshare system in Washington, D.C. It captures how different environmental and seasonal factors affect bicycle rental behavior. The data has been collected to help predict bike rental demand, which is crucial for bike sharing systems to optimize their fleet management and service quality.",
+  "original_source": {
+    "creator": "Hadi Fanaee-T",
+    "institution": "Laboratory of Artificial Intelligence and Decision Support (LIAAD), University of Porto",
+    "date": "2013",
+    "publication": "Event labeling combining ensemble detectors and background knowledge, Progress in Artificial Intelligence (2013): pp. 1-15, Springer Berlin Heidelberg"
+  },
+  "columns": [
+    {
+      "name": "datetime",
+      "semantic_description": "Timestamp for the rental record, indicating date and hour",
+      "data_type": "datetime"
+    },
+    {
+      "name": "season",
+      "semantic_description": "Season of the year (1:spring, 2:summer, 3:fall, 4:winter)",
+      "data_type": "categorical (1-4)"
+    },
+    {
+      "name": "holiday",
+      "semantic_description": "Whether the day is a holiday or not",
+      "data_type": "binary (0,1)"
+    },
+    {
+      "name": "workingday",
+      "semantic_description": "Whether the day is a working day (not weekend or holiday)",
+      "data_type": "binary (0,1)"
+    },
+    {
+      "name": "weather",
+      "semantic_description": "Weather condition (1: Clear/Few clouds, 2: Mist/Cloudy, 3: Light Snow/Rain, 4: Heavy Rain/Snow)",
+      "data_type": "categorical (1-4)"
+    },
+    {
+      "name": "temp",
+      "semantic_description": "Normalized temperature in Celsius",
+      "data_type": "float (0-1)"
+    },
+    {
+      "name": "atemp",
+      "semantic_description": "Normalized feeling temperature in Celsius (accounts for humidity and wind)",
+      "data_type": "float (0-1)"
+    },
+    {
+      "name": "humidity",
+      "semantic_description": "Relative humidity percentage",
+      "data_type": "float (0-1)"
+    },
+    {
+      "name": "windspeed",
+      "semantic_description": "Normalized wind speed",
+      "data_type": "float (0-1)"
+    }
+  ],
+  "target_description": {
+    "name": "count",
+    "meaning": "Total number of bikes rented during the specific hour",
+    "units": "Number of bicycles",
+    "range": "0 to approximately 1000 bikes per hour"
+  },
+  "dataset_history": "The dataset was collected from Capital Bikeshare system in Washington D.C. between 2011 and 2012. It was initially created to study the impact of environmental and seasonal factors on bike sharing systems and to develop predictive models for bike rental demand. The data has become a popular benchmark dataset for regression problems in machine learning.",
+  "inference_notes": "Important considerations include: 1) The weather categories are simplified into 4 main groups, which might not capture all weather nuances. 2) Temperature and feeling temperature are normalized, requiring denormalization for real-world interpretation. 3) The data reflects patterns specific to Washington D.C.'s urban environment and climate, which may not generalize to other cities. 4) There might be special events or system disruptions not captured in the features. 5) The rental patterns show strong daily and weekly seasonality, which should be considered in modeling approaches.",
+  "_metadata": {
+    "task_id": 361099,
+    "generated_at": "2025-06-22T08:24:55.037559",
+    "generator": "generate_openml_semantic_info.py",
+    "claude_model": "claude-3-5-sonnet-20241022"
+  }
+}

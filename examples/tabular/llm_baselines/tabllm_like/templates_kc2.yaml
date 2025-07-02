@@ -1,0 +1,16 @@
+dataset: kc2
+templates:
+  28f14303-8065-44e8-b5dc-57f59746e89b: !Template
+    name: kc2
+    id: 28f14303-8065-44e8-b5dc-57f59746e89b
+    reference: ''
+    answer_choices: false ||| true
+    jinja: "{{note}}\n\nWhich class does this instance belong to? Classes: false (Module\
+      \ has no reported defects - considered defect-free in testing/operation), true\
+      \ (Module has one or more reported defects - bugs found during testing or deployment)\n\
+      Answer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

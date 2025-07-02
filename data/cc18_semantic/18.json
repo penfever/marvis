@@ -1,0 +1,146 @@
+{
+  "dataset": "mfeat-morphological",
+  "description": "Multiple Features Dataset: Morphological. One of six datasets describing features of handwritten numerals (0-9) extracted from Dutch utility maps. This dataset contains 6 morphological features computed from the digit images. Each class has 200 instances digitized from binary images.",
+  "source": "UCI Machine Learning Repository",
+  "source_url": "https://archive.ics.uci.edu/ml/datasets/Multiple+Features",
+  "openml_task": 18,
+  "openml_dataset": 18,
+  "date_donated": "1998",
+  "creator": "Robert P.W. Duin, Department of Applied Physics, Delft University of Technology",
+  "instances": 2000,
+  "features": 6,
+  "target": "class",
+  "target_type": "multiclass",
+  "missing_values": false,
+  "feature_types": {
+    "all": "numeric"
+  },
+  "feature_names": {
+    "morph1": "Morphological feature 1",
+    "morph2": "Morphological feature 2",
+    "morph3": "Morphological feature 3",
+    "morph4": "Morphological feature 4",
+    "morph5": "Morphological feature 5",
+    "morph6": "Morphological feature 6"
+  },
+  "feature_descriptions": {
+    "all_features": "Six morphological features capturing structural and shape properties of handwritten digits. These features are derived from mathematical morphology operations on the binary digit images."
+  },
+  "feature_scale": "Continuous numeric values representing morphological measurements",
+  "target_values": {
+    "0": "Digit 0",
+    "1": "Digit 1",
+    "2": "Digit 2",
+    "3": "Digit 3",
+    "4": "Digit 4",
+    "5": "Digit 5",
+    "6": "Digit 6",
+    "7": "Digit 7",
+    "8": "Digit 8",
+    "9": "Digit 9"
+  },
+  "domain": "Computer Vision/Pattern Recognition",
+  "use_case": "Handwritten digit recognition using morphological features. Applications include comparing effectiveness of different feature types, building ensemble classifiers, and studying minimal feature sets for digit recognition.",
+  "data_generation": "Handwritten numerals from Dutch utility maps scanned at 400dpi in 8-bit grey scale, then sharpened and thresholded. Morphological features computed using mathematical morphology operations on binary images.",
+  "ethical_considerations": "Dataset represents handwriting samples from Dutch utility maps, which may have specific characteristics. The small feature set (6 features) makes this dataset useful for studying feature importance and interpretability.",
+  "citations": [
+    {
+      "author": "M. van Breukelen, R.P.W. Duin, D.M.J. Tax, and J.E. den Hartog",
+      "title": "Handwritten digit recognition by combined classifiers",
+      "venue": "Kybernetika",
+      "volume": "34",
+      "number": "4",
+      "pages": "381-386",
+      "year": "1998"
+    },
+    {
+      "author": "R.P.W. Duin",
+      "title": "Multiple Features Dataset",
+      "venue": "UCI Machine Learning Repository",
+      "year": "1998"
+    }
+  ],
+  "dataset_name": "mfeat-morphological",
+  "original_source": {
+    "creator": "Robert P.W. Duin, Department of Applied Physics, Delft University of Technology",
+    "institution": "UCI Machine Learning Repository",
+    "date": "1998",
+    "publication": "M. van Breukelen, R.P.W. Duin, D.M.J. Tax, and J.E. den Hartog: Handwritten digit recognition by combined classifiers"
+  },
+  "columns": [
+    {
+      "name": "Morphological feature 1",
+      "semantic_description": "Feature: Morphological feature 1",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Morphological feature 2",
+      "semantic_description": "Feature: Morphological feature 2",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Morphological feature 3",
+      "semantic_description": "Feature: Morphological feature 3",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Morphological feature 4",
+      "semantic_description": "Feature: Morphological feature 4",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Morphological feature 5",
+      "semantic_description": "Feature: Morphological feature 5",
+      "data_type": "numeric"
+    },
+    {
+      "name": "Morphological feature 6",
+      "semantic_description": "Feature: Morphological feature 6",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "0",
+      "meaning": "Digit 0"
+    },
+    {
+      "name": "1",
+      "meaning": "Digit 1"
+    },
+    {
+      "name": "2",
+      "meaning": "Digit 2"
+    },
+    {
+      "name": "3",
+      "meaning": "Digit 3"
+    },
+    {
+      "name": "4",
+      "meaning": "Digit 4"
+    },
+    {
+      "name": "5",
+      "meaning": "Digit 5"
+    },
+    {
+      "name": "6",
+      "meaning": "Digit 6"
+    },
+    {
+      "name": "7",
+      "meaning": "Digit 7"
+    },
+    {
+      "name": "8",
+      "meaning": "Digit 8"
+    },
+    {
+      "name": "9",
+      "meaning": "Digit 9"
+    }
+  ],
+  "dataset_history": "Dataset history not available for mfeat-morphological",
+  "inference_notes": "Use Case: Handwritten digit recognition using morphological features. Applications include comparing effectiveness of different feature types, building ensemble classifiers, and studying minimal feature sets for digit recognition."
+}

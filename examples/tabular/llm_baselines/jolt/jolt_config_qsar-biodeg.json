@@ -1,0 +1,23 @@
+{
+  "dataset_name": "qsar-biodeg",
+  "task_prefix": "QSAR biodegradation dataset containing molecular descriptors used to classify chemicals based on their biodegradability. Built by Milano Chemometrics and QSAR Research Group to study relationships between chemical structure and biodegradation of molecules. Each example contains 10 features. Predict the target class.",
+  "column_descriptions": {
+    "SpMax_L": "Leading eigenvalue from Laplace matrix. Represents the maximum eigenvalue of the Laplace matrix, capturing molecular connectivity and complexity.",
+    "J_Dz(e)": "Balaban-like index from Barysz matrix weighted by Sanderson electronegativity. Measures molecular branching considering electronegativity distribution.",
+    "nHM": "Number of heavy atoms (non-hydrogen atoms) in the molecule. Indicates molecular size and complexity.",
+    "F01[N-N]": "Frequency of N-N bonds at topological distance 1. Counts direct nitrogen-nitrogen connections in the molecular structure.",
+    "F04[C-N]": "Frequency of C-N bonds at topological distance 4. Counts carbon-nitrogen pairs separated by exactly 3 bonds.",
+    "NssssC": "Number of atoms of type ssssC (quaternary carbon atoms with four single bonds). Indicates degree of carbon branching.",
+    "nCb-": "Number of substituted benzene C(sp2) atoms. Counts aromatic carbons in substituted benzene rings.",
+    "C%": "Percentage of carbon atoms in the molecule. Indicates the carbon content relative to total atom count.",
+    "nCp": "Number of terminal primary C(sp3) atoms. Counts methyl groups and other terminal carbon atoms.",
+    "nO": "Number of oxygen atoms in the molecule. Important for polarity and hydrogen bonding capability."
+  },
+  "class_names": [
+    "RB",
+    "NRB"
+  ],
+  "class_description": "Classes: 'RB' (Ready Biodegradable - Chemical readily breaks down in the environment (356 instances, 33.7%)), 'NRB' (Not Ready Biodegradable - Chemical does not readily break down in the environment (699 instances, 66.3%))",
+  "num_features": 10,
+  "num_classes": 2
+}

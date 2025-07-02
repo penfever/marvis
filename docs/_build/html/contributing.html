@@ -1,0 +1,259 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing to MARVIS &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=251ceabf" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Changelog" href="changelog.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to MARVIS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-guidelines">Development Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#code-style">Code Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submitting-changes">Submitting Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#areas-for-contribution">Areas for Contribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#questions">Questions?</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Contributing to MARVIS</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contributing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contributing-to-marvis">
+<h1>Contributing to MARVIS<a class="headerlink" href="#contributing-to-marvis" title="Link to this heading"></a></h1>
+<p>We welcome contributions to MARVIS! This guide will help you get started.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This contributing guide is under development. Basic guidelines are provided below.</p>
+</div>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Fork the Repository</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/marvis.git
+<span class="nb">cd</span><span class="w"> </span>marvis
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create Development Environment</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>marvis-dev
+<span class="nb">source</span><span class="w"> </span>marvis-dev/bin/activate<span class="w">  </span><span class="c1"># On Windows: marvis-dev\\Scripts\\activate</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[vision,audio,api,dev]&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create Feature Branch</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="development-guidelines">
+<h2>Development Guidelines<a class="headerlink" href="#development-guidelines" title="Link to this heading"></a></h2>
+<section id="code-style">
+<h3>Code Style<a class="headerlink" href="#code-style" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Follow PEP 8 style guidelines</p></li>
+<li><p>Use type hints where possible</p></li>
+<li><p>Add docstrings for all public functions</p></li>
+<li><p>Keep line length under 100 characters</p></li>
+</ul>
+</section>
+<section id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Add tests for new functionality</p></li>
+<li><p>Ensure all existing tests pass</p></li>
+<li><p>Use pytest for testing framework</p></li>
+</ul>
+</section>
+<section id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Update docstrings for API changes</p></li>
+<li><p>Add examples for new features</p></li>
+<li><p>Update this documentation as needed</p></li>
+</ul>
+</section>
+</section>
+<section id="submitting-changes">
+<h2>Submitting Changes<a class="headerlink" href="#submitting-changes" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Commit Your Changes</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add feature: description of changes&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Push to Your Fork</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create Pull Request</strong></p>
+<ul class="simple">
+<li><p>Describe your changes clearly</p></li>
+<li><p>Include tests and documentation updates</p></li>
+<li><p>Reference any related issues</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="areas-for-contribution">
+<h2>Areas for Contribution<a class="headerlink" href="#areas-for-contribution" title="Link to this heading"></a></h2>
+<p>We especially welcome contributions in:</p>
+<ul class="simple">
+<li><p>New modality support</p></li>
+<li><p>Performance optimizations</p></li>
+<li><p>Documentation improvements</p></li>
+<li><p>Example scripts and tutorials</p></li>
+<li><p>Bug fixes and testing</p></li>
+</ul>
+</section>
+<section id="code-of-conduct">
+<h2>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Link to this heading"></a></h2>
+<p>Please be respectful and constructive in all interactions.</p>
+</section>
+<section id="questions">
+<h2>Questions?<a class="headerlink" href="#questions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Open an issue for bug reports</p></li>
+<li><p>Start a discussion for feature requests</p></li>
+<li><p>Check existing issues before creating new ones</p></li>
+</ul>
+<p>Thank you for contributing to MARVIS!</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="changelog.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

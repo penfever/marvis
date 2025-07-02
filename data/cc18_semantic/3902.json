@@ -1,0 +1,209 @@
+{
+  "dataset_name": "pc4",
+  "description": "NASA software defect prediction dataset from flight software for earth orbiting satellite. Contains static code metrics extracted using McCabe and Halstead feature extractors to predict software quality and defect-proneness.",
+  "original_source": {
+    "creator": "NASA Metrics Data Program (MDP)",
+    "institution": "NASA IV&V Facility",
+    "date": "2004",
+    "publication": "Sayyad Shirabad, J. and Menzies, T.J. (2005) The PROMISE Repository of Software Engineering Databases. School of Information Technology and Engineering, University of Ottawa, Canada."
+  },
+  "columns": [
+    {
+      "name": "loc",
+      "semantic_description": "McCabe's line count of code - the number of lines of executable code in the module, excluding comments and blank lines.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "v(g)",
+      "semantic_description": "McCabe's cyclomatic complexity - counts linearly independent paths through code, measuring decision complexity (if/while/for statements).",
+      "data_type": "numeric"
+    },
+    {
+      "name": "ev(g)",
+      "semantic_description": "McCabe's essential complexity - measures how well-structured the code is, with 1 being perfectly structured and higher values indicating unstructured code.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "iv(g)",
+      "semantic_description": "McCabe's design complexity - measures integration complexity between modules, indicating how complex the module's interface is.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "n",
+      "semantic_description": "Halstead's program length - total count of all operators and operands in the code (N1 + N2).",
+      "data_type": "numeric"
+    },
+    {
+      "name": "v",
+      "semantic_description": "Halstead's volume - measures program size as N * log2(vocabulary), representing bits needed to encode the program.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "l",
+      "semantic_description": "Halstead's program level - inverse of difficulty, measures how concisely the algorithm is implemented (0 to 1).",
+      "data_type": "numeric"
+    },
+    {
+      "name": "d",
+      "semantic_description": "Halstead's difficulty - measures how difficult the code is to write or understand, based on operator/operand usage patterns.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "i",
+      "semantic_description": "Halstead's intelligence content - measures the complexity of the algorithm itself, independent of the implementation.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "e",
+      "semantic_description": "Halstead's effort - mental effort required to develop the module, calculated as Volume * Difficulty.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "b",
+      "semantic_description": "Halstead's delivered bugs estimate - predicted number of errors in the module, calculated as Volume/3000.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "t",
+      "semantic_description": "Halstead's time estimator - estimated time to program the module in seconds, calculated as Effort/18.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "lOCode",
+      "semantic_description": "Halstead's count of lines of code - may differ from McCabe's loc due to different counting methods.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "lOComment",
+      "semantic_description": "Halstead's count of lines containing comments - includes both standalone comment lines and inline comments.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "lOBlank",
+      "semantic_description": "Halstead's count of blank lines - empty lines used for code readability and organization.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "lOCodeAndComment",
+      "semantic_description": "Lines containing both code and comments - mixed lines with executable code and explanatory comments.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "uniq_Op",
+      "semantic_description": "Number of unique operators (n1) - distinct operators like +, -, *, /, if, while, etc. used in the module.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "uniq_Opnd",
+      "semantic_description": "Number of unique operands (n2) - distinct variables, constants, and identifiers used in the module.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_Op",
+      "semantic_description": "Total count of operators (N1) - sum of all operator occurrences in the module.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_Opnd",
+      "semantic_description": "Total count of operands (N2) - sum of all operand occurrences in the module.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "branchCount",
+      "semantic_description": "Number of branches in the flow graph - count of decision points that create alternate execution paths.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "v_Prog_Length",
+      "semantic_description": "Alternative calculation of program length - another measure of code size.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "d_Difficulty",
+      "semantic_description": "Alternative calculation of difficulty - another measure of code complexity.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "v_Volume",
+      "semantic_description": "Alternative calculation of volume - another measure of program size.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "v_Effort",
+      "semantic_description": "Alternative calculation of effort - another measure of development effort.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "b_Error_Est",
+      "semantic_description": "Alternative calculation of error estimate - another prediction of bugs.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "LOCode_2",
+      "semantic_description": "Alternative line of code count - secondary code line measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "LOComment_2",
+      "semantic_description": "Alternative comment line count - secondary comment line measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "LOBlank_2",
+      "semantic_description": "Alternative blank line count - secondary blank line measurement.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "LOCodeAndComment_2",
+      "semantic_description": "Alternative mixed line count - secondary measurement of lines with both code and comments.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "uniq_Op_2",
+      "semantic_description": "Alternative unique operator count - secondary measurement of distinct operators.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "uniq_Opnd_2",
+      "semantic_description": "Alternative unique operand count - secondary measurement of distinct operands.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_Op_2",
+      "semantic_description": "Alternative total operator count - secondary measurement of all operators.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "total_Opnd_2",
+      "semantic_description": "Alternative total operand count - secondary measurement of all operands.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "ev(g)_2",
+      "semantic_description": "Alternative essential complexity - secondary measurement of code structure.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "iv(g)_2",
+      "semantic_description": "Alternative design complexity - secondary measurement of module integration.",
+      "data_type": "numeric"
+    },
+    {
+      "name": "n_2",
+      "semantic_description": "Alternative program length - secondary measurement using different calculation.",
+      "data_type": "numeric"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "FALSE",
+      "meaning": "Module has no reported defects - considered defect-free in testing/operation"
+    },
+    {
+      "name": "TRUE",
+      "meaning": "Module has one or more reported defects - bugs found during testing or deployment"
+    }
+  ],
+  "dataset_history": "Part of NASA's software quality improvement initiative, collected from flight software for earth orbiting satellite. PC4 is one of 12 NASA MDP datasets alongside PC1, PC2, PC3, and PC5. The dataset language and specific project details are unknown but relates to satellite flight software.",
+  "inference_notes": "PC4 contains 1458 instances with 177 defective modules (13.75% defect rate), showing significant class imbalance. Like other NASA datasets, it uses 1970s-era McCabe and Halstead metrics. Contains duplicate measurements with slightly different calculations, likely for validation purposes. The flight software context makes defect prediction crucial for mission safety."
+}

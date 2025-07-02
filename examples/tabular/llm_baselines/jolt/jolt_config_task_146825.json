@@ -1,0 +1,25 @@
+{
+  "dataset_name": "Fashion-MNIST",
+  "task_prefix": "A dataset of Zalando's article images consisting of 28x28 grayscale images of fashion products. Designed as a drop-in replacement for the original MNIST dataset with identical structure but more challenging classification tasks. Each example contains 3 features. Image classification.",
+  "column_descriptions": {
+    "pixels": "784 features representing 28x28 grayscale pixel values",
+    "range": "0-255 grayscale intensity values",
+    "structure": "Flattened 2D image array"
+  },
+  "class_names": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "class_description": "Classes: '0' (T-shirt/top), '1' (Trouser), '2' (Pullover), '3' (Dress), '4' (Coat), '5' (Sandal), '6' (Shirt), '7' (Sneaker), '8' (Bag), '9' (Ankle boot)",
+  "num_features": 3,
+  "num_classes": 10,
+  "task_id": "146825"
+}

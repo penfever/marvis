@@ -1,0 +1,14 @@
+dataset: wall-robot-navigation
+templates:
+  4e3681d5-9136-44ae-8792-3cb66c374073: !Template
+    name: wall-robot-navigation
+    id: 4e3681d5-9136-44ae-8792-3cb66c374073
+    reference: ''
+    answer_choices: Class 0 ||| Class 1
+    jinja: "{{note}}\n\nWhat is the class of this instance?\nAnswer: \n|||\n{{ answer_choices[label]\
+      \ }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true

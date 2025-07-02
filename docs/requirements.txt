@@ -1,0 +1,12 @@
+# Sphinx documentation dependencies
+sphinx>=6.0
+sphinx-rtd-theme>=1.3.0
+myst-parser>=0.18.0
+sphinx-autobuild>=2021.3.14
+
+# For autodoc to import
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+matplotlib>=3.5.0
+Pillow>=8.3.0

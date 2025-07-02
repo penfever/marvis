@@ -1,0 +1,18 @@
+{
+  "dataset_name": "Devnagari-Script",
+  "task_prefix": "Handwritten Devanagari character dataset containing grayscale images of 46 characters including consonants 'ka' to 'gya' and digits 0-9. Large-scale dataset for Devanagari script recognition. Each example contains 3 features. Devanagari OCR.",
+  "column_descriptions": {
+    "pixels": "1024 features representing 32x32 grayscale pixel values",
+    "structure": "Flattened 2D image array",
+    "preprocessing": "Images preprocessed to 32x32 resolution"
+  },
+  "class_names": [
+    "characters",
+    "classes",
+    "script"
+  ],
+  "class_description": "Classes: 'classes' (46), 'characters' (36 consonants (ka to gya) + 10 digits (0-9)), 'script' (Devanagari (used for Hindi, Nepali, Marathi, etc.))",
+  "num_features": 3,
+  "num_classes": 3,
+  "task_id": "167121"
+}

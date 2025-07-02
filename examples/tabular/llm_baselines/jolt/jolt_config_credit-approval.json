@@ -1,0 +1,28 @@
+{
+  "dataset_name": "credit-approval",
+  "task_prefix": "Credit card application approval dataset with all attribute names and values changed to meaningless symbols to protect confidentiality. Contains a mix of continuous and categorical attributes representing various applicant characteristics used in credit approval decisions. Each example contains 15 features. Automated credit approval decision systems for financial institutions. Applications include credit card approval.",
+  "column_descriptions": {
+    "Attribute 1 (binary)": "Feature: Attribute 1 (binary)",
+    "Attribute 2 (continuous)": "Feature: Attribute 2 (continuous)",
+    "Attribute 3 (continuous)": "Feature: Attribute 3 (continuous)",
+    "Attribute 4 (categorical)": "Feature: Attribute 4 (categorical)",
+    "Attribute 5 (categorical)": "Feature: Attribute 5 (categorical)",
+    "Attribute 6 (categorical)": "Feature: Attribute 6 (categorical)",
+    "Attribute 7 (categorical)": "Feature: Attribute 7 (categorical)",
+    "Attribute 8 (continuous)": "Feature: Attribute 8 (continuous)",
+    "Attribute 9 (binary)": "Feature: Attribute 9 (binary)",
+    "Attribute 10 (binary)": "Feature: Attribute 10 (binary)",
+    "Attribute 11 (continuous)": "Feature: Attribute 11 (continuous)",
+    "Attribute 12 (binary)": "Feature: Attribute 12 (binary)",
+    "Attribute 13 (categorical)": "Feature: Attribute 13 (categorical)",
+    "Attribute 14 (continuous)": "Feature: Attribute 14 (continuous)",
+    "Attribute 15 (continuous)": "Feature: Attribute 15 (continuous)"
+  },
+  "class_names": [
+    "+",
+    "-"
+  ],
+  "class_description": "Classes: '+' (Credit approved), '-' (Credit denied)",
+  "num_features": 15,
+  "num_classes": 2
+}

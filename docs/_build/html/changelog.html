@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog &mdash; MARVIS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=251ceabf" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing to MARVIS" href="contributing.html" />
+    <link rel="prev" title="Troubleshooting Guide" href="troubleshooting.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MARVIS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/quick-start.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/configuration.html">Configuration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/vision/index.html">Vision Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/audio/index.html">Audio Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/tabular/index.html">Tabular Data Classification Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/api-models/index.html">API Models Integration Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basic-classification.html">Basic Classification Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/multi-modal-pipeline.html">Multi-Modal Pipeline Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/custom-datasets.html">Custom Datasets Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.models.html">marvis.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.data.html">marvis.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.utils.html">marvis.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/marvis.viz.html">marvis.viz</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/resource-management.html">Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/caching-system.html">Caching System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical-guides/evaluation-frameworks.html">Evaluation Frameworks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples &amp; Troubleshooting</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#unreleased">[Unreleased]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changed">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#xx-xx">[1.0.0] - 2024-XX-XX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#technical-implementation">Technical Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples-and-documentation">Examples and Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#development">[0.9.0] - Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#migration-guide">Migration Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#from-pre-documentation-to-v1-0">From Pre-Documentation to v1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backward-compatibility">Backward Compatibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#future-releases">Future Releases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing-to-changelog">Contributing to Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to MARVIS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MARVIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Changelog</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/changelog.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading"></a></h1>
+<p>All notable changes to MARVIS will be documented in this file.</p>
+<p>The format is based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
+and this project adheres to <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<section id="unreleased">
+<h2>[Unreleased]<a class="headerlink" href="#unreleased" title="Link to this heading"></a></h2>
+<section id="added">
+<h3>Added<a class="headerlink" href="#added" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Sphinx documentation infrastructure</p></li>
+<li><p>Unified 2D/3D visualization system</p></li>
+<li><p>Metadata integration for enhanced VLM prompts</p></li>
+<li><p>Multi-visualization framework with adaptive layouts</p></li>
+<li><p>Comprehensive troubleshooting guide</p></li>
+<li><p><strong>Apple Silicon (MPS) Support</strong>: Automatic detection and use of Metal Performance Shaders for GPU acceleration on M1/M2/M3/M4 Macs</p></li>
+<li><p>Platform detection utilities for optimal device selection</p></li>
+<li><p>MPS-specific configuration and optimization</p></li>
+</ul>
+</section>
+<section id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Streamlined README from 606 to ~150 lines</p></li>
+<li><p>Unified <code class="docutils literal notranslate"><span class="pre">use_3d</span></code> parameter (deprecated <code class="docutils literal notranslate"><span class="pre">use_3d_tsne</span></code>)</p></li>
+<li><p>Enhanced VLM prompting with metadata context</p></li>
+<li><p><strong>Model Loading</strong>: Improved device detection to support MPS alongside CUDA and CPU</p></li>
+<li><p><strong>Platform Optimization</strong>: Automatic dtype selection (float32 for MPS, bfloat16 for CUDA)</p></li>
+<li><p>Added MPS detection test (<cite>test_mps_detection.py</cite>)</p></li>
+</ul>
+</section>
+<section id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Sequential layout for multi-visualization now ensures consistent sizing</p></li>
+<li><p>Semantic names properly loaded from CC18 data</p></li>
+<li><p>KNN connections now supported across all visualization types</p></li>
+</ul>
+</section>
+</section>
+<section id="xx-xx">
+<h2>[1.0.0] - 2024-XX-XX<a class="headerlink" href="#xx-xx" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Added<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Initial release of MARVIS framework</p></li>
+<li><p>Multi-modal classification support (tabular, audio, vision)</p></li>
+<li><p>Vision Language Model integration</p></li>
+<li><p>t-SNE visualization with KNN connections</p></li>
+<li><p>TabPFN embeddings for tabular data</p></li>
+<li><p>Whisper and CLAP embeddings for audio</p></li>
+<li><p>DINOV2 embeddings for vision</p></li>
+<li><p>OpenAI and Google Gemini API integration</p></li>
+<li><p>Resource management and caching system</p></li>
+<li><p>OpenML CC18 benchmark support</p></li>
+</ul>
+</section>
+<section id="technical-implementation">
+<h3>Technical Implementation<a class="headerlink" href="#technical-implementation" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Core <code class="docutils literal notranslate"><span class="pre">MarvisTsneClassifier</span></code> with modality dispatch</p></li>
+<li><p>VLM prompting utilities with thinking mode</p></li>
+<li><p>Embedding caching for performance optimization</p></li>
+<li><p>Multi-GPU and distributed inference support</p></li>
+<li><p>Comprehensive evaluation frameworks</p></li>
+</ul>
+</section>
+<section id="examples-and-documentation">
+<h3>Examples and Documentation<a class="headerlink" href="#examples-and-documentation" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Complete examples for all modalities</p></li>
+<li><p>Jupyter notebook tutorials</p></li>
+<li><p>API integration examples</p></li>
+<li><p>Performance optimization guides</p></li>
+</ul>
+</section>
+</section>
+<section id="development">
+<h2>[0.9.0] - Development<a class="headerlink" href="#development" title="Link to this heading"></a></h2>
+<p>This represents the pre-release development phase where core functionality was established.</p>
+</section>
+<section id="migration-guide">
+<h2>Migration Guide<a class="headerlink" href="#migration-guide" title="Link to this heading"></a></h2>
+<section id="from-pre-documentation-to-v1-0">
+<h3>From Pre-Documentation to v1.0<a class="headerlink" href="#from-pre-documentation-to-v1-0" title="Link to this heading"></a></h3>
+<p>The main changes for users:</p>
+<ol class="arabic">
+<li><p><strong>Parameter Updates</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Old (deprecated but still works)</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="n">use_3d_tsne</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># New (recommended)</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MarvisTsneClassifier</span><span class="p">(</span><span class="n">use_3d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Documentation Structure</strong>:</p>
+<ul class="simple">
+<li><p>README simplified - full docs now in Sphinx</p></li>
+<li><p>Examples organized by modality</p></li>
+<li><p>Comprehensive API reference available</p></li>
+</ul>
+</li>
+<li><p><strong>Enhanced Features</strong>:</p>
+<ul class="simple">
+<li><p>Metadata integration for richer VLM prompts</p></li>
+<li><p>Multi-visualization framework</p></li>
+<li><p>Improved resource management</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="backward-compatibility">
+<h3>Backward Compatibility<a class="headerlink" href="#backward-compatibility" title="Link to this heading"></a></h3>
+<p>All existing code should continue to work with deprecation warnings for:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">use_3d_tsne</span></code> parameter (use <code class="docutils literal notranslate"><span class="pre">use_3d</span></code> instead)</p></li>
+<li><p>Some internal API changes (external API unchanged)</p></li>
+</ul>
+</section>
+</section>
+<section id="future-releases">
+<h2>Future Releases<a class="headerlink" href="#future-releases" title="Link to this heading"></a></h2>
+<p>Planned features for future releases:</p>
+<p><strong>v1.1.0</strong>
+* Advanced multi-modal fusion techniques
+* Improved API model integration
+* Enhanced caching strategies</p>
+<p><strong>v1.2.0</strong>
+* Scikit-learn pipeline compatibility
+* Automated hyperparameter optimization
+* Extended evaluation metrics</p>
+<p><strong>v2.0.0</strong>
+* Unified classifier interface across modalities
+* Breaking changes for cleaner API
+* Advanced visualization techniques</p>
+</section>
+<section id="contributing-to-changelog">
+<h2>Contributing to Changelog<a class="headerlink" href="#contributing-to-changelog" title="Link to this heading"></a></h2>
+<p>When contributing to MARVIS:</p>
+<ol class="arabic simple">
+<li><p>Add entries to the <code class="docutils literal notranslate"><span class="pre">[Unreleased]</span></code> section</p></li>
+<li><p>Use consistent formatting and categories</p></li>
+<li><p>Include migration notes for breaking changes</p></li>
+<li><p>Reference relevant issues/PRs when available</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="troubleshooting.html" class="btn btn-neutral float-left" title="Troubleshooting Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing to MARVIS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, MARVIS Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

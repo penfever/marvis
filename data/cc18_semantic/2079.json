@@ -1,0 +1,146 @@
+{
+  "dataset_name": "eucalyptus",
+  "openml_task_id": 2079,
+  "dataset_description": "This dataset aims to determine which eucalyptus seedlots in various species are best for soil conservation in seasonally dry hill country of New Zealand. Data was collected from various trial sites across the North Island, measuring tree growth characteristics, survival rates, and site conditions. The utility rating indicates overall suitability for soil conservation purposes.",
+  "dataset_source": "Bruce Bulloch, New Zealand - Agricultural/Forestry research",
+  "domain": "Agriculture, Forestry, Environmental Science",
+  "problem_type": "Multi-class Classification (Ordinal)",
+  "input_features": {
+    "number_of_features": 19,
+    "feature_types": "Mixed (Categorical and Numerical)",
+    "feature_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form)"
+  },
+  "dataset_size": {
+    "instances": 736,
+    "features": 19,
+    "classes": 5
+  },
+  "description": "This dataset aims to determine which eucalyptus seedlots in various species are best for soil conservation in seasonally dry hill country of New Zealand. Data was collected from various trial sites across the North Island, measuring tree growth characteristics, survival rates, and site conditions. The utility rating indicates overall suitability for soil conservation purposes.",
+  "original_source": {
+    "creator": "Unknown",
+    "institution": "Unknown",
+    "date": "Unknown",
+    "publication": "Unknown"
+  },
+  "columns": [
+    {
+      "name": "feature_1",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 1)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_2",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 2)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_3",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 3)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_4",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 4)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_5",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 5)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_6",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 6)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_7",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 7)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_8",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 8)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_9",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 9)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_10",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 10)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_11",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 11)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_12",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 12)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_13",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 13)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_14",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 14)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_15",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 15)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_16",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 16)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_17",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 17)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_18",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 18)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    },
+    {
+      "name": "feature_19",
+      "semantic_description": "Site characteristics (abbreviation, locality, map reference, latitude, altitude, rainfall, frosts), planting details (year, species code, seedlot number), tree measurements (diameter at base height, height, survival rate), and quality assessments (vigor, insect resistance, stem form, crown form, branch form) (feature 19)",
+      "data_type": "Mixed (Categorical and Numerical)"
+    }
+  ],
+  "target_classes": [
+    {
+      "name": "none",
+      "meaning": "Overall utility rating for soil conservation: none"
+    },
+    {
+      "name": "low",
+      "meaning": "Overall utility rating for soil conservation: low"
+    },
+    {
+      "name": "average",
+      "meaning": "Overall utility rating for soil conservation: average"
+    },
+    {
+      "name": "good",
+      "meaning": "Overall utility rating for soil conservation: good"
+    },
+    {
+      "name": "best",
+      "meaning": "Overall utility rating for soil conservation: best"
+    }
+  ],
+  "dataset_history": "Dataset history not available for eucalyptus",
+  "inference_notes": "Inference notes not available for eucalyptus"
+}

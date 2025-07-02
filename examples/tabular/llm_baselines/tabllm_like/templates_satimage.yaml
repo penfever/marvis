@@ -1,0 +1,16 @@
+dataset: satimage
+templates:
+  b09093a5-eaf1-4064-8c38-3e5a1054ac47: !Template
+    name: satimage
+    id: b09093a5-eaf1-4064-8c38-3e5a1054ac47
+    reference: ''
+    answer_choices: Red soil ||| Cotton crop ||| Grey soil ||| Damp grey soil |||
+      Soil with vegetation stubble ||| Very damp grey soil
+    jinja: "{{note}}\n\nWhich of the following classes does this instance belong to:\
+      \ Red soil, Cotton crop, Grey soil, Damp grey soil, Soil with vegetation stubble,\
+      \ Very damp grey soil?\nAnswer: \n|||\n{{ answer_choices[label] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      metrics:
+      - accuracy
+      original_task: true
