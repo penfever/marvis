@@ -2,6 +2,10 @@
 
 **MARVIS** is a powerful framework for multi-modal classification that leverages Vision Language Models (VLMs) to perform classification on tabular, audio, and vision data through intelligent visualization and embedding techniques.
 
+## 🚀 Getting Started
+
+Check out `getting_started.ipynb` on Google Colab for a convenient walkthrough of how MARVIS works!
+
 ## 🚀 Quick Install
 
 ```bash
@@ -285,11 +289,14 @@ See [LICENSE](LICENSE) for details.
 If you use MARVIS in your research, please cite:
 
 ```bibtex
-@misc{marvis2025,
-  title={MARVIS: Modality Adaptive Reasoning over VISualizations},
-  author={Benjamin Feuer and Lennart Purucker and Oussama Elachqar and Chinmay Hegde},
-  year={2025},
-  url={https://github.com/penfever/marvis}
+@misc{feuer2025marvismodalityadaptivereasoning,
+      title={MARVIS: Modality Adaptive Reasoning over VISualizations}, 
+      author={Benjamin Feuer and Lennart Purucker and Oussama Elachqar and Chinmay Hegde},
+      year={2025},
+      eprint={2507.01544},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2507.01544}, 
 }
 ```
 
