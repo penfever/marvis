@@ -799,7 +799,7 @@ def main():
                         # Calculate cap: max(n_classes * 2, 10% of training size)
                         nn_k_cap = max(n_classes * 2, int(train_size * 0.1))
                         original_nn_k = args.nn_k
-                        effective_nn_k = min(original_nn_k, nn_k_cap)
+                        effective_nn_k = min(original_nn_k, nn_k_cap + 1)
                         
                         if effective_nn_k != original_nn_k:
                             logger.info(f"Capping nn_k from {original_nn_k} to {effective_nn_k} (max of {n_classes * 2} classes*2 or 10% of {train_size} training samples)")

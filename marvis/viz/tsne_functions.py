@@ -251,6 +251,26 @@ class BaseTSNEPlotter(ABC):
         Improved zoom logic that prevents points from appearing outside plot boundaries.
         """
         if self.zoom_factor <= 1.0:
+            # For zoom_factor 1.0, we should show all data with some padding
+            # This ensures all points are visible in the plot
+            all_coords = np.vstack([train_coords, test_coords])
+            
+            if self.use_3d:
+                for i, setter in enumerate([ax.set_xlim, ax.set_ylim, ax.set_zlim]):
+                    coord_min = all_coords[:, i].min()
+                    coord_max = all_coords[:, i].max()
+                    coord_range = coord_max - coord_min
+                    # Add 10% padding on each side
+                    padding = coord_range * 0.1 if coord_range > 0 else 1.0
+                    setter(coord_min - padding, coord_max + padding)
+            else:
+                for i, setter in enumerate([ax.set_xlim, ax.set_ylim]):
+                    coord_min = all_coords[:, i].min()
+                    coord_max = all_coords[:, i].max()
+                    coord_range = coord_max - coord_min
+                    # Add 10% padding on each side
+                    padding = coord_range * 0.1 if coord_range > 0 else 1.0
+                    setter(coord_min - padding, coord_max + padding)
             return
             
         # Calculate the visible range based on zoom factor

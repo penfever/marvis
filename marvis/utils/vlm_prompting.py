@@ -799,6 +799,15 @@ def parse_vlm_response(response: str, unique_classes: List = None, logger_instan
                             if 0 <= class_num < len(unique_classes):
                                 logger_instance.debug(f"Parsed Class {class_num} -> {unique_classes[class_num]}")
                                 return unique_classes[class_num]
+                            else:
+                                # Handle case where class number is beyond unique_classes range
+                                # This can happen when visualization shows all dataset classes but
+                                # parser only knows about classes present in training data
+                                logger_instance.warning(f"Class number {class_num} is beyond unique_classes range (0-{len(unique_classes)-1}). "
+                                                       f"This suggests a mismatch between visualization classes and training classes. "
+                                                       f"Mapping to class index {class_num % len(unique_classes)}")
+                                mapped_class_num = class_num % len(unique_classes)
+                                return unique_classes[mapped_class_num]
                         except (ValueError, IndexError):
                             pass
                 
@@ -829,6 +838,12 @@ def parse_vlm_response(response: str, unique_classes: List = None, logger_instan
                     if 0 <= class_num < len(unique_classes):
                         logger_instance.debug(f"Found Class {class_num} pattern -> {unique_classes[class_num]}")
                         return unique_classes[class_num]
+                    else:
+                        # Handle case where class number is beyond unique_classes range
+                        logger_instance.warning(f"Fallback: Class number {class_num} is beyond unique_classes range (0-{len(unique_classes)-1}). "
+                                               f"Mapping to class index {class_num % len(unique_classes)}")
+                        mapped_class_num = class_num % len(unique_classes)
+                        return unique_classes[mapped_class_num]
                 except (ValueError, IndexError):
                     continue
     

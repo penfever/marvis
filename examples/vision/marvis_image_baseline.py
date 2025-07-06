@@ -251,7 +251,7 @@ class MarvisImageClassifier:
             from sklearn.neighbors import NearestNeighbors
             
             # Use k-NN to map test points to t-SNE space
-            nn = NearestNeighbors(n_neighbors=min(3, len(self.train_tsne_embeddings)))
+            nn = NearestNeighbors(n_neighbors=min(3, len(self.train_tsne_embeddings) - 1) + 1)
             # We need to use some proxy for original embeddings - use random projection back
             proxy_train = np.random.normal(0, 1, (len(self.train_tsne_embeddings), test_embeddings.shape[1]))
             nn.fit(proxy_train)

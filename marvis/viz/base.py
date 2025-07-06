@@ -653,7 +653,7 @@ class BaseVisualization(ABC):
             k = self.config.nn_k
         
         # Fit KNN on training data
-        knn = NearestNeighbors(n_neighbors=min(k, len(training_data)), metric='euclidean')
+        knn = NearestNeighbors(n_neighbors=min(k, len(training_data) - 1) + 1, metric='euclidean')
         knn.fit(training_data)
         
         # Find neighbors for query point

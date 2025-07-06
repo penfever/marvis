@@ -142,7 +142,7 @@ class BaseKNNVisualization:
         # Fit KNN model on training embeddings
         k = getattr(self.config, 'nn_k', 5)
         self._knn_model = NearestNeighbors(
-            n_neighbors=min(k, len(train_embeddings)),
+            n_neighbors=min(k, len(train_embeddings) - 1) + 1,
             metric='euclidean'
         )
         self._knn_model.fit(train_embeddings)

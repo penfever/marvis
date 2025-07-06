@@ -62,7 +62,7 @@ def find_knn_in_embedding_space(
         query_embeddings_scaled = query_embeddings
     
     # Adjust k if necessary
-    max_k = min(k, len(train_embeddings))
+    max_k = min(k, len(train_embeddings) - 1) + 1
     if max_k != k:
         logger.warning(f"Adjusting k from {k} to {max_k} due to limited training data")
         k = max_k
