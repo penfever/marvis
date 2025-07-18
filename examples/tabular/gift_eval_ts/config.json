@@ -1,0 +1,75 @@
+{
+  "default_settings": {
+    "vlm_model": "Qwen/Qwen2.5-VL-3B-Instruct",
+    "max_series_per_dataset": 50,
+    "n_distributions": 5,
+    "keypoint_strategy": "uniform",
+    "save_visualizations": false,
+    "show_confidence_bands": true,
+    "seed": 42,
+    "timeout_hours": 24
+  },
+  
+  "fast_settings": {
+    "vlm_model": "Qwen/Qwen2.5-VL-3B-Instruct",
+    "max_series_per_dataset": 10,
+    "n_distributions": 3,
+    "keypoint_strategy": "uniform",
+    "save_visualizations": false,
+    "show_confidence_bands": false,
+    "seed": 42,
+    "timeout_hours": 12
+  },
+  
+  "high_quality_settings": {
+    "vlm_model": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "max_series_per_dataset": 100,
+    "n_distributions": 8,
+    "keypoint_strategy": "changepoints",
+    "save_visualizations": true,
+    "show_confidence_bands": true,
+    "seed": 42,
+    "timeout_hours": 48
+  },
+  
+  "dataset_groups": {
+    "m4_competition": ["m4_yearly", "m4_quarterly", "m4_monthly", "m4_weekly", "m4_daily", "m4_hourly"],
+    "energy_sector": ["electricity/15T", "electricity/H", "electricity/D", "electricity/W", "solar/10T", "solar/H", "solar/D", "solar/W"],
+    "health_demographics": ["hospital", "covid_deaths", "us_births/D", "us_births/M", "us_births/W"],
+    "environmental": ["saugeenday/D", "saugeenday/M", "saugeenday/W", "temperature_rain_with_missing", "jena_weather/10T", "jena_weather/H", "jena_weather/D"],
+    "industrial_web": ["kdd_cup_2018_with_missing/H", "kdd_cup_2018_with_missing/D", "car_parts_with_missing", "restaurant", "hierarchical_sales/D", "hierarchical_sales/W"],
+    "transportation": ["LOOP_SEATTLE/5T", "LOOP_SEATTLE/H", "LOOP_SEATTLE/D", "SZ_TAXI/15T", "SZ_TAXI/H"],
+    "sensor_iot": ["M_DENSE/H", "M_DENSE/D", "ett1/15T", "ett1/H", "ett1/D", "ett1/W", "ett2/15T", "ett2/H", "ett2/D", "ett2/W"],
+    "cloud_infrastructure": ["bitbrains_fast_storage/5T", "bitbrains_fast_storage/H", "bitbrains_rnd/5T", "bitbrains_rnd/H", "bizitobs_application", "bizitobs_service", "bizitobs_l2c/5T", "bizitobs_l2c/H"]
+  },
+  
+  "expected_runtimes": {
+    "short_mode_fast": "4-8 hours",
+    "short_mode_default": "8-16 hours",
+    "full_mode_default": "18-36 hours",
+    "parallel_mode_4gpu": "6-12 hours",
+    "high_quality_full": "48-72 hours"
+  },
+  
+  "hardware_recommendations": {
+    "minimum": {
+      "gpu_memory": "8GB",
+      "system_memory": "16GB",
+      "storage": "50GB free space",
+      "note": "Use 3B model with fast settings"
+    },
+    "recommended": {
+      "gpu_memory": "16GB+",
+      "system_memory": "32GB+",
+      "storage": "100GB free space",
+      "note": "Can use 7B model with default settings"
+    },
+    "optimal": {
+      "gpu_memory": "24GB+ per GPU",
+      "system_memory": "64GB+",
+      "storage": "200GB free space",
+      "gpus": "4+ for parallel execution",
+      "note": "Use high quality settings with parallel mode"
+    }
+  }
+}
