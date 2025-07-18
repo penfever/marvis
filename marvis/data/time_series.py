@@ -149,9 +149,16 @@ class TimeSeriesDataset:
                 series_list.append(np.array(target))
             elif isinstance(target, np.ndarray):
                 series_list.append(target)
+            elif isinstance(target, (np.float32, np.float64, float, int)):
+                # Handle scalar values - convert to single-element array
+                series_list.append(np.array([target]))
             else:
-                logger.warning(f"Unexpected target type: {type(target)}")
-                continue
+                logger.warning(f"Unexpected target type: {type(target)}, value: {target}")
+                # Try to convert to array anyway
+                try:
+                    series_list.append(np.array(target))
+                except:
+                    continue
         
         if not series_list:
             return np.array([]).reshape(0, 0)
