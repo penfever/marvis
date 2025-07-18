@@ -317,42 +317,53 @@ def evaluate_time_series(
     """
     logger.info(f"Evaluating dataset: {dataset.name} (term: {dataset.term})")
     
-    # Prepare dataset for MARVIS
-    train_data = dataset.prepare_for_marvis(split='train')
-    test_data = dataset.prepare_for_marvis(split='test')
+    # Get pre-split training and test data from gift-eval
+    train_data_raw = dataset.get_train_data()
+    test_data_raw = dataset.get_test_data()
     
-    if train_data['n_series'] == 0:
+    if not train_data_raw:
         logger.warning(f"No training data found for {dataset.name}")
         return {'error': 'No training data'}
     
-    logger.info(f"Dataset info: {train_data['n_series']} series, max length {train_data['max_length']}")
+    if not test_data_raw:
+        logger.warning(f"No test data found for {dataset.name}")
+        return {'error': 'No test data'}
+    
+    logger.info(f"Dataset info: {len(train_data_raw)} training series, {len(test_data_raw)} test instances")
     
     # Evaluate on multiple series (up to max_series_per_dataset)
-    n_series_to_evaluate = min(args.max_series_per_dataset, train_data['n_series'])
+    n_series_to_evaluate = min(args.max_series_per_dataset, len(train_data_raw))
     series_results = []
     
     for series_idx in range(n_series_to_evaluate):
         logger.info(f"Evaluating series {series_idx + 1}/{n_series_to_evaluate}")
         
         try:
-            # Prepare single series for visualization
-            series_values, series_metadata = prepare_time_series_for_visualization(
-                train_data['series_data'], series_idx
-            )
+            # Get training series for visualization
+            train_entry = train_data_raw[series_idx]
+            train_series = train_entry['target']
             
+            # Find corresponding test entry (gift-eval may have multiple test windows per series)
+            test_entry = None
+            for test_item in test_data_raw:
+                if test_item.get('item_id') == train_entry.get('item_id') or series_idx < len(test_data_raw):
+                    test_entry = test_data_raw[series_idx] if series_idx < len(test_data_raw) else test_data_raw[0]
+                    break
+            
+            if test_entry is None:
+                logger.warning(f"No test data found for series {series_idx}")
+                continue
+                
             # Override forecast horizon if specified
             forecast_horizon = args.forecast_horizon or dataset.prediction_length
             visualization.config.extra_params['forecast_horizon'] = forecast_horizon
             
-            # Create train/test split for this series
-            train_series, test_targets = create_time_series_train_test_split(
-                series_values.reshape(1, -1),
-                prediction_length=forecast_horizon,
-                train_ratio=args.train_ratio
-            )
+            # Ensure train_series is numpy array
+            if not isinstance(train_series, np.ndarray):
+                train_series = np.array(train_series)
             
-            # Fit distributions and create visualization
-            transformed_data = visualization.fit_transform(train_series[0])
+            # Fit distributions and create visualization using the training data
+            transformed_data = visualization.fit_transform(train_series)
             viz_result = visualization.generate_plot(transformed_data)
             
             # Save visualization if requested
@@ -378,9 +389,14 @@ def evaluate_time_series(
                     predicted_class, random_state=args.seed + series_idx
                 )
                 
+                # Get ground truth from test entry
+                test_targets = test_entry.get('target', [])
+                if not isinstance(test_targets, np.ndarray):
+                    test_targets = np.array(test_targets)
+                
                 # Compute metrics
                 metrics = compute_time_series_metrics(
-                    predictions, test_targets[0], series_values
+                    predictions, test_targets, train_series
                 )
                 
                 series_result = {
@@ -388,9 +404,10 @@ def evaluate_time_series(
                     'predicted_class': predicted_class,
                     'selected_distribution': visualization._distributions[predicted_class].name,
                     'predictions': predictions.tolist(),
-                    'ground_truth': test_targets[0].tolist(),
+                    'ground_truth': test_targets.tolist(),
                     'metrics': metrics,
-                    'series_metadata': series_metadata,
+                    'train_data_shape': train_series.shape,
+                    'test_data_shape': test_targets.shape,
                     'visualization_metadata': viz_result.metadata
                 }
                 
@@ -401,7 +418,7 @@ def evaluate_time_series(
                 series_result = {
                     'series_index': series_idx,
                     'error': f'Invalid class prediction: {predicted_class}',
-                    'series_metadata': series_metadata
+                    'train_data_shape': train_series.shape
                 }
             
             series_results.append(series_result)
