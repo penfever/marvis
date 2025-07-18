@@ -231,8 +231,8 @@ def setup_environment(args):
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     log_filename = f"time_series_evaluation_{timestamp}.log"
     logger = setup_logging(
-        log_file=os.path.join(args.output_dir, log_filename),
-        level=logging.DEBUG if args.verbose else logging.INFO
+        log_level=logging.DEBUG if args.verbose else logging.INFO,
+        log_file=os.path.join(args.output_dir, log_filename)
     )
     
     logger.info(f"Arguments: {args}")
