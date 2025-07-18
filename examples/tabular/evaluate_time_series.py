@@ -343,6 +343,38 @@ def evaluate_time_series(
             train_entry = train_data_raw[series_idx]
             train_series = train_entry['target']
             
+            # Debug: Check the data structure
+            logger.debug(f"train_entry keys: {list(train_entry.keys())}")
+            logger.debug(f"train_series type: {type(train_series)}, shape: {getattr(train_series, 'shape', 'no shape')}")
+            
+            # Handle different data structures
+            if hasattr(train_series, 'shape') and train_series.shape == ():
+                # Scalar value - this might be a single point, skip it
+                logger.warning(f"Series {series_idx} has scalar target, skipping")
+                continue
+            elif not hasattr(train_series, 'shape') and np.isscalar(train_series):
+                # Single scalar value
+                logger.warning(f"Series {series_idx} has single scalar target, skipping")
+                continue
+            
+            # Ensure train_series is numpy array with at least 1D
+            if not isinstance(train_series, np.ndarray):
+                train_series = np.array(train_series)
+            
+            if train_series.ndim == 0:
+                logger.warning(f"Series {series_idx} has 0-dimensional data, skipping")
+                continue
+            elif train_series.ndim > 1:
+                # Flatten multi-dimensional arrays
+                train_series = train_series.flatten()
+            
+            logger.debug(f"Processed train_series shape: {train_series.shape}")
+            
+            # Check if series has enough data points
+            if len(train_series) < 10:  # Minimum reasonable length
+                logger.warning(f"Series {series_idx} too short ({len(train_series)} points), skipping")
+                continue
+            
             # Find corresponding test entry (gift-eval may have multiple test windows per series)
             test_entry = None
             for test_item in test_data_raw:
@@ -357,10 +389,6 @@ def evaluate_time_series(
             # Override forecast horizon if specified
             forecast_horizon = args.forecast_horizon or dataset.prediction_length
             visualization.config.extra_params['forecast_horizon'] = forecast_horizon
-            
-            # Ensure train_series is numpy array
-            if not isinstance(train_series, np.ndarray):
-                train_series = np.array(train_series)
             
             # Fit distributions and create visualization using the training data
             transformed_data = visualization.fit_transform(train_series)
