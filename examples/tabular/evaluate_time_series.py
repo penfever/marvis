@@ -301,7 +301,6 @@ def evaluate_time_series(
     dataset: TimeSeriesDataset,
     visualization: TimeSeriesDistributionVisualization,
     vlm_model,
-    vlm_tokenizer,
     args
 ) -> Dict[str, Any]:
     """
@@ -311,7 +310,6 @@ def evaluate_time_series(
         dataset: Time series dataset to evaluate
         visualization: Configured visualization
         vlm_model: Loaded VLM model
-        vlm_tokenizer: VLM tokenizer
         args: Command line arguments
         
     Returns:
@@ -371,7 +369,7 @@ def evaluate_time_series(
             
             # Get VLM prediction (class selection)
             predicted_class = get_vlm_classification(
-                vlm_model, vlm_tokenizer, viz_result.image, prompt, args
+                vlm_model, viz_result.image, prompt, args
             )
             
             # Sample from selected distribution
@@ -469,7 +467,7 @@ def generate_time_series_classification_prompt(viz_result) -> str:
     )
 
 
-def get_vlm_classification(model, tokenizer, image, prompt, args) -> Optional[int]:
+def get_vlm_classification(model, image, prompt, args) -> Optional[int]:
     """Get classification from VLM model."""
     try:
         # This is a simplified VLM interface - you might need to adapt based on your VLM setup
@@ -478,7 +476,6 @@ def get_vlm_classification(model, tokenizer, image, prompt, args) -> Optional[in
         
         response = get_vlm_response(
             model=model,
-            tokenizer=tokenizer,
             image=image,
             prompt=prompt,
             max_new_tokens=200  # Increased to allow for analysis
@@ -577,7 +574,7 @@ def main():
     for dataset in datasets:
         try:
             result = evaluate_time_series(
-                dataset, visualization, vlm_model, vlm_tokenizer, args
+                dataset, visualization, vlm_model, args
             )
             all_results.append(result)
         except Exception as e:
