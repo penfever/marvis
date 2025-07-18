@@ -161,6 +161,7 @@ class ContextComposer:
         )
         from ..decision.regions import DecisionRegionsVisualization
         from ..patterns.frequent import FrequentPatternsVisualization
+        from ..time_series_distribution import TimeSeriesDistributionVisualization
         
         viz_map = {
             'tsne': TSNEVisualization,
@@ -172,6 +173,7 @@ class ContextComposer:
             'mds': MDSVisualization,
             'decision_regions': DecisionRegionsVisualization,
             'frequent_patterns': FrequentPatternsVisualization,
+            'time_series_distribution': TimeSeriesDistributionVisualization,
         }
         
         if viz_type not in viz_map:

@@ -7,7 +7,7 @@ This module provides consistent prompting strategies across different modalities
 
 import logging
 import re
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, Tuple
 
 logger = logging.getLogger(__name__)
 
@@ -1097,6 +1097,325 @@ def create_comprehensive_multi_viz_prompt(
         return enhanced_prompt
     
     return base_prompt
+
+
+def create_time_series_classification_prompt(
+    class_names: List[str],
+    forecast_horizon: int,
+    dataset_description: Optional[str] = None,
+    distribution_params: Optional[List[Dict[str, Any]]] = None,
+    legend_text: Optional[str] = None,
+    dataset_metadata: Optional[str] = None
+) -> str:
+    """
+    Create a time series distribution classification prompt for VLM.
+    
+    Args:
+        class_names: List of distribution class names
+        forecast_horizon: Number of time steps to forecast
+        dataset_description: Optional description of the time series dataset
+        distribution_params: Optional list of distribution parameters
+        legend_text: Legend text from the visualization
+        dataset_metadata: Optional structured metadata summary
+        
+    Returns:
+        Formatted prompt string for time series classification
+    """
+    # Validate class names
+    validated_class_names = validate_and_clean_class_names(class_names)
+    
+    # Create class list
+    class_list_str = ", ".join([f'"{name}"' for name in validated_class_names])
+    
+    # Build prompt
+    prompt_parts = []
+    
+    # Context setting
+    context = f"""You are an expert time series analyst examining a forecasting task. The visualization shows:
+
+1. Historical time series data (black line with dots) representing past observations
+2. {len(class_names)} different forecast distribution paths, each representing a distinct forecasting pattern
+3. A forecast horizon of {forecast_horizon} time steps into the future
+
+Available forecast patterns:"""
+    
+    # Add class descriptions
+    for i, class_name in enumerate(validated_class_names):
+        context += f"\n{i}: {class_name}"
+        
+        # Add distribution parameters if available
+        if distribution_params and i < len(distribution_params):
+            params = distribution_params[i]
+            if 'df' in params and 'loc' in params and 'scale' in params:
+                context += f" (df={params['df']:.2f}, location={params['loc']:.3f}, scale={params['scale']:.3f})"
+    
+    prompt_parts.append(context)
+    
+    # Add dataset context if available
+    if dataset_description or dataset_metadata:
+        context_info = []
+        if dataset_description:
+            context_info.append(f"Dataset: {dataset_description}")
+        if dataset_metadata:
+            context_info.append(f"Context: {dataset_metadata}")
+        
+        if context_info:
+            prompt_parts.append("Dataset Context:\n" + "\n".join(context_info))
+    
+    # Analysis instructions
+    analysis_instructions = f"""
+Your task is to select the most appropriate forecast distribution pattern by analyzing:
+
+1. **Trend Analysis**: What is the overall direction of the historical data?
+   - Is it increasing, decreasing, or stable?
+   - Are there any recent trend changes?
+
+2. **Volatility Assessment**: How variable is the data?
+   - Is the variability constant or changing?
+   - Are there periods of high/low volatility?
+
+3. **Pattern Recognition**: Are there any recurring patterns?
+   - Seasonal or cyclical behavior
+   - Regular fluctuations or oscillations
+
+4. **Recent Behavior**: How does recent data compare to long-term patterns?
+   - Has behavior changed recently?
+   - Which pattern best captures the most recent dynamics?
+
+5. **Distribution Characteristics**: Consider the statistical properties:
+   - Does the data suggest fat-tailed or thin-tailed distributions?
+   - What level of uncertainty is appropriate?
+
+Select the class number (0 to {len(class_names)-1}) that best represents the continuation of the historical pattern into the forecast horizon."""
+    
+    prompt_parts.append(analysis_instructions)
+    
+    # Add legend information if provided
+    if legend_text:
+        prompt_parts.append(f"Legend Information:\n{legend_text}")
+    
+    # Response format
+    response_format = f"""
+Response Format:
+Provide your analysis and then state your final choice as a single number (0 to {len(class_names)-1}).
+
+Example:
+The historical data shows an increasing trend with moderate volatility... [your analysis]
+Final selection: 2"""
+    
+    prompt_parts.append(response_format)
+    
+    return "\n\n".join(prompt_parts)
+
+
+def create_time_series_regression_prompt(
+    forecast_horizon: int,
+    value_range: Tuple[float, float],
+    dataset_description: Optional[str] = None,
+    historical_stats: Optional[Dict[str, float]] = None,
+    dataset_metadata: Optional[str] = None
+) -> str:
+    """
+    Create a time series regression prompt for direct value prediction.
+    
+    Args:
+        forecast_horizon: Number of time steps to forecast
+        value_range: Min and max values in the historical data
+        dataset_description: Optional description of the time series dataset
+        historical_stats: Optional statistics about historical data
+        dataset_metadata: Optional structured metadata summary
+        
+    Returns:
+        Formatted prompt string for time series regression
+    """
+    # Build prompt
+    prompt_parts = []
+    
+    # Context setting
+    context = f"""You are an expert time series analyst examining a forecasting task. The visualization shows historical time series data that you need to extend for {forecast_horizon} future time steps.
+
+The historical data has values ranging from {value_range[0]:.3f} to {value_range[1]:.3f}."""
+    
+    prompt_parts.append(context)
+    
+    # Add historical statistics if available
+    if historical_stats:
+        stats_text = "Historical Data Statistics:\n"
+        for key, value in historical_stats.items():
+            stats_text += f"- {key.title()}: {value:.3f}\n"
+        prompt_parts.append(stats_text)
+    
+    # Add dataset context if available
+    if dataset_description or dataset_metadata:
+        context_info = []
+        if dataset_description:
+            context_info.append(f"Dataset: {dataset_description}")
+        if dataset_metadata:
+            context_info.append(f"Context: {dataset_metadata}")
+        
+        if context_info:
+            prompt_parts.append("Dataset Context:\n" + "\n".join(context_info))
+    
+    # Analysis instructions
+    analysis_instructions = f"""
+Your task is to predict the next {forecast_horizon} values based on the historical pattern. Consider:
+
+1. **Trend**: What is the overall direction and strength of any trends?
+2. **Seasonality**: Are there repeating patterns or cycles?
+3. **Volatility**: How much variability should be expected?
+4. **Recent Changes**: Have there been any recent shifts in behavior?
+5. **Domain Knowledge**: What makes sense given the data context?
+
+Provide {forecast_horizon} forecast values as a comma-separated list."""
+    
+    prompt_parts.append(analysis_instructions)
+    
+    # Response format
+    response_format = f"""
+Response Format:
+Provide your analysis followed by the forecast values.
+
+Example:
+The data shows a clear upward trend with seasonal patterns... [your analysis]
+Forecast values: 1.234, 1.267, 1.301, 1.289, 1.345"""
+    
+    prompt_parts.append(response_format)
+    
+    return "\n\n".join(prompt_parts)
+
+
+def create_time_series_distribution_comparison_prompt(
+    distributions: List[Dict[str, Any]],
+    forecast_horizon: int,
+    dataset_description: Optional[str] = None
+) -> str:
+    """
+    Create a prompt for comparing multiple time series distribution forecasts.
+    
+    Args:
+        distributions: List of distribution information with predictions
+        forecast_horizon: Number of forecast steps
+        dataset_description: Optional dataset description
+        
+    Returns:
+        Formatted prompt string for distribution comparison
+    """
+    prompt_parts = []
+    
+    # Context
+    context = f"""You are evaluating {len(distributions)} different time series forecasting approaches for the next {forecast_horizon} time steps. Each approach uses a different statistical distribution to model the forecast uncertainty."""
+    
+    prompt_parts.append(context)
+    
+    # Add dataset context
+    if dataset_description:
+        prompt_parts.append(f"Dataset: {dataset_description}")
+    
+    # Distribution details
+    dist_details = "Distribution Approaches:\n"
+    for i, dist in enumerate(distributions):
+        name = dist.get('name', f'Distribution {i}')
+        params = dist.get('parameters', {})
+        dist_details += f"{i+1}. {name}"
+        if params:
+            param_str = ", ".join([f"{k}={v:.3f}" for k, v in params.items()])
+            dist_details += f" ({param_str})"
+        dist_details += "\n"
+    
+    prompt_parts.append(dist_details)
+    
+    # Analysis task
+    analysis_task = """
+Your task is to:
+1. Analyze how well each approach captures the historical patterns
+2. Evaluate the reasonableness of each forecast given the context
+3. Consider the uncertainty quantification of each approach
+4. Recommend which distribution(s) provide the most reliable forecasts
+
+Provide a detailed comparison and your recommendation."""
+    
+    prompt_parts.append(analysis_task)
+    
+    return "\n\n".join(prompt_parts)
+
+
+def extract_time_series_classification_response(response: str) -> Optional[int]:
+    """
+    Extract class number from VLM response for time series classification.
+    
+    Args:
+        response: VLM response text
+        
+    Returns:
+        Extracted class number or None if not found
+    """
+    # Look for explicit final selection
+    final_match = re.search(r'final\s+(?:selection|choice):\s*(\d+)', response.lower())
+    if final_match:
+        return int(final_match.group(1))
+    
+    # Look for standalone numbers at the end
+    lines = response.strip().split('\n')
+    for line in reversed(lines):
+        line = line.strip()
+        if line.isdigit():
+            return int(line)
+        
+        # Look for "Class X" or "Option X" format
+        class_match = re.search(r'(?:class|option)\s*(\d+)', line.lower())
+        if class_match:
+            return int(class_match.group(1))
+    
+    # Look for any numbers in the response (last resort)
+    numbers = re.findall(r'\d+', response)
+    if numbers:
+        return int(numbers[-1])
+    
+    return None
+
+
+def extract_time_series_values(response: str) -> Optional[List[float]]:
+    """
+    Extract forecast values from VLM response for time series regression.
+    
+    Args:
+        response: VLM response text
+        
+    Returns:
+        List of forecast values or None if not found
+    """
+    # Look for comma-separated numbers
+    value_patterns = [
+        r'forecast\s+values?:\s*([\d.,\s-]+)',
+        r'predictions?:\s*([\d.,\s-]+)',
+        r'values?:\s*([\d.,\s-]+)'
+    ]
+    
+    for pattern in value_patterns:
+        match = re.search(pattern, response.lower())
+        if match:
+            value_str = match.group(1)
+            try:
+                values = [float(x.strip()) for x in value_str.split(',') if x.strip()]
+                if values:
+                    return values
+            except ValueError:
+                continue
+    
+    # Look for a line with comma-separated numbers
+    lines = response.split('\n')
+    for line in lines:
+        if ',' in line and re.search(r'[\d.-]+,\s*[\d.-]+', line):
+            try:
+                # Extract numbers from the line
+                numbers = re.findall(r'-?\d+\.?\d*', line)
+                if len(numbers) >= 2:
+                    values = [float(x) for x in numbers]
+                    return values
+            except ValueError:
+                continue
+    
+    return None
 
 
 def create_vlm_conversation(image, prompt: str) -> List[Dict]:

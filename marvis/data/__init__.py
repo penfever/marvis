@@ -39,6 +39,17 @@ from .dataset_tabular import (
     compute_baseline_probabilities
 )
 
+from .time_series import (
+    TimeSeriesDataset,
+    load_gift_eval_dataset,
+    load_multiple_gift_eval_datasets,
+    create_time_series_train_test_split,
+    prepare_time_series_for_visualization,
+    validate_gift_eval_environment,
+    get_available_datasets as get_available_time_series_datasets,
+    get_dataset_properties as get_time_series_dataset_properties
+)
+
 __all__ = [
     "load_dataset",
     "load_datasets",
@@ -61,5 +72,14 @@ __all__ = [
     "compute_frequency_distribution",
     "compute_label_frequency_mapping",
     "apply_label_mapping",
-    "compute_baseline_probabilities"
+    "compute_baseline_probabilities",
+    # Time series functionality
+    "TimeSeriesDataset",
+    "load_gift_eval_dataset",
+    "load_multiple_gift_eval_datasets",
+    "create_time_series_train_test_split",
+    "prepare_time_series_for_visualization",
+    "validate_gift_eval_environment",
+    "get_available_time_series_datasets",
+    "get_time_series_dataset_properties"
 ]

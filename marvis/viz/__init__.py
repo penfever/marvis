@@ -24,6 +24,9 @@ from .embeddings.pca import PCAVisualization
 from .decision.regions import DecisionRegionsVisualization
 from .patterns.frequent import FrequentPatternsVisualization
 
+# Time series visualizations
+from .time_series_distribution import TimeSeriesDistributionVisualization
+
 # t-SNE visualization functions
 from .tsne_functions import *
 
@@ -54,6 +57,9 @@ __all__ = [
     # Decision and pattern visualizations
     'DecisionRegionsVisualization',
     'FrequentPatternsVisualization',
+    
+    # Time series visualizations
+    'TimeSeriesDistributionVisualization',
     
     # t-SNE functions (automatically imported from tsne_functions)
     'create_tsne_visualization',
