@@ -94,7 +94,7 @@ class TimeSeriesDataset:
             List of time series dictionaries with 'target' and 'start' keys
         """
         try:
-            return list(self._gift_eval_dataset.train_data)
+            return list(self._gift_eval_dataset.training_dataset)
         except Exception as e:
             logger.error(f"Failed to get training data: {e}")
             return []
@@ -107,7 +107,9 @@ class TimeSeriesDataset:
             List of time series dictionaries with 'target' and 'start' keys
         """
         try:
-            return list(self._gift_eval_dataset.test_data)
+            test_data = self._gift_eval_dataset.test_data
+            # test_data is a TestData object, we need to iterate over it
+            return list(test_data.input)
         except Exception as e:
             logger.error(f"Failed to get test data: {e}")
             return []
