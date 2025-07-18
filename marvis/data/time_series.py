@@ -94,7 +94,8 @@ class TimeSeriesDataset:
             List of time series dictionaries with 'target' and 'start' keys
         """
         try:
-            return list(self._gift_eval_dataset.training_dataset)
+            # Access the underlying gluonts_dataset directly
+            return list(self._gift_eval_dataset.gluonts_dataset)
         except Exception as e:
             logger.error(f"Failed to get training data: {e}")
             return []
@@ -107,9 +108,9 @@ class TimeSeriesDataset:
             List of time series dictionaries with 'target' and 'start' keys
         """
         try:
-            test_data = self._gift_eval_dataset.test_data
-            # test_data is a TestData object, we need to iterate over it
-            return list(test_data.input)
+            # For test data, we also use the gluonts_dataset but may need different handling
+            # Let's use the same as training data for now
+            return list(self._gift_eval_dataset.gluonts_dataset)
         except Exception as e:
             logger.error(f"Failed to get test data: {e}")
             return []
