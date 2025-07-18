@@ -148,6 +148,7 @@ docs = [
 timeseries = [
     # Time series forecasting dependencies
     "gluonts>=0.14.0",
+    "gift-eval @ file://../gift-eval",  # Local gift-eval package
 ]
 
 dev = [
