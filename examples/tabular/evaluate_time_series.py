@@ -559,8 +559,8 @@ def main():
     try:
         logger.info(f"Loading VLM model: {args.vlm_model_id}")
         model_loader = ModelLoader()
-        vlm_model, vlm_tokenizer = model_loader.load_vlm_model(
-            model_id=args.vlm_model_id,
+        vlm_model = model_loader.load_vlm(
+            model_name=args.vlm_model_id,
             backend=args.backend,
             device=args.device
         )
