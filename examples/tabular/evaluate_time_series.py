@@ -174,6 +174,24 @@ def parse_args():
         action='store_true',
         help='Save visualization images'
     )
+    parser.add_argument(
+        '--save_sample_visualizations',
+        action='store_true',
+        default=False,
+        help='Save sample visualizations for debugging and analysis'
+    )
+    parser.add_argument(
+        '--visualization_save_cadence',
+        type=int,
+        default=1,
+        help='Save visualizations for every N samples (default: 1, i.e., save every visualization)'
+    )
+    parser.add_argument(
+        '--save_outputs',
+        action='store_true',
+        default=False,
+        help='Save prompts, responses, and other debugging outputs'
+    )
     
     # Evaluation parameters
     parser.add_argument(
@@ -397,9 +415,11 @@ def evaluate_time_series(
             
             # Save visualization if requested
             if args.save_visualizations:
+                # Clean dataset name for filename (replace slashes and other problematic chars)
+                clean_dataset_name = dataset.name.replace('/', '_').replace('\\', '_')
                 viz_path = os.path.join(
                     args.output_dir,
-                    f"{dataset.name}_{dataset.term}_series_{series_idx}_visualization.png"
+                    f"{clean_dataset_name}_{dataset.term}_series_{series_idx}_visualization.png"
                 )
                 viz_result.image.save(viz_path)
                 logger.info(f"Saved visualization to {viz_path}")
@@ -408,9 +428,43 @@ def evaluate_time_series(
             prompt = generate_time_series_classification_prompt(viz_result)
             
             # Get VLM prediction (class selection)
-            predicted_class = get_vlm_classification(
+            predicted_class, vlm_response = get_vlm_classification(
                 vlm_model, viz_result.image, prompt, args
             )
+            
+            # Save sample outputs if requested
+            if args.save_sample_visualizations and (series_idx % args.visualization_save_cadence == 0):
+                # Clean dataset name for filename (replace slashes and other problematic chars)
+                clean_dataset_name = dataset.name.replace('/', '_').replace('\\', '_')
+                # Save visualization
+                sample_viz_path = os.path.join(
+                    args.output_dir,
+                    f"sample_visualization_{clean_dataset_name}_{dataset.term}_series_{series_idx:03d}.png"
+                )
+                viz_result.image.save(sample_viz_path)
+                logger.info(f"Saved sample visualization to {sample_viz_path}")
+            
+            # Save outputs (prompts/responses) if requested
+            if args.save_outputs and (series_idx % args.visualization_save_cadence == 0):
+                # Clean dataset name for filename (replace slashes and other problematic chars)
+                clean_dataset_name = dataset.name.replace('/', '_').replace('\\', '_')
+                # Save prompt
+                prompt_path = os.path.join(
+                    args.output_dir,
+                    f"prompt_{clean_dataset_name}_{dataset.term}_series_{series_idx:03d}.txt"
+                )
+                with open(prompt_path, 'w') as f:
+                    f.write(prompt)
+                
+                # Save response
+                response_path = os.path.join(
+                    args.output_dir,
+                    f"response_{clean_dataset_name}_{dataset.term}_series_{series_idx:03d}.txt"
+                )
+                with open(response_path, 'w') as f:
+                    f.write(vlm_response or "No response")
+                
+                logger.info(f"Saved prompt and response for series {series_idx}")
             
             # Sample from selected distribution
             if predicted_class is not None and 0 <= predicted_class < len(visualization._distributions):
@@ -435,6 +489,9 @@ def evaluate_time_series(
                     test_targets = test_full_series[-forecast_horizon:]
                 
                 logger.debug(f"Train series length: {len(train_series)}, Test full series length: {len(test_full_series)}, Ground truth length: {len(test_targets)}, Prediction length: {len(predictions)}")
+                
+                # Sanity check: Assert that test set size matches prediction size
+                assert len(test_targets) == len(predictions), f"Test set size ({len(test_targets)}) must match prediction size ({len(predictions)}) for proper evaluation"
                 
                 # Compute metrics
                 metrics = compute_time_series_metrics(
@@ -529,8 +586,12 @@ def generate_time_series_classification_prompt(viz_result) -> str:
     )
 
 
-def get_vlm_classification(model, image, prompt, args) -> Optional[int]:
-    """Get classification from VLM model."""
+def get_vlm_classification(model, image, prompt, args) -> Tuple[Optional[int], Optional[str]]:
+    """Get classification from VLM model.
+    
+    Returns:
+        Tuple of (predicted_class, response_text)
+    """
     try:
         from marvis.utils.vlm_prompting import extract_time_series_classification_response, create_vlm_conversation
         from marvis.utils.model_loader import GenerationConfig
@@ -554,14 +615,14 @@ def get_vlm_classification(model, image, prompt, args) -> Optional[int]:
         class_num = extract_time_series_classification_response(response)
         
         if class_num is not None:
-            return class_num
+            return class_num, response
         else:
             logger.warning(f"Could not extract class number from VLM response: {response}")
-            return None
+            return None, response
             
     except Exception as e:
         logger.error(f"Error getting VLM classification: {e}")
-        return None
+        return None, None
 
 
 def compute_time_series_metrics(predictions, ground_truth, full_series) -> Dict[str, float]:
