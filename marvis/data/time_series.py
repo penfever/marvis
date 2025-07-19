@@ -30,7 +30,7 @@ class TimeSeriesDataset:
         name: str,
         term: str = "short",
         gift_eval_path: Optional[str] = None,
-        to_univariate: bool = True
+        to_univariate: Optional[bool] = None
     ):
         """
         Initialize time series dataset.
@@ -39,11 +39,11 @@ class TimeSeriesDataset:
             name: Dataset name (e.g., 'm4_weekly', 'electricity/H')
             term: Evaluation term ('short', 'medium', 'long')
             gift_eval_path: Path to gift-eval installation
-            to_univariate: Whether to convert multivariate to univariate
+            to_univariate: Whether to convert multivariate to univariate.
+                          If None, automatically detect based on dataset dimensionality.
         """
         self.name = name
         self.term = term
-        self.to_univariate = to_univariate
         
         # Try to import gift-eval
         if gift_eval_path:
@@ -51,6 +51,16 @@ class TimeSeriesDataset:
         
         try:
             from gift_eval.data import Dataset as GiftEvalDataset
+            
+            # Auto-detect univariate requirement if not specified
+            if to_univariate is None:
+                # First, check target dimensionality without transformation
+                temp_dataset = GiftEvalDataset(name=name, term=term, to_univariate=False)
+                target_dim = temp_dataset.target_dim
+                to_univariate = target_dim > 1
+                logger.info(f"Auto-detected to_univariate={to_univariate} for {name} (target_dim={target_dim})")
+            
+            self.to_univariate = to_univariate
             self._gift_eval_dataset = GiftEvalDataset(
                 name=name,
                 term=term,
@@ -228,7 +238,7 @@ def load_gift_eval_dataset(
     dataset_name: str,
     term: str = "short",
     gift_eval_path: Optional[str] = None,
-    to_univariate: bool = True
+    to_univariate: Optional[bool] = None
 ) -> TimeSeriesDataset:
     """
     Load a gift-eval dataset for time series processing.
@@ -237,7 +247,8 @@ def load_gift_eval_dataset(
         dataset_name: Name of the dataset (e.g., 'm4_weekly', 'electricity/H')
         term: Evaluation term ('short', 'medium', 'long')
         gift_eval_path: Path to gift-eval installation (optional if in PYTHONPATH)
-        to_univariate: Whether to convert multivariate to univariate
+        to_univariate: Whether to convert multivariate to univariate.
+                      If None, automatically detect based on dataset dimensionality.
         
     Returns:
         TimeSeriesDataset instance
@@ -254,7 +265,7 @@ def load_multiple_gift_eval_datasets(
     dataset_names: List[str],
     terms: Optional[List[str]] = None,
     gift_eval_path: Optional[str] = None,
-    to_univariate: bool = True
+    to_univariate: Optional[bool] = None
 ) -> List[TimeSeriesDataset]:
     """
     Load multiple gift-eval datasets.
@@ -263,7 +274,8 @@ def load_multiple_gift_eval_datasets(
         dataset_names: List of dataset names
         terms: List of terms for each dataset (if None, uses 'short' for all)
         gift_eval_path: Path to gift-eval installation
-        to_univariate: Whether to convert multivariate to univariate
+        to_univariate: Whether to convert multivariate to univariate.
+                      If None, automatically detect based on dataset dimensionality.
         
     Returns:
         List of TimeSeriesDataset instances

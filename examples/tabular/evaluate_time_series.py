@@ -288,8 +288,7 @@ def load_datasets(args) -> List[TimeSeriesDataset]:
     datasets = load_multiple_gift_eval_datasets(
         dataset_names=dataset_names,
         terms=terms,
-        gift_eval_path=args.gift_eval_path,
-        to_univariate=True
+        gift_eval_path=args.gift_eval_path
     )
     
     logger.info(f"Successfully loaded {len(datasets)} datasets")
