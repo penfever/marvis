@@ -376,6 +376,48 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         
         return distributions[:self._n_distributions]
     
+    def _is_forecast_reasonable(self, forecast: np.ndarray, historical_data: np.ndarray) -> bool:
+        """
+        Check if a forecast trajectory is reasonable and not erratic.
+        
+        Args:
+            forecast: Forecast sequence to validate
+            historical_data: Historical time series data for context
+            
+        Returns:
+            True if forecast is reasonable, False if it should be filtered out
+        """
+        if len(forecast) == 0:
+            return False
+        
+        # Calculate historical statistics for reference
+        hist_mean = np.mean(historical_data)
+        hist_std = np.std(historical_data)
+        hist_range = np.max(historical_data) - np.min(historical_data)
+        
+        # Check for extreme outliers (more than 5 standard deviations from historical mean)
+        outlier_threshold = 5 * hist_std
+        if np.any(np.abs(forecast - hist_mean) > outlier_threshold):
+            return False
+        
+        # Check for unrealistic volatility (forecast std > 3x historical std)
+        forecast_std = np.std(forecast)
+        if forecast_std > 3 * hist_std and hist_std > 0:
+            return False
+        
+        # Check for extreme jumps between consecutive points
+        if len(forecast) > 1:
+            jumps = np.abs(np.diff(forecast))
+            # If any jump is more than 2x the historical range, it's probably unrealistic
+            if np.any(jumps > 2 * hist_range) and hist_range > 0:
+                return False
+        
+        # Check for infinite or NaN values
+        if not np.all(np.isfinite(forecast)):
+            return False
+        
+        return True
+    
     def fit_transform(self, X: np.ndarray, y: Optional[np.ndarray] = None, **kwargs) -> np.ndarray:
         """
         Fit distributions to time series data.
@@ -476,6 +518,10 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         legend_parts = []
         class_names = []
         
+        valid_distributions = []
+        valid_forecasts = []
+        valid_colors = []
+        
         for i, (dist, color) in enumerate(zip(self._distributions, colors)):
             # Generate forecast sequence
             forecast = dist.forecast_sequence(
@@ -484,16 +530,26 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                 random_state=42 + i
             )
             
+            # Validate forecast trajectory
+            if self._is_forecast_reasonable(forecast, data):
+                valid_distributions.append((i, dist))
+                valid_forecasts.append(forecast)
+                valid_colors.append(color)
+            else:
+                logger.warning(f"Filtered out erratic trajectory for distribution {i}: {dist.name}")
+        
+        # Plot only valid forecast paths
+        for (orig_idx, dist), forecast, color in zip(valid_distributions, valid_forecasts, valid_colors):
             # Plot forecast line
             ax.plot(forecast_time, forecast, 'o-', color=color, linewidth=2, 
-                    markersize=3, label=f"Class {i}: {dist.name}", alpha=0.9)
+                    markersize=3, label=f"Class {orig_idx}: {dist.name}", alpha=0.9)
             
             # Add confidence bands if enabled
             if self._show_confidence_bands:
                 # Generate multiple forecast samples for confidence band
                 n_samples = 50
                 forecast_samples = np.array([
-                    dist.forecast_sequence(forecast_horizon, last_value, random_state=42 + i + j)
+                    dist.forecast_sequence(forecast_horizon, last_value, random_state=42 + orig_idx + j)
                     for j in range(n_samples)
                 ])
                 
@@ -504,9 +560,9 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                 ax.fill_between(forecast_time, lower, upper, color=color, alpha=0.2)
             
             # Store class information
-            class_names.append(f"Class {i}: {dist.name}")
+            class_names.append(f"Class {orig_idx}: {dist.name}")
             import matplotlib.colors as mcolors
-            legend_parts.append(f"Class {i} (Color: {mcolors.to_hex(color)}): {dist.name}")
+            legend_parts.append(f"Class {orig_idx} (Color: {mcolors.to_hex(color)}): {dist.name}")
         
         # Highlight specific time points if requested
         if highlight_indices:
@@ -519,15 +575,70 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         ax.axvline(x=forecast_start - 0.5, color='gray', linestyle='--', alpha=0.7, 
                    label='Forecast Start')
         
-        # Styling
+        # Styling and axis improvements
         ax.set_xlabel('Time')
         ax.set_ylabel('Value')
-        ax.set_title(f'Time Series with {len(self._distributions)} Distribution-Based Forecast Paths')
+        ax.set_title(f'Time Series with {len(valid_distributions)} Distribution-Based Forecast Paths')
         ax.grid(True, alpha=0.3)
+        
+        # Apply symlog scale to y-axis for better handling of wide value ranges
+        # This is like log scale but handles negative values and values near zero
+        all_values = np.concatenate([data, *valid_forecasts]) if valid_forecasts else data
+        value_range = np.max(all_values) - np.min(all_values)
+        if value_range > 0:
+            # Use symlog only if we have a significant range
+            threshold = value_range / 100  # 1% of range as linear threshold
+            ax.set_yscale('symlog', linthresh=threshold)
+        
+        # Create weighted x-axis to emphasize forecast section
+        # Compress historical section, expand forecast section
+        total_time_points = len(time_points) + len(forecast_time)
+        hist_weight = 0.4  # Historical data gets 40% of x-axis space
+        forecast_weight = 0.6  # Forecast gets 60% of x-axis space
+        
+        # Create new weighted x positions
+        hist_positions = np.linspace(0, hist_weight, len(time_points))
+        forecast_positions = np.linspace(hist_weight, 1.0, len(forecast_time))
+        
+        # Clear the current plot and replot with weighted positions
+        ax.clear()
+        
+        # Replot historical data with weighted x positions
+        ax.plot(hist_positions, data, 'o-', color='black', linewidth=2, markersize=4, 
+                label='Historical Data', alpha=0.8)
+        
+        # Replot forecast paths with weighted x positions
+        for (orig_idx, dist), forecast, color in zip(valid_distributions, valid_forecasts, valid_colors):
+            ax.plot(forecast_positions, forecast, 'o-', color=color, linewidth=2, 
+                    markersize=3, label=f"Class {orig_idx}: {dist.name}", alpha=0.9)
+        
+        # Add vertical line separating history from forecast at weighted position
+        ax.axvline(x=hist_weight, color='gray', linestyle='--', alpha=0.7, 
+                   label='Forecast Start')
+        
+        # Reapply styling with weighted axes
+        ax.set_xlabel('Time (Weighted: Historical 40% | Forecast 60%)')
+        ax.set_ylabel('Value (Symlog Scale)')
+        ax.set_title(f'Time Series with {len(valid_distributions)} Distribution-Based Forecast Paths')
+        ax.grid(True, alpha=0.3)
+        
+        # Apply symlog scale again after clearing
+        if value_range > 0:
+            threshold = value_range / 100
+            ax.set_yscale('symlog', linthresh=threshold)
+        
         ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         
-        # Create legend text for VLM
-        legend_text = "Available forecast patterns:\n" + "\n".join(legend_parts)
+        # Create legend text for VLM using valid distributions
+        valid_legend_parts = []
+        valid_class_names = []
+        for (orig_idx, dist), color in zip(valid_distributions, valid_colors):
+            import matplotlib.colors as mcolors
+            valid_legend_parts.append(f"Class {orig_idx} (Color: {mcolors.to_hex(color)}): {dist.name}")
+            valid_class_names.append(f"Class {orig_idx}: {dist.name}")
+        
+        legend_text = "Available forecast patterns:\n" + "\n".join(valid_legend_parts)
+        class_names = valid_class_names
         
         plt.tight_layout()
         
@@ -550,18 +661,22 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         
         plot_time = time.time() - plot_start
         
-        # Create metadata
+        # Create metadata using valid distributions
+        valid_indices = [orig_idx for orig_idx, _ in valid_distributions]
+        valid_dist_objects = [dist for _, dist in valid_distributions]
+        
         metadata = {
             'plot_type': 'time_series_classification',
-            'visible_classes': list(range(len(self._distributions))),
-            'all_classes': list(range(len(self._distributions))),
+            'visible_classes': valid_indices,
+            'all_classes': valid_indices,
             'class_names': class_names,
-            'n_distributions': len(self._distributions),
+            'n_distributions': len(valid_distributions),
             'forecast_horizon': self._forecast_horizon or 48,
             'distribution_params': [
                 {'df': d.df, 'loc': d.loc, 'scale': d.scale, 'name': d.name}
-                for d in self._distributions
-            ]
+                for d in valid_dist_objects
+            ],
+            'filtered_out_count': len(self._distributions) - len(valid_distributions)
         }
         
         # Create result
@@ -580,6 +695,9 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
             metadata=metadata
         )
         
+        # Store the valid distributions mapping for predict_from_class
+        self._valid_distributions_map = {orig_idx: dist for orig_idx, dist in valid_distributions}
+        
         self._last_result = result
         return result
     
@@ -588,7 +706,7 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         Generate prediction from a selected class/distribution.
         
         Args:
-            class_index: Index of the selected distribution
+            class_index: Index of the selected distribution (from visible classes)
             random_state: Random seed for reproducible predictions
             
         Returns:
@@ -597,10 +715,18 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         if not self._fitted or not self._distributions:
             raise ValueError("Must call fit_transform before prediction")
         
-        if class_index < 0 or class_index >= len(self._distributions):
-            raise ValueError(f"Invalid class index {class_index}. Available: 0 to {len(self._distributions)-1}")
+        # Use valid distributions map if available (after filtering)
+        if hasattr(self, '_valid_distributions_map') and self._valid_distributions_map:
+            if class_index not in self._valid_distributions_map:
+                available_classes = list(self._valid_distributions_map.keys())
+                raise ValueError(f"Invalid class index {class_index}. Available classes after filtering: {available_classes}")
+            selected_dist = self._valid_distributions_map[class_index]
+        else:
+            # Fallback to original behavior
+            if class_index < 0 or class_index >= len(self._distributions):
+                raise ValueError(f"Invalid class index {class_index}. Available: 0 to {len(self._distributions)-1}")
+            selected_dist = self._distributions[class_index]
         
-        selected_dist = self._distributions[class_index]
         last_value = self._training_data[-1]
         
         forecast_horizon = self._forecast_horizon or 48
