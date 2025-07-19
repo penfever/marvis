@@ -623,13 +623,13 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
             
             mixture_dist = mixture_fitter.create_value_mixture_distribution(
                 keypoints, keypoints, 
-                f"Full Resolution Mixture ({len(keypoints)}pts)",
+                f"FullRes ({len(keypoints)}pts)",
                 selection_criterion='bic'
             )
             
             # Update name with semantic description
             semantic_name = generate_semantic_value_mixture_name(mixture_dist, keypoints)
-            mixture_dist.name = f"Full Resolution Mixture: {semantic_name}"
+            mixture_dist.name = f"FullRes: {semantic_name}"
             
             distributions.append(mixture_dist)
             logger.info(f"Generated full resolution mixture with {mixture_dist.n_components} components, {len(keypoints)} keypoints")
@@ -666,13 +666,13 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                 
                 mixture_dist = mixture_fitter.create_value_mixture_distribution(
                     keypoints, keypoints,
-                    f"{strategy.capitalize()} Mixture ({len(keypoints)}pts)",
+                    f"{strategy.capitalize()}({len(keypoints)}pts)",
                     selection_criterion='bic'
                 )
                 
                 # Update name with semantic description
                 semantic_name = generate_semantic_value_mixture_name(mixture_dist, keypoints)
-                mixture_dist.name = f"{strategy.capitalize()} Mixture ({len(keypoints)}pts): {semantic_name}"
+                mixture_dist.name = f"{strategy.capitalize()}({len(keypoints)}pts): {semantic_name}"
                 
                 distributions.append(mixture_dist)
                 logger.info(f"Generated {strategy} mixture with {mixture_dist.n_components} components, {len(keypoints)} keypoints")

@@ -409,19 +409,19 @@ def generate_semantic_value_mixture_name(distribution: ValueMixtureDistribution,
     
     # Classify central tendency relative to training range
     if avg_loc < value_center - 0.2 * (value_max - value_min):
-        level_desc = "Low-Value"
+        level_desc = "Low"
     elif avg_loc > value_center + 0.2 * (value_max - value_min):
-        level_desc = "High-Value"
+        level_desc = "High"
     else:
-        level_desc = "Mid-Value"
+        level_desc = "Mid"
     
     # Analyze mixture complexity
     if n_comp == 1:
-        complexity_desc = "Focused"
+        complexity_desc = "Focus"
     elif n_comp <= 3:
-        complexity_desc = "Multi-Modal" 
+        complexity_desc = "Multi" 
     else:
-        complexity_desc = "Complex"
+        complexity_desc = "Cmplx"
     
     # Analyze spread from component scales
     avg_scale = np.mean([comp.scale for comp in distribution.components])
@@ -433,6 +433,6 @@ def generate_semantic_value_mixture_name(distribution: ValueMixtureDistribution,
     elif relative_scale > 0.3:
         spread_desc = "Wide"
     else:
-        spread_desc = "Moderate"
+        spread_desc = "Mod"
     
-    return f"{level_desc} {complexity_desc} {spread_desc} Distribution"
+    return f"{level_desc} {complexity_desc} {spread_desc}"
