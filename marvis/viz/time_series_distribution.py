@@ -16,6 +16,11 @@ from scipy.optimize import minimize
 import warnings
 
 from .base import BaseVisualization, VisualizationConfig, VisualizationResult
+from .value_mixture_distribution import (
+    ValueMixtureDistribution, 
+    ValueMixtureFitter, 
+    generate_semantic_value_mixture_name
+)
 
 logger = logging.getLogger(__name__)
 
@@ -79,9 +84,11 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         self._n_keypoints = self.config.extra_params.get('n_keypoints', 8)
         self._keypoint_strategy = self.config.extra_params.get('keypoint_strategy', 'uniform')
         self._show_confidence_bands = self.config.extra_params.get('show_confidence_bands', True)
+        self._use_mixture_model = self.config.extra_params.get('use_mixture_model', True)
+        self._max_mixture_components = self.config.extra_params.get('max_mixture_components', 3)
         
-        # Fitted distributions
-        self._distributions: List[StudentTDistribution] = []
+        # Fitted distributions (can be simple or mixture)
+        self._distributions: List[Union[StudentTDistribution, ValueMixtureDistribution]] = []
         self._training_data = None
         self._time_points = None
         
@@ -117,19 +124,23 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                 f"Each distribution represents a potential forecast pattern that can be "
                 f"selected for predicting the next {self._forecast_horizon} values.")
     
-    def _select_keypoints(self, data: np.ndarray, strategy: str = 'uniform') -> np.ndarray:
+    def _select_keypoints(self, data: np.ndarray, strategy: str = 'uniform', n_keypoints: Optional[int] = None) -> np.ndarray:
         """
         Select keypoints from time series data for distribution fitting.
         
         Args:
             data: Time series values [n_timesteps]
             strategy: Keypoint selection strategy
+            n_keypoints: Number of keypoints to select (if None, uses self._n_keypoints)
             
         Returns:
             Indices of selected keypoints
         """
         n_points = len(data)
-        n_keypoints = min(self._n_keypoints, n_points)
+        if n_keypoints is None:
+            n_keypoints = min(self._n_keypoints, n_points)
+        else:
+            n_keypoints = min(n_keypoints, n_points)
         
         if strategy == 'uniform':
             # Uniformly spaced keypoints
@@ -159,23 +170,52 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
             else:
                 indices = all_points
                 
-        elif strategy == 'changepoints':
-            # Use simple changepoint detection
-            # Compute differences
-            diffs = np.diff(data)
-            
-            # Find points where trend changes significantly
-            change_scores = np.abs(np.diff(diffs))
-            
-            if len(change_scores) > 0:
-                # Select top change points
-                top_changes = np.argsort(change_scores)[-min(n_keypoints-2, len(change_scores)):]
-                # Add 1 to account for diff operation
-                indices = np.concatenate([[0], top_changes + 1, [n_points - 1]])
-                indices = np.sort(np.unique(indices))
+        elif strategy == 'random_subset':
+            # Select random subset of time points with guaranteed start/end
+            # This provides diversity while staying stable
+            if n_keypoints <= 2:
+                indices = np.array([0, n_points - 1])
             else:
-                # Fallback to uniform
-                indices = np.linspace(0, n_points - 1, n_keypoints, dtype=int)
+                # Always include start and end
+                indices = [0, n_points - 1]
+                
+                # Randomly select interior points
+                interior_points = np.arange(1, n_points - 1)
+                n_interior = min(n_keypoints - 2, len(interior_points))
+                
+                if n_interior > 0:
+                    np.random.seed(42)  # For reproducibility
+                    selected_interior = np.random.choice(
+                        interior_points, size=n_interior, replace=False
+                    )
+                    indices.extend(selected_interior)
+                
+                indices = np.sort(np.unique(np.array(indices)))
+        
+        elif strategy == 'percentile':
+            # Select keypoints based on percentiles of the data values
+            # This captures the full range of volatility in the data
+            if n_keypoints <= 2:
+                # Always include start and end
+                indices = np.array([0, n_points - 1])
+            else:
+                # Create percentile-based selection
+                # Always include start and end points
+                percentiles = np.linspace(0, 100, n_keypoints)
+                value_percentiles = np.percentile(data, percentiles)
+                
+                # Find indices closest to these percentile values
+                indices = []
+                indices.append(0)  # Always start
+                
+                for perc_val in value_percentiles[1:-1]:  # Skip first and last
+                    # Find closest value in data
+                    closest_idx = np.argmin(np.abs(data - perc_val))
+                    indices.append(closest_idx)
+                
+                indices.append(n_points - 1)  # Always end
+                indices = np.unique(np.array(indices))
+                
         else:
             raise ValueError(f"Unknown keypoint strategy: {strategy}")
             
@@ -312,15 +352,51 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
             List of fitted distributions
         """
         distributions = []
+        n_points = len(data)
         
-        # Strategy 1: Different keypoint strategies
-        strategies = ['uniform', 'extrema']
-        if len(data) > 10:
-            strategies.append('changepoints')
+        # First trajectory: Use ALL data points as keypoints for maximum fidelity
+        try:
+            # Use every single data point for maximum resolution
+            all_keypoint_indices = np.arange(n_points)
+            
+            keypoints = data[all_keypoint_indices]
+            params = self._fit_student_t_to_keypoints(keypoints)
+            name = self._generate_semantic_name(params, keypoints)
+            
+            dist = StudentTDistribution(
+                df=params['df'],
+                loc=params['loc'],
+                scale=params['scale'],
+                keypoints=keypoints,
+                name=f"Full Resolution: {name}"
+            )
+            distributions.append(dist)
+            logger.info(f"Generated full resolution distribution with {len(keypoints)} keypoints")
+        except Exception as e:
+            logger.warning(f"Failed to fit full resolution distribution: {e}")
         
-        for strategy in strategies[:min(3, self._n_distributions)]:
+        # Remaining trajectories: Use variable keypoint sampling with random percentiles
+        np.random.seed(42)  # For reproducible results
+        
+        # Define keypoint count ranges for different volatility levels
+        keypoint_ranges = [
+            (5, 10),   # Low resolution - captures broad trends
+            (10, 20),  # Medium resolution - captures moderate detail
+            (20, 35),  # High resolution - captures fine detail
+        ]
+        
+        strategies = ['percentile', 'extrema', 'uniform', 'random_subset']
+        
+        for i in range(min(self._n_distributions - 1, 4)):  # -1 because we already have full resolution
             try:
-                keypoint_indices = self._select_keypoints(data, strategy)
+                # Select strategy and keypoint count
+                strategy = strategies[i % len(strategies)]
+                keypoint_range = keypoint_ranges[i % len(keypoint_ranges)]
+                
+                # Randomly sample number of keypoints within range
+                n_keypoints = np.random.randint(keypoint_range[0], keypoint_range[1] + 1)
+                
+                keypoint_indices = self._select_keypoints(data, strategy, n_keypoints)
                 keypoints = data[keypoint_indices]
                 params = self._fit_student_t_to_keypoints(keypoints)
                 name = self._generate_semantic_name(params, keypoints)
@@ -330,25 +406,25 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                     loc=params['loc'],
                     scale=params['scale'],
                     keypoints=keypoints,
-                    name=f"{strategy.capitalize()}: {name}"
+                    name=f"{strategy.capitalize()} ({len(keypoints)}pts): {name}"
                 )
                 distributions.append(dist)
+                logger.info(f"Generated {strategy} distribution with {len(keypoints)} keypoints")
             except Exception as e:
-                logger.warning(f"Failed to fit distribution with strategy {strategy}: {e}")
+                logger.warning(f"Failed to fit distribution {i} with strategy {strategy}: {e}")
         
-        # Strategy 2: Different parameter variations for remaining slots
-        if len(distributions) < self._n_distributions:
-            # Use the best distribution so far and create variations
-            base_dist = distributions[0] if distributions else None
+        # If we still need more distributions, create parameter variations
+        if len(distributions) < self._n_distributions and distributions:
+            base_dist = distributions[0]  # Use the full resolution as base
             
-            if base_dist is not None:
-                for i in range(self._n_distributions - len(distributions)):
-                    # Create variations by adjusting parameters
-                    variation_factor = 1.0 + 0.3 * (i + 1)  # 1.3, 1.6, 1.9, ...
+            for i in range(self._n_distributions - len(distributions)):
+                try:
+                    # Create variations by adjusting scale parameter
+                    variation_factor = 1.5 + 0.5 * i  # 1.5, 2.0, 2.5, ...
                     
-                    # Vary scale (volatility)
+                    # Vary scale (volatility) while keeping other parameters
                     new_scale = base_dist.scale * variation_factor
-                    new_name = f"Variation {i+1}: High Volatility Pattern"
+                    new_name = f"Scaled Volatility ({variation_factor:.1f}x): High Variance Pattern"
                     
                     dist = StudentTDistribution(
                         df=base_dist.df,
@@ -358,10 +434,12 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                         name=new_name
                     )
                     distributions.append(dist)
+                except Exception as e:
+                    logger.warning(f"Failed to create variation {i}: {e}")
         
-        # Ensure we have at least one distribution
+        # Ensure we have at least one distribution (fallback)
         if not distributions:
-            # Create a default distribution
+            logger.warning("No distributions generated successfully, creating default")
             mean_increment = np.mean(np.diff(data)) if len(data) > 1 else 0.0
             std_increment = np.std(np.diff(data)) if len(data) > 1 else 1.0
             
@@ -369,54 +447,242 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                 df=4.0,
                 loc=mean_increment,
                 scale=std_increment,
-                keypoints=data[::max(1, len(data)//4)],
+                keypoints=data[::max(1, len(data)//8)],
                 name="Default: Random Walk Pattern"
             )
             distributions.append(dist)
         
         return distributions[:self._n_distributions]
     
-    def _is_forecast_reasonable(self, forecast: np.ndarray, historical_data: np.ndarray) -> bool:
+    def _generate_mixture_distributions(self, data: np.ndarray) -> List[ValueMixtureDistribution]:
         """
-        Check if a forecast trajectory is reasonable and not erratic.
+        Generate multiple Student's T mixture distributions for the time series.
         
         Args:
-            forecast: Forecast sequence to validate
-            historical_data: Historical time series data for context
+            data: Time series values [n_timesteps]
             
         Returns:
-            True if forecast is reasonable, False if it should be filtered out
+            List of fitted mixture distributions
+        """
+        distributions = []
+        n_points = len(data)
+        
+        # Initialize mixture fitter
+        mixture_fitter = ValueMixtureFitter(
+            max_components=self._max_mixture_components,
+            min_components=1
+        )
+        
+        # First trajectory: Use high resolution keypoints for maximum fidelity
+        try:
+            # Use every single data point for maximum resolution  
+            all_keypoint_indices = np.arange(n_points)
+            keypoints = data[all_keypoint_indices]
+            
+            mixture_dist = mixture_fitter.create_value_mixture_distribution(
+                keypoints, keypoints, 
+                f"Full Resolution Mixture ({len(keypoints)}pts)",
+                selection_criterion='bic'
+            )
+            
+            # Update name with semantic description
+            semantic_name = generate_semantic_value_mixture_name(mixture_dist, keypoints)
+            mixture_dist.name = f"Full Resolution Mixture: {semantic_name}"
+            
+            distributions.append(mixture_dist)
+            logger.info(f"Generated full resolution mixture with {mixture_dist.n_components} components, {len(keypoints)} keypoints")
+        except Exception as e:
+            logger.warning(f"Failed to fit full resolution mixture: {e}")
+        
+        # Remaining trajectories: Use variable keypoint sampling with random percentiles
+        np.random.seed(42)  # For reproducible results
+        
+        # Define keypoint count ranges for different resolution levels
+        keypoint_ranges = [
+            (5, 10),   # Low resolution - captures broad trends
+            (10, 20),  # Medium resolution - captures moderate detail
+            (20, 35),  # High resolution - captures fine detail
+        ]
+        
+        strategies = ['percentile', 'extrema', 'uniform', 'random_subset']
+        
+        for i in range(min(self._n_distributions - 1, 4)):  # -1 because we already have full resolution
+            try:
+                # Select strategy and keypoint count
+                strategy = strategies[i % len(strategies)]
+                keypoint_range = keypoint_ranges[i % len(keypoint_ranges)]
+                
+                # Randomly sample number of keypoints within range
+                n_keypoints = np.random.randint(keypoint_range[0], keypoint_range[1] + 1)
+                
+                keypoint_indices = self._select_keypoints(data, strategy, n_keypoints)
+                keypoints = data[keypoint_indices]
+                
+                if len(keypoints) < 2:
+                    logger.warning(f"Too few keypoints for mixture {i}, skipping")
+                    continue
+                
+                mixture_dist = mixture_fitter.create_value_mixture_distribution(
+                    keypoints, keypoints,
+                    f"{strategy.capitalize()} Mixture ({len(keypoints)}pts)",
+                    selection_criterion='bic'
+                )
+                
+                # Update name with semantic description
+                semantic_name = generate_semantic_value_mixture_name(mixture_dist, keypoints)
+                mixture_dist.name = f"{strategy.capitalize()} Mixture ({len(keypoints)}pts): {semantic_name}"
+                
+                distributions.append(mixture_dist)
+                logger.info(f"Generated {strategy} mixture with {mixture_dist.n_components} components, {len(keypoints)} keypoints")
+            except Exception as e:
+                logger.warning(f"Failed to fit mixture {i} with strategy {strategy}: {e}")
+        
+        # If we still need more distributions, create parameter variations
+        if len(distributions) < self._n_distributions and distributions:
+            base_dist = distributions[0]  # Use the full resolution as base
+            
+            for i in range(self._n_distributions - len(distributions)):
+                try:
+                    # Create variations by adjusting mixture component scales
+                    variation_factor = 1.5 + 0.5 * i  # 1.5, 2.0, 2.5, ...
+                    
+                    # Create new components with scaled volatility
+                    new_components = []
+                    for j, comp in enumerate(base_dist.components):
+                        from .value_mixture_distribution import ValueMixtureComponent
+                        new_comp = ValueMixtureComponent(
+                            df=comp.df,
+                            loc=comp.loc,
+                            scale=comp.scale * variation_factor,
+                            weight=comp.weight,
+                            name=f"ScaledVol_{j+1}"
+                        )
+                        new_components.append(new_comp)
+                    
+                    scaled_dist = ValueMixtureDistribution(
+                        components=new_components,
+                        keypoints=base_dist.keypoints,
+                        name=f"Scaled Volatility ({variation_factor:.1f}x): High Variance Mixture",
+                        value_range=base_dist.value_range
+                    )
+                    distributions.append(scaled_dist)
+                except Exception as e:
+                    logger.warning(f"Failed to create mixture variation {i}: {e}")
+        
+        # Ensure we have at least one distribution (fallback)
+        if not distributions:
+            logger.warning("No mixture distributions generated successfully, creating default")
+            
+            # Create default single-component mixture
+            default_values = data[::max(1, len(data)//8)]
+            
+            try:
+                default_dist = mixture_fitter.create_value_mixture_distribution(
+                    default_values, default_values,
+                    "Default Mixture: Value-based Pattern",
+                    selection_criterion='bic'
+                )
+                distributions.append(default_dist)
+            except Exception as e:
+                logger.error(f"Failed to create default mixture: {e}")
+                # Ultimate fallback - create a very simple mixture manually
+                from .value_mixture_distribution import ValueMixtureComponent
+                default_comp = ValueMixtureComponent(
+                    df=4.0,
+                    loc=np.mean(default_values) if len(default_values) > 0 else 0.0,
+                    scale=np.std(default_values) if len(default_values) > 0 else 1.0,
+                    weight=1.0,
+                    name="Default_Component"
+                )
+                default_dist = ValueMixtureDistribution(
+                    components=[default_comp],
+                    keypoints=default_values,
+                    name="Default: Single Component Mixture",
+                    value_range=(np.min(data), np.max(data))
+                )
+                distributions.append(default_dist)
+        
+        return distributions[:self._n_distributions]
+    
+    def _clip_forecast_to_training_bounds(self, forecast: np.ndarray, historical_data: np.ndarray) -> np.ndarray:
+        """
+        Clip forecast values to reasonable bounds based on training data characteristics.
+        
+        Instead of filtering out trajectories, this preserves the shape while constraining
+        extreme values to be within the observed range of the training data.
+        
+        Args:
+            forecast: Forecast sequence to clip
+            historical_data: Historical time series data for reference bounds
+            
+        Returns:
+            Clipped forecast sequence with same shape but bounded values
         """
         if len(forecast) == 0:
-            return False
+            return forecast
         
-        # Calculate historical statistics for reference
+        # Calculate training data bounds
+        hist_min = np.min(historical_data)
+        hist_max = np.max(historical_data)
         hist_mean = np.mean(historical_data)
         hist_std = np.std(historical_data)
-        hist_range = np.max(historical_data) - np.min(historical_data)
         
-        # Check for extreme outliers (more than 5 standard deviations from historical mean)
-        outlier_threshold = 5 * hist_std
-        if np.any(np.abs(forecast - hist_mean) > outlier_threshold):
-            return False
+        # Define reasonable bounds based on training data
+        # Allow some extrapolation beyond observed range, but not too extreme
+        extrapolation_factor = 1.5  # Allow 50% extrapolation beyond observed range
+        hist_range = hist_max - hist_min
         
-        # Check for unrealistic volatility (forecast std > 3x historical std)
-        forecast_std = np.std(forecast)
-        if forecast_std > 3 * hist_std and hist_std > 0:
-            return False
+        # Set bounds: training min/max +/- some extrapolation
+        lower_bound = hist_min - (extrapolation_factor * hist_range)
+        upper_bound = hist_max + (extrapolation_factor * hist_range)
         
-        # Check for extreme jumps between consecutive points
-        if len(forecast) > 1:
-            jumps = np.abs(np.diff(forecast))
-            # If any jump is more than 2x the historical range, it's probably unrealistic
-            if np.any(jumps > 2 * hist_range) and hist_range > 0:
-                return False
+        # Also limit based on standard deviations to handle extreme outliers
+        std_bound_lower = hist_mean - 6 * hist_std  # 6 sigma lower bound
+        std_bound_upper = hist_mean + 6 * hist_std  # 6 sigma upper bound
         
-        # Check for infinite or NaN values
-        if not np.all(np.isfinite(forecast)):
-            return False
+        # Use the more conservative (tighter) bounds
+        final_lower = max(lower_bound, std_bound_lower)
+        final_upper = min(upper_bound, std_bound_upper)
         
-        return True
+        # Clip the forecast
+        clipped_forecast = np.clip(forecast, final_lower, final_upper)
+        
+        # Handle infinite or NaN values
+        clipped_forecast = np.where(~np.isfinite(clipped_forecast), hist_mean, clipped_forecast)
+        
+        # Log if significant clipping occurred
+        n_clipped = np.sum((forecast < final_lower) | (forecast > final_upper))
+        if n_clipped > 0:
+            logger.info(f"Clipped {n_clipped}/{len(forecast)} forecast points to bounds [{final_lower:.2f}, {final_upper:.2f}]")
+        
+        return clipped_forecast
+    
+    def _get_distribution_metadata(self, dist: Union[StudentTDistribution, ValueMixtureDistribution]) -> Dict[str, Any]:
+        """Get metadata for a distribution (handles both simple and mixture types)."""
+        if hasattr(dist, 'df'):  # Simple StudentTDistribution
+            return {
+                'type': 'simple',
+                'df': dist.df,
+                'loc': dist.loc,
+                'scale': dist.scale,
+                'name': dist.name
+            }
+        else:  # ValueMixtureDistribution
+            return {
+                'type': 'mixture',
+                'name': dist.name,
+                'n_components': dist.n_components,
+                'components': [
+                    {
+                        'df': comp.df,
+                        'loc': comp.loc,
+                        'scale': comp.scale,
+                        'weight': comp.weight,
+                        'name': comp.name
+                    }
+                    for comp in dist.components
+                ]
+            }
     
     def fit_transform(self, X: np.ndarray, y: Optional[np.ndarray] = None, **kwargs) -> np.ndarray:
         """
@@ -450,8 +716,11 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         # Update forecast horizon from kwargs if provided
         self._forecast_horizon = kwargs.get('forecast_horizon', self._forecast_horizon)
         
-        # Generate distributions
-        self._distributions = self._generate_distributions(data)
+        # Generate distributions (mixture or simple)
+        if self._use_mixture_model:
+            self._distributions = self._generate_mixture_distributions(data)
+        else:
+            self._distributions = self._generate_distributions(data)
         
         fit_time = time.time() - start_time
         self._last_fit_time = fit_time
@@ -518,9 +787,9 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         legend_parts = []
         class_names = []
         
-        valid_distributions = []
-        valid_forecasts = []
-        valid_colors = []
+        clipped_distributions = []
+        clipped_forecasts = []
+        all_colors = []
         
         for i, (dist, color) in enumerate(zip(self._distributions, colors)):
             # Generate forecast sequence
@@ -530,16 +799,16 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                 random_state=42 + i
             )
             
-            # Validate forecast trajectory
-            if self._is_forecast_reasonable(forecast, data):
-                valid_distributions.append((i, dist))
-                valid_forecasts.append(forecast)
-                valid_colors.append(color)
-            else:
-                logger.warning(f"Filtered out erratic trajectory for distribution {i}: {dist.name}")
+            # Clip forecast to training data bounds instead of filtering
+            clipped_forecast = self._clip_forecast_to_training_bounds(forecast, data)
+            
+            # Always include the distribution (no filtering, just clipping)
+            clipped_distributions.append((i, dist))
+            clipped_forecasts.append(clipped_forecast)
+            all_colors.append(color)
         
-        # Plot only valid forecast paths
-        for (orig_idx, dist), forecast, color in zip(valid_distributions, valid_forecasts, valid_colors):
+        # Plot all clipped forecast paths
+        for (orig_idx, dist), forecast, color in zip(clipped_distributions, clipped_forecasts, all_colors):
             # Plot forecast line
             ax.plot(forecast_time, forecast, 'o-', color=color, linewidth=2, 
                     markersize=3, label=f"Class {orig_idx}: {dist.name}", alpha=0.9)
@@ -548,10 +817,13 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
             if self._show_confidence_bands:
                 # Generate multiple forecast samples for confidence band
                 n_samples = 50
-                forecast_samples = np.array([
-                    dist.forecast_sequence(forecast_horizon, last_value, random_state=42 + orig_idx + j)
-                    for j in range(n_samples)
-                ])
+                forecast_samples = []
+                for j in range(n_samples):
+                    sample_forecast = dist.forecast_sequence(forecast_horizon, last_value, random_state=42 + orig_idx + j)
+                    clipped_sample = self._clip_forecast_to_training_bounds(sample_forecast, data)
+                    forecast_samples.append(clipped_sample)
+                
+                forecast_samples = np.array(forecast_samples)
                 
                 # Compute percentiles
                 lower = np.percentile(forecast_samples, 25, axis=0)
@@ -578,12 +850,12 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         # Styling and axis improvements
         ax.set_xlabel('Time')
         ax.set_ylabel('Value')
-        ax.set_title(f'Time Series with {len(valid_distributions)} Distribution-Based Forecast Paths')
+        ax.set_title(f'Time Series with {len(clipped_distributions)} Distribution-Based Forecast Paths')
         ax.grid(True, alpha=0.3)
         
         # Apply symlog scale to y-axis for better handling of wide value ranges
         # This is like log scale but handles negative values and values near zero
-        all_values = np.concatenate([data, *valid_forecasts]) if valid_forecasts else data
+        all_values = np.concatenate([data, *clipped_forecasts]) if clipped_forecasts else data
         value_range = np.max(all_values) - np.min(all_values)
         if value_range > 0:
             # Use symlog only if we have a significant range
@@ -608,7 +880,7 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                 label='Historical Data', alpha=0.8)
         
         # Replot forecast paths with weighted x positions
-        for (orig_idx, dist), forecast, color in zip(valid_distributions, valid_forecasts, valid_colors):
+        for (orig_idx, dist), forecast, color in zip(clipped_distributions, clipped_forecasts, all_colors):
             ax.plot(forecast_positions, forecast, 'o-', color=color, linewidth=2, 
                     markersize=3, label=f"Class {orig_idx}: {dist.name}", alpha=0.9)
         
@@ -619,7 +891,7 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         # Reapply styling with weighted axes
         ax.set_xlabel('Time (Weighted: Historical 40% | Forecast 60%)')
         ax.set_ylabel('Value (Symlog Scale)')
-        ax.set_title(f'Time Series with {len(valid_distributions)} Distribution-Based Forecast Paths')
+        ax.set_title(f'Time Series with {len(clipped_distributions)} Distribution-Based Forecast Paths')
         ax.grid(True, alpha=0.3)
         
         # Apply symlog scale again after clearing
@@ -629,16 +901,16 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         
         ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         
-        # Create legend text for VLM using valid distributions
-        valid_legend_parts = []
-        valid_class_names = []
-        for (orig_idx, dist), color in zip(valid_distributions, valid_colors):
+        # Create legend text for VLM using clipped distributions
+        clipped_legend_parts = []
+        clipped_class_names = []
+        for (orig_idx, dist), color in zip(clipped_distributions, all_colors):
             import matplotlib.colors as mcolors
-            valid_legend_parts.append(f"Class {orig_idx} (Color: {mcolors.to_hex(color)}): {dist.name}")
-            valid_class_names.append(f"Class {orig_idx}: {dist.name}")
+            clipped_legend_parts.append(f"Class {orig_idx} (Color: {mcolors.to_hex(color)}): {dist.name}")
+            clipped_class_names.append(f"Class {orig_idx}: {dist.name}")
         
-        legend_text = "Available forecast patterns:\n" + "\n".join(valid_legend_parts)
-        class_names = valid_class_names
+        legend_text = "Available forecast patterns:\n" + "\n".join(clipped_legend_parts)
+        class_names = clipped_class_names
         
         plt.tight_layout()
         
@@ -661,22 +933,22 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         
         plot_time = time.time() - plot_start
         
-        # Create metadata using valid distributions
-        valid_indices = [orig_idx for orig_idx, _ in valid_distributions]
-        valid_dist_objects = [dist for _, dist in valid_distributions]
+        # Create metadata using clipped distributions
+        clipped_indices = [orig_idx for orig_idx, _ in clipped_distributions]
+        clipped_dist_objects = [dist for _, dist in clipped_distributions]
         
         metadata = {
             'plot_type': 'time_series_classification',
-            'visible_classes': valid_indices,
-            'all_classes': valid_indices,
+            'visible_classes': clipped_indices,
+            'all_classes': clipped_indices,
             'class_names': class_names,
-            'n_distributions': len(valid_distributions),
+            'n_distributions': len(clipped_distributions),
             'forecast_horizon': self._forecast_horizon or 48,
             'distribution_params': [
-                {'df': d.df, 'loc': d.loc, 'scale': d.scale, 'name': d.name}
-                for d in valid_dist_objects
+                self._get_distribution_metadata(d) for d in clipped_dist_objects
             ],
-            'filtered_out_count': len(self._distributions) - len(valid_distributions)
+            'clipping_applied': True,  # Indicate that clipping was used instead of filtering
+            'filtered_out_count': 0    # No distributions filtered, only clipped
         }
         
         # Create result
@@ -695,8 +967,8 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
             metadata=metadata
         )
         
-        # Store the valid distributions mapping for predict_from_class
-        self._valid_distributions_map = {orig_idx: dist for orig_idx, dist in valid_distributions}
+        # Store the clipped distributions mapping for predict_from_class
+        self._valid_distributions_map = {orig_idx: dist for orig_idx, dist in clipped_distributions}
         
         self._last_result = result
         return result
@@ -730,7 +1002,127 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         last_value = self._training_data[-1]
         
         forecast_horizon = self._forecast_horizon or 48
-        return selected_dist.forecast_sequence(forecast_horizon, last_value, random_state)
+        raw_forecast = selected_dist.forecast_sequence(forecast_horizon, last_value, random_state)
+        
+        # Apply the same clipping used during visualization
+        clipped_forecast = self._clip_forecast_to_training_bounds(raw_forecast, self._training_data)
+        
+        return clipped_forecast
+    
+    def evaluate_training_fit(self) -> Dict[str, Any]:
+        """
+        Evaluate how well each distribution fits the training data.
+        
+        This reveals why T-distributions appear smoother than training data:
+        they model increments, not absolute patterns.
+        
+        Returns:
+            Dictionary with fit statistics for each distribution
+        """
+        if not self._fitted or not self._distributions:
+            raise ValueError("Must call fit_transform before evaluation")
+        
+        from sklearn.metrics import mean_squared_error, mean_absolute_error
+        
+        results = {}
+        training_data = self._training_data
+        training_length = len(training_data) - 1  # -1 because we predict from 2nd point onward
+        
+        for i, dist in enumerate(self._distributions):
+            # Generate prediction for the entire training sequence
+            # Start from first training point, predict the rest
+            train_prediction = dist.forecast_sequence(
+                training_length, 
+                training_data[0], 
+                random_state=42
+            )
+            
+            # Compare against actual training data (excluding first point)
+            actual_training = training_data[1:]
+            
+            # Calculate metrics
+            mse = mean_squared_error(actual_training, train_prediction)
+            mae = mean_absolute_error(actual_training, train_prediction)
+            
+            # Calculate volatility metrics
+            actual_volatility = np.std(np.diff(actual_training))
+            predicted_volatility = np.std(np.diff(train_prediction))
+            
+            # Calculate increment statistics
+            actual_increments = np.diff(training_data)
+            predicted_increments = np.diff(train_prediction)
+            
+            increment_mse = mean_squared_error(actual_increments[1:], predicted_increments)
+            increment_mae = mean_absolute_error(actual_increments[1:], predicted_increments)
+            
+            # Handle both simple and mixture distributions
+            if hasattr(dist, 'df'):  # Simple StudentTDistribution
+                distribution_params = {
+                    'type': 'simple',
+                    'df': dist.df,
+                    'loc': dist.loc,
+                    'scale': dist.scale
+                }
+            else:  # ValueMixtureDistribution
+                distribution_params = {
+                    'type': 'mixture',
+                    'n_components': dist.n_components,
+                    'components': [
+                        {
+                            'df': comp.df,
+                            'loc': comp.loc,
+                            'scale': comp.scale,
+                            'weight': comp.weight
+                        }
+                        for comp in dist.components
+                    ]
+                }
+            
+            results[f"distribution_{i}"] = {
+                'name': dist.name,
+                'n_keypoints': len(dist.keypoints),
+                'distribution_params': distribution_params,
+                'value_fit': {
+                    'mse': mse,
+                    'mae': mae,
+                    'mse_vs_test_ratio': None  # Will be filled later if test metrics available
+                },
+                'volatility_comparison': {
+                    'actual_volatility': actual_volatility,
+                    'predicted_volatility': predicted_volatility,
+                    'volatility_ratio': predicted_volatility / actual_volatility if actual_volatility > 0 else np.inf
+                },
+                'increment_fit': {
+                    'increment_mse': increment_mse,
+                    'increment_mae': increment_mae,
+                    'actual_increment_std': np.std(actual_increments),
+                    'predicted_increment_std': np.std(predicted_increments)
+                },
+                'training_prediction': train_prediction.tolist(),
+                'keypoint_indices': [
+                    int(idx) for idx in range(0, len(training_data), max(1, len(training_data) // len(dist.keypoints)))
+                ][:len(dist.keypoints)] if len(dist.keypoints) < len(training_data) else list(range(len(training_data)))
+            }
+        
+        # Add summary statistics
+        results['summary'] = {
+            'training_data_stats': {
+                'mean': np.mean(training_data),
+                'std': np.std(training_data),
+                'min': np.min(training_data),
+                'max': np.max(training_data),
+                'length': len(training_data)
+            },
+            'training_increment_stats': {
+                'mean': np.mean(np.diff(training_data)),
+                'std': np.std(np.diff(training_data)),
+                'min': np.min(np.diff(training_data)),
+                'max': np.max(np.diff(training_data))
+            },
+            'n_distributions': len(self._distributions)
+        }
+        
+        return results
     
     def get_class_names(self) -> List[str]:
         """Get the names of all fitted distribution classes."""
