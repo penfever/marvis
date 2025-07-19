@@ -464,7 +464,9 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         
         # Generate forecast time points
         forecast_start = len(data)
-        forecast_time = np.arange(forecast_start, forecast_start + self._forecast_horizon)
+        # Ensure forecast_horizon has a valid value
+        forecast_horizon = self._forecast_horizon or 48
+        forecast_time = np.arange(forecast_start, forecast_start + forecast_horizon)
         last_value = data[-1]
         
         # Colors for distributions
@@ -477,7 +479,7 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         for i, (dist, color) in enumerate(zip(self._distributions, colors)):
             # Generate forecast sequence
             forecast = dist.forecast_sequence(
-                self._forecast_horizon, 
+                forecast_horizon, 
                 last_value, 
                 random_state=42 + i
             )
@@ -491,7 +493,7 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                 # Generate multiple forecast samples for confidence band
                 n_samples = 50
                 forecast_samples = np.array([
-                    dist.forecast_sequence(self._forecast_horizon, last_value, random_state=42 + i + j)
+                    dist.forecast_sequence(forecast_horizon, last_value, random_state=42 + i + j)
                     for j in range(n_samples)
                 ])
                 
@@ -555,7 +557,7 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
             'all_classes': list(range(len(self._distributions))),
             'class_names': class_names,
             'n_distributions': len(self._distributions),
-            'forecast_horizon': self._forecast_horizon,
+            'forecast_horizon': self._forecast_horizon or 48,
             'distribution_params': [
                 {'df': d.df, 'loc': d.loc, 'scale': d.scale, 'name': d.name}
                 for d in self._distributions
@@ -601,7 +603,8 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         selected_dist = self._distributions[class_index]
         last_value = self._training_data[-1]
         
-        return selected_dist.forecast_sequence(self._forecast_horizon, last_value, random_state)
+        forecast_horizon = self._forecast_horizon or 48
+        return selected_dist.forecast_sequence(forecast_horizon, last_value, random_state)
     
     def get_class_names(self) -> List[str]:
         """Get the names of all fitted distribution classes."""

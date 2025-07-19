@@ -387,7 +387,8 @@ def evaluate_time_series(
                 continue
                 
             # Override forecast horizon if specified
-            forecast_horizon = args.forecast_horizon or dataset.prediction_length
+            dataset_pred_length = getattr(dataset, 'prediction_length', 48)  # Default to 48 if None
+            forecast_horizon = args.forecast_horizon or dataset_pred_length or 48
             visualization.config.extra_params['forecast_horizon'] = forecast_horizon
             
             # Fit distributions and create visualization using the training data
@@ -418,9 +419,22 @@ def evaluate_time_series(
                 )
                 
                 # Get ground truth from test entry
-                test_targets = test_entry.get('target', [])
-                if not isinstance(test_targets, np.ndarray):
-                    test_targets = np.array(test_targets)
+                # The test data likely contains the full time series, we need to extract
+                # the portion that corresponds to our forecast (after the training portion)
+                test_full_series = test_entry.get('target', [])
+                if not isinstance(test_full_series, np.ndarray):
+                    test_full_series = np.array(test_full_series)
+                
+                # Extract the ground truth forecast portion
+                # If test series is longer than train series, take the next forecast_horizon values
+                if len(test_full_series) > len(train_series):
+                    # Ground truth starts after the training portion
+                    test_targets = test_full_series[len(train_series):len(train_series) + forecast_horizon]
+                else:
+                    # If test series isn't longer, take the last forecast_horizon values
+                    test_targets = test_full_series[-forecast_horizon:]
+                
+                logger.debug(f"Train series length: {len(train_series)}, Test full series length: {len(test_full_series)}, Ground truth length: {len(test_targets)}, Prediction length: {len(predictions)}")
                 
                 # Compute metrics
                 metrics = compute_time_series_metrics(
@@ -452,10 +466,13 @@ def evaluate_time_series(
             series_results.append(series_result)
             
         except Exception as e:
+            import traceback
             logger.error(f"Error evaluating series {series_idx}: {e}")
+            logger.error(f"Full traceback: {traceback.format_exc()}")
             series_results.append({
                 'series_index': series_idx,
-                'error': str(e)
+                'error': str(e),
+                'traceback': traceback.format_exc()
             })
     
     # Aggregate results
@@ -515,16 +532,21 @@ def generate_time_series_classification_prompt(viz_result) -> str:
 def get_vlm_classification(model, image, prompt, args) -> Optional[int]:
     """Get classification from VLM model."""
     try:
-        # This is a simplified VLM interface - you might need to adapt based on your VLM setup
-        from marvis.utils.vlm_prompting import extract_time_series_classification_response
-        from marvis.utils.vlm_prompting import get_vlm_response
+        from marvis.utils.vlm_prompting import extract_time_series_classification_response, create_vlm_conversation
+        from marvis.utils.model_loader import GenerationConfig
         
-        response = get_vlm_response(
-            model=model,
-            image=image,
-            prompt=prompt,
-            max_new_tokens=200  # Increased to allow for analysis
+        # Create conversation with image and prompt
+        conversation = create_vlm_conversation(image, prompt)
+        
+        # Create generation config
+        config = GenerationConfig(
+            max_new_tokens=200,
+            temperature=0.1,
+            do_sample=True
         )
+        
+        # Get VLM response
+        response = model.generate_from_conversation(conversation, config)
         
         logger.debug(f"VLM response: {response}")
         
@@ -630,10 +652,13 @@ def main():
                 'error': str(e)
             })
     
-    # Save results
+    # Save results using robust JSON serialization
+    from marvis.utils.json_utils import safe_json_dump
     results_file = os.path.join(args.output_dir, f"time_series_results_{timestamp}.json")
-    with open(results_file, 'w') as f:
-        json.dump(all_results, f, indent=2)
+    success = safe_json_dump(all_results, results_file, logger=logger, indent=2)
+    if not success:
+        logger.error(f"Failed to save results to {results_file}")
+        return 1
     
     logger.info(f"Results saved to {results_file}")
     
@@ -656,10 +681,12 @@ def main():
                 'avg_mape': result['average_metrics'].get('avg_mape')
             })
     
-    # Save summary
+    # Save summary using robust JSON serialization
     summary_file = os.path.join(args.output_dir, f"time_series_summary_{timestamp}.json")
-    with open(summary_file, 'w') as f:
-        json.dump(summary, f, indent=2)
+    success = safe_json_dump(summary, summary_file, logger=logger, indent=2)
+    if not success:
+        logger.error(f"Failed to save summary to {summary_file}")
+        return 1
     
     logger.info(f"Summary saved to {summary_file}")
     

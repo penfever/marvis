@@ -9,6 +9,7 @@
 !/data/.gitkeep
 /secrets/*
 !/secrets/.gitkeep
+gift-eval
 .claude
 CLAUDE.md
 catboost_info
