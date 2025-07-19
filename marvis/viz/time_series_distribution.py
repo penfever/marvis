@@ -937,8 +937,8 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         
         # Generate forecast time points
         forecast_start = len(data)
-        # Ensure forecast_horizon has a valid value
-        forecast_horizon = self._forecast_horizon or 48
+        # Get forecast horizon from config (updated during evaluation)
+        forecast_horizon = self.config.extra_params.get('forecast_horizon', self._forecast_horizon)
         forecast_time = np.arange(forecast_start, forecast_start + forecast_horizon)
         last_value = data[-1]
         
@@ -1105,7 +1105,7 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
             'all_classes': clipped_indices,
             'class_names': class_names,
             'n_distributions': len(clipped_distributions),
-            'forecast_horizon': self._forecast_horizon or 48,
+            'forecast_horizon': self.config.extra_params.get('forecast_horizon', self._forecast_horizon),
             'distribution_params': [
                 self._get_distribution_metadata(d) for d in clipped_dist_objects
             ],
@@ -1163,7 +1163,7 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         
         last_value = self._training_data[-1]
         
-        forecast_horizon = self._forecast_horizon or 48
+        forecast_horizon = self.config.extra_params.get('forecast_horizon', self._forecast_horizon)
         raw_forecast = selected_dist.forecast_sequence(forecast_horizon, last_value, random_state)
         
         # Apply the same clipping used during visualization

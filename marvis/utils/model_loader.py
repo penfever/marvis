@@ -475,7 +475,7 @@ class TransformersModelWrapper(BaseModelWrapper):
         elif actual_device == "mps" and hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
             # MPS configuration - don't use device_map, load to CPU then move to MPS
             model_kwargs.update({
-                'torch_dtype': torch.float32,  # MPS works better with float32
+                'torch_dtype': torch.float16,  # Use float16 for memory efficiency
                 'device_map': None,  # Don't use device_map with MPS
                 'low_cpu_mem_usage': True  # Use CPU-efficient loading
             })
@@ -641,8 +641,9 @@ class VisionLanguageModelWrapper(BaseModelWrapper):
             })
         elif actual_device == "mps" and hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
             # MPS configuration - don't use device_map, load to CPU then move to MPS
+            # Use float16 for better memory efficiency on MPS
             model_kwargs.update({
-                'torch_dtype': torch.float32,
+                'torch_dtype': torch.float16,  # Changed from float32 to save memory
                 'device_map': None,  # Don't use device_map with MPS
                 'low_cpu_mem_usage': True  # Use CPU-efficient loading
             })
