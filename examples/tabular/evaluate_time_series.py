@@ -399,20 +399,17 @@ def evaluate_time_series(
                 logger.warning(f"Series {series_idx} too short ({len(train_series)} points), skipping")
                 continue
             
-            # Find corresponding test entry (gift-eval may have multiple test windows per series)
+            # Find corresponding test entry using proper GluonTS format
             test_entry = None
-            for test_item in test_data_raw:
-                if test_item.get('item_id') == train_entry.get('item_id') or series_idx < len(test_data_raw):
-                    test_entry = test_data_raw[series_idx] if series_idx < len(test_data_raw) else test_data_raw[0]
-                    break
-            
-            if test_entry is None:
+            if series_idx < len(test_data_raw):
+                test_entry = test_data_raw[series_idx]
+            else:
                 logger.warning(f"No test data found for series {series_idx}")
                 continue
                 
-            # Override forecast horizon if specified
-            dataset_pred_length = getattr(dataset, 'prediction_length', 48)  # Default to 48 if None
-            forecast_horizon = args.forecast_horizon or dataset_pred_length or 48
+            # Use dataset prediction length (required for proper GluonTS test data alignment)
+            dataset_pred_length = dataset.prediction_length
+            forecast_horizon = args.forecast_horizon or dataset_pred_length
             visualization.config.extra_params['forecast_horizon'] = forecast_horizon
             
             # Fit distributions and create visualization using the training data
@@ -478,23 +475,14 @@ def evaluate_time_series(
                     predicted_class, random_state=args.seed + series_idx
                 )
                 
-                # Get ground truth from test entry
-                # The test data likely contains the full time series, we need to extract
-                # the portion that corresponds to our forecast (after the training portion)
-                test_full_series = test_entry.get('target', [])
-                if not isinstance(test_full_series, np.ndarray):
-                    test_full_series = np.array(test_full_series)
+                # Get ground truth from test entry using proper GluonTS format
+                # test_entry contains 'input' and 'label' where 'label' is the ground truth forecast
+                label_data = test_entry.get('label', {})
+                test_targets = label_data.get('target', [])
+                if not isinstance(test_targets, np.ndarray):
+                    test_targets = np.array(test_targets)
                 
-                # Extract the ground truth forecast portion
-                # If test series is longer than train series, take the next forecast_horizon values
-                if len(test_full_series) > len(train_series):
-                    # Ground truth starts after the training portion
-                    test_targets = test_full_series[len(train_series):len(train_series) + forecast_horizon]
-                else:
-                    # If test series isn't longer, take the last forecast_horizon values
-                    test_targets = test_full_series[-forecast_horizon:]
-                
-                logger.debug(f"Train series length: {len(train_series)}, Test full series length: {len(test_full_series)}, Ground truth length: {len(test_targets)}, Prediction length: {len(predictions)}")
+                logger.debug(f"Train series length: {len(train_series)}, Ground truth length: {len(test_targets)}, Prediction length: {len(predictions)}")
                 
                 # Sanity check: Assert that test set size matches prediction size
                 assert len(test_targets) == len(predictions), f"Test set size ({len(test_targets)}) must match prediction size ({len(predictions)}) for proper evaluation"

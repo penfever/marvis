@@ -115,12 +115,18 @@ class TimeSeriesDataset:
         Get test data from gift-eval dataset.
         
         Returns:
-            List of time series dictionaries with 'target' and 'start' keys
+            List of dictionaries with 'input' and 'label' keys representing GluonTS test format.
+            'input' contains the historical data, 'label' contains the ground truth forecasts.
         """
         try:
-            # For test data, we also use the gluonts_dataset but may need different handling
-            # Let's use the same as training data for now
-            return list(self._gift_eval_dataset.gluonts_dataset)
+            # Use the proper GluonTS test data which returns (input, label) tuples
+            test_data = []
+            for input_data, label_data in self._gift_eval_dataset.test_data:
+                test_data.append({
+                    'input': input_data,
+                    'label': label_data
+                })
+            return test_data
         except Exception as e:
             logger.error(f"Failed to get test data: {e}")
             return []
