@@ -181,12 +181,6 @@ def parse_args():
         help='Save sample visualizations for debugging and analysis'
     )
     parser.add_argument(
-        '--use_adaptive_mixture',
-        action='store_true',
-        default=False,
-        help='Use adaptive nearest neighbor mixtures instead of static mixtures'
-    )
-    parser.add_argument(
         '--visualization_save_cadence',
         type=int,
         default=1,
@@ -312,8 +306,7 @@ def create_time_series_visualization(args) -> TimeSeriesDistributionVisualizatio
             'forecast_horizon': args.forecast_horizon,
             'n_keypoints': args.n_keypoints,
             'keypoint_strategy': args.keypoint_strategy,
-            'show_confidence_bands': args.show_confidence_bands,
-            'use_adaptive_mixture': args.use_adaptive_mixture
+            'show_confidence_bands': args.show_confidence_bands
         }
     )
     

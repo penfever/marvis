@@ -21,6 +21,11 @@ from .value_mixture_distribution import (
     ValueMixtureFitter, 
     generate_semantic_value_mixture_name
 )
+from .adaptive_mixture_distribution import (
+    AdaptiveNearestNeighborMixture,
+    AdaptiveMixtureDistribution,
+    generate_semantic_adaptive_mixture_name
+)
 
 logger = logging.getLogger(__name__)
 
@@ -85,10 +90,13 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         self._keypoint_strategy = self.config.extra_params.get('keypoint_strategy', 'uniform')
         self._show_confidence_bands = self.config.extra_params.get('show_confidence_bands', True)
         self._use_mixture_model = self.config.extra_params.get('use_mixture_model', True)
+        self._use_adaptive_mixture = self.config.extra_params.get('use_adaptive_mixture', False)
         self._max_mixture_components = self.config.extra_params.get('max_mixture_components', 3)
+        self._adaptive_window_size = self.config.extra_params.get('adaptive_window_size', 10)
+        self._adaptive_n_neighbors = self.config.extra_params.get('adaptive_n_neighbors', 5)
         
-        # Fitted distributions (can be simple or mixture)
-        self._distributions: List[Union[StudentTDistribution, ValueMixtureDistribution]] = []
+        # Fitted distributions (can be simple, mixture, or adaptive)
+        self._distributions: List[Union[StudentTDistribution, ValueMixtureDistribution, AdaptiveMixtureDistribution]] = []
         self._training_data = None
         self._time_points = None
         
@@ -454,6 +462,140 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         
         return distributions[:self._n_distributions]
     
+    def _generate_adaptive_distributions(self, data: np.ndarray) -> List[AdaptiveMixtureDistribution]:
+        """
+        Generate adaptive distributions using nearest neighbor pattern matching.
+        
+        Args:
+            data: Time series values [n_timesteps]
+            
+        Returns:
+            List of adaptive mixture distributions
+        """
+        distributions = []
+        
+        # Create different adaptive configurations for diversity
+        configs = [
+            {
+                'window_size': self._adaptive_window_size,
+                'n_neighbors': self._adaptive_n_neighbors,
+                'distance_metric': 'euclidean',
+                'name': 'Euclidean Adaptive'
+            },
+            {
+                'window_size': max(5, self._adaptive_window_size // 2),
+                'n_neighbors': self._adaptive_n_neighbors,
+                'distance_metric': 'trend',
+                'name': 'Trend-Based Adaptive'
+            },
+            {
+                'window_size': self._adaptive_window_size,
+                'n_neighbors': min(10, self._adaptive_n_neighbors * 2),
+                'distance_metric': 'normalized',
+                'name': 'Normalized Adaptive'
+            },
+            {
+                'window_size': min(15, self._adaptive_window_size + 5),
+                'n_neighbors': max(3, self._adaptive_n_neighbors - 2),
+                'distance_metric': 'euclidean',
+                'name': 'Long-Window Adaptive'
+            },
+            {
+                'window_size': max(3, self._adaptive_window_size - 5),
+                'n_neighbors': min(8, self._adaptive_n_neighbors + 3),
+                'distance_metric': 'trend',
+                'name': 'Short-Window Adaptive'
+            }
+        ]
+        
+        # For adaptive approach, we need to simulate multiple training sequences
+        # Since we only have one series, we'll create artificial "training" sequences
+        # by using different segments of the data
+        training_sequences = self._create_training_sequences_from_data(data)
+        
+        for i, config in enumerate(configs[:self._n_distributions]):
+            try:
+                # Create adaptive mixture model
+                adaptive_model = AdaptiveNearestNeighborMixture(
+                    window_size=config['window_size'],
+                    n_neighbors=config['n_neighbors'],
+                    distance_metric=config['distance_metric']
+                )
+                
+                # Fit to training patterns
+                adaptive_model.fit_training_patterns(training_sequences)
+                
+                # Create adaptive mixture for the full sequence
+                adaptive_mixture = adaptive_model.create_adaptive_mixture(
+                    data, 
+                    name=config['name']
+                )
+                
+                # Update name with semantic description
+                semantic_name = generate_semantic_adaptive_mixture_name(adaptive_mixture)
+                adaptive_mixture.name = f"{config['name']}: {semantic_name}"
+                
+                distributions.append(adaptive_mixture)
+                logger.info(f"Generated {config['name']} with {adaptive_mixture.n_components} components")
+                
+            except Exception as e:
+                logger.warning(f"Failed to generate adaptive distribution {i} ({config['name']}): {e}")
+        
+        # Ensure we have at least one distribution
+        if not distributions and len(data) > 10:
+            try:
+                # Fallback: simple adaptive mixture
+                fallback_model = AdaptiveNearestNeighborMixture(
+                    window_size=min(10, len(data) // 3),
+                    n_neighbors=3,
+                    distance_metric='euclidean'
+                )
+                fallback_model.fit_training_patterns(training_sequences)
+                fallback_mixture = fallback_model.create_adaptive_mixture(data, "Fallback Adaptive")
+                distributions.append(fallback_mixture)
+                logger.info("Generated fallback adaptive distribution")
+            except Exception as e:
+                logger.error(f"Failed to generate fallback adaptive distribution: {e}")
+        
+        return distributions[:self._n_distributions]
+    
+    def _create_training_sequences_from_data(self, data: np.ndarray) -> List[np.ndarray]:
+        """
+        Create training sequences from a single time series by using overlapping segments.
+        This simulates having multiple training series for the adaptive approach.
+        """
+        training_sequences = []
+        
+        # Parameters for sequence generation
+        min_seq_length = max(20, self._adaptive_window_size * 2)
+        max_seq_length = min(len(data) // 2, 100)
+        n_sequences = 10  # Number of training sequences to generate
+        
+        if len(data) < min_seq_length:
+            # If data is too short, just return the whole series
+            return [data]
+        
+        # Generate overlapping sequences of different lengths
+        np.random.seed(42)  # For reproducibility
+        for i in range(n_sequences):
+            # Random sequence length
+            seq_length = np.random.randint(min_seq_length, min(max_seq_length, len(data) - 10) + 1)
+            
+            # Random starting position (ensure we don't go past the end)
+            max_start = len(data) - seq_length
+            if max_start <= 0:
+                start_pos = 0
+                seq_length = len(data)
+            else:
+                start_pos = np.random.randint(0, max_start)
+            
+            # Extract sequence
+            sequence = data[start_pos:start_pos + seq_length]
+            training_sequences.append(sequence)
+        
+        logger.debug(f"Created {len(training_sequences)} training sequences from data of length {len(data)}")
+        return training_sequences
+    
     def _generate_mixture_distributions(self, data: np.ndarray) -> List[ValueMixtureDistribution]:
         """
         Generate multiple Student's T mixture distributions for the time series.
@@ -657,7 +799,7 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         
         return clipped_forecast
     
-    def _get_distribution_metadata(self, dist: Union[StudentTDistribution, ValueMixtureDistribution]) -> Dict[str, Any]:
+    def _get_distribution_metadata(self, dist: Union[StudentTDistribution, ValueMixtureDistribution, AdaptiveMixtureDistribution]) -> Dict[str, Any]:
         """Get metadata for a distribution (handles both simple and mixture types)."""
         if hasattr(dist, 'df'):  # Simple StudentTDistribution
             return {
@@ -667,7 +809,7 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                 'scale': dist.scale,
                 'name': dist.name
             }
-        else:  # ValueMixtureDistribution
+        elif hasattr(dist, 'components') and hasattr(dist.components[0], 'df'):  # ValueMixtureDistribution
             return {
                 'type': 'mixture',
                 'name': dist.name,
@@ -679,6 +821,24 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                         'scale': comp.scale,
                         'weight': comp.weight,
                         'name': comp.name
+                    }
+                    for comp in dist.components
+                ]
+            }
+        else:  # AdaptiveMixtureDistribution
+            return {
+                'type': 'adaptive',
+                'name': dist.name,
+                'n_components': dist.n_components,
+                'components': [
+                    {
+                        'df': comp.pattern.df,
+                        'loc': comp.pattern.loc,
+                        'scale': comp.pattern.scale,
+                        'weight': comp.weight,
+                        'distance': comp.distance,
+                        'pattern_id': comp.pattern.pattern_id,
+                        'source_series_id': comp.pattern.source_series_id
                     }
                     for comp in dist.components
                 ]
@@ -716,8 +876,10 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         # Update forecast horizon from kwargs if provided
         self._forecast_horizon = kwargs.get('forecast_horizon', self._forecast_horizon)
         
-        # Generate distributions (mixture or simple)
-        if self._use_mixture_model:
+        # Generate distributions (adaptive, mixture, or simple)
+        if self._use_adaptive_mixture:
+            self._distributions = self._generate_adaptive_distributions(data)
+        elif self._use_mixture_model:
             self._distributions = self._generate_mixture_distributions(data)
         else:
             self._distributions = self._generate_distributions(data)
@@ -1063,7 +1225,7 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                     'loc': dist.loc,
                     'scale': dist.scale
                 }
-            else:  # ValueMixtureDistribution
+            elif hasattr(dist, 'components') and hasattr(dist.components[0], 'df'):  # ValueMixtureDistribution
                 distribution_params = {
                     'type': 'mixture',
                     'n_components': dist.n_components,
@@ -1077,10 +1239,25 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                         for comp in dist.components
                     ]
                 }
+            else:  # AdaptiveMixtureDistribution
+                distribution_params = {
+                    'type': 'adaptive',
+                    'n_components': dist.n_components,
+                    'components': [
+                        {
+                            'df': comp.pattern.df,
+                            'loc': comp.pattern.loc,
+                            'scale': comp.pattern.scale,
+                            'weight': comp.weight,
+                            'distance': comp.distance
+                        }
+                        for comp in dist.components
+                    ]
+                }
             
             results[f"distribution_{i}"] = {
                 'name': dist.name,
-                'n_keypoints': len(dist.keypoints),
+                'n_keypoints': len(getattr(dist, 'keypoints', getattr(dist, 'current_window', []))),
                 'distribution_params': distribution_params,
                 'value_fit': {
                     'mse': mse,
@@ -1100,8 +1277,8 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                 },
                 'training_prediction': train_prediction.tolist(),
                 'keypoint_indices': [
-                    int(idx) for idx in range(0, len(training_data), max(1, len(training_data) // len(dist.keypoints)))
-                ][:len(dist.keypoints)] if len(dist.keypoints) < len(training_data) else list(range(len(training_data)))
+                    int(idx) for idx in range(0, len(training_data), max(1, len(training_data) // len(getattr(dist, 'keypoints', getattr(dist, 'current_window', [training_data[-1]])))))
+                ][:len(getattr(dist, 'keypoints', getattr(dist, 'current_window', [training_data[-1]])))] if len(getattr(dist, 'keypoints', getattr(dist, 'current_window', [training_data[-1]]))) < len(training_data) else list(range(len(training_data)))
             }
         
         # Add summary statistics
