@@ -37,6 +37,7 @@ import datetime
 import logging
 from pathlib import Path
 from typing import List, Dict, Tuple, Optional, Any, Union
+from tqdm import tqdm
 
 # Add marvis to path if needed
 current_dir = Path(__file__).parent
@@ -255,7 +256,7 @@ def setup_environment(args):
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     log_filename = f"time_series_evaluation_{timestamp}.log"
     logger = setup_logging(
-        log_level=logging.DEBUG if args.verbose else logging.INFO,
+        log_level=logging.DEBUG if args.verbose else logging.WARNING,
         log_file=os.path.join(args.output_dir, log_filename)
     )
     
@@ -283,7 +284,7 @@ def load_datasets(args) -> List[TimeSeriesDataset]:
     elif len(terms) != len(dataset_names):
         raise ValueError(f"Number of terms ({len(terms)}) must match number of datasets ({len(dataset_names)})")
     
-    logger.info(f"Loading {len(dataset_names)} datasets: {dataset_names}")
+    print(f"📥 Loading {len(dataset_names)} datasets: {dataset_names}")
     
     datasets = load_multiple_gift_eval_datasets(
         dataset_names=dataset_names,
@@ -291,7 +292,7 @@ def load_datasets(args) -> List[TimeSeriesDataset]:
         gift_eval_path=args.gift_eval_path
     )
     
-    logger.info(f"Successfully loaded {len(datasets)} datasets")
+    print(f"✅ Successfully loaded {len(datasets)} datasets")
     return datasets
 
 
@@ -339,28 +340,29 @@ def evaluate_time_series(
     Returns:
         Dictionary with evaluation results
     """
-    logger.info(f"Evaluating dataset: {dataset.name} (term: {dataset.term})")
+    print(f"\n🔍 Evaluating dataset: {dataset.name} (term: {dataset.term})")
     
     # Get pre-split training and test data from gift-eval
     train_data_raw = dataset.get_train_data()
     test_data_raw = dataset.get_test_data()
     
     if not train_data_raw:
-        logger.warning(f"No training data found for {dataset.name}")
+        print(f"❌ No training data found for {dataset.name}")
         return {'error': 'No training data'}
     
     if not test_data_raw:
-        logger.warning(f"No test data found for {dataset.name}")
+        print(f"❌ No test data found for {dataset.name}")
         return {'error': 'No test data'}
     
-    logger.info(f"Dataset info: {len(train_data_raw)} training series, {len(test_data_raw)} test instances")
+    print(f"📊 Dataset info: {len(train_data_raw)} training series, {len(test_data_raw)} test instances")
     
     # Evaluate on multiple series (up to max_series_per_dataset)
     n_series_to_evaluate = min(args.max_series_per_dataset, len(train_data_raw))
     series_results = []
     
-    for series_idx in range(n_series_to_evaluate):
-        logger.info(f"Evaluating series {series_idx + 1}/{n_series_to_evaluate}")
+    # Progress bar for series evaluation
+    pbar = tqdm(range(n_series_to_evaluate), desc=f"Evaluating {dataset.name}")
+    for series_idx in pbar:
         
         try:
             # Get training series for visualization
@@ -374,11 +376,11 @@ def evaluate_time_series(
             # Handle different data structures
             if hasattr(train_series, 'shape') and train_series.shape == ():
                 # Scalar value - this might be a single point, skip it
-                logger.warning(f"Series {series_idx} has scalar target, skipping")
+                pbar.set_postfix_str(f"Skipping scalar target")
                 continue
             elif not hasattr(train_series, 'shape') and np.isscalar(train_series):
                 # Single scalar value
-                logger.warning(f"Series {series_idx} has single scalar target, skipping")
+                pbar.set_postfix_str(f"Skipping scalar target")
                 continue
             
             # Ensure train_series is numpy array with at least 1D
@@ -386,17 +388,15 @@ def evaluate_time_series(
                 train_series = np.array(train_series)
             
             if train_series.ndim == 0:
-                logger.warning(f"Series {series_idx} has 0-dimensional data, skipping")
+                pbar.set_postfix_str(f"Skipping 0-dimensional data")
                 continue
             elif train_series.ndim > 1:
                 # Flatten multi-dimensional arrays
                 train_series = train_series.flatten()
             
-            logger.debug(f"Processed train_series shape: {train_series.shape}")
-            
             # Check if series has enough data points
             if len(train_series) < 10:  # Minimum reasonable length
-                logger.warning(f"Series {series_idx} too short ({len(train_series)} points), skipping")
+                pbar.set_postfix_str(f"Skipping short series ({len(train_series)} pts)")
                 continue
             
             # Find corresponding test entry using proper GluonTS format
@@ -404,7 +404,7 @@ def evaluate_time_series(
             if series_idx < len(test_data_raw):
                 test_entry = test_data_raw[series_idx]
             else:
-                logger.warning(f"No test data found for series {series_idx}")
+                pbar.set_postfix_str(f"No test data")
                 continue
                 
             # Use dataset prediction length (required for proper GluonTS test data alignment)
@@ -412,20 +412,14 @@ def evaluate_time_series(
             forecast_horizon = args.forecast_horizon or dataset_pred_length
             visualization.config.extra_params['forecast_horizon'] = forecast_horizon
             
+            # Update progress bar
+            pbar.set_postfix_str(f"Fitting distributions...")
+            
             # Fit distributions and create visualization using the training data
             transformed_data = visualization.fit_transform(train_series)
             viz_result = visualization.generate_plot(transformed_data)
             
-            # Save visualization if requested
-            if args.save_visualizations:
-                # Clean dataset name for filename (replace slashes and other problematic chars)
-                clean_dataset_name = dataset.name.replace('/', '_').replace('\\', '_')
-                viz_path = os.path.join(
-                    args.output_dir,
-                    f"{clean_dataset_name}_{dataset.term}_series_{series_idx}_visualization.png"
-                )
-                viz_result.image.save(viz_path)
-                logger.info(f"Saved visualization to {viz_path}")
+            pbar.set_postfix_str(f"Getting VLM prediction...")
             
             # Generate VLM prompt for classification
             prompt = generate_time_series_classification_prompt(viz_result)
@@ -445,7 +439,6 @@ def evaluate_time_series(
                     f"sample_visualization_{clean_dataset_name}_{dataset.term}_series_{series_idx:03d}.png"
                 )
                 viz_result.image.save(sample_viz_path)
-                logger.info(f"Saved sample visualization to {sample_viz_path}")
             
             # Save outputs (prompts/responses) if requested
             if args.save_outputs and (series_idx % args.visualization_save_cadence == 0):
@@ -466,11 +459,11 @@ def evaluate_time_series(
                 )
                 with open(response_path, 'w') as f:
                     f.write(vlm_response or "No response")
-                
-                logger.info(f"Saved prompt and response for series {series_idx}")
             
             # Sample from selected distribution
             if predicted_class is not None and 0 <= predicted_class < len(visualization._distributions):
+                pbar.set_postfix_str(f"Computing metrics...")
+                
                 predictions = visualization.predict_from_class(
                     predicted_class, random_state=args.seed + series_idx
                 )
@@ -481,8 +474,6 @@ def evaluate_time_series(
                 test_targets = label_data.get('target', [])
                 if not isinstance(test_targets, np.ndarray):
                     test_targets = np.array(test_targets)
-                
-                logger.debug(f"Train series length: {len(train_series)}, Ground truth length: {len(test_targets)}, Prediction length: {len(predictions)}")
                 
                 # Sanity check: Assert that test set size matches prediction size
                 assert len(test_targets) == len(predictions), f"Test set size ({len(test_targets)}) must match prediction size ({len(predictions)}) for proper evaluation"
@@ -504,10 +495,10 @@ def evaluate_time_series(
                     'visualization_metadata': viz_result.metadata
                 }
                 
-                logger.info(f"Series {series_idx}: Class {predicted_class}, MSE {metrics.get('mse', 'N/A'):.4f}")
+                pbar.set_postfix_str(f"MSE: {metrics.get('mse', 'N/A'):.3f}")
                 
             else:
-                logger.warning(f"Invalid class prediction for series {series_idx}: {predicted_class}")
+                pbar.set_postfix_str(f"Invalid prediction")
                 series_result = {
                     'series_index': series_idx,
                     'error': f'Invalid class prediction: {predicted_class}',
@@ -518,8 +509,7 @@ def evaluate_time_series(
             
         except Exception as e:
             import traceback
-            logger.error(f"Error evaluating series {series_idx}: {e}")
-            logger.error(f"Full traceback: {traceback.format_exc()}")
+            pbar.set_postfix_str(f"Error: {str(e)[:30]}")
             series_results.append({
                 'series_index': series_idx,
                 'error': str(e),
@@ -547,8 +537,7 @@ def evaluate_time_series(
             'average_metrics': avg_metrics
         }
         
-        logger.info(f"Dataset {dataset.name}: Evaluated {len(valid_results)} series, "
-                   f"avg MSE {avg_metrics.get('avg_mse', 'N/A'):.4f}")
+        print(f"✅ {dataset.name}: {len(valid_results)} series, avg MSE {avg_metrics.get('avg_mse', 'N/A'):.4f}")
     else:
         dataset_result = {
             'dataset_name': dataset.name,
@@ -558,7 +547,7 @@ def evaluate_time_series(
             'series_results': series_results,
             'error': 'No valid series results'
         }
-        logger.warning(f"Dataset {dataset.name}: No valid results")
+        print(f"❌ {dataset.name}: No valid results")
     
     return dataset_result
 
@@ -676,16 +665,16 @@ def main():
     
     # Load VLM model
     try:
-        logger.info(f"Loading VLM model: {args.vlm_model_id}")
+        print(f"🤖 Loading VLM model: {args.vlm_model_id}")
         model_loader = ModelLoader()
         vlm_model = model_loader.load_vlm(
             model_name=args.vlm_model_id,
             backend=args.backend,
             device=args.device
         )
-        logger.info("VLM model loaded successfully")
+        print("✅ VLM model loaded successfully")
     except Exception as e:
-        logger.error(f"Failed to load VLM model: {e}")
+        print(f"❌ Failed to load VLM model: {e}")
         return 1
     
     # Create visualization
