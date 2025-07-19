@@ -320,7 +320,7 @@ class ValueMixtureFitter:
             List of fitted component parameters
         """
         if len(values) < 3:
-            logger.warning("Too few values for mixture fitting, using single component")
+            logger.info("Too few values for mixture fitting, using single component")
             return [self._fit_single_component(values)]
         
         best_components = None
@@ -349,7 +349,7 @@ class ValueMixtureFitter:
                 continue
         
         if best_components is None:
-            logger.warning("All mixture fitting failed, using single component fallback")
+            logger.info("All mixture fitting failed, using single component fallback")
             best_components = [self._fit_single_component(values)]
             best_n_components = 1
         
