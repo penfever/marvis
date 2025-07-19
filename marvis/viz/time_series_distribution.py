@@ -994,9 +994,9 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
                 ax.fill_between(forecast_time, lower, upper, color=color, alpha=0.2)
             
             # Store class information
-            class_names.append(f"C{orig_idx}: {dist.name}")
+            class_names.append(f"Class {orig_idx}: {dist.name}")
             import matplotlib.colors as mcolors
-            legend_parts.append(f"C{orig_idx} (Color: {mcolors.to_hex(color)}): {dist.name}")
+            legend_parts.append(f"Class {orig_idx} (Color: {mcolors.to_hex(color)}): {dist.name}")
         
         # Highlight specific time points if requested
         if highlight_indices:
@@ -1068,8 +1068,8 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         clipped_class_names = []
         for (orig_idx, dist), color in zip(clipped_distributions, all_colors):
             import matplotlib.colors as mcolors
-            clipped_legend_parts.append(f"C{orig_idx} (Color: {mcolors.to_hex(color)}): {dist.name}")
-            clipped_class_names.append(f"C{orig_idx}: {dist.name}")
+            clipped_legend_parts.append(f"Class {orig_idx} (Color: {mcolors.to_hex(color)}): {dist.name}")
+            clipped_class_names.append(f"Class {orig_idx}: {dist.name}")
         
         legend_text = "Available forecast patterns:\n" + "\n".join(clipped_legend_parts)
         class_names = clipped_class_names
@@ -1305,4 +1305,4 @@ class TimeSeriesDistributionVisualization(BaseVisualization):
         """Get the names of all fitted distribution classes."""
         if not self._distributions:
             return []
-        return [f"C{i}: {dist.name}" for i, dist in enumerate(self._distributions)]
+        return [f"Class {i}: {dist.name}" for i, dist in enumerate(self._distributions)]

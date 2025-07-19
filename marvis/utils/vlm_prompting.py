@@ -108,7 +108,6 @@ def validate_and_clean_class_names(class_names: List[str]) -> List[str]:
         if len(cleaned_name) > 30:
             original_name = cleaned_name
             cleaned_name = cleaned_name[:27] + "..."
-            logger.warning(f"Class name at index {i} too long ({len(original_name)} chars), truncated: '{original_name}' -> '{cleaned_name}'")
         
         # Ensure not empty after cleaning
         if not cleaned_name or cleaned_name == '_':
