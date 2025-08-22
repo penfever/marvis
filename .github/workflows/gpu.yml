@@ -1,0 +1,321 @@
+name: GPU Tests
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM UTC
+  workflow_dispatch:
+    inputs:
+      test_level:
+        description: 'Test level to run'
+        required: false
+        default: 'basic'
+        type: choice
+        options:
+        - basic
+        - comprehensive
+        - manual
+
+env:
+  PYTHONUNBUFFERED: 1
+  FORCE_COLOR: 1
+
+jobs:
+  gpu-detection:
+    runs-on: ubuntu-latest
+    outputs:
+      has-gpu: ${{ steps.check-gpu.outputs.has-gpu }}
+    
+    steps:
+    - name: Check for GPU availability
+      id: check-gpu
+      run: |
+        if nvidia-smi &> /dev/null; then
+          echo "has-gpu=true" >> $GITHUB_OUTPUT
+          echo "✅ GPU detected"
+          nvidia-smi
+        else
+          echo "has-gpu=false" >> $GITHUB_OUTPUT
+          echo "❌ No GPU detected"
+        fi
+
+  gpu-unit-tests:
+    runs-on: [self-hosted, gpu]  # Requires GPU-enabled runner
+    # Alternative: Use GitHub's GPU runners when available
+    # runs-on: ubuntu-gpu
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup CUDA environment
+      uses: Jimver/cuda-toolkit@v0.2.11
+      with:
+        cuda: '11.8'
+        method: 'network'
+        sub-packages: '["nvcc", "runtime"]'
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ffmpeg portaudio19-dev
+    
+    - name: Install PyTorch with CUDA
+      run: |
+        python -m pip install --upgrade pip
+        pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+    
+    - name: Install MARVIS with GPU dependencies
+      run: |
+        pip install -e ".[dev,test,vision,audio,vlm_cuda]"
+        pip install pytest-xdist pytest-timeout pytest-gpu
+    
+    - name: Verify GPU setup
+      run: |
+        python -c "
+        import torch
+        print(f'PyTorch version: {torch.__version__}')
+        print(f'CUDA available: {torch.cuda.is_available()}')
+        print(f'CUDA version: {torch.version.cuda}')
+        if torch.cuda.is_available():
+            print(f'GPU count: {torch.cuda.device_count()}')
+            for i in range(torch.cuda.device_count()):
+                print(f'GPU {i}: {torch.cuda.get_device_name(i)}')
+                print(f'  Memory: {torch.cuda.get_device_properties(i).total_memory / 1e9:.1f} GB')
+        "
+    
+    - name: Run GPU unit tests
+      run: |
+        pytest tests/unit/ \
+          -v \
+          --tb=short \
+          -m "gpu" \
+          --maxfail=3 \
+          --timeout=120 \
+          -n 1  # Single process for GPU tests
+    
+    - name: Clean up GPU memory
+      if: always()
+      run: |
+        python -c "
+        import torch
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            print('GPU memory cleared')
+        "
+
+  gpu-integration-tests:
+    runs-on: [self-hosted, gpu]
+    needs: gpu-unit-tests
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup CUDA environment
+      uses: Jimver/cuda-toolkit@v0.2.11
+      with:
+        cuda: '11.8'
+        method: 'network'
+        sub-packages: '["nvcc", "runtime"]'
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+        pip install -e ".[dev,test,vision,audio,vlm_cuda]"
+    
+    - name: Run GPU integration tests
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "gpu and not slow" \
+          --maxfail=2 \
+          --timeout=600 \
+          -n 1
+    
+    - name: Clean up GPU memory
+      if: always()
+      run: |
+        python -c "
+        import torch
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        "
+
+  gpu-vllm-tests:
+    runs-on: [self-hosted, gpu]
+    needs: gpu-integration-tests
+    if: ${{ github.event.inputs.test_level != 'basic' || github.event_name == 'schedule' }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup CUDA environment
+      uses: Jimver/cuda-toolkit@v0.2.11
+      with:
+        cuda: '11.8'
+        method: 'network'
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install VLLM and dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+        pip install vllm
+        pip install -e ".[dev,test,vision,audio,vlm_cuda]"
+    
+    - name: Test VLLM backend
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "gpu and vllm" \
+          --maxfail=1 \
+          --timeout=900 \
+          -k "vllm"
+    
+    - name: Clean up GPU memory
+      if: always()
+      run: |
+        python -c "
+        import torch
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        "
+
+  gpu-llamacpp-tests:
+    runs-on: [self-hosted, gpu]
+    if: ${{ github.event.inputs.test_level == 'comprehensive' || github.event_name == 'schedule' }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup CUDA environment
+      uses: Jimver/cuda-toolkit@v0.2.11
+      with:
+        cuda: '11.8'
+        method: 'network'
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install LlamaCPP with CUDA
+      run: |
+        python -m pip install --upgrade pip
+        CMAKE_ARGS="-DLLAMA_CUBLAS=on" pip install llama-cpp-python --no-cache-dir
+        pip install -e ".[dev,test,llamacpp]"
+    
+    - name: Test LlamaCPP GPU integration
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "llamacpp and gpu" \
+          --maxfail=1 \
+          --timeout=600
+    
+    - name: Clean up GPU memory
+      if: always()
+      run: |
+        python -c "
+        import torch
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        "
+
+  gpu-e2e-tests:
+    runs-on: [self-hosted, gpu]
+    needs: [gpu-integration-tests]
+    if: ${{ github.event.inputs.test_level == 'comprehensive' }}
+    timeout-minutes: 120
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup CUDA environment
+      uses: Jimver/cuda-toolkit@v0.2.11
+      with:
+        cuda: '11.8'
+        method: 'network'
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install full dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+        pip install -e ".[dev,test,vision,audio,vlm_cuda]"
+    
+    - name: Run E2E GPU tests
+      run: |
+        pytest tests/e2e/ \
+          -v \
+          --tb=short \
+          -m "gpu and not manual" \
+          --maxfail=1 \
+          --timeout=1800 \
+          -n 1
+      env:
+        # Use smaller models for E2E testing
+        MARVIS_TEST_MODEL_SIZE: "small"
+        MARVIS_TEST_MAX_SAMPLES: "10"
+    
+    - name: Generate test report
+      if: always()
+      run: |
+        echo "## GPU Test Results" >> $GITHUB_STEP_SUMMARY
+        echo "GPU tests completed on $(date)" >> $GITHUB_STEP_SUMMARY
+        nvidia-smi --format=csv --query-gpu=name,memory.total,memory.used >> $GITHUB_STEP_SUMMARY
+    
+    - name: Clean up GPU memory
+      if: always()
+      run: |
+        python -c "
+        import torch
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        "
+
+  gpu-test-summary:
+    runs-on: ubuntu-latest
+    needs: [gpu-unit-tests, gpu-integration-tests, gpu-vllm-tests, gpu-llamacpp-tests, gpu-e2e-tests]
+    if: always()
+    
+    steps:
+    - name: GPU Test Summary
+      run: |
+        echo "## GPU Test Results Summary" >> $GITHUB_STEP_SUMMARY
+        echo "| Test Type | Status |" >> $GITHUB_STEP_SUMMARY
+        echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+        echo "| GPU Unit Tests | ${{ needs.gpu-unit-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| GPU Integration Tests | ${{ needs.gpu-integration-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| VLLM Tests | ${{ needs.gpu-vllm-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| LlamaCPP Tests | ${{ needs.gpu-llamacpp-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| E2E Tests | ${{ needs.gpu-e2e-tests.result }} |" >> $GITHUB_STEP_SUMMARY

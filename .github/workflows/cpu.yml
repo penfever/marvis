@@ -1,0 +1,269 @@
+name: CPU-Only Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    - cron: '0 6 * * 1'  # Weekly on Mondays at 6 AM UTC
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: 'Type of CPU tests to run'
+        required: false
+        default: 'standard'
+        type: choice
+        options:
+        - standard
+        - comprehensive
+        - performance
+
+env:
+  PYTHONUNBUFFERED: 1
+  FORCE_COLOR: 1
+  # Force CPU-only mode
+  CUDA_VISIBLE_DEVICES: ""
+  VLLM_AVAILABLE: false
+
+jobs:
+  cpu-unit-tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.9", "3.10", "3.11"]
+        exclude:
+          # Reduce matrix for Windows to save resources
+          - os: windows-latest
+            python-version: "3.9"
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+    
+    - name: Install system dependencies (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ffmpeg portaudio19-dev
+    
+    - name: Install system dependencies (macOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew install ffmpeg portaudio
+    
+    - name: Install system dependencies (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        # Windows dependencies handled through pip
+        echo "Windows dependencies via pip"
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev,test]"
+        pip install pytest-xdist pytest-timeout pytest-benchmark
+    
+    - name: Verify CPU-only setup
+      run: |
+        python -c "
+        import torch
+        print(f'PyTorch version: {torch.__version__}')
+        print(f'CUDA available: {torch.cuda.is_available()}')
+        print(f'MPS available: {torch.backends.mps.is_available() if hasattr(torch.backends, \"mps\") else False}')
+        print('CPU-only mode confirmed' if not torch.cuda.is_available() else 'WARNING: CUDA detected')
+        "
+    
+    - name: Run CPU unit tests
+      run: |
+        pytest tests/unit/ \
+          -v \
+          --tb=short \
+          --cov=marvis \
+          --cov-report=xml \
+          -m "unit and cpu and not gpu and not mps" \
+          --maxfail=5 \
+          --timeout=120 \
+          -n auto
+    
+    - name: Upload coverage
+      uses: codecov/codecov-action@v3
+      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10'
+      with:
+        file: ./coverage.xml
+        flags: cpu-tests
+        name: cpu-coverage
+
+  cpu-integration-tests:
+    runs-on: ubuntu-latest
+    needs: cpu-unit-tests
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ffmpeg portaudio19-dev
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev,test,audio,vision]"
+        pip install pytest-xdist pytest-timeout
+    
+    - name: Run CPU integration tests
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "integration and cpu and not gpu and not api and not slow" \
+          --maxfail=3 \
+          --timeout=600 \
+          -n 2
+
+  cpu-performance-tests:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.test_type == 'performance' || github.event_name == 'schedule' }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev,test,audio,vision]"
+        pip install pytest-benchmark pytest-timeout
+    
+    - name: Run CPU performance benchmarks
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "cpu and benchmark" \
+          --benchmark-only \
+          --benchmark-json=cpu-benchmark.json \
+          --timeout=900
+    
+    - name: Upload benchmark results
+      uses: actions/upload-artifact@v3
+      with:
+        name: cpu-benchmark-results
+        path: cpu-benchmark.json
+
+  cpu-transformers-backend-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev,test,vision,audio]"
+        # Explicitly install transformers without VLLM
+        pip install transformers torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+    
+    - name: Test transformers backend only
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "integration and transformers and cpu" \
+          --maxfail=2 \
+          --timeout=900
+      env:
+        VLLM_AVAILABLE: false
+        MARVIS_FORCE_BACKEND: transformers
+
+  cpu-mps-compatibility-tests:
+    runs-on: macos-latest
+    if: ${{ github.event.inputs.test_type == 'comprehensive' }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        brew install ffmpeg portaudio
+        pip install -e ".[dev,test,vision,audio]"
+    
+    - name: Check MPS availability and force CPU mode
+      run: |
+        python -c "
+        import torch
+        print(f'MPS available: {torch.backends.mps.is_available()}')
+        print(f'MPS built: {torch.backends.mps.is_built()}')
+        print('Testing CPU mode on Apple Silicon...')
+        "
+    
+    - name: Run CPU compatibility tests on Apple Silicon
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "integration and cpu and not slow" \
+          --maxfail=2 \
+          --timeout=600
+      env:
+        # Force CPU mode even on MPS-capable systems
+        PYTORCH_ENABLE_MPS_FALLBACK: 1
+        MARVIS_FORCE_DEVICE: cpu
+
+  cpu-test-summary:
+    runs-on: ubuntu-latest
+    needs: [cpu-unit-tests, cpu-integration-tests, cpu-transformers-backend-tests]
+    if: always()
+    
+    steps:
+    - name: CPU Test Summary
+      run: |
+        echo "## CPU Test Results Summary" >> $GITHUB_STEP_SUMMARY
+        echo "| Test Type | Status |" >> $GITHUB_STEP_SUMMARY
+        echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+        echo "| CPU Unit Tests | ${{ needs.cpu-unit-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| CPU Integration Tests | ${{ needs.cpu-integration-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Transformers Backend Tests | ${{ needs.cpu-transformers-backend-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        
+        # Fail if critical tests failed
+        if [[ "${{ needs.cpu-unit-tests.result }}" == "failure" || "${{ needs.cpu-integration-tests.result }}" == "failure" ]]; then
+          echo "Critical CPU tests failed!"
+          exit 1
+        fi

@@ -33,6 +33,14 @@ except ImportError:
     VLLM_AVAILABLE = False
     warnings.warn("vllm not available, falling back to transformers")
 
+# LlamaCPP imports
+try:
+    from llama_cpp import Llama, ChatCompletionRequestMessage
+    LLAMACPP_AVAILABLE = True
+except ImportError:
+    LLAMACPP_AVAILABLE = False
+    warnings.warn("llama-cpp-python not available")
+
 try:
     from PIL import Image
     PIL_AVAILABLE = True
@@ -1237,6 +1245,312 @@ class GeminiVisionModelWrapper(BaseModelWrapper):
         self._model = None
 
 
+class LlamaCPPModelWrapper(BaseModelWrapper):
+    """LlamaCPP-based model wrapper for GGUF quantized models."""
+    
+    def __init__(self, model_name: str, device: str = "auto", **kwargs):
+        super().__init__(model_name, device, **kwargs)
+        self.n_ctx = kwargs.get('n_ctx', 2048)  # Context window size
+        self.n_gpu_layers = kwargs.get('n_gpu_layers', -1)  # -1 for auto
+        self.n_threads = kwargs.get('n_threads', None)  # Auto-detect
+        self.verbose = kwargs.get('verbose', False)
+        self.use_mlock = kwargs.get('use_mlock', True)
+        self.use_mmap = kwargs.get('use_mmap', True)
+        
+    def load(self) -> None:
+        """Load GGUF model using llama-cpp-python."""
+        if not LLAMACPP_AVAILABLE:
+            raise ImportError("llama-cpp-python not available. Install with: pip install 'marvis[llamacpp]'")
+        
+        from marvis.utils.gguf_utils import download_gguf_file, is_gguf_url
+        
+        # Download GGUF file if URL provided
+        if is_gguf_url(self.model_name):
+            logger.info(f"Downloading GGUF model: {self.model_name}")
+            model_path = download_gguf_file(self.model_name)
+            self.model_path = str(model_path)
+        else:
+            # Assume local file path
+            self.model_path = self.model_name
+        
+        logger.info(f"Loading GGUF model with LlamaCPP: {self.model_path}")
+        
+        # Configure GPU layers based on device
+        n_gpu_layers = self.n_gpu_layers
+        if self.device == "cpu":
+            n_gpu_layers = 0
+        elif self.device == "auto":
+            # Auto-detect: use GPU if available
+            if torch.cuda.is_available():
+                n_gpu_layers = -1  # Use all layers on GPU
+                logger.info("Using CUDA acceleration for LlamaCPP")
+            elif hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+                n_gpu_layers = -1  # Use Metal on Apple Silicon
+                logger.info("Using Metal Performance Shaders for LlamaCPP")
+            else:
+                n_gpu_layers = 0
+                logger.info("Using CPU for LlamaCPP inference")
+        
+        try:
+            self._model = Llama(
+                model_path=self.model_path,
+                n_ctx=self.n_ctx,
+                n_gpu_layers=n_gpu_layers,
+                n_threads=self.n_threads,
+                verbose=self.verbose,
+                use_mlock=self.use_mlock,
+                use_mmap=self.use_mmap,
+                # Additional optimization parameters
+                f16_kv=True,  # Use half-precision for key-value cache
+                logits_all=False,  # Only compute logits for last token
+            )
+            logger.info(f"Successfully loaded GGUF model: {self.model_path}")
+            
+        except Exception as e:
+            logger.error(f"Failed to load GGUF model {self.model_path}: {e}")
+            raise
+    
+    def generate(self, inputs: Union[str, List[str]], config: GenerationConfig) -> Union[str, List[str]]:
+        """Generate text using LlamaCPP."""
+        if not self.is_loaded():
+            raise RuntimeError("Model not loaded")
+        
+        # Ensure inputs is a list
+        if isinstance(inputs, str):
+            inputs = [inputs]
+            single_input = True
+        else:
+            single_input = False
+        
+        results = []
+        for text_input in inputs:
+            try:
+                # Convert config to llama-cpp parameters
+                generate_kwargs = {
+                    'max_tokens': config.max_new_tokens,
+                    'temperature': config.temperature if config.do_sample else 0.1,
+                    'top_p': config.top_p if config.do_sample else 1.0,
+                    'top_k': config.top_k if config.do_sample else 40,
+                    'repeat_penalty': config.repetition_penalty,
+                    'stop': config.stop_tokens or [],
+                    'echo': False  # Don't include prompt in output
+                }
+                
+                # Generate using llama-cpp
+                response = self._model(
+                    text_input,
+                    **generate_kwargs
+                )
+                
+                # Extract generated text
+                generated_text = response['choices'][0]['text']
+                results.append(generated_text)
+                
+            except Exception as e:
+                logger.error(f"LlamaCPP generation error: {e}")
+                results.append("")  # Fallback to empty string
+        
+        return results[0] if single_input else results
+    
+    def is_loaded(self) -> bool:
+        """Check if model is loaded."""
+        return self._model is not None
+    
+    def unload(self) -> None:
+        """Unload the model to free memory."""
+        if hasattr(self, '_model') and self._model is not None:
+            # LlamaCPP doesn't have explicit unload, just delete reference
+            del self._model
+            self._model = None
+        # Clear GPU memory if available
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        elif hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+            import gc
+            gc.collect()
+
+
+class LlamaCPPVisionModelWrapper(BaseModelWrapper):
+    """LlamaCPP-based wrapper for Vision Language Models with GGUF quantization."""
+    
+    def __init__(self, model_name: str, device: str = "auto", **kwargs):
+        super().__init__(model_name, device, **kwargs)
+        self.n_ctx = kwargs.get('n_ctx', 4096)  # Larger context for VLMs
+        self.n_gpu_layers = kwargs.get('n_gpu_layers', -1)
+        self.n_threads = kwargs.get('n_threads', None)
+        self.verbose = kwargs.get('verbose', False)
+        self.use_mlock = kwargs.get('use_mlock', True)
+        self.use_mmap = kwargs.get('use_mmap', True)
+        # VLM-specific parameters
+        self.clip_model_path = kwargs.get('clip_model_path', None)
+        
+    def load(self) -> None:
+        """Load GGUF VLM using llama-cpp-python."""
+        if not LLAMACPP_AVAILABLE:
+            raise ImportError("llama-cpp-python not available. Install with: pip install 'marvis[llamacpp]'")
+        
+        from marvis.utils.gguf_utils import download_gguf_file, is_gguf_url
+        
+        # Download GGUF file if URL provided
+        if is_gguf_url(self.model_name):
+            logger.info(f"Downloading GGUF VLM: {self.model_name}")
+            model_path = download_gguf_file(self.model_name)
+            self.model_path = str(model_path)
+        else:
+            self.model_path = self.model_name
+        
+        logger.info(f"Loading GGUF VLM with LlamaCPP: {self.model_path}")
+        
+        # Configure GPU layers
+        n_gpu_layers = self.n_gpu_layers
+        if self.device == "cpu":
+            n_gpu_layers = 0
+        elif self.device == "auto":
+            if torch.cuda.is_available():
+                n_gpu_layers = -1
+                logger.info("Using CUDA acceleration for LlamaCPP VLM")
+            elif hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+                n_gpu_layers = -1
+                logger.info("Using Metal Performance Shaders for LlamaCPP VLM")
+            else:
+                n_gpu_layers = 0
+                logger.info("Using CPU for LlamaCPP VLM inference")
+        
+        try:
+            # Load model with vision capabilities
+            self._model = Llama(
+                model_path=self.model_path,
+                n_ctx=self.n_ctx,
+                n_gpu_layers=n_gpu_layers,
+                n_threads=self.n_threads,
+                verbose=self.verbose,
+                use_mlock=self.use_mlock,
+                use_mmap=self.use_mmap,
+                # VLM-specific parameters
+                f16_kv=True,
+                logits_all=False,
+                # Enable chat format for better conversation handling
+                chat_format="llava-1-5" if "llava" in self.model_name.lower() else None,
+                clip_model_path=self.clip_model_path,
+            )
+            logger.info(f"Successfully loaded GGUF VLM: {self.model_path}")
+            
+        except Exception as e:
+            logger.error(f"Failed to load GGUF VLM {self.model_path}: {e}")
+            raise
+    
+    def generate_from_conversation(self, conversation: List[Dict], config: GenerationConfig) -> str:
+        """Generate text from a conversation format with image+text input."""
+        if not self.is_loaded():
+            raise RuntimeError("Model not loaded")
+        
+        try:
+            # Convert conversation format for llama-cpp-python
+            messages = []
+            image_data = None
+            
+            for message in conversation:
+                if isinstance(message.get('content'), list):
+                    # Handle multimodal content
+                    text_parts = []
+                    for content_item in message['content']:
+                        if content_item.get('type') == 'text':
+                            text_parts.append(content_item.get('text', ''))
+                        elif content_item.get('type') == 'image':
+                            # Extract image for llama-cpp-python
+                            image = content_item.get('image')
+                            if hasattr(image, 'convert'):  # PIL Image
+                                # Convert PIL Image to format expected by llama-cpp
+                                import numpy as np
+                                image_array = np.array(image.convert('RGB'))
+                                image_data = image_array
+                            else:
+                                logger.warning("Unsupported image format for LlamaCPP VLM")
+                    
+                    # Combine text parts
+                    combined_text = ' '.join(text_parts)
+                    messages.append({
+                        "role": message.get('role', 'user'),
+                        "content": combined_text
+                    })
+                else:
+                    # Text-only message
+                    messages.append({
+                        "role": message.get('role', 'user'),
+                        "content": message.get('content', '')
+                    })
+            
+            # Convert config to llama-cpp parameters
+            generate_kwargs = {
+                'max_tokens': config.max_new_tokens,
+                'temperature': config.temperature if config.do_sample else 0.1,
+                'top_p': config.top_p if config.do_sample else 1.0,
+                'top_k': config.top_k if config.do_sample else 40,
+                'repeat_penalty': config.repetition_penalty,
+                'stop': config.stop_tokens or [],
+            }
+            
+            # Use chat completion for VLMs
+            if hasattr(self._model, 'create_chat_completion'):
+                # For models that support chat completion with images
+                response = self._model.create_chat_completion(
+                    messages=messages,
+                    **generate_kwargs
+                )
+                return response['choices'][0]['message']['content']
+            else:
+                # Fallback to regular completion
+                # Combine messages into single prompt
+                prompt = ""
+                for msg in messages:
+                    role = msg['role']
+                    content = msg['content']
+                    prompt += f"{role.title()}: {content}\n"
+                prompt += "Assistant:"
+                
+                response = self._model(
+                    prompt,
+                    **generate_kwargs
+                )
+                return response['choices'][0]['text'].strip()
+                
+        except Exception as e:
+            logger.error(f"LlamaCPP VLM generation error: {e}")
+            return ""
+    
+    def generate(self, inputs: Union[str, List[str]], config: GenerationConfig) -> Union[str, List[str]]:
+        """Standard generate method for text-only inputs."""
+        if isinstance(inputs, str):
+            inputs = [inputs]
+            single_input = True
+        else:
+            single_input = False
+        
+        results = []
+        for text_input in inputs:
+            # Create a simple conversation for text-only input
+            conversation = [{"role": "user", "content": text_input}]
+            result = self.generate_from_conversation(conversation, config)
+            results.append(result)
+        
+        return results[0] if single_input else results
+    
+    def is_loaded(self) -> bool:
+        """Check if model is loaded."""
+        return self._model is not None
+    
+    def unload(self) -> None:
+        """Unload the model to free memory."""
+        if hasattr(self, '_model') and self._model is not None:
+            del self._model
+            self._model = None
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        elif hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+            import gc
+            gc.collect()
+
+
 class ModelLoader:
     """Central model loading system."""
     
@@ -1271,32 +1585,42 @@ class ModelLoader:
         
         # Determine backend
         if backend == "auto":
-            # Check for API models first
-            openai_llm_models = [
-                "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano",
-                "gpt-4o", "gpt-3.5-turbo", "o3", "o4-mini"
-            ]
-            gemini_models = [
-                "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite",
-                "gemini-2.0-flash", "gemini-2.0-pro-experimental"
-            ]
-            
-            if any(model in model_name for model in openai_llm_models):
-                backend = "openai"
-                logger.info(f"Auto-selected OpenAI backend for LLM: {model_name}")
-            elif any(model in model_name for model in gemini_models):
-                backend = "gemini"
-                logger.info(f"Auto-selected Gemini backend for LLM: {model_name}")
+            # Check for GGUF models first
+            from marvis.utils.gguf_utils import is_gguf_url
+            if is_gguf_url(model_name):
+                backend = "llamacpp"
+                logger.info(f"Auto-selected LlamaCPP backend for GGUF model: {model_name}")
             else:
-                # Prefer VLLM for local LLMs if available
-                backend = "vllm" if VLLM_AVAILABLE else "transformers"
-                logger.info(f"Auto-selected {backend} backend for local LLM: {model_name}")
+                # Check for API models
+                openai_llm_models = [
+                    "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano",
+                    "gpt-4o", "gpt-3.5-turbo", "o3", "o4-mini"
+                ]
+                gemini_models = [
+                    "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite",
+                    "gemini-2.0-flash", "gemini-2.0-pro-experimental"
+                ]
+                
+                if any(model in model_name for model in openai_llm_models):
+                    backend = "openai"
+                    logger.info(f"Auto-selected OpenAI backend for LLM: {model_name}")
+                elif any(model in model_name for model in gemini_models):
+                    backend = "gemini"
+                    logger.info(f"Auto-selected Gemini backend for LLM: {model_name}")
+                else:
+                    # Prefer VLLM for local LLMs if available
+                    backend = "vllm" if VLLM_AVAILABLE else "transformers"
+                    logger.info(f"Auto-selected {backend} backend for local LLM: {model_name}")
         
         # Create wrapper
         if backend == "openai":
             wrapper = OpenAIModelWrapper(model_name, device, **kwargs)
         elif backend == "gemini":
             wrapper = GeminiModelWrapper(model_name, device, **kwargs)
+        elif backend == "llamacpp":
+            if not LLAMACPP_AVAILABLE:
+                raise ImportError("LlamaCPP not available. Install with: pip install 'marvis[llamacpp]'")
+            wrapper = LlamaCPPModelWrapper(model_name, device, **kwargs)
         elif backend == "vllm":
             if not VLLM_AVAILABLE:
                 logger.warning("VLLM not available, falling back to transformers")
@@ -1308,7 +1632,7 @@ class ModelLoader:
             if not TRANSFORMERS_AVAILABLE:
                 raise ImportError("Transformers not available")
             wrapper = TransformersModelWrapper(model_name, device, **kwargs)
-        elif backend not in ["openai", "gemini", "vllm"]:
+        elif backend not in ["openai", "gemini", "vllm", "llamacpp"]:
             raise ValueError(f"Unknown backend: {backend}")
         
         # Load the model
@@ -1325,14 +1649,14 @@ class ModelLoader:
         device: str = "auto",
         backend: str = "auto",
         **kwargs
-    ) -> Union[VisionLanguageModelWrapper, VLLMVisionModelWrapper, OpenAIVisionModelWrapper, GeminiVisionModelWrapper]:
+    ) -> Union[VisionLanguageModelWrapper, VLLMVisionModelWrapper, OpenAIVisionModelWrapper, GeminiVisionModelWrapper, LlamaCPPVisionModelWrapper]:
         """
         Load a Vision Language Model.
         
         Args:
-            model_name: HuggingFace model name
+            model_name: HuggingFace model name or GGUF URL/path
             device: Device to load model on
-            backend: Backend to use ("auto", "vllm", "transformers")
+            backend: Backend to use ("auto", "vllm", "transformers", "llamacpp")
             **kwargs: Additional model loading arguments
             
         Returns:
@@ -1340,41 +1664,47 @@ class ModelLoader:
         """
         # Determine backend
         if backend == "auto":
-            # Check for API VLM models first
-            openai_vlm_models = ["gpt-4.1", "gpt-4o"]  # Both support vision
-            gemini_vlm_models = [
-                "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite",
-                "gemini-2.0-flash", "gemini-2.0-pro-experimental"
-            ]
-            
-            if any(model in model_name for model in openai_vlm_models):
-                backend = "openai"
-                logger.info(f"Auto-selected OpenAI backend for VLM: {model_name}")
-            elif any(model in model_name for model in gemini_vlm_models):
-                backend = "gemini"
-                logger.info(f"Auto-selected Gemini backend for VLM: {model_name}")
+            # Check for GGUF VLMs first
+            from marvis.utils.gguf_utils import is_gguf_url
+            if is_gguf_url(model_name):
+                backend = "llamacpp"
+                logger.info(f"Auto-selected LlamaCPP backend for GGUF VLM: {model_name}")
             else:
-                # Check if model supports VLLM multimodal
-                vlm_supported_models = [
-                    "Qwen/Qwen2.5-VL",
-                    "Qwen/Qwen2-VL",
-                    "llava-hf/llava",
-                    "TIGER-Lab/Mantis",
-                    "microsoft/Phi-3.5-vision",
-                    "mistral-community/pixtral",
-                    "allenai/Molmo",
-                    "meta-llama/Llama-3.2-11B-Vision"
+                # Check for API VLM models
+                openai_vlm_models = ["gpt-4.1", "gpt-4o"]  # Both support vision
+                gemini_vlm_models = [
+                    "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite",
+                    "gemini-2.0-flash", "gemini-2.0-pro-experimental"
                 ]
                 
-                # Check if model name matches any supported pattern
-                supports_vllm = any(pattern in model_name for pattern in vlm_supported_models)
-                
-                if supports_vllm and VLLM_AVAILABLE:
-                    backend = "vllm"
-                    logger.info(f"Auto-selected VLLM backend for VLM: {model_name}")
+                if any(model in model_name for model in openai_vlm_models):
+                    backend = "openai"
+                    logger.info(f"Auto-selected OpenAI backend for VLM: {model_name}")
+                elif any(model in model_name for model in gemini_vlm_models):
+                    backend = "gemini"
+                    logger.info(f"Auto-selected Gemini backend for VLM: {model_name}")
                 else:
-                    backend = "transformers"
-                    logger.info(f"Auto-selected transformers backend for VLM: {model_name}")
+                    # Check if model supports VLLM multimodal
+                    vlm_supported_models = [
+                        "Qwen/Qwen2.5-VL",
+                        "Qwen/Qwen2-VL",
+                        "llava-hf/llava",
+                        "TIGER-Lab/Mantis",
+                        "microsoft/Phi-3.5-vision",
+                        "mistral-community/pixtral",
+                        "allenai/Molmo",
+                        "meta-llama/Llama-3.2-11B-Vision"
+                    ]
+                    
+                    # Check if model name matches any supported pattern
+                    supports_vllm = any(pattern in model_name for pattern in vlm_supported_models)
+                    
+                    if supports_vllm and VLLM_AVAILABLE:
+                        backend = "vllm"
+                        logger.info(f"Auto-selected VLLM backend for VLM: {model_name}")
+                    else:
+                        backend = "transformers"
+                        logger.info(f"Auto-selected transformers backend for VLM: {model_name}")
         
         cache_key = f"{model_name}_vlm_{backend}_{device}"
         
@@ -1388,6 +1718,10 @@ class ModelLoader:
             wrapper = OpenAIVisionModelWrapper(model_name, device, **kwargs)
         elif backend == "gemini":
             wrapper = GeminiVisionModelWrapper(model_name, device, **kwargs)
+        elif backend == "llamacpp":
+            if not LLAMACPP_AVAILABLE:
+                raise ImportError("LlamaCPP not available. Install with: pip install 'marvis[llamacpp]'")
+            wrapper = LlamaCPPVisionModelWrapper(model_name, device, **kwargs)
         elif backend == "vllm":
             if not VLLM_AVAILABLE:
                 logger.warning("VLLM not available, falling back to transformers")
@@ -1399,7 +1733,7 @@ class ModelLoader:
             if not TRANSFORMERS_AVAILABLE:
                 raise ImportError("Transformers not available")
             wrapper = VisionLanguageModelWrapper(model_name, device, **kwargs)
-        elif backend not in ["openai", "gemini", "vllm"]:
+        elif backend not in ["openai", "gemini", "vllm", "llamacpp"]:
             raise ValueError(f"Unknown backend: {backend}")
         
         # Load the model

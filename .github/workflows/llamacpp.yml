@@ -1,0 +1,381 @@
+name: LlamaCPP Tests
+
+on:
+  schedule:
+    - cron: '0 8 * * 2'  # Weekly on Tuesdays at 8 AM UTC
+  workflow_dispatch:
+    inputs:
+      test_level:
+        description: 'Level of LlamaCPP tests'
+        required: false
+        default: 'basic'
+        type: choice
+        options:
+        - basic
+        - comprehensive
+        - quantization
+      models:
+        description: 'Models to test (comma-separated)'
+        required: false
+        default: 'Qwen2.5-VL-3B-Instruct-Q4_K_M.gguf'
+
+env:
+  PYTHONUNBUFFERED: 1
+  FORCE_COLOR: 1
+  MARVIS_FORCE_BACKEND: llamacpp
+  VLLM_AVAILABLE: false
+
+jobs:
+  llamacpp-cpu-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake ffmpeg portaudio19-dev
+    
+    - name: Install LlamaCPP CPU version
+      run: |
+        python -m pip install --upgrade pip
+        pip install llama-cpp-python --no-cache-dir
+        pip install -e ".[dev,test,llamacpp]"
+        pip install pytest-timeout pytest-html
+    
+    - name: Verify LlamaCPP installation
+      run: |
+        python -c "
+        try:
+            import llama_cpp
+            print(f'llama-cpp-python version: {llama_cpp.__version__}')
+            print('✓ LlamaCPP installed successfully')
+        except ImportError as e:
+            print(f'✗ LlamaCPP import failed: {e}')
+            exit(1)
+        "
+    
+    - name: Run LlamaCPP unit tests
+      run: |
+        pytest tests/unit/ \
+          -v \
+          --tb=short \
+          --html=llamacpp-unit-report.html \
+          --self-contained-html \
+          -m "llamacpp and cpu and not slow" \
+          --maxfail=3 \
+          --timeout=300
+    
+    - name: Upload unit test report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: llamacpp-unit-report
+        path: llamacpp-unit-report.html
+
+  llamacpp-gpu-tests:
+    runs-on: [self-hosted, gpu]
+    # Alternative for GitHub-hosted runners with GPU
+    # runs-on: ubuntu-gpu
+    if: ${{ github.event.inputs.test_level != 'basic' }}
+    timeout-minutes: 240
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup CUDA environment
+      uses: Jimver/cuda-toolkit@v0.2.11
+      with:
+        cuda: '11.8'
+        method: 'network'
+        sub-packages: '["nvcc", "runtime"]'
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake ffmpeg portaudio19-dev
+    
+    - name: Install LlamaCPP with CUDA
+      run: |
+        python -m pip install --upgrade pip
+        CMAKE_ARGS="-DLLAMA_CUBLAS=on" pip install llama-cpp-python --no-cache-dir
+        pip install -e ".[dev,test,llamacpp]"
+        pip install pytest-timeout pytest-html
+    
+    - name: Verify GPU LlamaCPP installation
+      run: |
+        python -c "
+        import llama_cpp
+        print(f'llama-cpp-python version: {llama_cpp.__version__}')
+        
+        # Test basic GPU functionality
+        try:
+            # This will fail gracefully if no CUDA support
+            import torch
+            if torch.cuda.is_available():
+                print(f'CUDA available: {torch.cuda.device_count()} devices')
+                print('✓ GPU environment ready for LlamaCPP')
+            else:
+                print('⚠️ CUDA not available, falling back to CPU')
+        except Exception as e:
+            print(f'GPU check failed: {e}')
+        "
+    
+    - name: Run LlamaCPP GPU tests
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          --html=llamacpp-gpu-report.html \
+          --self-contained-html \
+          -m "llamacpp and gpu and not slow" \
+          --maxfail=2 \
+          --timeout=900
+    
+    - name: Upload GPU test report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: llamacpp-gpu-report
+        path: llamacpp-gpu-report.html
+    
+    - name: Clean up GPU memory
+      if: always()
+      run: |
+        python -c "
+        import gc
+        gc.collect()
+        try:
+            import torch
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+                print('GPU memory cleared')
+        except:
+            pass
+        "
+
+  llamacpp-quantization-tests:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.test_level == 'quantization' || github.event_name == 'schedule' }}
+    timeout-minutes: 300
+    
+    strategy:
+      matrix:
+        quantization: [Q4_K_M, Q5_K_M, Q8_0]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake
+        python -m pip install --upgrade pip
+        pip install llama-cpp-python --no-cache-dir
+        pip install -e ".[dev,test,llamacpp]"
+        pip install pytest-timeout pytest-html
+    
+    - name: Test quantization format ${{ matrix.quantization }}
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          --html=llamacpp-${{ matrix.quantization }}-report.html \
+          --self-contained-html \
+          -m "llamacpp and quantization" \
+          --maxfail=1 \
+          --timeout=1200
+      env:
+        MARVIS_TEST_QUANTIZATION: ${{ matrix.quantization }}
+        MARVIS_TEST_MODEL_SIZE: small
+    
+    - name: Upload quantization test report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: llamacpp-${{ matrix.quantization }}-report
+        path: llamacpp-${{ matrix.quantization }}-report.html
+
+  llamacpp-gguf-utils-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install llama-cpp-python --no-cache-dir
+        pip install -e ".[dev,test,llamacpp]"
+        pip install pytest-timeout
+    
+    - name: Test GGUF utilities
+      run: |
+        pytest tests/unit/test_gguf_utils.py \
+          -v \
+          --tb=short \
+          -m "unit and gguf" \
+          --maxfail=5 \
+          --timeout=120
+    
+    - name: Test GGUF model loading
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "integration and gguf and not slow" \
+          --maxfail=2 \
+          --timeout=600
+
+  llamacpp-integration-tests:
+    runs-on: ubuntu-latest
+    needs: [llamacpp-cpu-tests, llamacpp-gguf-utils-tests]
+    timeout-minutes: 240
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake ffmpeg portaudio19-dev
+        python -m pip install --upgrade pip
+        pip install llama-cpp-python --no-cache-dir
+        pip install -e ".[dev,test,llamacpp,audio,vision]"
+        pip install pytest-timeout pytest-html
+    
+    - name: Run full LlamaCPP integration tests
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          --html=llamacpp-integration-report.html \
+          --self-contained-html \
+          -m "llamacpp and integration and not gpu and not slow" \
+          --maxfail=2 \
+          --timeout=1800
+      env:
+        MARVIS_TEST_MODEL_SIZE: small
+        MARVIS_TEST_MAX_SAMPLES: 10
+        MARVIS_TEST_QUICK_MODE: true
+    
+    - name: Upload integration test report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: llamacpp-integration-report
+        path: llamacpp-integration-report.html
+
+  llamacpp-performance-benchmarks:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.test_level == 'comprehensive' }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake
+        python -m pip install --upgrade pip
+        pip install llama-cpp-python --no-cache-dir
+        pip install -e ".[dev,test,llamacpp]"
+        pip install pytest-benchmark pytest-timeout
+    
+    - name: Run LlamaCPP performance benchmarks
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "llamacpp and benchmark" \
+          --benchmark-only \
+          --benchmark-json=llamacpp-benchmark.json \
+          --timeout=1800
+      env:
+        MARVIS_BENCHMARK_MODE: true
+        MARVIS_TEST_MODEL_SIZE: small
+    
+    - name: Upload benchmark results
+      uses: actions/upload-artifact@v3
+      with:
+        name: llamacpp-benchmark-results
+        path: llamacpp-benchmark.json
+
+  llamacpp-test-summary:
+    runs-on: ubuntu-latest
+    needs: [llamacpp-cpu-tests, llamacpp-gguf-utils-tests, llamacpp-integration-tests]
+    if: always()
+    
+    steps:
+    - name: LlamaCPP Test Summary
+      run: |
+        echo "## LlamaCPP Test Results Summary" >> $GITHUB_STEP_SUMMARY
+        echo "| Test Type | Status |" >> $GITHUB_STEP_SUMMARY
+        echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+        echo "| CPU Tests | ${{ needs.llamacpp-cpu-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| GGUF Utils Tests | ${{ needs.llamacpp-gguf-utils-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Integration Tests | ${{ needs.llamacpp-integration-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Test Configuration" >> $GITHUB_STEP_SUMMARY
+        echo "- Test Level: ${{ github.event.inputs.test_level || 'basic' }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Models: ${{ github.event.inputs.models || 'Qwen2.5-VL-3B-Instruct-Q4_K_M.gguf' }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Backend: LlamaCPP (forced)" >> $GITHUB_STEP_SUMMARY
+        
+        # Check for failures
+        FAILED_TESTS=0
+        [[ "${{ needs.llamacpp-cpu-tests.result }}" == "failure" ]] && ((FAILED_TESTS++))
+        [[ "${{ needs.llamacpp-gguf-utils-tests.result }}" == "failure" ]] && ((FAILED_TESTS++))
+        [[ "${{ needs.llamacpp-integration-tests.result }}" == "failure" ]] && ((FAILED_TESTS++))
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        if [ $FAILED_TESTS -eq 0 ]; then
+          echo "🎉 All LlamaCPP tests passed!" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "⚠️ $FAILED_TESTS LlamaCPP test suite(s) failed" >> $GITHUB_STEP_SUMMARY
+          exit 1
+        fi

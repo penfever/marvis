@@ -136,6 +136,13 @@ tabula_8b = [
     "rtfm @ git+https://github.com/penfever/rtfm.git",
 ]
 
+llamacpp = [
+    # LlamaCPP dependencies for GGUF quantized models
+    "llama-cpp-python>=0.2.0",
+    # Core dependencies already covered by main project
+    # "numpy>=1.20.0", "pillow>=8.0.0" (covered by vision group)
+]
+
 docs = [
     # Documentation dependencies
     "sphinx>=6.0",
@@ -152,6 +159,38 @@ dev = [
     "ruff>=0.1.0",
     "pre-commit>=3.0.0",
     "mypy>=1.0.0",
+]
+
+test = [
+    # Testing framework and utilities
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-xdist>=3.0.0",        # Parallel test execution
+    "pytest-timeout>=2.1.0",      # Test timeout management
+    "pytest-html>=3.2.0",         # HTML test reports
+    "pytest-benchmark>=4.0.0",    # Performance benchmarks
+    "pytest-mock>=3.10.0",        # Mock utilities
+    "pytest-asyncio>=0.21.0",     # Async test support
+    "pytest-gpu>=0.1.0",          # GPU testing utilities
+    
+    # Test data and utilities
+    "Faker>=19.0.0",               # Generate test data
+    "factory-boy>=3.3.0",          # Test object factories
+    "responses>=0.23.0",           # Mock HTTP responses
+    "freezegun>=1.2.0",            # Time mocking
+    
+    # Coverage and reporting
+    "coverage>=7.0.0",
+    "codecov>=2.1.0",
+    
+    # Security testing
+    "bandit>=1.7.5",
+    "safety>=2.3.0",
+    "pip-audit>=2.6.0",
+    
+    # Code quality
+    "isort>=5.12.0",
+    "interrogate>=1.5.0",          # Docstring coverage
 ]
 
 [project.urls]
