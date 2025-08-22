@@ -1358,6 +1358,22 @@ class MarvisTsneClassifier:
         if self.train_tsne is None or self.test_tsne is None:
             raise ValueError("Model must be fitted before making predictions")
         
+        # Handle subset prediction - validate and map test samples
+        num_fitted_test_samples = len(self.test_tsne)
+        num_requested_samples = len(X_test) if hasattr(X_test, '__len__') else 1
+        
+        if num_requested_samples > num_fitted_test_samples:
+            raise ValueError(f"Cannot predict on {num_requested_samples} samples when model was fitted with {num_fitted_test_samples} test samples. "
+                           f"To predict on new samples, refit the model with the expanded test set.")
+        
+        # Create subset indices for prediction
+        if num_requested_samples < num_fitted_test_samples:
+            self.logger.info(f"Predicting on subset: {num_requested_samples} of {num_fitted_test_samples} fitted test samples")
+            self._prediction_indices = list(range(num_requested_samples))
+        else:
+            # Predict on all fitted test samples
+            self._prediction_indices = list(range(num_fitted_test_samples))
+        
         # Set up output directory if saving outputs
         if save_outputs and output_dir:
             import os
@@ -1403,9 +1419,9 @@ class MarvisTsneClassifier:
         prediction_details = []
         completed_samples = 0
         
-        self.logger.info(f"Starting VLM predictions for {len(self.test_tsne)} test points...")
+        self.logger.info(f"Starting VLM predictions for {len(self._prediction_indices)} test points...")
         
-        for i in range(len(self.test_tsne)):
+        for idx, i in enumerate(self._prediction_indices):
             # Track figures at start of iteration to ensure cleanup
             iteration_start_figures = set(plt.get_fignums())
             
@@ -1425,11 +1441,11 @@ class MarvisTsneClassifier:
                 )
                 
                 predictions.append(prediction)
-                completed_samples = i + 1
+                completed_samples = idx + 1
                 
                 # Log progress
-                if (i + 1) % 10 == 0:
-                    self.logger.info(f"Completed {i + 1}/{len(self.test_tsne)} predictions")
+                if (idx + 1) % 10 == 0:
+                    self.logger.info(f"Completed {idx + 1}/{len(self._prediction_indices)} predictions")
                 
             except Exception as e:
                 self.logger.error(f"VLM prediction failed for test point {i}: {e}")
@@ -1455,7 +1471,7 @@ class MarvisTsneClassifier:
                 'predictions': predictions,
                 'prediction_details': prediction_details,
                 'completed_samples': completed_samples,
-                'completion_rate': completed_samples / len(self.test_tsne) if len(self.test_tsne) > 0 else 0.0
+                'completion_rate': completed_samples / len(self._prediction_indices) if len(self._prediction_indices) > 0 else 0.0
             }
         else:
             return predictions
@@ -1525,7 +1541,7 @@ class MarvisTsneClassifier:
             'balanced_accuracy': float(metrics['balanced_accuracy']) if metrics['balanced_accuracy'] is not None else None,
             'prediction_time': float(total_time),
             'total_time': float(total_time),
-            'num_test_samples': len(X_test) if hasattr(X_test, '__len__') else len(self.test_tsne),
+            'num_test_samples': len(X_test) if hasattr(X_test, '__len__') else len(self._prediction_indices),
             'completed_samples': completed_samples,
             'completion_rate': detailed_results['completion_rate'],
             'num_classes': len(self.unique_classes) if self.unique_classes is not None else 0,

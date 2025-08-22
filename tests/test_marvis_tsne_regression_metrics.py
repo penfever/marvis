@@ -273,7 +273,7 @@ class MarvisTsneRegressionMetricsTestSuite:
             # We'll test this by checking what metrics are calculated, not the actual prediction accuracy
             try:
                 # This might fail due to VLM issues, but we just want to test the metrics logic
-                results = classifier.predict_with_detailed_results(X_test, y_test)
+                results = classifier.predict(X_test, y_test, return_detailed=True)
                 
                 logger.info(f"Prediction results keys: {list(results.keys())}")
                 
