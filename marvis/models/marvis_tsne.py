@@ -1207,23 +1207,26 @@ class MarvisTsneClassifier:
 
             # Get embeddings based on embedding model type
             if self.modality_kwargs.get("embedding_model") == "whisper":
-                embeddings_dict = embedding_method(
+                embeddings = embedding_method(
                     X_train_fit,  # audio files
-                    whisper_model=self.modality_kwargs.get("whisper_model", "large-v2"),
-                    embedding_layer=self.modality_kwargs.get(
+                    model_name=self.modality_kwargs.get("whisper_model", "large-v2"),
+                    layer=self.modality_kwargs.get(
                         "embedding_layer", "encoder_last"
                     ),
-                    max_duration=self.modality_kwargs.get("audio_duration"),
                     cache_dir=self.cache_dir,
                     device=self.device,
                 )
+                # Whisper function returns just embeddings array, wrap in dict format
+                embeddings_dict = {"embeddings": embeddings}
             else:  # CLAP
-                embeddings_dict = embedding_method(
+                embeddings, _ = embedding_method(
                     X_train_fit,  # audio files
-                    model_version=self.modality_kwargs.get("clap_version", "2023"),
+                    version=self.modality_kwargs.get("clap_version", "2023"),
                     cache_dir=self.cache_dir,
-                    device=self.device,
+                    use_cuda=(self.device == "cuda") if self.device else None,
                 )
+                # CLAP function returns tuple (embeddings, labels), wrap in dict format
+                embeddings_dict = {"embeddings": embeddings}
 
             self.train_embeddings = embeddings_dict["embeddings"]
             self.val_embeddings = (
@@ -1233,25 +1236,28 @@ class MarvisTsneClassifier:
             # Get test embeddings if available
             if X_test_for_embedding is not None and len(X_test_for_embedding) > 0:
                 if self.modality_kwargs.get("embedding_model") == "whisper":
-                    test_embeddings_dict = embedding_method(
+                    test_embeddings = embedding_method(
                         X_test_for_embedding,
-                        whisper_model=self.modality_kwargs.get(
+                        model_name=self.modality_kwargs.get(
                             "whisper_model", "large-v2"
                         ),
-                        embedding_layer=self.modality_kwargs.get(
+                        layer=self.modality_kwargs.get(
                             "embedding_layer", "encoder_last"
                         ),
-                        max_duration=self.modality_kwargs.get("audio_duration"),
                         cache_dir=self.cache_dir,
                         device=self.device,
                     )
+                    # Whisper function returns just embeddings array
+                    test_embeddings_dict = {"embeddings": test_embeddings}
                 else:
-                    test_embeddings_dict = embedding_method(
+                    test_embeddings, _ = embedding_method(
                         X_test_for_embedding,
-                        model_version=self.modality_kwargs.get("clap_version", "2023"),
+                        version=self.modality_kwargs.get("clap_version", "2023"),
                         cache_dir=self.cache_dir,
-                        device=self.device,
+                        use_cuda=(self.device == "cuda") if self.device else None,
                     )
+                    # CLAP function returns tuple (embeddings, labels)
+                    test_embeddings_dict = {"embeddings": test_embeddings}
                 self.test_embeddings = test_embeddings_dict["embeddings"]
             else:
                 self.test_embeddings = None
