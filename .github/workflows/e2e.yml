@@ -41,7 +41,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: Install system dependencies
       run: |
@@ -88,7 +87,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: Install dependencies
       run: |
@@ -130,7 +128,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: Install dependencies
       run: |
@@ -175,7 +172,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: Install dependencies
       run: |
@@ -220,7 +216,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: Install dependencies
       run: |
@@ -274,7 +269,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: Install system dependencies
       run: |
@@ -326,7 +320,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: Install dependencies
       run: |

@@ -58,7 +58,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: Install system dependencies
       run: |
@@ -133,7 +132,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: Install uv
       uses: astral-sh/setup-uv@v4
@@ -184,7 +182,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: Install uv
       uses: astral-sh/setup-uv@v4
@@ -285,7 +282,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        cache: 'pip'
     
     - name: Install uv
       uses: astral-sh/setup-uv@v4
