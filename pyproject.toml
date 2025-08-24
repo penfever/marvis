@@ -93,6 +93,15 @@ api = [
     "pydantic>=2.5.0",             # For structured API responses
 ]
 
+# Standalone optional dependencies that may have torch version conflicts
+tableshift = [
+    "tableshift @ git+https://github.com/mlfoundations/tableshift.git",
+]
+
+rtdl = [
+    "rtdl",  # Standalone rtdl dependency
+]
+
 tabula_8b = [
     "uv>=0.6.0",
     "black==23.11.0",
@@ -128,8 +137,7 @@ tabula_8b = [
     "s3transfer>=0.9.0",
     "xgboost",
     "nltk",
-    # Git dependencies from RTFM repo
-    "tableshift @ git+https://github.com/mlfoundations/tableshift.git",
+    # Git dependencies from RTFM repo (excluding tableshift - now separate)
     "llama-recipes @ git+https://github.com/jpgard/llama-recipes.git", 
     "tabliblib @ git+https://github.com/penfever/tabliblib.git",
     # RTFM itself
