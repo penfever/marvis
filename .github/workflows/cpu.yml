@@ -33,11 +33,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.9", "3.10", "3.11"]
-        exclude:
-          # Reduce matrix for Windows to save resources
-          - os: windows-latest
-            python-version: "3.9"
+        python-version: ["3.11", "3.12"]
     
     steps:
     - name: Checkout code
@@ -96,7 +92,7 @@ jobs:
     
     - name: Upload coverage
       uses: codecov/codecov-action@v3
-      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10'
+      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
       with:
         file: ./coverage.xml
         flags: cpu-tests
@@ -110,10 +106,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
         cache: 'pip'
     
     - name: Install system dependencies
@@ -145,10 +141,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
         cache: 'pip'
     
     - name: Install dependencies
@@ -180,10 +176,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
         cache: 'pip'
     
     - name: Install dependencies
@@ -213,10 +209,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
         cache: 'pip'
     
     - name: Install dependencies

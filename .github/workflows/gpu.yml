@@ -54,10 +54,10 @@ jobs:
         method: 'network'
         sub-packages: '["nvcc", "runtime"]'
     
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
         cache: 'pip'
     
     - name: Install system dependencies
@@ -124,10 +124,10 @@ jobs:
         method: 'network'
         sub-packages: '["nvcc", "runtime"]'
     
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
         cache: 'pip'
     
     - name: Install dependencies
@@ -170,10 +170,10 @@ jobs:
         cuda: '11.8'
         method: 'network'
     
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
         cache: 'pip'
     
     - name: Install VLLM and dependencies
@@ -216,10 +216,10 @@ jobs:
         cuda: '11.8'
         method: 'network'
     
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
     
     - name: Install LlamaCPP with CUDA
       run: |
@@ -261,10 +261,10 @@ jobs:
         cuda: '11.8'
         method: 'network'
     
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
         cache: 'pip'
     
     - name: Install full dependencies
