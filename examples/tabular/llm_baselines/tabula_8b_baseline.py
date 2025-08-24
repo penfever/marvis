@@ -79,7 +79,7 @@ def evaluate_tabula_8b(dataset, args):
                 logger.error(
                     f"RTFM-related packages found: {[pkg for pkg in installed_packages if 'rtfm' in pkg.lower()]}"
                 )
-            except:
+            except Exception:
                 logger.error("Could not check installed packages")
 
             logger.error(

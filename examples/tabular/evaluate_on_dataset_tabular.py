@@ -41,6 +41,7 @@ Usage examples:
 """
 
 import datetime
+import hashlib
 import json
 import os
 from typing import Any, Dict, List
@@ -116,7 +117,6 @@ def process_dataset(dataset: Dict[str, Any], args) -> Dict[str, Any]:
     Returns:
         Processed dataset with additional fields including embeddings if needed
     """
-    import hashlib
     import logging
 
     logger = logging.getLogger(__name__)

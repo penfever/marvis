@@ -7,7 +7,10 @@ This module provides consistent prompting strategies across different modalities
 
 import logging
 import re
-from typing import Any, Dict, List, Optional
+from typing import TYPE_CHECKING, Any, Dict, List, Optional
+
+if TYPE_CHECKING:
+    from .metadata_loader import DatasetMetadata
 
 logger = logging.getLogger(__name__)
 

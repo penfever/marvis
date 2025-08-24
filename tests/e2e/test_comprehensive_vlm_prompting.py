@@ -1450,6 +1450,7 @@ class VLMPromptingTestSuite:
 
                         from marvis.utils.vlm_prompting import (
                             create_classification_prompt,
+                            create_regression_prompt,
                         )
 
                         # Use semantic class names if available, otherwise generic ones

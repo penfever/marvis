@@ -237,6 +237,9 @@ def log_platform_info(logger_instance: Optional[logging.Logger] = None) -> dict:
         "torch_version": torch.__version__,
         "device": device,
         "available_devices": device_info.get("available_devices", []),
+        "cuda_available": torch.cuda.is_available(),
+        "mps_available": torch.backends.mps.is_available() if hasattr(torch.backends, 'mps') else False,
+        "optimal_device": device,
     }
 
     if device == "cuda" and "cuda_device_name" in device_info:

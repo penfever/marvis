@@ -84,7 +84,7 @@ def get_predicted_values_from_generated_sample(generated_input, args, category_n
         elif args.y_column_types[i] == "numerical":
             try:
                 number = re.findall(r"-?\d+\.?\d*", column_values[i])[0]
-            except:
+            except (IndexError, TypeError, AttributeError):
                 if args.print_sampling_rejections:
                     print(
                         "Exception: Generated response for column={} does not contain a number.".format(

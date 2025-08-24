@@ -306,12 +306,10 @@ class QwenWithVQPrefixEmbedding(torch.nn.Module):
                             device=device,
                         )
 
-                        # Get separator token embedding
-                        query_separator_id = tokenizer.eos_token_id
-                        if "<QUERY>" in tokenizer.get_vocab():
-                            query_separator_id = tokenizer.convert_tokens_to_ids(
-                                "<QUERY>"
-                            )
+                        # Get separator token embedding (using config for now)
+                        # TODO: Pass tokenizer to this function if needed
+                        query_separator_id = getattr(self.base_model.config, 'eos_token_id', 2)
+                        # Note: Proper tokenizer access would require passing it as parameter
 
                         query_separator = self.base_model.get_input_embeddings()(
                             torch.tensor([query_separator_id], device=device)

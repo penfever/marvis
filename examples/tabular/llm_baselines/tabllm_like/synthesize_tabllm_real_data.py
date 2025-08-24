@@ -422,7 +422,7 @@ def create_notes_bank_files():
 
     # Fallback to old method if metadata loader failed
     if not json_files and "SEMANTIC_DIR" in globals():
-        json_files = glob.glob(os.path.join(SEMANTIC_DIR, "*.json"))
+        json_files = glob.glob(os.path.join(SEMANTIC_DIR, "*.json"))  # noqa: F821
         print(f"Using fallback search, found {len(json_files)} files")
 
     all_notes = []

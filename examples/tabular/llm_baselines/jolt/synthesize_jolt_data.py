@@ -57,7 +57,7 @@ def extract_column_descriptions(semantic_info: Dict[str, Any]) -> Dict[str, str]
         if isinstance(num_features, str):
             try:
                 num_features = int(num_features)
-            except:
+            except (ValueError, TypeError):
                 num_features = 5
 
         # Generate column descriptions based on the feature description
@@ -210,7 +210,7 @@ def extract_column_descriptions(semantic_info: Dict[str, Any]) -> Dict[str, str]
         if isinstance(num_features, str):
             try:
                 num_features = int(num_features)
-            except:
+            except (ValueError, TypeError):
                 num_features = 5
 
         dataset_name = semantic_info.get(
@@ -505,7 +505,7 @@ def process_semantic_files():
 
     # Fallback to old method if metadata loader failed
     if not json_files and "SEMANTIC_DIR" in globals():
-        json_files = glob.glob(os.path.join(SEMANTIC_DIR, "*.json"))
+        json_files = glob.glob(os.path.join(SEMANTIC_DIR, "*.json"))  # noqa: F821
         print(f"Using fallback search, found {len(json_files)} files")
 
     all_configs = {}

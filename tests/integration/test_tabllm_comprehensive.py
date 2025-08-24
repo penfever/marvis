@@ -1455,7 +1455,7 @@ def test_note_inspection_system():
         if os.path.exists(args.output_dir):
             try:
                 shutil.rmtree(args.output_dir)
-            except:
+            except OSError:
                 pass
 
 

@@ -2010,7 +2010,7 @@ def main():
                     100  # Check every 100 steps instead of 1000
                 )
                 logger.info("Set VQ usage tracking to check every 100 steps")
-            except:
+            except Exception:
                 pass
     else:
         logger.info(f"Preparing model {args.model_id} with standard prefix embedding")

@@ -663,11 +663,8 @@ class MarvisAudioTsneClassifier:
             # Use the centralized model loader from MARVIS
             from marvis.utils.model_loader import model_loader
 
-            # Get platform-compatible kwargs
-            vlm_kwargs = configure_model_kwargs_for_platform(
-                device=self.device,
-                torch_dtype=get_platform_compatible_dtype(self.device),
-            )
+            # Use simple device configuration
+            vlm_kwargs = {"device_map": "auto" if self.device != "cpu" else None}
 
             # Load VLM using centralized model loader
             vlm_wrapper = model_loader.load_vlm(

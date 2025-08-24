@@ -230,7 +230,7 @@ Classification:"""
                 for class_name in self.class_names:
                     if class_name.lower() == class_part.lower():
                         return class_name
-            except:
+            except (IndexError, AttributeError):
                 pass
 
         # Fallback: look for any class name in the response

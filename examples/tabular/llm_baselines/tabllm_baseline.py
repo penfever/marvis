@@ -132,6 +132,7 @@ def load_tabllm_config_by_openml_id(openml_task_id, original_feature_count=None)
         from marvis.utils.resource_manager import get_resource_manager
 
         resource_manager = get_resource_manager()
+        rm = resource_manager  # Alias for shorter code
         tabllm_dir = resource_manager.path_resolver.get_config_path("tabllm_like", "")
 
         if tabllm_dir and tabllm_dir.exists():
@@ -189,7 +190,7 @@ def load_tabllm_config_by_openml_id(openml_task_id, original_feature_count=None)
                         semantic_file = rm.path_resolver.get_config_path(
                             "cc18_semantic", str(openml_task_id)
                         )
-            except:
+            except Exception:
                 pass
 
             # Fallback to metadata loader

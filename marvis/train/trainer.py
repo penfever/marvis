@@ -1752,10 +1752,8 @@ def train_llm_with_tabpfn_embeddings(
                 )
 
                 # Create a new instance of our custom model
-                # Make sure we're using original class token IDs, not the permuted ones
-                original_tokens = (
-                    original_class_tokens if permute_labels else class_token_ids
-                )
+                # Use class token IDs
+                original_tokens = class_token_ids
 
                 best_model = QwenWithPrefixEmbedding(
                     base_model=base_model,

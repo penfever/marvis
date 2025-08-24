@@ -208,7 +208,7 @@ class UrbanSound8KDataset(AudioDataset):
                     audio_path = clip.get_path("audio")
                     if audio_path and Path(audio_path).exists():
                         valid_audio_count += 1
-                except:
+                except (AttributeError, OSError, KeyError):
                     continue
 
             # If we have some valid audio files, consider it existing

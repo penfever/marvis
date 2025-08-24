@@ -366,7 +366,7 @@ class MarvisImageClassifier:
         )
 
         self.scaler.transform(test_embeddings)
-        test_tsne_embeddings = self._project_to_tsne_space(test_embeddings_pca)
+        test_tsne_embeddings = self._project_to_tsne_space(test_embeddings)
 
         # Get probabilities
         probabilities = self.knn.predict_proba(test_tsne_embeddings)

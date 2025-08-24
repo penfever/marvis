@@ -258,9 +258,15 @@ def get_gguf_metadata(file_path: Path) -> Dict[str, Any]:
     """
     metadata = {
         "file_path": str(file_path),
-        "file_size": file_path.stat().st_size,
         "valid": False,
     }
+    
+    # Check if file exists first
+    if not file_path.exists():
+        metadata["error"] = "File not found"
+        return metadata
+    
+    metadata["file_size"] = file_path.stat().st_size
 
     try:
         if validate_gguf_file(file_path):

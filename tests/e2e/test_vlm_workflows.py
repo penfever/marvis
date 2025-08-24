@@ -1450,6 +1450,7 @@ class VLMPromptingTestSuite:
 
                         from marvis.utils.vlm_prompting import (
                             create_classification_prompt,
+                            create_regression_prompt,
                         )
 
                         # Use semantic class names if available, otherwise generic ones
@@ -1797,7 +1798,7 @@ class VLMPromptingTestSuite:
                     with open(detailed_output_path, "r") as f:
                         data = json.load(f)
                         pipeline_failed = data.get("pipeline_failed", False)
-                except:
+                except (json.JSONDecodeError, OSError, KeyError):
                     pass  # If we can't read it, vlm_outputs_valid will already be False
 
             # Determine final test success status
