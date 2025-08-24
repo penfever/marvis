@@ -286,12 +286,8 @@ jobs:
     
     - name: Install dependencies
       run: |
-        # Install docs dependencies first
-        uv add -r docs/requirements.txt
-        # Install MARVIS in development mode (minimal dependencies)
-        uv sync --no-deps
-        # Install minimal additional dependencies for core functionality
-        uv add "seaborn>=0.12.0"
+        # Install docs dependencies and core project
+        uv sync --extra docs
     
     - name: Build documentation
       run: |
