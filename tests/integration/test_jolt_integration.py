@@ -3,11 +3,12 @@
 Simple test script to verify JOLT integration works.
 """
 
-import sys
 import os
+import sys
+from argparse import Namespace
+
 import numpy as np
 import pandas as pd
-from argparse import Namespace
 
 # Add paths (dynamically resolve current directory)
 current_dir = os.path.dirname(os.path.abspath(__file__))

@@ -6,20 +6,16 @@ of maximum variance in the data. It's excellent for understanding linear
 structure and comparing with nonlinear methods.
 """
 
-import numpy as np
-from typing import Any, Dict, Optional
 import logging
+from typing import Any, Dict, Optional
 
+import numpy as np
 from sklearn.decomposition import PCA
-from ..base import BaseVisualization, VisualizationResult
 
+from ..base import BaseVisualization, VisualizationResult
 # Import shared styling utilities
-from ..utils.styling import (
-    apply_consistent_point_styling,
-    apply_consistent_legend_formatting,
-    create_distinct_color_map,
-    create_regression_color_map,
-)
+from ..utils.styling import (apply_consistent_legend_formatting,
+                             create_distinct_color_map)
 
 logger = logging.getLogger(__name__)
 
@@ -238,8 +234,9 @@ class PCAVisualization(BaseVisualization):
         ):
             raise ValueError("Must fit the model before plotting explained variance")
 
-        import matplotlib.pyplot as plt
         import io
+
+        import matplotlib.pyplot as plt
         from PIL import Image
 
         # Create explained variance plot

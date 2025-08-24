@@ -5,11 +5,12 @@ This module provides consistent styling across t-SNE functions, BaseVisualizatio
 and ContextComposer to ensure uniform appearance and behavior.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
 import colorsys
-from typing import Tuple, Optional, List, Dict, Union, Any
+from typing import Any, Dict, List, Optional, Tuple, Union
+
+import matplotlib.colors as mcolors
+import matplotlib.pyplot as plt
+import numpy as np
 
 __all__ = [
     "get_distinct_colors",
@@ -115,7 +116,7 @@ def create_distinct_color_map(
         class_color_map = {}
 
         # Map color names to RGB values
-        color_name_to_rgb = {
+        {
             color_name: color_array for color_array, color_name in distinct_colors
         }
 
@@ -438,7 +439,6 @@ def apply_consistent_point_styling(
     Returns:
         Dictionary with metadata and legend information
     """
-    legend_text_parts = []
     metadata = {
         "classes": [],  # Legacy field for backward compatibility
         "visible_classes": [],  # Classes visible in this visualization

@@ -2,11 +2,12 @@
 Model saving utilities for MARVIS models.
 """
 
-import os
-import torch
 import logging
+import os
 import shutil
-from typing import Dict, List, Tuple, Optional, Any, Union
+from typing import Any, Dict, List, Optional
+
+import torch
 
 logger = logging.getLogger(__name__)
 

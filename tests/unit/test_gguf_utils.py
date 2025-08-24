@@ -3,11 +3,11 @@
 Unit tests for GGUF utilities and URL parsing.
 """
 
-import os
-import pytest
 import tempfile
 from pathlib import Path
-from unittest.mock import Mock, patch
+from unittest.mock import patch
+
+import pytest
 
 
 @pytest.mark.unit

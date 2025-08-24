@@ -1,7 +1,8 @@
 import pickle
+
 import numpy as np
-from helpers import get_dimension, randomize, floats_to_str
 from csv_parser import CsvParser
+from helpers import get_dimension
 
 
 def fix_up_old_pickle_data(data):

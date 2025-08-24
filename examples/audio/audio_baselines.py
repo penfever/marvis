@@ -6,18 +6,18 @@ Includes:
 2. CLAPZeroShotClassifier: CLAP zero-shot classification
 """
 
-import os
-import numpy as np
-import torch
 import logging
-import time
-from typing import List, Dict, Any, Optional, Tuple
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import accuracy_score, classification_report
-
+import os
 # Add project root to path
 import sys
+import time
+from typing import Any, Dict, List, Optional
+
+import numpy as np
+import torch
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
 
 sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -25,7 +25,6 @@ sys.path.append(
 
 from marvis.data.audio_embeddings import get_whisper_embeddings
 from marvis.utils.device_utils import detect_optimal_device
-from marvis.utils.class_name_utils import get_semantic_class_names_or_fallback
 
 logger = logging.getLogger(__name__)
 
@@ -112,7 +111,8 @@ class WhisperKNNClassifier:
         if class_names is None:
             # Use new utility to extract class names with semantic support
             unique_labels = np.unique(train_labels).tolist()
-            from marvis.utils.class_name_utils import extract_class_names_from_labels
+            from marvis.utils.class_name_utils import \
+                extract_class_names_from_labels
 
             self.class_names, _ = extract_class_names_from_labels(
                 labels=unique_labels,
@@ -361,7 +361,8 @@ class CLAPZeroShotClassifier:
         if class_names is None:
             # Use new utility to extract class names with semantic support
             unique_labels = np.unique(train_labels).tolist()
-            from marvis.utils.class_name_utils import extract_class_names_from_labels
+            from marvis.utils.class_name_utils import \
+                extract_class_names_from_labels
 
             self.class_names, _ = extract_class_names_from_labels(
                 labels=unique_labels,
@@ -379,7 +380,6 @@ class CLAPZeroShotClassifier:
         text_embeddings = self.model.get_text_embeddings(text_prompts)
 
         # Ensure text embeddings are detached from computation graph
-        import torch
 
         if torch.is_tensor(text_embeddings):
             self.text_embeddings = text_embeddings.detach()
@@ -403,7 +403,6 @@ class CLAPZeroShotClassifier:
 
         logger.info(f"Predicting labels for {len(test_paths)} audio files...")
 
-        import torch
 
         # Process in batches to avoid OOM
         all_predictions = []
@@ -458,7 +457,6 @@ class CLAPZeroShotClassifier:
 
         logger.info(f"Computing probabilities for {len(test_paths)} audio files...")
 
-        import torch
 
         temperature = 0.07  # CLAP default temperature
 

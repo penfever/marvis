@@ -6,13 +6,14 @@ modular visualization components that can be composed together for enhanced
 reasoning in VLM backends.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
+import logging
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Dict, Any, Optional, List, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple
+
+import matplotlib.pyplot as plt
+import numpy as np
 from PIL import Image
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -191,7 +192,7 @@ class BaseVisualization(ABC):
         """
         import time
 
-        start_time = time.time()
+        time.time()
 
         # Merge config extra_params with kwargs
         merged_kwargs = {**self.config.extra_params, **kwargs}
@@ -277,8 +278,8 @@ class BaseVisualization(ABC):
         Returns:
             VisualizationResult object
         """
-        import time
         import io
+        import time
 
         plot_start = time.time()
 
@@ -722,8 +723,8 @@ class BaseVisualization(ABC):
         Returns:
             Dictionary with neighbor information
         """
-        from sklearn.neighbors import NearestNeighbors
         import numpy as np
+        from sklearn.neighbors import NearestNeighbors
 
         if k is None:
             k = self.config.nn_k

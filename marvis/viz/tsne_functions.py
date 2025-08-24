@@ -5,29 +5,26 @@ This module provides a clean class-based architecture to replace the
 duplicated functions in tsne_functions.py.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
 import logging
 from abc import ABC, abstractmethod
+from typing import Any, Dict, List, Optional, Tuple, Union
+
+import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.manifold import TSNE
-from typing import Tuple, Optional, List, Dict, Union, Any
 
 # Import shared styling utilities
-from .utils.styling import (
-    apply_consistent_point_styling,
-    apply_consistent_legend_formatting,
-    get_standard_test_point_style,
-    get_standard_target_point_style,
-    create_distinct_color_map,
-    create_regression_color_map,
-)
+from .utils.styling import (apply_consistent_legend_formatting,
+                            apply_consistent_point_styling,
+                            create_distinct_color_map,
+                            create_regression_color_map,
+                            get_standard_target_point_style,
+                            get_standard_test_point_style)
 
 # Import semantic axes utilities
 try:
-    from ..utils.semantic_axes import (
-        create_compact_axis_labels,
-        create_bottom_legend_text,
-    )
+    from ..utils.semantic_axes import (create_bottom_legend_text,
+                                       create_compact_axis_labels)
 except ImportError:
     # Fallback for cases where semantic_axes is not available
     def create_compact_axis_labels(semantic_axes, **kwargs):
@@ -38,7 +35,6 @@ except ImportError:
 
 
 # Import KNN regression analysis function
-from .mixins.knn import create_knn_regression_analysis
 
 logger = logging.getLogger(__name__)
 
@@ -122,7 +118,7 @@ class TSNEGenerator:
         train_coords = combined_coords[:n_train]
         test_coords = combined_coords[n_train:]
 
-        self.logger.info(f"t-SNE completed successfully")
+        self.logger.info("t-SNE completed successfully")
         return train_coords, test_coords
 
     def _calculate_optimal_perplexity(
@@ -623,7 +619,7 @@ class RegressionTSNEPlotter(BaseTSNEPlotter):
             Dictionary with 'legend_text' and 'metadata' keys
         """
         # Create regression color mapping
-        color_map = create_regression_color_map(train_targets, colormap=colormap)
+        create_regression_color_map(train_targets, colormap=colormap)
 
         # Plot training points with continuous coloring
         if self.use_3d:
@@ -775,7 +771,8 @@ class KNNMixin:
             Description text for the KNN analysis
         """
         from collections import Counter
-        from .utils.styling import format_class_label, create_distinct_color_map
+
+        from .utils.styling import format_class_label
 
         # Count class occurrences
         label_counts = Counter(knn_labels)

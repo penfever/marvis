@@ -32,29 +32,21 @@ Usage examples:
     python evaluate_with_explanations.py --model_path ./models/marvis_output --num_datasets 5 --explanation_type feature_importance
 """
 
-import os
-import sys
 import argparse
+import datetime
+import glob
+import json
+import os
+import random
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 import torch
-import json
-import glob
-import datetime
-import random
-from pathlib import Path
 from sklearn.model_selection import train_test_split
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from typing import Dict, List, Tuple, Optional, Any, Union
 from tqdm import tqdm
 
-from marvis.data import (
-    load_dataset,
-    get_tabpfn_embeddings,
-    create_llm_dataset,
-    list_available_datasets,
-)
-from marvis.models import prepare_qwen_with_prefix_embedding, QwenWithPrefixEmbedding
-from marvis.train import evaluate_llm_on_test_set
+from marvis.data import (create_llm_dataset, get_tabpfn_embeddings,
+                         list_available_datasets, load_dataset)
 from marvis.utils import setup_logging
 
 # Import wandb conditionally to avoid dependency issues if not installed
@@ -204,8 +196,9 @@ def load_csv_dataset(
         attribute_names: List of feature names
         dataset_name: Name of the dataset (derived from file name)
     """
-    import pandas as pd
     import logging
+
+    import pandas as pd
 
     logger = logging.getLogger(__name__)
 
@@ -511,8 +504,9 @@ def preprocess_features(X: np.ndarray, categorical_indicator: List[bool]) -> np.
     Returns:
         Processed feature matrix
     """
-    import pandas as pd
     import logging
+
+    import pandas as pd
 
     logger = logging.getLogger(__name__)
 
@@ -596,8 +590,10 @@ def load_pretrained_model(model_path, device_map="auto", embedding_size=1000):
     This function is a simple wrapper around the load_pretrained_model function from marvis.models,
     which handles various model loading scenarios including custom model formats.
     """
-    from marvis.models import load_pretrained_model as core_load_pretrained_model
     import logging
+
+    from marvis.models import \
+        load_pretrained_model as core_load_pretrained_model
 
     logger = logging.getLogger(__name__)
     logger.info(
@@ -887,7 +883,7 @@ def evaluate_with_explanations(
 
                 # For logging purposes, get the token and probability
                 max_prob_token_id = class_token_ids[max_prob_idx]
-                max_prob_token = tokenizer.convert_ids_to_tokens(max_prob_token_id)
+                tokenizer.convert_ids_to_tokens(max_prob_token_id)
                 max_prob = class_probs[max_prob_idx].item()
 
                 # First, generate the class token only
@@ -905,7 +901,7 @@ def evaluate_with_explanations(
                     tokenizer.decode(inputs["input_ids"][0], skip_special_tokens=False)
                     + class_token_text
                 )
-                token_output = inputs[
+                inputs[
                     "input_ids"
                 ].clone()  # Just use this as a placeholder since we only need token_text
 
@@ -1293,7 +1289,6 @@ def process_dataset(
         # Log confusion matrix if available
         if "confusion_matrix" in result_summary:
             import matplotlib.pyplot as plt
-            import seaborn as sns
             from sklearn.metrics import ConfusionMatrixDisplay
 
             # Create a figure for the confusion matrix

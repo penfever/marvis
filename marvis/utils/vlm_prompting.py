@@ -7,7 +7,7 @@ This module provides consistent prompting strategies across different modalities
 
 import logging
 import re
-from typing import List, Optional, Dict, Any
+from typing import Any, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -180,7 +180,7 @@ def create_classification_prompt(
     # Format class list consistently - class names are already validated at source
     if use_semantic_names:
         # Use semantic class names when use_semantic_names=True
-        class_list_str = ", ".join([f'"{name}"' for name in class_names])
+        ", ".join([f'"{name}"' for name in class_names])
         class_format_example = (
             f'"{class_names[0]}", "{class_names[1]}", etc.'
             if len(class_names) >= 2
@@ -191,7 +191,7 @@ def create_classification_prompt(
         from .class_name_utils import normalize_class_names_to_class_num
 
         fallback_names = normalize_class_names_to_class_num(len(class_names))
-        class_list_str = ", ".join([f'"{name}"' for name in fallback_names])
+        ", ".join([f'"{name}"' for name in fallback_names])
         class_format_example = '"Class_0", "Class_1", "Class_2"'
 
     # Create modality-specific description
@@ -543,7 +543,7 @@ The multiple visualizations provide different perspectives on how the target val
     if use_knn:
         important_note = f"\nIMPORTANT: The neighbor analysis shows the target values of the {nn_k} nearest neighbors found in the original {'Whisper ' if modality == 'audio' else ''}{'high-dimensional ' if modality == 'tabular' else ''}embedding space, NOT just based on the {'3D' if use_3d else '2D'} visualization space. Smaller distances indicate higher similarity."
     else:
-        important_note = f"\nIMPORTANT: The color gradient in the visualization represents the target values, with the colormap typically ranging from low values (cooler colors) to high values (warmer colors)."
+        important_note = "\nIMPORTANT: The color gradient in the visualization represents the target values, with the colormap typically ranging from low values (cooler colors) to high values (warmer colors)."
 
     # Create analysis instructions
     if multi_viz_info:

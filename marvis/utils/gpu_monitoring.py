@@ -5,9 +5,10 @@ Provides a reusable abstraction for logging GPU utilization across scripts.
 """
 
 import logging
-import time
 import threading
-from typing import Optional, Dict, Any
+import time
+from typing import Any, Dict, Optional
+
 import torch
 
 # Import conditionally to avoid dependency issues

@@ -5,19 +5,19 @@ Test MPS detection and usage on Mac M4.
 This script verifies that MPS is properly detected and used by the transformers backend.
 """
 
+import logging
 import os
 import sys
-import torch
-import logging
 from pathlib import Path
+
+import torch
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from marvis.utils.device_utils import detect_optimal_device, log_platform_info
-from marvis.utils.model_loader import model_loader
 from marvis.models.marvis_tsne import MarvisTsneClassifier
+from marvis.utils.device_utils import detect_optimal_device, log_platform_info
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -134,7 +134,7 @@ def test_simple_mps_operations():
 
         # Test moving tensors between devices
         cpu_tensor = a.cpu()
-        mps_tensor_back = cpu_tensor.to("mps")
+        cpu_tensor.to("mps")
 
         print("✅ Successfully moved tensors between CPU and MPS")
 

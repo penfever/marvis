@@ -2,16 +2,17 @@
 Qwen Vision-Language Model baseline for image classification.
 """
 
-import torch
-import numpy as np
+import json
 import logging
-from typing import Dict, Any, List, Optional
-from sklearn.metrics import accuracy_score
-import time
 import os
 import sys
-import json
+import time
+from typing import Any, Dict, List, Optional
+
+import numpy as np
+import torch
 from PIL import Image
+from sklearn.metrics import accuracy_score
 from torch.utils.data import DataLoader
 
 # Add project root to path
@@ -19,11 +20,9 @@ sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
-from marvis.utils.vlm_prompting import (
-    create_direct_classification_prompt,
-    parse_vlm_response,
-    create_vlm_conversation,
-)
+from marvis.utils.vlm_prompting import (create_direct_classification_prompt,
+                                        create_vlm_conversation,
+                                        parse_vlm_response)
 
 logger = logging.getLogger(__name__)
 

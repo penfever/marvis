@@ -8,9 +8,9 @@ handling across different modalities (audio, vision, tabular) for all examples.
 import json
 import logging
 import os
+from typing import Any, Dict, List, Optional, Tuple, Union
+
 import numpy as np
-from pathlib import Path
-from typing import List, Optional, Dict, Any, Union, Tuple
 
 from .vlm_prompting import validate_and_clean_class_names
 
@@ -189,7 +189,7 @@ class ClassNameExtractor:
             isinstance(label, str) for label in unique_labels
         ):
             semantic_names = [str(label) for label in unique_labels]
-            logger.info(f"Using provided string labels as semantic names")
+            logger.info("Using provided string labels as semantic names")
 
         # SINGLE VALIDATION POINT: Apply validation if we have semantic names from any source
         if semantic_names:
@@ -207,7 +207,7 @@ class ClassNameExtractor:
             except ValueError as e:
                 logger.warning(f"Semantic name validation failed: {e}")
                 logger.info(
-                    f"Falling back to Class_<NUM> format due to validation failure"
+                    "Falling back to Class_<NUM> format due to validation failure"
                 )
 
         # Fallback to Class_<NUM> format

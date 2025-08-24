@@ -1,7 +1,8 @@
-import re
 import decimal
-import numpy as np
+import re
 import sys
+
+import numpy as np
 from sklearn.metrics import accuracy_score, roc_auc_score
 
 ctx = decimal.Context()
@@ -30,7 +31,7 @@ def get_predicted_values_from_generated_sample(generated_input, args, category_n
     num_y_column_names = (
         0
         if (
-            (args.y_column_names == None)
+            (args.y_column_names is None)
             or (args.header_option == "no_headers")
             or (args.header_option == "headers_as_prompt_prefix")
         )

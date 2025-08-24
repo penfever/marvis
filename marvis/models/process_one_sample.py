@@ -7,16 +7,15 @@ MarvisTsneClassifier to handle the prediction of a single test sample.
 
 import io
 import os
-import numpy as np
+
 import matplotlib.pyplot as plt
 from PIL import Image
-from marvis.utils.vlm_prompting import (
-    create_classification_prompt,
-    create_regression_prompt,
-    parse_vlm_response,
-    create_vlm_conversation,
-)
+
 from marvis.utils.model_loader import GenerationConfig
+from marvis.utils.vlm_prompting import (create_classification_prompt,
+                                        create_regression_prompt,
+                                        create_vlm_conversation,
+                                        parse_vlm_response)
 from marvis.viz.context.layouts import LayoutStrategy
 
 

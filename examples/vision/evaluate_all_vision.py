@@ -20,21 +20,19 @@ Examples:
 """
 
 import argparse
+import datetime
+import json
 import logging
 import os
 import sys
 import time
-import json
-import datetime
 from pathlib import Path
+
 import numpy as np
-from PIL import Image
-import torch
+import pandas as pd
 import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
-import pandas as pd
-from sklearn.model_selection import train_test_split
 
 # Import wandb conditionally
 try:
@@ -49,27 +47,17 @@ sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
+from examples.vision.image_baselines import DINOV2LinearProbe
+from examples.vision.image_utils import ImageNetDataset, get_image_transforms
+from examples.vision.qwen_vl_baseline import QwenVLBaseline
+from examples.vision.simple_marvis_baseline import SimpleMarvisImageClassifier
+
+from marvis.models.marvis_tsne import MarvisImageTsneClassifier
+from marvis.utils import cleanup_gpu_monitoring, init_wandb_with_gpu_monitoring
+from marvis.utils.device_utils import log_platform_info
 # Import centralized argument parser
 from marvis.utils.evaluation_args import create_vision_evaluation_parser
-
 from marvis.utils.json_utils import convert_for_json_serialization
-from marvis.utils.device_utils import log_platform_info
-from marvis.utils import (
-    init_wandb_with_gpu_monitoring,
-    cleanup_gpu_monitoring,
-    MetricsLogger,
-)
-
-from examples.vision.marvis_image_baseline import MarvisImageClassifier
-from examples.vision.simple_marvis_baseline import SimpleMarvisImageClassifier
-from marvis.models.marvis_tsne import MarvisImageTsneClassifier
-from examples.vision.image_baselines import DINOV2LinearProbe, DINOV2RandomForest
-from examples.vision.qwen_vl_baseline import QwenVLBaseline
-from examples.vision.image_utils import (
-    ImageNetDataset,
-    get_image_transforms,
-    extract_features_from_loader,
-)
 
 # Configure logging
 logging.basicConfig(
@@ -327,10 +315,11 @@ def load_imagenet_dataset(args) -> tuple:
         Tuple of (train_paths, train_labels, test_paths, test_labels, class_names)
     """
     try:
+        import os
+        import tempfile
+
         from datasets import load_dataset
         from PIL import Image
-        import tempfile
-        import os
     except ImportError:
         raise ImportError(
             "Please install datasets library: pip install datasets[vision]"
@@ -592,8 +581,6 @@ def run_models_on_dataset(
         logger.info(
             f"Using balanced few-shot sampling with {getattr(args, 'num_few_shot_examples', 5)} examples per class"
         )
-        from sklearn.model_selection import train_test_split
-        from collections import Counter
         import numpy as np
 
         # Group training data by class
@@ -1439,7 +1426,7 @@ def run_all_image_tests(args):
     all_results = {}
 
     # Log platform information using utility
-    platform_info = log_platform_info(logger)
+    log_platform_info(logger)
 
     for dataset_name in args.datasets:
         logger.info(f"\\n{'='*60}")
@@ -1509,8 +1496,8 @@ def main():
 
     set_seed_with_args(args)
 
-    logger.info(f"Starting image classification tests...")
-    logger.info(f"Configuration:")
+    logger.info("Starting image classification tests...")
+    logger.info("Configuration:")
     logger.info(f"  Datasets: {', '.join(args.datasets)}")
     logger.info(f"  Models: {', '.join(args.models)}")
     logger.info(f"  DINOV2 model: {args.dinov2_model}")

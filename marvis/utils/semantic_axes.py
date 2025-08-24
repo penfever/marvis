@@ -5,18 +5,19 @@ This module provides utilities for computing factor weightings of named features
 to improve visualization legends by labeling the semantic factors influencing them.
 """
 
-import numpy as np
 import logging
-from typing import Dict, List, Optional, Tuple, Union, Any
-from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
-from sklearn.feature_selection import SelectKBest, f_classif, mutual_info_classif
-from sklearn.feature_selection import f_regression, mutual_info_regression
-import pandas as pd
+from typing import Any, Dict, List, Optional, Tuple
 
-from .metadata_loader import DatasetMetadata, ColumnMetadata
-from ..viz.embeddings.pca import PCAVisualization
+import numpy as np
+import pandas as pd
+from sklearn.decomposition import PCA
+from sklearn.feature_selection import (SelectKBest, f_classif,
+                                       mutual_info_classif)
+from sklearn.preprocessing import StandardScaler
+
 from ..viz.base import VisualizationConfig
+from ..viz.embeddings.pca import PCAVisualization
+from .metadata_loader import DatasetMetadata
 
 logger = logging.getLogger(__name__)
 
@@ -205,7 +206,7 @@ class SemanticAxesComputer:
             )
             embeddings_clean = np.clip(embeddings_clean, -1e3, 1e3)
             scaler = StandardScaler()
-            embeddings_scaled = scaler.fit_transform(embeddings_clean)
+            scaler.fit_transform(embeddings_clean)
 
             semantic_axes = {}
 
@@ -219,7 +220,7 @@ class SemanticAxesComputer:
                 top_features = []
 
                 # Debug logging for this axis
-                max_loading = np.max(np.abs(loadings))
+                np.max(np.abs(loadings))
 
                 for idx in top_indices:
                     if idx < len(feature_names):
@@ -773,7 +774,7 @@ class SemanticAxesComputer:
             feature_stds = np.std(original_features_numeric, axis=0)
 
             model_calls = 0
-            total_operations = n_candidates * self.perturbation_samples
+            n_candidates * self.perturbation_samples
 
             for candidate_idx in candidate_feature_indices:
                 perturbation_shifts = []

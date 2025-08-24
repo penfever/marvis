@@ -9,20 +9,17 @@ This class replaces the functions:
 - create_tsne_3d_plot_with_knn
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from typing import Optional, List, Dict, Any, Tuple, Union
 import logging
+from typing import List, Optional
 
-from .base import BaseTSNEVisualization
-from ..mixins.knn import BaseKNNVisualization
+import matplotlib.pyplot as plt
+import numpy as np
+
 from ..base import VisualizationConfig, VisualizationResult
-from ..utils.styling import (
-    create_distinct_color_map,
-    apply_consistent_point_styling,
-    get_standard_test_point_style,
-    get_standard_target_point_style,
-)
+from ..mixins.knn import BaseKNNVisualization
+from ..utils.styling import (apply_consistent_point_styling,
+                             create_distinct_color_map)
+from .base import BaseTSNEVisualization
 
 logger = logging.getLogger(__name__)
 
@@ -118,8 +115,9 @@ class TSNEClassificationVisualization(BaseKNNVisualization, BaseTSNEVisualizatio
         **kwargs,
     ) -> VisualizationResult:
         """Generate a single view plot (2D or single 3D view)."""
-        import time
         import io
+        import time
+
         from PIL import Image
 
         plot_start = time.time()
@@ -137,7 +135,7 @@ class TSNEClassificationVisualization(BaseKNNVisualization, BaseTSNEVisualizatio
 
         # Apply consistent point styling
         show_test_points = getattr(self.config, "show_test_points", False)
-        plot_result = apply_consistent_point_styling(
+        apply_consistent_point_styling(
             ax=ax,
             transformed_data=transformed_data,
             y=y,
@@ -271,8 +269,9 @@ class TSNEClassificationVisualization(BaseKNNVisualization, BaseTSNEVisualizatio
         **kwargs,
     ) -> VisualizationResult:
         """Generate a multi-view 3D plot with multiple viewing angles."""
-        import time
         import io
+        import time
+
         from PIL import Image
 
         plot_start = time.time()

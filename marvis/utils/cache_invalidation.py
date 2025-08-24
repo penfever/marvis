@@ -14,13 +14,13 @@ The system works by:
 This approach is data-type agnostic and works for any benchmark or dataset type.
 """
 
-import os
-import json
 import hashlib
+import json
 import logging
+import os
 import time
-from typing import Dict, List, Optional, Set
 from pathlib import Path
+from typing import Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 

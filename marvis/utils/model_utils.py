@@ -5,10 +5,10 @@ This module provides robust functions for loading models with intelligent path
 resolution and error handling.
 """
 
-import os
 import glob
 import logging
-from typing import Any, Dict, List, Optional, Tuple, Union
+import os
+from typing import Tuple
 
 logger = logging.getLogger(__name__)
 
@@ -99,7 +99,8 @@ def load_pretrained_model(
     Raises:
         ValueError: If model loading fails with a clear error message
     """
-    from marvis.models import load_pretrained_model as core_load_pretrained_model
+    from marvis.models import \
+        load_pretrained_model as core_load_pretrained_model
 
     # First resolve the path to find the best checkpoint
     resolved_path = find_best_checkpoint(model_path)

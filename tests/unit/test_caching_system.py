@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 """Test script to verify embedding cache optimization."""
 
-import numpy as np
 import os
 import tempfile
+
+import numpy as np
 
 
 # Create a mock cache file for testing
@@ -26,7 +27,7 @@ def create_mock_cache(cache_file, n_train=1000, n_val=5000, n_test=5000, emb_siz
         metadata={"test": True},
     )
 
-    print(f"Created mock cache with shapes:")
+    print("Created mock cache with shapes:")
     print(f"  Train: {train_embeddings.shape}")
     print(f"  Val: {val_embeddings.shape}")
     print(f"  Test: {test_embeddings.shape}")

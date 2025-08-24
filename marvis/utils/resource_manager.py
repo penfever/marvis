@@ -52,14 +52,14 @@ Usage examples:
     status = resource_manager.get_registry_status()    # Get registry info
 """
 
-import os
+import importlib.resources as resources
 import json
 import logging
+import os
 import time
-from pathlib import Path
-from typing import Dict, List, Optional, Union, Any
 from dataclasses import dataclass, field
-import importlib.resources as resources
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
 
 logger = logging.getLogger(__name__)
 
@@ -204,11 +204,11 @@ class PathResolver:
         try:
             # Handle different config patterns
             if model_type == "jolt":
-                package_path = f"marvis.examples.tabular.llm_baselines.jolt"
+                package_path = "marvis.examples.tabular.llm_baselines.jolt"
             elif model_type == "tabllm":
-                package_path = f"marvis.examples.tabular.llm_baselines.tabllm_like"
+                package_path = "marvis.examples.tabular.llm_baselines.tabllm_like"
             elif model_type == "cc18_semantic":
-                package_path = f"marvis.data.cc18_semantic"
+                package_path = "marvis.data.cc18_semantic"
             else:
                 return None
 
@@ -394,8 +394,8 @@ class DatasetRegistry:
 
     def _atomic_write_json(self, data: dict, file_path: Path) -> bool:
         """Write JSON data atomically using temporary file + rename."""
-        import tempfile
         import shutil
+        import tempfile
 
         try:
             # Write to temporary file first
@@ -1008,11 +1008,7 @@ class MarvisResourceManager:
             Dictionary with keys: task_id, dataset_id, dataset_name
             Returns None values for any that couldn't be resolved
         """
-        from marvis.utils.openml_mapping import (
-            get_openml_cc18_mapping,
-            impute_task_id_from_dataset_id,
-            impute_task_id_from_dataset_name,
-        )
+        from marvis.utils.openml_mapping import get_openml_cc18_mapping
 
         result = {
             "task_id": task_id,
@@ -1026,7 +1022,8 @@ class MarvisResourceManager:
         # If we have task_id, prioritize OpenML API resolution
         if task_id:
             # Try OpenML API first for accurate resolution
-            from marvis.utils.openml_mapping import resolve_task_id_from_openml_api
+            from marvis.utils.openml_mapping import \
+                resolve_task_id_from_openml_api
 
             api_result = resolve_task_id_from_openml_api(task_id)
             if api_result:
@@ -1147,7 +1144,7 @@ class MarvisResourceManager:
                         )
             else:
                 result["valid"] = False
-                result["errors"].append(f"JOLT directory not found")
+                result["errors"].append("JOLT directory not found")
 
         # Handle TabLLM with new task ID-based approach
         elif model_type == "tabllm":
@@ -1196,7 +1193,7 @@ class MarvisResourceManager:
                         )
             else:
                 result["valid"] = False
-                result["errors"].append(f"TabLLM directory not found")
+                result["errors"].append("TabLLM directory not found")
 
         else:
             result["valid"] = False
@@ -1423,6 +1420,7 @@ class DatasetPreparer:
             Tuple of (train_paths, train_labels, test_paths, test_labels, class_names)
         """
         from pathlib import Path
+
         import torchvision
         import torchvision.transforms as transforms
 
@@ -1680,11 +1678,10 @@ class DatasetPreparer:
             )
             # Generate mappings directly without caching
             try:
-                from marvis.viz.utils.styling import (
-                    get_class_color_name_map,
-                    get_color_to_class_map,
-                )
                 import numpy as np
+
+                from marvis.viz.utils.styling import (get_class_color_name_map,
+                                                      get_color_to_class_map)
 
                 unique_classes_array = np.array(unique_classes)
                 class_to_color = get_class_color_name_map(unique_classes_array)
@@ -1715,13 +1712,11 @@ class DatasetPreparer:
         )
 
         try:
-            from marvis.viz.utils.styling import (
-                get_class_color_name_map,
-                get_color_to_class_map,
-            )
-
             # Convert to numpy array for consistent handling
             import numpy as np
+
+            from marvis.viz.utils.styling import (get_class_color_name_map,
+                                                  get_color_to_class_map)
 
             unique_classes_array = np.array(unique_classes)
 

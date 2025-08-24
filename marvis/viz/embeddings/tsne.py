@@ -5,21 +5,15 @@ This provides a minimal BaseVisualization-compatible wrapper around
 the existing t-SNE functions for use with multi-visualization contexts.
 """
 
-import numpy as np
-from typing import Any, Dict, Optional, List
 import logging
+from typing import Any, List, Optional
 
+import numpy as np
 from sklearn.manifold import TSNE
-from ..base import BaseVisualization, VisualizationResult, VisualizationConfig
-from ..tsne_functions import create_tsne_visualization
+
+from ..base import BaseVisualization, VisualizationResult
 
 # Import shared styling utilities
-from ..utils.styling import (
-    apply_consistent_point_styling,
-    apply_consistent_legend_formatting,
-    create_distinct_color_map,
-    create_regression_color_map,
-)
 
 logger = logging.getLogger(__name__)
 
@@ -89,7 +83,7 @@ class TSNEVisualization(BaseVisualization):
         """
         import time
 
-        start_time = time.time()
+        time.time()
 
         # Merge config extra_params with kwargs
         merged_kwargs = {**self.config.extra_params, **kwargs}

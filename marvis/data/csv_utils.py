@@ -2,13 +2,14 @@
 Utilities for loading and handling CSV datasets with precomputed embeddings.
 """
 
-import os
-import logging
-import json
 import glob
-import pandas as pd
+import json
+import logging
+import os
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
-from typing import Tuple, List, Dict, Any, Optional
+import pandas as pd
 
 logger = logging.getLogger(__name__)
 
@@ -95,13 +96,13 @@ def find_csv_file(dataset_id: str, search_dirs: List[str]) -> Optional[str]:
             matches = glob.glob(os.path.join(search_dir, base_pattern))
             if matches:
                 # Return the first match, preferring _X files
-                x_files = [m for m in matches if "_X" in m and not "_y" in m]
+                x_files = [m for m in matches if "_X" in m and "_y" not in m]
                 if x_files:
                     logger.info(f"Found CSV file via glob: {x_files[0]}")
                     return x_files[0]
                 else:
                     non_y_files = [
-                        m for m in matches if not "_y" in m and not "_Y" in m
+                        m for m in matches if "_y" not in m and "_Y" not in m
                     ]
                     if non_y_files:
                         logger.info(f"Found CSV file via glob: {non_y_files[0]}")

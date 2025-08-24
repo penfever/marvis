@@ -5,7 +5,7 @@ Logging utilities for MARVIS.
 import logging
 import os
 import sys
-from typing import Optional, Union, Dict, Any
+from typing import Optional, Union
 
 
 def setup_logging(

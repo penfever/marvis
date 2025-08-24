@@ -9,12 +9,11 @@ This test scans all example files and validates:
 4. Missing parameters that should be updated
 """
 
+import argparse
 import os
-import re
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple, Set
-import argparse
+from typing import List
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
@@ -210,9 +209,9 @@ class ExampleParameterValidator:
             print()
             print("📋 Validation Summary:")
             print(f"  • Files checked: {self.files_checked}")
-            print(f"  • Issues found: 0")
-            print(f"  • Deprecated parameters: None found")
-            print(f"  • Parameter mapping issues: None found")
+            print("  • Issues found: 0")
+            print("  • Deprecated parameters: None found")
+            print("  • Parameter mapping issues: None found")
             return True
 
         # Group errors by type

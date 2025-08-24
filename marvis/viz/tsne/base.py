@@ -6,22 +6,15 @@ code duplication between the various t-SNE functions while maintaining
 compatibility with the existing BaseVisualization architecture.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
 import logging
+from typing import Any, Dict, List, Optional, Union
+
+import numpy as np
 from sklearn.manifold import TSNE
-from typing import Tuple, Optional, List, Dict, Union, Any
-import time
 
 from ..base import BaseVisualization, VisualizationConfig, VisualizationResult
-from ..utils.styling import (
-    get_distinct_colors,
-    create_distinct_color_map,
-    create_class_legend,
-    extract_visible_classes_from_legend,
-    apply_consistent_point_styling,
-)
+from ..utils.styling import (create_class_legend,
+                             extract_visible_classes_from_legend)
 
 logger = logging.getLogger(__name__)
 

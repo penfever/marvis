@@ -2,7 +2,7 @@
 Context composition system for multi-visualization reasoning.
 """
 
-from .composer import ContextComposer, CompositionConfig
+from .composer import CompositionConfig, ContextComposer
 from .layouts import LayoutManager, LayoutStrategy
 
 # PromptGenerator removed - functionality integrated into unified VLM prompting utilities

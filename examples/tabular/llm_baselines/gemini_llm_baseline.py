@@ -3,25 +3,23 @@ Gemini LLM baseline for tabular classification.
 Supports Gemini 2.5 and 2.0 models with thinking capabilities for tabular data tasks.
 """
 
-import numpy as np
-import pandas as pd
-import logging
-import time
 import json
+import logging
 import os
-from typing import Dict, Any, List, Optional, Tuple
-from sklearn.metrics import accuracy_score, balanced_accuracy_score
-from sklearn.model_selection import train_test_split
-
 # Add project root to path
 import sys
+import time
+from typing import Any, Dict, List, Optional
+
+import numpy as np
+from sklearn.metrics import accuracy_score, balanced_accuracy_score
+from sklearn.model_selection import train_test_split
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 examples_dir = os.path.dirname(os.path.dirname(current_dir))
 sys.path.insert(0, examples_dir)
 
-from marvis.utils.model_loader import model_loader, GenerationConfig
-from marvis.utils.unified_metrics import MetricsLogger
+from marvis.utils.model_loader import GenerationConfig, model_loader
 
 logger = logging.getLogger(__name__)
 
@@ -140,7 +138,7 @@ Available classes: {class_list}
 
 Please analyze the feature values carefully and classify this sample. Consider the relationships between different features and their typical patterns for each class.
 
-{f"Think through your reasoning step by step before providing your final classification." if self.enable_thinking else ""}
+{"Think through your reasoning step by step before providing your final classification." if self.enable_thinking else ""}
 
 Provide your classification in the format: "Class: [class_name]"
 

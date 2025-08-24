@@ -2,16 +2,15 @@
 Audio dataset loaders for ESC-50, UrbanSound8K, and RAVDESS.
 """
 
+import logging
 import os
+import zipfile
+from pathlib import Path
+from typing import Dict, List, Tuple
+
 import numpy as np
 import pandas as pd
-import logging
-from pathlib import Path
-from typing import Tuple, List, Optional, Dict
 import requests
-import zipfile
-import tarfile
-import json
 from sklearn.model_selection import train_test_split
 
 logger = logging.getLogger(__name__)
@@ -67,7 +66,7 @@ class AudioDataset:
         # Check if dataset is empty
         if len(paths) == 0:
             raise ValueError(
-                f"No audio samples found in dataset. Please check the dataset download and directory structure."
+                "No audio samples found in dataset. Please check the dataset download and directory structure."
             )
 
         # Convert to numpy arrays
@@ -356,7 +355,7 @@ class UrbanSound8KDataset(AudioDataset):
                         labels.append(clip.class_id)
                     else:
                         missing_files += 1
-                except Exception as e:
+                except Exception:
                     missing_files += 1
                     continue
 
@@ -625,14 +624,14 @@ def download_all_datasets(root_dir: str = "./audio_datasets"):
 
     # ESC-50
     try:
-        esc50 = ESC50Dataset(os.path.join(root_dir, "ESC50"), download=True)
+        ESC50Dataset(os.path.join(root_dir, "ESC50"), download=True)
         logger.info("ESC-50 download successful")
     except Exception as e:
         logger.error(f"ESC-50 download failed: {e}")
 
     # UrbanSound8K (will show manual download message)
     try:
-        urbansound = UrbanSound8KDataset(
+        UrbanSound8KDataset(
             os.path.join(root_dir, "UrbanSound8K"), download=True
         )
     except RuntimeError:
@@ -640,7 +639,7 @@ def download_all_datasets(root_dir: str = "./audio_datasets"):
 
     # RAVDESS
     try:
-        ravdess = RAVDESSDataset(os.path.join(root_dir, "RAVDESS"), download=True)
+        RAVDESSDataset(os.path.join(root_dir, "RAVDESS"), download=True)
         logger.info("RAVDESS download successful")
     except Exception as e:
         logger.error(f"RAVDESS download failed: {e}")
@@ -654,7 +653,7 @@ if __name__ == "__main__":
     esc50 = ESC50Dataset("./test_audio_data/ESC50", download=True)
     splits = esc50.create_few_shot_split(k_shot=5)
 
-    print(f"ESC-50 Few-shot splits:")
+    print("ESC-50 Few-shot splits:")
     print(f"  Train: {len(splits['train'][0])} samples")
     print(f"  Val: {len(splits['val'][0])} samples")
     print(f"  Test: {len(splits['test'][0])} samples")

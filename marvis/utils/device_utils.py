@@ -5,11 +5,12 @@ This module provides centralized device detection and selection logic to ensure
 consistent behavior across all embedding models and neural network operations.
 """
 
+import logging
 import os
 import sys
-import logging
-import torch
 from typing import Optional, Tuple
+
+import torch
 
 logger = logging.getLogger(__name__)
 

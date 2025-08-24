@@ -1,13 +1,15 @@
-import torch
+import logging
 import os
 import pickle
 import time
-import logging
+
 import numpy as np
-from tqdm import tqdm
-from helpers import construct_prompts, process_generated_results
+import torch
+from helpers import (construct_prompts,
+                     get_predicted_values_from_generated_sample,
+                     process_generated_results)
 from hf_api import hf_generate
-from helpers import get_predicted_values_from_generated_sample
+from tqdm import tqdm
 
 
 def sample(args, tokenizer, model, results):

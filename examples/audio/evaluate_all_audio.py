@@ -8,13 +8,13 @@ Can test individual datasets or run comprehensive comparisons across multiple da
 """
 
 import argparse
+import datetime
+import json
 import logging
 import os
 import sys
 import time
-import json
-import datetime
-from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
@@ -31,25 +31,18 @@ sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
+from examples.audio.audio_baselines import (CLAPZeroShotClassifier,
+                                            WhisperKNNClassifier)
+from examples.audio.audio_datasets import (ESC50Dataset, RAVDESSDataset,
+                                           UrbanSound8KDataset)
+from examples.audio.marvis_tsne_audio_baseline import MarvisAudioTsneClassifier
+
+from marvis.utils import (cleanup_gpu_monitoring,
+                          init_wandb_with_gpu_monitoring, set_seed_with_args)
+from marvis.utils.device_utils import log_platform_info
 # Import centralized argument parser
 from marvis.utils.evaluation_args import create_audio_evaluation_parser
-
-from marvis.utils.json_utils import convert_for_json_serialization, safe_json_dump
-from marvis.utils.device_utils import log_platform_info
-from marvis.utils import (
-    init_wandb_with_gpu_monitoring,
-    cleanup_gpu_monitoring,
-    MetricsLogger,
-    set_seed_with_args,
-)
-
-from examples.audio.marvis_tsne_audio_baseline import MarvisAudioTsneClassifier
-from examples.audio.audio_datasets import (
-    ESC50Dataset,
-    RAVDESSDataset,
-    UrbanSound8KDataset,
-)
-from examples.audio.audio_baselines import WhisperKNNClassifier, CLAPZeroShotClassifier
+from marvis.utils.json_utils import convert_for_json_serialization
 
 # Configure logging
 logging.basicConfig(
@@ -443,7 +436,7 @@ def run_models_on_dataset(
 
     # Test Whisper KNN baseline
     if "whisper_knn" in args.models:
-        logger.info(f"Testing Whisper KNN baseline...")
+        logger.info("Testing Whisper KNN baseline...")
         try:
             classifier = WhisperKNNClassifier(
                 model_name=args.whisper_model,
@@ -494,7 +487,7 @@ def run_models_on_dataset(
 
     # Test CLAP zero-shot baseline
     if "clap_zero_shot" in args.models:
-        logger.info(f"Testing CLAP zero-shot baseline...")
+        logger.info("Testing CLAP zero-shot baseline...")
         try:
             classifier = CLAPZeroShotClassifier(
                 version=args.clap_version,  # "2022", "2023", or "clapcap"
@@ -764,7 +757,7 @@ def save_results(results: dict, output_dir: str, k_shot: int):
 
 def parse_args_old():
     """Legacy argument parser - replaced by centralized parser."""
-    parser = argparse.ArgumentParser(
+    argparse.ArgumentParser(
         description="Test audio datasets with MARVIS t-SNE and baselines"
     )
 
@@ -974,7 +967,7 @@ def main():
     args = parse_args()
 
     logger.info("Starting audio classification test...")
-    logger.info(f"Configuration:")
+    logger.info("Configuration:")
     logger.info(f"  Datasets: {', '.join(args.datasets)}")
     logger.info(f"  Models: {', '.join(args.models)}")
     logger.info(f"  k-shot: {args.k_shot}")
@@ -1020,7 +1013,7 @@ def main():
             logger.info(f"Initialized Weights & Biases run: {args.wandb_name}")
 
     # Log platform information
-    platform_info = log_platform_info(logger)
+    log_platform_info(logger)
 
     # Run tests
     start_time = time.time()

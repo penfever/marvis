@@ -7,12 +7,10 @@ dataset IDs, and dataset names. Used primarily for imputing missing task_id valu
 wandb analysis when only dataset names are available.
 """
 
-import os
 import json
 import logging
-from typing import Dict, Optional, Tuple, Any
-import pickle
 from pathlib import Path
+from typing import Any, Dict, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -68,7 +66,6 @@ def _discover_tasks_from_data_directory() -> Dict[int, Dict[str, Any]]:
     Returns:
         Dictionary mapping task_id to basic task information
     """
-    import json
     from pathlib import Path
 
     discovered_tasks = {}

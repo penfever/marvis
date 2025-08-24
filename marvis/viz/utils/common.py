@@ -5,14 +5,15 @@ This module provides common functionality for saving and processing
 visualizations across different MARVIS implementations.
 """
 
-import os
 import io
 import json
-from typing import Optional, Dict, Any, Union
+import logging
+import os
 from contextlib import contextmanager
+from typing import Any, Dict, Optional, Union
+
 import matplotlib.pyplot as plt
 from PIL import Image
-import logging
 
 # Import JSON serialization utility
 from ...utils.json_utils import convert_for_json_serialization

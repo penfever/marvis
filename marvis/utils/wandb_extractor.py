@@ -13,10 +13,9 @@ The extracted data is normalized into a common format for analysis.
 
 import logging
 import re
-import numpy as np
-import pandas as pd
-from pathlib import Path
 from collections import defaultdict
+
+import pandas as pd
 import wandb
 
 logger = logging.getLogger(__name__)
@@ -703,7 +702,7 @@ def should_exclude_failed_run(summary, model_name=None, dataset_name=None, debug
         completed_samples = summary.get("completed_samples", 0)
         if completed_samples == 0:
             if debug:
-                logger.debug(f"Excluding run due to completed_samples = 0")
+                logger.debug("Excluding run due to completed_samples = 0")
             return True
 
     # For LLM baseline format, check model-specific completed_samples (all formats)
@@ -837,7 +836,7 @@ def should_exclude_failed_run(summary, model_name=None, dataset_name=None, debug
             if valid_metrics == 0:
                 if debug:
                     logger.debug(
-                        f"Excluding traditional run due to accuracy=0 with no other valid metrics"
+                        "Excluding traditional run due to accuracy=0 with no other valid metrics"
                     )
                 return True
 
@@ -857,7 +856,7 @@ def should_exclude_failed_run(summary, model_name=None, dataset_name=None, debug
             if valid_metrics == 0:
                 if debug:
                     logger.debug(
-                        f"Excluding test run due to test/accuracy=0 with no other valid metrics"
+                        "Excluding test run due to test/accuracy=0 with no other valid metrics"
                     )
                 return True
 
@@ -1024,7 +1023,7 @@ def extract_model_metrics_from_summary(summary, debug=False):
     if should_exclude_failed_run(summary, debug=debug):
         # Return empty metrics for failed runs
         if debug:
-            logger.debug(f"Excluding failed run from metric extraction")
+            logger.debug("Excluding failed run from metric extraction")
         return model_metrics
 
     # Extract MARVIS metrics (these should be directly in the summary)
@@ -1241,7 +1240,7 @@ def extract_model_metrics_from_summary(summary, debug=False):
     if train_dataset_metrics and not should_exclude_failed_run(summary, debug=debug):
         model_metrics["marvis"] = train_dataset_metrics
     elif train_dataset_metrics and debug:
-        logger.debug(f"Excluding train_dataset_metrics due to failed run detection")
+        logger.debug("Excluding train_dataset_metrics due to failed run detection")
 
     # Extract LLM baseline metrics (new format from evaluate_llm_baselines.py)
     # These can appear in three patterns:
@@ -1899,7 +1898,6 @@ def extract_results_from_wandb(
 
         # Save detailed analysis
         import json
-        import os
         from datetime import datetime
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")

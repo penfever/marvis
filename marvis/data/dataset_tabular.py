@@ -6,12 +6,12 @@ tabular datasets, including feature preprocessing, label mapping, and
 frequency analysis.
 """
 
+import logging
 import os
+from typing import Any, Dict, List, Optional, Tuple, Union
+
 import numpy as np
 import pandas as pd
-import logging
-from typing import List, Dict, Optional, Any, Tuple, Union
-from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
 logger = logging.getLogger(__name__)
@@ -567,7 +567,7 @@ def _process_labels(
                 y = pd.to_numeric(y, errors="coerce")
                 if np.isnan(y).any():
                     logger.error(
-                        f"Cannot convert string labels to numeric for regression. Falling back to classification."
+                        "Cannot convert string labels to numeric for regression. Falling back to classification."
                     )
                     from sklearn.preprocessing import LabelEncoder
 
@@ -575,7 +575,7 @@ def _process_labels(
                     y = encoder.fit_transform(y)
             except Exception:
                 logger.error(
-                    f"Failed to convert string labels for regression. Falling back to classification."
+                    "Failed to convert string labels for regression. Falling back to classification."
                 )
                 from sklearn.preprocessing import LabelEncoder
 

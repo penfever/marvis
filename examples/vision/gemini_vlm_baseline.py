@@ -3,9 +3,10 @@ Gemini Vision-Language Model baseline for image classification.
 Supports Gemini 2.5 Pro, 2.5 Flash, and 2.0 models with thinking capabilities.
 """
 
-from .api_vlm_baseline import APIVLMBaseline, BiologicalAPIVLMBaseline
-from typing import Optional, List
 import logging
+from typing import List, Optional
+
+from .api_vlm_baseline import APIVLMBaseline, BiologicalAPIVLMBaseline
 
 logger = logging.getLogger(__name__)
 
@@ -61,13 +62,12 @@ class GeminiVLMBaseline(APIVLMBaseline):
         if not self.class_names:
             raise ValueError("Class names must be provided for VLM prediction")
 
-        from marvis.utils.vlm_prompting import (
-            create_direct_classification_prompt,
-            parse_vlm_response,
-            create_vlm_conversation,
-        )
-        from marvis.utils.model_loader import GenerationConfig
         import time
+
+        from marvis.utils.model_loader import GenerationConfig
+        from marvis.utils.vlm_prompting import (
+            create_direct_classification_prompt, create_vlm_conversation,
+            parse_vlm_response)
 
         # Create direct image classification prompt using centralized function
         prompt_text = create_direct_classification_prompt(

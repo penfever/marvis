@@ -5,30 +5,27 @@ This module provides visualization for frequent itemsets and association rules
 for tabular data analysis.
 """
 
+import logging
+from typing import Any, Dict, List, Optional
+
 import numpy as np
 import pandas as pd
-from typing import Any, Dict, Optional, List
-import logging
 
 try:
-    from mlxtend.frequent_patterns import apriori, association_rules
-    from mlxtend.preprocessing import TransactionEncoder
     import matplotlib.pyplot as plt
     import seaborn as sns
+    from mlxtend.frequent_patterns import apriori, association_rules
+    from mlxtend.preprocessing import TransactionEncoder
 
     MLXTEND_AVAILABLE = True
 except ImportError:
     MLXTEND_AVAILABLE = False
 
 from ..base import BaseVisualization, VisualizationResult
-
 # Import shared styling utilities
-from ..utils.styling import (
-    apply_consistent_point_styling,
-    apply_consistent_legend_formatting,
-    create_distinct_color_map,
-    get_class_color_name_map,
-)
+from ..utils.styling import (apply_consistent_legend_formatting,
+                             apply_consistent_point_styling,
+                             create_distinct_color_map)
 
 logger = logging.getLogger(__name__)
 
@@ -94,7 +91,7 @@ class FrequentPatternsVisualization(BaseVisualization):
         """Discretize data and analyze patterns."""
         import time
 
-        start_time = time.time()
+        time.time()
 
         # Create transformer if not exists
         if self._transformer is None:
@@ -185,8 +182,9 @@ class FrequentPatternsVisualization(BaseVisualization):
         **kwargs,
     ) -> VisualizationResult:
         """Generate frequent patterns visualization."""
-        import matplotlib.pyplot as plt
         import io
+
+        import matplotlib.pyplot as plt
         from PIL import Image
 
         # Create subplots for different visualizations

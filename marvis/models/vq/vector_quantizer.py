@@ -7,11 +7,11 @@ VQ-VAE approach described in "Neural Discrete Representation Learning" paper
 and has been adapted for use with tabular embeddings.
 """
 
+import logging
+from typing import Tuple, Union
+
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import logging
-from typing import Tuple, Optional, Dict, Any, Union
 
 logger = logging.getLogger(__name__)
 
@@ -203,7 +203,7 @@ class VectorQuantizer(nn.Module):
             encodings: One-hot encodings of selected codebook vectors
         """
         # EMA update for cluster size
-        batch_size = flat_inputs.shape[0]
+        flat_inputs.shape[0]
 
         # Sum of encodings is how many times each codebook entry was used
         n = torch.sum(encodings, dim=0)

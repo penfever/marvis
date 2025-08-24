@@ -2,10 +2,10 @@
 """
 Utilities for intelligent feature selection based on token limits.
 """
-import numpy as np
-import pandas as pd
-from typing import List, Tuple, Dict, Any
 import logging
+from typing import Any, Dict, List, Tuple
+
+import numpy as np
 
 logger = logging.getLogger(__name__)
 

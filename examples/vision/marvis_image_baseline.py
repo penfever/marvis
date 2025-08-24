@@ -2,31 +2,27 @@
 MARVIS t-SNE baseline for image classification using DINOV2 embeddings.
 """
 
-import numpy as np
-import torch
 import logging
-from typing import List, Tuple, Optional, Dict, Any
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-from sklearn.manifold import TSNE
-from sklearn.decomposition import PCA
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-import time
 import os
-
 # Import MARVIS utilities
 import sys
+import time
+from typing import Any, Dict, List, Optional
+
+import numpy as np
+import torch
+from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
+from sklearn.metrics import (accuracy_score, classification_report,
+                             confusion_matrix)
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
-from marvis.data.embeddings import (
-    get_dinov2_embeddings,
-    load_dinov2_model,
-    prepare_image_for_dinov2,
-)
-from examples.vision.image_utils import extract_features_from_loader
+from marvis.data.embeddings import get_dinov2_embeddings
 
 logger = logging.getLogger(__name__)
 
@@ -219,7 +215,7 @@ class MarvisImageClassifier:
         logger.info("Projecting test embeddings to t-SNE space...")
 
         # Combine train and test embeddings for joint t-SNE
-        combined_embeddings = np.vstack(
+        np.vstack(
             [
                 self.scaler.transform(
                     self.scaler.inverse_transform(
@@ -369,7 +365,7 @@ class MarvisImageClassifier:
             device=self.device,
         )
 
-        test_embeddings_scaled = self.scaler.transform(test_embeddings)
+        self.scaler.transform(test_embeddings)
         test_tsne_embeddings = self._project_to_tsne_space(test_embeddings_pca)
 
         # Get probabilities

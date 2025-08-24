@@ -13,22 +13,13 @@ Key functions:
 - Provide adapters for different evaluation scripts
 """
 
-import os
 import json
 import logging
-import shutil
 from pathlib import Path
-from typing import Dict, List, Optional, Any, Tuple, Union
-import datetime
-import re
+from typing import Any, Dict, Optional, Tuple
 
-from .results_manager import (
-    get_results_manager,
-    ExperimentMetadata,
-    EvaluationResults,
-    ResultsArtifacts,
-)
-from .json_utils import safe_json_dump, convert_for_json_serialization
+from .results_manager import (EvaluationResults, ExperimentMetadata,
+                              ResultsArtifacts, get_results_manager)
 
 logger = logging.getLogger(__name__)
 

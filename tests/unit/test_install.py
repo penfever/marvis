@@ -6,6 +6,8 @@ Test script to verify that the marvis package is installed correctly.
 import os
 import sys
 
+import pytest
+
 
 def main():
     print("Python executable:", sys.executable)
@@ -70,6 +72,13 @@ def main():
             print(f"  ✅ {path}")
         else:
             print(f"  ❌ {path} (does not exist)")
+
+
+@pytest.mark.unit
+@pytest.mark.cpu_only
+def test_marvis_installation():
+    """Test that marvis package is properly installed and importable."""
+    main()
 
 
 if __name__ == "__main__":

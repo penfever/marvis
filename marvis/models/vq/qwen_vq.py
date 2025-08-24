@@ -5,12 +5,12 @@ This module implements a modified Qwen model that accepts tabular embeddings as
 vector-quantized inputs, providing a more structured and efficient representation.
 """
 
-import os
-import torch
 import logging
-import numpy as np
+import os
+from typing import Any, List, Tuple
+
+import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from typing import List, Tuple, Dict, Optional, Any, Union, Callable
 
 from .vector_quantizer import VectorQuantizer
 

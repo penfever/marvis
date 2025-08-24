@@ -6,9 +6,10 @@ different MARVIS implementations, including response parsing, conversation
 formatting, and error handling.
 """
 
-import re
 import logging
-from typing import Any, List, Dict, Union, Optional
+import re
+from typing import Any, Dict, List, Optional
+
 import numpy as np
 
 logger = logging.getLogger(__name__)

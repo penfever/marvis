@@ -2,16 +2,17 @@
 Tabular, image, and audio embedding extraction and processing utilities.
 """
 
-import numpy as np
-import torch
-import logging
-import os
 import hashlib
 import json
-from sklearn.preprocessing import StandardScaler, RobustScaler
-from typing import Tuple, List, Optional, Union, Any, Dict, Callable
-from PIL import Image
+import logging
+import os
+from typing import Any, Callable, List, Optional, Tuple
+
+import numpy as np
+import torch
 import torchvision.transforms as transforms
+from PIL import Image
+from sklearn.preprocessing import RobustScaler
 
 __all__ = [
     "generate_dataset_hash",
@@ -186,7 +187,7 @@ def get_tabpfn_embeddings(
             if not force_recompute and rm.cache_manager.cache_exists(
                 "embeddings", cache_key, ".npz"
             ):
-                logger.info(f"Loading cached TabPFN embeddings from managed cache")
+                logger.info("Loading cached TabPFN embeddings from managed cache")
                 try:
                     cache_data = rm.cache_manager.load_from_cache(
                         "embeddings", cache_key, ".npz"
@@ -417,7 +418,6 @@ def get_tabpfn_embeddings(
 
     # Extract embeddings - Process X_train_sample normally, use chunks for test set
     train_embeddings_raw = tabpfn.get_embeddings(X_train_sample)
-    val_embeddings_raw = None  # No validation embeddings generated
     test_embeddings_raw = get_embeddings_in_chunks(tabpfn, X_test, dataset_name="test")
 
     logger.info(
@@ -499,7 +499,7 @@ def get_tabpfn_embeddings(
 
         if use_managed_cache:
             # Save to managed cache
-            logger.info(f"Saving TabPFN embeddings to managed cache")
+            logger.info("Saving TabPFN embeddings to managed cache")
             try:
                 cache_data = {
                     "train_embeddings": train_embeddings,
@@ -513,9 +513,9 @@ def get_tabpfn_embeddings(
                     "embeddings", cache_key, cache_data, ".npz"
                 )
                 if success:
-                    logger.info(f"Successfully saved embeddings to managed cache")
+                    logger.info("Successfully saved embeddings to managed cache")
                 else:
-                    logger.warning(f"Failed to save embeddings to managed cache")
+                    logger.warning("Failed to save embeddings to managed cache")
             except Exception as e:
                 logger.warning(f"Error saving embeddings to managed cache: {e}")
         else:
@@ -607,7 +607,7 @@ def get_embeddings_in_chunks(
     for i in range(n_chunks):
         start_idx = i * max_chunk_size
         end_idx = min((i + 1) * max_chunk_size, total_samples)
-        current_chunk_size = end_idx - start_idx
+        end_idx - start_idx
 
         logger.info(
             f"Processing {dataset_name} chunk {i+1}/{n_chunks}: samples {start_idx} to {end_idx-1}"
@@ -760,11 +760,9 @@ def load_dinov2_model(
     Returns:
         Loaded DINOV2 model
     """
-    from ..utils.device_utils import (
-        configure_device_for_model,
-        log_device_usage,
-        setup_device_environment,
-    )
+    from ..utils.device_utils import (configure_device_for_model,
+                                      log_device_usage,
+                                      setup_device_environment)
 
     # Configure device for DINOV2
     device, _ = configure_device_for_model("dinov2", device)
@@ -837,7 +835,8 @@ def get_dinov2_embeddings(
     Returns:
         embeddings: Array of shape [n_images, embedding_size]
     """
-    from ..utils.device_utils import configure_device_for_model, log_device_usage
+    from ..utils.device_utils import (configure_device_for_model,
+                                      log_device_usage)
 
     # Configure device and batch size for DINOV2
     device, batch_size = configure_device_for_model("dinov2", device, batch_size)

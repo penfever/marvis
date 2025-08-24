@@ -2,16 +2,17 @@
 Dataset loading and preparation utilities.
 """
 
-import numpy as np
+import json
 import logging
 import os
 import random
-import json
 import warnings
+from typing import Any, Dict, List, Optional, Set, Tuple, Union
+
+import numpy as np
 import pandas as pd
-from typing import Dict, List, Tuple, Optional, Any, Union, Set
-from sklearn.preprocessing import LabelEncoder
 from datasets import Dataset
+from sklearn.preprocessing import LabelEncoder
 
 from .embeddings import prepare_tabpfn_embeddings_for_prefix
 
@@ -28,7 +29,7 @@ def silence_pandas_warning(func, *args, **kwargs):
 logger = logging.getLogger(__name__)
 
 # Import the new resource management system
-from ..utils.resource_manager import get_resource_manager, DatasetMetadata
+from ..utils.resource_manager import DatasetMetadata, get_resource_manager
 
 # Global cache to store dataset IDs that have failed to load (legacy)
 _FAILED_DATASET_CACHE: Set[int] = set()
@@ -413,7 +414,7 @@ def load_dataset(
                 hasattr(y_series.dtype, "name")
                 and "category" in str(y_series.dtype).lower()
             ):
-                logger.info(f"Converting categorical target to numeric codes")
+                logger.info("Converting categorical target to numeric codes")
                 # Convert to category codes which are numeric
                 y_series = y_series.astype("category").cat.codes
 
@@ -602,7 +603,7 @@ def load_dataset(
                     # If target is last column, remove last item
                     attribute_names = attribute_names[:-1]
                     logger.debug(
-                        f"Removed last column from attribute_names (assuming it was target)"
+                        "Removed last column from attribute_names (assuming it was target)"
                     )
 
         except Exception as e:
@@ -766,7 +767,7 @@ def load_dataset(
             and np.issubdtype(y.dtype, np.floating)
             and len(np.unique(y)) > 10
         ):
-            logger.info(f"Converting continuous target to classification by binning")
+            logger.info("Converting continuous target to classification by binning")
             from sklearn.preprocessing import KBinsDiscretizer
 
             # Use quantile binning to create balanced classes with safety checks
@@ -799,7 +800,7 @@ def load_dataset(
             and len(np.unique(y)) > 10
         ):
             logger.info(
-                f"Preserving continuous target for regression task (preserve_regression=True)"
+                "Preserving continuous target for regression task (preserve_regression=True)"
             )
 
         # Clean NaN and inf values from dataset
@@ -1072,7 +1073,7 @@ def create_llm_dataset(
             if len(unique_vals) <= 100 and all(
                 float(val).is_integer() for val in unique_vals[:100]
             ):
-                logger.info(f"Converting float labels to integers for LLM dataset")
+                logger.info("Converting float labels to integers for LLM dataset")
                 return y_array.astype(int)
 
         # Otherwise leave as is - the label encoder will handle it

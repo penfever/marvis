@@ -10,53 +10,42 @@ Usage:
     python tests/test_comprehensive_vlm_prompting.py --output_dir ./test_outputs --dataset_id 31
 """
 
-import os
-import sys
-import json
 import argparse
+import json
+import logging
+import os
+import shutil
+import sys
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 import pandas as pd
-import logging
-import shutil
-from pathlib import Path
-from datetime import datetime
-from typing import Dict, List, Any, Optional, Tuple
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from marvis.models.marvis_tsne import MarvisTsneClassifier
-from marvis.utils.vlm_prompting import (
-    create_classification_prompt,
-    create_regression_prompt,
-)
-from marvis.utils.unified_metrics import MetricsLogger
-from marvis.utils.json_utils import safe_json_dump
-from marvis.utils.class_name_utils import extract_class_names_from_labels
-from marvis.utils.task_detection import (
-    detect_task_type,
-    VISION_CLASSIFICATION_TASK_ID,
-    AUDIO_CLASSIFICATION_TASK_ID,
-)
-from sklearn.model_selection import train_test_split
 from sklearn.datasets import fetch_openml
-from sklearn.metrics import (
-    accuracy_score,
-    balanced_accuracy_score,
-    precision_recall_fscore_support,
-    confusion_matrix,
-    mean_squared_error,
-    mean_absolute_error,
-)
+from sklearn.metrics import (accuracy_score, balanced_accuracy_score,
+                             confusion_matrix, mean_absolute_error,
+                             mean_squared_error,
+                             precision_recall_fscore_support)
+from sklearn.model_selection import train_test_split
+
+from marvis.models.marvis_tsne import MarvisTsneClassifier
+from marvis.utils.json_utils import safe_json_dump
+from marvis.utils.task_detection import (AUDIO_CLASSIFICATION_TASK_ID,
+                                         VISION_CLASSIFICATION_TASK_ID,
+                                         detect_task_type)
+from marvis.utils.unified_metrics import MetricsLogger
+from marvis.utils.vlm_prompting import create_regression_prompt
 
 # Audio/Vision dataset imports
 try:
-    from examples.audio.audio_datasets import (
-        ESC50Dataset,
-        UrbanSound8KDataset,
-        RAVDESSDataset,
-    )
+    from examples.audio.audio_datasets import (ESC50Dataset, RAVDESSDataset,
+                                               UrbanSound8KDataset)
 
     AUDIO_AVAILABLE = True
 except ImportError:
@@ -803,7 +792,6 @@ class VLMPromptingTestSuite:
 
     def _get_test_configurations(self) -> List[Dict[str, Any]]:
         """Get comprehensive list of test configurations."""
-        configs = []
 
         # Single visualization configurations
         single_viz_configs = [
@@ -1451,9 +1439,8 @@ class VLMPromptingTestSuite:
                                     }
                                 )
 
-                        from marvis.utils.vlm_prompting import (
-                            create_classification_prompt,
-                        )
+                        from marvis.utils.vlm_prompting import \
+                            create_classification_prompt
 
                         # Use semantic class names if available, otherwise generic ones
                         if self.task_type == "classification":
@@ -1473,7 +1460,7 @@ class VLMPromptingTestSuite:
                         else:  # regression
                             sample_prompt = create_regression_prompt(
                                 modality=self.modality,
-                                dataset_description=f"Test dataset for regression",
+                                dataset_description="Test dataset for regression",
                                 target_min=float(np.min(y_train)),
                                 target_max=float(np.max(y_train)),
                                 target_mean=float(np.mean(y_train)),
@@ -1482,9 +1469,8 @@ class VLMPromptingTestSuite:
                             )
                     else:
                         # Single viz prompt
-                        from marvis.utils.vlm_prompting import (
-                            create_classification_prompt,
-                        )
+                        from marvis.utils.vlm_prompting import \
+                            create_classification_prompt
 
                         # Use semantic class names if available, otherwise generic ones
                         if self.task_type == "classification":
@@ -1509,7 +1495,7 @@ class VLMPromptingTestSuite:
                                 use_knn=config.get("use_knn_connections", False),
                                 use_3d=config.get("use_3d_tsne", False),
                                 nn_k=config.get("knn_k", 5),
-                                dataset_description=f"Test dataset for regression",
+                                dataset_description="Test dataset for regression",
                                 target_min=float(np.min(y_train)),
                                 target_max=float(np.max(y_train)),
                                 target_mean=float(np.mean(y_train)),
@@ -1530,7 +1516,7 @@ class VLMPromptingTestSuite:
                         ]
                     else:
                         all_responses = [
-                            f"Class: UNKNOWN | Reasoning: No prediction details available"
+                            "Class: UNKNOWN | Reasoning: No prediction details available"
                             for _ in range(len(X_test))
                         ]
 
@@ -1548,9 +1534,8 @@ class VLMPromptingTestSuite:
                         ]
 
                     if self.task_type == "classification":
-                        from marvis.utils.vlm_prompting import (
-                            create_classification_prompt,
-                        )
+                        from marvis.utils.vlm_prompting import \
+                            create_classification_prompt
 
                         sample_prompt = create_classification_prompt(
                             class_names=fallback_class_names,
@@ -1559,11 +1544,12 @@ class VLMPromptingTestSuite:
                             use_semantic_names=config.get("use_semantic_names", False),
                         )
                     else:  # regression
-                        from marvis.utils.vlm_prompting import create_regression_prompt
+                        from marvis.utils.vlm_prompting import \
+                            create_regression_prompt
 
                         sample_prompt = create_regression_prompt(
                             modality=self.modality,
-                            dataset_description=f"Test dataset for regression",
+                            dataset_description="Test dataset for regression",
                             target_min=float(np.min(y_train)),
                             target_max=float(np.max(y_train)),
                             target_mean=float(np.mean(y_train)),
@@ -1847,8 +1833,8 @@ class VLMPromptingTestSuite:
 
             if test_success:
                 logger.info(f"✓ Test {test_idx + 1} completed successfully")
-                logger.info(f"  detailed_vlm_outputs.json validation: PASSED")
-                logger.info(f"  MARVIS pipeline execution: SUCCESS")
+                logger.info("  detailed_vlm_outputs.json validation: PASSED")
+                logger.info("  MARVIS pipeline execution: SUCCESS")
             else:
                 logger.error(f"✗ Test {test_idx + 1} FAILED")
                 if not vlm_outputs_valid:
@@ -1856,10 +1842,10 @@ class VLMPromptingTestSuite:
                         f"  detailed_vlm_outputs.json validation: FAILED - {validation_error}"
                     )
                 else:
-                    logger.error(f"  detailed_vlm_outputs.json validation: PASSED")
+                    logger.error("  detailed_vlm_outputs.json validation: PASSED")
 
                 if pipeline_failed:
-                    logger.error(f"  MARVIS pipeline execution: FAILED")
+                    logger.error("  MARVIS pipeline execution: FAILED")
 
                 logger.error(f"  Overall error: {test_error}")
 
@@ -2323,7 +2309,7 @@ def main():
 
     # Print validation statistics
     validation_stats = summary["validation_statistics"]
-    print(f"\nDetailed VLM Outputs Validation:")
+    print("\nDetailed VLM Outputs Validation:")
     print(f"Valid VLM Outputs: {validation_stats['vlm_outputs_valid_tests']}")
     print(f"Invalid VLM Outputs: {validation_stats['vlm_outputs_invalid_tests']}")
     print(f"Pipeline Failures: {validation_stats['pipeline_failed_tests']}")
@@ -2331,7 +2317,7 @@ def main():
     print(
         f"Validation Success Rate: {validation_stats['validation_success_rate']:.1f}%"
     )
-    print(f"\nFiles Generated:")
+    print("\nFiles Generated:")
     for file_type, count in summary["files_generated"].items():
         print(f"  {file_type}: {count}")
     print(f"\nOutput Directory: {summary['output_directory']}")
@@ -2388,7 +2374,7 @@ def main():
                     )
 
     if summary["visualization_method_counts"]:
-        print(f"\nVisualization Methods Used:")
+        print("\nVisualization Methods Used:")
         for method, count in summary["visualization_method_counts"].items():
             print(f"  {method}: {count} tests")
 

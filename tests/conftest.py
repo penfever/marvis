@@ -7,12 +7,12 @@ logic for the MARVIS test suite.
 """
 
 import os
-import sys
-import pytest
-import tempfile
 import shutil
+import sys
+import tempfile
 from pathlib import Path
-from typing import Dict, Any, Optional
+
+import pytest
 
 # Add MARVIS to path for all tests
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -71,7 +71,7 @@ def pytest_configure(config):
         config.addinivalue_line("markers", "skip_no_mps: Skip if MPS not available")
 
     # Add environment info to test report
-    print(f"\n=== MARVIS Test Environment ===")
+    print("\n=== MARVIS Test Environment ===")
     print(f"Python: {sys.version}")
     print(f"PyTorch available: {torch_available}")
     if torch_available:
@@ -80,7 +80,7 @@ def pytest_configure(config):
         if cuda_available:
             print(f"CUDA devices: {torch.cuda.device_count()}")
         print(f"MPS available: {mps_available}")
-    print(f"================================\n")
+    print("================================\n")
 
 
 def pytest_collection_modifyitems(config, items):
@@ -209,8 +209,8 @@ def temp_test_dir():
 def sample_tabular_data():
     """Generate sample tabular data for testing."""
     try:
-        from sklearn.datasets import make_classification
         import numpy as np
+        from sklearn.datasets import make_classification
 
         X, y = make_classification(
             n_samples=50,

@@ -3,13 +3,14 @@ Utility functions for LLM baseline evaluations.
 Extracted from evaluate_llm_baselines.py to reduce code duplication.
 """
 
+import json
 import logging
+import math
+import os
+from typing import Any, Dict, List, Optional, Set, Tuple
+
 import numpy as np
 import pandas as pd
-from typing import Set, List, Dict, Any, Optional, Tuple
-import json
-import os
-import math
 import torch
 
 
@@ -324,14 +325,12 @@ def apply_feature_reduction(
     )
 
     try:
-        from .feature_selection_utils import (
-            select_features_for_token_limit,
-            create_reduced_dataset,
-            test_feature_selection,
-        )
-
         # Use a simple tokenizer for estimation
         from transformers import AutoTokenizer
+
+        from .feature_selection_utils import (create_reduced_dataset,
+                                              select_features_for_token_limit,
+                                              test_feature_selection)
 
         try:
             tokenizer_temp = AutoTokenizer.from_pretrained(
@@ -462,8 +461,8 @@ def predict_with_jolt_logprobs(
     """
     try:
         # Import JOLT compute_nll functionality
-        import sys
         import os
+        import sys
 
         # Try multiple possible paths for the JOLT official_jolt directory
         possible_jolt_paths = [
@@ -1208,18 +1207,12 @@ def calculate_llm_metrics(
         Dictionary containing all calculated metrics
     """
     import math
+
     import numpy as np
-    from sklearn.metrics import (
-        accuracy_score,
-        balanced_accuracy_score,
-        roc_auc_score,
-        f1_score,
-        precision_score,
-        recall_score,
-        mean_squared_error,
-        mean_absolute_error,
-        r2_score,
-    )
+    from sklearn.metrics import (accuracy_score, balanced_accuracy_score,
+                                 f1_score, mean_absolute_error,
+                                 mean_squared_error, precision_score, r2_score,
+                                 recall_score, roc_auc_score)
 
     if logger is None:
         import logging
@@ -1345,7 +1338,7 @@ def calculate_llm_metrics(
                 else:
                     # Skip ROC AUC if no log probabilities available for multiclass
                     logger.debug(
-                        f"No log probabilities available for multiclass ROC AUC calculation"
+                        "No log probabilities available for multiclass ROC AUC calculation"
                     )
                     metrics["roc_auc"] = None
         except Exception as e:

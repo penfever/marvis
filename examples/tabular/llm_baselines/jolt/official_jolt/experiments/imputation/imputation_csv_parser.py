@@ -1,6 +1,6 @@
+import numpy as np
 import pandas as pd
 from pandas.api.types import is_float_dtype
-import numpy as np
 
 
 class ImputationCsvParser:
@@ -48,7 +48,7 @@ class ImputationCsvParser:
 
     def get_data(self, y_column_names=[], missing_mask=None, test_row=None):
         # mutate the colums such that the known columns are at the front
-        missing_column_indices = np.where(missing_mask[test_row] == True)[0]
+        missing_column_indices = np.where(missing_mask[test_row])[0]
         missing_column_names = []
         for index in sorted(missing_column_indices):
             missing_column_names.append(self.all_column_names[index])

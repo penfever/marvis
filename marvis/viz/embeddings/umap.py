@@ -5,9 +5,10 @@ UMAP is excellent for preserving both local and global structure, often providin
 clearer cluster separation than t-SNE while being more computationally efficient.
 """
 
-import numpy as np
-from typing import Any, Dict
 import logging
+from typing import Any, Dict
+
+import numpy as np
 
 try:
     import umap
@@ -19,12 +20,6 @@ except ImportError:
 from ..base import BaseVisualization, VisualizationResult
 
 # Import shared styling utilities
-from ..utils.styling import (
-    apply_consistent_point_styling,
-    apply_consistent_legend_formatting,
-    create_distinct_color_map,
-    create_regression_color_map,
-)
 
 logger = logging.getLogger(__name__)
 

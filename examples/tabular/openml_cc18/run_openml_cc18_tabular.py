@@ -20,20 +20,17 @@ Usage:
 The script assumes the MARVIS repo structure.
 """
 
-import os
-import argparse
-import subprocess
 import json
 import logging
-import openml
-from pathlib import Path
+import os
 import random
-import numpy as np
-import torch
-import time
-from datetime import datetime
-from tqdm import tqdm
+import subprocess
 import sys
+from datetime import datetime
+
+import numpy as np
+import openml
+import torch
 
 # Add project root to path for centralized parser
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -280,7 +277,6 @@ def train_on_task(task, split_idx, args):
         Path to the trained model
     """
     task_id = task.task_id
-    dataset_id = task.dataset_id
     dataset_name = task.get_dataset().name
 
     logger.info(
@@ -371,7 +367,6 @@ def evaluate_model(task, split_idx, model_dir, args):
         Path to the evaluation results
     """
     task_id = task.task_id
-    dataset_id = task.dataset_id
     dataset_name = task.get_dataset().name
 
     logger.info(

@@ -2,24 +2,22 @@
 Standard computer vision baselines for image classification comparison.
 """
 
+import logging
+import time
+from typing import Any, Dict, List, Optional
+
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader
 import torchvision.models as models
-import numpy as np
-import logging
-from typing import Dict, Any, List, Optional, Tuple
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import StandardScaler
-import time
-import os
-import sys
-from PIL import Image
-
 from examples.vision.image_utils import extract_features_from_loader
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (accuracy_score, classification_report,
+                             confusion_matrix)
+from sklearn.preprocessing import StandardScaler
+from torch.utils.data import DataLoader
 
 logger = logging.getLogger(__name__)
 

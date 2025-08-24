@@ -3,9 +3,9 @@
 Test script to reproduce the regression vs classification JOLT issue.
 """
 
-import numpy as np
-import pandas as pd
 from argparse import Namespace
+
+import numpy as np
 
 # Create a simple regression dataset
 X_reg = np.random.rand(10, 3)
@@ -59,9 +59,9 @@ cls_task_type, _ = detect_task_type(
     dataset=classification_dataset, y=y_cls, manual_override="classification"
 )
 
-print(f"\nDetected task types:")
+print("\nDetected task types:")
 print(f"Regression dataset: {reg_task_type}")
 print(f"Classification dataset: {cls_task_type}")
 
-print(f"\nRegression should use mode='sampling', y_column_types=['numerical']")
-print(f"Classification should use mode='logpy_only', y_column_types=['categorical']")
+print("\nRegression should use mode='sampling', y_column_types=['numerical']")
+print("Classification should use mode='logpy_only', y_column_types=['categorical']")

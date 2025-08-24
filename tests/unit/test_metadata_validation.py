@@ -3,9 +3,8 @@
 Test script to verify metadata validation works with the new task ID-based approach.
 """
 
-import os
-import sys
 import logging
+import sys
 from pathlib import Path
 
 # Add the project root to the path
@@ -56,7 +55,7 @@ def test_metadata_validation():
                         for warning in validation["warnings"]:
                             logger.info(f"  ⚠️  Warning: {warning}")
                 else:
-                    logger.error(f"  ❌ INVALID")
+                    logger.error("  ❌ INVALID")
                     for error in validation["errors"]:
                         logger.error(f"    - {error}")
                     for missing_file in validation["missing_files"]:

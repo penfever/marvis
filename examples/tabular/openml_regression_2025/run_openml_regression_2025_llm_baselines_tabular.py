@@ -31,22 +31,18 @@ Usage:
 The script assumes the MARVIS repo structure.
 """
 
-import os
-import argparse
-import subprocess
 import json
 import logging
-import openml
-from pathlib import Path
+import os
 import random
-import numpy as np
-import torch
-import time
-from datetime import datetime
-from tqdm import tqdm
-
+import subprocess
 # Import centralized argument parser
 import sys
+from datetime import datetime
+
+import numpy as np
+import openml
+import torch
 
 sys.path.append(
     os.path.dirname(
@@ -55,9 +51,7 @@ sys.path.append(
 )
 from marvis.utils.evaluation_args import create_tabular_llm_evaluation_parser
 from marvis.utils.metadata_validation import (
-    generate_metadata_coverage_report,
-    print_metadata_coverage_report,
-)
+    generate_metadata_coverage_report, print_metadata_coverage_report)
 
 # Configure logging
 logging.basicConfig(
@@ -239,7 +233,6 @@ def evaluate_llm_baselines_on_task(task, split_idx, args):
         Path to the evaluation results
     """
     task_id = task.task_id
-    dataset_id = task.dataset_id
     dataset_name = task.get_dataset().name
 
     logger.info(

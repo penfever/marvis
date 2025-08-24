@@ -9,20 +9,16 @@ This class replaces the functions:
 - create_regression_tsne_3d_plot_with_knn
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
-from typing import Optional, List, Dict, Any, Tuple, Union
 import logging
+from typing import List, Optional
 
-from .base import BaseTSNEVisualization
-from ..mixins.knn import BaseKNNVisualization
+import matplotlib.colors as mcolors
+import matplotlib.pyplot as plt
+import numpy as np
+
 from ..base import VisualizationConfig, VisualizationResult
-from ..utils.styling import (
-    create_regression_color_map,
-    get_standard_test_point_style,
-    get_standard_target_point_style,
-)
+from ..mixins.knn import BaseKNNVisualization
+from .base import BaseTSNEVisualization
 
 logger = logging.getLogger(__name__)
 
@@ -121,8 +117,9 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
         **kwargs,
     ) -> VisualizationResult:
         """Generate a single view regression plot (2D or single 3D view)."""
-        import time
         import io
+        import time
+
         from PIL import Image
 
         plot_start = time.time()
@@ -387,8 +384,9 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
         **kwargs,
     ) -> VisualizationResult:
         """Generate a multi-view 3D regression plot with multiple viewing angles."""
-        import time
         import io
+        import time
+
         from PIL import Image
 
         plot_start = time.time()

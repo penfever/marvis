@@ -6,7 +6,6 @@ between train_tabular_mix.py and train_tabular_dataset.py.
 """
 
 import argparse
-from typing import Optional
 
 
 def add_model_args(parser: argparse.ArgumentParser):

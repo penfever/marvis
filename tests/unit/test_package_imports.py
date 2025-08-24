@@ -3,8 +3,8 @@
 Unit tests to verify that the marvis package imports are working correctly.
 """
 
-import os
 import sys
+
 import pytest
 
 

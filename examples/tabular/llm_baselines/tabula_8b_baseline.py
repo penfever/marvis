@@ -4,25 +4,17 @@ Tabula-8B baseline evaluation module.
 Contains functions for evaluating the Tabula-8B baseline on tabular datasets.
 """
 
-import os
-import numpy as np
-import torch
-import time
 import logging
+import os
+import time
+
+import numpy as np
 import pandas as pd
-from pathlib import Path
+import torch
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import (
-    accuracy_score,
-    balanced_accuracy_score,
-    roc_auc_score,
-    f1_score,
-    precision_score,
-    recall_score,
-)
-from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig
-from typing import Dict, Any, Optional, List, Tuple
-from marvis.utils.model_loader import model_loader, GenerationConfig
+from transformers import AutoConfig, AutoTokenizer
+
+from marvis.utils.model_loader import model_loader
 
 
 def evaluate_tabula_8b(dataset, args):
@@ -31,15 +23,10 @@ def evaluate_tabula_8b(dataset, args):
     logger.info(f"Evaluating Tabula-8B on dataset {dataset['name']}")
 
     # Import required utilities
-    from marvis.utils import (
-        drop_feature_for_oom,
-        is_oom_error,
-        apply_feature_reduction,
-        unified_llm_predict,
-    )
+    from marvis.utils import (apply_feature_reduction, drop_feature_for_oom,
+                              is_oom_error)
 
     # Save original CUDA device setting
-    import os
 
     original_cuda_device = os.environ.get("CUDA_VISIBLE_DEVICES", None)
 
@@ -71,7 +58,8 @@ def evaluate_tabula_8b(dataset, args):
 
             logger.debug(f"Successfully imported rtfm from: {rtfm.__file__}")
 
-            from rtfm.configs import TrainConfig, TokenizerConfig, SerializerConfig
+            from rtfm.configs import (SerializerConfig, TokenizerConfig,
+                                      TrainConfig)
             from rtfm.inference_utils import InferenceModel
             from rtfm.serialization.serializers import get_serializer
             from rtfm.tokenization.text import prepare_tokenizer
@@ -89,7 +77,7 @@ def evaluate_tabula_8b(dataset, args):
                 import pkg_resources
 
                 installed_packages = [d.project_name for d in pkg_resources.working_set]
-                rtfm_installed = any(
+                any(
                     "rtfm" in pkg.lower() for pkg in installed_packages
                 )
                 logger.error(
@@ -139,11 +127,11 @@ def evaluate_tabula_8b(dataset, args):
 
         # When CUDA_VISIBLE_DEVICES is set, cuda:0 refers to the specified GPU
         if torch.cuda.is_available() and args.device != "cpu":
-            device = torch.device(
+            torch.device(
                 "cuda:0"
             )  # Always use cuda:0 since CUDA_VISIBLE_DEVICES redirects it
         else:
-            device = torch.device("cpu")
+            torch.device("cpu")
 
         # Load model using centralized model loader with VLLM support
         model_kwargs = {
@@ -191,7 +179,8 @@ def evaluate_tabula_8b(dataset, args):
                     serializer = get_serializer(serializer_config)
                 else:
                     # If all else fails, import and instantiate directly
-                    from rtfm.serialization.serializers import DefaultSerializer
+                    from rtfm.serialization.serializers import \
+                        DefaultSerializer
 
                     serializer = DefaultSerializer()
         except Exception as e:

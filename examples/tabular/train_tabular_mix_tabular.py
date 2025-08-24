@@ -36,38 +36,29 @@ Usage examples:
     python train_tabular_mix.py --num_datasets 3 --lr_scheduler exponential --lr_gamma 0.95 --output_dir ./models/exp_lr_model
 """
 
-import os
-import argparse
-import numpy as np
-import torch
 import datetime
-import random
 import glob
-import math
-from sklearn.model_selection import train_test_split
-import pandas as pd
-import logging
-import csv
 import json
-from typing import List, Dict, Tuple, Optional, Any, Union
-from pandas.api.types import is_numeric_dtype
+import logging
+import math
+import os
+import random
+from typing import Any, Dict, List, Tuple
 
-from marvis.data import (
-    load_dataset,
-    get_tabpfn_embeddings,
-    create_llm_dataset,
-    list_available_datasets,
-    is_csv_dataset,
-    load_csv_dataset,
-    load_dataset_with_metadata,
-    find_csv_with_fallbacks,
-)
-from marvis.models import (
-    prepare_qwen_with_prefix_embedding,
-    prepare_qwen_with_vq_prefix_embedding,
-)
-from marvis.train import train_llm_with_tabpfn_embeddings, evaluate_llm_on_test_set
-from marvis.utils import setup_logging, create_multi_dataset_parser
+import numpy as np
+import pandas as pd
+import torch
+from sklearn.model_selection import train_test_split
+
+from marvis.data import (create_llm_dataset, find_csv_with_fallbacks,
+                         get_tabpfn_embeddings, list_available_datasets,
+                         load_csv_dataset, load_dataset,
+                         load_dataset_with_metadata)
+from marvis.models import (prepare_qwen_with_prefix_embedding,
+                           prepare_qwen_with_vq_prefix_embedding)
+from marvis.train import (evaluate_llm_on_test_set,
+                          train_llm_with_tabpfn_embeddings)
+from marvis.utils import create_multi_dataset_parser, setup_logging
 
 # Import wandb conditionally to avoid dependency issues if not installed
 try:
@@ -78,11 +69,8 @@ except ImportError:
     WANDB_AVAILABLE = False
 
 # Import GPU monitoring utilities
-from marvis.utils import (
-    init_wandb_with_gpu_monitoring,
-    cleanup_gpu_monitoring,
-    GPUMonitor,
-)
+from marvis.utils import (GPUMonitor, cleanup_gpu_monitoring,
+                          init_wandb_with_gpu_monitoring)
 
 # Constants for data validation
 MIN_SAMPLES_PER_CLASS = 2
@@ -103,13 +91,9 @@ def create_scheduler(optimizer, scheduler_type, num_training_steps, args):
         A tuple of (scheduler, num_warmup_steps) where scheduler is a PyTorch scheduler
         and num_warmup_steps is the number of warmup steps (for logging)
     """
-    from torch.optim.lr_scheduler import (
-        LambdaLR,
-        CosineAnnealingLR,
-        ExponentialLR,
-        PolynomialLR,
-        CosineAnnealingWarmRestarts,
-    )
+    from torch.optim.lr_scheduler import (CosineAnnealingLR,
+                                          CosineAnnealingWarmRestarts,
+                                          ExponentialLR, LambdaLR)
 
     # Calculate warmup steps
     if args.lr_warmup_ratio > 0:
@@ -204,7 +188,7 @@ def create_scheduler(optimizer, scheduler_type, num_training_steps, args):
 
         if num_warmup_steps > 0:
             # Combine warmup with restarts
-            base_scheduler = CosineAnnealingWarmRestarts(
+            CosineAnnealingWarmRestarts(
                 optimizer, T_0=T_0, T_mult=1, eta_min=args.lr_eta_min
             )
 
@@ -241,9 +225,10 @@ def extract_vq_class(model):
 
 def patch_vector_quantizer_if_needed(model):
     """Patch the vector quantizer to ensure it's tracking usage properly."""
-    import types
-    import torch
     import logging
+    import types
+
+    import torch
 
     if not hasattr(model, "vector_quantizer"):
         return False
@@ -344,6 +329,7 @@ def diagnose_vq_issues(model, output_dir, log_to_wandb=False):
     """
     import logging
     import os
+
     import torch
 
     logger = logging.getLogger(__name__)
@@ -1295,7 +1281,7 @@ def process_dataset(dataset: Dict[str, Any], args) -> Dict[str, Any]:
                     # We can't directly use this file - we need the raw embeddings
                     # not the few-shot subset, so we'll fall back to recalculating
                     logger.info(
-                        f"Found prefix data file, but we need the full raw embeddings. Will recalculate."
+                        "Found prefix data file, but we need the full raw embeddings. Will recalculate."
                     )
                     has_precomputed_embeddings = False
 
@@ -1442,7 +1428,8 @@ def process_dataset(dataset: Dict[str, Any], args) -> Dict[str, Any]:
                                         f"Cached embeddings size ({train_embeddings.shape[1]}) doesn't match requested size ({args.embedding_size}). Resizing..."
                                     )
                                     # Resize them
-                                    from marvis.data.embeddings import resize_embeddings
+                                    from marvis.data.embeddings import \
+                                        resize_embeddings
 
                                     (
                                         train_embeddings,

@@ -4,11 +4,11 @@ Integration tests for MARVIS audio processing pipeline.
 Tests Whisper embeddings, t-SNE visualization, baseline classifiers, and MARVIS audio pipeline.
 """
 
-import sys
-import os
 import logging
+import os
+import sys
+
 import numpy as np
-import pytest
 
 # Add project root to path
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,11 +26,9 @@ def test_whisper_embeddings():
     logger.info("Testing Whisper embedding extraction...")
 
     try:
-        from marvis.data.audio_embeddings import (
-            load_whisper_model,
-            get_whisper_embeddings,
-        )
         from examples.audio.audio_datasets import ESC50Dataset
+
+        from marvis.data.audio_embeddings import get_whisper_embeddings
 
         # Load small dataset
         dataset = ESC50Dataset("./esc50_test_data", download=True)
@@ -38,7 +36,7 @@ def test_whisper_embeddings():
 
         # Use just 10 samples for testing
         test_paths = paths[:10]
-        test_labels = labels[:10]
+        labels[:10]
 
         logger.info(f"Testing with {len(test_paths)} audio samples")
 
@@ -102,7 +100,7 @@ def test_audio_utils():
     logger.info("Testing audio utilities...")
 
     try:
-        from marvis.utils.audio_utils import create_spectrogram, load_audio
+        from marvis.utils.audio_utils import create_spectrogram
 
         # Create dummy audio signal
         sr = 16000
@@ -194,9 +192,10 @@ def create_synthetic_test_data(
     num_samples_per_class=2, num_classes=3, duration=1.0, sample_rate=16000
 ):
     """Create synthetic audio test data."""
-    import tempfile
     import shutil
+    import tempfile
     from pathlib import Path
+
     from marvis.utils.audio_utils import create_synthetic_audio
 
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -276,7 +275,7 @@ def test_whisper_knn_baseline():
         logger.info(f"Evaluating on {len(test_paths)} test samples...")
         results = classifier.evaluate(test_paths, test_labels, return_detailed=True)
 
-        logger.info(f"✓ Whisper KNN results:")
+        logger.info("✓ Whisper KNN results:")
         logger.info(f"  Accuracy: {results['accuracy']:.4f}")
         logger.info(f"  Training time: {results.get('training_time', 0):.2f}s")
         logger.info(f"  Prediction time: {results['prediction_time']:.2f}s")
@@ -319,7 +318,7 @@ def test_clap_zero_shot_baseline():
         logger.info(f"Evaluating on {len(test_paths)} test samples...")
         results = classifier.evaluate(test_paths, test_labels, return_detailed=True)
 
-        logger.info(f"✓ CLAP zero-shot results:")
+        logger.info("✓ CLAP zero-shot results:")
         logger.info(f"  Accuracy: {results['accuracy']:.4f}")
         logger.info(f"  Training time: {results.get('training_time', 0):.2f}s")
         logger.info(f"  Prediction time: {results['prediction_time']:.2f}s")
@@ -336,10 +335,13 @@ def test_marvis_audio_minimal():
     logger.info("Testing MARVIS audio classifier with minimal synthetic data...")
 
     try:
-        from examples.audio.marvis_tsne_audio_baseline import MarvisAudioTsneClassifier
-        from marvis.utils.audio_utils import create_synthetic_audio
-        from pathlib import Path
         import shutil
+        from pathlib import Path
+
+        from examples.audio.marvis_tsne_audio_baseline import \
+            MarvisAudioTsneClassifier
+
+        from marvis.utils.audio_utils import create_synthetic_audio
 
         # Create minimal test data
         temp_dir = Path("./temp_minimal_test")
@@ -372,7 +374,7 @@ def test_marvis_audio_minimal():
         train_paths = audio_paths[:2]  # 1 per class
         train_labels = labels[:2]
         test_paths = audio_paths[2:]  # 1 per class for testing
-        test_labels = labels[2:]
+        labels[2:]
 
         logger.info(
             f"Train: {len(train_paths)} samples, Test: {len(test_paths)} samples"

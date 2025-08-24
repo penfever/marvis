@@ -8,22 +8,19 @@ with GGUF models and URLs.
 
 import os
 import sys
-import pytest
 import tempfile
 from pathlib import Path
 from unittest.mock import Mock, patch
 
+import pytest
+
 # Add MARVIS to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from marvis.utils.gguf_utils import (
-    parse_gguf_url,
-    is_gguf_url,
-    get_cache_path,
-    validate_gguf_file,
-    suggest_gguf_files,
-)
-from marvis.utils.model_loader import ModelLoader, LLAMACPP_AVAILABLE
+from marvis.utils.gguf_utils import (get_cache_path, is_gguf_url,
+                                     parse_gguf_url, suggest_gguf_files,
+                                     validate_gguf_file)
+from marvis.utils.model_loader import LLAMACPP_AVAILABLE, ModelLoader
 
 
 class TestGGUFUtils:

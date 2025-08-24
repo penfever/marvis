@@ -4,19 +4,20 @@ Simple MARVIS baseline for image classification using DINOV2 embeddings directly
 This version skips t-SNE due to numerical instability and uses embeddings directly.
 """
 
-import numpy as np
-import torch
 import logging
-from typing import List, Tuple, Optional, Dict, Any
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.decomposition import PCA
-import time
 import os
-
 # Import MARVIS utilities
 import sys
+import time
+from typing import Any, Dict, List, Optional
+
+import numpy as np
+import torch
+from sklearn.decomposition import PCA
+from sklearn.metrics import (accuracy_score, classification_report,
+                             confusion_matrix)
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

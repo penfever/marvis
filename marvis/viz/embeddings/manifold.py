@@ -5,20 +5,16 @@ This module provides wrappers for various manifold learning methods from
 scikit-learn, including LocallyLinearEmbedding, SpectralEmbedding, Isomap, and MDS.
 """
 
-import numpy as np
-from typing import Any, Dict
 import logging
+from typing import Any, Dict
 
-from sklearn.manifold import LocallyLinearEmbedding, SpectralEmbedding, Isomap, MDS
+import numpy as np
+from sklearn.manifold import (MDS, Isomap, LocallyLinearEmbedding,
+                              SpectralEmbedding)
+
 from ..base import BaseVisualization, VisualizationResult
 
 # Import shared styling utilities
-from ..utils.styling import (
-    apply_consistent_point_styling,
-    apply_consistent_legend_formatting,
-    create_distinct_color_map,
-    create_regression_color_map,
-)
 
 logger = logging.getLogger(__name__)
 

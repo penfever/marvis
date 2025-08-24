@@ -12,34 +12,34 @@ Datasets: FishNet (habitat classification), AwA2 (trait prediction), PlantDoc (d
 """
 
 import argparse
+import datetime
+import json
 import logging
 import os
-import sys
-import time
-import json
-import datetime
 import random
-import urllib.request
-import zipfile
 import shutil
 import subprocess
-import requests
+import sys
+import time
+import urllib.request
+import zipfile
 from pathlib import Path
+
 import numpy as np
-from PIL import Image
-import torch
 import pandas as pd
+import torch
+from PIL import Image
+from sklearn.metrics import accuracy_score
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, classification_report
 from sklearn.preprocessing import StandardScaler
 
 # Add project root to path for imports
 sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
+from marvis.utils import set_seed
 from marvis.utils.class_name_utils import get_semantic_class_names_or_fallback
 from marvis.utils.vlm_prompting import validate_and_clean_class_names
-from marvis.utils import set_seed
 
 # Import wandb conditionally
 try:
@@ -54,17 +54,12 @@ sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
-from marvis.utils.json_utils import convert_for_json_serialization
-from marvis.utils.device_utils import log_platform_info
-from marvis.utils import (
-    init_wandb_with_gpu_monitoring,
-    cleanup_gpu_monitoring,
-    MetricsLogger,
-)
+from examples.vision.qwen_vl_baseline import QwenVLBaseline
 
 from marvis.models.marvis_tsne import MarvisImageTsneClassifier
-from examples.vision.qwen_vl_baseline import QwenVLBaseline
-from examples.vision.image_baselines import DINOV2LinearProbe
+from marvis.utils import cleanup_gpu_monitoring, init_wandb_with_gpu_monitoring
+from marvis.utils.device_utils import log_platform_info
+from marvis.utils.json_utils import convert_for_json_serialization
 
 # Configure logging
 logging.basicConfig(
@@ -404,7 +399,7 @@ def download_and_prepare_fishnet(data_dir: str = "./fishnet_data") -> tuple:
         import gdown
 
         if not zip_path.exists():
-            logger.info(f"Downloading FishNet dataset from Google Drive...")
+            logger.info("Downloading FishNet dataset from Google Drive...")
             gdown.download(
                 f"https://drive.google.com/uc?id={file_id}", str(zip_path), quiet=False
             )
@@ -762,8 +757,6 @@ def test_single_dataset(dataset_name: str, args):
         logger.info(
             f"Using balanced few-shot sampling with {args.num_few_shot_examples} examples per class"
         )
-        from sklearn.model_selection import train_test_split
-        from collections import Counter
         import numpy as np
 
         # Group training data by class
@@ -895,13 +888,11 @@ def test_single_dataset(dataset_name: str, args):
         try:
             # Import API baseline classes
             if api_backend == "openai":
-                from examples.vision.openai_vlm_baseline import (
-                    OpenAIVLMBaseline as APIVLMBaseline,
-                )
+                from examples.vision.openai_vlm_baseline import \
+                    OpenAIVLMBaseline as APIVLMBaseline
             else:  # gemini
-                from examples.vision.gemini_vlm_baseline import (
-                    GeminiVLMBaseline as APIVLMBaseline,
-                )
+                from examples.vision.gemini_vlm_baseline import \
+                    GeminiVLMBaseline as APIVLMBaseline
 
             classifier = APIVLMBaseline(
                 num_classes=len(class_names),
@@ -1020,9 +1011,8 @@ def run_all_biological_tests(args):
     all_results = {}
 
     # Log platform information
-    from marvis.utils.device_utils import log_platform_info
 
-    platform_info = log_platform_info(logger)
+    log_platform_info(logger)
 
     for dataset_name in args.dataset:
         logger.info(f"\n{'='*60}")
@@ -1386,8 +1376,8 @@ def main():
 
     set_seed_with_args(args)
 
-    logger.info(f"Starting biological dataset classification tests...")
-    logger.info(f"Configuration:")
+    logger.info("Starting biological dataset classification tests...")
+    logger.info("Configuration:")
     logger.info(f"  Datasets: {', '.join(args.dataset)}")
     logger.info(f"  Models: {', '.join(args.models)}")
     logger.info(f"  Backend: {args.backend}")
@@ -1428,7 +1418,7 @@ def main():
         f"\nOverall: {successful_experiments}/{total_experiments} experiments successful"
     )
     logger.info(f"Results saved to: {args.output_dir}")
-    logger.info(f"Biological dataset tests completed!")
+    logger.info("Biological dataset tests completed!")
 
 
 if __name__ == "__main__":

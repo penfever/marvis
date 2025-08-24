@@ -1,12 +1,12 @@
-import torch
-import numpy as np
-import pickle
-import math
-import os
 import logging
+import os
+import pickle
+
+import numpy as np
+import torch
 from helpers import construct_prompts, floats_to_str
-from tqdm import tqdm
 from scipy.special import log_softmax
+from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 

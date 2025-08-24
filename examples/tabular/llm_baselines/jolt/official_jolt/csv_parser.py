@@ -1,8 +1,7 @@
+import numpy as np
 import pandas as pd
 from pandas.api.types import is_float_dtype
-import numpy as np
 from sklearn.model_selection import train_test_split
-
 
 csv_header_options = [
     "no_headers",  # don't use CSV file column headers at all

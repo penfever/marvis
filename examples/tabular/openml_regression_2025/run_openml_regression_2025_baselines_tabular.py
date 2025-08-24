@@ -33,27 +33,24 @@ Usage:
     python run_openml_regression_2025_baselines_tabular.py --marvis_repo_path /path/to/marvis --no_wandb --output_dir ./local_results
 """
 
-import os
 import argparse
-import subprocess
 import json
 import logging
-import openml
-from pathlib import Path
+import os
 import random
-import numpy as np
-import torch
-import time
-from datetime import datetime
-from tqdm import tqdm
+import subprocess
 import sys
+from datetime import datetime
+
+import numpy as np
+import openml
+import torch
 
 # Add project root to path for centralized parser
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, "..", "..", ".."))
 sys.path.insert(0, project_root)
 
-from marvis.utils.evaluation_args import create_dataset_evaluation_parser
 
 # Configure logging
 logging.basicConfig(
@@ -76,21 +73,19 @@ def parse_args():
     )
 
     # Import and add all the standard evaluation args without the required dataset constraint
-    from marvis.utils.evaluation_args import (
-        add_common_evaluation_args,
-        add_model_args,
-        add_data_processing_args,
-        add_embedding_args,
-        add_baseline_model_args,
-        add_tabpfn_args,
-        add_llm_baseline_args,
-        add_evaluation_wandb_args,
-        add_label_fitting_args,
-        add_calibration_args,
-        add_score_normalization_args,
-        add_minority_class_args,
-        add_evaluation_control_args,
-    )
+    from marvis.utils.evaluation_args import (add_baseline_model_args,
+                                              add_calibration_args,
+                                              add_common_evaluation_args,
+                                              add_data_processing_args,
+                                              add_embedding_args,
+                                              add_evaluation_control_args,
+                                              add_evaluation_wandb_args,
+                                              add_label_fitting_args,
+                                              add_llm_baseline_args,
+                                              add_minority_class_args,
+                                              add_model_args,
+                                              add_score_normalization_args,
+                                              add_tabpfn_args)
 
     # Add all argument groups
     add_common_evaluation_args(parser)
@@ -251,7 +246,6 @@ def evaluate_baselines_on_task(task, split_idx, args):
         Path to the evaluation results
     """
     task_id = task.task_id
-    dataset_id = task.dataset_id
     dataset_name = task.get_dataset().name
 
     logger.info(

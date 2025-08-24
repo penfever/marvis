@@ -6,11 +6,11 @@ on TabPFN embeddings, including finding nearest neighbors and analyzing
 influential training points.
 """
 
-import numpy as np
 import logging
+from typing import Any, Dict, List, Optional, Tuple
+
+import numpy as np
 from sklearn.neighbors import NearestNeighbors
-from typing import Tuple, Optional, List, Dict, Any
-from sklearn.preprocessing import StandardScaler
 
 __all__ = [
     "find_knn_in_embedding_space",
@@ -247,8 +247,8 @@ def analyze_knn_performance(
     Returns:
         Dictionary with performance results for different k values
     """
+    from sklearn.metrics import accuracy_score
     from sklearn.neighbors import KNeighborsClassifier
-    from sklearn.metrics import accuracy_score, classification_report
 
     if k_values is None:
         k_values = [1, 3, 5, 10, 15]

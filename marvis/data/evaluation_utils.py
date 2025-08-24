@@ -5,15 +5,16 @@ This module provides functions to load multiple datasets, handle preprocessing,
 and prepare data for evaluation with consistent sampling and splitting strategies.
 """
 
-import os
 import glob
 import logging
+import os
+from typing import Any, Dict, List, Tuple
+
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Tuple, Optional, Any, Union
 from sklearn.model_selection import train_test_split
 
-from .dataset import load_dataset, clear_failed_dataset_cache
+from .dataset import clear_failed_dataset_cache, load_dataset
 
 logger = logging.getLogger(__name__)
 
@@ -317,7 +318,7 @@ def apply_train_test_split(
             )
         except ValueError:
             # Fall back to non-stratified if stratification fails
-            logger.warning(f"Stratification failed, using non-stratified split")
+            logger.warning("Stratification failed, using non-stratified split")
             return train_test_split(
                 X, y, test_size=test_size, random_state=random_state
             )
@@ -540,7 +541,7 @@ def preprocess_dataset_for_evaluation(dataset: Dict[str, Any], args) -> Dict[str
     logger.info(f"Preprocessing dataset {dataset['name']} for evaluation")
 
     # Extract data
-    X = dataset["X"]
+    dataset["X"]
     y = dataset["y"]
 
     # Determine task type using task detection
@@ -579,7 +580,7 @@ def preprocess_dataset_for_evaluation(dataset: Dict[str, Any], args) -> Dict[str
         except ValueError:
             # Fall back to non-stratified if stratification fails
             logger.warning(
-                f"Validation split stratification failed, using non-stratified split"
+                "Validation split stratification failed, using non-stratified split"
             )
             X_train, X_val, y_train, y_val = train_test_split(
                 X_train, y_train, test_size=0.5, random_state=args.seed

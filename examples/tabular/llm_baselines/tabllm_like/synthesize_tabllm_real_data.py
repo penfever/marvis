@@ -4,16 +4,17 @@ Script to synthesize TabLLM notes from actual OpenML CC18 data.
 This script loads real datasets and creates notes from actual data rows.
 """
 
+import glob
 import json
 import os
-import glob
-import yaml
-import uuid
 import sys
+import uuid
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
-from typing import Dict, List, Any, Optional
+import yaml
 
 # Add parent directory to path to import from tabllm_baseline
 sys.path.append(str(Path(__file__).parent.parent))
@@ -37,8 +38,8 @@ try:
     import sys
 
     sys.path.insert(0, project_root)
-    from marvis.utils.resource_manager import get_resource_manager
     from marvis.utils.metadata_loader import get_metadata_loader
+    from marvis.utils.resource_manager import get_resource_manager
 
     RESOURCE_MANAGER = get_resource_manager()
     METADATA_LOADER = get_metadata_loader()
@@ -556,7 +557,7 @@ def generate_note_from_semantic_info(semantic_info: Dict[str, Any]) -> str:
 
         return ". ".join(features[:10])  # Limit to first 10 features
 
-    except Exception as e:
+    except Exception:
         # Fallback note
         return "This is an example tabular data instance with various features"
 
@@ -610,7 +611,7 @@ def create_template_for_dataset(
             for keyword in ["yes", "no", "true", "false", "positive", "negative"]
         ):
             # Binary classification with clear yes/no, true/false, etc.
-            jinja_template = f"{{{{note}}}}\n\nWhat is the class of this instance?\nAnswer: \n|||\n{{{{ answer_choices[label] }}}}"
+            jinja_template = "{{note}}\n\nWhat is the class of this instance?\nAnswer: \n|||\n{{ answer_choices[label] }}"
         else:
             # Multi-class or less clear binary
             classes_str = ", ".join(classes)

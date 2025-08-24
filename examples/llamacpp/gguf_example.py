@@ -12,14 +12,13 @@ Or manually:
     pip install llama-cpp-python
 """
 
-import sys
 import os
+import sys
 from pathlib import Path
 
 # Add MARVIS to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
-import numpy as np
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 
@@ -48,14 +47,14 @@ def main():
         print(f"      GGUF detected: {is_gguf_url(url)}")
 
     # Demonstrate GGUF file suggestions
-    print(f"\n🔍 Suggested GGUF files for repository:")
+    print("\n🔍 Suggested GGUF files for repository:")
     repo_url = "https://huggingface.co/Mungert/Qwen2.5-VL-3B-Instruct-GGUF"
     suggestions = suggest_gguf_files(repo_url)
     for i, suggestion in enumerate(suggestions[:5], 1):
         print(f"   {i}. {Path(suggestion).name}")
 
     # Create synthetic dataset
-    print(f"\n📊 Creating synthetic tabular dataset...")
+    print("\n📊 Creating synthetic tabular dataset...")
     X, y = make_classification(
         n_samples=100,
         n_features=8,
@@ -79,11 +78,11 @@ def main():
     print(f"   • Classes: {len(class_names)}")
 
     # Example 1: Auto-detect GGUF backend
-    print(f"\n🔧 Example 1: Auto-detection of GGUF backend")
+    print("\n🔧 Example 1: Auto-detection of GGUF backend")
     gguf_url = example_gguf_urls[0]  # Use first example URL
 
     print(f"   Model URL: {gguf_url}")
-    print(f"   Backend: auto (will detect 'llamacpp' for GGUF)")
+    print("   Backend: auto (will detect 'llamacpp' for GGUF)")
 
     try:
         classifier_auto = MarvisTsneClassifier(
@@ -101,7 +100,7 @@ def main():
             seed=42,
         )
 
-        print(f"   ✅ Classifier initialized with auto backend detection")
+        print("   ✅ Classifier initialized with auto backend detection")
         print(f"   Backend selected: {classifier_auto.backend}")
 
         # Note: We don't actually fit/predict here to avoid downloading the model
@@ -111,13 +110,13 @@ def main():
 
     except ImportError as e:
         print(f"   ⚠️ LlamaCPP not available: {e}")
-        print(f"   Install with: pip install 'marvis[llamacpp]'")
+        print("   Install with: pip install 'marvis[llamacpp]'")
 
     # Example 2: Explicit GGUF backend
-    print(f"\n🔧 Example 2: Explicit LlamaCPP backend")
+    print("\n🔧 Example 2: Explicit LlamaCPP backend")
 
     try:
-        classifier_explicit = MarvisTsneClassifier(
+        MarvisTsneClassifier(
             modality="tabular",
             vlm_model_id=gguf_url,
             backend="llamacpp",  # Explicitly use llamacpp
@@ -129,13 +128,13 @@ def main():
             verbose=True,  # Show loading details
         )
 
-        print(f"   ✅ Classifier initialized with explicit llamacpp backend")
+        print("   ✅ Classifier initialized with explicit llamacpp backend")
 
     except ImportError as e:
         print(f"   ⚠️ LlamaCPP not available: {e}")
 
     # Example 3: Configuration options
-    print(f"\n⚙️ GGUF/LlamaCPP Configuration Options:")
+    print("\n⚙️ GGUF/LlamaCPP Configuration Options:")
 
     config_options = {
         "Memory Management": [
@@ -166,7 +165,7 @@ def main():
             print(f"     • {option}")
 
     # Benefits summary
-    print(f"\n🎯 GGUF Benefits:")
+    print("\n🎯 GGUF Benefits:")
     benefits = [
         "Memory Efficient: Quantized models use significantly less VRAM/RAM",
         "Fast Loading: GGUF format optimized for quick model loading",
@@ -179,14 +178,14 @@ def main():
     for benefit in benefits:
         print(f"   ✅ {benefit}")
 
-    print(f"\n💡 Next Steps:")
-    print(f"   1. Install LlamaCPP: pip install 'marvis[llamacpp]'")
-    print(f"   2. Choose a GGUF model from HuggingFace")
-    print(f"   3. Use with MARVIS as shown above")
-    print(f"   4. Adjust n_ctx and n_gpu_layers for your hardware")
-    print(f"   5. Monitor GPU/CPU usage during inference")
+    print("\n💡 Next Steps:")
+    print("   1. Install LlamaCPP: pip install 'marvis[llamacpp]'")
+    print("   2. Choose a GGUF model from HuggingFace")
+    print("   3. Use with MARVIS as shown above")
+    print("   4. Adjust n_ctx and n_gpu_layers for your hardware")
+    print("   5. Monitor GPU/CPU usage during inference")
 
-    print(f"\n🚀 Ready to use GGUF models with MARVIS!")
+    print("\n🚀 Ready to use GGUF models with MARVIS!")
 
 
 if __name__ == "__main__":

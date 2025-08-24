@@ -2,15 +2,16 @@
 Audio embedding extraction using Whisper and other audio models.
 """
 
-import numpy as np
-import torch
-import logging
-import os
 import hashlib
 import json
-import librosa
-from typing import Tuple, List, Optional, Union, Dict, Any
+import logging
+import os
 from pathlib import Path
+from typing import Any, List, Optional, Tuple, Union
+
+import librosa
+import numpy as np
+import torch
 
 __all__ = [
     "get_whisper_embeddings",
@@ -41,12 +42,13 @@ def load_whisper_model(
     """
     try:
         import whisper
-        from transformers import WhisperProcessor, WhisperModel
+        from transformers import WhisperModel, WhisperProcessor
 
         logger.info(f"Loading Whisper model: {model_name}")
 
         # Determine device using centralized utility
-        from ..utils.device_utils import configure_device_for_model, log_device_usage
+        from ..utils.device_utils import (configure_device_for_model,
+                                          log_device_usage)
 
         device, _ = configure_device_for_model("whisper", device)
         log_device_usage(f"Whisper {model_name}", device)
@@ -275,7 +277,8 @@ def load_clap_model(version: str = "2023", use_cuda: Optional[bool] = None) -> A
         logger.info(f"Loading CLAP model version: {version}")
 
         # Auto-detect device if not specified
-        from ..utils.device_utils import detect_optimal_device, log_device_usage
+        from ..utils.device_utils import (detect_optimal_device,
+                                          log_device_usage)
 
         if use_cuda is None:
             device = detect_optimal_device()

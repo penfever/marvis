@@ -45,20 +45,18 @@ Usage examples:
     )
 """
 
-import os
+import datetime
 import json
 import logging
-import threading
-from pathlib import Path
-from typing import Dict, List, Optional, Any, Union, Tuple
-from dataclasses import dataclass, field, asdict
-import datetime
-import tempfile
+import os
 import shutil
-from concurrent.futures import ThreadPoolExecutor
+import threading
+from dataclasses import asdict, dataclass, field
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
 
-from .resource_manager import get_resource_manager, MarvisResourceManager
-from .json_utils import safe_json_dump, safe_json_dumps, convert_for_json_serialization
+from .json_utils import safe_json_dump
+from .resource_manager import MarvisResourceManager, get_resource_manager
 
 logger = logging.getLogger(__name__)
 
@@ -560,7 +558,7 @@ class ResultsManager:
             Dictionary with cleanup statistics
         """
         cutoff_date = datetime.datetime.now() - datetime.timedelta(days=days_old)
-        results_base = self.get_results_base_dir()
+        self.get_results_base_dir()
 
         stats = {
             "scanned": 0,

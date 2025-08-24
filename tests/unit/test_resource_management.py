@@ -10,24 +10,16 @@ This script validates that the resource manager correctly:
 """
 
 import os
-import tempfile
-import shutil
-import json
-from pathlib import Path
-import pytest
-
 # Add the project root to the path
 import sys
+import tempfile
+from pathlib import Path
 
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from marvis.utils.resource_manager import (
-    get_resource_manager,
-    reset_resource_manager,
-    ResourceConfig,
-    MarvisResourceManager,
-)
+from marvis.utils.resource_manager import (get_resource_manager,
+                                           reset_resource_manager)
 
 
 def test_resource_manager_basic_functionality():

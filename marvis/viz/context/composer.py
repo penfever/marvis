@@ -5,26 +5,21 @@ This module provides the main interface for creating complex, multi-visualizatio
 contexts that can be consumed by VLM backends for enhanced reasoning.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from dataclasses import dataclass, field
-from typing import Dict, List, Any, Optional, Tuple, Union
-from PIL import Image
 import logging
 import time
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Tuple
 
-from ..base import BaseVisualization, VisualizationConfig, VisualizationResult
+import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image
+
+from ..base import BaseVisualization, VisualizationConfig
 from .layouts import LayoutManager, LayoutStrategy
 
 # Removed PromptGenerator - using unified VLM prompting utilities
 
 # Import shared styling utilities
-from ..utils.styling import (
-    apply_consistent_point_styling,
-    apply_consistent_legend_formatting,
-    create_distinct_color_map,
-    get_class_color_name_map,
-)
 
 logger = logging.getLogger(__name__)
 
@@ -121,8 +116,8 @@ class ContextComposer:
         # Handle special cases that require additional parameters
         if viz_type == "decision_regions":
             # Decision regions requires a classifier instance
-            from sklearn.svm import SVC
             from sklearn.ensemble import RandomForestClassifier
+            from sklearn.svm import SVC
 
             # Get classifier type from config
             classifier_type = (config or {}).get("decision_classifier", "svm")
@@ -153,16 +148,14 @@ class ContextComposer:
 
     def _get_visualization_class(self, viz_type: str):
         """Get the visualization class for a given type string."""
+        from ..decision.regions import DecisionRegionsVisualization
+        from ..embeddings.manifold import (IsomapVisualization,
+                                           LocallyLinearEmbeddingVisualization,
+                                           MDSVisualization,
+                                           SpectralEmbeddingVisualization)
+        from ..embeddings.pca import PCAVisualization
         from ..embeddings.tsne import TSNEVisualization
         from ..embeddings.umap import UMAPVisualization
-        from ..embeddings.pca import PCAVisualization
-        from ..embeddings.manifold import (
-            LocallyLinearEmbeddingVisualization,
-            SpectralEmbeddingVisualization,
-            IsomapVisualization,
-            MDSVisualization,
-        )
-        from ..decision.regions import DecisionRegionsVisualization
         from ..patterns.frequent import FrequentPatternsVisualization
 
         viz_map = {
@@ -427,8 +420,10 @@ class ContextComposer:
                 )
 
         # Generate prompt using unified VLM prompting utilities
-        from marvis.utils.vlm_prompting import create_comprehensive_multi_viz_prompt
-        from marvis.utils.class_name_utils import normalize_class_names_to_class_num
+        from marvis.utils.class_name_utils import \
+            normalize_class_names_to_class_num
+        from marvis.utils.vlm_prompting import \
+            create_comprehensive_multi_viz_prompt
 
         # Prepare multi_viz_info for the unified utilities
         multi_viz_info = []

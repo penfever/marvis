@@ -1,10 +1,11 @@
 """LLM baseline evaluation modules with VLLM support."""
 
-from marvis.utils.model_loader import model_loader, GenerationConfig
 from marvis.models.marvis_tsne import evaluate_marvis_tsne
+from marvis.utils.model_loader import GenerationConfig, model_loader
+
+from .jolt_baseline import evaluate_jolt
 from .tabllm_baseline import evaluate_tabllm
 from .tabula_8b_baseline import evaluate_tabula_8b
-from .jolt_baseline import evaluate_jolt
 
 __all__ = [
     "model_loader",

@@ -5,22 +5,14 @@ This mixin can be combined with any visualization class to add KNN connections,
 neighbor analysis, and pie chart generation capabilities.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-from sklearn.neighbors import NearestNeighbors
-from typing import Dict, List, Optional, Any, Tuple, Union
 import logging
+from typing import Any, Dict, List, Optional, Tuple
+
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.neighbors import NearestNeighbors
 
 # Import shared styling utilities
-from ..utils.styling import (
-    apply_consistent_point_styling,
-    apply_consistent_legend_formatting,
-    get_standard_test_point_style,
-    get_standard_target_point_style,
-    create_distinct_color_map,
-    get_class_color_name_map,
-)
 
 logger = logging.getLogger(__name__)
 

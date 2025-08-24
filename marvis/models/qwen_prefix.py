@@ -2,11 +2,11 @@
 Implementation of Qwen model with prefix embedding capability.
 """
 
-import os
-import torch
 import logging
+import os
+
+import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from typing import List, Tuple, Dict, Optional, Any, Union
 
 logger = logging.getLogger(__name__)
 
@@ -58,7 +58,8 @@ class QwenWithPrefixEmbedding(torch.nn.Module):
         # Check if accelerate is being used
         if hasattr(self.base_model, "_hf_hook"):
             try:
-                from accelerate.hooks import ModelHook, AlignDevicesHook, CpuOffload
+                from accelerate.hooks import (AlignDevicesHook, CpuOffload,
+                                              ModelHook)
 
                 # Get the hook from the base model
                 base_hook = self.base_model._hf_hook

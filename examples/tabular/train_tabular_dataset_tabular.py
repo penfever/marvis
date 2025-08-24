@@ -27,29 +27,25 @@ Usage examples:
     python train_tabular_dataset.py --dataset_name har --permute_examples --permute_labels --variable_few_shot --few_shot_min 20 --few_shot_max 200
 """
 
-import os
-import argparse
-import numpy as np
-import torch
-import random
 import datetime
+import os
+
+import torch
 from sklearn.model_selection import train_test_split
 
-from marvis.data import load_dataset, get_tabpfn_embeddings, create_llm_dataset
-from marvis.models import (
-    prepare_qwen_with_prefix_embedding,
-    prepare_qwen_with_vq_prefix_embedding,
-)
-from marvis.train import train_llm_with_tabpfn_embeddings, evaluate_llm_on_test_set
-from marvis.utils import setup_logging, create_single_dataset_parser, MetricsLogger
+from marvis.data import create_llm_dataset, get_tabpfn_embeddings, load_dataset
+from marvis.models import (prepare_qwen_with_prefix_embedding,
+                           prepare_qwen_with_vq_prefix_embedding)
+from marvis.train import (evaluate_llm_on_test_set,
+                          train_llm_with_tabpfn_embeddings)
+from marvis.utils import (MetricsLogger, create_single_dataset_parser,
+                          setup_logging)
 
 # Import the evaluate_with_explanations function from evaluate_with_explanations script
 # We use a try-except to handle the case where the user might be running an older version
 try:
     from .evaluate_with_explanations_tabular import (
-        evaluate_with_explanations,
-        get_explanation_prompt,
-    )
+        evaluate_with_explanations, get_explanation_prompt)
 except ImportError:
     # If import fails, we'll provide a dummy implementation that logs the error
     import logging
@@ -73,11 +69,8 @@ except ImportError:
     WANDB_AVAILABLE = False
 
 # Import GPU monitoring utilities
-from marvis.utils import (
-    init_wandb_with_gpu_monitoring,
-    cleanup_gpu_monitoring,
-    GPUMonitor,
-)
+from marvis.utils import (GPUMonitor, cleanup_gpu_monitoring,
+                          init_wandb_with_gpu_monitoring)
 
 
 def parse_args():
@@ -139,7 +132,7 @@ def main():
             # Note: For training scripts, we need to handle resume functionality manually
             if resume_wandb == "must" and wandb_id:
                 # For resume, use regular wandb.init to maintain compatibility
-                wandb_run = wandb.init(
+                wandb.init(
                     project=args.wandb_project,
                     entity=args.wandb_entity,
                     name=args.wandb_name,
@@ -330,7 +323,6 @@ def main():
         few_shot_max = args.few_shot_max
 
     # Setup wandb callback function if enabled
-    wandb_callback = None
     if args.use_wandb and WANDB_AVAILABLE:
 
         def wandb_log_callback(metrics):
@@ -427,7 +419,7 @@ def main():
 
     logger.info("Evaluating model on test set")
     # Use the final class token mapping from the last training epoch for evaluation
-    logger.info(f"Using final epoch class token mapping for evaluation")
+    logger.info("Using final epoch class token mapping for evaluation")
     if args.permute_labels:
         logger.info(f"Original class token IDs: {class_token_ids}")
         logger.info(f"Final epoch class token IDs: {final_class_token_ids}")
@@ -454,7 +446,7 @@ def main():
                 max_explanation_tokens=args.max_explanation_tokens,
                 max_test_samples=args.max_test_samples,
             )
-            logger.info(f"Explanation-based evaluation completed successfully")
+            logger.info("Explanation-based evaluation completed successfully")
         except Exception as e:
             logger.error(f"Error during explanation-based evaluation: {e}")
             logger.warning("Falling back to standard evaluation method")

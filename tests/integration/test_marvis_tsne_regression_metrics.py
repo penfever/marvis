@@ -9,14 +9,12 @@ Usage:
     python tests/test_marvis_tsne_regression_metrics.py
 """
 
-import os
-import sys
-import numpy as np
-import pandas as pd
 import logging
+import sys
 import tempfile
 from pathlib import Path
-from typing import Dict, Any
+
+import numpy as np
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
@@ -90,7 +88,6 @@ class MarvisTsneRegressionMetricsTestSuite:
         logger.info("\n=== Testing Task Type Detection ===")
 
         try:
-            from marvis.models.marvis_tsne import MarvisTsneClassifier
             from marvis.utils.task_detection import detect_task_type
 
             # Test regression dataset

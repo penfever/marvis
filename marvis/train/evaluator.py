@@ -2,11 +2,12 @@
 Evaluation functions for MARVIS models.
 """
 
-import torch
-import numpy as np
 import logging
+from typing import Any, Dict, List, Optional
+
+import numpy as np
+import torch
 from tqdm import tqdm
-from typing import Dict, List, Tuple, Optional, Any, Union
 
 logger = logging.getLogger(__name__)
 
@@ -148,14 +149,6 @@ def evaluate_llm_on_test_set(
         model.embedding_projector = model.embedding_projector.to(param_device)
 
     # Set up generation config - disable features that might cause device issues
-    generation_config = {
-        "max_new_tokens": 1,
-        "num_beams": 1,
-        "do_sample": True,
-        "use_cache": False,  # This can help with device issues
-        "pad_token_id": tokenizer.pad_token_id,
-        "eos_token_id": tokenizer.eos_token_id,
-    }
 
     # For results
     predictions = []
@@ -461,12 +454,9 @@ def evaluate_llm_on_test_set(
 
     # Calculate per-class metrics if possible
     try:
-        from sklearn.metrics import (
-            classification_report,
-            confusion_matrix,
-            roc_auc_score,
-            balanced_accuracy_score,
-        )
+        from sklearn.metrics import (balanced_accuracy_score,
+                                     classification_report, confusion_matrix,
+                                     roc_auc_score)
 
         # Filter out "unknown" predictions (-1)
         valid_indices = [i for i, p in enumerate(predictions) if p != -1]

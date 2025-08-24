@@ -3,17 +3,15 @@
 Wrapper for the official JOLT implementation to integrate with our evaluation framework.
 """
 
-import numpy as np
-import pandas as pd
+import logging
 import os
 import sys
 import tempfile
-import logging
 import time
-import importlib.util
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, balanced_accuracy_score
 from argparse import Namespace
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
 
 # Add path for feature selection utilities
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -22,7 +20,8 @@ if examples_dir not in sys.path:
     sys.path.insert(0, examples_dir)
 
 # Import shared utilities
-from marvis.utils import drop_feature_for_oom, is_oom_error, apply_feature_reduction
+from marvis.utils import (apply_feature_reduction, drop_feature_for_oom,
+                          is_oom_error)
 from marvis.utils.task_detection import detect_task_type
 
 
@@ -49,8 +48,8 @@ def evaluate_jolt_official(dataset, args):
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
     # Now import torch after setting CUDA_VISIBLE_DEVICES
-    from transformers import AutoTokenizer, AutoModelForCausalLM
     import torch
+    from transformers import AutoModelForCausalLM, AutoTokenizer
 
     # Start logging
     logger = logging.getLogger(__name__)
@@ -353,11 +352,11 @@ def evaluate_jolt_official(dataset, args):
         # Log task-specific configuration
         if is_regression:
             logger.info(
-                f"REGRESSION CONFIG: mode=sample, y_column_types=['numerical'], num_decimal_places_y=3"
+                "REGRESSION CONFIG: mode=sample, y_column_types=['numerical'], num_decimal_places_y=3"
             )
         else:
             logger.info(
-                f"CLASSIFICATION CONFIG: mode=logpy_only, y_column_types=['categorical'], num_decimal_places_y=0"
+                "CLASSIFICATION CONFIG: mode=logpy_only, y_column_types=['categorical'], num_decimal_places_y=0"
             )
 
         # Combine features and target for JOLT format with memory-safe limits
@@ -579,11 +578,11 @@ def evaluate_jolt_official(dataset, args):
                     if torch.cuda.is_available() and args.device != "cpu":
                         # When CUDA_VISIBLE_DEVICES is set, cuda:0 refers to the masked GPU
                         torch.cuda.set_device(0)  # This will be the masked GPU
-                        logger.info(f"Set torch default CUDA device to 0 (masked GPU)")
+                        logger.info("Set torch default CUDA device to 0 (masked GPU)")
 
                     try:
                         model, tokenizer = get_model_and_tokenizer(jolt_args)
-                        logger.info(f"Successfully loaded JOLT model")
+                        logger.info("Successfully loaded JOLT model")
                     except Exception as model_load_error:
                         logger.error(
                             f"get_model_and_tokenizer failed: {model_load_error}"
@@ -674,7 +673,7 @@ def evaluate_jolt_official(dataset, args):
                 for retry in range(max_retries + 1):
                     try:
                         # Log critical JOLT arguments before call
-                        logger.info(f"CALLING JOLT with key arguments:")
+                        logger.info("CALLING JOLT with key arguments:")
                         logger.info(f"  - mode: {jolt_args.mode}")
                         logger.info(f"  - y_column_types: {jolt_args.y_column_types}")
                         logger.info(f"  - num_samples: {jolt_args.num_samples}")
@@ -896,10 +895,10 @@ def evaluate_jolt_official(dataset, args):
 
                 # Add detailed logging for regression tasks
                 if is_regression:
-                    logger.info(f"REGRESSION TASK DEBUGGING:")
+                    logger.info("REGRESSION TASK DEBUGGING:")
                     logger.info(f"  - Task type: {task_type}")
-                    logger.info(f"  - JOLT mode used: sample")
-                    logger.info(f"  - y_column_types: ['numerical']")
+                    logger.info("  - JOLT mode used: sample")
+                    logger.info("  - y_column_types: ['numerical']")
                     if isinstance(jolt_results, dict):
                         logger.info(
                             f"  - JOLT results type: dict with {len(jolt_results)} keys"
@@ -1264,12 +1263,10 @@ def evaluate_jolt_official(dataset, args):
                     # Calculate metrics based on task type
                     if is_regression:
                         # Calculate regression metrics
-                        from sklearn.metrics import (
-                            r2_score,
-                            mean_absolute_error,
-                            mean_squared_error,
-                        )
                         import numpy as np
+                        from sklearn.metrics import (mean_absolute_error,
+                                                     mean_squared_error,
+                                                     r2_score)
 
                         # Convert to numpy arrays for metric calculation
                         y_true = np.array(y_test_partial)
@@ -1307,9 +1304,8 @@ def evaluate_jolt_official(dataset, args):
 
                     else:
                         # Import shared metric calculation function for classification
-                        from marvis.utils.llm_evaluation_utils import (
-                            calculate_llm_metrics,
-                        )
+                        from marvis.utils.llm_evaluation_utils import \
+                            calculate_llm_metrics
 
                         # Convert JOLT probabilities to log probs format if available
                         all_class_log_probs = None

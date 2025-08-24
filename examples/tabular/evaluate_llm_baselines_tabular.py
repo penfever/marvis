@@ -51,19 +51,14 @@ Usage examples:
     python evaluate_llm_baselines.py --dataset_name diabetes --models marvis_tsne --no-force_rgb_mode --output_dir ./results
 """
 
+import argparse
+import datetime
+import logging
 import os
 import sys
-import argparse
+from typing import Dict
+
 import numpy as np
-import torch
-import json
-import glob
-import datetime
-import random
-import time
-import logging
-from pathlib import Path
-from typing import List, Dict, Tuple, Optional, Any, Union
 
 # Add project root to Python path for imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -71,10 +66,10 @@ project_root = os.path.abspath(os.path.join(current_dir, "..", ".."))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-from marvis.data import load_datasets_for_evaluation, preprocess_datasets_for_evaluation
+from marvis.data import (load_datasets_for_evaluation,
+                         preprocess_datasets_for_evaluation)
 from marvis.data.evaluation_utils import validate_training_sample_args
-from sklearn.model_selection import train_test_split
-from marvis.utils import setup_logging, timeout_context, MetricsLogger
+from marvis.utils import MetricsLogger, setup_logging, timeout_context
 
 # Import wandb conditionally to avoid dependency issues if not installed
 try:
@@ -84,27 +79,21 @@ try:
 except ImportError:
     WANDB_AVAILABLE = False
 
-# Import GPU monitoring and JSON utilities
-from marvis.utils import (
-    init_wandb_with_gpu_monitoring,
-    cleanup_gpu_monitoring,
-    GPUMonitor,
-    safe_json_dump,
-    convert_for_json_serialization,
-    save_results,
-)
-
-# Import centralized argument parser
-from marvis.utils.evaluation_args import create_tabular_llm_evaluation_parser
-
-# Import metadata validation utilities
-from marvis.utils.metadata_validation import validate_metadata_for_models
-
+from examples.tabular.llm_baselines.jolt_baseline import evaluate_jolt
 # Import LLM baseline evaluation functions
 from examples.tabular.llm_baselines.tabllm_baseline import evaluate_tabllm
-from examples.tabular.llm_baselines.tabula_8b_baseline import evaluate_tabula_8b
-from examples.tabular.llm_baselines.jolt_baseline import evaluate_jolt
+from examples.tabular.llm_baselines.tabula_8b_baseline import \
+    evaluate_tabula_8b
+
 from marvis.models.marvis_tsne import evaluate_marvis_tsne
+# Import GPU monitoring and JSON utilities
+from marvis.utils import (cleanup_gpu_monitoring,
+                          init_wandb_with_gpu_monitoring, safe_json_dump,
+                          save_results)
+# Import centralized argument parser
+from marvis.utils.evaluation_args import create_tabular_llm_evaluation_parser
+# Import metadata validation utilities
+from marvis.utils.metadata_validation import validate_metadata_for_models
 
 
 def parse_args():
@@ -547,9 +536,7 @@ def main():
     # Handle metadata checking mode
     if args.check_metadata:
         from marvis.utils.metadata_validation import (
-            generate_metadata_coverage_report,
-            print_metadata_coverage_report,
-        )
+            generate_metadata_coverage_report, print_metadata_coverage_report)
 
         print("Checking metadata coverage for requested models...")
 
@@ -715,7 +702,8 @@ def main():
                 try:
                     dataset_id = int(dataset["id"])
                     # Use resource manager to resolve
-                    from marvis.utils.resource_manager import get_resource_manager
+                    from marvis.utils.resource_manager import \
+                        get_resource_manager
 
                     rm = get_resource_manager()
                     identifiers = rm.resolve_openml_identifiers(dataset_id=dataset_id)
@@ -821,7 +809,8 @@ def main():
                         y_train = dataset.get("y_train", dataset.get("y", []))
                         if len(y_train) > 0:
                             # Detect if this is regression or classification
-                            from marvis.utils.task_detection import detect_task_type
+                            from marvis.utils.task_detection import \
+                                detect_task_type
 
                             task_id = dataset.get("task_id") or dataset.get("id")
                             task_type = detect_task_type(y_train, task_id=task_id)
@@ -854,9 +843,8 @@ def main():
                         and hasattr(args, "openai_model")
                         and args.openai_model
                     ):
-                        from examples.tabular.llm_baselines.openai_llm_baseline import (
-                            evaluate_openai_llm,
-                        )
+                        from examples.tabular.llm_baselines.openai_llm_baseline import \
+                            evaluate_openai_llm
 
                         result = evaluate_openai_llm(dataset, args)
                     elif (
@@ -864,9 +852,8 @@ def main():
                         and hasattr(args, "gemini_model")
                         and args.gemini_model
                     ):
-                        from examples.tabular.llm_baselines.gemini_llm_baseline import (
-                            evaluate_gemini_llm,
-                        )
+                        from examples.tabular.llm_baselines.gemini_llm_baseline import \
+                            evaluate_gemini_llm
 
                         result = evaluate_gemini_llm(dataset, args)
                     else:

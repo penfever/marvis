@@ -10,11 +10,11 @@ Usage:
     python tests/test_regression_metrics_fix.py
 """
 
-import os
-import sys
-import numpy as np
 import logging
+import sys
 from pathlib import Path
+
+import numpy as np
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
@@ -231,6 +231,7 @@ def test_json_serialization():
 
     try:
         import json
+
         from marvis.utils.llm_evaluation_utils import calculate_llm_metrics
 
         # Create regression data

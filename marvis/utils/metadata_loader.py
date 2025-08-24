@@ -7,10 +7,9 @@ to enhance VLM prompts with rich contextual information.
 
 import json
 import logging
-import os
+from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Dict, Any, Optional, List, Union
-from dataclasses import dataclass, asdict
+from typing import Any, Dict, List, Optional, Union
 
 logger = logging.getLogger(__name__)
 
@@ -146,7 +145,6 @@ class MetadataLoader:
 
             # Search for JSON files recursively
             for json_file in self.metadata_base_dir.rglob("*.json"):
-                filename = json_file.name
                 stem = json_file.stem  # filename without extension
 
                 # Check if filename matches the dataset_id (prioritize exact matches)

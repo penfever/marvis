@@ -5,10 +5,11 @@ Provides robust JSON serialization that handles NaN, inf, and various NumPy type
 """
 
 import json
-import math
 import logging
+import math
+from typing import Any
+
 import numpy as np
-from typing import Any, Dict, List, Union
 
 
 def convert_for_json_serialization(obj: Any) -> Any:
@@ -215,7 +216,6 @@ def save_results(results, output_dir, dataset_name, use_unified_manager: bool = 
     This function maintains backward compatibility while optionally using
     the new unified results management system.
     """
-    import os
 
     logger = logging.getLogger(__name__)
 

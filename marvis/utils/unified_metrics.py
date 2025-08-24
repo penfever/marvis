@@ -50,7 +50,8 @@ Usage:
 """
 
 import logging
-from typing import Dict, Any, Optional, Union
+from typing import Any, Dict, Optional
+
 import numpy as np
 
 # Import wandb conditionally

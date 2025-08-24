@@ -3,25 +3,23 @@ OpenAI LLM baseline for tabular classification.
 Supports GPT-4.1, GPT-4o, and other OpenAI text models for tabular data tasks.
 """
 
-import numpy as np
-import pandas as pd
-import logging
-import time
 import json
+import logging
 import os
-from typing import Dict, Any, List, Optional, Tuple
-from sklearn.metrics import accuracy_score, balanced_accuracy_score
-from sklearn.model_selection import train_test_split
-
 # Add project root to path
 import sys
+import time
+from typing import Any, Dict, List, Optional
+
+import numpy as np
+from sklearn.metrics import accuracy_score, balanced_accuracy_score
+from sklearn.model_selection import train_test_split
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 examples_dir = os.path.dirname(os.path.dirname(current_dir))
 sys.path.insert(0, examples_dir)
 
-from marvis.utils.model_loader import model_loader, GenerationConfig
-from marvis.utils.unified_metrics import MetricsLogger
+from marvis.utils.model_loader import GenerationConfig, model_loader
 
 logger = logging.getLogger(__name__)
 

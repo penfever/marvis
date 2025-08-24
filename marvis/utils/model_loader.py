@@ -7,22 +7,18 @@ automatically choosing the optimal backend (VLLM for speed when available,
 transformers as fallback) based on model type and availability.
 """
 
-import os
-import torch
 import logging
-from abc import ABC, abstractmethod
-from typing import Dict, Any, List, Optional, Union, Tuple
-from dataclasses import dataclass
 import warnings
+from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Union
+
+import torch
 
 # Standard imports
 try:
-    from transformers import (
-        AutoTokenizer,
-        AutoModelForCausalLM,
-        AutoProcessor,
-        AutoModelForVision2Seq,
-    )
+    from transformers import (AutoModelForCausalLM, AutoModelForVision2Seq,
+                              AutoProcessor, AutoTokenizer)
     from transformers.models.auto import AutoModelForCausalLM
 
     TRANSFORMERS_AVAILABLE = True
@@ -42,7 +38,7 @@ except ImportError:
 
 # LlamaCPP imports
 try:
-    from llama_cpp import Llama, ChatCompletionRequestMessage
+    from llama_cpp import ChatCompletionRequestMessage, Llama
 
     LLAMACPP_AVAILABLE = True
 except ImportError:
@@ -563,7 +559,7 @@ class TransformersModelWrapper(BaseModelWrapper):
                 and hasattr(torch.backends, "mps")
                 and torch.backends.mps.is_available()
             ):
-                logger.info(f"Moving model to MPS device...")
+                logger.info("Moving model to MPS device...")
                 self._model = self._model.to(torch.device("mps"))
 
             logger.info(f"Successfully loaded {self.model_name} with transformers")
@@ -737,7 +733,7 @@ class VisionLanguageModelWrapper(BaseModelWrapper):
                 and hasattr(torch.backends, "mps")
                 and torch.backends.mps.is_available()
             ):
-                logger.info(f"Moving model to MPS device...")
+                logger.info("Moving model to MPS device...")
                 self._model = self._model.to(torch.device("mps"))
 
             logger.info(f"Successfully loaded {self.model_name} with transformers VLM")
@@ -848,8 +844,9 @@ class OpenAIModelWrapper(BaseModelWrapper):
     def load(self) -> None:
         """Load OpenAI API client."""
         try:
-            import openai
             import os
+
+            import openai
 
             api_key = os.getenv("OPENAI_API_KEY")
             if not api_key:
@@ -959,8 +956,9 @@ class OpenAIVisionModelWrapper(BaseModelWrapper):
     def load(self) -> None:
         """Load OpenAI API client."""
         try:
-            import openai
             import os
+
+            import openai
 
             api_key = os.getenv("OPENAI_API_KEY")
             if not api_key:
@@ -1126,8 +1124,9 @@ class GeminiModelWrapper(BaseModelWrapper):
     def load(self) -> None:
         """Load Gemini API client."""
         try:
-            import google.generativeai as genai
             import os
+
+            import google.generativeai as genai
 
             api_key = os.getenv("GOOGLE_API_KEY")
             if not api_key:
@@ -1210,8 +1209,9 @@ class GeminiVisionModelWrapper(BaseModelWrapper):
     def load(self) -> None:
         """Load Gemini API client."""
         try:
-            import google.generativeai as genai
             import os
+
+            import google.generativeai as genai
 
             api_key = os.getenv("GOOGLE_API_KEY")
             if not api_key:
@@ -1288,9 +1288,9 @@ class GeminiVisionModelWrapper(BaseModelWrapper):
                 # Check finish reason
                 if hasattr(candidate, "finish_reason"):
                     if candidate.finish_reason == 2:  # MAX_TOKENS
-                        logger.warning(f"Gemini response truncated due to token limit")
+                        logger.warning("Gemini response truncated due to token limit")
                     elif candidate.finish_reason == 3:  # SAFETY
-                        logger.warning(f"Gemini response blocked for safety reasons")
+                        logger.warning("Gemini response blocked for safety reasons")
 
                 # Try to extract text from parts
                 if hasattr(candidate, "content") and candidate.content:
@@ -1549,7 +1549,6 @@ class LlamaCPPVisionModelWrapper(BaseModelWrapper):
         try:
             # Convert conversation format for llama-cpp-python
             messages = []
-            image_data = None
 
             for message in conversation:
                 if isinstance(message.get("content"), list):
@@ -1565,8 +1564,7 @@ class LlamaCPPVisionModelWrapper(BaseModelWrapper):
                                 # Convert PIL Image to format expected by llama-cpp
                                 import numpy as np
 
-                                image_array = np.array(image.convert("RGB"))
-                                image_data = image_array
+                                np.array(image.convert("RGB"))
                             else:
                                 logger.warning(
                                     "Unsupported image format for LlamaCPP VLM"

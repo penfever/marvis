@@ -4,31 +4,19 @@ TabLLM baseline evaluation module.
 Contains functions for evaluating the TabLLM baseline on tabular datasets.
 """
 
+import json
+import logging
 import os
-import sys
+import time
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 import torch
-import json
-import glob
-import time
-import logging
-import math
-from pathlib import Path
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import (
-    accuracy_score,
-    balanced_accuracy_score,
-    roc_auc_score,
-    f1_score,
-    precision_score,
-    recall_score,
-    r2_score,
-    mean_absolute_error,
-    mean_squared_error,
-)
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from typing import Dict, Any, Optional, List, Tuple
-from marvis.utils.model_loader import model_loader, GenerationConfig
+from transformers import AutoTokenizer
+
+from marvis.utils.model_loader import GenerationConfig, model_loader
 
 
 def create_regression_bins(
@@ -209,7 +197,8 @@ def load_tabllm_config_by_openml_id(openml_task_id, original_feature_count=None)
                 hasattr(semantic_file, "exists") and not semantic_file.exists()
             ):
                 try:
-                    from marvis.utils.metadata_loader import get_metadata_loader
+                    from marvis.utils.metadata_loader import \
+                        get_metadata_loader
 
                     loader = get_metadata_loader()
                     semantic_file = loader.detect_metadata_file(openml_task_id)
@@ -229,7 +218,7 @@ def load_tabllm_config_by_openml_id(openml_task_id, original_feature_count=None)
                     # Skip early feature count validation since we'll expand semantics online
                     # to match the actual processed feature count after reduction
                     logger.info(
-                        f"Semantic info loaded for online note generation (will expand to match processed features)"
+                        "Semantic info loaded for online note generation (will expand to match processed features)"
                     )
 
                     # Create feature mapping to preserve semantic descriptions
@@ -283,9 +272,9 @@ def _load_tabllm_config_by_dataset_name_fallback(
         if mapping_path.exists():
             with open(mapping_path, "r") as f:
                 task_mapping = json.load(f)
-            logger.debug(f"Loaded OpenML task mapping from managed config")
+            logger.debug("Loaded OpenML task mapping from managed config")
         else:
-            logger.debug(f"OpenML task mapping not found in managed config")
+            logger.debug("OpenML task mapping not found in managed config")
     except Exception as e:
         logger.debug(f"Could not load from managed config: {e}")
 
@@ -1072,17 +1061,12 @@ def evaluate_tabllm(dataset, args):
 
     # Notes will be generated online during evaluation, no need to load pre-generated ones
     logger.info(
-        f"Will generate TabLLM notes online during evaluation to match current feature set"
+        "Will generate TabLLM notes online during evaluation to match current feature set"
     )
 
     # Import required utilities
-    from marvis.utils import (
-        drop_feature_for_oom,
-        is_oom_error,
-        apply_feature_reduction,
-        unified_llm_predict,
-    )
-
+    from marvis.utils import (apply_feature_reduction, drop_feature_for_oom,
+                              is_oom_error, unified_llm_predict)
     # Import regenerate_few_shot_examples from llm_evaluation_utils (not exported in __init__)
     from marvis.utils.llm_evaluation_utils import regenerate_few_shot_examples
 
@@ -1209,14 +1193,14 @@ def evaluate_tabllm(dataset, args):
 
         # Set up device with GPU index
         if torch.cuda.is_available() and args.device != "cpu":
-            device = torch.device(f"cuda:{args.gpu_index}")
+            torch.device(f"cuda:{args.gpu_index}")
         else:
-            device = torch.device("cpu")
+            torch.device("cpu")
 
         # Note: model_wrapper handles device placement internally
 
         # Detect task type (classification vs regression)
-        from marvis.utils.task_detection import detect_task_type, get_target_statistics
+        from marvis.utils.task_detection import detect_task_type
 
         task_id = dataset.get("task_id") or dataset.get("id")
         task_type, detection_method = detect_task_type(
@@ -1248,7 +1232,7 @@ def evaluate_tabllm(dataset, args):
             y_test_binned = convert_targets_to_bins(y_test, bin_edges, bin_labels)
 
             # Store original targets for final evaluation
-            y_train_original = y_train.copy()
+            y_train.copy()
             y_test_original = y_test.copy()
 
             # Use binned labels as classes
@@ -1393,7 +1377,7 @@ def evaluate_tabllm(dataset, args):
 
                 # Debug empty notes
                 if not note.strip():
-                    logger.warning(f"Empty note generated - debugging:")
+                    logger.warning("Empty note generated - debugging:")
                     logger.warning(f"  Row type: {type(x_example)}")
                     logger.warning(
                         f"  Row shape/len: {len(x_example) if hasattr(x_example, '__len__') else 'N/A'}"
@@ -1420,7 +1404,7 @@ def evaluate_tabllm(dataset, args):
                 note = " ".join(
                     [f"Feature {i} is {val}" for i, val in enumerate(x_example)]
                 )
-                logger.warning(f"No semantic info available, using basic note format")
+                logger.warning("No semantic info available, using basic note format")
             # Use meaningful class name if available, otherwise use the original label
             class_label = class_to_name.get(y_example, str(y_example))
             few_shot_examples.append((note, class_label))
@@ -1546,7 +1530,7 @@ def evaluate_tabllm(dataset, args):
                     [f"Feature {i} is {val}" for i, val in enumerate(test_sample)]
                 )
                 logger.warning(
-                    f"No semantic info available for test sample, using basic note format"
+                    "No semantic info available for test sample, using basic note format"
                 )
 
             # Create TabLLM-style prompt following the template format with task description
@@ -1881,14 +1865,16 @@ def evaluate_tabllm(dataset, args):
             else:
                 # For classification: use standard metrics
                 # Import shared metric calculation function
-                from marvis.utils.llm_evaluation_utils import calculate_llm_metrics
+                from marvis.utils.llm_evaluation_utils import \
+                    calculate_llm_metrics
 
                 # Resolve task_id using resource manager as per CLAUDE.md guidelines
                 task_id = dataset.get("task_id")
                 if task_id is None:
                     # Try to resolve task_id from dataset_id using resource manager
                     try:
-                        from marvis.utils.resource_manager import get_resource_manager
+                        from marvis.utils.resource_manager import \
+                            get_resource_manager
 
                         rm = get_resource_manager()
                         dataset_id = dataset.get("id")

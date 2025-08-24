@@ -9,14 +9,14 @@ Usage:
     python tests/test_jolt_config_loading.py
 """
 
-import os
-import sys
 import json
-import tempfile
-import shutil
 import logging
+import os
+import shutil
+import sys
+import tempfile
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
@@ -215,7 +215,7 @@ class JoltConfigLoadingTestSuite:
                             f"❌ Unexpectedly loaded config for {test_case['name']} (expected no config)"
                         )
 
-            logger.info(f"\n=== Config Loading Test Results ===")
+            logger.info("\n=== Config Loading Test Results ===")
             logger.info(f"Passed: {passed_tests}/{total_tests} tests")
 
             if passed_tests == total_tests:
@@ -284,9 +284,8 @@ class JoltConfigLoadingTestSuite:
         try:
             # Test if we can import the synthesize module
             try:
-                from examples.tabular.llm_baselines.jolt.synthesize_jolt_data import (
-                    create_jolt_config_for_dataset,
-                )
+                from examples.tabular.llm_baselines.jolt.synthesize_jolt_data import \
+                    create_jolt_config_for_dataset
 
                 logger.info("✅ Successfully imported synthesize_jolt_data module")
             except ImportError as e:
@@ -356,7 +355,7 @@ class JoltConfigLoadingTestSuite:
             # Create a test config
             test_task_id = 50
             test_dataset_name = "end-to-end-test"
-            test_config = self.create_test_config(
+            self.create_test_config(
                 test_task_id, test_dataset_name, config_dir
             )
 

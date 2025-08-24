@@ -6,7 +6,6 @@ between evaluation scripts and make the main evaluation logic more focused.
 """
 
 import argparse
-from typing import Optional
 
 
 def add_model_args(parser: argparse.ArgumentParser):

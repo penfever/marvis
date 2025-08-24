@@ -7,43 +7,31 @@ data modalities by using appropriate embedding methods and t-SNE visualizations 
 Vision Language Model classification.
 """
 
-import os
+import logging
+import time
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
+
+import matplotlib.pyplot as plt
 import numpy as np
 import torch
-import time
-import logging
-import tempfile
-import json
-from pathlib import Path
-from typing import Dict, Any, Optional, List, Tuple, Union
-import matplotlib.pyplot as plt
 
-# Import unified model loader for VLM
-from marvis.utils.model_loader import model_loader, GenerationConfig
-
-# Import VLM prompting utilities
-from marvis.utils.vlm_prompting import (
-    create_classification_prompt,
-    parse_vlm_response,
-    create_vlm_conversation,
-    create_metadata_summary,
-)
-from marvis.utils.class_name_utils import extract_class_names_from_labels
 from marvis.models.process_one_sample import process_one_sample
-
-# Import metadata utilities
-from marvis.utils.metadata_loader import (
-    load_dataset_metadata,
-    detect_dataset_id_from_path,
-)
-
+from marvis.utils.class_name_utils import extract_class_names_from_labels
+# Import unified model loader for VLM
+from marvis.utils.model_loader import model_loader
 # Import semantic axes utilities
 from marvis.utils.semantic_axes import enhance_visualization_with_semantic_axes
-
+# Import VLM prompting utilities
+from marvis.utils.vlm_prompting import create_metadata_summary
 # Import new multi-visualization framework
 from marvis.viz import ContextComposer, VisualizationConfig
-from marvis.viz.context.layouts import LayoutStrategy
 from marvis.viz.context.composer import CompositionConfig
+from marvis.viz.context.layouts import LayoutStrategy
+
+# Import metadata utilities
+
+
 
 
 def convert_numpy_types(obj):
@@ -577,19 +565,14 @@ class MarvisTsneClassifier:
     def _get_tsne_visualization_methods(self):
         """Get t-SNE visualization methods."""
         from marvis.viz.tsne_functions import (
-            create_tsne_visualization,
-            create_tsne_3d_visualization,
-            create_combined_tsne_plot,
-            create_combined_tsne_3d_plot,
-            create_tsne_plot_with_knn,
-            create_tsne_3d_plot_with_knn,
-            create_regression_tsne_visualization,
-            create_regression_tsne_3d_visualization,
-            create_combined_regression_tsne_plot,
             create_combined_regression_tsne_3d_plot,
+            create_combined_regression_tsne_plot, create_combined_tsne_3d_plot,
+            create_combined_tsne_plot, create_regression_tsne_3d_plot_with_knn,
+            create_regression_tsne_3d_visualization,
             create_regression_tsne_plot_with_knn,
-            create_regression_tsne_3d_plot_with_knn,
-        )
+            create_regression_tsne_visualization, create_tsne_3d_plot_with_knn,
+            create_tsne_3d_visualization, create_tsne_plot_with_knn,
+            create_tsne_visualization)
 
         return {
             "create_tsne_visualization": create_tsne_visualization,
@@ -789,9 +772,7 @@ class MarvisTsneClassifier:
         """Load dataset metadata for enhanced VLM prompts."""
         try:
             from marvis.utils.metadata_loader import (
-                load_dataset_metadata,
-                detect_dataset_id_from_path,
-            )
+                detect_dataset_id_from_path, load_dataset_metadata)
 
             metadata = None
 
@@ -867,11 +848,9 @@ class MarvisTsneClassifier:
     def _create_basic_metadata_from_dataset_info(self, dataset_info):
         """Create basic metadata from dataset_info when no metadata file exists."""
         try:
-            from marvis.utils.metadata_loader import (
-                DatasetMetadata,
-                ColumnMetadata,
-                TargetClassMetadata,
-            )
+            from marvis.utils.metadata_loader import (ColumnMetadata,
+                                                      DatasetMetadata,
+                                                      TargetClassMetadata)
 
             # Extract basic info
             dataset_name = dataset_info.get("name", "Unknown Dataset")
@@ -1053,11 +1032,8 @@ class MarvisTsneClassifier:
         # Detect task type
         try:
             from marvis.utils.task_detection import (
-                detect_task_type,
-                get_target_statistics,
-                VISION_CLASSIFICATION_TASK_ID,
-                AUDIO_CLASSIFICATION_TASK_ID,
-            )
+                AUDIO_CLASSIFICATION_TASK_ID, VISION_CLASSIFICATION_TASK_ID,
+                detect_task_type, get_target_statistics)
 
             dataset_info = kwargs.get("dataset_info")
             task_id = dataset_info.get("task_id") if dataset_info else None
@@ -1650,8 +1626,6 @@ class MarvisTsneClassifier:
                 f"Failed to load VLM model {self.vlm_model_id}. Cannot proceed with classification."
             )
 
-        from PIL import Image
-        import io
 
         # Get visualization methods
         viz_methods = self._get_tsne_visualization_methods()
@@ -1977,11 +1951,6 @@ def evaluate_marvis_tsne(dataset, args):
 
     try:
         # Import required utilities
-        from marvis.utils import (
-            drop_feature_for_oom,
-            is_oom_error,
-            apply_feature_reduction,
-        )
 
         # Use preprocessed data if available, otherwise split data
         # Require pre-split data - no automatic splitting

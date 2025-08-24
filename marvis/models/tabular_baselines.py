@@ -5,20 +5,17 @@ This module provides baseline model implementations for tabular data,
 including traditional ML models and LLM-based models.
 """
 
+import logging
 import os
 import time
-import logging
+from typing import Any, Dict, Optional, Tuple
+
 import numpy as np
 import torch
-from typing import Dict, Any, Optional, Tuple, Union
-from sklearn.metrics import (
-    accuracy_score,
-    classification_report,
-    confusion_matrix,
-    balanced_accuracy_score,
-    roc_auc_score,
-)
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.metrics import (accuracy_score, balanced_accuracy_score,
+                             classification_report, confusion_matrix,
+                             mean_absolute_error, mean_squared_error, r2_score,
+                             roc_auc_score)
 
 from marvis.data import create_llm_dataset
 from marvis.train import evaluate_llm_on_test_set
@@ -330,9 +327,11 @@ def create_and_evaluate_baseline_model(
 
     elif model_name == "random_forest":
         if dataset["is_classification"]:
-            from sklearn.ensemble import RandomForestClassifier as RandomForestModel
+            from sklearn.ensemble import \
+                RandomForestClassifier as RandomForestModel
         else:
-            from sklearn.ensemble import RandomForestRegressor as RandomForestModel
+            from sklearn.ensemble import \
+                RandomForestRegressor as RandomForestModel
 
         task_type = "classification" if dataset["is_classification"] else "regression"
         logger.info(f"Using Random Forest for {task_type}")
@@ -348,18 +347,15 @@ def create_and_evaluate_baseline_model(
 
     elif model_name == "gradient_boosting":
         if dataset["is_classification"]:
-            from sklearn.ensemble import (
-                GradientBoostingClassifier as GradientBoostingModel,
-            )
-            from sklearn.feature_selection import SelectKBest, f_classif as score_func
+            from sklearn.ensemble import \
+                GradientBoostingClassifier as GradientBoostingModel
+            from sklearn.feature_selection import SelectKBest
+            from sklearn.feature_selection import f_classif as score_func
         else:
-            from sklearn.ensemble import (
-                GradientBoostingRegressor as GradientBoostingModel,
-            )
-            from sklearn.feature_selection import (
-                SelectKBest,
-                f_regression as score_func,
-            )
+            from sklearn.ensemble import \
+                GradientBoostingRegressor as GradientBoostingModel
+            from sklearn.feature_selection import SelectKBest
+            from sklearn.feature_selection import f_regression as score_func
 
         task_type = "classification" if dataset["is_classification"] else "regression"
         logger.info(f"Using Gradient Boosting for {task_type}")
@@ -462,7 +458,7 @@ def create_and_evaluate_baseline_model(
         and target_preprocessor is not None
     ):
         logger.info(
-            f"TabPFN v2: Inverse transforming predictions from binned space back to original target space"
+            "TabPFN v2: Inverse transforming predictions from binned space back to original target space"
         )
 
         # Inverse transform predictions back to original scale

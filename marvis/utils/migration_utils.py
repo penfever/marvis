@@ -5,14 +5,14 @@ This module helps migrate existing caches, configs, and datasets to the
 new organized structure without losing existing work.
 """
 
-import os
 import json
-import shutil
 import logging
+import shutil
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
-from .resource_manager import ResourceManager, DatasetMetadata, get_resource_manager
 
+from .resource_manager import (DatasetMetadata, ResourceManager,
+                               get_resource_manager)
 
 logger = logging.getLogger(__name__)
 

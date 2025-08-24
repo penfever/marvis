@@ -3,9 +3,10 @@ OpenAI Vision-Language Model baseline for image classification.
 Supports GPT-4.1 and GPT-4o vision models.
 """
 
-from .api_vlm_baseline import APIVLMBaseline, BiologicalAPIVLMBaseline
-from typing import Optional, List
 import logging
+from typing import List, Optional
+
+from .api_vlm_baseline import APIVLMBaseline, BiologicalAPIVLMBaseline
 
 logger = logging.getLogger(__name__)
 

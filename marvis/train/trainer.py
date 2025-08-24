@@ -2,16 +2,17 @@
 Training functions for MARVIS models.
 """
 
-import torch
-import numpy as np
-import os
 import logging
+import os
 import random
+from typing import Any, Callable, Dict, List, Optional, Tuple
+
+import numpy as np
+import torch
 from tqdm import tqdm
-from typing import Dict, List, Tuple, Optional, Any, Union, Callable
 from transformers import AutoModelForCausalLM
 
-from .save_utils import save_checkpoint, save_final_model, should_save_checkpoint
+from .save_utils import save_checkpoint, should_save_checkpoint
 
 logger = logging.getLogger(__name__)
 
@@ -1326,7 +1327,7 @@ def train_llm_with_tabpfn_embeddings(
         progress_bar = tqdm(
             enumerate(train_dataloader),
             total=len(train_dataloader),
-            desc=f"Batches",
+            desc="Batches",
             position=1,
             leave=False,
         )
@@ -1717,7 +1718,7 @@ def train_llm_with_tabpfn_embeddings(
 
     # Define final_epoch_token_ids for return if not already defined
     # (will happen if we exit early without saving final model)
-    if not "final_epoch_token_ids" in locals():
+    if "final_epoch_token_ids" not in locals():
         final_epoch_token_ids = class_token_ids.copy()
 
     # If we've been saving the best model, point out which one was best

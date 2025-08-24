@@ -9,12 +9,12 @@ This module provides functions to automatically detect task types from:
 3. Manual specifications
 """
 
+import logging
+from typing import Any, Dict, Optional, Tuple, Union
+
 import numpy as np
 import pandas as pd
-import logging
-from typing import Union, Optional, Dict, Any, Tuple
 from sklearn.utils.multiclass import type_of_target
-import warnings
 
 logger = logging.getLogger(__name__)
 

@@ -4,27 +4,18 @@ JOLT baseline evaluation module.
 Contains functions for evaluating the JOLT baseline on tabular datasets.
 """
 
+import json
+import logging
 import os
-import sys
+import time
+from pathlib import Path
+
 import numpy as np
 import torch
-import json
-import time
-import logging
-import importlib.util
-from pathlib import Path
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import (
-    accuracy_score,
-    balanced_accuracy_score,
-    roc_auc_score,
-    f1_score,
-    precision_score,
-    recall_score,
-)
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from typing import Dict, Any, Optional, List, Tuple
-from marvis.utils.model_loader import model_loader, GenerationConfig
+
+from marvis.utils.model_loader import model_loader
 
 
 def load_jolt_config_by_openml_id(openml_task_id, original_feature_count=None):
@@ -96,7 +87,7 @@ def load_jolt_config_by_openml_id(openml_task_id, original_feature_count=None):
                             f"Feature count validation passed: {original_feature_count} features"
                         )
                 else:
-                    logger.info(f"No feature count in config to validate against")
+                    logger.info("No feature count in config to validate against")
 
             # Create feature mapping to preserve semantic descriptions
             feature_mapping = None
@@ -420,7 +411,6 @@ def evaluate_jolt_legacy(dataset, args):
 
         # Make predictions using joint probabilistic approach with memory optimization
         predictions = []
-        all_class_log_probs = []  # Store log probabilities for ROC AUC calculation
         completed_samples = 0
 
         # Set model to eval mode for inference
@@ -549,7 +539,7 @@ def evaluate_jolt_legacy(dataset, args):
                 )
 
                 predicted_class_str = prediction_result["predicted_class"]
-                prediction_method = prediction_result["method"]
+                prediction_result["method"]
 
                 # Convert prediction back to original type
                 predicted_class = predicted_class_str
@@ -708,8 +698,8 @@ def evaluate_jolt(dataset, args):
     logger = logging.getLogger(__name__)
     try:
         # Import the official JOLT wrapper using relative path
-        import sys
         import os
+        import sys
 
         # Get the directory of the current script
         current_dir = os.path.dirname(os.path.abspath(__file__))

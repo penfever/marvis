@@ -40,54 +40,24 @@ Usage examples:
     python evaluate_on_dataset_tabular.py --models tabpfn_v2 --task_ids "363432,361104,363396,363387,363391,363388,361086,363377,363444,363389,361103,363438,363442" --output_dir ./tabpfn_reg_fix --max_test_samples 200 --seed 42 --task_type regression
 """
 
+import datetime
+import json
 import os
-import sys
-import argparse
+from typing import Any, Dict, List
+
 import numpy as np
 import torch
-import json
-import glob
-import datetime
-import random
-from pathlib import Path
-from sklearn.model_selection import train_test_split
-from scipy.optimize import linear_sum_assignment
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from typing import List, Dict, Tuple, Optional, Any, Union
 
-from marvis.data import (
-    load_dataset,
-    get_tabpfn_embeddings,
-    create_llm_dataset,
-    list_available_datasets,
-    is_csv_dataset,
-    load_csv_dataset,
-    load_dataset_with_metadata,
-    find_csv_with_fallbacks,
-    preprocess_features,
-    compute_frequency_distribution,
-    compute_label_frequency_mapping,
-    apply_label_mapping,
-    compute_baseline_probabilities,
-    process_tabular_dataset_for_training,
-)
-from marvis.models import (
-    prepare_qwen_with_prefix_embedding,
-    QwenWithPrefixEmbedding,
-    load_pretrained_model,
-)
-from marvis.models.vq import (
-    prepare_qwen_with_vq_prefix_embedding,
-    QwenWithVQPrefixEmbedding,
-    load_vq_pretrained_model,
-)
-from marvis.train import evaluate_llm_on_test_set
-from marvis.utils import setup_logging, MetricsLogger
+from marvis.data import (apply_label_mapping, compute_baseline_probabilities,
+                         compute_label_frequency_mapping, create_llm_dataset,
+                         get_tabpfn_embeddings,
+                         process_tabular_dataset_for_training)
+from marvis.models import load_pretrained_model
 from marvis.models.tabular_baselines import (
-    create_and_evaluate_baseline_model,
-    create_and_evaluate_llm_model,
-    load_embeddings_with_limit,
-)
+    create_and_evaluate_baseline_model, create_and_evaluate_llm_model)
+from marvis.models.vq import load_vq_pretrained_model
+from marvis.train import evaluate_llm_on_test_set
+from marvis.utils import MetricsLogger, setup_logging
 
 # Import wandb conditionally to avoid dependency issues if not installed
 try:
@@ -97,22 +67,14 @@ try:
 except ImportError:
     WANDB_AVAILABLE = False
 
+# Import new dataset processing utilities
+from marvis.data.evaluation_utils import (load_datasets_for_evaluation,
+                                          preprocess_datasets_for_evaluation,
+                                          validate_training_sample_args)
 # Import GPU monitoring utilities
-from marvis.utils import (
-    init_wandb_with_gpu_monitoring,
-    cleanup_gpu_monitoring,
-    GPUMonitor,
-)
-
+from marvis.utils import cleanup_gpu_monitoring, init_wandb_with_gpu_monitoring
 # Import new argument parsing utilities
 from marvis.utils.evaluation_args import create_dataset_evaluation_parser
-
-# Import new dataset processing utilities
-from marvis.data.evaluation_utils import (
-    load_datasets_for_evaluation,
-    preprocess_datasets_for_evaluation,
-    validate_training_sample_args,
-)
 
 
 def parse_args():
@@ -144,8 +106,8 @@ def process_dataset(dataset: Dict[str, Any], args) -> Dict[str, Any]:
     Returns:
         Processed dataset with additional fields including embeddings if needed
     """
-    import logging
     import hashlib
+    import logging
 
     logger = logging.getLogger(__name__)
 
@@ -328,7 +290,8 @@ def load_pretrained_model(
 
     # Fall back to standard model loading
     logger.info(f"Loading as standard model from {model_path}")
-    from marvis.utils import load_pretrained_model as utils_load_pretrained_model
+    from marvis.utils import \
+        load_pretrained_model as utils_load_pretrained_model
 
     # Use the centralized utility function
     model, tokenizer, prefix_start_id, prefix_end_id, class_token_ids = (
@@ -571,12 +534,8 @@ def evaluate_dataset(
         )
 
         # Recompute metrics with remapped predictions
-        from sklearn.metrics import (
-            accuracy_score,
-            balanced_accuracy_score,
-            classification_report,
-            confusion_matrix,
-        )
+        from sklearn.metrics import (accuracy_score, classification_report,
+                                     confusion_matrix)
 
         y_test = dataset["y_test"][: len(results["predictions"])]  # Ensure same length
 
@@ -608,9 +567,8 @@ def evaluate_dataset(
 
     if len(predictions) > 0:
         # Try to get label names if available from the label encoder
-        label_names = None
         if hasattr(label_encoder, "classes_"):
-            label_names = [str(cls) for cls in label_encoder.classes_]
+            [str(cls) for cls in label_encoder.classes_]
 
         # Compute distributions
         prediction_distribution = None
@@ -995,7 +953,8 @@ def main():
             if cache_key not in model_cache:
                 logger.info(f"Loading LLM model {model_identifier}")
                 try:
-                    from marvis.models import prepare_qwen_with_prefix_embedding
+                    from marvis.models import \
+                        prepare_qwen_with_prefix_embedding
 
                     (
                         model,
@@ -1526,7 +1485,7 @@ def main():
             ax.bar(range(len(model_names)), accuracies, color=colors)
             ax.set_xlabel("Model")
             ax.set_ylabel("Average Accuracy")
-            ax.set_title(f"All Models Comparison")
+            ax.set_title("All Models Comparison")
             ax.set_xticks(range(len(model_names)))
             ax.set_xticklabels(model_names, rotation=45, ha="right")
 

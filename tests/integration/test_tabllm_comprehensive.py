@@ -14,17 +14,16 @@ Usage:
     python tests/test_tabllm_comprehensive.py --task_id 23 --output_dir ./test_tabllm_output
 """
 
-import os
-import sys
+import argparse
 import json
 import logging
-import argparse
-import tempfile
+import os
 import shutil
+import sys
+import tempfile
 from pathlib import Path
-from typing import Dict, List, Any, Optional
+
 import pandas as pd
-import numpy as np
 
 # Add the project root to the path
 project_root = Path(__file__).parent.parent
@@ -69,9 +68,8 @@ def test_task_id_resolution():
     logging.getLogger("marvis.utils.model_loader").setLevel(logging.WARNING)
     logging.getLogger("transformers").setLevel(logging.WARNING)
 
-    from examples.tabular.llm_baselines.tabllm_baseline import (
-        load_tabllm_config_by_openml_id,
-    )
+    from examples.tabular.llm_baselines.tabllm_baseline import \
+        load_tabllm_config_by_openml_id
 
     # Test cases: (input_id, expected_behavior, description)
     test_cases = [
@@ -116,7 +114,8 @@ def test_semantic_feature_expansion():
     """Test semantic feature expansion functionality."""
     logger.info("\n=== Testing Semantic Feature Expansion ===")
 
-    from examples.tabular.llm_baselines.tabllm_baseline import expand_semantic_features
+    from examples.tabular.llm_baselines.tabllm_baseline import \
+        expand_semantic_features
 
     # Test semantic info with 'columns' structure
     test_semantic_info = {
@@ -179,7 +178,7 @@ def test_semantic_feature_expansion():
                             )
                         else:
                             logger.error(
-                                f"   ❌ Semantic feature names don't match actual names"
+                                "   ❌ Semantic feature names don't match actual names"
                             )
                             logger.error(f"      Expected: {test_feature_names}")
                             logger.error(f"      Got: {feature_names}")
@@ -222,14 +221,12 @@ def test_semantic_feature_alignment():
     """Test that semantic features properly align with actual data after subselection."""
     logger.info("\n=== Testing Semantic Feature Alignment ===")
 
-    from examples.tabular.llm_baselines.tabllm_baseline import (
-        expand_semantic_features,
-        generate_note_from_row,
-    )
     import pandas as pd
+    from examples.tabular.llm_baselines.tabllm_baseline import (
+        expand_semantic_features, generate_note_from_row)
 
     # Simulate feature subselection scenario
-    original_features = [f"original_feature_{i}" for i in range(10)]
+    [f"original_feature_{i}" for i in range(10)]
     retained_features = [
         f"retained_feature_{i}" for i in range(7)
     ]  # Simulated after feature reduction
@@ -242,7 +239,7 @@ def test_semantic_feature_alignment():
         ]
     }
 
-    logger.info(f"Original semantic features: 2")
+    logger.info("Original semantic features: 2")
     logger.info(f"Retained features after subselection: {len(retained_features)}")
 
     # Test expansion with retained feature names
@@ -303,9 +300,7 @@ def test_online_note_generation():
     logger.info("\n=== Testing Online Note Generation ===")
 
     from examples.tabular.llm_baselines.tabllm_baseline import (
-        generate_note_from_row,
-        expand_semantic_features,
-    )
+        expand_semantic_features, generate_note_from_row)
 
     # Create test semantic info
     semantic_info = {
@@ -375,10 +370,8 @@ def test_context_aware_truncation():
     logger.info("\n=== Testing Context-Aware Truncation ===")
 
     from examples.tabular.llm_baselines.tabllm_baseline import (
-        truncate_few_shot_examples_for_context,
-        estimate_note_tokens,
-        estimate_prompt_tokens,
-    )
+        estimate_note_tokens, estimate_prompt_tokens,
+        truncate_few_shot_examples_for_context)
 
     # Create mock tokenizer
     class MockTokenizer:
@@ -450,13 +443,9 @@ def test_tabllm_pipeline_with_mocked_llm():
     """Test TabLLM pipeline with mocked LLM to focus on feature alignment."""
     logger.info("\n=== Testing TabLLM Pipeline with Mocked LLM ===")
 
-    from examples.tabular.llm_baselines.tabllm_baseline import (
-        load_tabllm_config_by_openml_id,
-        expand_semantic_features,
-        generate_note_from_row,
-    )
     import pandas as pd
-    from unittest.mock import Mock, patch
+    from examples.tabular.llm_baselines.tabllm_baseline import (
+        expand_semantic_features, generate_note_from_row)
 
     # Create test dataset with feature subselection scenario
     test_dataset = {
@@ -525,7 +514,7 @@ def test_tabllm_pipeline_with_mocked_llm():
         logger.info("✅ Semantic feature names exactly match retained feature names")
         tests_passed += 1
     else:
-        logger.error(f"❌ Name mismatch")
+        logger.error("❌ Name mismatch")
         logger.error(f"   Expected: {retained_features}")
         logger.error(f"   Got: {semantic_names}")
 
@@ -534,7 +523,7 @@ def test_tabllm_pipeline_with_mocked_llm():
         logger.info("✅ All semantic feature names are unique")
         tests_passed += 1
     else:
-        logger.error(f"❌ Duplicate semantic names found")
+        logger.error("❌ Duplicate semantic names found")
 
     # Test 4: All features have descriptions
     missing_desc = [
@@ -623,7 +612,7 @@ def test_tabllm_pipeline_with_mocked_llm():
         )
 
     # Final summary
-    logger.info(f"\n--- Pipeline Test Summary ---")
+    logger.info("\n--- Pipeline Test Summary ---")
     logger.info(f"Tests passed: {tests_passed}/{total_tests}")
 
     if tests_passed == total_tests:
@@ -722,14 +711,12 @@ def test_semantic_content_validation():
     logger.info("\n=== Testing Semantic Content Validation with N-gram Matching ===")
 
     import re
-    import json
     from collections import Counter
+
     from examples.tabular.llm_baselines.tabllm_baseline import (
-        load_tabllm_config_by_openml_id,
-        expand_semantic_features,
-        generate_note_from_row,
-    )
-    from marvis.data.dataset import load_dataset, get_dataset_info
+        generate_note_from_row, load_tabllm_config_by_openml_id)
+
+    from marvis.data.dataset import get_dataset_info, load_dataset
 
     def extract_ngrams(text, n_values=[1, 2]):
         """Extract n-grams from text."""
@@ -776,7 +763,7 @@ def test_semantic_content_validation():
                 X, y, categorical_indicator, attribute_names, dataset_name = (
                     load_dataset(str(task_id))
                 )
-                dataset_info = get_dataset_info(task_id)
+                get_dataset_info(task_id)
                 logger.info(f"✅ Loaded real dataset: {dataset_name}")
                 logger.info(f"   Features: {len(attribute_names)}, Samples: {len(X)}")
             except Exception as e:
@@ -1006,15 +993,15 @@ def test_semantic_content_validation():
                     note_ngrams = extract_ngrams(note)
                     note_real_overlap = len(set(note_ngrams) & real_set)
 
-                    logger.info(f"✅ Note generated successfully")
+                    logger.info("✅ Note generated successfully")
                     logger.info(
                         f"   Note contains {note_real_overlap} n-grams from real data"
                     )
 
                     if note_real_overlap >= 3:
-                        logger.info(f"   ✅ Note semantically aligned with real data")
+                        logger.info("   ✅ Note semantically aligned with real data")
                     else:
-                        logger.warning(f"   ⚠️ Note has weak alignment with real data")
+                        logger.warning("   ⚠️ Note has weak alignment with real data")
 
                 else:
                     logger.error(f"❌ Failed to generate note for task {task_id}")
@@ -1028,7 +1015,7 @@ def test_semantic_content_validation():
 
             logger.error(f"   Traceback: {traceback.format_exc()}")
 
-    logger.info(f"\n=== Semantic Validation Complete ===")
+    logger.info("\n=== Semantic Validation Complete ===")
     logger.info(
         "N-gram analysis provides quantitative validation of semantic-real data alignment"
     )
@@ -1038,12 +1025,10 @@ def test_real_cc18_semantic_data():
     """Test TabLLM pipeline with real CC18 semantic data."""
     logger.info("\n=== Testing Real CC18 Semantic Data ===")
 
-    from examples.tabular.llm_baselines.tabllm_baseline import (
-        load_tabllm_config_by_openml_id,
-        expand_semantic_features,
-        generate_note_from_row,
-    )
     import pandas as pd
+    from examples.tabular.llm_baselines.tabllm_baseline import (
+        expand_semantic_features, generate_note_from_row,
+        load_tabllm_config_by_openml_id)
 
     # Load real CC18 semantic data for task 23 (cmc dataset)
     try:
@@ -1062,7 +1047,7 @@ def test_real_cc18_semantic_data():
             logger.warning("⚠️ No semantic info in loaded CC18 data - skipping test")
             return
 
-        logger.info(f"✅ Loaded real CC18 semantic data for task 23")
+        logger.info("✅ Loaded real CC18 semantic data for task 23")
         logger.info(f"   Structure: {list(real_semantic_info.keys())}")
 
         # Check the structure type
@@ -1190,7 +1175,7 @@ def test_real_cc18_semantic_data():
                     logger.error(f"❌ Real data: Note generation failed: {e}")
 
                 # Summary
-                logger.info(f"\n--- Real CC18 Data Test Summary ---")
+                logger.info("\n--- Real CC18 Data Test Summary ---")
                 logger.info(f"Tests passed: {tests_passed}/{total_tests}")
 
                 if tests_passed >= 4:  # Core tests must pass
@@ -1214,12 +1199,10 @@ def test_balance_scale_empty_notes_bug():
     """Test the specific bug fix for balance-scale empty notes (task 11)."""
     logger.info("\n=== Testing Balance-Scale Empty Notes Bug Fix ===")
 
-    from examples.tabular.llm_baselines.tabllm_baseline import (
-        load_tabllm_config_by_openml_id,
-        expand_semantic_features,
-        generate_note_from_row,
-    )
     import pandas as pd
+    from examples.tabular.llm_baselines.tabllm_baseline import (
+        expand_semantic_features, generate_note_from_row,
+        load_tabllm_config_by_openml_id)
 
     # Test the exact scenario that was failing before the fix
     try:
@@ -1270,7 +1253,7 @@ def test_balance_scale_empty_notes_bug():
                 )
                 tests_passed += 1
             else:
-                logger.error(f"❌ Bug fix failed: Names don't match")
+                logger.error("❌ Bug fix failed: Names don't match")
                 logger.error(f"   Expected: {actual_feature_names}")
                 logger.error(f"   Got: {expanded_names}")
 
@@ -1319,7 +1302,7 @@ def test_balance_scale_empty_notes_bug():
                 )
                 tests_passed += 1
             else:
-                logger.error(f"❌ Bug fix failed: Names don't match")
+                logger.error("❌ Bug fix failed: Names don't match")
                 logger.error(f"   Expected: {actual_feature_names}")
                 logger.error(f"   Got: {expanded_names}")
 
@@ -1359,7 +1342,7 @@ def test_balance_scale_empty_notes_bug():
                 )
 
         # Summary
-        logger.info(f"\n--- Balance-Scale Bug Fix Test Summary ---")
+        logger.info("\n--- Balance-Scale Bug Fix Test Summary ---")
         logger.info(f"Tests passed: {tests_passed}/{total_tests}")
 
         if tests_passed == total_tests:
@@ -1378,9 +1361,8 @@ def test_note_inspection_system():
     """Test the note inspection file saving system."""
     logger.info("\n=== Testing Note Inspection System ===")
 
-    from examples.tabular.llm_baselines.tabllm_baseline import (
-        save_sample_notes_for_inspection,
-    )
+    from examples.tabular.llm_baselines.tabllm_baseline import \
+        save_sample_notes_for_inspection
 
     # Create test data
     few_shot_examples = [

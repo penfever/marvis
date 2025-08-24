@@ -5,22 +5,16 @@ This module handles the spatial arrangement of multiple visualizations
 in a single composed image optimized for VLM consumption.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from PIL import Image, ImageDraw, ImageFont
-from enum import Enum
-from typing import List, Tuple, Optional, Dict, Any
-from dataclasses import dataclass
 import logging
+from dataclasses import dataclass
+from enum import Enum
+from typing import List, Optional, Tuple
+
+from PIL import Image, ImageDraw, ImageFont
 
 from ..base import VisualizationResult
 
 # Import shared styling utilities
-from ..utils.styling import (
-    apply_consistent_legend_formatting,
-    create_distinct_color_map,
-    get_class_color_name_map,
-)
 
 logger = logging.getLogger(__name__)
 

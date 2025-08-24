@@ -4,12 +4,11 @@ Script to synthesize JOLT templates and prefixes from semantic JSON files.
 JOLT uses simple feature-value pairs with optional task context prefixes.
 """
 
+import glob
 import json
 import os
-import glob
-import random
 from pathlib import Path
-from typing import Dict, List, Any, Tuple
+from typing import Any, Dict, List, Tuple
 
 # Define paths using resource manager
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -20,8 +19,8 @@ try:
     import sys
 
     sys.path.insert(0, project_root)
-    from marvis.utils.resource_manager import get_resource_manager
     from marvis.utils.metadata_loader import get_metadata_loader
+    from marvis.utils.resource_manager import get_resource_manager
 
     RESOURCE_MANAGER = get_resource_manager()
     METADATA_LOADER = get_metadata_loader()
@@ -545,7 +544,7 @@ def process_semantic_files():
                 # Validate that we got reasonable results
                 if jolt_config["num_features"] == 0 and jolt_config["num_classes"] <= 1:
                     print(
-                        f"  Warning: Generated config has no features or classes - using fallback"
+                        "  Warning: Generated config has no features or classes - using fallback"
                     )
                     # Create minimal fallback config
                     jolt_config = {
@@ -605,7 +604,7 @@ def process_semantic_files():
 
                     all_configs[str(task_id)] = fallback_config
                     dataset_count += 1
-                    print(f"  Created fallback config: 1 feature, 2 classes")
+                    print("  Created fallback config: 1 feature, 2 classes")
 
                 except Exception as fallback_error:
                     print(f"  Failed to create even fallback config: {fallback_error}")
@@ -637,7 +636,7 @@ def process_semantic_files():
 
                 all_configs[str(task_id)] = minimal_config
                 dataset_count += 1
-                print(f"  Created minimal config from filename: 1 feature, 2 classes")
+                print("  Created minimal config from filename: 1 feature, 2 classes")
 
             except Exception as minimal_error:
                 print(f"  Failed to create minimal config: {minimal_error}")
