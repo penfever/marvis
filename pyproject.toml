@@ -93,56 +93,6 @@ api = [
     "pydantic>=2.5.0",             # For structured API responses
 ]
 
-# Standalone optional dependencies that may have torch version conflicts
-tableshift = [
-    "tableshift @ git+https://github.com/mlfoundations/tableshift.git",
-]
-
-rtdl = [
-    "rtdl",  # Standalone rtdl dependency
-]
-
-tabula_8b = [
-    "uv>=0.6.0",
-    "black==23.11.0",
-    "bitsandbytes>=0.45.0",
-    "fire>=0.7.0",
-    "groovy>=0.1.2",
-    "ipdb>=0.13.13",
-    "ninja>=1.11.0",
-    "optimum>=1.24.0",
-    "ruff>=0.11.0",
-    "texttable>=1.7.0",
-    "torchmetrics>=1.7.0",
-    "uvicorn>=0.34.0",
-    "fastapi>=0.115.0",
-    "gradio>=5.22.0",
-    "ray",
-    "s3fs>=2025.3.0",
-    "safehttpx>=0.1.6",
-    "semantic-version>=2.10.0",
-    "starlette>=0.46.1",
-    "python-multipart>=0.0.20",
-    "pydub>=0.25.1",
-    "webdataset>=0.2.111",
-    "xport>=3.2.1",
-    "xxhash>=3.5.0",
-    "catboost>=1.2.5",
-    "fairlearn",
-    "folktables>=0.0.12",
-    "ucimlrepo>=0.0.7",
-    "boto3==1.34.*",
-    "botocore>=1.34.162",
-    "jmespath>=1.0.1",
-    "s3transfer>=0.9.0",
-    "xgboost",
-    "nltk",
-    # Git dependencies from RTFM repo (excluding tableshift - now separate)
-    "llama-recipes @ git+https://github.com/jpgard/llama-recipes.git", 
-    "tabliblib @ git+https://github.com/penfever/tabliblib.git",
-    # RTFM itself
-    "rtfm @ git+https://github.com/penfever/rtfm.git",
-]
 
 llamacpp = [
     # LlamaCPP dependencies for GGUF quantized models
