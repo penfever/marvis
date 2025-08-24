@@ -1716,6 +1716,48 @@ class MarvisTsneClassifier:
                     for fignum in new_iteration_figures:
                         plt.close(fignum)
 
+        # Store prediction context for chat functionality
+        self._last_prediction_context = {
+            'task_type': getattr(self, 'task_type', 'classification'),
+            'class_names': self.class_names,
+            'num_test_samples': len(X_test) if hasattr(X_test, '__len__') else len(self._prediction_indices),
+            'completed_samples': completed_samples,
+            'completion_rate': (
+                completed_samples / len(self._prediction_indices)
+                if len(self._prediction_indices) > 0
+                else 0.0
+            ),
+            'modality': self.modality,
+            'recent_predictions': [],  # Will be populated if we have ground truth
+            'timestamp': time.time()
+        }
+        
+        # Add prediction examples if ground truth is available
+        if y_test is not None and completed_samples > 0:
+            examples = []
+            for i in range(min(completed_samples, len(predictions), 5)):  # Store up to 5 examples
+                if i < len(y_test):
+                    true_class = (
+                        self.class_names[y_test[i]] 
+                        if self.class_names and y_test[i] < len(self.class_names)
+                        else str(y_test[i])
+                    )
+                    predicted_class = (
+                        predictions[i] 
+                        if isinstance(predictions[i], str) 
+                        else (
+                            self.class_names[predictions[i]] 
+                            if self.class_names and predictions[i] < len(self.class_names)
+                            else str(predictions[i])
+                        )
+                    )
+                    examples.append({
+                        'predicted_class': predicted_class,
+                        'true_class': true_class,
+                        'confidence': 'N/A'  # Could be enhanced with confidence scores
+                    })
+            self._last_prediction_context['recent_predictions'] = examples
+        
         if return_detailed:
             return {
                 "predictions": predictions,
@@ -1894,7 +1936,187 @@ class MarvisTsneClassifier:
                 {"prediction_details": detailed_results.get("prediction_details", [])}
             )
 
+        # Update prediction context with accuracy information for chat functionality
+        if hasattr(self, '_last_prediction_context') and self._last_prediction_context:
+            self._last_prediction_context.update({
+                'accuracy': results.get('accuracy'),
+                'balanced_accuracy': results.get('balanced_accuracy'),
+                'f1_macro': results.get('f1_macro'),
+                'evaluation_completed': True,
+                'task_type': results.get('task_type', 'classification')
+            })
+
         return results
+
+    def chat(self, user_input: str, max_history: int = 10) -> str:
+        """
+        Start an interactive conversation about the predictions made by MARVIS.
+        
+        This method should be called after predict() or evaluate() to discuss
+        the classification results, patterns in the data, or ask questions about
+        the model's reasoning.
+        
+        Args:
+            user_input: The user's question or comment
+            max_history: Maximum number of previous exchanges to keep in context
+            
+        Returns:
+            str: The model's response
+            
+        Raises:
+            RuntimeError: If chat is called before predictions are made
+            RuntimeError: If VLM model is not available
+        """
+        # Check if predictions have been made
+        if not hasattr(self, '_last_prediction_context') or self._last_prediction_context is None:
+            raise RuntimeError(
+                "Chat requires predictions to be made first. Please call predict() or evaluate() "
+                "before starting a conversation."
+            )
+            
+        # Ensure VLM is loaded
+        if self.vlm_wrapper is None:
+            try:
+                self._load_vlm()
+            except Exception as e:
+                raise RuntimeError(f"Cannot load VLM for chat: {e}") from e
+                
+        # Initialize chat history if not exists
+        if not hasattr(self, '_chat_history'):
+            self._chat_history = []
+            
+        # Build conversation context
+        context_parts = []
+        
+        # Add prediction context from last predict/evaluate call
+        prediction_context = self._last_prediction_context
+        context_parts.append(f"""
+## MARVIS Classification Context
+
+**Dataset Information:**
+- Modality: {self.modality}
+- Task Type: {prediction_context.get('task_type', 'classification')}
+- Classes: {prediction_context.get('class_names', 'Unknown')}
+- Test Samples: {prediction_context.get('num_test_samples', 0)}
+- Completed Predictions: {prediction_context.get('completed_samples', 0)}
+
+**Model Configuration:**
+- VLM Model: {self.effective_model_id}
+- Visualization: {"3D" if self.use_3d else "2D"} t-SNE (perplexity={self.tsne_perplexity})
+- KNN Connections: {"Yes" if self.use_knn_connections else "No"} (k={self.knn_k if self.use_knn_connections else "N/A"})
+
+**Recent Predictions Summary:**
+- Accuracy: {prediction_context.get('accuracy', 'N/A')}
+- Completion Rate: {prediction_context.get('completion_rate', 'N/A')}
+""")
+
+        # Add visualization context if available
+        if prediction_context.get('visualization_context'):
+            viz_context = prediction_context['visualization_context']
+            context_parts.append(f"""
+**Visualization Analysis:**
+- Data Distribution: {viz_context.get('distribution_summary', 'Not analyzed')}
+- Cluster Patterns: {viz_context.get('cluster_analysis', 'Not analyzed')}
+- Key Features: {viz_context.get('feature_importance', 'Not analyzed')}
+""")
+
+        # Add recent prediction examples if available
+        if prediction_context.get('recent_predictions'):
+            examples = prediction_context['recent_predictions'][:3]  # Show up to 3 examples
+            context_parts.append("\n**Recent Prediction Examples:**")
+            for i, example in enumerate(examples, 1):
+                predicted = example.get('predicted_class', 'Unknown')
+                actual = example.get('true_class', 'Unknown')
+                confidence = example.get('confidence', 'N/A')
+                context_parts.append(f"- Sample {i}: Predicted '{predicted}', Actual '{actual}', Confidence: {confidence}")
+
+        # Add chat history (keep recent exchanges)
+        if self._chat_history:
+            context_parts.append("\n## Previous Conversation:")
+            recent_history = self._chat_history[-max_history:]  # Keep last N exchanges
+            for exchange in recent_history:
+                context_parts.append(f"**User**: {exchange['user']}")
+                context_parts.append(f"**Assistant**: {exchange['assistant']}")
+                
+        context_parts.append(f"\n## Current Question:\n**User**: {user_input}")
+        context_parts.append("\n**Assistant**: ")
+        
+        # Build the full prompt
+        full_context = "".join(context_parts)
+        
+        chat_prompt = f"""You are MARVIS (Modality Adaptive Reasoning over VISualizations), an AI assistant specialized in explaining machine learning predictions and data patterns. You have just made predictions on {self.modality} data using t-SNE visualization and vision language model reasoning.
+
+Based on the context below, please provide a helpful, informative response to the user's question. You should:
+1. Reference specific details from the prediction results when relevant
+2. Explain patterns in the data or visualization if asked
+3. Clarify your reasoning process when questioned
+4. Suggest follow-up analyses or improvements when appropriate
+5. Acknowledge limitations or uncertainties honestly
+
+{full_context}"""
+
+        try:
+            # Generate response using the VLM
+            self.logger.info("Generating chat response...")
+            
+            # Use the same interface as predictions but with text-only input
+            if hasattr(self.vlm_wrapper, 'generate_response'):
+                response = self.vlm_wrapper.generate_response(
+                    text_input=chat_prompt,
+                    image_input=None,  # Text-only conversation
+                    max_tokens=1000,
+                    temperature=0.7  # Slightly higher temperature for conversational responses
+                )
+            else:
+                # Fallback for different wrapper interfaces
+                response = self.vlm_wrapper.chat(chat_prompt)
+                
+            # Clean up response if needed
+            if isinstance(response, dict) and 'text' in response:
+                response = response['text']
+            elif isinstance(response, dict) and 'response' in response:
+                response = response['response']
+                
+            # Store this exchange in chat history
+            self._chat_history.append({
+                'user': user_input,
+                'assistant': response,
+                'timestamp': time.time()
+            })
+            
+            self.logger.info("Chat response generated successfully")
+            return response
+            
+        except Exception as e:
+            self.logger.error(f"Error generating chat response: {e}")
+            error_response = (
+                f"I apologize, but I encountered an error while processing your question: {str(e)}. "
+                f"Please try rephrasing your question or ensure the VLM model is properly loaded."
+            )
+            
+            # Still store the exchange to maintain context
+            self._chat_history.append({
+                'user': user_input,
+                'assistant': error_response,
+                'timestamp': time.time()
+            })
+            
+            return error_response
+    
+    def clear_chat_history(self):
+        """Clear the conversation history."""
+        if hasattr(self, '_chat_history'):
+            self._chat_history.clear()
+        self.logger.info("Chat history cleared")
+        
+    def get_chat_history(self) -> List[Dict[str, Union[str, float]]]:
+        """
+        Get the current chat history.
+        
+        Returns:
+            List of chat exchanges with timestamps
+        """
+        return getattr(self, '_chat_history', [])
 
     def get_config(self):
         """Get configuration dictionary."""
