@@ -10,8 +10,6 @@ from typing import Any, Callable, List, Optional, Tuple
 
 import numpy as np
 import torch
-import torchvision.transforms as transforms
-from PIL import Image
 from sklearn.preprocessing import RobustScaler
 
 __all__ = [
@@ -793,6 +791,15 @@ def prepare_image_for_dinov2(image_path: str, size: int = 224) -> torch.Tensor:
     Returns:
         Preprocessed image tensor ready for DINOV2
     """
+    try:
+        import torchvision.transforms as transforms
+        from PIL import Image
+    except ImportError as e:
+        raise ImportError(
+            "Vision dependencies (torchvision, PIL) are required for DINOV2 image processing. "
+            "Install them with 'pip install marvis[vision]'."
+        ) from e
+    
     # Define the transforms (same as used in DINOV2 training)
     transform = transforms.Compose(
         [
