@@ -256,16 +256,16 @@ jobs:
     
     - name: Build package
       run: |
-        python -m build
+        uv run python -m build
     
     - name: Check package
       run: |
-        twine check dist/*
+        uv run twine check dist/*
     
     - name: Test installation
       run: |
         uv add dist/*.whl
-        python -c "import marvis; print(marvis.__version__)"
+        uv run python -c "import marvis; print(marvis.__version__)"
 
   docs-check:
     runs-on: ubuntu-latest
