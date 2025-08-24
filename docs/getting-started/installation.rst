@@ -8,6 +8,12 @@ Requirements
 
 **Python Version**: 3.11 or higher
 
+**Supported Platforms**:
+
+* ✅ **Linux**: Fully supported (Ubuntu 20.04+, other distributions)
+* ✅ **macOS**: Fully supported (macOS 14+ with Apple Silicon MPS acceleration)  
+* ❌ **Windows**: Not yet supported (contributions welcome!)
+
 **System Requirements**:
 
 * **GPU**: 
