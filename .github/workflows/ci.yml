@@ -98,9 +98,9 @@ jobs:
         uv run python -m pytest tests/integration/ \
           -v \
           --tb=short \
-          -m "not gpu and not api and not vlm and not slow and not ci_skip" \
+          -m "not api and not ci_skip" \
           --maxfail=3 \
-          --timeout=300 \
+          --timeout=600 \
           --benchmark-disable \
           -n 2
 

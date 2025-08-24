@@ -9,6 +9,7 @@ from argparse import Namespace
 
 import numpy as np
 import pandas as pd
+import pytest
 
 # Add paths (dynamically resolve current directory)
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -19,6 +20,7 @@ sys.path.insert(0, project_root)
 sys.path.insert(0, jolt_dir)
 
 
+@pytest.mark.integration
 def test_jolt_integration():
     """Test that JOLT integration works with a simple dataset."""
     print("Testing JOLT integration...")

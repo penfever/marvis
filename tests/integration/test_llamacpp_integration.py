@@ -27,6 +27,7 @@ from marvis.utils.gguf_utils import (
 from marvis.utils.model_loader import LLAMACPP_AVAILABLE, ModelLoader
 
 
+@pytest.mark.integration
 class TestGGUFUtils:
     """Test GGUF utility functions."""
 
@@ -155,6 +156,7 @@ class TestGGUFUtils:
 
 
 @pytest.mark.skipif(not LLAMACPP_AVAILABLE, reason="LlamaCPP not available")
+@pytest.mark.integration
 class TestLlamaCPPIntegration:
     """Test LlamaCPP model wrapper integration."""
 
@@ -222,6 +224,7 @@ class TestLlamaCPPIntegration:
         mock_llama.assert_called_once()
 
 
+@pytest.mark.integration
 class TestMARVISLlamaCPPIntegration:
     """Test MARVIS classifier with LlamaCPP backend."""
 
@@ -260,6 +263,8 @@ class TestMARVISLlamaCPPIntegration:
 
 
 # Example usage test (requires actual GGUF model)
+@pytest.mark.manual
+@pytest.mark.integration
 @pytest.mark.manual
 class TestLlamaCPPRealModel:
     """

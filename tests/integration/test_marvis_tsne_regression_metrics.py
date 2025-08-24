@@ -15,6 +15,7 @@ import tempfile
 from pathlib import Path
 
 import numpy as np
+import pytest
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
@@ -418,6 +419,40 @@ class MarvisTsneRegressionMetricsTestSuite:
             return False
         finally:
             self.teardown()
+
+
+# Pytest functions
+
+@pytest.mark.integration
+def test_task_type_detection():
+    """Test task type detection functionality."""
+    test_suite = MarvisTsneRegressionMetricsTestSuite()
+    result = test_suite.test_task_type_detection()
+    assert result, "Task type detection test failed"
+
+
+@pytest.mark.integration
+def test_regression_metrics_calculation():
+    """Test regression metrics calculation."""
+    test_suite = MarvisTsneRegressionMetricsTestSuite()
+    result = test_suite.test_regression_metrics_calculation()
+    assert result, "Regression metrics calculation test failed"
+
+
+@pytest.mark.integration
+def test_classification_metrics_calculation():
+    """Test classification metrics calculation."""
+    test_suite = MarvisTsneRegressionMetricsTestSuite()
+    result = test_suite.test_classification_metrics_calculation()
+    assert result, "Classification metrics calculation test failed"
+
+
+@pytest.mark.integration
+def test_marvis_tsne_regression_integration():
+    """Test MARVIS T-SNE regression integration."""
+    test_suite = MarvisTsneRegressionMetricsTestSuite()
+    result = test_suite.test_marvis_tsne_regression_integration()
+    assert result, "MARVIS T-SNE regression integration test failed"
 
 
 def main():

@@ -9,6 +9,7 @@ import os
 import sys
 
 import numpy as np
+import pytest
 
 # Add project root to path
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,6 +22,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+@pytest.mark.integration
 def test_whisper_embeddings():
     """Test Whisper embedding extraction."""
     logger.info("Testing Whisper embedding extraction...")
@@ -54,6 +56,7 @@ def test_whisper_embeddings():
         return False
 
 
+@pytest.mark.integration
 def test_tsne_visualization():
     """Test t-SNE visualization creation."""
     logger.info("Testing t-SNE visualization...")
@@ -95,6 +98,7 @@ def test_tsne_visualization():
         return False
 
 
+@pytest.mark.integration
 def test_audio_utils():
     """Test audio utility functions."""
     logger.info("Testing audio utilities...")
@@ -119,6 +123,7 @@ def test_audio_utils():
         return False
 
 
+@pytest.mark.integration
 def test_dataset_loading():
     """Test dataset loading."""
     logger.info("Testing dataset loading...")
@@ -238,6 +243,7 @@ def create_synthetic_test_data(
         return persistent_paths, labels, class_names
 
 
+@pytest.mark.integration
 def test_whisper_knn_baseline():
     """Test Whisper KNN baseline classifier."""
     logger.info("Testing Whisper KNN baseline classifier...")
@@ -287,6 +293,7 @@ def test_whisper_knn_baseline():
         return False
 
 
+@pytest.mark.integration
 def test_clap_zero_shot_baseline():
     """Test CLAP zero-shot baseline classifier."""
     logger.info("Testing CLAP zero-shot baseline classifier...")
@@ -330,6 +337,8 @@ def test_clap_zero_shot_baseline():
         return False
 
 
+@pytest.mark.integration
+@pytest.mark.vlm
 def test_marvis_audio_minimal():
     """Test MARVIS audio classifier with minimal synthetic data."""
     logger.info("Testing MARVIS audio classifier with minimal synthetic data...")

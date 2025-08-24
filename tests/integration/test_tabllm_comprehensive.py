@@ -24,6 +24,7 @@ import tempfile
 from pathlib import Path
 
 import pandas as pd
+import pytest
 
 # Add the project root to the path
 project_root = Path(__file__).parent.parent
@@ -60,6 +61,7 @@ def create_test_args(
     return TestArgs()
 
 
+@pytest.mark.integration
 def test_task_id_resolution():
     """Test task_id resolution from dataset_id."""
     logger.info("=== Testing Task ID Resolution ===")
@@ -111,6 +113,7 @@ def test_task_id_resolution():
                 logger.error(f"❌ UNEXPECTED ERROR: {e}")
 
 
+@pytest.mark.integration
 def test_semantic_feature_expansion():
     """Test semantic feature expansion functionality."""
     logger.info("\n=== Testing Semantic Feature Expansion ===")
@@ -217,6 +220,7 @@ def test_semantic_feature_expansion():
             logger.error(f"❌ ERROR: {e}")
 
 
+@pytest.mark.integration
 def test_semantic_feature_alignment():
     """Test that semantic features properly align with actual data after subselection."""
     logger.info("\n=== Testing Semantic Feature Alignment ===")
@@ -297,6 +301,7 @@ def test_semantic_feature_alignment():
         logger.error("❌ Expanded semantic info missing 'columns' structure")
 
 
+@pytest.mark.integration
 def test_online_note_generation():
     """Test online note generation with expanded semantics."""
     logger.info("\n=== Testing Online Note Generation ===")
@@ -369,6 +374,7 @@ def test_online_note_generation():
         logger.error(f"❌ ERROR in expanded note generation: {e}")
 
 
+@pytest.mark.integration
 def test_context_aware_truncation():
     """Test context-aware note truncation."""
     logger.info("\n=== Testing Context-Aware Truncation ===")
@@ -445,6 +451,7 @@ def test_context_aware_truncation():
             logger.error(f"❌ ERROR with context limit {limit}: {e}")
 
 
+@pytest.mark.integration
 def test_tabllm_pipeline_with_mocked_llm():
     """Test TabLLM pipeline with mocked LLM to focus on feature alignment."""
     logger.info("\n=== Testing TabLLM Pipeline with Mocked LLM ===")
@@ -633,6 +640,7 @@ def test_tabllm_pipeline_with_mocked_llm():
     return tests_passed == total_tests
 
 
+@pytest.mark.integration
 def test_tabllm_integration():
     """Test full TabLLM integration with a minimal dataset."""
     logger.info("\n=== Testing TabLLM Integration ===")
@@ -714,6 +722,7 @@ def test_tabllm_integration():
         )
 
 
+@pytest.mark.integration
 def test_semantic_content_validation():
     """Test that semantic information matches real dataset structure using n-gram analysis."""
     logger.info("\n=== Testing Semantic Content Validation with N-gram Matching ===")
@@ -1031,6 +1040,7 @@ def test_semantic_content_validation():
     )
 
 
+@pytest.mark.integration
 def test_real_cc18_semantic_data():
     """Test TabLLM pipeline with real CC18 semantic data."""
     logger.info("\n=== Testing Real CC18 Semantic Data ===")
@@ -1207,6 +1217,7 @@ def test_real_cc18_semantic_data():
         logger.error(f"❌ Error testing real CC18 data: {e}")
 
 
+@pytest.mark.integration
 def test_balance_scale_empty_notes_bug():
     """Test the specific bug fix for balance-scale empty notes (task 11)."""
     logger.info("\n=== Testing Balance-Scale Empty Notes Bug Fix ===")
@@ -1371,6 +1382,7 @@ def test_balance_scale_empty_notes_bug():
         return False
 
 
+@pytest.mark.integration
 def test_note_inspection_system():
     """Test the note inspection file saving system."""
     logger.info("\n=== Testing Note Inspection System ===")
