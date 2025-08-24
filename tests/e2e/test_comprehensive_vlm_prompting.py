@@ -46,7 +46,6 @@ from marvis.utils.task_detection import (
     detect_task_type,
 )
 from marvis.utils.unified_metrics import MetricsLogger
-from marvis.utils.vlm_prompting import create_regression_prompt
 
 # Audio/Vision dataset imports
 try:
@@ -1798,7 +1797,7 @@ class VLMPromptingTestSuite:
                     with open(detailed_output_path, "r") as f:
                         data = json.load(f)
                         pipeline_failed = data.get("pipeline_failed", False)
-                except:
+                except (OSError, json.JSONDecodeError, KeyError):
                     pass  # If we can't read it, vlm_outputs_valid will already be False
 
             # Determine final test success status

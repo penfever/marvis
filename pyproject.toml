@@ -158,3 +158,9 @@ Repository = "https://github.com/penfever/marvis"
 
 [tool.setuptools]
 packages = ["marvis", "marvis.data", "marvis.models", "marvis.models.vq", "marvis.train", "marvis.utils", "marvis.viz"]
+
+[tool.ruff.lint]
+# Ignore E402 (module level import not at top) in example and test files where sys.path modifications are needed
+[tool.ruff.lint.per-file-ignores]
+"examples/**/*.py" = ["E402"]
+"tests/**/*.py" = ["E402"]

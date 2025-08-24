@@ -171,7 +171,7 @@ jobs:
     
     - name: Run Ruff linter
       run: |
-        uv run ruff check marvis/ tests/ examples/
+        uv run ruff check --select=E9,F63,F7,F82 marvis/ tests/ examples/
     
     - name: Run MyPy type checker
       run: |

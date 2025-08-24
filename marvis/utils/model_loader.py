@@ -597,7 +597,7 @@ class TransformersModelWrapper(BaseModelWrapper):
             # Try to infer device from model parameters
             try:
                 device = next(self._model.parameters()).device
-            except:
+            except (StopIteration, AttributeError, RuntimeError):
                 device = torch.device("cpu")
 
         # Move inputs to the appropriate device
@@ -778,7 +778,7 @@ class VisionLanguageModelWrapper(BaseModelWrapper):
             # Try to infer device from model parameters
             try:
                 device = next(self._model.parameters()).device
-            except:
+            except (StopIteration, AttributeError, RuntimeError):
                 device = torch.device("cpu")
 
         # Move inputs to the appropriate device
@@ -1309,7 +1309,7 @@ class GeminiVisionModelWrapper(BaseModelWrapper):
             # Fallback to response.text if available
             try:
                 return response.text if response.text else ""
-            except:
+            except AttributeError:
                 logger.error("Failed to extract text from Gemini response")
                 return ""
 

@@ -348,7 +348,7 @@ class DatasetRegistry:
                         if "lock_fd" in locals():
                             try:
                                 os.close(lock_fd)
-                            except:
+                            except OSError:
                                 pass
                         time.sleep(0.1)
 

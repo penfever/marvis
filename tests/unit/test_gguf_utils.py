@@ -188,7 +188,7 @@ def test_suggest_gguf_files():
     assert all(pattern_matches), f"Pattern check failed for: {first_three}"
     assert all(
         s.startswith("https://huggingface.co/") for s in suggestions
-    ), f"URL format check failed"
+    ), "URL format check failed"
 
 
 @pytest.mark.unit

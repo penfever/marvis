@@ -121,7 +121,7 @@ class GPUMonitor:
                             handle, pynvml.NVML_TEMPERATURE_GPU
                         )
                         stats[f"gpu_{i}_temperature_celsius"] = temp
-                    except:
+                    except pynvml.NVMLError:
                         pass  # Temperature might not be available
 
                     # Power usage
@@ -130,7 +130,7 @@ class GPUMonitor:
                             pynvml.nvmlDeviceGetPowerUsage(handle) / 1000.0
                         )  # Convert mW to W
                         stats[f"gpu_{i}_power_watts"] = power
-                    except:
+                    except pynvml.NVMLError:
                         pass  # Power might not be available
 
                     # Clock speeds
@@ -143,7 +143,7 @@ class GPUMonitor:
                         )
                         stats[f"gpu_{i}_memory_clock_mhz"] = mem_clock
                         stats[f"gpu_{i}_graphics_clock_mhz"] = gpu_clock
-                    except:
+                    except pynvml.NVMLError:
                         pass  # Clocks might not be available
 
             except Exception as e:

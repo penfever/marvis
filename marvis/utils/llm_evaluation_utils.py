@@ -338,7 +338,7 @@ def apply_feature_reduction(
             tokenizer_temp = AutoTokenizer.from_pretrained(
                 "microsoft/phi-3-mini-128k-instruct"
             )
-        except:
+        except (OSError, ValueError, RuntimeError):
             tokenizer_temp = AutoTokenizer.from_pretrained("gpt2")
 
         # Test different token limits

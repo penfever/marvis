@@ -134,7 +134,7 @@ class LayoutManager:
         # Try to load a font
         try:
             font = ImageFont.truetype("arial.ttf", 16)
-        except:
+        except (OSError, IOError):
             font = ImageFont.load_default()
 
         # Place images in grid
@@ -548,7 +548,7 @@ class LayoutManager:
 
         try:
             font = ImageFont.truetype("arial.ttf", font_size)
-        except:
+        except (OSError, IOError):
             font = ImageFont.load_default()
 
         # Get text dimensions for centering

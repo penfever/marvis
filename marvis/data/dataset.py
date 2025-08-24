@@ -15,6 +15,7 @@ from datasets import Dataset
 from sklearn.preprocessing import LabelEncoder
 
 from .embeddings import prepare_tabpfn_embeddings_for_prefix
+from ..utils.resource_manager import DatasetMetadata, get_resource_manager
 
 
 # Utility function to silence specific warnings
@@ -27,9 +28,6 @@ def silence_pandas_warning(func, *args, **kwargs):
 
 
 logger = logging.getLogger(__name__)
-
-# Import the new resource management system
-from ..utils.resource_manager import DatasetMetadata, get_resource_manager
 
 # Global cache to store dataset IDs that have failed to load (legacy)
 _FAILED_DATASET_CACHE: Set[int] = set()
@@ -232,7 +230,7 @@ def get_dataset_info(dataset_id_or_name: Union[str, int]) -> Dict[str, Any]:
                 # Parse the class distribution string
                 distribution = ast.literal_eval(class_distribution)
                 info["class_distribution"] = distribution
-            except:
+            except (ValueError, SyntaxError, TypeError):
                 pass
 
         return info
@@ -630,7 +628,7 @@ def load_dataset(
                             logger.warning(
                                 f"Detected sparse dtype in numpy array: {X.dtype}"
                             )
-                    except:
+                    except (AttributeError, TypeError):
                         # If dtype access fails, check individual elements
                         try:
                             for i in range(min(10, X.shape[0])):
@@ -643,7 +641,7 @@ def load_dataset(
                                         break
                                 if sparse_in_array:
                                     break
-                        except:
+                        except (IndexError, AttributeError, TypeError):
                             pass
 
                 # Special handling for sparse arrays
@@ -686,7 +684,7 @@ def load_dataset(
                                         # Try direct float conversion
                                         try:
                                             X_dense[i, j] = float(val)
-                                        except:
+                                        except (ValueError, TypeError, OverflowError):
                                             X_dense[i, j] = 0
                                 except Exception as elem_err:
                                     logger.debug(
@@ -727,11 +725,11 @@ def load_dataset(
                                     ):
                                         try:
                                             X_new[i, j] = float(value)
-                                        except:
+                                        except (ValueError, TypeError, OverflowError):
                                             X_new[i, j] = 0
                                     else:
                                         X_new[i, j] = 0
-                                except:
+                                except (IndexError, AttributeError, TypeError):
                                     X_new[i, j] = 0
                         X = X_new
 

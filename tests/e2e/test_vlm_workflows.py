@@ -46,7 +46,6 @@ from marvis.utils.task_detection import (
     detect_task_type,
 )
 from marvis.utils.unified_metrics import MetricsLogger
-from marvis.utils.vlm_prompting import create_regression_prompt
 
 # Audio/Vision dataset imports
 try:
