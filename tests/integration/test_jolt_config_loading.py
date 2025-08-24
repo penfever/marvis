@@ -388,6 +388,7 @@ class JoltConfigLoadingTestSuite:
 
 # Pytest functions
 
+
 @pytest.mark.integration
 def test_jolt_config_loading_logic():
     """Test the JOLT config loading logic directly."""

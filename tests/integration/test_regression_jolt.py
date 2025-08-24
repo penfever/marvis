@@ -73,7 +73,9 @@ def test_jolt_regression_vs_classification():
 
     # Verify task type detection
     assert reg_task_type == "regression", f"Expected regression, got {reg_task_type}"
-    assert cls_task_type == "classification", f"Expected classification, got {cls_task_type}"
+    assert (
+        cls_task_type == "classification"
+    ), f"Expected classification, got {cls_task_type}"
 
 
 # Legacy main function for backward compatibility

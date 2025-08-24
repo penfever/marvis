@@ -423,6 +423,7 @@ class MarvisTsneRegressionMetricsTestSuite:
 
 # Pytest functions
 
+
 @pytest.mark.integration
 def test_task_type_detection():
     """Test task type detection functionality."""
