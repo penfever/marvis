@@ -19,11 +19,11 @@ Main Classifier
    .. autosummary::
       :toctree: generated/
 
-      ~MarvisTsneClassifier.fit
-      ~MarvisTsneClassifier.predict
-      ~MarvisTsneClassifier.predict_proba
-      ~MarvisTsneClassifier.score
-      ~MarvisTsneClassifier.evaluate
+      ~marvis_tsne.MarvisTsneClassifier.fit
+      ~marvis_tsne.MarvisTsneClassifier.predict
+      ~marvis_tsne.MarvisTsneClassifier.predict_proba
+      ~marvis_tsne.MarvisTsneClassifier.score
+      ~marvis_tsne.MarvisTsneClassifier.evaluate
 
 Utility Functions
 -----------------
