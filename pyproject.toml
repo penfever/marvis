@@ -79,7 +79,7 @@ audio = [
     "msclap>=1.3.4",  # For CLAP zero-shot audio classification
     # Optional audio utilities
     "pydub>=0.25.1",
-    "audiomentations>=0.30.0",
+    # Note: audiomentations removed due to soxr build issues - not used in codebase
 ]
 
 api = [
