@@ -30,12 +30,12 @@ jobs:
     - name: Build documentation
       run: |
         cd docs
-        make html
+        uv run sphinx-build -b html . _build/html
     
     - name: Check for broken links
       run: |
         cd docs
-        make linkcheck
+        uv run sphinx-build -b linkcheck . _build/linkcheck
       continue-on-error: true
     
     - name: Deploy to GitHub Pages

@@ -171,21 +171,21 @@ jobs:
     
     - name: Run Black formatter check
       run: |
-        black --check --diff marvis/ tests/ examples/
+        uv run black --check --diff marvis/ tests/ examples/
     
     - name: Run Ruff linter
       run: |
-        ruff check marvis/ tests/ examples/
+        uv run ruff check marvis/ tests/ examples/
     
     - name: Run MyPy type checker
       run: |
-        mypy marvis/ --ignore-missing-imports
+        uv run mypy marvis/ --ignore-missing-imports
       continue-on-error: true  # Type checking errors shouldn't fail CI
     
     - name: Check import sorting
       run: |
-        pip install isort
-        isort --check-only --diff marvis/ tests/
+        uv add isort
+        uv run isort --check-only --diff marvis/ tests/
       continue-on-error: true
 
   security-scan:
@@ -264,8 +264,11 @@ jobs:
     
     - name: Test installation
       run: |
-        uv add dist/*.whl
-        uv run python -c "import marvis; print(marvis.__version__)"
+        # Create a temporary virtual environment to test the wheel installation
+        python -m venv test_env
+        source test_env/bin/activate
+        pip install dist/*.whl
+        python -c "import marvis; print('✓ Package installed successfully')"
 
   docs-check:
     runs-on: ubuntu-latest
@@ -293,9 +296,9 @@ jobs:
       run: |
         cd docs/
         # Clean any existing build artifacts
-        make clean || true
+        rm -rf _build/ || true
         # Build with verbose output but don't fail on warnings
-        python -m sphinx --keep-going -b html . _build/html
+        uv run sphinx-build --keep-going -b html . _build/html
       continue-on-error: true  # Docs errors shouldn't fail CI
       env:
         CUDA_VISIBLE_DEVICES: ""
@@ -305,7 +308,7 @@ jobs:
     - name: Check documentation links
       run: |
         cd docs/
-        make linkcheck
+        uv run sphinx-build -b linkcheck . _build/linkcheck
       continue-on-error: true
 
   test-summary:
