@@ -2065,17 +2065,45 @@ Based on the context below, please provide a helpful, informative response to th
             # Generate response using the VLM
             self.logger.info("Generating chat response...")
             
-            # Use the same interface as predictions but with text-only input
+            # Use the VLM wrapper interface for chat
             if hasattr(self.vlm_wrapper, 'generate_response'):
+                # Use the standard generate_response interface
                 response = self.vlm_wrapper.generate_response(
                     text_input=chat_prompt,
                     image_input=None,  # Text-only conversation
                     max_tokens=1000,
                     temperature=0.7  # Slightly higher temperature for conversational responses
                 )
+            elif hasattr(self.vlm_wrapper, 'generate'):
+                # Use the direct generate interface with proper parameters
+                from marvis.utils.model_loader import GenerationConfig
+                config = GenerationConfig(
+                    max_new_tokens=512,
+                    temperature=0.7,
+                    do_sample=True,
+                    top_p=0.9
+                )
+                response = self.vlm_wrapper.generate(
+                    inputs=chat_prompt,
+                    config=config
+                )
+            elif hasattr(self.vlm_wrapper, 'generate_from_conversation'):
+                # Use conversation interface if available
+                from marvis.utils.model_loader import GenerationConfig
+                conversation = [{"role": "user", "content": chat_prompt}]
+                config = GenerationConfig(
+                    max_new_tokens=512,
+                    temperature=0.7,
+                    do_sample=True,
+                    top_p=0.9
+                )
+                response = self.vlm_wrapper.generate_from_conversation(
+                    conversation,
+                    config
+                )
             else:
-                # Fallback for different wrapper interfaces
-                response = self.vlm_wrapper.chat(chat_prompt)
+                # Final fallback - raise informative error
+                raise AttributeError(f"VLM wrapper {type(self.vlm_wrapper)} doesn't have a supported generation method")
                 
             # Clean up response if needed
             if isinstance(response, dict) and 'text' in response:
