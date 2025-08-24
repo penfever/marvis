@@ -52,6 +52,7 @@ def pytest_configure(config):
         "mps: Tests requiring Apple Metal Performance Shaders",
         "cpu: CPU-only tests",
         "api: Tests requiring API keys",
+        "vlm: Tests using Vision Language Models (GPU recommended)",
         "slow: Tests that may take >30 seconds",
         "manual: Manual tests not run in CI",
         "llamacpp: Tests for LlamaCPP/GGUF functionality",
