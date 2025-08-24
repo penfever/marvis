@@ -75,7 +75,7 @@ def main():
 
 
 @pytest.mark.unit
-@pytest.mark.cpu_only
+@pytest.mark.cpu
 def test_marvis_installation():
     """Test that marvis package is properly installed and importable."""
     main()
