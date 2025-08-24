@@ -22,10 +22,13 @@ except ImportError:
     MLXTEND_AVAILABLE = False
 
 from ..base import BaseVisualization, VisualizationResult
+
 # Import shared styling utilities
-from ..utils.styling import (apply_consistent_legend_formatting,
-                             apply_consistent_point_styling,
-                             create_distinct_color_map)
+from ..utils.styling import (
+    apply_consistent_legend_formatting,
+    apply_consistent_point_styling,
+    create_distinct_color_map,
+)
 
 logger = logging.getLogger(__name__)
 

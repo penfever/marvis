@@ -60,19 +60,21 @@ def parse_args():
     )
 
     # Import and add all the standard evaluation args without the required dataset constraint
-    from marvis.utils.evaluation_args import (add_baseline_model_args,
-                                              add_calibration_args,
-                                              add_common_evaluation_args,
-                                              add_data_processing_args,
-                                              add_embedding_args,
-                                              add_evaluation_control_args,
-                                              add_evaluation_wandb_args,
-                                              add_label_fitting_args,
-                                              add_llm_baseline_args,
-                                              add_minority_class_args,
-                                              add_model_args,
-                                              add_score_normalization_args,
-                                              add_tabpfn_args)
+    from marvis.utils.evaluation_args import (
+        add_baseline_model_args,
+        add_calibration_args,
+        add_common_evaluation_args,
+        add_data_processing_args,
+        add_embedding_args,
+        add_evaluation_control_args,
+        add_evaluation_wandb_args,
+        add_label_fitting_args,
+        add_llm_baseline_args,
+        add_minority_class_args,
+        add_model_args,
+        add_score_normalization_args,
+        add_tabpfn_args,
+    )
 
     # Add all argument groups
     add_common_evaluation_args(parser)

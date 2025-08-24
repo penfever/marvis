@@ -19,54 +19,91 @@ This module provides various utilities for MARVIS model work:
 - Results management with standardized storage and organization
 """
 
-from .evaluation_args import (create_dataset_evaluation_parser,
-                              create_evaluation_parser)
-from .feature_selection_utils import (create_reduced_dataset,
-                                      select_features_for_token_limit,
-                                      test_feature_selection)
-from .gpu_monitoring import (GPUMonitor, cleanup_gpu_monitoring,
-                             init_wandb_with_gpu_monitoring)
-from .json_utils import (convert_for_json_serialization, safe_json_dump,
-                         safe_json_dumps, save_results)
-from .llm_evaluation_utils import (_test_prediction_methods,
-                                   apply_feature_reduction, create_tabllm_note,
-                                   drop_feature_for_oom, is_oom_error,
-                                   predict_with_generation,
-                                   predict_with_jolt_logprobs,
-                                   predict_with_simple_logprobs,
-                                   unified_llm_predict)
+from .evaluation_args import create_dataset_evaluation_parser, create_evaluation_parser
+from .feature_selection_utils import (
+    create_reduced_dataset,
+    select_features_for_token_limit,
+    test_feature_selection,
+)
+from .gpu_monitoring import (
+    GPUMonitor,
+    cleanup_gpu_monitoring,
+    init_wandb_with_gpu_monitoring,
+)
+from .json_utils import (
+    convert_for_json_serialization,
+    safe_json_dump,
+    safe_json_dumps,
+    save_results,
+)
+from .llm_evaluation_utils import (
+    _test_prediction_methods,
+    apply_feature_reduction,
+    create_tabllm_note,
+    drop_feature_for_oom,
+    is_oom_error,
+    predict_with_generation,
+    predict_with_jolt_logprobs,
+    predict_with_simple_logprobs,
+    unified_llm_predict,
+)
 from .logging import setup_logging, setup_notebook_logging
 from .model_utils import find_best_checkpoint, load_pretrained_model
-from .resource_manager import (DatasetMetadata, MarvisResourceManager,
-                               ResourceConfig, get_resource_manager,
-                               prepare_cifar_dataset, reset_resource_manager)
-from .results_manager import (EvaluationResults, ExperimentMetadata,
-                              ResultsArtifacts, ResultsManager,
-                              get_results_manager, reset_results_manager,
-                              save_results_unified)
-from .results_migration import (ResultsFormatDetector, ResultsMigrator,
-                                create_migration_adapters,
-                                migrate_legacy_results, validate_result_file)
+from .resource_manager import (
+    DatasetMetadata,
+    MarvisResourceManager,
+    ResourceConfig,
+    get_resource_manager,
+    prepare_cifar_dataset,
+    reset_resource_manager,
+)
+from .results_manager import (
+    EvaluationResults,
+    ExperimentMetadata,
+    ResultsArtifacts,
+    ResultsManager,
+    get_results_manager,
+    reset_results_manager,
+    save_results_unified,
+)
+from .results_migration import (
+    ResultsFormatDetector,
+    ResultsMigrator,
+    create_migration_adapters,
+    migrate_legacy_results,
+    validate_result_file,
+)
+
 # Visualization utilities moved to marvis.viz.utils.common
 # from .visualization_utils import (...)  # Now in marvis.viz.utils.common
 # Platform utilities have been removed - use device_utils instead
 # from .device_utils import detect_optimal_device
-from .seeding import (create_random_state, set_random_seed, set_seed,
-                      set_seed_with_args)
+from .seeding import create_random_state, set_random_seed, set_seed, set_seed_with_args
 from .system import timeout_context
-from .training_args import (create_common_parser, create_multi_dataset_parser,
-                            create_single_dataset_parser)
-from .unified_metrics import (MetricsLogger, get_standard_metric_names,
-                              log_metrics_for_result)
+from .training_args import (
+    create_common_parser,
+    create_multi_dataset_parser,
+    create_single_dataset_parser,
+)
+from .unified_metrics import (
+    MetricsLogger,
+    get_standard_metric_names,
+    log_metrics_for_result,
+)
 from .vlm_utils import create_vlm_conversation, parse_vlm_response
-from .wandb_extractor import (detect_run_types,
-                              extract_model_metrics_from_summary,
-                              extract_results_from_wandb,
-                              extract_split_idx_from_name,
-                              extract_task_id_from_dataset_name,
-                              extract_task_idx_from_name, fetch_wandb_data,
-                              fetch_wandb_train_data, is_numeric,
-                              safe_float_convert, should_exclude_failed_run)
+from .wandb_extractor import (
+    detect_run_types,
+    extract_model_metrics_from_summary,
+    extract_results_from_wandb,
+    extract_split_idx_from_name,
+    extract_task_id_from_dataset_name,
+    extract_task_idx_from_name,
+    fetch_wandb_data,
+    fetch_wandb_train_data,
+    is_numeric,
+    safe_float_convert,
+    should_exclude_failed_run,
+)
 
 __all__ = [
     # Logging utilities

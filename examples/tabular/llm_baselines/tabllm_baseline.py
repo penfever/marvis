@@ -197,8 +197,7 @@ def load_tabllm_config_by_openml_id(openml_task_id, original_feature_count=None)
                 hasattr(semantic_file, "exists") and not semantic_file.exists()
             ):
                 try:
-                    from marvis.utils.metadata_loader import \
-                        get_metadata_loader
+                    from marvis.utils.metadata_loader import get_metadata_loader
 
                     loader = get_metadata_loader()
                     semantic_file = loader.detect_metadata_file(openml_task_id)
@@ -1065,8 +1064,13 @@ def evaluate_tabllm(dataset, args):
     )
 
     # Import required utilities
-    from marvis.utils import (apply_feature_reduction, drop_feature_for_oom,
-                              is_oom_error, unified_llm_predict)
+    from marvis.utils import (
+        apply_feature_reduction,
+        drop_feature_for_oom,
+        is_oom_error,
+        unified_llm_predict,
+    )
+
     # Import regenerate_few_shot_examples from llm_evaluation_utils (not exported in __init__)
     from marvis.utils.llm_evaluation_utils import regenerate_few_shot_examples
 
@@ -1865,16 +1869,14 @@ def evaluate_tabllm(dataset, args):
             else:
                 # For classification: use standard metrics
                 # Import shared metric calculation function
-                from marvis.utils.llm_evaluation_utils import \
-                    calculate_llm_metrics
+                from marvis.utils.llm_evaluation_utils import calculate_llm_metrics
 
                 # Resolve task_id using resource manager as per CLAUDE.md guidelines
                 task_id = dataset.get("task_id")
                 if task_id is None:
                     # Try to resolve task_id from dataset_id using resource manager
                     try:
-                        from marvis.utils.resource_manager import \
-                            get_resource_manager
+                        from marvis.utils.resource_manager import get_resource_manager
 
                         rm = get_resource_manager()
                         dataset_id = dataset.get("id")

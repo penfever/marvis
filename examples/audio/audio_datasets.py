@@ -631,9 +631,7 @@ def download_all_datasets(root_dir: str = "./audio_datasets"):
 
     # UrbanSound8K (will show manual download message)
     try:
-        UrbanSound8KDataset(
-            os.path.join(root_dir, "UrbanSound8K"), download=True
-        )
+        UrbanSound8KDataset(os.path.join(root_dir, "UrbanSound8K"), download=True)
     except RuntimeError:
         pass  # Expected - requires manual download
 

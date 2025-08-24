@@ -112,12 +112,14 @@
 <span class="sd">clearer cluster separation than t-SNE while being more computationally efficient.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">umap</span>
+
     <span class="n">UMAP_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="n">UMAP_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
@@ -125,12 +127,6 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseVisualization</span><span class="p">,</span> <span class="n">VisualizationResult</span>
 
 <span class="c1"># Import shared styling utilities</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.styling</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">apply_consistent_point_styling</span><span class="p">,</span>
-    <span class="n">apply_consistent_legend_formatting</span><span class="p">,</span>
-    <span class="n">create_distinct_color_map</span><span class="p">,</span>
-    <span class="n">create_regression_color_map</span>
-<span class="p">)</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -140,101 +136,105 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">UMAPVisualization</span><span class="p">(</span><span class="n">BaseVisualization</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    UMAP visualization implementation.</span>
-<span class="sd">    </span>
+
 <span class="sd">    UMAP (Uniform Manifold Approximation and Projection) is a dimensionality</span>
 <span class="sd">    reduction technique that preserves both local and global structure of data.</span>
 <span class="sd">    It often provides clearer cluster separation than t-SNE.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;UMAP&quot;</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">supports_3d</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">supports_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">supports_new_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_create_transformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create UMAP transformer.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">UMAP_AVAILABLE</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
                 <span class="s2">&quot;UMAP not available. Install with: pip install umap-learn&quot;</span>
             <span class="p">)</span>
-        
+
         <span class="c1"># Set default parameters optimized for visualization</span>
         <span class="n">umap_params</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
-            <span class="s1">&#39;n_components&#39;</span><span class="p">:</span> <span class="mi">3</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="mi">2</span><span class="p">,</span>
-            <span class="s1">&#39;metric&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;metric&#39;</span><span class="p">,</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">),</span>
-            <span class="s1">&#39;min_dist&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;min_dist&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
-            <span class="s1">&#39;spread&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spread&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-            <span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
-            <span class="s1">&#39;n_epochs&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_epochs&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Auto-determined</span>
-            <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-            <span class="s1">&#39;init&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;init&#39;</span><span class="p">,</span> <span class="s1">&#39;spectral&#39;</span><span class="p">),</span>
-            <span class="s1">&#39;low_memory&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;low_memory&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-            <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;verbose&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="s2">&quot;n_neighbors&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_neighbors&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+            <span class="s2">&quot;n_components&quot;</span><span class="p">:</span> <span class="mi">3</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metric&quot;</span><span class="p">,</span> <span class="s2">&quot;euclidean&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;min_dist&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;min_dist&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+            <span class="s2">&quot;spread&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;spread&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+            <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="s2">&quot;n_epochs&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_epochs&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Auto-determined</span>
+            <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+            <span class="s2">&quot;init&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;low_memory&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;low_memory&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+            <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;verbose&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
         <span class="p">}</span>
-        
+
         <span class="c1"># Handle supervised UMAP if target values are available</span>
-        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;target_metric&#39;</span><span class="p">):</span>
-            <span class="n">umap_params</span><span class="p">[</span><span class="s1">&#39;target_metric&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;target_metric&#39;</span><span class="p">]</span>
-        
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;target_metric&quot;</span><span class="p">):</span>
+            <span class="n">umap_params</span><span class="p">[</span><span class="s2">&quot;target_metric&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;target_metric&quot;</span><span class="p">]</span>
+
         <span class="c1"># Remove None values</span>
         <span class="n">umap_params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">umap_params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating UMAP with parameters: </span><span class="si">{</span><span class="n">umap_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="o">**</span><span class="n">umap_params</span><span class="p">)</span>
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_default_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n_features</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get default description for UMAP.&quot;&quot;&quot;</span>
         <span class="n">components</span> <span class="o">=</span> <span class="s2">&quot;3D&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="s2">&quot;2D&quot;</span>
-        
+
         <span class="n">description</span> <span class="o">=</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;UMAP </span><span class="si">{</span><span class="n">components</span><span class="si">}</span><span class="s2"> embedding of </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2"> samples from </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2"> dimensions. &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;UMAP preserves both local neighborhood structure and global topology, &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;often revealing clearer cluster boundaries than t-SNE while maintaining &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;more of the global structure.&quot;</span>
         <span class="p">)</span>
-        
+
         <span class="c1"># Add parameter information</span>
         <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">extra_params</span>
-        <span class="k">if</span> <span class="s1">&#39;n_neighbors&#39;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
-            <span class="n">description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; Using </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> neighbors for local structure.&quot;</span>
-        <span class="k">if</span> <span class="s1">&#39;min_dist&#39;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;n_neighbors&quot;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+            <span class="n">description</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot; Using </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> neighbors for local structure.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;min_dist&quot;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
             <span class="n">description</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; Minimum distance parameter: </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;min_dist&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span>
-        
+
         <span class="k">return</span> <span class="n">description</span>
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_add_quality_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">VisualizationResult</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add UMAP-specific quality metrics.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span> <span class="s1">&#39;embedding_&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span> <span class="s2">&quot;embedding_&quot;</span><span class="p">):</span>
             <span class="c1"># UMAP doesn&#39;t have built-in quality metrics like stress</span>
             <span class="c1"># But we can compute some useful information</span>
-            
+
             <span class="c1"># Embedding shape</span>
-            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;embedding_shape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">embedding_</span><span class="o">.</span><span class="n">shape</span>
-            
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;embedding_shape&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">embedding_</span><span class="o">.</span><span class="n">shape</span>
+
             <span class="c1"># UMAP parameters used</span>
-            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">n_neighbors</span>
-            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;min_dist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">min_dist</span>
-            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;metric&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">metric</span>
-            
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;n_neighbors&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">n_neighbors</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;min_dist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">min_dist</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;metric&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">metric</span>
+
             <span class="c1"># If available, add graph information</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span> <span class="s1">&#39;graph_&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span> <span class="s2">&quot;graph_&quot;</span><span class="p">):</span>
                 <span class="n">n_edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">graph_</span><span class="o">.</span><span class="n">nnz</span>
-                <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;n_edges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_edges</span>
-                <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;avg_degree&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_edges</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">embedding_</span><span class="p">)</span>
-            
+                <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;n_edges&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_edges</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;avg_degree&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="mi">2</span> <span class="o">*</span> <span class="n">n_edges</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">embedding_</span><span class="p">)</span>
+                <span class="p">)</span>
+
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added UMAP quality metrics: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
@@ -247,14 +247,14 @@
     <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">n_neighbors</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
     <span class="n">min_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">metric</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">,</span>
+    <span class="n">metric</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
     <span class="n">use_3d</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convenience function to create UMAP visualization.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        X_train: Training data</span>
 <span class="sd">        y_train: Training labels</span>
@@ -265,43 +265,41 @@
 <span class="sd">        use_3d: Whether to create 3D embedding</span>
 <span class="sd">        random_state: Random seed</span>
 <span class="sd">        **kwargs: Additional parameters</span>
-<span class="sd">        </span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        Dictionary containing embedding results and visualization</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="n">VisualizationConfig</span>
-    
+
     <span class="c1"># Create configuration</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">VisualizationConfig</span><span class="p">(</span>
         <span class="n">use_3d</span><span class="o">=</span><span class="n">use_3d</span><span class="p">,</span>
         <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
         <span class="n">extra_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="n">n_neighbors</span><span class="p">,</span>
-            <span class="s1">&#39;min_dist&#39;</span><span class="p">:</span> <span class="n">min_dist</span><span class="p">,</span>
-            <span class="s1">&#39;metric&#39;</span><span class="p">:</span> <span class="n">metric</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span>
-        <span class="p">}</span>
+            <span class="s2">&quot;n_neighbors&quot;</span><span class="p">:</span> <span class="n">n_neighbors</span><span class="p">,</span>
+            <span class="s2">&quot;min_dist&quot;</span><span class="p">:</span> <span class="n">min_dist</span><span class="p">,</span>
+            <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="n">metric</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">},</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Create visualization</span>
     <span class="n">viz</span> <span class="o">=</span> <span class="n">UMAPVisualization</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-    
+
     <span class="c1"># Fit and transform</span>
     <span class="n">train_embedding</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="n">test_embedding</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="k">if</span> <span class="n">X_test</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
-    
+
     <span class="c1"># Generate plot</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">generate_plot</span><span class="p">(</span>
-        <span class="n">transformed_data</span><span class="o">=</span><span class="n">train_embedding</span><span class="p">,</span>
-        <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
-        <span class="n">test_data</span><span class="o">=</span><span class="n">test_embedding</span>
+        <span class="n">transformed_data</span><span class="o">=</span><span class="n">train_embedding</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">test_data</span><span class="o">=</span><span class="n">test_embedding</span>
     <span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="p">{</span>
-        <span class="s1">&#39;train_embedding&#39;</span><span class="p">:</span> <span class="n">train_embedding</span><span class="p">,</span>
-        <span class="s1">&#39;test_embedding&#39;</span><span class="p">:</span> <span class="n">test_embedding</span><span class="p">,</span>
-        <span class="s1">&#39;visualization_result&#39;</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
-        <span class="s1">&#39;transformer&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">_transformer</span>
+        <span class="s2">&quot;train_embedding&quot;</span><span class="p">:</span> <span class="n">train_embedding</span><span class="p">,</span>
+        <span class="s2">&quot;test_embedding&quot;</span><span class="p">:</span> <span class="n">test_embedding</span><span class="p">,</span>
+        <span class="s2">&quot;visualization_result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
+        <span class="s2">&quot;transformer&quot;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span>
     <span class="p">}</span></div>
 
 </pre></div>

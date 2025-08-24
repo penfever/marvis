@@ -5,9 +5,11 @@ import time
 
 import numpy as np
 import torch
-from helpers import (construct_prompts,
-                     get_predicted_values_from_generated_sample,
-                     process_generated_results)
+from helpers import (
+    construct_prompts,
+    get_predicted_values_from_generated_sample,
+    process_generated_results,
+)
 from hf_api import hf_generate
 from tqdm import tqdm
 

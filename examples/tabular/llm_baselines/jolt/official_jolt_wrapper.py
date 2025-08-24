@@ -20,8 +20,7 @@ if examples_dir not in sys.path:
     sys.path.insert(0, examples_dir)
 
 # Import shared utilities
-from marvis.utils import (apply_feature_reduction, drop_feature_for_oom,
-                          is_oom_error)
+from marvis.utils import apply_feature_reduction, drop_feature_for_oom, is_oom_error
 from marvis.utils.task_detection import detect_task_type
 
 
@@ -1264,9 +1263,11 @@ def evaluate_jolt_official(dataset, args):
                     if is_regression:
                         # Calculate regression metrics
                         import numpy as np
-                        from sklearn.metrics import (mean_absolute_error,
-                                                     mean_squared_error,
-                                                     r2_score)
+                        from sklearn.metrics import (
+                            mean_absolute_error,
+                            mean_squared_error,
+                            r2_score,
+                        )
 
                         # Convert to numpy arrays for metric calculation
                         y_true = np.array(y_test_partial)
@@ -1304,8 +1305,9 @@ def evaluate_jolt_official(dataset, args):
 
                     else:
                         # Import shared metric calculation function for classification
-                        from marvis.utils.llm_evaluation_utils import \
-                            calculate_llm_metrics
+                        from marvis.utils.llm_evaluation_utils import (
+                            calculate_llm_metrics,
+                        )
 
                         # Convert JOLT probabilities to log probs format if available
                         all_class_log_probs = None

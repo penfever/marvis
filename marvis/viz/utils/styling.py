@@ -116,9 +116,7 @@ def create_distinct_color_map(
         class_color_map = {}
 
         # Map color names to RGB values
-        {
-            color_name: color_array for color_array, color_name in distinct_colors
-        }
+        {color_name: color_array for color_array, color_name in distinct_colors}
 
         for class_label in unique_classes:
             # Use cached color name if available

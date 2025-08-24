@@ -9,6 +9,7 @@ Based on the unified implementation in marvis.models.marvis_tsne
 
 import logging
 import os
+
 # Import MARVIS utilities
 import sys
 import time
@@ -22,23 +23,27 @@ sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
-from marvis.data.audio_embeddings import (get_clap_embeddings,
-                                          get_whisper_embeddings)
-from marvis.utils.audio_utils import (create_spectrogram, load_audio,
-                                      plot_spectrogram)
+from marvis.data.audio_embeddings import get_clap_embeddings, get_whisper_embeddings
+from marvis.utils.audio_utils import create_spectrogram, load_audio, plot_spectrogram
 from marvis.utils.device_utils import detect_optimal_device
 from marvis.utils.json_utils import convert_for_json_serialization
-from marvis.utils.vlm_prompting import (create_classification_prompt,
-                                        create_vlm_conversation,
-                                        parse_vlm_response)
-from marvis.viz.tsne_functions import (create_tsne_3d_visualization,
-                                       create_tsne_plot_with_knn,
-                                       create_tsne_visualization)
-from marvis.viz.utils.common import (close_figure_safely,
-                                     create_output_directories,
-                                     generate_visualization_filename,
-                                     plot_to_image,
-                                     save_visualization_with_metadata)
+from marvis.utils.vlm_prompting import (
+    create_classification_prompt,
+    create_vlm_conversation,
+    parse_vlm_response,
+)
+from marvis.viz.tsne_functions import (
+    create_tsne_3d_visualization,
+    create_tsne_plot_with_knn,
+    create_tsne_visualization,
+)
+from marvis.viz.utils.common import (
+    close_figure_safely,
+    create_output_directories,
+    generate_visualization_filename,
+    plot_to_image,
+    save_visualization_with_metadata,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -173,8 +178,7 @@ class MarvisAudioTsneClassifier:
         if class_names is None:
             # Use new utility to extract class names with semantic support
             unique_labels = np.unique(train_labels).tolist()
-            from marvis.utils.class_name_utils import \
-                extract_class_names_from_labels
+            from marvis.utils.class_name_utils import extract_class_names_from_labels
 
             self.class_names, _ = extract_class_names_from_labels(
                 labels=unique_labels,

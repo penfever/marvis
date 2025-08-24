@@ -11,8 +11,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 from sklearn.decomposition import PCA
-from sklearn.feature_selection import (SelectKBest, f_classif,
-                                       mutual_info_classif)
+from sklearn.feature_selection import SelectKBest, f_classif, mutual_info_classif
 from sklearn.preprocessing import StandardScaler
 
 from ..viz.base import VisualizationConfig

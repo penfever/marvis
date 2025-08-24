@@ -58,8 +58,7 @@ class QwenWithPrefixEmbedding(torch.nn.Module):
         # Check if accelerate is being used
         if hasattr(self.base_model, "_hf_hook"):
             try:
-                from accelerate.hooks import (AlignDevicesHook, CpuOffload,
-                                              ModelHook)
+                from accelerate.hooks import AlignDevicesHook, CpuOffload, ModelHook
 
                 # Get the hook from the base model
                 base_hook = self.base_model._hf_hook

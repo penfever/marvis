@@ -338,8 +338,7 @@ def test_marvis_audio_minimal():
         import shutil
         from pathlib import Path
 
-        from examples.audio.marvis_tsne_audio_baseline import \
-            MarvisAudioTsneClassifier
+        from examples.audio.marvis_tsne_audio_baseline import MarvisAudioTsneClassifier
 
         from marvis.utils.audio_utils import create_synthetic_audio
 

@@ -99,8 +99,7 @@ def load_pretrained_model(
     Raises:
         ValueError: If model loading fails with a clear error message
     """
-    from marvis.models import \
-        load_pretrained_model as core_load_pretrained_model
+    from marvis.models import load_pretrained_model as core_load_pretrained_model
 
     # First resolve the path to find the best checkpoint
     resolved_path = find_best_checkpoint(model_path)

@@ -454,9 +454,12 @@ def evaluate_llm_on_test_set(
 
     # Calculate per-class metrics if possible
     try:
-        from sklearn.metrics import (balanced_accuracy_score,
-                                     classification_report, confusion_matrix,
-                                     roc_auc_score)
+        from sklearn.metrics import (
+            balanced_accuracy_score,
+            classification_report,
+            confusion_matrix,
+            roc_auc_score,
+        )
 
         # Filter out "unknown" predictions (-1)
         valid_indices = [i for i, p in enumerate(predictions) if p != -1]

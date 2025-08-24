@@ -5,12 +5,21 @@ This module includes both standard embedding approaches and vector-quantized
 versions for improved efficiency and representation.
 """
 
-from .marvis_tsne import (MarvisAudioTsneClassifier, MarvisImageTsneClassifier,
-                          MarvisTsneClassifier)
-from .qwen_prefix import (QwenWithPrefixEmbedding, load_pretrained_model,
-                          prepare_qwen_with_prefix_embedding)
-from .vq import (QwenWithVQPrefixEmbedding, VectorQuantizer,
-                 prepare_qwen_with_vq_prefix_embedding)
+from .marvis_tsne import (
+    MarvisAudioTsneClassifier,
+    MarvisImageTsneClassifier,
+    MarvisTsneClassifier,
+)
+from .qwen_prefix import (
+    QwenWithPrefixEmbedding,
+    load_pretrained_model,
+    prepare_qwen_with_prefix_embedding,
+)
+from .vq import (
+    QwenWithVQPrefixEmbedding,
+    VectorQuantizer,
+    prepare_qwen_with_vq_prefix_embedding,
+)
 
 __all__ = [
     # Standard embedding models

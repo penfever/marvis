@@ -8,6 +8,7 @@ Includes:
 
 import logging
 import os
+
 # Add project root to path
 import sys
 import time
@@ -111,8 +112,7 @@ class WhisperKNNClassifier:
         if class_names is None:
             # Use new utility to extract class names with semantic support
             unique_labels = np.unique(train_labels).tolist()
-            from marvis.utils.class_name_utils import \
-                extract_class_names_from_labels
+            from marvis.utils.class_name_utils import extract_class_names_from_labels
 
             self.class_names, _ = extract_class_names_from_labels(
                 labels=unique_labels,
@@ -361,8 +361,7 @@ class CLAPZeroShotClassifier:
         if class_names is None:
             # Use new utility to extract class names with semantic support
             unique_labels = np.unique(train_labels).tolist()
-            from marvis.utils.class_name_utils import \
-                extract_class_names_from_labels
+            from marvis.utils.class_name_utils import extract_class_names_from_labels
 
             self.class_names, _ = extract_class_names_from_labels(
                 labels=unique_labels,
@@ -402,7 +401,6 @@ class CLAPZeroShotClassifier:
             raise ValueError("Classifier must be fitted before prediction")
 
         logger.info(f"Predicting labels for {len(test_paths)} audio files...")
-
 
         # Process in batches to avoid OOM
         all_predictions = []
@@ -456,7 +454,6 @@ class CLAPZeroShotClassifier:
             raise ValueError("Classifier must be fitted before prediction")
 
         logger.info(f"Computing probabilities for {len(test_paths)} audio files...")
-
 
         temperature = 0.07  # CLAP default temperature
 

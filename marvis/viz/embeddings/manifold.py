@@ -9,8 +9,7 @@ import logging
 from typing import Any, Dict
 
 import numpy as np
-from sklearn.manifold import (MDS, Isomap, LocallyLinearEmbedding,
-                              SpectralEmbedding)
+from sklearn.manifold import MDS, Isomap, LocallyLinearEmbedding, SpectralEmbedding
 
 from ..base import BaseVisualization, VisualizationResult
 

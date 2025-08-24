@@ -7,6 +7,7 @@ __version__ = "0.1.0"
 
 # Import main modules
 from . import data, models, train, utils, viz
+
 # Make submodules available directly
 from .data import create_llm_dataset, get_tabpfn_embeddings, load_dataset
 from .models import prepare_qwen_with_prefix_embedding

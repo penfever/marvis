@@ -13,8 +13,7 @@ import numpy as np
 from sklearn.manifold import TSNE
 
 from ..base import BaseVisualization, VisualizationConfig, VisualizationResult
-from ..utils.styling import (create_class_legend,
-                             extract_visible_classes_from_legend)
+from ..utils.styling import create_class_legend, extract_visible_classes_from_legend
 
 logger = logging.getLogger(__name__)
 

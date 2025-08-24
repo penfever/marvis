@@ -65,6 +65,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y ffmpeg portaudio19-dev
     
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+    
     - name: Install PyTorch with CUDA
       run: |
         python -m pip install --upgrade pip
@@ -91,7 +96,7 @@ jobs:
     
     - name: Run GPU unit tests
       run: |
-        pytest tests/unit/ \
+        uv run python -m pytest tests/unit/ \
           -v \
           --tb=short \
           -m "gpu" \
@@ -130,6 +135,11 @@ jobs:
         python-version: '3.11'
         cache: 'pip'
     
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+    
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -138,7 +148,7 @@ jobs:
     
     - name: Run GPU integration tests
       run: |
-        pytest tests/integration/ \
+        uv run python -m pytest tests/integration/ \
           -v \
           --tb=short \
           -m "gpu and not slow" \
@@ -176,6 +186,11 @@ jobs:
         python-version: '3.11'
         cache: 'pip'
     
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+    
     - name: Install VLLM and dependencies
       run: |
         python -m pip install --upgrade pip
@@ -185,7 +200,7 @@ jobs:
     
     - name: Test VLLM backend
       run: |
-        pytest tests/integration/ \
+        uv run python -m pytest tests/integration/ \
           -v \
           --tb=short \
           -m "gpu and vllm" \
@@ -221,6 +236,11 @@ jobs:
       with:
         python-version: '3.11'
     
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+    
     - name: Install LlamaCPP with CUDA
       run: |
         python -m pip install --upgrade pip
@@ -229,7 +249,7 @@ jobs:
     
     - name: Test LlamaCPP GPU integration
       run: |
-        pytest tests/integration/ \
+        uv run python -m pytest tests/integration/ \
           -v \
           --tb=short \
           -m "llamacpp and gpu" \
@@ -267,6 +287,11 @@ jobs:
         python-version: '3.11'
         cache: 'pip'
     
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+    
     - name: Install full dependencies
       run: |
         python -m pip install --upgrade pip
@@ -275,7 +300,7 @@ jobs:
     
     - name: Run E2E GPU tests
       run: |
-        pytest tests/e2e/ \
+        uv run python -m pytest tests/e2e/ \
           -v \
           --tb=short \
           -m "gpu and not manual" \

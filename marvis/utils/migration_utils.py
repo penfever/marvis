@@ -11,8 +11,7 @@ import shutil
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-from .resource_manager import (DatasetMetadata, ResourceManager,
-                               get_resource_manager)
+from .resource_manager import DatasetMetadata, ResourceManager, get_resource_manager
 
 logger = logging.getLogger(__name__)
 

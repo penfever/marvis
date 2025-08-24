@@ -12,10 +12,12 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 from marvis.utils.model_loader import GenerationConfig
-from marvis.utils.vlm_prompting import (create_classification_prompt,
-                                        create_regression_prompt,
-                                        create_vlm_conversation,
-                                        parse_vlm_response)
+from marvis.utils.vlm_prompting import (
+    create_classification_prompt,
+    create_regression_prompt,
+    create_vlm_conversation,
+    parse_vlm_response,
+)
 from marvis.viz.context.layouts import LayoutStrategy
 
 

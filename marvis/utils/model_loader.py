@@ -17,8 +17,12 @@ import torch
 
 # Standard imports
 try:
-    from transformers import (AutoModelForCausalLM, AutoModelForVision2Seq,
-                              AutoProcessor, AutoTokenizer)
+    from transformers import (
+        AutoModelForCausalLM,
+        AutoModelForVision2Seq,
+        AutoProcessor,
+        AutoTokenizer,
+    )
     from transformers.models.auto import AutoModelForCausalLM
 
     TRANSFORMERS_AVAILABLE = True

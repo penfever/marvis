@@ -36,6 +36,7 @@ import logging
 import os
 import random
 import subprocess
+
 # Import centralized argument parser
 import sys
 from datetime import datetime
@@ -51,7 +52,9 @@ sys.path.append(
 )
 from marvis.utils.evaluation_args import create_tabular_llm_evaluation_parser
 from marvis.utils.metadata_validation import (
-    generate_metadata_coverage_report, print_metadata_coverage_report)
+    generate_metadata_coverage_report,
+    print_metadata_coverage_report,
+)
 
 # Configure logging
 logging.basicConfig(

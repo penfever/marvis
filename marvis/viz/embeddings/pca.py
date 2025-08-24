@@ -13,9 +13,12 @@ import numpy as np
 from sklearn.decomposition import PCA
 
 from ..base import BaseVisualization, VisualizationResult
+
 # Import shared styling utilities
-from ..utils.styling import (apply_consistent_legend_formatting,
-                             create_distinct_color_map)
+from ..utils.styling import (
+    apply_consistent_legend_formatting,
+    create_distinct_color_map,
+)
 
 logger = logging.getLogger(__name__)
 

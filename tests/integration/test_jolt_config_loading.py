@@ -284,8 +284,9 @@ class JoltConfigLoadingTestSuite:
         try:
             # Test if we can import the synthesize module
             try:
-                from examples.tabular.llm_baselines.jolt.synthesize_jolt_data import \
-                    create_jolt_config_for_dataset
+                from examples.tabular.llm_baselines.jolt.synthesize_jolt_data import (
+                    create_jolt_config_for_dataset,
+                )
 
                 logger.info("✅ Successfully imported synthesize_jolt_data module")
             except ImportError as e:
@@ -355,9 +356,7 @@ class JoltConfigLoadingTestSuite:
             # Create a test config
             test_task_id = 50
             test_dataset_name = "end-to-end-test"
-            self.create_test_config(
-                test_task_id, test_dataset_name, config_dir
-            )
+            self.create_test_config(test_task_id, test_dataset_name, config_dir)
 
             # Mock dataset
             dataset = {"id": test_task_id, "name": test_dataset_name}

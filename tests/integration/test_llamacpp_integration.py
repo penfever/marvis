@@ -17,9 +17,13 @@ import pytest
 # Add MARVIS to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from marvis.utils.gguf_utils import (get_cache_path, is_gguf_url,
-                                     parse_gguf_url, suggest_gguf_files,
-                                     validate_gguf_file)
+from marvis.utils.gguf_utils import (
+    get_cache_path,
+    is_gguf_url,
+    parse_gguf_url,
+    suggest_gguf_files,
+    validate_gguf_file,
+)
 from marvis.utils.model_loader import LLAMACPP_AVAILABLE, ModelLoader
 
 

@@ -149,10 +149,12 @@ class ContextComposer:
     def _get_visualization_class(self, viz_type: str):
         """Get the visualization class for a given type string."""
         from ..decision.regions import DecisionRegionsVisualization
-        from ..embeddings.manifold import (IsomapVisualization,
-                                           LocallyLinearEmbeddingVisualization,
-                                           MDSVisualization,
-                                           SpectralEmbeddingVisualization)
+        from ..embeddings.manifold import (
+            IsomapVisualization,
+            LocallyLinearEmbeddingVisualization,
+            MDSVisualization,
+            SpectralEmbeddingVisualization,
+        )
         from ..embeddings.pca import PCAVisualization
         from ..embeddings.tsne import TSNEVisualization
         from ..embeddings.umap import UMAPVisualization
@@ -420,10 +422,8 @@ class ContextComposer:
                 )
 
         # Generate prompt using unified VLM prompting utilities
-        from marvis.utils.class_name_utils import \
-            normalize_class_names_to_class_num
-        from marvis.utils.vlm_prompting import \
-            create_comprehensive_multi_viz_prompt
+        from marvis.utils.class_name_utils import normalize_class_names_to_class_num
+        from marvis.utils.vlm_prompting import create_comprehensive_multi_viz_prompt
 
         # Prepare multi_viz_info for the unified utilities
         multi_viz_info = []

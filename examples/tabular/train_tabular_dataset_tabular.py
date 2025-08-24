@@ -34,18 +34,20 @@ import torch
 from sklearn.model_selection import train_test_split
 
 from marvis.data import create_llm_dataset, get_tabpfn_embeddings, load_dataset
-from marvis.models import (prepare_qwen_with_prefix_embedding,
-                           prepare_qwen_with_vq_prefix_embedding)
-from marvis.train import (evaluate_llm_on_test_set,
-                          train_llm_with_tabpfn_embeddings)
-from marvis.utils import (MetricsLogger, create_single_dataset_parser,
-                          setup_logging)
+from marvis.models import (
+    prepare_qwen_with_prefix_embedding,
+    prepare_qwen_with_vq_prefix_embedding,
+)
+from marvis.train import evaluate_llm_on_test_set, train_llm_with_tabpfn_embeddings
+from marvis.utils import MetricsLogger, create_single_dataset_parser, setup_logging
 
 # Import the evaluate_with_explanations function from evaluate_with_explanations script
 # We use a try-except to handle the case where the user might be running an older version
 try:
     from .evaluate_with_explanations_tabular import (
-        evaluate_with_explanations, get_explanation_prompt)
+        evaluate_with_explanations,
+        get_explanation_prompt,
+    )
 except ImportError:
     # If import fails, we'll provide a dummy implementation that logs the error
     import logging
@@ -69,8 +71,11 @@ except ImportError:
     WANDB_AVAILABLE = False
 
 # Import GPU monitoring utilities
-from marvis.utils import (GPUMonitor, cleanup_gpu_monitoring,
-                          init_wandb_with_gpu_monitoring)
+from marvis.utils import (
+    GPUMonitor,
+    cleanup_gpu_monitoring,
+    init_wandb_with_gpu_monitoring,
+)
 
 
 def parse_args():

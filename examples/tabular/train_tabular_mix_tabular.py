@@ -50,14 +50,20 @@ import pandas as pd
 import torch
 from sklearn.model_selection import train_test_split
 
-from marvis.data import (create_llm_dataset, find_csv_with_fallbacks,
-                         get_tabpfn_embeddings, list_available_datasets,
-                         load_csv_dataset, load_dataset,
-                         load_dataset_with_metadata)
-from marvis.models import (prepare_qwen_with_prefix_embedding,
-                           prepare_qwen_with_vq_prefix_embedding)
-from marvis.train import (evaluate_llm_on_test_set,
-                          train_llm_with_tabpfn_embeddings)
+from marvis.data import (
+    create_llm_dataset,
+    find_csv_with_fallbacks,
+    get_tabpfn_embeddings,
+    list_available_datasets,
+    load_csv_dataset,
+    load_dataset,
+    load_dataset_with_metadata,
+)
+from marvis.models import (
+    prepare_qwen_with_prefix_embedding,
+    prepare_qwen_with_vq_prefix_embedding,
+)
+from marvis.train import evaluate_llm_on_test_set, train_llm_with_tabpfn_embeddings
 from marvis.utils import create_multi_dataset_parser, setup_logging
 
 # Import wandb conditionally to avoid dependency issues if not installed
@@ -69,8 +75,11 @@ except ImportError:
     WANDB_AVAILABLE = False
 
 # Import GPU monitoring utilities
-from marvis.utils import (GPUMonitor, cleanup_gpu_monitoring,
-                          init_wandb_with_gpu_monitoring)
+from marvis.utils import (
+    GPUMonitor,
+    cleanup_gpu_monitoring,
+    init_wandb_with_gpu_monitoring,
+)
 
 # Constants for data validation
 MIN_SAMPLES_PER_CLASS = 2
@@ -91,9 +100,12 @@ def create_scheduler(optimizer, scheduler_type, num_training_steps, args):
         A tuple of (scheduler, num_warmup_steps) where scheduler is a PyTorch scheduler
         and num_warmup_steps is the number of warmup steps (for logging)
     """
-    from torch.optim.lr_scheduler import (CosineAnnealingLR,
-                                          CosineAnnealingWarmRestarts,
-                                          ExponentialLR, LambdaLR)
+    from torch.optim.lr_scheduler import (
+        CosineAnnealingLR,
+        CosineAnnealingWarmRestarts,
+        ExponentialLR,
+        LambdaLR,
+    )
 
     # Calculate warmup steps
     if args.lr_warmup_ratio > 0:
@@ -1428,8 +1440,7 @@ def process_dataset(dataset: Dict[str, Any], args) -> Dict[str, Any]:
                                         f"Cached embeddings size ({train_embeddings.shape[1]}) doesn't match requested size ({args.embedding_size}). Resizing..."
                                     )
                                     # Resize them
-                                    from marvis.data.embeddings import \
-                                        resize_embeddings
+                                    from marvis.data.embeddings import resize_embeddings
 
                                     (
                                         train_embeddings,

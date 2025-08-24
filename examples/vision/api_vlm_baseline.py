@@ -22,9 +22,11 @@ sys.path.append(
 )
 
 from marvis.utils.model_loader import GenerationConfig, model_loader
-from marvis.utils.vlm_prompting import (create_direct_classification_prompt,
-                                        create_vlm_conversation,
-                                        parse_vlm_response)
+from marvis.utils.vlm_prompting import (
+    create_direct_classification_prompt,
+    create_vlm_conversation,
+    parse_vlm_response,
+)
 
 logger = logging.getLogger(__name__)
 

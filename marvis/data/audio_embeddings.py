@@ -47,8 +47,7 @@ def load_whisper_model(
         logger.info(f"Loading Whisper model: {model_name}")
 
         # Determine device using centralized utility
-        from ..utils.device_utils import (configure_device_for_model,
-                                          log_device_usage)
+        from ..utils.device_utils import configure_device_for_model, log_device_usage
 
         device, _ = configure_device_for_model("whisper", device)
         log_device_usage(f"Whisper {model_name}", device)
@@ -277,8 +276,7 @@ def load_clap_model(version: str = "2023", use_cuda: Optional[bool] = None) -> A
         logger.info(f"Loading CLAP model version: {version}")
 
         # Auto-detect device if not specified
-        from ..utils.device_utils import (detect_optimal_device,
-                                          log_device_usage)
+        from ..utils.device_utils import detect_optimal_device, log_device_usage
 
         if use_cuda is None:
             device = detect_optimal_device()

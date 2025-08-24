@@ -55,6 +55,7 @@ from examples.vision.simple_marvis_baseline import SimpleMarvisImageClassifier
 from marvis.models.marvis_tsne import MarvisImageTsneClassifier
 from marvis.utils import cleanup_gpu_monitoring, init_wandb_with_gpu_monitoring
 from marvis.utils.device_utils import log_platform_info
+
 # Import centralized argument parser
 from marvis.utils.evaluation_args import create_vision_evaluation_parser
 from marvis.utils.json_utils import convert_for_json_serialization

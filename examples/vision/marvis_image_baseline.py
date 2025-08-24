@@ -4,6 +4,7 @@ MARVIS t-SNE baseline for image classification using DINOV2 embeddings.
 
 import logging
 import os
+
 # Import MARVIS utilities
 import sys
 import time
@@ -13,8 +14,7 @@ import numpy as np
 import torch
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
-from sklearn.metrics import (accuracy_score, classification_report,
-                             confusion_matrix)
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 

@@ -14,17 +14,21 @@ import numpy as np
 from sklearn.manifold import TSNE
 
 # Import shared styling utilities
-from .utils.styling import (apply_consistent_legend_formatting,
-                            apply_consistent_point_styling,
-                            create_distinct_color_map,
-                            create_regression_color_map,
-                            get_standard_target_point_style,
-                            get_standard_test_point_style)
+from .utils.styling import (
+    apply_consistent_legend_formatting,
+    apply_consistent_point_styling,
+    create_distinct_color_map,
+    create_regression_color_map,
+    get_standard_target_point_style,
+    get_standard_test_point_style,
+)
 
 # Import semantic axes utilities
 try:
-    from ..utils.semantic_axes import (create_bottom_legend_text,
-                                       create_compact_axis_labels)
+    from ..utils.semantic_axes import (
+        create_bottom_legend_text,
+        create_compact_axis_labels,
+    )
 except ImportError:
     # Fallback for cases where semantic_axes is not available
     def create_compact_axis_labels(semantic_axes, **kwargs):

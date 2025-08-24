@@ -66,8 +66,10 @@ class GeminiVLMBaseline(APIVLMBaseline):
 
         from marvis.utils.model_loader import GenerationConfig
         from marvis.utils.vlm_prompting import (
-            create_direct_classification_prompt, create_vlm_conversation,
-            parse_vlm_response)
+            create_direct_classification_prompt,
+            create_vlm_conversation,
+            parse_vlm_response,
+        )
 
         # Create direct image classification prompt using centralized function
         prompt_text = create_direct_classification_prompt(

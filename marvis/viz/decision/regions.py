@@ -19,9 +19,12 @@ except ImportError:
     MLXTEND_AVAILABLE = False
 
 from ..base import BaseVisualization, VisualizationResult
+
 # Import shared styling utilities
-from ..utils.styling import (get_standard_target_point_style,
-                             get_standard_test_point_style)
+from ..utils.styling import (
+    get_standard_target_point_style,
+    get_standard_test_point_style,
+)
 
 logger = logging.getLogger(__name__)
 

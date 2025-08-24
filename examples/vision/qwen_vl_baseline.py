@@ -20,9 +20,11 @@ sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
-from marvis.utils.vlm_prompting import (create_direct_classification_prompt,
-                                        create_vlm_conversation,
-                                        parse_vlm_response)
+from marvis.utils.vlm_prompting import (
+    create_direct_classification_prompt,
+    create_vlm_conversation,
+    parse_vlm_response,
+)
 
 logger = logging.getLogger(__name__)
 

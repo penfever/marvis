@@ -328,9 +328,11 @@ def apply_feature_reduction(
         # Use a simple tokenizer for estimation
         from transformers import AutoTokenizer
 
-        from .feature_selection_utils import (create_reduced_dataset,
-                                              select_features_for_token_limit,
-                                              test_feature_selection)
+        from .feature_selection_utils import (
+            create_reduced_dataset,
+            select_features_for_token_limit,
+            test_feature_selection,
+        )
 
         try:
             tokenizer_temp = AutoTokenizer.from_pretrained(
@@ -1209,10 +1211,17 @@ def calculate_llm_metrics(
     import math
 
     import numpy as np
-    from sklearn.metrics import (accuracy_score, balanced_accuracy_score,
-                                 f1_score, mean_absolute_error,
-                                 mean_squared_error, precision_score, r2_score,
-                                 recall_score, roc_auc_score)
+    from sklearn.metrics import (
+        accuracy_score,
+        balanced_accuracy_score,
+        f1_score,
+        mean_absolute_error,
+        mean_squared_error,
+        precision_score,
+        r2_score,
+        recall_score,
+        roc_auc_score,
+    )
 
     if logger is None:
         import logging

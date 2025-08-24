@@ -6,7 +6,7 @@ import hashlib
 import json
 import logging
 import os
-from typing import Any, Callable, List, Optional, Tuple
+from typing import Any, Callable, Optional, Tuple
 
 import numpy as np
 import torch
@@ -758,9 +758,11 @@ def load_dinov2_model(
     Returns:
         Loaded DINOV2 model
     """
-    from ..utils.device_utils import (configure_device_for_model,
-                                      log_device_usage,
-                                      setup_device_environment)
+    from ..utils.device_utils import (
+        configure_device_for_model,
+        log_device_usage,
+        setup_device_environment,
+    )
 
     # Configure device for DINOV2
     device, _ = configure_device_for_model("dinov2", device)
@@ -799,17 +801,19 @@ def prepare_image_for_dinov2(image_input, size: int = 224) -> torch.Tensor:
             "Vision dependencies (torchvision, PIL) are required for DINOV2 image processing. "
             "Install them with 'pip install marvis[vision]'."
         ) from e
-    
+
     # Define the transforms (same as used in DINOV2 training)
-    transform = transforms.Compose([
-        transforms.Resize((size, size)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    ])
-    
+    transform = transforms.Compose(
+        [
+            transforms.Resize((size, size)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+        ]
+    )
+
     # Normalize input to PIL Image
     image = normalize_image_input(image_input)
-    
+
     # Apply transforms
     image_tensor = transform(image).unsqueeze(0)  # Add batch dimension
 
@@ -827,31 +831,31 @@ def get_dinov2_embeddings(
     device: Optional[str] = None,
 ) -> np.ndarray:
     """
-<<<<<<< HEAD
-    Extract DINOV2 embeddings from a list of image paths.
+    <<<<<<< HEAD
+        Extract DINOV2 embeddings from a list of image paths.
 
-=======
-    Extract DINOV2 embeddings from image inputs.
-    
->>>>>>> origin/main
-    Args:
-        image_inputs: Can be:
-            - List[str]: List of paths to image files
-            - np.ndarray: Array of image data (shape: [n_images, ...])
-            - List of mixed types (str, np.ndarray, PIL.Image)
-        model_name: DINOV2 model variant to use
-        embedding_size: Target size for output embeddings (will resize if needed)
-        cache_dir: Directory to store cached embeddings
-        dataset_name: Name for caching purposes
-        force_recompute: Whether to ignore cache and recompute
-        batch_size: Number of images to process at once
-        device: Device to run inference on
+    =======
+        Extract DINOV2 embeddings from image inputs.
 
-    Returns:
-        embeddings: Array of shape [n_images, embedding_size]
+    >>>>>>> origin/main
+        Args:
+            image_inputs: Can be:
+                - List[str]: List of paths to image files
+                - np.ndarray: Array of image data (shape: [n_images, ...])
+                - List of mixed types (str, np.ndarray, PIL.Image)
+            model_name: DINOV2 model variant to use
+            embedding_size: Target size for output embeddings (will resize if needed)
+            cache_dir: Directory to store cached embeddings
+            dataset_name: Name for caching purposes
+            force_recompute: Whether to ignore cache and recompute
+            batch_size: Number of images to process at once
+            device: Device to run inference on
+
+        Returns:
+            embeddings: Array of shape [n_images, embedding_size]
     """
     from ..utils.device_utils import configure_device_for_model, log_device_usage
-    
+
     # Normalize image inputs to a consistent format
     if isinstance(image_inputs, np.ndarray):
         # Handle numpy array input (e.g., sklearn datasets)
@@ -867,7 +871,7 @@ def get_dinov2_embeddings(
     else:
         # Single image input
         image_list = [image_inputs]
-    
+
     # Configure device and batch size for DINOV2
     device, batch_size = configure_device_for_model("dinov2", device, batch_size)
     log_device_usage(
@@ -882,13 +886,13 @@ def get_dinov2_embeddings(
         if isinstance(image_inputs, np.ndarray):
             input_str = f"shape_{image_inputs.shape}_dtype_{image_inputs.dtype}_hash_{hash(image_inputs.tobytes())}"
         elif all(isinstance(x, str) for x in image_list):
-            input_str = ''.join(sorted(image_list))
+            input_str = "".join(sorted(image_list))
         else:
             # Mixed inputs, create a basic identifier
             input_str = f"mixed_inputs_count_{len(image_list)}"
-        
+
         paths_hash = hashlib.md5(input_str.encode()).hexdigest()[:10]
-        
+
         os.makedirs(cache_dir, exist_ok=True)
         cache_file = os.path.join(
             cache_dir, f"{dataset_name}_dinov2_{model_name}_{paths_hash}.npz"
@@ -917,14 +921,18 @@ def get_dinov2_embeddings(
     model = load_dinov2_model(model_name, device)
 
     # Process images in batches
-    logger.info(f"Extracting DINOV2 embeddings for {len(image_list)} images using {model_name}")
+    logger.info(
+        f"Extracting DINOV2 embeddings for {len(image_list)} images using {model_name}"
+    )
     all_embeddings = []
-    
+
     for i in range(0, len(image_list), batch_size):
-        batch_images = image_list[i:i+batch_size]
+        batch_images = image_list[i : i + batch_size]
         if i % 20 == 0:
-            logger.info(f"Processing batch {i//batch_size + 1}/{(len(image_list) + batch_size - 1)//batch_size}")
-        
+            logger.info(
+                f"Processing batch {i//batch_size + 1}/{(len(image_list) + batch_size - 1)//batch_size}"
+            )
+
         # Prepare batch
         batch_tensors = []
         for j, img_input in enumerate(batch_images):
@@ -932,8 +940,12 @@ def get_dinov2_embeddings(
                 img_tensor = prepare_image_for_dinov2(img_input)
                 batch_tensors.append(img_tensor)
             except Exception as e:
-                img_desc = f"item {i+j}" if not isinstance(img_input, str) else img_input
-                logger.warning(f"Failed to load image {img_desc}: {e}. Using zero tensor.")
+                img_desc = (
+                    f"item {i+j}" if not isinstance(img_input, str) else img_input
+                )
+                logger.warning(
+                    f"Failed to load image {img_desc}: {e}. Using zero tensor."
+                )
                 # Create a zero tensor as fallback
                 batch_tensors.append(torch.zeros(1, 3, 224, 224))
 

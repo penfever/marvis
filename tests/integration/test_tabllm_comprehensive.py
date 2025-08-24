@@ -68,8 +68,9 @@ def test_task_id_resolution():
     logging.getLogger("marvis.utils.model_loader").setLevel(logging.WARNING)
     logging.getLogger("transformers").setLevel(logging.WARNING)
 
-    from examples.tabular.llm_baselines.tabllm_baseline import \
-        load_tabllm_config_by_openml_id
+    from examples.tabular.llm_baselines.tabllm_baseline import (
+        load_tabllm_config_by_openml_id,
+    )
 
     # Test cases: (input_id, expected_behavior, description)
     test_cases = [
@@ -114,8 +115,7 @@ def test_semantic_feature_expansion():
     """Test semantic feature expansion functionality."""
     logger.info("\n=== Testing Semantic Feature Expansion ===")
 
-    from examples.tabular.llm_baselines.tabllm_baseline import \
-        expand_semantic_features
+    from examples.tabular.llm_baselines.tabllm_baseline import expand_semantic_features
 
     # Test semantic info with 'columns' structure
     test_semantic_info = {
@@ -223,7 +223,9 @@ def test_semantic_feature_alignment():
 
     import pandas as pd
     from examples.tabular.llm_baselines.tabllm_baseline import (
-        expand_semantic_features, generate_note_from_row)
+        expand_semantic_features,
+        generate_note_from_row,
+    )
 
     # Simulate feature subselection scenario
     [f"original_feature_{i}" for i in range(10)]
@@ -300,7 +302,9 @@ def test_online_note_generation():
     logger.info("\n=== Testing Online Note Generation ===")
 
     from examples.tabular.llm_baselines.tabllm_baseline import (
-        expand_semantic_features, generate_note_from_row)
+        expand_semantic_features,
+        generate_note_from_row,
+    )
 
     # Create test semantic info
     semantic_info = {
@@ -370,8 +374,10 @@ def test_context_aware_truncation():
     logger.info("\n=== Testing Context-Aware Truncation ===")
 
     from examples.tabular.llm_baselines.tabllm_baseline import (
-        estimate_note_tokens, estimate_prompt_tokens,
-        truncate_few_shot_examples_for_context)
+        estimate_note_tokens,
+        estimate_prompt_tokens,
+        truncate_few_shot_examples_for_context,
+    )
 
     # Create mock tokenizer
     class MockTokenizer:
@@ -445,7 +451,9 @@ def test_tabllm_pipeline_with_mocked_llm():
 
     import pandas as pd
     from examples.tabular.llm_baselines.tabllm_baseline import (
-        expand_semantic_features, generate_note_from_row)
+        expand_semantic_features,
+        generate_note_from_row,
+    )
 
     # Create test dataset with feature subselection scenario
     test_dataset = {
@@ -714,7 +722,9 @@ def test_semantic_content_validation():
     from collections import Counter
 
     from examples.tabular.llm_baselines.tabllm_baseline import (
-        generate_note_from_row, load_tabllm_config_by_openml_id)
+        generate_note_from_row,
+        load_tabllm_config_by_openml_id,
+    )
 
     from marvis.data.dataset import get_dataset_info, load_dataset
 
@@ -1027,8 +1037,10 @@ def test_real_cc18_semantic_data():
 
     import pandas as pd
     from examples.tabular.llm_baselines.tabllm_baseline import (
-        expand_semantic_features, generate_note_from_row,
-        load_tabllm_config_by_openml_id)
+        expand_semantic_features,
+        generate_note_from_row,
+        load_tabllm_config_by_openml_id,
+    )
 
     # Load real CC18 semantic data for task 23 (cmc dataset)
     try:
@@ -1201,8 +1213,10 @@ def test_balance_scale_empty_notes_bug():
 
     import pandas as pd
     from examples.tabular.llm_baselines.tabllm_baseline import (
-        expand_semantic_features, generate_note_from_row,
-        load_tabllm_config_by_openml_id)
+        expand_semantic_features,
+        generate_note_from_row,
+        load_tabllm_config_by_openml_id,
+    )
 
     # Test the exact scenario that was failing before the fix
     try:
@@ -1361,8 +1375,9 @@ def test_note_inspection_system():
     """Test the note inspection file saving system."""
     logger.info("\n=== Testing Note Inspection System ===")
 
-    from examples.tabular.llm_baselines.tabllm_baseline import \
-        save_sample_notes_for_inspection
+    from examples.tabular.llm_baselines.tabllm_baseline import (
+        save_sample_notes_for_inspection,
+    )
 
     # Create test data
     few_shot_examples = [

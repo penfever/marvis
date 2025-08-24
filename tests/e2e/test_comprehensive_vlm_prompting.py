@@ -28,24 +28,33 @@ project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 from sklearn.datasets import fetch_openml
-from sklearn.metrics import (accuracy_score, balanced_accuracy_score,
-                             confusion_matrix, mean_absolute_error,
-                             mean_squared_error,
-                             precision_recall_fscore_support)
+from sklearn.metrics import (
+    accuracy_score,
+    balanced_accuracy_score,
+    confusion_matrix,
+    mean_absolute_error,
+    mean_squared_error,
+    precision_recall_fscore_support,
+)
 from sklearn.model_selection import train_test_split
 
 from marvis.models.marvis_tsne import MarvisTsneClassifier
 from marvis.utils.json_utils import safe_json_dump
-from marvis.utils.task_detection import (AUDIO_CLASSIFICATION_TASK_ID,
-                                         VISION_CLASSIFICATION_TASK_ID,
-                                         detect_task_type)
+from marvis.utils.task_detection import (
+    AUDIO_CLASSIFICATION_TASK_ID,
+    VISION_CLASSIFICATION_TASK_ID,
+    detect_task_type,
+)
 from marvis.utils.unified_metrics import MetricsLogger
 from marvis.utils.vlm_prompting import create_regression_prompt
 
 # Audio/Vision dataset imports
 try:
-    from examples.audio.audio_datasets import (ESC50Dataset, RAVDESSDataset,
-                                               UrbanSound8KDataset)
+    from examples.audio.audio_datasets import (
+        ESC50Dataset,
+        RAVDESSDataset,
+        UrbanSound8KDataset,
+    )
 
     AUDIO_AVAILABLE = True
 except ImportError:
@@ -1439,8 +1448,9 @@ class VLMPromptingTestSuite:
                                     }
                                 )
 
-                        from marvis.utils.vlm_prompting import \
-                            create_classification_prompt
+                        from marvis.utils.vlm_prompting import (
+                            create_classification_prompt,
+                        )
 
                         # Use semantic class names if available, otherwise generic ones
                         if self.task_type == "classification":
@@ -1469,8 +1479,9 @@ class VLMPromptingTestSuite:
                             )
                     else:
                         # Single viz prompt
-                        from marvis.utils.vlm_prompting import \
-                            create_classification_prompt
+                        from marvis.utils.vlm_prompting import (
+                            create_classification_prompt,
+                        )
 
                         # Use semantic class names if available, otherwise generic ones
                         if self.task_type == "classification":
@@ -1534,8 +1545,9 @@ class VLMPromptingTestSuite:
                         ]
 
                     if self.task_type == "classification":
-                        from marvis.utils.vlm_prompting import \
-                            create_classification_prompt
+                        from marvis.utils.vlm_prompting import (
+                            create_classification_prompt,
+                        )
 
                         sample_prompt = create_classification_prompt(
                             class_names=fallback_class_names,
@@ -1544,8 +1556,7 @@ class VLMPromptingTestSuite:
                             use_semantic_names=config.get("use_semantic_names", False),
                         )
                     else:  # regression
-                        from marvis.utils.vlm_prompting import \
-                            create_regression_prompt
+                        from marvis.utils.vlm_prompting import create_regression_prompt
 
                         sample_prompt = create_regression_prompt(
                             modality=self.modality,

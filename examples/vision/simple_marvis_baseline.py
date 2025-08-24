@@ -6,6 +6,7 @@ This version skips t-SNE due to numerical instability and uses embeddings direct
 
 import logging
 import os
+
 # Import MARVIS utilities
 import sys
 import time
@@ -14,8 +15,7 @@ from typing import Any, Dict, List, Optional
 import numpy as np
 import torch
 from sklearn.decomposition import PCA
-from sklearn.metrics import (accuracy_score, classification_report,
-                             confusion_matrix)
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 

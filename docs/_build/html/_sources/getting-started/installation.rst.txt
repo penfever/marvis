@@ -6,7 +6,7 @@ This guide covers the installation of MARVIS and its dependencies for different 
 Requirements
 ------------
 
-**Python Version**: 3.8 or higher (3.9+ recommended)
+**Python Version**: 3.11 or higher
 
 **System Requirements**:
 
@@ -151,7 +151,7 @@ To build documentation locally:
 
 .. code-block:: bash
 
-   pip install -r docs/requirements.txt
+   pip install -e ".[docs]"
 
 Verification
 ------------

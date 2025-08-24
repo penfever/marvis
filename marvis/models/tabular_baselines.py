@@ -12,10 +12,16 @@ from typing import Any, Dict, Optional, Tuple
 
 import numpy as np
 import torch
-from sklearn.metrics import (accuracy_score, balanced_accuracy_score,
-                             classification_report, confusion_matrix,
-                             mean_absolute_error, mean_squared_error, r2_score,
-                             roc_auc_score)
+from sklearn.metrics import (
+    accuracy_score,
+    balanced_accuracy_score,
+    classification_report,
+    confusion_matrix,
+    mean_absolute_error,
+    mean_squared_error,
+    r2_score,
+    roc_auc_score,
+)
 
 from marvis.data import create_llm_dataset
 from marvis.train import evaluate_llm_on_test_set
@@ -327,11 +333,9 @@ def create_and_evaluate_baseline_model(
 
     elif model_name == "random_forest":
         if dataset["is_classification"]:
-            from sklearn.ensemble import \
-                RandomForestClassifier as RandomForestModel
+            from sklearn.ensemble import RandomForestClassifier as RandomForestModel
         else:
-            from sklearn.ensemble import \
-                RandomForestRegressor as RandomForestModel
+            from sklearn.ensemble import RandomForestRegressor as RandomForestModel
 
         task_type = "classification" if dataset["is_classification"] else "regression"
         logger.info(f"Using Random Forest for {task_type}")
@@ -347,13 +351,15 @@ def create_and_evaluate_baseline_model(
 
     elif model_name == "gradient_boosting":
         if dataset["is_classification"]:
-            from sklearn.ensemble import \
-                GradientBoostingClassifier as GradientBoostingModel
+            from sklearn.ensemble import (
+                GradientBoostingClassifier as GradientBoostingModel,
+            )
             from sklearn.feature_selection import SelectKBest
             from sklearn.feature_selection import f_classif as score_func
         else:
-            from sklearn.ensemble import \
-                GradientBoostingRegressor as GradientBoostingModel
+            from sklearn.ensemble import (
+                GradientBoostingRegressor as GradientBoostingModel,
+            )
             from sklearn.feature_selection import SelectKBest
             from sklearn.feature_selection import f_regression as score_func
 

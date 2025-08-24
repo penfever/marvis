@@ -5,16 +5,26 @@ This module provides common functionality for saving and processing
 visualizations across different MARVIS implementations.
 """
 
-from .common import (close_figure_safely, create_output_directories,
-                     generate_visualization_filename, plot_to_image,
-                     save_visualization_with_metadata)
-from .styling import (apply_consistent_legend_formatting,
-                      apply_consistent_point_styling, create_class_legend,
-                      create_distinct_color_map, create_regression_color_map,
-                      format_class_label, get_class_color_name_map,
-                      get_distinct_colors, get_standard_target_point_style,
-                      get_standard_test_point_style,
-                      get_standard_training_point_style)
+from .common import (
+    close_figure_safely,
+    create_output_directories,
+    generate_visualization_filename,
+    plot_to_image,
+    save_visualization_with_metadata,
+)
+from .styling import (
+    apply_consistent_legend_formatting,
+    apply_consistent_point_styling,
+    create_class_legend,
+    create_distinct_color_map,
+    create_regression_color_map,
+    format_class_label,
+    get_class_color_name_map,
+    get_distinct_colors,
+    get_standard_target_point_style,
+    get_standard_test_point_style,
+    get_standard_training_point_style,
+)
 
 __all__ = [
     # Common utilities

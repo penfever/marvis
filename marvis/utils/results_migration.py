@@ -18,8 +18,12 @@ import logging
 from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
 
-from .results_manager import (EvaluationResults, ExperimentMetadata,
-                              ResultsArtifacts, get_results_manager)
+from .results_manager import (
+    EvaluationResults,
+    ExperimentMetadata,
+    ResultsArtifacts,
+    get_results_manager,
+)
 
 logger = logging.getLogger(__name__)
 

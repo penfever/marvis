@@ -17,8 +17,7 @@ import numpy as np
 
 from ..base import VisualizationConfig, VisualizationResult
 from ..mixins.knn import BaseKNNVisualization
-from ..utils.styling import (apply_consistent_point_styling,
-                             create_distinct_color_map)
+from ..utils.styling import apply_consistent_point_styling, create_distinct_color_map
 from .base import BaseTSNEVisualization
 
 logger = logging.getLogger(__name__)

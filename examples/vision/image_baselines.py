@@ -14,8 +14,7 @@ import torchvision.models as models
 from examples.vision.image_utils import extract_features_from_loader
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import (accuracy_score, classification_report,
-                             confusion_matrix)
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.preprocessing import StandardScaler
 from torch.utils.data import DataLoader
 

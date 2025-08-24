@@ -1022,8 +1022,7 @@ class MarvisResourceManager:
         # If we have task_id, prioritize OpenML API resolution
         if task_id:
             # Try OpenML API first for accurate resolution
-            from marvis.utils.openml_mapping import \
-                resolve_task_id_from_openml_api
+            from marvis.utils.openml_mapping import resolve_task_id_from_openml_api
 
             api_result = resolve_task_id_from_openml_api(task_id)
             if api_result:
@@ -1680,8 +1679,10 @@ class DatasetPreparer:
             try:
                 import numpy as np
 
-                from marvis.viz.utils.styling import (get_class_color_name_map,
-                                                      get_color_to_class_map)
+                from marvis.viz.utils.styling import (
+                    get_class_color_name_map,
+                    get_color_to_class_map,
+                )
 
                 unique_classes_array = np.array(unique_classes)
                 class_to_color = get_class_color_name_map(unique_classes_array)
@@ -1715,8 +1716,10 @@ class DatasetPreparer:
             # Convert to numpy array for consistent handling
             import numpy as np
 
-            from marvis.viz.utils.styling import (get_class_color_name_map,
-                                                  get_color_to_class_map)
+            from marvis.viz.utils.styling import (
+                get_class_color_name_map,
+                get_color_to_class_map,
+            )
 
             unique_classes_array = np.array(unique_classes)
 

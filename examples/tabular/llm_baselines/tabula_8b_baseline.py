@@ -23,8 +23,7 @@ def evaluate_tabula_8b(dataset, args):
     logger.info(f"Evaluating Tabula-8B on dataset {dataset['name']}")
 
     # Import required utilities
-    from marvis.utils import (apply_feature_reduction, drop_feature_for_oom,
-                              is_oom_error)
+    from marvis.utils import apply_feature_reduction, drop_feature_for_oom, is_oom_error
 
     # Save original CUDA device setting
 
@@ -58,8 +57,7 @@ def evaluate_tabula_8b(dataset, args):
 
             logger.debug(f"Successfully imported rtfm from: {rtfm.__file__}")
 
-            from rtfm.configs import (SerializerConfig, TokenizerConfig,
-                                      TrainConfig)
+            from rtfm.configs import SerializerConfig, TokenizerConfig, TrainConfig
             from rtfm.inference_utils import InferenceModel
             from rtfm.serialization.serializers import get_serializer
             from rtfm.tokenization.text import prepare_tokenizer
@@ -77,9 +75,7 @@ def evaluate_tabula_8b(dataset, args):
                 import pkg_resources
 
                 installed_packages = [d.project_name for d in pkg_resources.working_set]
-                any(
-                    "rtfm" in pkg.lower() for pkg in installed_packages
-                )
+                any("rtfm" in pkg.lower() for pkg in installed_packages)
                 logger.error(
                     f"RTFM-related packages found: {[pkg for pkg in installed_packages if 'rtfm' in pkg.lower()]}"
                 )
@@ -179,8 +175,7 @@ def evaluate_tabula_8b(dataset, args):
                     serializer = get_serializer(serializer_config)
                 else:
                     # If all else fails, import and instantiate directly
-                    from rtfm.serialization.serializers import \
-                        DefaultSerializer
+                    from rtfm.serialization.serializers import DefaultSerializer
 
                     serializer = DefaultSerializer()
         except Exception as e:

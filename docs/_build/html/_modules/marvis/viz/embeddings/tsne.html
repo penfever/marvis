@@ -112,21 +112,15 @@
 <span class="sd">the existing t-SNE functions for use with multi-visualization contexts.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.manifold</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSNE</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseVisualization</span><span class="p">,</span> <span class="n">VisualizationResult</span><span class="p">,</span> <span class="n">VisualizationConfig</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..tsne_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_tsne_visualization</span>
 
-<span class="c1"># Import shared styling utilities  </span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.styling</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">apply_consistent_point_styling</span><span class="p">,</span>
-    <span class="n">apply_consistent_legend_formatting</span><span class="p">,</span>
-    <span class="n">create_distinct_color_map</span><span class="p">,</span>
-    <span class="n">create_regression_color_map</span>
-<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseVisualization</span><span class="p">,</span> <span class="n">VisualizationResult</span>
+
+<span class="c1"># Import shared styling utilities</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -136,49 +130,49 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">TSNEVisualization</span><span class="p">(</span><span class="n">BaseVisualization</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    t-SNE visualization wrapper for multi-visualization contexts.</span>
-<span class="sd">    </span>
+
 <span class="sd">    This wraps the existing MARVIS t-SNE functions to be compatible with</span>
 <span class="sd">    the BaseVisualization interface while preserving all the specialized</span>
 <span class="sd">    functionality of the original implementation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;t-SNE&quot;</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">supports_3d</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">supports_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">supports_new_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># t-SNE requires joint fitting of train+test data</span>
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_create_transformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create t-SNE transformer.&quot;&quot;&quot;</span>
-        
+
         <span class="c1"># Set default parameters optimized for visualization</span>
         <span class="n">tsne_params</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;n_components&#39;</span><span class="p">:</span> <span class="mi">3</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="mi">2</span><span class="p">,</span>
-            <span class="s1">&#39;perplexity&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;perplexity&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
-            <span class="s1">&#39;max_iter&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_iter&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
-            <span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
-            <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;auto&#39;</span><span class="p">),</span>
-            <span class="s1">&#39;init&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;init&#39;</span><span class="p">,</span> <span class="s1">&#39;pca&#39;</span><span class="p">),</span>
-            <span class="s1">&#39;metric&#39;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;metric&#39;</span><span class="p">,</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+            <span class="s2">&quot;n_components&quot;</span><span class="p">:</span> <span class="mi">3</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s2">&quot;perplexity&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;perplexity&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+            <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max_iter&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+            <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="s2">&quot;auto&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;init&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">,</span> <span class="s2">&quot;pca&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metric&quot;</span><span class="p">,</span> <span class="s2">&quot;euclidean&quot;</span><span class="p">),</span>
         <span class="p">}</span>
-        
+
         <span class="c1"># Remove any None values</span>
         <span class="n">tsne_params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tsne_params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating t-SNE with params: </span><span class="si">{</span><span class="n">tsne_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">TSNE</span><span class="p">(</span><span class="o">**</span><span class="n">tsne_params</span><span class="p">)</span>
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_default_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n_features</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get default description for t-SNE.&quot;&quot;&quot;</span>
         <span class="n">dims</span> <span class="o">=</span> <span class="s2">&quot;3D&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_3d</span> <span class="k">else</span> <span class="s2">&quot;2D&quot;</span>
@@ -186,44 +180,46 @@
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dims</span><span class="si">}</span><span class="s2"> t-SNE visualization of </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2"> samples with </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2"> features. &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;t-SNE preserves local neighborhood structure and reveals clusters.&quot;</span>
         <span class="p">)</span>
-    
+
 <div class="viewcode-block" id="TSNEVisualization.fit_transform">
 <a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.embeddings.tsne.TSNEVisualization.fit_transform">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fit t-SNE and transform data.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Note: For MARVIS compatibility, this is designed to work with combined</span>
 <span class="sd">        train+test data since t-SNE needs to fit all data jointly.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-        
-        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-        
+
+        <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
         <span class="c1"># Merge config extra_params with kwargs</span>
         <span class="n">merged_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">extra_params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
-        
+
         <span class="c1"># Create transformer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_transformer</span><span class="p">(</span><span class="o">**</span><span class="n">merged_kwargs</span><span class="p">)</span>
-        
+
         <span class="n">fit_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-        
+
         <span class="c1"># Fit and transform</span>
         <span class="n">transformed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        
+
         <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">fit_start</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_fitted</span> <span class="o">=</span> <span class="kc">True</span>
-        
+
         <span class="c1"># Store timing information</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_fit_time</span> <span class="o">=</span> <span class="n">fit_time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_transform_time</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># Included in fit_transform</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitted </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">fit_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">transformed</span></div>
 
-    
+
 <div class="viewcode-block" id="TSNEVisualization.generate_plot">
 <a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.embeddings.tsne.TSNEVisualization.generate_plot">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_plot</span><span class="p">(</span>
@@ -235,11 +231,11 @@
         <span class="n">highlight_test_indices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">class_names</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">use_semantic_names</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VisualizationResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate t-SNE plot using consistent styling.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            transformed_data: Transformed coordinates</span>
 <span class="sd">            y: Optional target values for coloring</span>
@@ -249,14 +245,14 @@
 <span class="sd">            class_names: Optional semantic class names</span>
 <span class="sd">            use_semantic_names: Whether to use semantic class names</span>
 <span class="sd">            **kwargs: Additional plotting parameters</span>
-<span class="sd">            </span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            VisualizationResult object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Store class names for consistent styling</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_class_names</span> <span class="o">=</span> <span class="n">class_names</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_use_semantic_names</span> <span class="o">=</span> <span class="n">use_semantic_names</span>
-        
+
         <span class="c1"># Delegate to parent implementation which now uses shared styling</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">generate_plot</span><span class="p">(</span>
             <span class="n">transformed_data</span><span class="o">=</span><span class="n">transformed_data</span><span class="p">,</span>
@@ -264,7 +260,7 @@
             <span class="n">highlight_indices</span><span class="o">=</span><span class="n">highlight_indices</span><span class="p">,</span>
             <span class="n">test_data</span><span class="o">=</span><span class="n">test_data</span><span class="p">,</span>
             <span class="n">highlight_test_indices</span><span class="o">=</span><span class="n">highlight_test_indices</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 </div>
 

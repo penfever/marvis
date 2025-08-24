@@ -48,13 +48,19 @@ from typing import Any, Dict, List
 import numpy as np
 import torch
 
-from marvis.data import (apply_label_mapping, compute_baseline_probabilities,
-                         compute_label_frequency_mapping, create_llm_dataset,
-                         get_tabpfn_embeddings,
-                         process_tabular_dataset_for_training)
+from marvis.data import (
+    apply_label_mapping,
+    compute_baseline_probabilities,
+    compute_label_frequency_mapping,
+    create_llm_dataset,
+    get_tabpfn_embeddings,
+    process_tabular_dataset_for_training,
+)
 from marvis.models import load_pretrained_model
 from marvis.models.tabular_baselines import (
-    create_and_evaluate_baseline_model, create_and_evaluate_llm_model)
+    create_and_evaluate_baseline_model,
+    create_and_evaluate_llm_model,
+)
 from marvis.models.vq import load_vq_pretrained_model
 from marvis.train import evaluate_llm_on_test_set
 from marvis.utils import MetricsLogger, setup_logging
@@ -68,11 +74,15 @@ except ImportError:
     WANDB_AVAILABLE = False
 
 # Import new dataset processing utilities
-from marvis.data.evaluation_utils import (load_datasets_for_evaluation,
-                                          preprocess_datasets_for_evaluation,
-                                          validate_training_sample_args)
+from marvis.data.evaluation_utils import (
+    load_datasets_for_evaluation,
+    preprocess_datasets_for_evaluation,
+    validate_training_sample_args,
+)
+
 # Import GPU monitoring utilities
 from marvis.utils import cleanup_gpu_monitoring, init_wandb_with_gpu_monitoring
+
 # Import new argument parsing utilities
 from marvis.utils.evaluation_args import create_dataset_evaluation_parser
 
@@ -290,8 +300,7 @@ def load_pretrained_model(
 
     # Fall back to standard model loading
     logger.info(f"Loading as standard model from {model_path}")
-    from marvis.utils import \
-        load_pretrained_model as utils_load_pretrained_model
+    from marvis.utils import load_pretrained_model as utils_load_pretrained_model
 
     # Use the centralized utility function
     model, tokenizer, prefix_start_id, prefix_end_id, class_token_ids = (
@@ -534,8 +543,11 @@ def evaluate_dataset(
         )
 
         # Recompute metrics with remapped predictions
-        from sklearn.metrics import (accuracy_score, classification_report,
-                                     confusion_matrix)
+        from sklearn.metrics import (
+            accuracy_score,
+            classification_report,
+            confusion_matrix,
+        )
 
         y_test = dataset["y_test"][: len(results["predictions"])]  # Ensure same length
 
@@ -953,8 +965,7 @@ def main():
             if cache_key not in model_cache:
                 logger.info(f"Loading LLM model {model_identifier}")
                 try:
-                    from marvis.models import \
-                        prepare_qwen_with_prefix_embedding
+                    from marvis.models import prepare_qwen_with_prefix_embedding
 
                     (
                         model,

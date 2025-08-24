@@ -1,6 +1,10 @@
 import torch
-from transformers import (AutoModelForCausalLM, AutoTokenizer,
-                          LlamaForCausalLM, LlamaTokenizer)
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    LlamaForCausalLM,
+    LlamaTokenizer,
+)
 
 llm_map = {
     "llama-2-7B": "meta-llama/Llama-2-7b",

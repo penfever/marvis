@@ -45,8 +45,12 @@ import torch
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 
-from marvis.data import (create_llm_dataset, get_tabpfn_embeddings,
-                         list_available_datasets, load_dataset)
+from marvis.data import (
+    create_llm_dataset,
+    get_tabpfn_embeddings,
+    list_available_datasets,
+    load_dataset,
+)
 from marvis.utils import setup_logging
 
 # Import wandb conditionally to avoid dependency issues if not installed
@@ -592,8 +596,7 @@ def load_pretrained_model(model_path, device_map="auto", embedding_size=1000):
     """
     import logging
 
-    from marvis.models import \
-        load_pretrained_model as core_load_pretrained_model
+    from marvis.models import load_pretrained_model as core_load_pretrained_model
 
     logger = logging.getLogger(__name__)
     logger.info(

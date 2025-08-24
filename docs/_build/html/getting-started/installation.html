@@ -147,7 +147,7 @@
 <p>This guide covers the installation of MARVIS and its dependencies for different use cases.</p>
 <section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
-<p><strong>Python Version</strong>: 3.8 or higher (3.9+ recommended)</p>
+<p><strong>Python Version</strong>: 3.11 or higher</p>
 <p><strong>System Requirements</strong>:</p>
 <ul class="simple">
 <li><p><strong>GPU</strong>:
@@ -271,7 +271,7 @@ pre-commit<span class="w"> </span>install
 <section id="documentation-dependencies">
 <h3>Documentation Dependencies<a class="headerlink" href="#documentation-dependencies" title="Link to this heading"></a></h3>
 <p>To build documentation locally:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>docs/requirements.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[docs]&quot;</span>
 </pre></div>
 </div>
 </section>

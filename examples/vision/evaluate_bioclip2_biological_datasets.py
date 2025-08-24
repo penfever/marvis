@@ -888,11 +888,13 @@ def test_single_dataset(dataset_name: str, args):
         try:
             # Import API baseline classes
             if api_backend == "openai":
-                from examples.vision.openai_vlm_baseline import \
-                    OpenAIVLMBaseline as APIVLMBaseline
+                from examples.vision.openai_vlm_baseline import (
+                    OpenAIVLMBaseline as APIVLMBaseline,
+                )
             else:  # gemini
-                from examples.vision.gemini_vlm_baseline import \
-                    GeminiVLMBaseline as APIVLMBaseline
+                from examples.vision.gemini_vlm_baseline import (
+                    GeminiVLMBaseline as APIVLMBaseline,
+                )
 
             classifier = APIVLMBaseline(
                 num_classes=len(class_names),

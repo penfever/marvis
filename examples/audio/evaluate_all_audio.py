@@ -31,15 +31,21 @@ sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
-from examples.audio.audio_baselines import (CLAPZeroShotClassifier,
-                                            WhisperKNNClassifier)
-from examples.audio.audio_datasets import (ESC50Dataset, RAVDESSDataset,
-                                           UrbanSound8KDataset)
+from examples.audio.audio_baselines import CLAPZeroShotClassifier, WhisperKNNClassifier
+from examples.audio.audio_datasets import (
+    ESC50Dataset,
+    RAVDESSDataset,
+    UrbanSound8KDataset,
+)
 from examples.audio.marvis_tsne_audio_baseline import MarvisAudioTsneClassifier
 
-from marvis.utils import (cleanup_gpu_monitoring,
-                          init_wandb_with_gpu_monitoring, set_seed_with_args)
+from marvis.utils import (
+    cleanup_gpu_monitoring,
+    init_wandb_with_gpu_monitoring,
+    set_seed_with_args,
+)
 from marvis.utils.device_utils import log_platform_info
+
 # Import centralized argument parser
 from marvis.utils.evaluation_args import create_audio_evaluation_parser
 from marvis.utils.json_utils import convert_for_json_serialization

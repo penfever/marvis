@@ -46,7 +46,7 @@ jobs:
     
     - name: Run unit tests
       run: |
-        pytest tests/unit/ \
+        uv run python -m pytest tests/unit/ \
           -v \
           --tb=short \
           --cov=marvis \
@@ -97,7 +97,7 @@ jobs:
     
     - name: Run integration tests
       run: |
-        pytest tests/integration/ \
+        uv run python -m pytest tests/integration/ \
           -v \
           --tb=short \
           -m "not gpu and not api and not vlm and not slow and not ci_skip" \
@@ -138,7 +138,7 @@ jobs:
     
     - name: Run E2E tests
       run: |
-        pytest tests/e2e/ \
+        uv run python -m pytest tests/e2e/ \
           -v \
           --tb=short \
           -m "not gpu and not api and not vlm and not very_slow and not ci_skip" \
