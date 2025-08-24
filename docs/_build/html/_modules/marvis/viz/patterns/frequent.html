@@ -112,29 +112,27 @@
 <span class="sd">for tabular data analysis.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.frequent_patterns</span><span class="w"> </span><span class="kn">import</span> <span class="n">apriori</span><span class="p">,</span> <span class="n">association_rules</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransactionEncoder</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.frequent_patterns</span><span class="w"> </span><span class="kn">import</span> <span class="n">apriori</span><span class="p">,</span> <span class="n">association_rules</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransactionEncoder</span>
+
     <span class="n">MLXTEND_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="n">MLXTEND_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseVisualization</span><span class="p">,</span> <span class="n">VisualizationResult</span>
-
 <span class="c1"># Import shared styling utilities</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.styling</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">apply_consistent_point_styling</span><span class="p">,</span>
-    <span class="n">apply_consistent_legend_formatting</span><span class="p">,</span>
-    <span class="n">create_distinct_color_map</span><span class="p">,</span>
-    <span class="n">get_class_color_name_map</span>
-<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.styling</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">apply_consistent_legend_formatting</span><span class="p">,</span>
+                             <span class="n">apply_consistent_point_styling</span><span class="p">,</span>
+                             <span class="n">create_distinct_color_map</span><span class="p">)</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -144,148 +142,149 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">FrequentPatternsVisualization</span><span class="p">(</span><span class="n">BaseVisualization</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Frequent patterns visualization using mlxtend.</span>
-<span class="sd">    </span>
+
 <span class="sd">    This visualization analyzes frequent itemsets and association rules</span>
 <span class="sd">    in discretized tabular data, providing insights into feature co-occurrence</span>
 <span class="sd">    patterns.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;Frequent-Patterns&quot;</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">supports_3d</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Pattern analysis is typically 2D</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">supports_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Patterns are for categorical/discrete data</span>
-    
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">supports_new_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>  <span class="c1"># Can analyze patterns in new data</span>
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_create_transformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create pattern analysis transformer.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">MLXTEND_AVAILABLE</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
                 <span class="s2">&quot;mlxtend not available. Install with: pip install mlxtend&quot;</span>
             <span class="p">)</span>
-        
+
         <span class="c1"># For frequent patterns, we need to discretize continuous data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_bins</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_bins&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">min_support</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;min_support&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">min_confidence</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;min_confidence&#39;</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">discretization_method</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;discretization_method&#39;</span><span class="p">,</span> <span class="s1">&#39;quantile&#39;</span><span class="p">)</span>
-        
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_bins</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;n_bins&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_support</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;min_support&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_confidence</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;min_confidence&quot;</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discretization_method</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;discretization_method&quot;</span><span class="p">,</span> <span class="s2">&quot;quantile&quot;</span><span class="p">)</span>
+
         <span class="c1"># Create a simple transformer that discretizes data</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">KBinsDiscretizer</span>
-        
+
         <span class="n">discretizer</span> <span class="o">=</span> <span class="n">KBinsDiscretizer</span><span class="p">(</span>
             <span class="n">n_bins</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_bins</span><span class="p">,</span>
-            <span class="n">encode</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">,</span>
+            <span class="n">encode</span><span class="o">=</span><span class="s2">&quot;ordinal&quot;</span><span class="p">,</span>
             <span class="n">strategy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">discretization_method</span><span class="p">,</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">random_state</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
         <span class="p">)</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;Creating pattern analyzer with </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_bins</span><span class="si">}</span><span class="s2"> bins, &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;min_support=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min_support</span><span class="si">}</span><span class="s2">, discretization=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">discretization_method</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">discretizer</span>
-    
+
 <div class="viewcode-block" id="FrequentPatternsVisualization.fit_transform">
 <a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.patterns.frequent.FrequentPatternsVisualization.fit_transform">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Discretize data and analyze patterns.&quot;&quot;&quot;</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-        
+
+        <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
         <span class="c1"># Create transformer if not exists</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">merged_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">extra_params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_transformer</span><span class="p">(</span><span class="o">**</span><span class="n">merged_kwargs</span><span class="p">)</span>
-        
+
         <span class="c1"># Discretize the data</span>
         <span class="n">fit_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">discrete_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        
+
         <span class="c1"># Convert to DataFrame for easier handling</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">):</span>
             <span class="n">feature_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;feature_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
-        
+            <span class="n">feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;feature_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span> <span class="o">=</span> <span class="n">feature_names</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">discrete_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">discrete_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">feature_names</span><span class="p">)</span>
-        
+
         <span class="c1"># Create binary encoding for frequent pattern mining</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_create_binary_encoding</span><span class="p">()</span>
-        
+
         <span class="c1"># Find frequent itemsets</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">binary_df</span><span class="p">,</span> 
-            <span class="n">min_support</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_support</span><span class="p">,</span> 
-            <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">binary_df</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_support</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
-        
+
         <span class="c1"># Generate association rules if we have frequent itemsets</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rules</span> <span class="o">=</span> <span class="n">association_rules</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">,</span>
                 <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;confidence&quot;</span><span class="p">,</span>
-                <span class="n">min_threshold</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_confidence</span>
+                <span class="n">min_threshold</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_confidence</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rules</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-        
+
         <span class="c1"># Mark as fitted - IMPORTANT!</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_fitted</span> <span class="o">=</span> <span class="kc">True</span>
-        
+
         <span class="c1"># Store timing information</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">fit_start</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_transform_time</span> <span class="o">=</span> <span class="mf">0.0</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">)</span><span class="si">}</span><span class="s2"> frequent itemsets &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span><span class="si">}</span><span class="s2"> association rules in </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_last_fit_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span>
         <span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">discrete_data</span></div>
 
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_create_binary_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create binary encoding for frequent pattern mining.&quot;&quot;&quot;</span>
         <span class="c1"># Convert discrete values to binary features</span>
         <span class="n">binary_data</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">item_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-        
+
         <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">discrete_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
             <span class="n">unique_vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">discrete_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">unique_vals</span><span class="p">:</span>
                 <span class="n">item_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">item_mapping</span><span class="p">[</span><span class="n">item_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
                 <span class="n">binary_data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">discrete_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="n">val</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">binary_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">binary_data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">binary_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">item_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_default_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n_features</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get default description for frequent patterns.&quot;&quot;&quot;</span>
-        <span class="n">n_itemsets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;frequent_itemsets&#39;</span><span class="p">,</span> <span class="p">[]))</span>
-        <span class="n">n_rules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;rules&#39;</span><span class="p">,</span> <span class="p">[]))</span>
-        
+        <span class="n">n_itemsets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;frequent_itemsets&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+        <span class="n">n_rules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;rules&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+
         <span class="n">description</span> <span class="o">=</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;Frequent patterns analysis of </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2"> samples with </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2"> features. &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;Data discretized into </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_bins</span><span class="si">}</span><span class="s2"> bins per feature. &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="n">n_itemsets</span><span class="si">}</span><span class="s2"> frequent itemsets and </span><span class="si">{</span><span class="n">n_rules</span><span class="si">}</span><span class="s2"> association rules &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;with min_support=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min_support</span><span class="si">}</span><span class="s2"> and min_confidence=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min_confidence</span><span class="si">}</span><span class="s2">.&quot;</span>
         <span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">description</span>
-    
+
 <div class="viewcode-block" id="FrequentPatternsVisualization.generate_plot">
 <a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.patterns.frequent.FrequentPatternsVisualization.generate_plot">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_plot</span><span class="p">(</span>
@@ -294,182 +293,233 @@
         <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">highlight_indices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">test_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VisualizationResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate frequent patterns visualization.&quot;&quot;&quot;</span>
-        <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+
+        <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
-        
+
         <span class="c1"># Create subplots for different visualizations</span>
         <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dpi</span><span class="p">)</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Frequent Patterns Analysis&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-        
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Frequent Patterns Analysis&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
         <span class="c1"># Plot 1: Support vs Length of itemsets using unified styling</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">itemset_lengths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">[</span><span class="s1">&#39;itemsets&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
-            
+            <span class="n">itemset_lengths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">[</span><span class="s2">&quot;itemsets&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+
             <span class="c1"># Use unified color mapping for scatter plot</span>
             <span class="n">color_map</span> <span class="o">=</span> <span class="n">create_distinct_color_map</span><span class="p">(</span><span class="n">itemset_lengths</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
             <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">color_map</span><span class="p">[</span><span class="n">length</span><span class="p">]</span> <span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="n">itemset_lengths</span><span class="p">]</span>
-            
+
             <span class="n">apply_consistent_point_styling</span><span class="p">(</span>
-                <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">itemset_lengths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">[</span><span class="s1">&#39;support&#39;</span><span class="p">],</span> 
-                <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span>
+                <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="n">itemset_lengths</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">[</span><span class="s2">&quot;support&quot;</span><span class="p">],</span>
+                <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+                <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
             <span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Itemset Length&#39;</span><span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Support&#39;</span><span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Frequent Itemsets: Support vs Length&#39;</span><span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Itemset Length&quot;</span><span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Support&quot;</span><span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Frequent Itemsets: Support vs Length&quot;</span><span class="p">)</span>
             <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;No frequent itemsets found&#39;</span><span class="p">,</span> 
-                           <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Frequent Itemsets&#39;</span><span class="p">)</span>
-        
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+                <span class="mf">0.5</span><span class="p">,</span>
+                <span class="mf">0.5</span><span class="p">,</span>
+                <span class="s2">&quot;No frequent itemsets found&quot;</span><span class="p">,</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Frequent Itemsets&quot;</span><span class="p">)</span>
+
         <span class="c1"># Plot 2: Association rules scatter plot using unified styling</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="c1"># Apply consistent point styling with lift as color coding</span>
             <span class="n">scatter</span> <span class="o">=</span> <span class="n">apply_consistent_point_styling</span><span class="p">(</span>
-                <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;support&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">],</span>
-                <span class="n">colors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span>
+                <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="s2">&quot;support&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="s2">&quot;confidence&quot;</span><span class="p">],</span>
+                <span class="n">colors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="s2">&quot;lift&quot;</span><span class="p">],</span>
+                <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+                <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
             <span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Support&#39;</span><span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Confidence&#39;</span><span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Association Rules&#39;</span><span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Support&quot;</span><span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Confidence&quot;</span><span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Association Rules&quot;</span><span class="p">)</span>
             <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lift&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Lift&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;No association rules found&#39;</span><span class="p">,</span> 
-                           <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Association Rules&#39;</span><span class="p">)</span>
-        
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+                <span class="mf">0.5</span><span class="p">,</span>
+                <span class="mf">0.5</span><span class="p">,</span>
+                <span class="s2">&quot;No association rules found&quot;</span><span class="p">,</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Association Rules&quot;</span><span class="p">)</span>
+
         <span class="c1"># Plot 3: Top frequent itemsets</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">top_itemsets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;support&#39;</span><span class="p">)</span>
-            <span class="n">itemset_labels</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">itemset</span><span class="p">))[:</span><span class="mi">30</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;...&#39;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">itemset</span><span class="p">)))</span> <span class="o">&gt;</span> <span class="mi">30</span> 
-                             <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">itemset</span><span class="p">))</span> <span class="k">for</span> <span class="n">itemset</span> <span class="ow">in</span> <span class="n">top_itemsets</span><span class="p">[</span><span class="s1">&#39;itemsets&#39;</span><span class="p">]]</span>
-            
+            <span class="n">top_itemsets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;support&quot;</span><span class="p">)</span>
+            <span class="n">itemset_labels</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">(</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">itemset</span><span class="p">))[:</span><span class="mi">30</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">itemset</span><span class="p">)))</span> <span class="o">&gt;</span> <span class="mi">30</span>
+                    <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">itemset</span><span class="p">))</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">itemset</span> <span class="ow">in</span> <span class="n">top_itemsets</span><span class="p">[</span><span class="s2">&quot;itemsets&quot;</span><span class="p">]</span>
+            <span class="p">]</span>
+
             <span class="n">y_pos</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">itemset_labels</span><span class="p">))</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">y_pos</span><span class="p">,</span> <span class="n">top_itemsets</span><span class="p">[</span><span class="s1">&#39;support&#39;</span><span class="p">])</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">y_pos</span><span class="p">,</span> <span class="n">top_itemsets</span><span class="p">[</span><span class="s2">&quot;support&quot;</span><span class="p">])</span>
             <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">y_pos</span><span class="p">)</span>
             <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">itemset_labels</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Support&#39;</span><span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Top Frequent Itemsets&#39;</span><span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Support&quot;</span><span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Top Frequent Itemsets&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;No frequent itemsets to display&#39;</span><span class="p">,</span> 
-                           <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Top Frequent Itemsets&#39;</span><span class="p">)</span>
-        
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+                <span class="mf">0.5</span><span class="p">,</span>
+                <span class="mf">0.5</span><span class="p">,</span>
+                <span class="s2">&quot;No frequent itemsets to display&quot;</span><span class="p">,</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Top Frequent Itemsets&quot;</span><span class="p">)</span>
+
         <span class="c1"># Plot 4: Feature discretization heatmap</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;discrete_df&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;discrete_df&quot;</span><span class="p">):</span>
             <span class="c1"># Show correlation matrix of discretized features</span>
             <span class="n">corr_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">discrete_df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
-            
+
             <span class="c1"># Use seaborn if available, otherwise matplotlib</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-                <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                           <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Correlation&#39;</span><span class="p">})</span>
+
+                <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+                    <span class="n">corr_matrix</span><span class="p">,</span>
+                    <span class="n">annot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span>
+                    <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                    <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Correlation&quot;</span><span class="p">},</span>
+                <span class="p">)</span>
             <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-                <span class="n">im</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+                <span class="n">im</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
                 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">)))</span>
                 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">)))</span>
                 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
                 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-                <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Correlation&#39;</span><span class="p">)</span>
-            
-            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Discretized Features Correlation&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Correlation&quot;</span><span class="p">)</span>
+
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Discretized Features Correlation&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;No discretization data available&#39;</span><span class="p">,</span> 
-                           <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
-            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Feature Correlation&#39;</span><span class="p">)</span>
-        
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+                <span class="mf">0.5</span><span class="p">,</span>
+                <span class="mf">0.5</span><span class="p">,</span>
+                <span class="s2">&quot;No discretization data available&quot;</span><span class="p">,</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">transform</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Feature Correlation&quot;</span><span class="p">)</span>
+
         <span class="c1"># Apply consistent legend formatting to all subplots</span>
         <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">:</span>
             <span class="n">apply_consistent_legend_formatting</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">use_3d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        
+
         <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-        
+
         <span class="c1"># Convert to image</span>
         <span class="n">img_buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">img_buffer</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dpi</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+            <span class="n">img_buffer</span><span class="p">,</span>
+            <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span>
+            <span class="n">dpi</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dpi</span><span class="p">,</span>
+            <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span>
+            <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">img_buffer</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_buffer</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-        
+
         <span class="c1"># Convert to desired format</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">image_format</span> <span class="o">==</span> <span class="s1">&#39;RGB&#39;</span> <span class="ow">and</span> <span class="n">image</span><span class="o">.</span><span class="n">mode</span> <span class="o">!=</span> <span class="s1">&#39;RGB&#39;</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;RGBA&#39;</span><span class="p">:</span>
-                <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">image_format</span> <span class="o">==</span> <span class="s2">&quot;RGB&quot;</span> <span class="ow">and</span> <span class="n">image</span><span class="o">.</span><span class="n">mode</span> <span class="o">!=</span> <span class="s2">&quot;RGB&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;RGBA&quot;</span><span class="p">:</span>
+                <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
                 <span class="n">rgb_image</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">3</span><span class="p">])</span>
                 <span class="n">image</span> <span class="o">=</span> <span class="n">rgb_image</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
-        
+                <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
+
         <span class="c1"># Create metadata</span>
         <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;n_frequent_itemsets&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">),</span>
-            <span class="s1">&#39;n_association_rules&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">),</span>
-            <span class="s1">&#39;min_support&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_support</span><span class="p">,</span>
-            <span class="s1">&#39;min_confidence&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_confidence</span><span class="p">,</span>
-            <span class="s1">&#39;n_bins&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_bins</span><span class="p">,</span>
-            <span class="s1">&#39;discretization_method&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">discretization_method</span>
+            <span class="s2">&quot;n_frequent_itemsets&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">),</span>
+            <span class="s2">&quot;n_association_rules&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">),</span>
+            <span class="s2">&quot;min_support&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_support</span><span class="p">,</span>
+            <span class="s2">&quot;min_confidence&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_confidence</span><span class="p">,</span>
+            <span class="s2">&quot;n_bins&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_bins</span><span class="p">,</span>
+            <span class="s2">&quot;discretization_method&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">discretization_method</span><span class="p">,</span>
         <span class="p">}</span>
-        
+
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;avg_support&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">[</span><span class="s1">&#39;support&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-            <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;max_support&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">[</span><span class="s1">&#39;support&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-        
+            <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;avg_support&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">[</span><span class="s2">&quot;support&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+            <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;max_support&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">[</span><span class="s2">&quot;support&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;avg_confidence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-            <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;avg_lift&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-        
+            <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;avg_confidence&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="s2">&quot;confidence&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+            <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;avg_lift&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="s2">&quot;lift&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
         <span class="c1"># Create result</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">VisualizationResult</span><span class="p">(</span>
             <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">,</span>
             <span class="n">transformed_data</span><span class="o">=</span><span class="n">transformed_data</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_default_description</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">transformed_data</span><span class="p">),</span> <span class="n">transformed_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">description</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_default_description</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">transformed_data</span><span class="p">),</span> <span class="n">transformed_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">),</span>
             <span class="n">method_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span>
             <span class="n">config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>
             <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span>
-            <span class="n">legend_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Patterns: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">)</span><span class="si">}</span><span class="s2"> itemsets, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span><span class="si">}</span><span class="s2"> rules&quot;</span>
+            <span class="n">legend_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Patterns: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">)</span><span class="si">}</span><span class="s2"> itemsets, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span><span class="si">}</span><span class="s2"> rules&quot;</span><span class="p">,</span>
         <span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">result</span></div>
 
-    
+
 <div class="viewcode-block" id="FrequentPatternsVisualization.get_top_patterns">
 <a class="viewcode-back" href="../../../../api-reference/marvis.viz.html#marvis.viz.patterns.frequent.FrequentPatternsVisualization.get_top_patterns">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_top_patterns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_top</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get top frequent patterns and rules.&quot;&quot;&quot;</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;top_itemsets&#39;</span><span class="p">:</span> <span class="p">[],</span>
-            <span class="s1">&#39;top_rules&#39;</span><span class="p">:</span> <span class="p">[]</span>
-        <span class="p">}</span>
-        
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;top_itemsets&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;top_rules&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">top_itemsets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="n">n_top</span><span class="p">,</span> <span class="s1">&#39;support&#39;</span><span class="p">)</span>
-            <span class="n">result</span><span class="p">[</span><span class="s1">&#39;top_itemsets&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s1">&#39;itemset&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">itemset</span><span class="p">),</span>
-                    <span class="s1">&#39;support&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">support</span><span class="p">)</span>
-                <span class="p">}</span>
-                <span class="k">for</span> <span class="n">itemset</span><span class="p">,</span> <span class="n">support</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">top_itemsets</span><span class="p">[</span><span class="s1">&#39;itemsets&#39;</span><span class="p">],</span> <span class="n">top_itemsets</span><span class="p">[</span><span class="s1">&#39;support&#39;</span><span class="p">])</span>
+            <span class="n">top_itemsets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="n">n_top</span><span class="p">,</span> <span class="s2">&quot;support&quot;</span><span class="p">)</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;top_itemsets&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;itemset&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">itemset</span><span class="p">),</span> <span class="s2">&quot;support&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">support</span><span class="p">)}</span>
+                <span class="k">for</span> <span class="n">itemset</span><span class="p">,</span> <span class="n">support</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                    <span class="n">top_itemsets</span><span class="p">[</span><span class="s2">&quot;itemsets&quot;</span><span class="p">],</span> <span class="n">top_itemsets</span><span class="p">[</span><span class="s2">&quot;support&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
             <span class="p">]</span>
-        
+
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">top_rules</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="n">n_top</span><span class="p">,</span> <span class="s1">&#39;confidence&#39;</span><span class="p">)</span>
-            <span class="n">result</span><span class="p">[</span><span class="s1">&#39;top_rules&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">top_rules</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="n">n_top</span><span class="p">,</span> <span class="s2">&quot;confidence&quot;</span><span class="p">)</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;top_rules&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="p">{</span>
-                    <span class="s1">&#39;antecedents&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;antecedents&#39;</span><span class="p">]),</span>
-                    <span class="s1">&#39;consequents&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;consequents&#39;</span><span class="p">]),</span>
-                    <span class="s1">&#39;support&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;support&#39;</span><span class="p">]),</span>
-                    <span class="s1">&#39;confidence&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]),</span>
-                    <span class="s1">&#39;lift&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">])</span>
+                    <span class="s2">&quot;antecedents&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;antecedents&quot;</span><span class="p">]),</span>
+                    <span class="s2">&quot;consequents&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;consequents&quot;</span><span class="p">]),</span>
+                    <span class="s2">&quot;support&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;support&quot;</span><span class="p">]),</span>
+                    <span class="s2">&quot;confidence&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;confidence&quot;</span><span class="p">]),</span>
+                    <span class="s2">&quot;lift&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;lift&quot;</span><span class="p">]),</span>
                 <span class="p">}</span>
                 <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">top_rules</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()</span>
             <span class="p">]</span>
-        
+
         <span class="k">return</span> <span class="n">result</span></div>
 </div>
 
@@ -483,12 +533,12 @@
     <span class="n">n_bins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
     <span class="n">min_support</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
     <span class="n">min_confidence</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
-    <span class="n">discretization_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;quantile&#39;</span><span class="p">,</span>
-    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span>
+    <span class="n">discretization_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;quantile&quot;</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convenience function to analyze frequent patterns.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        X: Input data</span>
 <span class="sd">        feature_names: Names of features</span>
@@ -497,42 +547,42 @@
 <span class="sd">        min_confidence: Minimum confidence for association rules</span>
 <span class="sd">        discretization_method: Method for discretization</span>
 <span class="sd">        random_state: Random seed</span>
-<span class="sd">        </span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        Dictionary with pattern analysis results</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="n">VisualizationConfig</span>
-    
+
     <span class="c1"># Create configuration</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">VisualizationConfig</span><span class="p">(</span>
         <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
         <span class="n">extra_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;n_bins&#39;</span><span class="p">:</span> <span class="n">n_bins</span><span class="p">,</span>
-            <span class="s1">&#39;min_support&#39;</span><span class="p">:</span> <span class="n">min_support</span><span class="p">,</span>
-            <span class="s1">&#39;min_confidence&#39;</span><span class="p">:</span> <span class="n">min_confidence</span><span class="p">,</span>
-            <span class="s1">&#39;discretization_method&#39;</span><span class="p">:</span> <span class="n">discretization_method</span>
-        <span class="p">}</span>
+            <span class="s2">&quot;n_bins&quot;</span><span class="p">:</span> <span class="n">n_bins</span><span class="p">,</span>
+            <span class="s2">&quot;min_support&quot;</span><span class="p">:</span> <span class="n">min_support</span><span class="p">,</span>
+            <span class="s2">&quot;min_confidence&quot;</span><span class="p">:</span> <span class="n">min_confidence</span><span class="p">,</span>
+            <span class="s2">&quot;discretization_method&quot;</span><span class="p">:</span> <span class="n">discretization_method</span><span class="p">,</span>
+        <span class="p">},</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Create visualization</span>
     <span class="n">viz</span> <span class="o">=</span> <span class="n">FrequentPatternsVisualization</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-    
+
     <span class="c1"># Analyze patterns</span>
     <span class="n">discrete_data</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    
+
     <span class="c1"># Generate visualization</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">generate_plot</span><span class="p">(</span><span class="n">discrete_data</span><span class="p">)</span>
-    
+
     <span class="c1"># Get top patterns</span>
     <span class="n">top_patterns</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">get_top_patterns</span><span class="p">()</span>
-    
+
     <span class="k">return</span> <span class="p">{</span>
-        <span class="s1">&#39;discrete_data&#39;</span><span class="p">:</span> <span class="n">discrete_data</span><span class="p">,</span>
-        <span class="s1">&#39;frequent_itemsets&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">,</span>
-        <span class="s1">&#39;association_rules&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">rules</span><span class="p">,</span>
-        <span class="s1">&#39;top_patterns&#39;</span><span class="p">:</span> <span class="n">top_patterns</span><span class="p">,</span>
-        <span class="s1">&#39;visualization_result&#39;</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
-        <span class="s1">&#39;discretizer&#39;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">_transformer</span>
+        <span class="s2">&quot;discrete_data&quot;</span><span class="p">:</span> <span class="n">discrete_data</span><span class="p">,</span>
+        <span class="s2">&quot;frequent_itemsets&quot;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">frequent_itemsets</span><span class="p">,</span>
+        <span class="s2">&quot;association_rules&quot;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">rules</span><span class="p">,</span>
+        <span class="s2">&quot;top_patterns&quot;</span><span class="p">:</span> <span class="n">top_patterns</span><span class="p">,</span>
+        <span class="s2">&quot;visualization_result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
+        <span class="s2">&quot;discretizer&quot;</span><span class="p">:</span> <span class="n">viz</span><span class="o">.</span><span class="n">_transformer</span><span class="p">,</span>
     <span class="p">}</span></div>
 
 </pre></div>

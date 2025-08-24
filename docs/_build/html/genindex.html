@@ -123,7 +123,6 @@
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
- | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
@@ -141,12 +140,6 @@
       <li><a href="api-reference/marvis.models.html#marvis.models.marvis_tsne.MarvisTsneClassifier.__init__">__init__() (marvis.models.marvis_tsne.MarvisTsneClassifier method)</a>
 
       <ul>
-        <li><a href="api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.__init__">(marvis.models.vq.QwenWithVQPrefixEmbedding method)</a>
-</li>
-        <li><a href="api-reference/marvis.models.html#marvis.models.vq.vector_quantizer.VectorQuantizer.__init__">(marvis.models.vq.vector_quantizer.VectorQuantizer method)</a>
-</li>
-        <li><a href="api-reference/marvis.models.html#marvis.models.vq.VectorQuantizer.__init__">(marvis.models.vq.VectorQuantizer method)</a>
-</li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.metadata_loader.ColumnMetadata.__init__">(marvis.utils.metadata_loader.ColumnMetadata method)</a>
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.metadata_loader.DatasetMetadata.__init__">(marvis.utils.metadata_loader.DatasetMetadata method)</a>
@@ -162,6 +155,10 @@
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.GeminiVisionModelWrapper.__init__">(marvis.utils.model_loader.GeminiVisionModelWrapper method)</a>
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.GenerationConfig.__init__">(marvis.utils.model_loader.GenerationConfig method)</a>
+</li>
+        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPModelWrapper.__init__">(marvis.utils.model_loader.LlamaCPPModelWrapper method)</a>
+</li>
+        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPVisionModelWrapper.__init__">(marvis.utils.model_loader.LlamaCPPVisionModelWrapper method)</a>
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.ModelLoader.__init__">(marvis.utils.model_loader.ModelLoader method)</a>
 </li>
@@ -536,12 +533,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api-reference/marvis.models.html#marvis.models.marvis_tsne.MarvisTsneClassifier.evaluate">evaluate() (marvis.models.marvis_tsne.MarvisTsneClassifier method)</a>
-
-      <ul>
-        <li><a href="api-reference/generated/marvis.models.MarvisTsneClassifier.evaluate.html#marvis.models.MarvisTsneClassifier.evaluate">(marvis.models.MarvisTsneClassifier method)</a>
+      <li><a href="api-reference/generated/marvis.models.marvis_tsne.MarvisTsneClassifier.evaluate.html#marvis.models.marvis_tsne.MarvisTsneClassifier.evaluate">evaluate() (marvis.models.marvis_tsne.MarvisTsneClassifier method)</a>, <a href="api-reference/marvis.models.html#marvis.models.marvis_tsne.MarvisTsneClassifier.evaluate">[1]</a>
 </li>
-      </ul></li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.ExperimentMetadata.evaluation_time_seconds">evaluation_time_seconds (marvis.utils.results_manager.ExperimentMetadata attribute)</a>
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.EvaluationResults">EvaluationResults (class in marvis.utils.results_manager)</a>
@@ -592,18 +585,16 @@
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.resource_manager.ConfigManager.find_tabllm_notes">find_tabllm_notes() (marvis.utils.resource_manager.ConfigManager method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.resource_manager.ConfigManager.find_tabllm_template">find_tabllm_template() (marvis.utils.resource_manager.ConfigManager method)</a>
 </li>
-      <li><a href="api-reference/marvis.models.html#marvis.models.marvis_tsne.MarvisTsneClassifier.fit">fit() (marvis.models.marvis_tsne.MarvisTsneClassifier method)</a>
+      <li><a href="api-reference/generated/marvis.models.marvis_tsne.MarvisTsneClassifier.fit.html#marvis.models.marvis_tsne.MarvisTsneClassifier.fit">fit() (marvis.models.marvis_tsne.MarvisTsneClassifier method)</a>, <a href="api-reference/marvis.models.html#marvis.models.marvis_tsne.MarvisTsneClassifier.fit">[1]</a>
 
       <ul>
-        <li><a href="api-reference/generated/marvis.models.MarvisTsneClassifier.fit.html#marvis.models.MarvisTsneClassifier.fit">(marvis.models.MarvisTsneClassifier method)</a>
-</li>
         <li><a href="api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.fit">(marvis.viz.context.composer.ContextComposer method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.base.VisualizationResult.fit_time">fit_time (marvis.viz.base.VisualizationResult attribute)</a>
 </li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.base.BaseVisualization.fit_transform">fit_transform() (marvis.viz.base.BaseVisualization method)</a>
@@ -624,14 +615,6 @@
 </li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.utils.common.force_matplotlib_cleanup">force_matplotlib_cleanup() (in module marvis.viz.utils.common)</a>
 </li>
-      <li><a href="api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.forward">forward() (marvis.models.vq.QwenWithVQPrefixEmbedding method)</a>
-
-      <ul>
-        <li><a href="api-reference/marvis.models.html#marvis.models.vq.vector_quantizer.VectorQuantizer.forward">(marvis.models.vq.vector_quantizer.VectorQuantizer method)</a>
-</li>
-        <li><a href="api-reference/marvis.models.html#marvis.models.vq.VectorQuantizer.forward">(marvis.models.vq.VectorQuantizer method)</a>
-</li>
-      </ul></li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.patterns.frequent.FrequentPatternsVisualization">FrequentPatternsVisualization (class in marvis.viz.patterns.frequent)</a>
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.metadata_loader.DatasetMetadata.from_dict">from_dict() (marvis.utils.metadata_loader.DatasetMetadata class method)</a>
@@ -641,8 +624,6 @@
 </li>
       </ul></li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.resource_manager.ResourceConfig.from_environment">from_environment() (marvis.utils.resource_manager.ResourceConfig class method)</a>
-</li>
-      <li><a href="api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.from_pretrained">from_pretrained() (marvis.models.vq.QwenWithVQPrefixEmbedding class method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -654,14 +635,16 @@
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.GeminiVisionModelWrapper">GeminiVisionModelWrapper (class in marvis.utils.model_loader)</a>
 </li>
-      <li><a href="api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.generate">generate() (marvis.models.vq.QwenWithVQPrefixEmbedding method)</a>
+      <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.BaseModelWrapper.generate">generate() (marvis.utils.model_loader.BaseModelWrapper method)</a>
 
       <ul>
-        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.BaseModelWrapper.generate">(marvis.utils.model_loader.BaseModelWrapper method)</a>
-</li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.GeminiModelWrapper.generate">(marvis.utils.model_loader.GeminiModelWrapper method)</a>
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.GeminiVisionModelWrapper.generate">(marvis.utils.model_loader.GeminiVisionModelWrapper method)</a>
+</li>
+        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPModelWrapper.generate">(marvis.utils.model_loader.LlamaCPPModelWrapper method)</a>
+</li>
+        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPVisionModelWrapper.generate">(marvis.utils.model_loader.LlamaCPPVisionModelWrapper method)</a>
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.OpenAIModelWrapper.generate">(marvis.utils.model_loader.OpenAIModelWrapper method)</a>
 </li>
@@ -676,11 +659,15 @@
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.VLLMVisionModelWrapper.generate">(marvis.utils.model_loader.VLLMVisionModelWrapper method)</a>
 </li>
       </ul></li>
+      <li><a href="api-reference/marvis.data.html#marvis.data.audio_embeddings.generate_audio_dataset_hash">generate_audio_dataset_hash() (in module marvis.data.audio_embeddings)</a>
+</li>
       <li><a href="api-reference/marvis.data.html#marvis.data.embeddings.generate_dataset_hash">generate_dataset_hash() (in module marvis.data.embeddings)</a>
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.GeminiVisionModelWrapper.generate_from_conversation">generate_from_conversation() (marvis.utils.model_loader.GeminiVisionModelWrapper method)</a>
 
       <ul>
+        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPVisionModelWrapper.generate_from_conversation">(marvis.utils.model_loader.LlamaCPPVisionModelWrapper method)</a>
+</li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.OpenAIVisionModelWrapper.generate_from_conversation">(marvis.utils.model_loader.OpenAIVisionModelWrapper method)</a>
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.VisionLanguageModelWrapper.generate_from_conversation">(marvis.utils.model_loader.VisionLanguageModelWrapper method)</a>
@@ -718,16 +705,12 @@
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.resource_manager.CacheManager.get_cache_path">get_cache_path() (marvis.utils.resource_manager.CacheManager method)</a>
 </li>
-      <li><a href="api-reference/marvis.utils.html#marvis.utils.resource_manager.DatasetPreparer.get_cached_color_mapping">get_cached_color_mapping() (marvis.utils.resource_manager.DatasetPreparer method)</a>
-</li>
-      <li><a href="api-reference/marvis.models.html#marvis.models.vq.vector_quantizer.VectorQuantizer.get_codebook_indices">get_codebook_indices() (marvis.models.vq.vector_quantizer.VectorQuantizer method)</a>
-
-      <ul>
-        <li><a href="api-reference/marvis.models.html#marvis.models.vq.VectorQuantizer.get_codebook_indices">(marvis.models.vq.VectorQuantizer method)</a>
-</li>
-      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api-reference/marvis.utils.html#marvis.utils.resource_manager.DatasetPreparer.get_cached_color_mapping">get_cached_color_mapping() (marvis.utils.resource_manager.DatasetPreparer method)</a>
+</li>
+      <li><a href="api-reference/marvis.data.html#marvis.data.audio_embeddings.get_clap_embeddings">get_clap_embeddings() (in module marvis.data.audio_embeddings)</a>
+</li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.embeddings.pca.PCAVisualization.get_component_loadings">get_component_loadings() (marvis.viz.embeddings.pca.PCAVisualization method)</a>
 </li>
       <li><a href="api-reference/marvis.models.html#marvis.models.marvis_tsne.MarvisTsneClassifier.get_config">get_config() (marvis.models.marvis_tsne.MarvisTsneClassifier method)</a>
@@ -768,8 +751,6 @@
 </li>
       <li><a href="api-reference/marvis.data.html#marvis.data.dataset.get_failed_dataset_ids">get_failed_dataset_ids() (in module marvis.data.dataset)</a>
 </li>
-      <li><a href="api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.get_input_embeddings">get_input_embeddings() (marvis.models.vq.QwenWithVQPrefixEmbedding method)</a>
-</li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.metadata_loader.get_metadata_loader">get_metadata_loader() (in module marvis.utils.metadata_loader)</a>
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.BaseModelWrapper.get_model">get_model() (marvis.utils.model_loader.BaseModelWrapper method)</a>
@@ -795,6 +776,8 @@
       <li><a href="api-reference/marvis.viz.html#marvis.viz.patterns.frequent.FrequentPatternsVisualization.get_top_patterns">get_top_patterns() (marvis.viz.patterns.frequent.FrequentPatternsVisualization method)</a>
 </li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.context.composer.ContextComposer.get_visualization_comparison">get_visualization_comparison() (marvis.viz.context.composer.ContextComposer method)</a>
+</li>
+      <li><a href="api-reference/marvis.data.html#marvis.data.audio_embeddings.get_whisper_embeddings">get_whisper_embeddings() (in module marvis.data.audio_embeddings)</a>
 </li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.context.layouts.LayoutStrategy.GRID">GRID (marvis.viz.context.layouts.LayoutStrategy attribute)</a>
 </li>
@@ -840,6 +823,10 @@
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.GeminiModelWrapper.is_loaded">(marvis.utils.model_loader.GeminiModelWrapper method)</a>
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.GeminiVisionModelWrapper.is_loaded">(marvis.utils.model_loader.GeminiVisionModelWrapper method)</a>
+</li>
+        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPModelWrapper.is_loaded">(marvis.utils.model_loader.LlamaCPPModelWrapper method)</a>
+</li>
+        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPVisionModelWrapper.is_loaded">(marvis.utils.model_loader.LlamaCPPVisionModelWrapper method)</a>
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.OpenAIModelWrapper.is_loaded">(marvis.utils.model_loader.OpenAIModelWrapper method)</a>
 </li>
@@ -896,12 +883,20 @@
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.ModelLoader.list_loaded_models">list_loaded_models() (marvis.utils.model_loader.ModelLoader method)</a>
 </li>
+      <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPModelWrapper">LlamaCPPModelWrapper (class in marvis.utils.model_loader)</a>
+</li>
+      <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPVisionModelWrapper">LlamaCPPVisionModelWrapper (class in marvis.utils.model_loader)</a>
+</li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.BaseModelWrapper.load">load() (marvis.utils.model_loader.BaseModelWrapper method)</a>
 
       <ul>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.GeminiModelWrapper.load">(marvis.utils.model_loader.GeminiModelWrapper method)</a>
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.GeminiVisionModelWrapper.load">(marvis.utils.model_loader.GeminiVisionModelWrapper method)</a>
+</li>
+        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPModelWrapper.load">(marvis.utils.model_loader.LlamaCPPModelWrapper method)</a>
+</li>
+        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPVisionModelWrapper.load">(marvis.utils.model_loader.LlamaCPPVisionModelWrapper method)</a>
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.OpenAIModelWrapper.load">(marvis.utils.model_loader.OpenAIModelWrapper method)</a>
 </li>
@@ -918,6 +913,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api-reference/marvis.data.html#marvis.data.audio_embeddings.load_clap_model">load_clap_model() (in module marvis.data.audio_embeddings)</a>
+</li>
       <li><a href="api-reference/marvis.data.html#marvis.data.csv_utils.load_csv_dataset">load_csv_dataset() (in module marvis.data.csv_utils)</a>
 </li>
       <li><a href="api-reference/marvis.data.html#marvis.data.dataset.load_dataset">load_dataset() (in module marvis.data.dataset)</a>
@@ -942,6 +939,8 @@
 </li>
       <li><a href="api-reference/marvis.models.html#marvis.models.vq.load_vq_pretrained_model">load_vq_pretrained_model() (in module marvis.models.vq)</a>
 </li>
+      <li><a href="api-reference/marvis.data.html#marvis.data.audio_embeddings.load_whisper_model">load_whisper_model() (in module marvis.data.audio_embeddings)</a>
+</li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.embeddings.manifold.LocallyLinearEmbeddingVisualization">LocallyLinearEmbeddingVisualization (class in marvis.viz.embeddings.manifold)</a>
 </li>
   </ul></td>
@@ -956,6 +955,13 @@
 </li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.utils.common.managed_subplots">managed_subplots() (in module marvis.viz.utils.common)</a>
 </li>
+      <li>
+    marvis.data.audio_embeddings
+
+      <ul>
+        <li><a href="api-reference/marvis.data.html#module-marvis.data.audio_embeddings">module</a>
+</li>
+      </ul></li>
       <li>
     marvis.data.csv_utils
 
@@ -1114,10 +1120,10 @@
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.resource_manager.MarvisResourceManager">MarvisResourceManager (class in marvis.utils.resource_manager)</a>
 </li>
-      <li><a href="api-reference/marvis.models.html#marvis.models.marvis_tsne.MarvisTsneClassifier">MarvisTsneClassifier (class in marvis.models.marvis_tsne)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api-reference/marvis.models.html#marvis.models.marvis_tsne.MarvisTsneClassifier">MarvisTsneClassifier (class in marvis.models.marvis_tsne)</a>
+</li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.context.composer.CompositionConfig.max_composition_size">max_composition_size (marvis.viz.context.composer.CompositionConfig attribute)</a>
 </li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.base.VisualizationConfig.max_image_size">max_image_size (marvis.viz.base.VisualizationConfig attribute)</a>
@@ -1178,6 +1184,8 @@
     module
 
       <ul>
+        <li><a href="api-reference/marvis.data.html#module-marvis.data.audio_embeddings">marvis.data.audio_embeddings</a>
+</li>
         <li><a href="api-reference/marvis.data.html#module-marvis.data.csv_utils">marvis.data.csv_utils</a>
 </li>
         <li><a href="api-reference/marvis.data.html#module-marvis.data.dataset">marvis.data.dataset</a>
@@ -1309,12 +1317,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api-reference/marvis.models.html#marvis.models.marvis_tsne.MarvisTsneClassifier.predict">predict() (marvis.models.marvis_tsne.MarvisTsneClassifier method)</a>
-
-      <ul>
-        <li><a href="api-reference/generated/marvis.models.MarvisTsneClassifier.predict.html#marvis.models.MarvisTsneClassifier.predict">(marvis.models.MarvisTsneClassifier method)</a>
+      <li><a href="api-reference/generated/marvis.models.marvis_tsne.MarvisTsneClassifier.predict.html#marvis.models.marvis_tsne.MarvisTsneClassifier.predict">predict() (marvis.models.marvis_tsne.MarvisTsneClassifier method)</a>, <a href="api-reference/marvis.models.html#marvis.models.marvis_tsne.MarvisTsneClassifier.predict">[1]</a>
 </li>
-      </ul></li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.EvaluationResults.prediction_probabilities">prediction_probabilities (marvis.utils.results_manager.EvaluationResults attribute)</a>
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.EvaluationResults.prediction_time_per_sample">prediction_time_per_sample (marvis.utils.results_manager.EvaluationResults attribute)</a>
@@ -1322,6 +1326,10 @@
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.EvaluationResults.predictions">predictions (marvis.utils.results_manager.EvaluationResults attribute)</a>
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsArtifacts.predictions_csv">predictions_csv (marvis.utils.results_manager.ResultsArtifacts attribute)</a>
+</li>
+      <li><a href="api-reference/marvis.data.html#marvis.data.audio_embeddings.prepare_audio_for_clap">prepare_audio_for_clap() (in module marvis.data.audio_embeddings)</a>
+</li>
+      <li><a href="api-reference/marvis.data.html#marvis.data.audio_embeddings.prepare_audio_for_whisper">prepare_audio_for_whisper() (in module marvis.data.audio_embeddings)</a>
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.resource_manager.prepare_cifar_dataset">prepare_cifar_dataset() (in module marvis.utils.resource_manager)</a>
 
@@ -1333,8 +1341,6 @@
 </li>
       <li><a href="api-reference/marvis.data.html#marvis.data.embeddings.prepare_image_for_dinov2">prepare_image_for_dinov2() (in module marvis.data.embeddings)</a>
 </li>
-      <li><a href="api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.prepare_inputs_for_generation">prepare_inputs_for_generation() (marvis.models.vq.QwenWithVQPrefixEmbedding method)</a>
-</li>
       <li><a href="api-reference/marvis.models.html#marvis.models.vq.prepare_qwen_with_vq_prefix_embedding">prepare_qwen_with_vq_prefix_embedding() (in module marvis.models.vq)</a>
 </li>
       <li><a href="api-reference/marvis.data.html#marvis.data.embeddings.prepare_tabpfn_embeddings_for_prefix">prepare_tabpfn_embeddings_for_prefix() (in module marvis.data.embeddings)</a>
@@ -1342,14 +1348,6 @@
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsArtifacts.processed_outputs">processed_outputs (marvis.utils.results_manager.ResultsArtifacts attribute)</a>
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.ExperimentMetadata.python_version">python_version (marvis.utils.results_manager.ExperimentMetadata attribute)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="Q">Q</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding">QwenWithVQPrefixEmbedding (class in marvis.models.vq)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1414,8 +1412,6 @@
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager.save_artifacts">save_artifacts() (marvis.utils.results_manager.ResultsManager method)</a>
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.ResultsManager.save_evaluation_results">save_evaluation_results() (marvis.utils.results_manager.ResultsManager method)</a>
-</li>
-      <li><a href="api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.save_pretrained">save_pretrained() (marvis.models.vq.QwenWithVQPrefixEmbedding method)</a>
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.save_results_unified">save_results_unified() (in module marvis.utils.results_manager)</a>
 </li>
@@ -1553,8 +1549,6 @@
 </li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.context.layouts.LayoutConfig.title_height">title_height (marvis.viz.context.layouts.LayoutConfig attribute)</a>
 </li>
-      <li><a href="api-reference/marvis.models.html#marvis.models.vq.QwenWithVQPrefixEmbedding.to">to() (marvis.models.vq.QwenWithVQPrefixEmbedding method)</a>
-</li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.metadata_loader.DatasetMetadata.to_dict">to_dict() (marvis.utils.metadata_loader.DatasetMetadata method)</a>
 
       <ul>
@@ -1614,6 +1608,10 @@
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.GeminiVisionModelWrapper.unload">(marvis.utils.model_loader.GeminiVisionModelWrapper method)</a>
 </li>
+        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPModelWrapper.unload">(marvis.utils.model_loader.LlamaCPPModelWrapper method)</a>
+</li>
+        <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.LlamaCPPVisionModelWrapper.unload">(marvis.utils.model_loader.LlamaCPPVisionModelWrapper method)</a>
+</li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.OpenAIModelWrapper.unload">(marvis.utils.model_loader.OpenAIModelWrapper method)</a>
 </li>
         <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.OpenAIVisionModelWrapper.unload">(marvis.utils.model_loader.OpenAIVisionModelWrapper method)</a>
@@ -1645,20 +1643,16 @@
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.resource_manager.MarvisResourceManager.validate_model_metadata">validate_model_metadata() (marvis.utils.resource_manager.MarvisResourceManager method)</a>
 </li>
-      <li><a href="api-reference/marvis.models.html#marvis.models.vq.VectorQuantizer">VectorQuantizer (class in marvis.models.vq)</a>
-
-      <ul>
-        <li><a href="api-reference/marvis.models.html#marvis.models.vq.vector_quantizer.VectorQuantizer">(class in marvis.models.vq.vector_quantizer)</a>
+      <li><a href="api-reference/marvis.models.html#marvis.models.vq.vector_quantizer.VectorQuantizer">VectorQuantizer (in module marvis.models.vq.vector_quantizer)</a>
 </li>
-      </ul></li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.base.VisualizationConfig.viewing_angles">viewing_angles (marvis.viz.base.VisualizationConfig attribute)</a>
 </li>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.model_loader.VisionLanguageModelWrapper">VisionLanguageModelWrapper (class in marvis.utils.model_loader)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api-reference/marvis.utils.html#marvis.utils.results_manager.EvaluationResults.visualization_paths">visualization_paths (marvis.utils.results_manager.EvaluationResults attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.base.VisualizationConfig">VisualizationConfig (class in marvis.viz.base)</a>
 </li>
       <li><a href="api-reference/marvis.viz.html#marvis.viz.base.VisualizationResult">VisualizationResult (class in marvis.viz.base)</a>

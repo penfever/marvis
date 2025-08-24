@@ -2,12 +2,12 @@
 Audio classification examples using MARVIS with Whisper embeddings.
 """
 
+from .audio_datasets import ESC50Dataset, RAVDESSDataset, UrbanSound8KDataset
 from .marvis_tsne_audio_baseline import MarvisAudioTsneClassifier
-from .audio_datasets import ESC50Dataset, UrbanSound8KDataset, RAVDESSDataset
 
 __all__ = [
-    'MarvisAudioTsneClassifier',
-    'ESC50Dataset',
-    'UrbanSound8KDataset', 
-    'RAVDESSDataset'
+    "MarvisAudioTsneClassifier",
+    "ESC50Dataset",
+    "UrbanSound8KDataset",
+    "RAVDESSDataset",
 ]

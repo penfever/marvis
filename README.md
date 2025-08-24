@@ -111,6 +111,11 @@ MARVIS follows a **modality-agnostic VLM classification pipeline**:
 
 ## 🛠️ Installation
 
+### Platform Support
+- ✅ **Linux**: Fully supported (Ubuntu 20.04+)
+- ✅ **macOS**: Fully supported (macOS 14+ with Apple Silicon MPS acceleration)  
+- ❌ **Windows**: Not yet supported (contributions welcome!)
+
 ### Basic Installation
 ```bash
 git clone https://github.com/penfever/marvis.git

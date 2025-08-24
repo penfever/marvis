@@ -7,6 +7,4 @@ to add features like KNN analysis, decision boundaries, pattern mining, etc.
 
 from .knn import BaseKNNVisualization
 
-__all__ = [
-    'BaseKNNVisualization'
-]
+__all__ = ["BaseKNNVisualization"]

@@ -1,13 +1,12 @@
+import numpy as np
 import pandas as pd
 from pandas.api.types import is_float_dtype
-import numpy as np
 from sklearn.model_selection import train_test_split
 
-	 
 csv_header_options = [
-    'no_headers',  # don't use CSV file column headers at all
-    'headers_as_prompt_prefix',  # list column headers once as part of the prompt prefix
-    'headers_as_item_prefix',  # preface each data value with the corresponding colum header
+    "no_headers",  # don't use CSV file column headers at all
+    "headers_as_prompt_prefix",  # list column headers once as part of the prompt prefix
+    "headers_as_item_prefix",  # preface each data value with the corresponding colum header
 ]
 
 
@@ -17,15 +16,15 @@ class CsvParser:
         csv_path,  # path to input csv file
         y_column_names,  # list of y or target column names
         y_column_types,  # list of y column types: 'categorical' or 'numerical'
-        header_option='headers_as_item_prefix',  # see csv_headers_options comments
+        header_option="headers_as_item_prefix",  # see csv_headers_options comments
         num_decimal_places=2,  # number of decimal places to round the floating point numbers in the csv file to
         remove_rows_with_missing_values=True,  # if True, remove any row with missing or Nan  values
         columns_to_ignore=[],  # list of columns to ignore/delete in the csv file
-        shuffle = True,  # Whether or not to shuffle the data before splitting
+        shuffle=True,  # Whether or not to shuffle the data before splitting
         seed=0,  # seed used to split the train/test data
-        break_str='\n',
-        column_separator=';',
-        name_value_separator=':',
+        break_str="\n",
+        column_separator=";",
+        name_value_separator=":",
         missing_fraction=0.0,
     ) -> None:
         np.random.seed(seed)
@@ -45,11 +44,15 @@ class CsvParser:
 
         # delete any ignored columns
         if len(columns_to_ignore) > 0:
-            self.df = self.df.drop(columns=columns_to_ignore)   
+            self.df = self.df.drop(columns=columns_to_ignore)
 
         # get the names of the x columns
-        self.all_column_names = list(self.df.columns.values)  # first get the names of all the columns
-        self.x_column_names = self.all_column_names.copy()  # make a copy of the all list
+        self.all_column_names = list(
+            self.df.columns.values
+        )  # first get the names of all the columns
+        self.x_column_names = (
+            self.all_column_names.copy()
+        )  # make a copy of the all list
         for name in self.y_column_names:  # then remove the y columns
             self.x_column_names.remove(name)
 
@@ -69,37 +72,50 @@ class CsvParser:
         # round columns with floats to specified number of decimal places
         for name in self.all_column_names:
             if is_float_dtype(self.df[name]):
-                self.df[name] = self.df[name].apply(lambda x: round(x, num_decimal_places) if pd.notna(x) else x)
+                self.df[name] = self.df[name].apply(
+                    lambda x: round(x, num_decimal_places) if pd.notna(x) else x
+                )
 
-
-        if self.missing_fraction > 0.0:  # generate 2D mask with missing_fraction probability
-            self.mask = np.random.choice([0, 1], size=(len(self.df.index), len(self.x_column_names)), p=[1 - self.missing_fraction, self.missing_fraction])
+        if (
+            self.missing_fraction > 0.0
+        ):  # generate 2D mask with missing_fraction probability
+            self.mask = np.random.choice(
+                [0, 1],
+                size=(len(self.df.index), len(self.x_column_names)),
+                p=[1 - self.missing_fraction, self.missing_fraction],
+            )
             completely_missing_rows = []
             for row in range(len(self.df.index)):
-                if len(np.where(self.mask[row] == 1)[0]) == len(self.x_column_names):  # all features would be missing
+                if len(np.where(self.mask[row] == 1)[0]) == len(
+                    self.x_column_names
+                ):  # all features would be missing
                     completely_missing_rows.append(row)
-            self.mask = np.ascontiguousarray(np.delete(self.mask, completely_missing_rows, axis=0))
+            self.mask = np.ascontiguousarray(
+                np.delete(self.mask, completely_missing_rows, axis=0)
+            )
             self.df = self.df.drop(completely_missing_rows, axis=0)
             self.df = self.df.reset_index()
 
     def get_data_test_fraction(
-        self,
-        test_fraction=0.2,
-        train_size_limit=None,
-        test_size_limit=None
+        self, test_fraction=0.2, train_size_limit=None, test_size_limit=None
     ):
         xs = []
         ys = []
         for i, _ in self.df.iterrows():
-            x = ''
+            x = ""
             for j, name in enumerate(self.x_column_names):
                 if (self.missing_fraction > 0.0) and (self.mask[i, j] == 1):
-                        continue
-                if self.header_options == 'headers_as_item_prefix':
-                    x += ('{}{}{}{}'.format(name, self.name_value_separator, self.df[name][i], self.column_separator))
+                    continue
+                if self.header_options == "headers_as_item_prefix":
+                    x += "{}{}{}{}".format(
+                        name,
+                        self.name_value_separator,
+                        self.df[name][i],
+                        self.column_separator,
+                    )
                 else:
-                    x += ('{}{}'.format(self.df[name][i], self.column_separator))
-                    
+                    x += "{}{}".format(self.df[name][i], self.column_separator)
+
             y = []
             for name in self.y_column_names:
                 y.append(self.df[name][i])
@@ -115,41 +131,45 @@ class CsvParser:
             y_all,
             test_size=test_fraction,
             random_state=self.seed,
-            shuffle=self.shuffle
+            shuffle=self.shuffle,
         )
-        
+
         self.data = {
-            'x_train': x_train,
-            'y_train': y_train,
-            'x_test': x_test,
-            'y_test': y_test,
-            'x_true': x_all,
-            'y_true': y_all,
+            "x_train": x_train,
+            "y_train": y_train,
+            "x_test": x_test,
+            "y_test": y_test,
+            "x_true": x_all,
+            "y_true": y_all,
         }
 
-        return self._truncate(train_size_limit=train_size_limit, test_size_limit=test_size_limit)
-    
+        return self._truncate(
+            train_size_limit=train_size_limit, test_size_limit=test_size_limit
+        )
+
     def get_data_shots_per_class(
-        self,
-        shots=1,
-        train_size_limit=None,
-        test_size_limit=None
+        self, shots=1, train_size_limit=None, test_size_limit=None
     ):
         # check that y is categorical and there is only one y column
         assert len(self.y_column_names) == 1
-        assert self.y_column_types[0] == 'categorical'
+        assert self.y_column_types[0] == "categorical"
         xs = []
         ys = []
         for i, _ in self.df.iterrows():
-            x = ''
+            x = ""
             for j, name in enumerate(self.x_column_names):
                 if (self.missing_fraction > 0.0) and (self.mask[i, j] == 1):
-                        continue
-                if self.header_options == 'headers_as_item_prefix':
-                    x += ('{}{}{}{}'.format(name, self.name_value_separator, self.df[name][i], self.column_separator))
+                    continue
+                if self.header_options == "headers_as_item_prefix":
+                    x += "{}{}{}{}".format(
+                        name,
+                        self.name_value_separator,
+                        self.df[name][i],
+                        self.column_separator,
+                    )
                 else:
-                    x += ('{}{}'.format(self.df[name][i], self.column_separator))
-                    
+                    x += "{}{}".format(self.df[name][i], self.column_separator)
+
             y = []
             for name in self.y_column_names:
                 y.append(self.df[name][i])
@@ -168,19 +188,21 @@ class CsvParser:
             test_size=None,
             random_state=self.seed,
             shuffle=self.shuffle,
-            stratify=labels
+            stratify=labels,
         )
-        
+
         self.data = {
-            'x_train': x_train,
-            'y_train': y_train,
-            'x_test': x_test,
-            'y_test': y_test,
-            'x_true': x_all,
-            'y_true': y_all,
+            "x_train": x_train,
+            "y_train": y_train,
+            "x_test": x_test,
+            "y_test": y_test,
+            "x_true": x_all,
+            "y_true": y_all,
         }
 
-        return self._truncate(train_size_limit=train_size_limit, test_size_limit= test_size_limit)
+        return self._truncate(
+            train_size_limit=train_size_limit, test_size_limit=test_size_limit
+        )
 
     def get_data_fixed_indices(
         self,
@@ -188,19 +210,24 @@ class CsvParser:
         train_end_index,
         test_start_index,
         test_end_index,
-        ):
+    ):
         xs = []
         ys = []
         for i, _ in self.df.iterrows():
-            x = ''
+            x = ""
             for j, name in enumerate(self.x_column_names):
                 if (self.missing_fraction > 0.0) and (self.mask[i, j] == 1):
-                        continue
-                if self.header_options == 'headers_as_item_prefix':
-                    x += ('{}{}{}{}'.format(name, self.name_value_separator, self.df[name][i], self.column_separator))
+                    continue
+                if self.header_options == "headers_as_item_prefix":
+                    x += "{}{}{}{}".format(
+                        name,
+                        self.name_value_separator,
+                        self.df[name][i],
+                        self.column_separator,
+                    )
                 else:
-                    x += ('{}{}'.format(self.df[name][i], self.column_separator))
-                    
+                    x += "{}{}".format(self.df[name][i], self.column_separator)
+
             y = []
             for name in self.y_column_names:
                 y.append(self.df[name][i])
@@ -208,7 +235,7 @@ class CsvParser:
             ys.append(y)
 
         x_all = np.array(xs)
-        y_all = np.array(ys, dtype=object)      
+        y_all = np.array(ys, dtype=object)
 
         x_test = x_all[test_start_index:test_end_index]
         y_test = y_all[test_start_index:test_end_index, :]
@@ -220,10 +247,10 @@ class CsvParser:
         test_permutation = np.random.permutation(len(x_test))
 
         self.data = {
-            'x_train': x_train[train_permutation],
-            'y_train': y_train[train_permutation],
-            'x_test': x_test[test_permutation],
-            'y_test': y_test[test_permutation],
+            "x_train": x_train[train_permutation],
+            "y_train": y_train[train_permutation],
+            "x_test": x_test[test_permutation],
+            "y_test": y_test[test_permutation],
         }
 
         return self.data
@@ -236,15 +263,20 @@ class CsvParser:
         xs = []
         ys = []
         for i, _ in self.df.iterrows():
-            x = ''
+            x = ""
             for j, name in enumerate(self.x_column_names):
                 if (self.missing_fraction > 0.0) and (self.mask[i, j] == 1):
-                        continue
-                if self.header_options == 'headers_as_item_prefix':
-                    x += ('{}{}{}{}'.format(name, self.name_value_separator, self.df[name][i], self.column_separator))
+                    continue
+                if self.header_options == "headers_as_item_prefix":
+                    x += "{}{}{}{}".format(
+                        name,
+                        self.name_value_separator,
+                        self.df[name][i],
+                        self.column_separator,
+                    )
                 else:
-                    x += ('{}{}'.format(self.df[name][i], self.column_separator))
-                    
+                    x += "{}{}".format(self.df[name][i], self.column_separator)
+
             y = []
             for name in self.y_column_names:
                 y.append(self.df[name][i])
@@ -254,11 +286,13 @@ class CsvParser:
         x_all = np.array(xs)
         y_all = np.array(ys, dtype=object)
 
-        x_train_start = []  
+        x_train_start = []
         y_train_start = []
-        column_index = -1  # if the last column is categorical, we will ensure that there is at least one example per class in the training set
+        column_index = (
+            -1
+        )  # if the last column is categorical, we will ensure that there is at least one example per class in the training set
         classes = []
-        if self.y_column_types[column_index] == 'categorical':
+        if self.y_column_types[column_index] == "categorical":
             # ensure that there is a least 1 example per class in the train set
             classes = np.unique(y_all[:, column_index])
             for cls in classes:
@@ -280,7 +314,11 @@ class CsvParser:
                 test_size=test_size_limit,
                 random_state=self.seed,
                 shuffle=self.shuffle,
-                stratify=y_all[:, column_index] if self.y_column_types[column_index] == 'categorical' else None
+                stratify=(
+                    y_all[:, column_index]
+                    if self.y_column_types[column_index] == "categorical"
+                    else None
+                ),
             )
             if len(x_train_start) > 0:
                 x_train = np.concatenate((x_train_start, x_train))
@@ -290,20 +328,28 @@ class CsvParser:
             permutation = np.random.permutation(len(y_all))
             train_samples_to_draw = train_size_limit - len(x_train_start)
             if train_samples_to_draw > 0:
-                x_train = np.concatenate((x_train_start, x_all[permutation][0 : train_samples_to_draw]))
-                y_train = np.concatenate((y_train_start, y_all[permutation][0 : train_samples_to_draw]))
+                x_train = np.concatenate(
+                    (x_train_start, x_all[permutation][0:train_samples_to_draw])
+                )
+                y_train = np.concatenate(
+                    (y_train_start, y_all[permutation][0:train_samples_to_draw])
+                )
             else:
                 x_train = x_train_start
                 y_train = y_train_start
             # draw the test examples at random from the remaining x_all, y_all
-            x_test = x_all[permutation][train_samples_to_draw : test_size_limit + train_samples_to_draw]
-            y_test = y_all[permutation][train_samples_to_draw : test_size_limit + train_samples_to_draw]
-        
+            x_test = x_all[permutation][
+                train_samples_to_draw : test_size_limit + train_samples_to_draw
+            ]
+            y_test = y_all[permutation][
+                train_samples_to_draw : test_size_limit + train_samples_to_draw
+            ]
+
         self.data = {
-            'x_train': x_train,
-            'y_train': y_train,
-            'x_test': x_test,
-            'y_test': y_test,
+            "x_train": x_train,
+            "y_train": y_train,
+            "x_test": x_test,
+            "y_test": y_test,
         }
 
         return self.data

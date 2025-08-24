@@ -1,9 +1,9 @@
 import torch
 from transformers import (
-    LlamaForCausalLM, 
-    LlamaTokenizer,
     AutoModelForCausalLM,
     AutoTokenizer,
+    LlamaForCausalLM,
+    LlamaTokenizer,
 )
 
 llm_map = {
@@ -28,7 +28,7 @@ llm_map = {
     "qwen2.5-1.5B-instruct": "Qwen/Qwen2.5-1.5B-Instruct",
     "qwen2.5-7B-instruct": "Qwen/Qwen2.5-7B-Instruct",
     "qwen2.5-72B-instruct": "Qwen/Qwen2.5-72B-Instruct",
-    "deepseek-r1-distill-qwen-7B": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
+    "deepseek-r1-distill-qwen-7B": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
 }
 
 
@@ -42,14 +42,10 @@ def get_tokenizer(llm_path, llm_type):
         llm_path = llm_map[llm_type]
     if "llama-2" in llm_type:
         tokenizer = LlamaTokenizer.from_pretrained(
-            llm_path,
-            use_fast=False,
-            padding_side="left"
+            llm_path, use_fast=False, padding_side="left"
         )
     elif "llama-3" in llm_type:
-        tokenizer = AutoTokenizer.from_pretrained(
-            llm_path
-        )
+        tokenizer = AutoTokenizer.from_pretrained(llm_path)
     elif "phi-3" in llm_type:
         tokenizer = AutoTokenizer.from_pretrained(
             llm_path,
@@ -91,12 +87,12 @@ def get_model_and_tokenizer(args):
     else:
         llm_path = args.llm_path
     tokenizer = get_tokenizer(llm_path, args.llm_type)
-    
+
     # Determine device and dtype based on availability
-    use_cuda = torch.cuda.is_available() and getattr(args, 'device', 'auto') != 'cpu'
+    use_cuda = torch.cuda.is_available() and getattr(args, "device", "auto") != "cpu"
     device_map = "auto" if use_cuda else "cpu"
     torch_dtype = torch.bfloat16 if use_cuda else torch.float32
-    
+
     # Override dtype for specific models if needed
     if "llama-2" in args.llm_type:
         torch_dtype = torch.float16 if use_cuda else torch.float32
@@ -146,37 +142,27 @@ def get_model_and_tokenizer(args):
 
 
 def _generate_core(
-    model,
-    tokenizer,
-    batch,
-    temp,
-    top_p,
-    top_k,
-    max_new_tokens,
-    num_input_ids
-    ):
+    model, tokenizer, batch, temp, top_p, top_k, max_new_tokens, num_input_ids
+):
     args = {
-        'do_sample': True,
-        'max_new_tokens': max_new_tokens,
-        'temperature': temp,
-        'renormalize_logits': False,
-        'pad_token_id': tokenizer.eos_token_id
+        "do_sample": True,
+        "max_new_tokens": max_new_tokens,
+        "temperature": temp,
+        "renormalize_logits": False,
+        "pad_token_id": tokenizer.eos_token_id,
     }
     if top_k is not None:
-        args['top_k'] = top_k
+        args["top_k"] = top_k
     else:
-        args['top_p'] = top_p
-        args['top_k'] = 0
+        args["top_p"] = top_p
+        args["top_k"] = 0
 
-    generate_ids = model.generate(
-        **batch,
-        **args
-    )
+    generate_ids = model.generate(**batch, **args)
 
     gen_strs = tokenizer.batch_decode(
         generate_ids[:, num_input_ids:],
         skip_special_tokens=True,
-        clean_up_tokenization_spaces=False
+        clean_up_tokenization_spaces=False,
     )
 
     return gen_strs
@@ -185,20 +171,15 @@ def _generate_core(
 # This assumes that there is only a single prompt and it gets replicated batch_size times
 @torch.inference_mode()
 def hf_generate(
-    model,
-    tokenizer,
-    input_str,
-    batch_size,
-    temp, 
-    top_p,
-    top_k,
-    max_new_tokens
-    ):
+    model, tokenizer, input_str, batch_size, temp, top_p, top_k, max_new_tokens
+):
     batch = tokenizer([input_str], return_tensors="pt")
     batch = {k: v.repeat(batch_size, 1) for k, v in batch.items()}
     # Use the device of the model instead of hardcoding CUDA
     device = next(model.parameters()).device
     batch = {k: v.to(device) for k, v in batch.items()}
-    num_input_ids = batch['input_ids'].shape[1]
+    num_input_ids = batch["input_ids"].shape[1]
 
-    return _generate_core(model, tokenizer, batch, temp, top_p, top_k, max_new_tokens, num_input_ids)
+    return _generate_core(
+        model, tokenizer, batch, temp, top_p, top_k, max_new_tokens, num_input_ids
+    )

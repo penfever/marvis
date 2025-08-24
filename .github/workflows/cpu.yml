@@ -1,0 +1,183 @@
+name: Cross-Platform CPU Tests
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Weekly on Mondays at 6 AM UTC
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: 'Type of CPU tests to run'
+        required: false
+        default: 'standard'
+        type: choice
+        options:
+        - standard
+        - comprehensive
+        - performance
+
+env:
+  PYTHONUNBUFFERED: 1
+  FORCE_COLOR: 1
+  # Force CPU-only mode
+  CUDA_VISIBLE_DEVICES: ""
+  VLLM_AVAILABLE: false
+
+jobs:
+  cpu-cross-platform-integration:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # Note: Using macos-14 instead of macos-latest to avoid migration to macOS 15
+        # See: https://github.com/actions/runner-images/issues/12520
+        # Note: Windows not yet supported - removed from testing matrix
+        os: [ubuntu-latest, macos-14]
+        python-version: ["3.11", "3.12"]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install system dependencies (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ffmpeg portaudio19-dev
+    
+    - name: Install system dependencies (macOS)
+      if: matrix.os == 'macos-14'
+      run: |
+        brew install ffmpeg portaudio
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev,test,audio,vision]"
+        pip install pytest-xdist pytest-timeout pytest-benchmark
+    
+    - name: Verify CPU-only setup
+      run: |
+        python -c "
+        import torch
+        print(f'PyTorch version: {torch.__version__}')
+        print(f'CUDA available: {torch.cuda.is_available()}')
+        print(f'MPS available: {torch.backends.mps.is_available() if hasattr(torch.backends, \"mps\") else False}')
+        print('CPU-only mode confirmed' if not torch.cuda.is_available() else 'WARNING: CUDA detected')
+        "
+    
+    - name: Run cross-platform integration tests
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "integration and (slow or cpu_intensive) and not api and not vlm" \
+          --maxfail=3 \
+          --timeout=900 \
+          -n 2
+
+  cpu-transformers-backend:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.test_type == 'comprehensive' || github.event_name == 'schedule' }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev,test,vision,audio]"
+        # Explicitly install transformers without VLLM
+        pip install transformers torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+    
+    - name: Test transformers backend only
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "integration and vlm and not api" \
+          --maxfail=2 \
+          --timeout=1200
+      env:
+        VLLM_AVAILABLE: false
+        MARVIS_FORCE_BACKEND: transformers
+
+  cpu-performance-benchmarks:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.test_type == 'performance' || github.event_name == 'schedule' }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev,test,vision,audio]"
+        pip install pytest-benchmark
+    
+    - name: Run performance benchmarks
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "cpu and benchmark" \
+          --benchmark-only \
+          --benchmark-json=cpu-benchmark.json \
+          --timeout=900
+    
+    - name: Upload benchmark results
+      uses: actions/upload-artifact@v3
+      with:
+        name: cpu-benchmark-results
+        path: cpu-benchmark.json
+
+  mps-compatibility:
+    runs-on: macos-14
+    if: ${{ github.event.inputs.test_type == 'comprehensive' }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install system dependencies
+      run: |
+        brew install ffmpeg portaudio
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev,test,vision,audio]"
+    
+    - name: Test MPS compatibility in CPU mode
+      run: |
+        pytest tests/integration/ \
+          -v \
+          --tb=short \
+          -m "integration and mps and not api and not slow" \
+          --maxfail=2 \
+          --timeout=600
+      env:
+        # Force CPU mode even on MPS-capable systems
+        PYTORCH_ENABLE_MPS_FALLBACK: 1
+        MARVIS_FORCE_DEVICE: cpu

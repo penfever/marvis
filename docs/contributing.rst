@@ -21,7 +21,7 @@ Getting Started
    .. code-block:: bash
 
       python -m venv marvis-dev
-      source marvis-dev/bin/activate  # On Windows: marvis-dev\\Scripts\\activate
+      source marvis-dev/bin/activate  # Linux/macOS only (Windows not yet supported)
       pip install -e ".[vision,audio,api,dev]"
 
 3. **Create Feature Branch**
@@ -82,6 +82,7 @@ Areas for Contribution
 
 We especially welcome contributions in:
 
+* **Windows support** - Help us add Windows compatibility!
 * New modality support
 * Performance optimizations  
 * Documentation improvements

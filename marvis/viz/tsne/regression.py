@@ -1,5 +1,5 @@
 """
-t-SNE regression visualization that combines base t-SNE functionality with 
+t-SNE regression visualization that combines base t-SNE functionality with
 regression-specific plotting and optional KNN analysis.
 
 This class replaces the functions:
@@ -9,20 +9,16 @@ This class replaces the functions:
 - create_regression_tsne_3d_plot_with_knn
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
-from typing import Optional, List, Dict, Any, Tuple, Union
 import logging
+from typing import List, Optional
 
-from .base import BaseTSNEVisualization
-from ..mixins.knn import BaseKNNVisualization
+import matplotlib.colors as mcolors
+import matplotlib.pyplot as plt
+import numpy as np
+
 from ..base import VisualizationConfig, VisualizationResult
-from ..utils.styling import (
-    create_regression_color_map,
-    get_standard_test_point_style,
-    get_standard_target_point_style
-)
+from ..mixins.knn import BaseKNNVisualization
+from .base import BaseTSNEVisualization
 
 logger = logging.getLogger(__name__)
 
@@ -30,31 +26,31 @@ logger = logging.getLogger(__name__)
 class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
     """
     t-SNE visualization specialized for regression tasks.
-    
+
     This class provides:
     - Standard regression t-SNE plotting with continuous color mapping (2D and 3D)
     - Optional KNN connections and analysis for continuous targets
     - Multiple viewing angles for 3D plots
     - Proper integration with BaseVisualization architecture
     """
-    
+
     def __init__(self, config: Optional[VisualizationConfig] = None, **kwargs):
         """
         Initialize regression t-SNE visualization.
-        
+
         Args:
             config: Visualization configuration
             **kwargs: Additional parameters for t-SNE
         """
         super().__init__(config, **kwargs)
-        
+
         # Override task type for regression
-        self.config.task_type = 'regression'
-        
+        self.config.task_type = "regression"
+
         # Default colormap for regression
-        if 'colormap' not in self.config.extra_params:
-            self.config.extra_params['colormap'] = 'viridis'
-    
+        if "colormap" not in self.config.extra_params:
+            self.config.extra_params["colormap"] = "viridis"
+
     def generate_plot(
         self,
         transformed_data: np.ndarray,
@@ -62,11 +58,11 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
         highlight_indices: Optional[List[int]] = None,
         test_data: Optional[np.ndarray] = None,
         highlight_test_indices: Optional[List[int]] = None,
-        **kwargs
+        **kwargs,
     ) -> VisualizationResult:
         """
         Generate a regression t-SNE plot.
-        
+
         Args:
             transformed_data: Training data coordinates [n_train, n_components]
             y: Training target values [n_train]
@@ -74,25 +70,42 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
             test_data: Test data coordinates [n_test, n_components] (optional)
             highlight_test_indices: Indices of test points to highlight with red X
             **kwargs: Additional plotting parameters
-            
+
         Returns:
             VisualizationResult with plot image and metadata
         """
         if y is None:
             raise ValueError("Regression visualization requires target values (y)")
-        
-        use_3d = self.config.use_3d and transformed_data.shape[1] >= 3 and self.supports_3d
-        
+
+        use_3d = (
+            self.config.use_3d and transformed_data.shape[1] >= 3 and self.supports_3d
+        )
+
         # Handle multiple viewing angles for 3D
-        if use_3d and self.config.viewing_angles and len(self.config.viewing_angles) > 1:
+        if (
+            use_3d
+            and self.config.viewing_angles
+            and len(self.config.viewing_angles) > 1
+        ):
             return self._generate_multi_view_3d_plot(
-                transformed_data, y, highlight_indices, test_data, highlight_test_indices, **kwargs
+                transformed_data,
+                y,
+                highlight_indices,
+                test_data,
+                highlight_test_indices,
+                **kwargs,
             )
         else:
             return self._generate_single_view_plot(
-                transformed_data, y, highlight_indices, test_data, highlight_test_indices, use_3d, **kwargs
+                transformed_data,
+                y,
+                highlight_indices,
+                test_data,
+                highlight_test_indices,
+                use_3d,
+                **kwargs,
             )
-    
+
     def _generate_single_view_plot(
         self,
         transformed_data: np.ndarray,
@@ -101,30 +114,31 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
         test_data: Optional[np.ndarray],
         highlight_test_indices: Optional[List[int]],
         use_3d: bool,
-        **kwargs
+        **kwargs,
     ) -> VisualizationResult:
         """Generate a single view regression plot (2D or single 3D view)."""
-        import time
         import io
+        import time
+
         from PIL import Image
-        
+
         plot_start = time.time()
-        
+
         # Create figure
         if use_3d:
             fig = plt.figure(figsize=self.config.figsize, dpi=self.config.dpi)
-            ax = fig.add_subplot(111, projection='3d')
+            ax = fig.add_subplot(111, projection="3d")
         else:
             fig, ax = plt.subplots(figsize=self.config.figsize, dpi=self.config.dpi)
-        
+
         # Get colormap
-        colormap = self.config.extra_params.get('colormap', 'viridis')
-        
+        colormap = self.config.extra_params.get("colormap", "viridis")
+
         # Create regression color mapping
         vmin, vmax = np.min(y), np.max(y)
         norm = mcolors.Normalize(vmin=vmin, vmax=vmax)
         cmap = plt.cm.get_cmap(colormap)
-        
+
         # Plot training points with continuous color mapping
         if use_3d:
             scatter = ax.scatter(
@@ -136,8 +150,8 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
                 alpha=self.config.alpha,
                 cmap=cmap,
                 norm=norm,
-                edgecolors='black',
-                linewidth=0.5
+                edgecolors="black",
+                linewidth=0.5,
             )
         else:
             scatter = ax.scatter(
@@ -148,14 +162,14 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
                 alpha=self.config.alpha,
                 cmap=cmap,
                 norm=norm,
-                edgecolors='black',
-                linewidth=0.5
+                edgecolors="black",
+                linewidth=0.5,
             )
-        
+
         # Add colorbar
         cbar = plt.colorbar(scatter, ax=ax)
-        cbar.set_label('Target Value', rotation=270, labelpad=15)
-        
+        cbar.set_label("Target Value", rotation=270, labelpad=15)
+
         # Highlight specific training points if requested
         if highlight_indices:
             highlighted_targets = y[highlight_indices]
@@ -167,11 +181,11 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
                     c=highlighted_targets,
                     s=self.config.point_size * 2,
                     alpha=1.0,
-                    marker='x',
+                    marker="x",
                     linewidths=3,
                     cmap=cmap,
                     norm=norm,
-                    label='Highlighted'
+                    label="Highlighted",
                 )
             else:
                 ax.scatter(
@@ -180,13 +194,13 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
                     c=highlighted_targets,
                     s=self.config.point_size * 2,
                     alpha=1.0,
-                    marker='x',
+                    marker="x",
                     linewidths=3,
                     cmap=cmap,
                     norm=norm,
-                    label='Highlighted'
+                    label="Highlighted",
                 )
-        
+
         # Plot test data if available
         if test_data is not None:
             if use_3d:
@@ -194,29 +208,29 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
                     test_data[:, 0],
                     test_data[:, 1],
                     test_data[:, 2],
-                    c='lightgray',
+                    c="lightgray",
                     s=self.config.point_size * 1.2,
                     alpha=0.8,
-                    marker='s',
-                    edgecolors='black',
+                    marker="s",
+                    edgecolors="black",
                     linewidth=0.8,
-                    label='Test Points (Light Gray)'
+                    label="Test Points (Light Gray)",
                 )
             else:
                 ax.scatter(
                     test_data[:, 0],
                     test_data[:, 1],
-                    c='lightgray',
+                    c="lightgray",
                     s=self.config.point_size * 1.2,
                     alpha=0.8,
-                    marker='s',
-                    edgecolors='black',
+                    marker="s",
+                    edgecolors="black",
                     linewidth=0.8,
-                    label='Test Points (Light Gray)'
+                    label="Test Points (Light Gray)",
                 )
-        
+
         knn_info = None
-        
+
         # Highlight specific test points with red X markers
         if test_data is not None and highlight_test_indices:
             highlighted_test_data = test_data[highlight_test_indices]
@@ -225,29 +239,28 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
                     highlighted_test_data[:, 0],
                     highlighted_test_data[:, 1],
                     highlighted_test_data[:, 2],
-                    c='red',
+                    c="red",
                     s=self.config.point_size * 3,
                     alpha=1.0,
-                    marker='x',
+                    marker="x",
                     linewidths=4,
-                    label='Query point'
+                    label="Query point",
                 )
             else:
                 ax.scatter(
                     highlighted_test_data[:, 0],
                     highlighted_test_data[:, 1],
-                    c='red',
+                    c="red",
                     s=self.config.point_size * 3,
                     alpha=1.0,
-                    marker='x',
+                    marker="x",
                     linewidths=4,
-                    label='Query point'
+                    label="Query point",
                 )
-            
+
             # Add KNN connections if enabled
-            if (self.config.use_knn_connections and 
-                self._train_embeddings is not None):
-                
+            if self.config.use_knn_connections and self._train_embeddings is not None:
+
                 test_idx = highlight_test_indices[0]
                 knn_info = self.add_knn_connections_to_plot(
                     ax=ax,
@@ -255,92 +268,112 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
                     test_coords=test_data,
                     test_idx=test_idx,
                     use_3d=use_3d,
-                    k=self.config.nn_k
+                    k=self.config.nn_k,
                 )
-        
+
         # Apply zoom and viewing angles
         self.apply_zoom_and_viewing_angles(ax, use_3d)
-        
+
         # Create legend text
         legend_parts = [f"Target range: [{vmin:.3g}, {vmax:.3g}]"]
-        
+
         if test_data is not None:
             legend_parts.append("Test points: Light Gray squares")
-        
+
         if highlight_test_indices:
             legend_parts.append("Query point: Red X")
-        
-        legend_text = f"Regression data with continuous color mapping (colormap: {colormap})\n"
+
+        legend_text = (
+            f"Regression data with continuous color mapping (colormap: {colormap})\n"
+        )
         legend_text += "; ".join(legend_parts)
-        
+
         if knn_info:
             knn_description = self.generate_knn_description(
                 knn_info, self._class_names, self._use_semantic_names
             )
             legend_text += f"\n\n{knn_description}"
-        
+
         # Apply plot styling
         self._apply_plot_styling(ax, use_3d)
-        
+
         if self.config.tight_layout:
             plt.tight_layout()
-        
+
         # Convert to image
         img_buffer = io.BytesIO()
-        fig.savefig(img_buffer, format='png', dpi=self.config.dpi, bbox_inches='tight', facecolor='white')
+        fig.savefig(
+            img_buffer,
+            format="png",
+            dpi=self.config.dpi,
+            bbox_inches="tight",
+            facecolor="white",
+        )
         img_buffer.seek(0)
         image = Image.open(img_buffer)
         plt.close(fig)
-        
+
         # Process image format
-        if self.config.image_format == 'RGB' and image.mode != 'RGB':
-            if image.mode == 'RGBA':
-                rgb_image = Image.new('RGB', image.size, (255, 255, 255))
+        if self.config.image_format == "RGB" and image.mode != "RGB":
+            if image.mode == "RGBA":
+                rgb_image = Image.new("RGB", image.size, (255, 255, 255))
                 rgb_image.paste(image, mask=image.split()[3])
                 image = rgb_image
             else:
-                image = image.convert('RGB')
-        
+                image = image.convert("RGB")
+
         # Create metadata
         metadata = self.create_base_metadata(
-            transformed_data, test_data, None,  # No unique_classes for regression
-            highlight_test_indices[0] if highlight_test_indices else None
+            transformed_data,
+            test_data,
+            None,  # No unique_classes for regression
+            highlight_test_indices[0] if highlight_test_indices else None,
         )
-        
+
         # Add regression-specific metadata
-        metadata.update({
-            'target_range': (float(vmin), float(vmax)),
-            'target_mean': float(np.mean(y)),
-            'target_std': float(np.std(y)),
-            'colormap': colormap,
-            'query_position': test_data[highlight_test_indices[0]].tolist() if (test_data is not None and highlight_test_indices) else None
-        })
-        
+        metadata.update(
+            {
+                "target_range": (float(vmin), float(vmax)),
+                "target_mean": float(np.mean(y)),
+                "target_std": float(np.std(y)),
+                "colormap": colormap,
+                "query_position": (
+                    test_data[highlight_test_indices[0]].tolist()
+                    if (test_data is not None and highlight_test_indices)
+                    else None
+                ),
+            }
+        )
+
         # Add KNN metadata if available
         if knn_info:
             metadata.update(self.get_knn_metadata(knn_info))
-        
+
         plot_time = time.time() - plot_start
-        
+
         # Create result
         result = VisualizationResult(
             image=image,
             transformed_data=transformed_data,
-            description=self._get_default_description(len(transformed_data), transformed_data.shape[1]),
+            description=self._get_default_description(
+                len(transformed_data), transformed_data.shape[1]
+            ),
             method_name=self.method_name,
             config=self.config,
-            fit_time=getattr(self, '_last_fit_time', 0.0),
-            transform_time=getattr(self, '_last_transform_time', 0.0),
+            fit_time=getattr(self, "_last_fit_time", 0.0),
+            transform_time=getattr(self, "_last_transform_time", 0.0),
             plot_time=plot_time,
             highlighted_indices=highlight_indices,
-            highlighted_coords=transformed_data[highlight_indices] if highlight_indices else None,
+            highlighted_coords=(
+                transformed_data[highlight_indices] if highlight_indices else None
+            ),
             legend_text=legend_text,
-            metadata=metadata
+            metadata=metadata,
         )
-        
+
         self._add_quality_metrics(result)
         return result
-    
+
     def _generate_multi_view_3d_plot(
         self,
         transformed_data: np.ndarray,
@@ -348,21 +381,22 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
         highlight_indices: Optional[List[int]],
         test_data: Optional[np.ndarray],
         highlight_test_indices: Optional[List[int]],
-        **kwargs
+        **kwargs,
     ) -> VisualizationResult:
         """Generate a multi-view 3D regression plot with multiple viewing angles."""
-        import time
         import io
+        import time
+
         from PIL import Image
-        
+
         plot_start = time.time()
-        
+
         viewing_angles = self.config.viewing_angles
         n_views = len(viewing_angles)
-        
+
         # Create figure with subplots for multiple views
         fig = plt.figure(figsize=self.config.figsize, dpi=self.config.dpi)
-        
+
         # Determine subplot layout
         if n_views <= 2:
             rows, cols = 1, n_views
@@ -371,20 +405,20 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
         else:
             rows = int(np.ceil(np.sqrt(n_views)))
             cols = int(np.ceil(n_views / rows))
-        
+
         # Get colormap and normalization
-        colormap = self.config.extra_params.get('colormap', 'viridis')
+        colormap = self.config.extra_params.get("colormap", "viridis")
         vmin, vmax = np.min(y), np.max(y)
         norm = mcolors.Normalize(vmin=vmin, vmax=vmax)
         cmap = plt.cm.get_cmap(colormap)
-        
-        view_names = [f'View {i+1}' for i in range(n_views)]
+
+        view_names = [f"View {i+1}" for i in range(n_views)]
         knn_info = None
-        
+
         # Create each view
         for i, (elev, azim) in enumerate(viewing_angles):
-            ax = fig.add_subplot(rows, cols, i+1, projection='3d')
-            
+            ax = fig.add_subplot(rows, cols, i + 1, projection="3d")
+
             # Plot training points with continuous color mapping
             scatter = ax.scatter(
                 transformed_data[:, 0],
@@ -395,24 +429,24 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
                 alpha=self.config.alpha,
                 cmap=cmap,
                 norm=norm,
-                edgecolors='black',
-                linewidth=0.5
+                edgecolors="black",
+                linewidth=0.5,
             )
-            
+
             # Plot test data if available
             if test_data is not None:
                 ax.scatter(
                     test_data[:, 0],
                     test_data[:, 1],
                     test_data[:, 2],
-                    c='lightgray',
+                    c="lightgray",
                     s=self.config.point_size * 1.2,
                     alpha=0.8,
-                    marker='s',
-                    edgecolors='black',
-                    linewidth=0.8
+                    marker="s",
+                    edgecolors="black",
+                    linewidth=0.8,
                 )
-            
+
             # Highlight specific test points
             if test_data is not None and highlight_test_indices:
                 highlighted_test_data = test_data[highlight_test_indices]
@@ -420,17 +454,20 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
                     highlighted_test_data[:, 0],
                     highlighted_test_data[:, 1],
                     highlighted_test_data[:, 2],
-                    c='red',
+                    c="red",
                     s=self.config.point_size * 3,
                     alpha=1.0,
-                    marker='x',
-                    linewidths=4
+                    marker="x",
+                    linewidths=4,
                 )
-                
+
                 # Add KNN connections if enabled (only for first view)
-                if (i == 0 and self.config.use_knn_connections and 
-                    self._train_embeddings is not None):
-                    
+                if (
+                    i == 0
+                    and self.config.use_knn_connections
+                    and self._train_embeddings is not None
+                ):
+
                     test_idx = highlight_test_indices[0]
                     knn_info = self.add_knn_connections_to_plot(
                         ax=ax,
@@ -438,106 +475,134 @@ class TSNERegressionVisualization(BaseKNNVisualization, BaseTSNEVisualization):
                         test_coords=test_data,
                         test_idx=test_idx,
                         use_3d=True,
-                        k=self.config.nn_k
+                        k=self.config.nn_k,
                     )
-            
+
             # Set viewing angle
             ax.view_init(elev=elev, azim=azim)
-            
+
             # Apply zoom
             if self.config.zoom_factor != 1.0:
                 ax.dist = ax.dist * self.config.zoom_factor
-            
+
             # Set title for this view
-            ax.set_title(f'{view_names[i]}: Elevation={elev}°, Azimuth={azim}°', fontsize=10)
-            
+            ax.set_title(
+                f"{view_names[i]}: Elevation={elev}°, Azimuth={azim}°", fontsize=10
+            )
+
             # Set axis labels
-            ax.set_xlabel(f'{self.method_name} Component 1')
-            ax.set_ylabel(f'{self.method_name} Component 2')
-            ax.set_zlabel(f'{self.method_name} Component 3')
-        
+            ax.set_xlabel(f"{self.method_name} Component 1")
+            ax.set_ylabel(f"{self.method_name} Component 2")
+            ax.set_zlabel(f"{self.method_name} Component 3")
+
         # Add a single colorbar for all subplots
         cbar_ax = fig.add_axes([0.92, 0.15, 0.03, 0.7])  # [left, bottom, width, height]
         cbar = fig.colorbar(scatter, cax=cbar_ax)
-        cbar.set_label('Target Value', rotation=270, labelpad=15)
-        
+        cbar.set_label("Target Value", rotation=270, labelpad=15)
+
         # Create overall title
-        fig.suptitle('3D t-SNE: Regression Data with Query Point Highlighted', fontsize=14, y=0.95)
-        
+        fig.suptitle(
+            "3D t-SNE: Regression Data with Query Point Highlighted",
+            fontsize=14,
+            y=0.95,
+        )
+
         # Create legend text
-        legend_text = f"3D regression data with continuous color mapping (colormap: {colormap})\n"
+        legend_text = (
+            f"3D regression data with continuous color mapping (colormap: {colormap})\n"
+        )
         legend_text += f"Target range: [{vmin:.3g}, {vmax:.3g}]"
-        
+
         additional_info = f"This visualization shows {n_views} different viewing angles of the same 3D t-SNE space:"
         for i, (elev, azim) in enumerate(viewing_angles):
-            additional_info += f"\n- {view_names[i]}: Elevation={elev}°, Azimuth={azim}°"
-        
+            additional_info += (
+                f"\n- {view_names[i]}: Elevation={elev}°, Azimuth={azim}°"
+            )
+
         if knn_info:
             knn_description = self.generate_knn_description(
                 knn_info, self._class_names, self._use_semantic_names
             )
             additional_info += f"\n\n{knn_description}"
-        
+
         legend_text += f"\n\n{additional_info}"
-        
+
         # Adjust layout to accommodate colorbar
         plt.subplots_adjust(right=0.9)
-        
+
         # Convert to image
         img_buffer = io.BytesIO()
-        fig.savefig(img_buffer, format='png', dpi=self.config.dpi, bbox_inches='tight', facecolor='white')
+        fig.savefig(
+            img_buffer,
+            format="png",
+            dpi=self.config.dpi,
+            bbox_inches="tight",
+            facecolor="white",
+        )
         img_buffer.seek(0)
         image = Image.open(img_buffer)
         plt.close(fig)
-        
+
         # Process image format
-        if self.config.image_format == 'RGB' and image.mode != 'RGB':
-            if image.mode == 'RGBA':
-                rgb_image = Image.new('RGB', image.size, (255, 255, 255))
+        if self.config.image_format == "RGB" and image.mode != "RGB":
+            if image.mode == "RGBA":
+                rgb_image = Image.new("RGB", image.size, (255, 255, 255))
                 rgb_image.paste(image, mask=image.split()[3])
                 image = rgb_image
             else:
-                image = image.convert('RGB')
-        
+                image = image.convert("RGB")
+
         # Create metadata
         metadata = self.create_base_metadata(
-            transformed_data, test_data, None,  # No unique_classes for regression
-            highlight_test_indices[0] if highlight_test_indices else None
+            transformed_data,
+            test_data,
+            None,  # No unique_classes for regression
+            highlight_test_indices[0] if highlight_test_indices else None,
         )
-        
+
         # Add regression and multi-view specific metadata
-        metadata.update({
-            'target_range': (float(vmin), float(vmax)),
-            'target_mean': float(np.mean(y)),
-            'target_std': float(np.std(y)),
-            'colormap': colormap,
-            'viewing_angles': viewing_angles,
-            'n_views': n_views,
-            'view_names': view_names,
-            'query_position': test_data[highlight_test_indices[0]].tolist() if (test_data is not None and highlight_test_indices) else None
-        })
-        
+        metadata.update(
+            {
+                "target_range": (float(vmin), float(vmax)),
+                "target_mean": float(np.mean(y)),
+                "target_std": float(np.std(y)),
+                "colormap": colormap,
+                "viewing_angles": viewing_angles,
+                "n_views": n_views,
+                "view_names": view_names,
+                "query_position": (
+                    test_data[highlight_test_indices[0]].tolist()
+                    if (test_data is not None and highlight_test_indices)
+                    else None
+                ),
+            }
+        )
+
         # Add KNN metadata if available
         if knn_info:
             metadata.update(self.get_knn_metadata(knn_info))
-        
+
         plot_time = time.time() - plot_start
-        
+
         # Create result
         result = VisualizationResult(
             image=image,
             transformed_data=transformed_data,
-            description=self._get_default_description(len(transformed_data), transformed_data.shape[1]),
+            description=self._get_default_description(
+                len(transformed_data), transformed_data.shape[1]
+            ),
             method_name=self.method_name,
             config=self.config,
-            fit_time=getattr(self, '_last_fit_time', 0.0),
-            transform_time=getattr(self, '_last_transform_time', 0.0),
+            fit_time=getattr(self, "_last_fit_time", 0.0),
+            transform_time=getattr(self, "_last_transform_time", 0.0),
             plot_time=plot_time,
             highlighted_indices=highlight_indices,
-            highlighted_coords=transformed_data[highlight_indices] if highlight_indices else None,
+            highlighted_coords=(
+                transformed_data[highlight_indices] if highlight_indices else None
+            ),
             legend_text=legend_text,
-            metadata=metadata
+            metadata=metadata,
         )
-        
+
         self._add_quality_metrics(result)
         return result

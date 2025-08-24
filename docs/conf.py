@@ -6,10 +6,75 @@
 import os
 import sys
 from pathlib import Path
+from unittest.mock import MagicMock
+
+# Force CPU-only mode for documentation builds
+os.environ['CUDA_VISIBLE_DEVICES'] = ''
+os.environ['VLLM_AVAILABLE'] = 'false'
+os.environ['MARVIS_DOCS_BUILD'] = 'true'
 
 # Add the project root to Python path for autodoc
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
+
+# Mock modules that might not be available during docs build
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return MagicMock()
+
+MOCK_MODULES = [
+    'torch',
+    'torch.nn',
+    'torch.nn.functional', 
+    'torch.optim',
+    'torch.utils',
+    'torch.utils.data',
+    'torchvision',
+    'torchvision.transforms',
+    'torchvision.models',
+    'torchaudio',
+    'transformers',
+    'transformers.models',
+    'transformers.models.auto',
+    'datasets', 
+    'tabpfn',
+    'tabpfn.scripts.transformer_prediction_interface',
+    'accelerate',
+    'openai',
+    'google.generativeai',
+    'librosa',
+    'soundfile',
+    'msclap',
+    'msclap.clap',
+    'optimum',
+    'vllm',
+    'llama_cpp',
+    'umap',
+    'umap.umap_',
+    'sklearn.manifold',
+    'sklearn.decomposition', 
+    'sklearn.preprocessing',
+    'sklearn.metrics',
+    'sklearn.metrics._scorer',
+    'sklearn.metrics.pairwise',
+    'sklearn.neighbors',
+    'sklearn.ensemble',
+    'sklearn.linear_model',
+    'sklearn.model_selection',
+    'sklearn.base',
+    'openml',
+    'openml.datasets',
+    'openml.tasks',
+    'wandb',
+    'PIL',
+    'PIL.Image',
+    'cv2',
+    'albumentations',
+]
+
+for mod_name in MOCK_MODULES:
+    sys.modules[mod_name] = Mock()
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -102,6 +167,102 @@ autodoc_default_options = {
     'exclude-members': '__weakref__'
 }
 
+# Handle import errors gracefully - comprehensive mock list
+autodoc_mock_imports = [
+    # PyTorch ecosystem
+    'torch',
+    'torch.nn',
+    'torch.nn.functional',
+    'torch.optim',
+    'torch.utils',
+    'torch.utils.data',
+    'torchvision',
+    'torchvision.transforms',
+    'torchvision.models',
+    'torchaudio',
+    'torchaudio.transforms',
+    'torchaudio.functional',
+    
+    # Transformers and HuggingFace
+    'transformers',
+    'transformers.models',
+    'transformers.models.auto',
+    'datasets',
+    'accelerate',
+    'optimum',
+    'peft',
+    
+    # TabPFN and ML libraries
+    'tabpfn',
+    'tabpfn.scripts',
+    'tabpfn.scripts.transformer_prediction_interface',
+    
+    # API clients
+    'openai',
+    'google',
+    'google.generativeai',
+    
+    # Audio processing
+    'librosa',
+    'soundfile',
+    'msclap',
+    'msclap.clap',
+    'whisper',
+    
+    # Vision processing  
+    'cv2',
+    'albumentations',
+    'timm',
+    'open_clip_torch',
+    
+    # VLM backends
+    'vllm',
+    'llama_cpp',
+    
+    # Dimensionality reduction and ML
+    'umap',
+    'umap.umap_',
+    'sklearn',
+    'sklearn.manifold',
+    'sklearn.decomposition', 
+    'sklearn.preprocessing',
+    'sklearn.metrics',
+    'sklearn.metrics._scorer',
+    'sklearn.metrics.pairwise',
+    'sklearn.neighbors',
+    'sklearn.ensemble',
+    'sklearn.linear_model',
+    'sklearn.model_selection',
+    'sklearn.base',
+    
+    # Data sources
+    'openml',
+    'openml.datasets',
+    'openml.tasks',
+    
+    # Logging and monitoring
+    'wandb',
+    
+    # Image processing
+    'PIL',
+    'PIL.Image',
+]
+
+# Suppress warnings for missing imports
+suppress_warnings = [
+    'autodoc.import_object',
+    'autosummary.import_cycle',
+    'config.cache',
+]
+
+# Additional autodoc configuration
+autodoc_typehints = 'description'
+autodoc_typehints_format = 'short'
+autodoc_preserve_defaults = True
+
+# Don't fail on import errors
+autodoc_inherit_docstrings = False
+
 # Autosummary settings
 autosummary_generate = True
 
@@ -125,7 +286,7 @@ version = release
 # Source file suffixes
 source_suffix = {
     '.rst': None,
-    '.md': None,
+    '.md': 'myst_parser',
 }
 
 # Master document
