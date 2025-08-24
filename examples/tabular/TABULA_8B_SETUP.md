@@ -61,7 +61,7 @@ pip install --no-deps marvis  # Install MARVIS without dependencies
 
 ```bash
 # Create conda environment with specific torch version
-conda create -n tabula8b python=3.10
+conda create -n tabula8b python=3.11
 conda activate tabula8b
 
 # Install torch version compatible with rtdl
