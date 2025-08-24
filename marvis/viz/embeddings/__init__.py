@@ -9,15 +9,15 @@ from .manifold import (
     LocallyLinearEmbeddingVisualization,
     SpectralEmbeddingVisualization,
     IsomapVisualization,
-    MDSVisualization
+    MDSVisualization,
 )
 
 __all__ = [
-    'TSNEVisualization',
-    'UMAPVisualization', 
-    'PCAVisualization',
-    'LocallyLinearEmbeddingVisualization',
-    'SpectralEmbeddingVisualization',
-    'IsomapVisualization',
-    'MDSVisualization'
+    "TSNEVisualization",
+    "UMAPVisualization",
+    "PCAVisualization",
+    "LocallyLinearEmbeddingVisualization",
+    "SpectralEmbeddingVisualization",
+    "IsomapVisualization",
+    "MDSVisualization",
 ]

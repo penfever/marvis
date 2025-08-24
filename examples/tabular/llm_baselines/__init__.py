@@ -7,10 +7,10 @@ from .tabula_8b_baseline import evaluate_tabula_8b
 from .jolt_baseline import evaluate_jolt
 
 __all__ = [
-    'model_loader',
-    'GenerationConfig',
-    'evaluate_marvis_tsne',
-    'evaluate_tabllm', 
-    'evaluate_tabula_8b',
-    'evaluate_jolt'
+    "model_loader",
+    "GenerationConfig",
+    "evaluate_marvis_tsne",
+    "evaluate_tabllm",
+    "evaluate_tabula_8b",
+    "evaluate_jolt",
 ]

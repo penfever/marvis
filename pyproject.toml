@@ -171,7 +171,6 @@ test = [
     "pytest-benchmark>=4.0.0",    # Performance benchmarks
     "pytest-mock>=3.10.0",        # Mock utilities
     "pytest-asyncio>=0.21.0",     # Async test support
-    "pytest-gpu>=0.1.0",          # GPU testing utilities
     
     # Test data and utilities
     "Faker>=19.0.0",               # Generate test data

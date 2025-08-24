@@ -11,7 +11,7 @@ from .classification import TSNEClassificationVisualization
 from .regression import TSNERegressionVisualization
 
 __all__ = [
-    'BaseTSNEVisualization',
-    'TSNEClassificationVisualization', 
-    'TSNERegressionVisualization'
+    "BaseTSNEVisualization",
+    "TSNEClassificationVisualization",
+    "TSNERegressionVisualization",
 ]

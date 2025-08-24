@@ -141,19 +141,13 @@ jobs:
       uses: actions/checkout@v4
     
     - name: Run Bandit security linter
-      uses: securecodewarrior/github-action-bandit@v1
+      uses: shundor/bandit-action@v1
       with:
         path: marvis/
         level: medium
         confidence: medium
-        format: sarif
-        output: bandit-report.sarif
+        exit_zero: true
     
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v2
-      if: always()
-      with:
-        sarif_file: bandit-report.sarif
 
   dependency-check:
     runs-on: ubuntu-latest

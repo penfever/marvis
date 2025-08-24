@@ -19,16 +19,16 @@ from .train import train_llm_with_tabpfn_embeddings, evaluate_llm_on_test_set
 from .utils import setup_logging
 
 __all__ = [
-    'data',
-    'models',
-    'train',
-    'utils',
-    'viz',
-    'load_dataset',
-    'get_tabpfn_embeddings',
-    'create_llm_dataset',
-    'prepare_qwen_with_prefix_embedding',
-    'train_llm_with_tabpfn_embeddings',
-    'evaluate_llm_on_test_set',
-    'setup_logging'
+    "data",
+    "models",
+    "train",
+    "utils",
+    "viz",
+    "load_dataset",
+    "get_tabpfn_embeddings",
+    "create_llm_dataset",
+    "prepare_qwen_with_prefix_embedding",
+    "train_llm_with_tabpfn_embeddings",
+    "evaluate_llm_on_test_set",
+    "setup_logging",
 ]

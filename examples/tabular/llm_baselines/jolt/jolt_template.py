@@ -1,3 +1,9 @@
+"""
+JOLT template command for medals dataset.
+
+This file contains the template command for running JOLT on the medals dataset.
+To use this, run the command in a shell:
+
 python run_jolt.py --experiment_name medals \
   --data_path data/medals.csv \
   --llm_type gemma-2-2B-instruct \
@@ -19,3 +25,4 @@ python run_jolt.py --experiment_name medals \
   --train_end_index 80 \
   --test_start_index 0 \
   --test_end_index 10
+"""
