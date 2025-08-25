@@ -391,14 +391,14 @@ class TestMarvisChatIntegration:
         response3 = classifier.chat("Test plain string format")
         assert response3 == "Plain string response"
         
-        # Test 4: Fallback to chat method if generate_response not available
+        # Test 4: Fallback to generate method if generate_response not available
         mock_vlm4 = Mock()
-        mock_vlm4.chat = Mock(return_value="Chat method response")
+        mock_vlm4.generate = Mock(return_value="Generate method response")
         del mock_vlm4.generate_response  # Remove generate_response method
         classifier.vlm_wrapper = mock_vlm4
         
-        response4 = classifier.chat("Test chat method fallback")
-        assert response4 == "Chat method response"
+        response4 = classifier.chat("Test generate method fallback")
+        assert response4 == "Generate method response"
         
         print("✅ VLM interface format test passed")
 
