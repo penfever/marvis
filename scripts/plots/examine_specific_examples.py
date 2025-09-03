@@ -9,8 +9,8 @@ from pathlib import Path
 from typing import Dict, List
 from collections import defaultdict
 
-ABLATIONS_DIR = "/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results/ablations"
-OUTPUT_DIR = "/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results/ablations"
+ABLATIONS_DIR = "/Users/anon/Library/CloudStorage/GoogleDrive-anon@gmail.com/My Drive/Current Projects/marvis/results/ablations"
+OUTPUT_DIR = "/Users/anon/Library/CloudStorage/GoogleDrive-anon@gmail.com/My Drive/Current Projects/marvis/results/ablations"
 
 TOP_CONFIGS = [
     "tsne_perturbation_axes",

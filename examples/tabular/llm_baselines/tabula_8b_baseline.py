@@ -83,12 +83,12 @@ def evaluate_tabula_8b(dataset, args):
                 logger.error("Could not check installed packages")
 
             logger.error(
-                "Please install RTFM package: pip install git+https://github.com/penfever/rtfm.git"
+                "Please install RTFM package: pip install git+https://github.com/anon/rtfm.git"
             )
             return {
                 "model_name": "Tabula-8B",
                 "dataset_name": dataset["name"],
-                "error": f"Missing dependencies: {e}. Install with: pip install git+https://github.com/penfever/rtfm.git",
+                "error": f"Missing dependencies: {e}. Install with: pip install git+https://github.com/anon/rtfm.git",
             }
 
         # Feature selection is handled by apply_feature_reduction() in utils

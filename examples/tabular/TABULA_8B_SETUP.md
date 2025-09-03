@@ -28,8 +28,8 @@ pip install "torch>=1.6,<2.0"
 pip install rtdl
 pip install git+https://github.com/mlfoundations/tableshift.git
 pip install git+https://github.com/jpgard/llama-recipes.git
-pip install git+https://github.com/penfever/tabliblib.git
-pip install git+https://github.com/penfever/rtfm.git
+pip install git+https://github.com/anon/tabliblib.git
+pip install git+https://github.com/anon/rtfm.git
 
 # Install additional dependencies as needed
 pip install uv>=0.6.0

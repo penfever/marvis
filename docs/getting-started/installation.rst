@@ -31,7 +31,7 @@ From Source (Recommended)
 .. code-block:: bash
 
    # Clone the repository
-   git clone https://github.com/penfever/marvis.git
+   git clone https://github.com/anon/marvis.git
    cd marvis
 
    # Install in development mode
@@ -283,7 +283,7 @@ Getting Help
 
 If you encounter installation issues:
 
-1. Check our `GitHub Issues <https://github.com/penfever/marvis/issues>`_
+1. Check our `GitHub Issues <https://github.com/anon/marvis/issues>`_
 2. Review the :doc:`../troubleshooting` guide
 3. Create a new issue with your system information and error messages
 

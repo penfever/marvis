@@ -12,7 +12,7 @@ Requirements:
 - OpenML installed (pip install openml)
 - MARVIS installed and configured
 - W&B account for logging results
-- RTFM package for Tabula-8B (pip install git+https://github.com/penfever/rtfm.git)
+- RTFM package for Tabula-8B (pip install git+https://github.com/anon/rtfm.git)
 - Transformers and torch for LLM baselines
 - Vision dependencies for MARVIS-T-SNe: PIL, scikit-learn, matplotlib
 

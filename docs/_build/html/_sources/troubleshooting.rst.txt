@@ -493,7 +493,7 @@ Getting Additional Help
 Community Resources
 ~~~~~~~~~~~~~~~~~~
 
-1. **GitHub Issues**: https://github.com/penfever/marvis/issues
+1. **GitHub Issues**: https://github.com/anon/marvis/issues
 2. **Documentation**: https://marvis.readthedocs.io
 3. **Examples**: Check ``examples/`` directory
 

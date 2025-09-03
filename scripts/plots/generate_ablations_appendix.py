@@ -12,8 +12,8 @@ import re
 from collections import defaultdict, Counter
 
 # Configuration
-ABLATIONS_PATH = "/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results/ablations"
-OUTPUT_PATH = "/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/marvis_claude/ablations_appendix_content.tex"
+ABLATIONS_PATH = "/Users/anon/Library/CloudStorage/GoogleDrive-anon@gmail.com/My Drive/Current Projects/marvis/results/ablations"
+OUTPUT_PATH = "/Users/anon/Library/CloudStorage/GoogleDrive-anon@gmail.com/My Drive/Current Projects/marvis/marvis_claude/ablations_appendix_content.tex"
 
 # Method categorization and descriptions
 METHOD_CATEGORIES = {

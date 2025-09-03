@@ -92,8 +92,8 @@ MARVIS: Classification using Language Model embeddings
 🔗 **Quick Links**
 ------------------
 
-* **GitHub Repository**: https://github.com/penfever/marvis
-* **Issue Tracker**: https://github.com/penfever/marvis/issues
+* **GitHub Repository**: https://github.com/anon/marvis
+* **Issue Tracker**: https://github.com/anon/marvis/issues
 * **PyPI Package**: https://pypi.org/project/marvis/
 
 🏗️ **Supported Modalities**
@@ -123,7 +123,7 @@ Tabular
 If you encounter issues or have questions:
 
 1. Check the :doc:`troubleshooting` guide
-2. Browse existing `GitHub Issues <https://github.com/penfever/marvis/issues>`_
+2. Browse existing `GitHub Issues <https://github.com/anon/marvis/issues>`_
 3. Create a new issue with a minimal reproducible example
 4. Join our community discussions
 

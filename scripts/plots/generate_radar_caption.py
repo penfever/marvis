@@ -13,7 +13,7 @@ def analyze_results():
     """Analyze the core results to generate insights for the caption."""
     
     # Load and process the data (simplified version of the radar plot script)
-    df = pd.read_csv("/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results/core_results.csv")
+    df = pd.read_csv("/Users/anon/Library/CloudStorage/GoogleDrive-anon@gmail.com/My Drive/Current Projects/marvis/results/core_results.csv")
     df = df.dropna(subset=['Domain', 'Benchmark', 'Method', 'Value'])
     df['Value'] = pd.to_numeric(df['Value'], errors='coerce')
     df = df.dropna(subset=['Value'])
@@ -85,7 +85,7 @@ def generate_caption():
     """Generate the publication caption."""
     
     # Load data for the combined stats calculation
-    df = pd.read_csv("/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results/core_results.csv")
+    df = pd.read_csv("/Users/anon/Library/CloudStorage/GoogleDrive-anon@gmail.com/My Drive/Current Projects/marvis/results/core_results.csv")
     df = df.dropna(subset=['Domain', 'Benchmark', 'Method', 'Value'])
     df['Value'] = pd.to_numeric(df['Value'], errors='coerce')
     df = df.dropna(subset=['Value'])
@@ -140,7 +140,7 @@ def save_caption():
     """Save the caption to a file."""
     caption = generate_caption()
     
-    output_file = "/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results/radar_plot_caption.txt"
+    output_file = "/Users/anon/Library/CloudStorage/GoogleDrive-anon@gmail.com/My Drive/Current Projects/marvis/results/radar_plot_caption.txt"
     
     with open(output_file, 'w') as f:
         f.write(caption)

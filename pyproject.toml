@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "MARVIS: Modality Adaptive Reasoning over VISualizations - Multi-modal classification using embeddings and VLMs for images, audio, and tabular data"
 readme = "README.md"
 authors = [
-    {name = "Ben Feuer", email = "penfever@gmail.com"}
+    {name = "anon", email = "anon@gmail.com"}
 ]
 license = {text = "MIT"}
 classifiers = [
@@ -156,8 +156,8 @@ test = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/penfever/marvis"
-Repository = "https://github.com/penfever/marvis"
+Homepage = "https://github.com/anon/marvis"
+Repository = "https://github.com/anon/marvis"
 
 [tool.setuptools]
 packages = ["marvis", "marvis.data", "marvis.models", "marvis.models.vq", "marvis.train", "marvis.utils", "marvis.viz"]

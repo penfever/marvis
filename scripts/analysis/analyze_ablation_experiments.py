@@ -23,8 +23,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Configuration
-ABLATIONS_DIR = "/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results/ablations"
-OUTPUT_DIR = "/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results/ablations"
+ABLATIONS_DIR = "/Users/anon/Library/CloudStorage/GoogleDrive-anon@gmail.com/My Drive/Current Projects/marvis/results/ablations"
+OUTPUT_DIR = "/Users/anon/Library/CloudStorage/GoogleDrive-anon@gmail.com/My Drive/Current Projects/marvis/results/ablations"
 EXCLUDE_DIRS = {"frequent_patterns", "_METADATA"}
 
 def load_experiment_result(test_dir: str, config_name: str) -> Optional[Dict]:

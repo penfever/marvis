@@ -357,7 +357,7 @@ epub_copyright = copyright
 
 # The unique identifier of the text. This can be a ISBN number
 # or the project homepage.
-epub_identifier = 'https://github.com/penfever/marvis'
+epub_identifier = 'https://github.com/anon/marvis'
 
 # A unique identification for the text.
 epub_uid = 'MARVIS'

@@ -348,4 +348,4 @@ Need Help?
 
 * **Troubleshooting**: :doc:`../troubleshooting`
 * **Examples**: :doc:`../examples/index`
-* **GitHub Issues**: https://github.com/penfever/marvis/issues
+* **GitHub Issues**: https://github.com/anon/marvis/issues

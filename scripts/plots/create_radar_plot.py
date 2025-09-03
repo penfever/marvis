@@ -17,8 +17,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Configuration
-RESULTS_FILE = "/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results/core_results.csv"
-OUTPUT_DIR = "/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results"
+RESULTS_FILE = "/Users/anon/Library/CloudStorage/GoogleDrive-anon@gmail.com/My Drive/Current Projects/marvis/results/core_results.csv"
+OUTPUT_DIR = "/Users/anon/Library/CloudStorage/GoogleDrive-anon@gmail.com/My Drive/Current Projects/marvis/results"
 
 def load_and_preprocess_data():
     """Load and preprocess the core results data."""

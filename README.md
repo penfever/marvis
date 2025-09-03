@@ -118,7 +118,7 @@ MARVIS follows a **modality-agnostic VLM classification pipeline**:
 
 ### Basic Installation
 ```bash
-git clone https://github.com/penfever/marvis.git
+git clone https://github.com/anon/marvis.git
 cd marvis
 pip install -e .
 ```
@@ -288,22 +288,6 @@ Key guides:
 ## 📄 License
 
 See [LICENSE](LICENSE) for details.
-
-## 🙏 Citation
-
-If you use MARVIS in your research, please cite:
-
-```bibtex
-@misc{feuer2025marvismodalityadaptivereasoning,
-      title={MARVIS: Modality Adaptive Reasoning over VISualizations}, 
-      author={Benjamin Feuer and Lennart Purucker and Oussama Elachqar and Chinmay Hegde},
-      year={2025},
-      eprint={2507.01544},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2507.01544}, 
-}
-```
 
 ## 🔗 Related Work
 
