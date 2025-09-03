@@ -75,97 +75,97 @@ def create_icon_box(ax, center, size, title, subtitle, icon_type, color='#34495e
     if icon_type == 'data':
         # Database/data icon using geometric shapes
         # Main data symbol - white circle with icon
-        ax.scatter(x, icon_y, s=1500, c='white', marker='o', alpha=0.9, edgecolors='#2c3e50', linewidth=2)
-        ax.text(x, icon_y, 'DATA', fontsize=12, weight='bold', ha='center', va='center', color='#2c3e50')
+        ax.scatter(x, icon_y, s=3000, c='white', marker='o', alpha=0.9, edgecolors='#2c3e50', linewidth=4)
+        ax.text(x, icon_y, 'DATA', fontsize=18, weight='bold', ha='center', va='center', color='#2c3e50')
         
         # Add small data type indicators below the main icon
         indicators = ['TAB', 'AUD', 'VIS']  # Tabular, Audio, Vision
         colors = ['#3498db', '#e67e22', '#9b59b6']
         for i, (ind, ind_color) in enumerate(zip(indicators, colors)):
-            offset_x = (i - 1) * 0.025
-            rect = patches.Rectangle((x + offset_x - 0.01, icon_y - 0.05), 0.02, 0.012, 
+            offset_x = (i - 1) * 0.05
+            rect = patches.Rectangle((x + offset_x - 0.02, icon_y - 0.07), 0.04, 0.024, 
                                    facecolor=ind_color, edgecolor='white', linewidth=0.5, alpha=0.8)
             ax.add_patch(rect)
-            ax.text(x + offset_x, icon_y - 0.044, ind, fontsize=5, ha='center', va='center', 
+            ax.text(x + offset_x, icon_y - 0.0575, ind, fontsize=10, ha='center', va='center', 
                    color='white', weight='bold')
             
     elif icon_type == 'embedding':
         # Neural network icon using circles and connections
-        ax.scatter(x, icon_y, s=1500, c='white', marker='o', alpha=0.9, edgecolors='#2c3e50', linewidth=2)
-        ax.text(x, icon_y, 'EMB', fontsize=12, weight='bold', ha='center', va='center', color='#2c3e50')
+        ax.scatter(x, icon_y, s=3000, c='white', marker='o', alpha=0.9, edgecolors='#2c3e50', linewidth=4)
+        ax.text(x, icon_y, 'EMB', fontsize=18, weight='bold', ha='center', va='center', color='#2c3e50')
         
         # Add small neural network visualization
         for i in range(3):
             for j in range(2):
-                node_x = x - 0.015 + j * 0.03
-                node_y = icon_y + 0.015 - i * 0.015
-                ax.scatter(node_x, node_y, s=20, c='#2c3e50', marker='o', alpha=0.4, 
+                node_x = x - 0.03 + j * 0.06
+                node_y = icon_y + 0.03 - i * 0.03
+                ax.scatter(node_x, node_y, s=40, c='#2c3e50', marker='o', alpha=0.4, 
                           edgecolors='#2c3e50', linewidth=0.5)
         
         # Add small model indicators below icon, stacked vertically
         models = ['TabPFN', 'Whisper', 'DINOV2']
         for i, model in enumerate(models):
-            ax.text(x, icon_y - 0.045 - i*0.012, model, fontsize=6, ha='center', va='center', 
+            ax.text(x, icon_y - 0.07 - i*0.024, model, fontsize=12, ha='center', va='center', 
                    color='white', weight='bold')
         
     elif icon_type == 'visualization':
         # Scatter plot icon using actual scatter points
-        ax.scatter(x, icon_y, s=1500, c='white', marker='o', alpha=0.9, edgecolors='#2c3e50', linewidth=2)
-        ax.text(x, icon_y, 'VIZ', fontsize=12, weight='bold', ha='center', va='center', color='#2c3e50')
+        ax.scatter(x, icon_y, s=3000, c='white', marker='o', alpha=0.9, edgecolors='#2c3e50', linewidth=4)
+        ax.text(x, icon_y, 'VIZ', fontsize=18, weight='bold', ha='center', va='center', color='#2c3e50')
         
         # Add small scatter plot visualization
         np.random.seed(42)  # For reproducible scatter
-        scatter_x = x + np.random.normal(0, 0.012, 8)
-        scatter_y = icon_y + np.random.normal(0, 0.012, 8)
+        scatter_x = x + np.random.normal(0, 0.024, 8)
+        scatter_y = icon_y + np.random.normal(0, 0.024, 8)
         colors = ['#e74c3c', '#3498db', '#f39c12'] * 3  # Repeat colors to match 8 points
-        ax.scatter(scatter_x, scatter_y, s=10, c=colors[:8], alpha=0.5)
+        ax.scatter(scatter_x, scatter_y, s=20, c=colors[:8], alpha=0.5)
         
         # Add method indicators below icon, stacked vertically
         methods = ['t-SNE', 'PCA', 'UMAP']
         for i, method in enumerate(methods):
-            ax.text(x, icon_y - 0.045 - i*0.012, method, fontsize=6, ha='center', va='center', 
+            ax.text(x, icon_y - 0.07 - i*0.024, method, fontsize=12, ha='center', va='center', 
                    color='white', weight='bold')
         
     elif icon_type == 'vlm':
         # VLM icon using geometric eye shape
-        ax.scatter(x, icon_y, s=1500, c='white', marker='o', alpha=0.9, edgecolors='#2c3e50', linewidth=2)
-        ax.text(x, icon_y, 'VLM', fontsize=12, weight='bold', ha='center', va='center', color='#2c3e50')
+        ax.scatter(x, icon_y, s=3000, c='white', marker='o', alpha=0.9, edgecolors='#2c3e50', linewidth=4)
+        ax.text(x, icon_y, 'VLM', fontsize=18, weight='bold', ha='center', va='center', color='#2c3e50')
         
         # Add eye-like visualization
-        eye_outer = patches.Ellipse((x, icon_y + 0.02), 0.025, 0.012, facecolor='#2c3e50', alpha=0.4)
-        eye_inner = patches.Circle((x, icon_y + 0.02), 0.004, facecolor='#2c3e50')
+        eye_outer = patches.Ellipse((x, icon_y + 0.04), 0.05, 0.024, facecolor='#2c3e50', alpha=0.4)
+        eye_inner = patches.Circle((x, icon_y + 0.04), 0.008, facecolor='#2c3e50')
         ax.add_patch(eye_outer)
         ax.add_patch(eye_inner)
         
         # Add VLM model indicators below icon, stacked vertically
         models = ['GPT-4V', 'Qwen2.5-VL', 'Gemini']
         for i, model in enumerate(models):
-            ax.text(x, icon_y - 0.045 - i*0.012, model, fontsize=6, ha='center', va='center', 
+            ax.text(x, icon_y - 0.07 - i*0.024, model, fontsize=12, ha='center', va='center', 
                    color='white', weight='bold')
     
     # Title (bold, larger) - positioned near bottom of box
-    ax.text(x, y - h*0.25, title, fontsize=12, weight='bold', ha='center', va='center', color='white')
+    ax.text(x, y - h*0.25, title, fontsize=24, weight='bold', ha='center', va='center', color='white')
     
     # Subtitle (smaller, wrapped) - positioned at very bottom
     lines = subtitle.split('\n')
     for i, line in enumerate(lines):
-        ax.text(x, y - h*0.35 - i*0.02, line, fontsize=8, ha='center', va='center', color='#ecf0f1')
+        ax.text(x, y - h*0.35 - i*0.02, line, fontsize=16, ha='center', va='center', color='#ecf0f1')
 
 def main():
     """Generate the MARVIS pipeline figure."""
-    # Set up the figure
-    fig, ax = plt.subplots(1, 1, figsize=(16, 10))
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
+    # Set up the figure - make it taller to accommodate larger elements
+    fig, ax = plt.subplots(1, 1, figsize=(20, 14))
+    ax.set_xlim(-0.1, 1.4)
+    ax.set_ylim(0.3, 1.0)
     ax.set_aspect('equal')
     ax.axis('off')
     
-    # Define positions for the four main components (more spacing)
+    # Define positions for the four main components (1.5x spacing)
     positions = [
-        (0.125, 0.65),  # Data Input
-        (0.375, 0.65),  # Embedding Generation  
-        (0.625, 0.65),  # Visualization
-        (0.875, 0.65)   # VLM Classification
+        (0.0625, 0.65),  # Data Input
+        (0.4375, 0.65),  # Embedding Generation  
+        (0.8125, 0.65),  # Visualization
+        (1.1875, 0.65)   # VLM Classification
     ]
     
     # Define colors for each step
@@ -191,8 +191,8 @@ def main():
         }
     ]
     
-    # Draw the main components
-    box_size = (0.20, 0.25)
+    # Draw the main components - make rectangles twice as tall as wide
+    box_size = (0.20, 0.40)
     for i, (pos, comp, color) in enumerate(zip(positions, components, colors)):
         create_icon_box(ax, pos, box_size, comp['title'], "", comp['icon_type'], color)
     
@@ -209,74 +209,21 @@ def main():
         end_pos = (positions[i+1][0] - box_size[0]/2 + 0.01, positions[i+1][1])
         create_gradient_arrow(ax, start_pos, end_pos, colors=arrow_colors[i])
     
-    # Add title
-    ax.text(0.5, 0.9, 'MARVIS: Multimodal Automatic Reasonable VIsual Summaries', 
-           fontsize=20, weight='bold', ha='center', va='center', color='#2c3e50')
-    
-    # Add subtitle 
-    ax.text(0.5, 0.85, 'A unified multimodal classification pipeline using Vision Language Models', 
-           fontsize=14, ha='center', va='center', color='#34495e', style='italic')
-    
     # Add step numbers
     for i, pos in enumerate(positions):
-        circle = plt.Circle((pos[0], pos[1] + 0.22), 0.025, color='#2c3e50', alpha=0.8)
+        circle = plt.Circle((pos[0], pos[1] + 0.44), 0.05, color='#2c3e50', alpha=0.8)
         ax.add_patch(circle)
-        ax.text(pos[0], pos[1] + 0.22, str(i+1), fontsize=12, weight='bold', 
+        ax.text(pos[0], pos[1] + 0.44, str(i+1), fontsize=24, weight='bold', 
                ha='center', va='center', color='white')
     
-    # Add detailed pipeline steps at bottom
-    pipeline_steps = [
-        "1. Input multimodal data (tabular features, audio signals, or images)",
-        "2. Generate domain-specific embeddings using specialized encoders", 
-        "3. Apply dimensionality reduction and create informative visualizations",
-        "4. Use Vision Language Models to reason about patterns and make predictions"
-    ]
-    
-    ax.text(0.5, 0.40, 'Pipeline Overview:', fontsize=12, weight='bold', ha='center', va='top', color='#2c3e50')
-    for i, step in enumerate(pipeline_steps):
-        ax.text(0.1, 0.36 - i*0.03, step, fontsize=10, ha='left', va='top', color='#34495e')
-    
-    # Add key advantages box
-    advantages_text = """Key Advantages:
-• Unified framework for multiple modalities
-• Leverages semantic reasoning capabilities
-• Interpretable through visualizations  
-• No task-specific fine-tuning required"""
-    
-    # Create advantages box
-    adv_box = FancyBboxPatch((0.1, 0.05), 0.35, 0.15, 
-                            boxstyle="round,pad=0.01", 
-                            facecolor='#ecf0f1', 
-                            edgecolor='#bdc3c7', 
-                            linewidth=1,
-                            alpha=0.9)
-    ax.add_patch(adv_box)
-    ax.text(0.275, 0.125, advantages_text, fontsize=9, ha='center', va='center', color='#2c3e50')
-    
-    # Add performance note
-    perf_text = """Performance:
-• Competitive with specialized models
-• Excellent few-shot learning capability
-• Robust across diverse datasets
-• Scales to new domains efficiently"""
-    
-    perf_box = FancyBboxPatch((0.55, 0.05), 0.35, 0.15, 
-                             boxstyle="round,pad=0.01", 
-                             facecolor='#e8f5e8', 
-                             edgecolor='#27ae60', 
-                             linewidth=1,
-                             alpha=0.9)
-    ax.add_patch(perf_box)
-    ax.text(0.725, 0.125, perf_text, fontsize=9, ha='center', va='center', color='#2c3e50')
-    
     # Save the figure
-    output_dir = Path(__file__).parent.parent / "data" / "figures"
+    output_dir = Path("/Users/benjaminfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Papers/marvis/figures")
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / "marvis_pipeline_overview.png"
     
     plt.tight_layout()
-    plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white', edgecolor='none')
-    plt.savefig(output_path.with_suffix('.pdf'), dpi=300, bbox_inches='tight', facecolor='white', edgecolor='none')
+    plt.savefig(output_path, dpi=600, bbox_inches='tight', facecolor='white', edgecolor='none')
+    plt.savefig(output_path.with_suffix('.pdf'), dpi=600, bbox_inches='tight', facecolor='white', edgecolor='none')
     
     print(f"✅ MARVIS pipeline figure saved to:")
     print(f"   PNG: {output_path}")

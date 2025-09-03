@@ -17,8 +17,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Configuration
-RESULTS_FILE = "/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results/core_results.csv"
-OUTPUT_DIR = "/Users/benfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Projects/marvis/results"
+RESULTS_FILE = "/Users/benjaminfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Papers/marvis/results/core_results.csv"
+OUTPUT_DIR = "/Users/benjaminfeuer/Library/CloudStorage/GoogleDrive-penfever@gmail.com/My Drive/Current Papers/marvis/results"
 
 def load_and_preprocess_data():
     """Load and preprocess the core results data."""
@@ -39,7 +39,7 @@ def load_and_preprocess_data():
         method = row['Method']
         backend = row['Backend']
         
-        if method == 'MARVISS':
+        if method == 'MARVIS':
             return 'MARVIS'
         elif method == 'Conventional' and backend in ['TabPFNv2', 'Random Forest', 'CatBoost', 'Logistic Regression', 'Linear Model']:
             return 'Conventional ML'
@@ -269,36 +269,59 @@ def style_radar_plot(ax, angles, benchmarks, radar_df):
     # Set spoke labels
     ax.set_xticks(angles[:-1])
     
-    # Create clean benchmark labels with MARVIS scores
+    # Ensure fixed radial limits BEFORE placing labels so spacing is consistent
+    ax.set_ylim(0, 100)
+    
+    # Create clean benchmark spoke labels
     clean_labels = []
-    marvis_values = radar_df['MARVIS'].tolist() if 'MARVIS' in radar_df.columns else [0] * len(benchmarks)
     
     for i, benchmark in enumerate(benchmarks):
-        marvis_score = marvis_values[i] if i < len(marvis_values) else 0
-        
-        # Shorten long labels
-        if len(benchmark) > 25:
+        # Extract just the benchmark name (after the colon)
+        if ': ' in benchmark:
             parts = benchmark.split(': ')
-            if len(parts) == 2:
-                domain = parts[0]
-                name = parts[1]
-                if len(name) > 15:
-                    name = name[:12] + '...'
-                label_text = f"{domain}:\n{name}\n({marvis_score:.1f}%)"
-            else:
-                label_text = f"{benchmark[:22]}...\n({marvis_score:.1f}%)"
+            label_text = parts[1]  # Just the benchmark name
         else:
-            benchmark_clean = benchmark.replace(': ', ':\n')
-            label_text = f"{benchmark_clean}\n({marvis_score:.1f}%)"
+            label_text = benchmark
             
         clean_labels.append(label_text)
     
-    ax.set_xticklabels(clean_labels, fontsize=10, fontweight='bold')
+    # Place labels at a constant axes-fraction radius with smart rotation
+    label_r = 1.2  # fraction of axes radius (more space outside the outer ring)
+    for angle, label in zip(angles[:-1], clean_labels):
+        angle_deg = np.degrees(angle)
+        
+        # Keep all text horizontal or nearly horizontal for readability
+        if angle_deg <= 90 or angle_deg >= 270:
+            # Right side of plot: horizontal text
+            rotation = 0
+            ha = 'left'
+        elif angle_deg > 90 and angle_deg < 270:
+            # Left side of plot: horizontal text
+            rotation = 0
+            ha = 'right'
+        else:
+            rotation = 0
+            ha = 'center'
+            
+        ax.text(
+            angle,
+            label_r,
+            label,
+            transform=ax.get_xaxis_transform(),  # theta in data coords, r in axes coords
+            ha=ha,
+            va='center',
+            rotation=rotation,
+            fontsize=14,
+            fontweight='bold',
+            clip_on=False,
+        )
+    
+    # Clear the default tick labels
+    ax.set_xticklabels([])
     
     # Style the radial grid
-    ax.set_ylim(0, 100)
     ax.set_yticks([20, 40, 60, 80, 100])
-    ax.set_yticklabels(['20%', '40%', '60%', '80%', '100%'], fontsize=10, alpha=0.7)
+    ax.set_yticklabels(['20%', '40%', '60%', '80%', '100%'], fontsize=14, alpha=0.7)
     ax.grid(True, alpha=0.3)
     
     # Style the radial lines
@@ -312,9 +335,9 @@ def add_legend_and_title(fig, ax, plotted_methods):
     
     # Create a custom legend with method descriptions
     legend_labels = {
-        'MARVIS': 'MARVIS (Vision-Language Classification)',
-        'LLM/VLM Combined': 'LLM/VLM Combined (black dotted)', 
-        'Traditional Baselines': 'Traditional Baselines (black dashed)'
+        'MARVIS': 'MARVIS',
+        'LLM/VLM Combined': 'LLM/VLM Base', 
+        'Traditional Baselines': 'Tradl. Base'
     }
     
     # Filter to only plotted methods
@@ -325,22 +348,22 @@ def add_legend_and_title(fig, ax, plotted_methods):
     
     # MARVIS handle - use red color to represent the overall method
     marvis_handle = mlines.Line2D([0], [0], color='red', linewidth=5, linestyle='-', 
-                                marker='o', markersize=14, label='MARVIS (Vision-Language Classification)')
+                                marker='o', markersize=14, label='MARVIS')
     method_handles.append(marvis_handle)
     
     # LLM/VLM Combined handle
     llm_vlm_handle = mlines.Line2D([0], [0], color='black', linewidth=3, linestyle=':', 
-                                  marker='s', markersize=10, label='LLM/VLM Combined (black dotted)')
+                                  marker='s', markersize=10, label='LLM/VLM Base')
     method_handles.append(llm_vlm_handle)
     
     # Traditional Baselines handle
     traditional_handle = mlines.Line2D([0], [0], color='black', linewidth=3, linestyle='--', 
-                                      marker='D', markersize=9, label='Traditional Baselines (black dashed)')
+                                      marker='D', markersize=9, label='Tradl. Base')
     method_handles.append(traditional_handle)
     
     # Create main methods legend - move it left and down
-    legend = ax.legend(handles=method_handles, loc='upper right', bbox_to_anchor=(0.135, 0.94), 
-                      fontsize=12, frameon=True, fancybox=True, shadow=True,
+    legend = ax.legend(handles=method_handles, loc='upper right', bbox_to_anchor=(0.05, 1), 
+                      fontsize=16, frameon=True, fancybox=True, shadow=True,
                       title='Methods\n(Numbers show MARVIS-3B scores)')
     legend.get_frame().set_facecolor('white')
     legend.get_frame().set_alpha(0.9)
@@ -361,8 +384,8 @@ def add_legend_and_title(fig, ax, plotted_methods):
     
     # Add modality legend
     modality_legend = ax.legend(handles=modality_patches, 
-                               loc='upper left', bbox_to_anchor=(-0.2, 1.1),
-                               fontsize=10, frameon=True, fancybox=True, shadow=True,
+                               loc='upper left', bbox_to_anchor=(-0.25, 1.2),
+                               fontsize=14, frameon=True, fancybox=True, shadow=True,
                                title='MARVIS Modality Colors')
     modality_legend.get_frame().set_facecolor('white')
     modality_legend.get_frame().set_alpha(0.9)
@@ -370,8 +393,8 @@ def add_legend_and_title(fig, ax, plotted_methods):
     # Add the main legend back (matplotlib only shows one legend by default)
     ax.add_artist(legend)
     
-    # Add main title with rainbow MARVISS text
-    fig.suptitle('', fontsize=18, fontweight='bold', y=0.95)  # Clear any existing title
+    # Add main title with rainbow MARVIS text
+    fig.suptitle('', fontsize=24, fontweight='bold', y=0.95)  # Clear any existing title
     
     # Create rainbow MARVIS text letter by letter
     marvis_colors = ['#E74C3C', '#F39C12', '#27AE60', '#3498DB', '#9B59B6', '#E74C3C']  # Red, Orange, Green, Blue, Purple, Red
@@ -386,21 +409,21 @@ def add_legend_and_title(fig, ax, plotted_methods):
     marvis_start_x = title_center_x - 0.15  # Shift left to center the entire title
     
     # Add individual colored letters for MARVIS
-    fig.text(marvis_start_x, 0.95, 'M', fontsize=18, fontweight='bold', ha='center', va='top', 
+    fig.text(marvis_start_x, 0.97, 'M', fontsize=24, fontweight='bold', ha='center', va='top', 
              color='#E74C3C', transform=fig.transFigure)
-    fig.text(marvis_start_x + 0.015, 0.95, 'A', fontsize=18, fontweight='bold', ha='center', va='top', 
+    fig.text(marvis_start_x + 0.015, 0.97, 'A', fontsize=24, fontweight='bold', ha='center', va='top', 
              color='#F39C12', transform=fig.transFigure)
-    fig.text(marvis_start_x + 0.03, 0.95, 'R', fontsize=18, fontweight='bold', ha='center', va='top', 
+    fig.text(marvis_start_x + 0.03, 0.97, 'R', fontsize=24, fontweight='bold', ha='center', va='top', 
              color='#27AE60', transform=fig.transFigure)
-    fig.text(marvis_start_x + 0.045, 0.95, 'V', fontsize=18, fontweight='bold', ha='center', va='top', 
+    fig.text(marvis_start_x + 0.045, 0.97, 'V', fontsize=24, fontweight='bold', ha='center', va='top', 
              color='#3498DB', transform=fig.transFigure)
-    fig.text(marvis_start_x + 0.06, 0.95, 'I', fontsize=18, fontweight='bold', ha='center', va='top', 
+    fig.text(marvis_start_x + 0.06, 0.97, 'I', fontsize=24, fontweight='bold', ha='center', va='top', 
              color='#9B59B6', transform=fig.transFigure)
-    fig.text(marvis_start_x + 0.075, 0.95, 'S', fontsize=18, fontweight='bold', ha='center', va='top', 
+    fig.text(marvis_start_x + 0.075, 0.97, 'S', fontsize=24, fontweight='bold', ha='center', va='top', 
              color='#E74C3C', transform=fig.transFigure)
     
     # Add the rest of the title
-    fig.text(marvis_start_x + 0.095, 0.95, title_text, fontsize=18, fontweight='bold', ha='left', va='top', 
+    fig.text(marvis_start_x + 0.095, 0.97, title_text, fontsize=24, fontweight='bold', ha='left', va='top', 
              color='black', transform=fig.transFigure)
 
 # Removed add_annotations function since scores are now in spoke labels
