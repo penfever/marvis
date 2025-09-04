@@ -39,7 +39,7 @@ def load_and_preprocess_data():
         method = row['Method']
         backend = row['Backend']
         
-        if method == 'MARVIS':
+        if method == 'CLAMS':
             return 'MARVIS'
         elif method == 'Conventional' and backend in ['TabPFNv2', 'Random Forest', 'CatBoost', 'Logistic Regression', 'Linear Model']:
             return 'Conventional ML'
