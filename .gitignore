@@ -20,6 +20,7 @@ esc50_data
 esc50_test_data
 ravdess_data
 cache
+/scripts/data
 
 # Make sure we don't ignore the marvis/data module
 !marvis/data/
