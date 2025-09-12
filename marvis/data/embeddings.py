@@ -560,7 +560,6 @@ def get_tabpfn_embeddings(
     # Cache the embeddings if cache_dir is provided
     if cache_dir:
         # Add timestamp to metadata
-        import time
 
         cache_metadata.update(
             {"timestamp": time.time(), "date": time.strftime("%Y-%m-%d %H:%M:%S")}
