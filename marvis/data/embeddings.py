@@ -123,6 +123,19 @@ def get_tabpfn_embeddings(
         tabpfn: Fitted TabPFN model
         y_train_sample: Labels for the sampled training set
     """
+    # Configure a stable cache location for TabPFN weights (helps on HPC clusters)
+    try:
+        preferred_cache_root = os.environ.get("MARVIS_CACHE_DIR") or cache_dir
+        if preferred_cache_root:
+            # Use XDG cache convention so tabpfn stores under <root>/tabpfn
+            os.environ.setdefault("XDG_CACHE_HOME", os.path.abspath(preferred_cache_root))
+            os.environ.setdefault(
+                "TABPFN_CACHE_DIR", os.path.join(os.environ["XDG_CACHE_HOME"], "tabpfn")
+            )
+    except Exception:
+        # Non-fatal; fall back to defaults
+        pass
+
     try:
         if task_type == "regression":
             from tabpfn import TabPFNRegressor
@@ -412,7 +425,34 @@ def get_tabpfn_embeddings(
         n_estimators=N_ensemble,
         ignore_pretraining_limits=True,
     )
-    tabpfn.fit(X_train_sample, y_train_sample)
+    # Fit with fallback retry if checkpoint path missing on this node
+    try:
+        tabpfn.fit(X_train_sample, y_train_sample)
+    except FileNotFoundError as e:
+        err_msg = str(e)
+        if "tabpfn" in err_msg and (".cache/tabpfn" in err_msg or "tabpfn-v2" in err_msg):
+            logger.warning(
+                "TabPFN checkpoint not found at reported path. Switching cache root and retrying download."
+            )
+            # Choose a fallback cache root: MARVIS_CACHE_DIR or /tmp/marvis_cache
+            fallback_root = os.environ.get("MARVIS_CACHE_DIR") or "/tmp/marvis_cache"
+            try:
+                os.makedirs(fallback_root, exist_ok=True)
+            except Exception:
+                pass
+            os.environ["XDG_CACHE_HOME"] = os.path.abspath(fallback_root)
+            os.environ["TABPFN_CACHE_DIR"] = os.path.join(
+                os.environ["XDG_CACHE_HOME"], "tabpfn"
+            )
+            # Recreate model and retry once
+            tabpfn = TabPFNModel(
+                device="cuda" if torch.cuda.is_available() else "cpu",
+                n_estimators=N_ensemble,
+                ignore_pretraining_limits=True,
+            )
+            tabpfn.fit(X_train_sample, y_train_sample)
+        else:
+            raise
 
     # Extract embeddings - Process X_train_sample normally, use chunks for test set
     train_embeddings_raw = tabpfn.get_embeddings(X_train_sample)

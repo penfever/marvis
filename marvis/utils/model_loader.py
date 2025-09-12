@@ -659,6 +659,9 @@ class VisionLanguageModelWrapper(BaseModelWrapper):
         self.low_cpu_mem_usage = kwargs.get("low_cpu_mem_usage", True)
         self.device_map = kwargs.get("device_map", "auto" if device == "auto" else None)
         self._processor = None
+        # Fallback mode when a repo provides a VLM through a causal LM head with remote code
+        # (e.g., custom multimodal repos that don't map to AutoModelForVision2Seq configs).
+        self._causal_vlm_mode: bool = False
 
     def load(self) -> None:
         """Load VLM using transformers."""
@@ -667,7 +670,7 @@ class VisionLanguageModelWrapper(BaseModelWrapper):
 
         logger.info(f"Loading {self.model_name} with transformers VLM backend")
 
-        # Load processor
+        # Load processor first (used by both primary and fallback flows)
         self._processor = AutoProcessor.from_pretrained(
             self.model_name, use_fast=True, trust_remote_code=True
         )
@@ -727,6 +730,7 @@ class VisionLanguageModelWrapper(BaseModelWrapper):
         )
 
         try:
+            # Primary path: standard Vision2Seq auto-model
             self._model = AutoModelForVision2Seq.from_pretrained(
                 self.model_name, **model_kwargs
             )
@@ -740,10 +744,41 @@ class VisionLanguageModelWrapper(BaseModelWrapper):
                 logger.info("Moving model to MPS device...")
                 self._model = self._model.to(torch.device("mps"))
 
-            logger.info(f"Successfully loaded {self.model_name} with transformers VLM")
-        except Exception as e:
-            logger.error(f"Failed to load {self.model_name} with transformers VLM: {e}")
-            raise
+            logger.info(
+                f"Successfully loaded {self.model_name} with transformers VLM (AutoModelForVision2Seq)"
+            )
+        except Exception as e_primary:
+            # Fallback path: some repos expose multimodal models via a Causal LM with remote code
+            logger.warning(
+                f"Primary VLM load failed for {self.model_name} ({e_primary}). "
+                f"Attempting fallback with AutoModelForCausalLM + trust_remote_code..."
+            )
+            try:
+                causal_kwargs = dict(model_kwargs)
+                # In causal path, device_map/torch_dtype still apply
+                self._model = AutoModelForCausalLM.from_pretrained(
+                    self.model_name, **causal_kwargs
+                )
+                self._causal_vlm_mode = True
+
+                # Move to MPS if needed
+                if (
+                    actual_device == "mps"
+                    and hasattr(torch.backends, "mps")
+                    and torch.backends.mps.is_available()
+                ):
+                    logger.info("Moving causal VLM model to MPS device...")
+                    self._model = self._model.to(torch.device("mps"))
+
+                logger.info(
+                    f"Successfully loaded {self.model_name} as causal VLM (AutoModelForCausalLM)"
+                )
+            except Exception as e_fallback:
+                logger.error(
+                    f"Failed to load {self.model_name} with both primary and fallback VLM paths. "
+                    f"Primary error: {e_primary}; Fallback error: {e_fallback}"
+                )
+                raise
 
     def generate_from_conversation(
         self, conversation: List[Dict], config: GenerationConfig
@@ -752,30 +787,33 @@ class VisionLanguageModelWrapper(BaseModelWrapper):
         if not self.is_loaded():
             raise RuntimeError("Model not loaded")
 
-        # Process the conversation
+        # Extract all images from the conversation (support single or multiple)
+        images: List[Any] = []
+        for message in conversation:
+            content = message.get("content")
+            if isinstance(content, list):
+                for item in content:
+                    if isinstance(item, dict) and item.get("type") == "image":
+                        if "image" in item:
+                            images.append(item["image"])
+
+        # Processor chat template (common to both paths)
         formatted_text = self._processor.apply_chat_template(
             conversation, add_generation_prompt=True, tokenize=False
         )
 
-        # Extract image from conversation
-        image = None
-        for message in conversation:
-            if isinstance(message.get("content"), list):
-                for content_item in message["content"]:
-                    if content_item.get("type") == "image":
-                        image = content_item.get("image")
-                        break
-                if image:
-                    break
+        # Build processor inputs
+        proc_kwargs = {"text": formatted_text, "return_tensors": "pt"}
+        if images:
+            # Pass list of images if multiple; processor should handle both
+            proc_kwargs["images"] = images if len(images) > 1 else images[0]
 
-        # Process inputs
-        inputs = self._processor(text=formatted_text, images=image, return_tensors="pt")
+        inputs = self._processor(**proc_kwargs)
 
-        # Move to device
+        # Determine target device
         if hasattr(self._model, "device"):
             device = self._model.device
         else:
-            # Try to infer device from model parameters
             try:
                 device = next(self._model.parameters()).device
             except (StopIteration, AttributeError, RuntimeError):
@@ -783,22 +821,35 @@ class VisionLanguageModelWrapper(BaseModelWrapper):
 
         # Move inputs to the appropriate device
         if device.type != "cpu":
-            inputs = {
-                k: v.to(device) if torch.is_tensor(v) else v for k, v in inputs.items()
-            }
+            inputs = {k: v.to(device) if torch.is_tensor(v) else v for k, v in inputs.items()}
 
-        # Generate
+        # Prepare generation kwargs (use conservative defaults, compatible with varied repos)
         gen_kwargs = config.to_transformers_kwargs()
-        gen_kwargs["pad_token_id"] = self._processor.tokenizer.eos_token_id
+
+        # Determine pad token id (prefer processor tokenizer; otherwise try model)
+        pad_id = None
+        try:
+            pad_id = self._processor.tokenizer.eos_token_id
+        except Exception:
+            try:
+                pad_id = getattr(self._model.config, "eos_token_id", None)
+            except Exception:
+                pad_id = None
+        if pad_id is not None:
+            gen_kwargs["pad_token_id"] = pad_id
 
         with torch.no_grad():
-            generate_ids = self._model.generate(**inputs, **gen_kwargs)
+            outputs = self._model.generate(**inputs, **gen_kwargs)
 
-        # Decode response
+        # Decode response; trim input ids if present
+        try:
+            input_len = inputs["input_ids"].shape[1]
+            trimmed = outputs[:, input_len:]
+        except Exception:
+            trimmed = outputs
+
         response = self._processor.batch_decode(
-            generate_ids[:, inputs["input_ids"].shape[1] :],
-            skip_special_tokens=True,
-            clean_up_tokenization_spaces=False,
+            trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
         )[0]
 
         return response
