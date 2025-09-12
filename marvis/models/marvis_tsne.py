@@ -603,6 +603,8 @@ class MarvisTsneClassifier:
 
         model_to_load = self.effective_model_id
         self.logger.info(f"Loading Vision Language Model: {model_to_load}")
+        # Ensure actual_device is always defined for logging and loader calls
+        actual_device = getattr(self, "device", "auto") or "auto"
 
         if self.is_api_model:
             # API model - minimal configuration needed
@@ -611,6 +613,8 @@ class MarvisTsneClassifier:
 
             # For API models, backend is auto-detected by model_loader
             backend = "auto"
+            # API models don't need device placement from our side; let loader handle it
+            actual_device = "auto"
         else:
             # Local model - configure hardware parameters
             self.logger.info("Using local VLM")

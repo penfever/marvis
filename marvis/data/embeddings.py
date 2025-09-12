@@ -6,6 +6,7 @@ import hashlib
 import json
 import logging
 import os
+import time
 from typing import Any, Callable, Optional, Tuple
 
 import numpy as np
@@ -420,14 +421,31 @@ def get_tabpfn_embeddings(
 
     # Initialize and fit TabPFN
     N_ensemble = 8
+    # Determine TabPFN device with optional override
+    tabpfn_device = os.environ.get("MARVIS_TABPFN_DEVICE")
+    if tabpfn_device not in {None, "cpu", "cuda"}:
+        logger.warning(
+            f"Ignoring invalid MARVIS_TABPFN_DEVICE={tabpfn_device}; using auto-detection"
+        )
+        tabpfn_device = None
+    if tabpfn_device is None:
+        tabpfn_device = "cuda" if torch.cuda.is_available() else "cpu"
+    logger.info(f"Initializing TabPFN on device: {tabpfn_device}")
+
     tabpfn = TabPFNModel(
-        device="cuda" if torch.cuda.is_available() else "cpu",
+        device=tabpfn_device,
         n_estimators=N_ensemble,
         ignore_pretraining_limits=True,
     )
+
     # Fit with fallback retry if checkpoint path missing on this node
     try:
+        t0 = time.perf_counter()
+        logger.info(
+            f"Starting TabPFN.fit on {len(X_train_sample)} samples, device={tabpfn_device}"
+        )
         tabpfn.fit(X_train_sample, y_train_sample)
+        logger.info(f"TabPFN.fit completed in {time.perf_counter() - t0:.2f}s")
     except FileNotFoundError as e:
         err_msg = str(e)
         if "tabpfn" in err_msg and (".cache/tabpfn" in err_msg or "tabpfn-v2" in err_msg):
@@ -445,17 +463,30 @@ def get_tabpfn_embeddings(
                 os.environ["XDG_CACHE_HOME"], "tabpfn"
             )
             # Recreate model and retry once
+            # Recreate model on same device
             tabpfn = TabPFNModel(
-                device="cuda" if torch.cuda.is_available() else "cpu",
+                device=tabpfn_device,
                 n_estimators=N_ensemble,
                 ignore_pretraining_limits=True,
             )
+            t0 = time.perf_counter()
+            logger.info(
+                f"Retrying TabPFN.fit after cache relocation on device={tabpfn_device}"
+            )
             tabpfn.fit(X_train_sample, y_train_sample)
+            logger.info(f"TabPFN.fit (retry) completed in {time.perf_counter() - t0:.2f}s")
         else:
             raise
 
     # Extract embeddings - Process X_train_sample normally, use chunks for test set
+    t0 = time.perf_counter()
+    logger.info("Computing TabPFN train embeddings...")
     train_embeddings_raw = tabpfn.get_embeddings(X_train_sample)
+    logger.info(
+        f"TabPFN train embeddings computed in {time.perf_counter() - t0:.2f}s"
+    )
+
+    logger.info("Computing TabPFN test embeddings in chunks...")
     test_embeddings_raw = get_embeddings_in_chunks(tabpfn, X_test, dataset_name="test")
 
     logger.info(
