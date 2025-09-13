@@ -1261,6 +1261,7 @@ def train_llm_with_tabpfn_embeddings(
 
     epoch_progress = tqdm(range(num_train_epochs), desc="Training Epochs", position=0)
     last_permutation_step = -1  # Track when we last permuted labels, initialize to -1
+    stop_training = False  # Signal to break out of epoch loop when early stopping triggers at step-level
 
     for epoch in epoch_progress:
         epoch_progress.set_description(f"Epoch {epoch+1}/{num_train_epochs}")
@@ -1547,6 +1548,7 @@ def train_llm_with_tabpfn_embeddings(
                     progress_bar.write(
                         f"Reached max_steps ({max_steps}), stopping training"
                     )
+                    stop_training = True
                     break
 
                 # Calculate current average loss
@@ -1590,6 +1592,7 @@ def train_llm_with_tabpfn_embeddings(
                                 early_stop_msg = f"Early stopping after {no_improve_steps} steps without improvement"
                                 logger.info(early_stop_msg)
                                 progress_bar.write(early_stop_msg)
+                                stop_training = True
                                 break
 
                 # Regular checkpointing
@@ -1647,6 +1650,10 @@ def train_llm_with_tabpfn_embeddings(
 
                 # Call the wandb callback with metrics
                 wandb_callback(metrics)
+
+        # If step-level early stopping or max_steps triggered, exit epoch loop immediately
+        if stop_training:
+            break
 
         # Calculate and display epoch average loss
         avg_epoch_loss = (
