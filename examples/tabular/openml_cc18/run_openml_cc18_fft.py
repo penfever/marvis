@@ -89,6 +89,11 @@ def parse_args():
         default=None,
         help="End at this task index in the CC18 collection (exclusive)",
     )
+    parser.add_argument(
+        "--no_baselines",
+        action="store_true",
+        help="Do not evaluate baseline models; only evaluate the trained MARVIS model",
+    )
 
     # Override some defaults for OpenML CC18 context
     parser.set_defaults(
@@ -323,8 +328,8 @@ def train_on_task(task, split_idx, args):
     cmd = [
         "python",
         train_script,
-        "--task_ids",
-        str(task_id),  # Pass task_id properly
+        "--dataset_name",
+        str(task.dataset_id),  # Use OpenML dataset ID (string) accepted by training parser
         "--output_dir",
         model_output_dir,
         "--model_id",
@@ -359,8 +364,6 @@ def train_on_task(task, split_idx, args):
         f"train_task{task_id}_split{split_idx}",
         "--seed",
         str(args.seed + split_idx),  # Vary seed for different splits
-        "--feature_selection_threshold",
-        str(args.feature_selection_threshold),
     ]
 
     # Run training command
@@ -417,10 +420,8 @@ def evaluate_model(task, split_idx, model_dir, args):
         str(task_id),  # Pass task_id properly
         "--output_dir",
         eval_output_dir,
-        "--model_path",
-        model_dir,  # Use model_path parameter instead of model_dir
-        "--model_id",
-        args.model_id,  # Add model_id parameter to specify base model architecture
+        "--models",
+        model_dir,
         "--use_wandb",
         "--wandb_entity",
         "nyu-dice-lab",
@@ -429,12 +430,15 @@ def evaluate_model(task, split_idx, model_dir, args):
         "--wandb_name",
         f"eval_task{task_id}_split{split_idx}",
         "--only_ground_truth_classes",
-        "--run_all_baselines",  # Add run_all_baselines option
         "--seed",
         str(args.seed + split_idx),  # Use same seed as training
         "--feature_selection_threshold",
         str(args.feature_selection_threshold),
     ]
+
+    # Optionally include all baselines unless disabled
+    if not args.no_baselines:
+        cmd.append("all_baselines")
 
     # Run evaluation command
     logger.info(f"Running command: {' '.join(cmd)}")
