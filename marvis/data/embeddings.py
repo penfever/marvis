@@ -93,8 +93,8 @@ def generate_dataset_hash(
 def get_tabpfn_embeddings(
     X_train: np.ndarray,
     y_train: np.ndarray,
-    X_val: Optional[np.ndarray],
-    X_test: np.ndarray,
+    X_val: Optional[np.ndarray] = None,
+    X_test: Optional[np.ndarray] = None,
     max_samples: int = 3000,
     embedding_size: int = 1000,
     cache_dir: Optional[str] = None,
@@ -110,8 +110,9 @@ def get_tabpfn_embeddings(
     Args:
         X_train: Training features
         y_train: Training labels
-        X_val: Validation features (not used for embeddings; kept for API compatibility)
-        X_test: Test features
+        X_val: Validation features (optional). If omitted and only a single third positional
+               array was provided in legacy calls, it is treated as X_test.
+        X_test: Test features (optional but required after legacy normalization)
         max_samples: Maximum number of samples to use from training set
         embedding_size: Size of the output embeddings
         cache_dir: Directory to store cached embeddings. If None, caching is disabled.
@@ -128,6 +129,14 @@ def get_tabpfn_embeddings(
         tabpfn: Fitted TabPFN model
         y_train_sample: Labels for the sampled training set
     """
+    # Backward compatibility: allow legacy 3-argument calling convention
+    if X_test is None and X_val is not None and not compute_val:
+        # Likely called as (X_train, y_train, X_test, ...)
+        X_test, X_val = X_val, None
+
+    if X_test is None:
+        raise TypeError("X_test must be provided (either explicitly or via legacy 3-arg call)")
+
     # Configure a stable cache location for TabPFN weights (helps on HPC clusters)
     try:
         preferred_cache_root = os.environ.get("MARVIS_CACHE_DIR") or cache_dir
