@@ -212,11 +212,18 @@ def get_tabpfn_embeddings(
                     if cache_data is not None:
                         # NpzFile behaves like a dict for array access
                         train_embeddings = cache_data["train_embeddings"]
-                        val_embeddings = (
-                            cache_data["val_embeddings"]
-                            if "val_embeddings" in cache_data
-                            else None
-                        )
+                        # Handle optional val embeddings; may be absent or stored as 0-d object None
+                        if "val_embeddings" in cache_data:
+                            val_embeddings = cache_data["val_embeddings"]
+                            try:
+                                import numpy as _np
+                                if isinstance(val_embeddings, _np.ndarray) and val_embeddings.shape == ():
+                                    # 0-d array (likely object None) → treat as missing
+                                    val_embeddings = None
+                            except Exception:
+                                pass
+                        else:
+                            val_embeddings = None
                         test_embeddings = cache_data["test_embeddings"]
                         y_train_sample = cache_data["y_train_sample"]
                         cache_metadata = (
@@ -258,13 +265,19 @@ def get_tabpfn_embeddings(
                                     val_embeddings, val_embeddings, embedding_size
                                 )
 
-                        return (
-                            train_embeddings,
-                            val_embeddings,
-                            test_embeddings,
-                            tabpfn,
-                            y_train_sample,
-                        )
+                        # If validation embeddings are required but missing, fall through to recompute
+                        if val_embeddings is None and compute_val:
+                            logger.warning(
+                                "Cached embeddings missing val set while compute_val=True; recomputing embeddings"
+                            )
+                        else:
+                            return (
+                                train_embeddings,
+                                val_embeddings,
+                                test_embeddings,
+                                tabpfn,
+                                y_train_sample,
+                            )
 
                 except Exception as e:
                     logger.warning(
@@ -287,9 +300,15 @@ def get_tabpfn_embeddings(
 
                     # Extract embeddings and metadata
                     train_embeddings = cache["train_embeddings"]
-                    val_embeddings = (
-                        cache["val_embeddings"] if "val_embeddings" in cache else None
-                    )
+                    if "val_embeddings" in cache:
+                        val_embeddings = cache["val_embeddings"]
+                        try:
+                            if isinstance(val_embeddings, np.ndarray) and val_embeddings.shape == ():
+                                val_embeddings = None
+                        except Exception:
+                            pass
+                    else:
+                        val_embeddings = None
                     test_embeddings = cache["test_embeddings"]
                     y_train_sample = cache["y_train_sample"]
                     cache_metadata = (
@@ -322,13 +341,19 @@ def get_tabpfn_embeddings(
                                 val_embeddings, val_embeddings, embedding_size
                             )
 
-                    return (
-                        train_embeddings,
-                        val_embeddings,
-                        test_embeddings,
-                        tabpfn,
-                        y_train_sample,
-                    )
+                    # If validation embeddings are required but missing, fall through to recompute
+                    if val_embeddings is None and compute_val:
+                        logger.warning(
+                            "Cached embeddings (legacy) missing val set while compute_val=True; recomputing embeddings"
+                        )
+                    else:
+                        return (
+                            train_embeddings,
+                            val_embeddings,
+                            test_embeddings,
+                            tabpfn,
+                            y_train_sample,
+                        )
 
                 except Exception as e:
                     logger.warning(
@@ -622,7 +647,8 @@ def get_tabpfn_embeddings(
             try:
                 cache_data = {
                     "train_embeddings": train_embeddings,
-                    "val_embeddings": val_embeddings,
+                    # Only include val if present to avoid 0-d object entries
+                    **({"val_embeddings": val_embeddings} if val_embeddings is not None else {}),
                     "test_embeddings": test_embeddings,
                     "y_train_sample": y_train_sample,
                     "metadata": cache_metadata,
@@ -641,15 +667,24 @@ def get_tabpfn_embeddings(
             # Legacy cache saving
             logger.info(f"Saving TabPFN embeddings to cache: {cache_file}")
             try:
-                # Save to cache
-                np.savez(
-                    cache_file,
-                    train_embeddings=train_embeddings,
-                    val_embeddings=val_embeddings,
-                    test_embeddings=test_embeddings,
-                    y_train_sample=y_train_sample,
-                    metadata=cache_metadata,
-                )
+                # Save to cache (omit val if None to avoid unsized entries)
+                if val_embeddings is None:
+                    np.savez(
+                        cache_file,
+                        train_embeddings=train_embeddings,
+                        test_embeddings=test_embeddings,
+                        y_train_sample=y_train_sample,
+                        metadata=cache_metadata,
+                    )
+                else:
+                    np.savez(
+                        cache_file,
+                        train_embeddings=train_embeddings,
+                        val_embeddings=val_embeddings,
+                        test_embeddings=test_embeddings,
+                        y_train_sample=y_train_sample,
+                        metadata=cache_metadata,
+                    )
             except Exception as e:
                 logger.warning(f"Error saving embeddings to cache: {e}")
 
