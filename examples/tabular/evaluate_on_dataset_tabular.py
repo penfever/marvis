@@ -180,6 +180,7 @@ def process_dataset(dataset: Dict[str, Any], args) -> Dict[str, Any]:
                     dataset_name=dataset_identifier,
                     force_recompute=args.force_recompute_embeddings,
                     seed=dataset_seed,
+                    compute_val=True,
                 )
 
                 # Add embeddings to dataset

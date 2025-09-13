@@ -1149,6 +1149,7 @@ def process_dataset(
             dataset_name=str(dataset_id),
             force_recompute=args.force_recompute_embeddings,
             seed=args.seed,
+            compute_val=True,
         )
     )
 

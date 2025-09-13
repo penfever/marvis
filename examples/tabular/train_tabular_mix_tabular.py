@@ -1506,6 +1506,7 @@ def process_dataset(dataset: Dict[str, Any], args) -> Dict[str, Any]:
                 dataset_name=dataset_identifier,
                 force_recompute=args.force_recompute_embeddings,
                 seed=args.seed,
+                compute_val=True,
             )
 
     # Add processed data to the dataset dictionary

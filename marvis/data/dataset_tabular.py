@@ -751,6 +751,7 @@ def _compute_tabpfn_embeddings(
                 dataset_name=dataset_identifier,
                 force_recompute=force_recompute,
                 seed=random_state,
+                compute_val=True,
             )
         )
 
