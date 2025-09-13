@@ -316,6 +316,7 @@ def apply_feature_reduction(
     """
     original_num_features = X_train.shape[1]
     feature_threshold = getattr(args, "feature_selection_threshold", 20)
+    method = getattr(args, "feature_selection_method", "pca_variance")
 
     if original_num_features <= feature_threshold:
         return X_train, X_test, dataset, None
@@ -325,51 +326,69 @@ def apply_feature_reduction(
     )
 
     try:
-        # Use a simple tokenizer for estimation
-        from transformers import AutoTokenizer
-
-        from .feature_selection_utils import (
-            create_reduced_dataset,
-            select_features_for_token_limit,
-            test_feature_selection,
-        )
-
-        try:
-            tokenizer_temp = AutoTokenizer.from_pretrained(
-                "microsoft/phi-3-mini-128k-instruct"
-            )
-        except (OSError, ValueError, RuntimeError):
-            tokenizer_temp = AutoTokenizer.from_pretrained("gpt2")
-
-        # Test different token limits
-        test_results = test_feature_selection(
-            X_train,
-            y_train,
-            dataset["attribute_names"],
-            tokenizer_temp,
-            getattr(args, "num_few_shot_examples", 16),
-            categorical_indicator=dataset.get("categorical_indicator", None),
-        )
-
-        # Log test results
-        for result in test_results:
-            logger.info(
-                f"Token limit {result['token_limit']}: "
-                f"{result['num_features_selected']} features selected, "
-                f"~{result['estimated_tokens']} tokens ({result['utilization']:.1%} utilization)"
+        if method in {"pca_variance", "mutual_info", "f_score"}:
+            # Traditional top-K selection
+            import numpy as np
+            from sklearn.preprocessing import StandardScaler
+            from sklearn.decomposition import PCA
+            from sklearn.feature_selection import (
+                f_classif,
+                f_regression,
+                mutual_info_classif,
+                mutual_info_regression,
             )
 
-        # Select features for our target token limit
-        selected_indices, estimated_tokens = select_features_for_token_limit(
-            X_train,
-            y_train,
-            dataset["attribute_names"],
-            tokenizer_temp,
-            num_few_shot_examples=getattr(args, "num_few_shot_examples", 16),
-            max_tokens=getattr(args, "max_context_length", 8192),
-            categorical_indicator=dataset.get("categorical_indicator", None),
-            prioritize_semantic=True,
-        )
+            logger.info(f"Using traditional feature selection method: {method}")
+            X_num = X_train.values if hasattr(X_train, "values") else X_train
+            X_num = X_num.astype(float)
+            k = min(feature_threshold, X_num.shape[1])
+            y_arr = np.array(y_train)
+
+            if method == "pca_variance":
+                scaler = StandardScaler()
+                X_scaled = scaler.fit_transform(X_num)
+                pca = PCA()
+                pca.fit(X_scaled)
+                n_pcs = min(5, X_num.shape[1])
+                importance = np.zeros(X_num.shape[1])
+                for pc_idx in range(n_pcs):
+                    weight = pca.explained_variance_ratio_[pc_idx]
+                    importance += np.abs(pca.components_[pc_idx]) * weight
+                scores = importance
+            elif method == "mutual_info":
+                if np.issubdtype(y_arr.dtype, np.integer) and len(np.unique(y_arr)) > 1:
+                    scores = mutual_info_classif(X_num, y_arr, random_state=42)
+                else:
+                    scores = mutual_info_regression(X_num, y_arr, random_state=42)
+            else:  # f_score
+                if np.issubdtype(y_arr.dtype, np.integer) and len(np.unique(y_arr)) > 1:
+                    scores = f_classif(X_num, y_arr)[0]
+                else:
+                    scores = f_regression(X_num, y_arr)
+
+            order = np.argsort(scores)
+            selected_indices = list(order[-k:][::-1])
+            estimated_tokens = 0
+        else:
+            # Token-budget heuristic (prior behavior)
+            from transformers import AutoTokenizer
+            try:
+                tokenizer_temp = AutoTokenizer.from_pretrained(
+                    "microsoft/phi-3-mini-128k-instruct"
+                )
+            except (OSError, ValueError, RuntimeError):
+                tokenizer_temp = AutoTokenizer.from_pretrained("gpt2")
+
+            selected_indices, estimated_tokens = select_features_for_token_limit(
+                X_train,
+                y_train,
+                dataset["attribute_names"],
+                tokenizer_temp,
+                num_few_shot_examples=getattr(args, "num_few_shot_examples", 16),
+                max_tokens=getattr(args, "max_context_length", 8192),
+                categorical_indicator=dataset.get("categorical_indicator", None),
+                prioritize_semantic=True,
+            )
 
         # Debug information
         logger.info(

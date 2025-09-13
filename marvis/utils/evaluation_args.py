@@ -678,6 +678,13 @@ def add_llm_baseline_args(parser: argparse.ArgumentParser):
         help="Apply feature selection if dataset has more than this many features",
     )
     parser.add_argument(
+        "--feature_selection_method",
+        type=str,
+        choices=["pca_variance", "mutual_info", "f_score", "token_budget"],
+        default="token_budget",
+        help="Feature selection method: traditional top-K (pca_variance, mutual_info, f_score) or token_budget heuristic",
+    )
+    parser.add_argument(
         "--vlm_model_id",
         type=str,
         default="Qwen/Qwen2.5-VL-32B-Instruct",

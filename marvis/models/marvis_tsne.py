@@ -1101,13 +1101,25 @@ class MarvisTsneClassifier:
             from marvis.utils import apply_feature_reduction
 
             # Create a mock dataset dict for feature reduction
-            mock_dataset = {"name": "training_data"}
+            # Provide attribute_names so downstream selection doesn't fail
+            try:
+                if hasattr(X_train, "columns"):
+                    attr_names = list(X_train.columns)
+                else:
+                    attr_names = [f"feature_{i}" for i in range(X_train_array.shape[1])]
+            except Exception:
+                attr_names = [f"feature_{i}" for i in range(X_train_array.shape[1])]
+
+            mock_dataset = {"name": "training_data", "attribute_names": attr_names}
             mock_args = type(
                 "Args",
                 (),
                 {
                     "feature_selection_threshold": getattr(
                         self, "feature_selection_threshold", 500
+                    ),
+                    "feature_selection_method": getattr(
+                        self, "feature_selection_method", "pca_variance"
                     ),
                     "seed": self.seed,
                 },

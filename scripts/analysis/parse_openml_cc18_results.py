@@ -278,11 +278,19 @@ def normalize_model_name(model_name: str) -> str:
     
     # Map variations to standard names
     name_mapping = {
+        # MARVIS/legacy CLAM aliases
         'marvis-t-sne-tabular': 'marvis_tsne',
         'marvis_t_sne_tabular': 'marvis_tsne',
         'marvis-tsne': 'marvis_tsne',
         'marvis-t-sne': 'marvis_tsne',
         'marvis_tsne': 'marvis_tsne',
+        # Legacy CLAM labels encountered in older archives
+        'clam-t-sne-tabular': 'marvis_tsne',
+        'clam_t_sne_tabular': 'marvis_tsne',
+        'clam-tsne': 'marvis_tsne',
+        'clam-t-sne': 'marvis_tsne',
+        'clam_tsne': 'marvis_tsne',
+        'clam': 'marvis_tsne',
         'jolt': 'jolt',
         'tabllm': 'tabllm',
         'tabula-8b': 'tabula_8b',
@@ -350,9 +358,28 @@ def create_unique_model_identifier(model_name: str, archive_source: str, model_u
             # Fall back to archive-based suffix
             return f'tabllm_{archive_lower.replace("_", "").replace("-", "")}'
     
-    # Map marvis_tsne to MARVIS for display
+    # Disambiguate MARVIS backbones by archive name (e.g., gpt4o, 3b, 32b, qwen)
     if normalized_name == 'marvis_tsne':
-        return 'MARVIS'
+        arch = (archive_source or '').lower()
+        # Common identifiers by priority
+        if ('gpt4o' in arch) or ('openai' in arch) or ('gpt' in arch):
+            return 'MARVIS_gpt4o'
+        if '32b' in arch:
+            return 'MARVIS_32b'
+        if '3b' in arch:
+            return 'MARVIS_3b'
+        if 'qwen' in arch:
+            return 'MARVIS_qwen'
+        if 'llama' in arch:
+            return 'MARVIS_llama'
+        if 'mistral' in arch:
+            return 'MARVIS_mistral'
+        if 'gemma' in arch:
+            return 'MARVIS_gemma'
+        # Fallback: derive a compact suffix from archive name
+        suffix = arch.replace('results', '').replace('marvis', '')
+        suffix = suffix.replace('-', '').replace('_', '').strip()
+        return f"MARVIS_{suffix}" if suffix else 'MARVIS'
     
     return normalized_name
 
@@ -1120,7 +1147,12 @@ def main():
     
     # Find tar archives - exclude regression archives
     tar_files = []
-    regression_archives = {'jolt_reg.tar', 'clam-reg.tar', 'tabular_baselines_reg.tar'}
+    regression_archives = {
+        'jolt_reg.tar',
+        'clam-reg.tar',  # legacy naming
+        'marvis-reg.tar', 'marvis_reg.tar',  # MARVIS regression naming
+        'tabular_baselines_reg.tar'
+    }
     
     for file_name in os.listdir(results_dir):
         if file_name.endswith('.tar'):

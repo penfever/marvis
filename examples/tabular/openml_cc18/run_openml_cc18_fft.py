@@ -436,6 +436,10 @@ def evaluate_model(task, split_idx, model_dir, args):
         str(args.feature_selection_threshold),
     ]
 
+    # Forward feature selection method if provided
+    if hasattr(args, "feature_selection_method") and args.feature_selection_method:
+        cmd.extend(["--feature_selection_method", str(args.feature_selection_method)])
+
     # Propagate optional test size limit to evaluation
     if getattr(args, "max_test_samples", None) is not None:
         cmd.extend(["--max_test_samples", str(args.max_test_samples)])

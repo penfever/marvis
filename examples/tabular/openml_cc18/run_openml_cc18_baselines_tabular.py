@@ -402,6 +402,8 @@ def evaluate_baselines_on_task(task, split_idx, args):
 
     # Add feature selection parameter
     cmd.extend(["--feature_selection_threshold", str(args.feature_selection_threshold)])
+    if hasattr(args, "feature_selection_method") and args.feature_selection_method:
+        cmd.extend(["--feature_selection_method", str(args.feature_selection_method)])
 
     # Add few-shot parameters if specified
     if args.num_few_shot_examples:
