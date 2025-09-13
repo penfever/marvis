@@ -189,27 +189,12 @@ def main():
     clear_failed_dataset_cache()
     logger.info("Cleared _FAILED_DATASET_CACHE to ensure dataset loading is attempted")
 
-    # Load the dataset and try to get dataset metadata including ID
-    try:
-        dataset_info = load_dataset(args.dataset_name, return_metadata=True)
-        if len(dataset_info) == 6:
-            X, y, categorical_indicator, attribute_names, full_name, metadata = (
-                dataset_info
-            )
-            dataset_id = metadata.get("dataset_id") if metadata else None
-            task_id = metadata.get("task_id") if metadata else None
-        else:
-            # Fallback for older version without metadata
-            X, y, categorical_indicator, attribute_names, full_name = dataset_info
-            dataset_id = None
-            task_id = None
-    except TypeError:
-        # If return_metadata parameter is not supported, use standard loading
-        X, y, categorical_indicator, attribute_names, full_name = load_dataset(
-            args.dataset_name
-        )
-        dataset_id = None
-        task_id = None
+    # Load the dataset, allowing small datasets if requested
+    X, y, categorical_indicator, attribute_names, full_name = load_dataset(
+        args.dataset_name, bypass_size_check=getattr(args, "allow_small_datasets", False)
+    )
+    dataset_id = None
+    task_id = None
 
     logger.info(f"Loaded dataset: {full_name}")
     if dataset_id:

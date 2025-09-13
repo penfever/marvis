@@ -291,6 +291,11 @@ def add_data_args(parser: argparse.ArgumentParser):
         action="store_true",
         help="Force recomputation of embeddings even if cache exists",
     )
+    parser.add_argument(
+        "--allow_small_datasets",
+        action="store_true",
+        help="Bypass the minimum OpenML sample-size check when loading datasets",
+    )
 
 
 def add_few_shot_args(parser: argparse.ArgumentParser):

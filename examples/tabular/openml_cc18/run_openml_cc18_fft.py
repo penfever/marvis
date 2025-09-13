@@ -94,6 +94,11 @@ def parse_args():
         action="store_true",
         help="Do not evaluate baseline models; only evaluate the trained MARVIS model",
     )
+    parser.add_argument(
+        "--allow_small_datasets",
+        action="store_true",
+        help="Allow training on OpenML datasets with <1000 samples (bypass size check)",
+    )
 
     # Override some defaults for OpenML CC18 context
     parser.set_defaults(
@@ -365,6 +370,10 @@ def train_on_task(task, split_idx, args):
         "--seed",
         str(args.seed + split_idx),  # Vary seed for different splits
     ]
+
+    # Forward small-dataset bypass to the training script if requested
+    if getattr(args, "allow_small_datasets", False):
+        cmd.append("--allow_small_datasets")
 
     # Run training command
     logger.info(f"Running command: {' '.join(cmd)}")
