@@ -335,6 +335,8 @@ def train_on_task(task, split_idx, args):
         train_script,
         "--dataset_name",
         str(task.dataset_id),  # Use OpenML dataset ID (string) accepted by training parser
+        "--openml_task_id",
+        str(task_id),
         "--output_dir",
         model_output_dir,
         "--model_id",

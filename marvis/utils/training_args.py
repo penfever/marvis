@@ -475,6 +475,12 @@ def create_single_dataset_parser() -> argparse.ArgumentParser:
         help="Number of training epochs (ignored if total_steps is provided)",
     )
     parser.add_argument(
+        "--openml_task_id",
+        type=int,
+        default=None,
+        help="Optional OpenML task ID for logging/metadata (when known)",
+    )
+    parser.add_argument(
         "--early_stopping_threshold",
         type=float,
         default=0.5,

@@ -180,8 +180,8 @@ def main():
                 f"Initialized Weights & Biases run: {args.wandb_name} (ID: {wandb.run.id})"
             )
 
-    # 1. Load and prepare HAR dataset
-    logger.info("Loading HAR dataset")
+    # 1. Load and prepare dataset
+    logger.info("Loading dataset")
 
     # Clear the _FAILED_DATASET_CACHE to always try loading the dataset
     from marvis.data.dataset import clear_failed_dataset_cache
@@ -193,14 +193,33 @@ def main():
     X, y, categorical_indicator, attribute_names, full_name = load_dataset(
         args.dataset_name, bypass_size_check=getattr(args, "allow_small_datasets", False)
     )
-    dataset_id = None
-    task_id = None
+    # Populate identifiers and resolve via OpenML API (consistent logging with LLM baselines)
+    dataset_id = int(args.dataset_name) if str(args.dataset_name).isdigit() else None
+    task_id = getattr(args, "openml_task_id", None)
+
+    # If we have a task_id, resolve identifiers through the resource manager (emits informative logs)
+    try:
+        if task_id is not None:
+            from marvis.utils.resource_manager import get_resource_manager
+
+            rm = get_resource_manager()
+            resolved = rm.resolve_openml_identifiers(task_id=task_id)
+            resolved_dataset_id = resolved.get("dataset_id")
+            resolved_dataset_name = resolved.get("dataset_name")
+
+            # Prefer resolved values for logging if available
+            if resolved_dataset_id is not None:
+                dataset_id = dataset_id or int(resolved_dataset_id)
+            if resolved_dataset_name:
+                full_name = full_name or resolved_dataset_name
+    except Exception as e:
+        logger.warning(f"OpenML identifier resolution failed: {e}")
 
     logger.info(f"Loaded dataset: {full_name}")
-    if dataset_id:
-        logger.info(f"Dataset ID: {dataset_id}, Task ID: {task_id}")
-    else:
-        logger.warning("Could not extract dataset_id and task_id from dataset metadata")
+    logger.info(
+        f"Identifiers — Dataset ID: {dataset_id if dataset_id is not None else 'unknown'}, "
+        f"Task ID: {task_id if task_id is not None else 'unknown'}"
+    )
 
     # Create a dataset-specific random state for reproducible splits
     dataset_specific_seed = args.seed
