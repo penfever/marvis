@@ -97,7 +97,28 @@ def parse_args():
         model_id="Qwen/Qwen2.5-3B-Instruct",
     )
 
-    return parser.parse_args()
+    # Allow running over the entire CC18 without specifying a dataset source
+    # by relaxing the mutually exclusive dataset group requirement ("all").
+    # This mirrors the behavior in the LLM baselines orchestrator.
+    for action_group in parser._mutually_exclusive_groups:
+        if any(
+            getattr(action, "dest", None)
+            in ["dataset_name", "dataset_ids", "task_ids", "data_dir", "num_datasets"]
+            for action in action_group._group_actions
+        ):
+            action_group.required = False
+            break
+
+    args = parser.parse_args()
+
+    # Normalize special value: --dataset_name all => operate on full CC18 suite
+    if getattr(args, "dataset_name", None):
+        if isinstance(args.dataset_name, str) and args.dataset_name.strip().lower() == "all":
+            # No-op: full CC18 processing is the default behavior of this orchestrator.
+            # We keep the flag purely to satisfy CLI expectations.
+            pass
+
+    return args
 
 
 def set_seed(seed):
