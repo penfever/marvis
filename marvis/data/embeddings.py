@@ -93,6 +93,7 @@ def generate_dataset_hash(
 def get_tabpfn_embeddings(
     X_train: np.ndarray,
     y_train: np.ndarray,
+    X_val: Optional[np.ndarray],
     X_test: np.ndarray,
     max_samples: int = 3000,
     embedding_size: int = 1000,
@@ -108,6 +109,7 @@ def get_tabpfn_embeddings(
     Args:
         X_train: Training features
         y_train: Training labels
+        X_val: Validation features (not used for embeddings; kept for API compatibility)
         X_test: Test features
         max_samples: Maximum number of samples to use from training set
         embedding_size: Size of the output embeddings
@@ -119,7 +121,7 @@ def get_tabpfn_embeddings(
 
     Returns:
         train_embeddings: TabPFN embeddings for training set
-        val_embeddings: Always None (validation embeddings no longer generated)
+        val_embeddings: Always None (validation embeddings not generated)
         test_embeddings: TabPFN embeddings for test set
         tabpfn: Fitted TabPFN model
         y_train_sample: Labels for the sampled training set
