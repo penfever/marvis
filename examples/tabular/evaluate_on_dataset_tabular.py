@@ -157,10 +157,9 @@ def process_dataset(dataset: Dict[str, Any], args) -> Dict[str, Any]:
 
             # Create dataset-specific random seed
             dataset_id_bytes = str(dataset["id"]).encode("utf-8")
-            dataset_id_hash = (
-                int(hashlib.md5(dataset_id_bytes).hexdigest()[:8], 16) % 10000
-            )
-            dataset_seed = args.seed + dataset_id_hash
+            # Use the provided seed directly so orchestrators can align splits across
+            # training and evaluation (avoid implicit dataset-specific hashing).
+            dataset_seed = args.seed
 
             # Compute embeddings
             try:

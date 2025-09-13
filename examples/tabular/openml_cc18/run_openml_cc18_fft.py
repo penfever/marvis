@@ -436,6 +436,10 @@ def evaluate_model(task, split_idx, model_dir, args):
         str(args.feature_selection_threshold),
     ]
 
+    # Propagate optional test size limit to evaluation
+    if getattr(args, "max_test_samples", None) is not None:
+        cmd.extend(["--max_test_samples", str(args.max_test_samples)])
+
     # Optionally include all baselines unless disabled
     if not args.no_baselines:
         cmd.append("all_baselines")
