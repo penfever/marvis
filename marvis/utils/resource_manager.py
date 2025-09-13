@@ -729,7 +729,45 @@ class CacheManager:
         """Generate cache key from parameters."""
         import hashlib
 
-        key_str = json.dumps(kwargs, sort_keys=True)
+        def _to_jsonable(obj):
+            """Recursively convert common non-JSON types (e.g., numpy) to JSON-safe forms."""
+            # Primitives pass through
+            if obj is None or isinstance(obj, (bool, int, float, str)):
+                return obj
+
+            # Paths → str
+            if isinstance(obj, Path):
+                return str(obj)
+
+            # Numpy types → Python scalars/lists
+            try:
+                import numpy as np  # Local import to avoid hard dep at module import time
+
+                if isinstance(obj, np.ndarray):
+                    return obj.tolist()
+                if isinstance(obj, (np.integer,)):
+                    return int(obj)
+                if isinstance(obj, (np.floating,)):
+                    return float(obj)
+                if isinstance(obj, (np.bool_)):
+                    return bool(obj)
+            except Exception:
+                pass
+
+            # Containers
+            if isinstance(obj, dict):
+                return {str(k): _to_jsonable(v) for k, v in obj.items()}
+            if isinstance(obj, (list, tuple, set)):
+                return [_to_jsonable(v) for v in obj]
+
+            # Fallback: string representation
+            try:
+                return str(obj)
+            except Exception:
+                return repr(obj)
+
+        safe_kwargs = _to_jsonable(kwargs)
+        key_str = json.dumps(safe_kwargs, sort_keys=True)
         return hashlib.md5(key_str.encode()).hexdigest()
 
     def get_cache_path(
