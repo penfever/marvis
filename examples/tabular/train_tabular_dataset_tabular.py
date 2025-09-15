@@ -81,6 +81,12 @@ from marvis.utils import (
 def parse_args():
     """Parse command line arguments using the shared argument parser."""
     parser = create_single_dataset_parser()
+    # Local training-only convenience flag to remove intermediate checkpoints
+    parser.add_argument(
+        "--cleanup_checkpoints",
+        action="store_true",
+        help="After training, delete all checkpoint-* directories in output_dir, keeping only best_model/final_model",
+    )
     return parser.parse_args()
 
 
@@ -716,6 +722,21 @@ def main():
 
     # Clean up GPU monitoring
     cleanup_gpu_monitoring(gpu_monitor)
+
+    # Optional: remove intermediate checkpoints to save disk space
+    if getattr(args, "cleanup_checkpoints", False):
+        try:
+            import shutil
+            import fnmatch
+            removed = 0
+            for entry in os.listdir(args.output_dir):
+                full_path = os.path.join(args.output_dir, entry)
+                if os.path.isdir(full_path) and fnmatch.fnmatch(entry, "checkpoint-*"):
+                    shutil.rmtree(full_path)
+                    removed += 1
+            logger.info(f"Checkpoint cleanup complete. Removed {removed} checkpoint directories; retained best_model/final_model if present.")
+        except Exception as e:
+            logger.warning(f"Checkpoint cleanup failed: {e}")
 
 
 if __name__ == "__main__":

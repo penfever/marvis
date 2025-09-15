@@ -360,6 +360,7 @@ def train_on_task(task, split_idx, args):
         "1e-4",
         "--mixup_alpha",
         "0.0",
+        "--cleanup_checkpoints",
         "--bypass_eval",  # Skip evaluation in training script as we'll do it separately
         "--use_wandb",
         "--save_best_model",
