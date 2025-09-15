@@ -102,6 +102,106 @@ def extract_results_from_retry_dir(retry_dir: str) -> List[Dict[str, Any]]:
     return results
 
 
+def extract_results_from_fft_dir(fft_results_dir: str) -> List[Dict[str, Any]]:
+    """Extract and parse results from the FFT results directory structure.
+    
+    The FFT results directory structure is:
+    /path/to/fft_results/
+        task_X/
+            split_Y/
+                evaluation/
+                    all_evaluation_results_TIMESTAMP.json
+    
+    Args:
+        fft_results_dir: Path to the FFT results directory
+        
+    Returns:
+        List of processed result dictionaries
+    """
+    logger = logging.getLogger(__name__)
+    results = []
+    
+    if not os.path.exists(fft_results_dir):
+        logger.info(f"FFT results directory {fft_results_dir} does not exist, skipping")
+        return results
+    
+    # Extract the directory name to use as archive source
+    archive_source = os.path.basename(os.path.normpath(fft_results_dir))
+    if not archive_source:
+        archive_source = "marvis_fft_results"
+        
+    logger.info(f"Processing FFT results from {fft_results_dir} as '{archive_source}'")
+    
+    # Iterate through task directories
+    task_dirs = [d for d in os.listdir(fft_results_dir) 
+                if os.path.isdir(os.path.join(fft_results_dir, d)) and d.startswith('task_')]
+    
+    for task_dir in task_dirs:
+        task_path = os.path.join(fft_results_dir, task_dir)
+        task_id = task_dir.replace('task_', '')
+        
+        # Get task info if available
+        task_info = {}
+        task_info_files = [f for f in os.listdir(task_path) if f.startswith('task_info_') and f.endswith('.json')]
+        if task_info_files:
+            try:
+                with open(os.path.join(task_path, task_info_files[0]), 'r') as f:
+                    task_info = json.load(f)
+            except Exception as e:
+                logger.warning(f"Error reading task info for {task_dir}: {e}")
+        
+        # Iterate through split directories
+        split_dirs = [d for d in os.listdir(task_path) 
+                    if os.path.isdir(os.path.join(task_path, d)) and d.startswith('split_')]
+        
+        for split_dir in split_dirs:
+            split_path = os.path.join(task_path, split_dir)
+            split_id = split_dir.replace('split_', '')
+            
+            # Find evaluation directory
+            eval_path = os.path.join(split_path, 'evaluation')
+            if not os.path.exists(eval_path):
+                logger.warning(f"No evaluation directory found for {task_dir}/{split_dir}")
+                continue
+            
+            # Find result files
+            result_files = [f for f in os.listdir(eval_path) 
+                          if f.startswith('all_evaluation_results_') and f.endswith('.json')]
+            
+            if not result_files:
+                logger.warning(f"No result files found for {task_dir}/{split_dir}/evaluation")
+                continue
+            
+            # Process each result file
+            for result_file in result_files:
+                result_path = os.path.join(eval_path, result_file)
+                try:
+                    with open(result_path, 'r') as f:
+                        data = json.load(f)
+                    
+                    # Process the results
+                    file_path = os.path.join(task_dir, split_dir, 'evaluation', result_file)
+                    processed_results = process_tabular_baseline_results(data, file_path, archive_source)
+                    
+                    # Add additional information from task_info if available
+                    for result in processed_results:
+                        if task_info:
+                            result.update({
+                                'num_classes': task_info.get('num_classes', result.get('num_classes')),
+                                'num_features': task_info.get('num_features', result.get('num_features'))
+                            })
+                    
+                    results.extend(processed_results)
+                    logger.info(f"Loaded {len(processed_results)} FFT results from {file_path}")
+                    
+                except Exception as e:
+                    logger.error(f"Error processing FFT result file {result_path}: {e}")
+                    continue
+    
+    logger.info(f"Total FFT results loaded: {len(results)}")
+    return results
+
+
 def extract_results_from_tar(tar_path: str, temp_dir: str) -> List[Dict[str, Any]]:
     """Extract and parse results from a tar archive."""
     logger = logging.getLogger(__name__)
@@ -315,6 +415,10 @@ def create_unique_model_identifier(model_name: str, archive_source: str, model_u
     """Create a unique model identifier based on model name, archive source, and backend."""
     normalized_name = normalize_model_name(model_name)
     
+    # Check for FFT results based on archive source
+    if 'marvis_fft_results' in (archive_source or '').lower():
+        return 'Qwen-FFT'
+    
     # For tabllm, try to extract backend information from model_used field
     if normalized_name == 'tabllm' and model_used:
         if 'qwen' in model_used.lower():
@@ -358,12 +462,14 @@ def create_unique_model_identifier(model_name: str, archive_source: str, model_u
             # Fall back to archive-based suffix
             return f'tabllm_{archive_lower.replace("_", "").replace("-", "")}'
     
-    # Disambiguate MARVIS backbones by archive name (e.g., gpt4o, 3b, 32b, qwen)
+    # Disambiguate MARVIS backbones by archive name (e.g., gpt4o, 3b, 32b, qwen, kimi)
     if normalized_name == 'marvis_tsne':
         arch = (archive_source or '').lower()
         # Common identifiers by priority
         if ('gpt4o' in arch) or ('openai' in arch) or ('gpt' in arch):
             return 'MARVIS_gpt4o'
+        if 'kimi' in arch:
+            return 'MARVIS_kimi'
         if '32b' in arch:
             return 'MARVIS_32b'
         if '3b' in arch:
@@ -1120,6 +1226,12 @@ def main():
         default=None,
         help="Path to retry results directory (defaults to input_dir/tabular_baselines_retry)"
     )
+    parser.add_argument(
+        "--fft_results_dir", 
+        type=str, 
+        default=None,
+        help="Path to FFT results directory (e.g., results/tabular-cls/marvis_fft_results)"
+    )
     
     args = parser.parse_args()
     logger = setup_logging(args.log_level)
@@ -1163,25 +1275,55 @@ def main():
             tar_files.append(tar_path)
             logger.info(f"Found classification archive: {file_name}")
     
-    if not tar_files:
-        logger.error(f"No tar files found in {results_dir}")
+    # Discover FFT results directories automatically if present inside input tree
+    fft_dirs_to_process = []
+    # Explicit override
+    if args.fft_results_dir:
+        fft_dirs_to_process.append(os.path.abspath(args.fft_results_dir))
+    # Conventional locations relative to input_dir
+    conventional_fft = [
+        os.path.join(results_dir, 'tabular-cls', 'marvis_fft_results'),
+        os.path.join(results_dir, 'marvis_fft_results'),
+    ]
+    for cand in conventional_fft:
+        if os.path.isdir(cand):
+            fft_dirs_to_process.append(cand)
+    # Last resort: shallow scan for directories named exactly 'marvis_fft_results'
+    try:
+        for entry in os.listdir(results_dir):
+            p = os.path.join(results_dir, entry)
+            if os.path.isdir(p):
+                # one level deep search
+                if os.path.basename(p) == 'marvis_fft_results' and p not in fft_dirs_to_process:
+                    fft_dirs_to_process.append(p)
+                else:
+                    sub = os.path.join(p, 'marvis_fft_results')
+                    if os.path.isdir(sub) and sub not in fft_dirs_to_process:
+                        fft_dirs_to_process.append(sub)
+    except Exception:
+        pass
+    
+    if not tar_files and not fft_dirs_to_process:
+        logger.error(f"No tar files or FFT result directories found in {results_dir}")
         return
     
     # Extract and process results
     all_results = []
     
-    with tempfile.TemporaryDirectory() as temp_dir:
-        for tar_path in tar_files:
-            logger.info(f"Processing {os.path.basename(tar_path)}...")
-            try:
-                results = extract_results_from_tar(tar_path, temp_dir)
-                all_results.extend(results)
-                logger.info(f"Extracted {len(results)} results from {os.path.basename(tar_path)}")
-            except Exception as e:
-                logger.error(f"Error processing {tar_path}: {e}")
-                logger.debug(traceback.format_exc())
+    # Process tar archives if available
+    if tar_files:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            for tar_path in tar_files:
+                logger.info(f"Processing {os.path.basename(tar_path)}...")
+                try:
+                    results = extract_results_from_tar(tar_path, temp_dir)
+                    all_results.extend(results)
+                    logger.info(f"Extracted {len(results)} results from {os.path.basename(tar_path)}")
+                except Exception as e:
+                    logger.error(f"Error processing {tar_path}: {e}")
+                    logger.debug(traceback.format_exc())
     
-    # Also process retry results if they exist
+    # Process retry results if they exist
     retry_dir = args.retry_dir if args.retry_dir else os.path.join(results_dir, "tabular_baselines_retry")
     if os.path.exists(retry_dir):
         logger.info(f"Processing retry results from {retry_dir}")
@@ -1193,8 +1335,20 @@ def main():
             logger.error(f"Error processing retry results: {e}")
             logger.debug(traceback.format_exc())
     
+    # Process any discovered FFT results directories
+    for fft_dir in fft_dirs_to_process:
+        fft_dir = os.path.abspath(fft_dir)
+        logger.info(f"Processing FFT results from {fft_dir}")
+        try:
+            fft_results = extract_results_from_fft_dir(fft_dir)
+            all_results.extend(fft_results)
+            logger.info(f"Extracted {len(fft_results)} FFT results from {fft_dir}")
+        except Exception as e:
+            logger.error(f"Error processing FFT results in {fft_dir}: {e}")
+            logger.debug(traceback.format_exc())
+    
     if not all_results:
-        logger.error("No results found in any tar archives")
+        logger.error("No results found in any of the provided sources")
         return
     
     logger.info(f"Total results collected: {len(all_results)}")
