@@ -11,6 +11,8 @@ import json
 import logging
 from pathlib import Path
 from typing import Any, Dict, Optional
+import time
+from contextlib import contextmanager
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +23,39 @@ CC18_TASKS_CACHE_FILE = CACHE_DIR / "openml_cc18_tasks.json"
 
 # Ensure cache directory exists
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
+# In-process global mapping cache to avoid rebuilding repeatedly
+_GLOBAL_MAPPING: Optional[Dict[int, Dict[str, Any]]] = None
+
+
+@contextmanager
+def _suppress_external_info_logs():
+    """Temporarily suppress INFO-level logs from noisy external libs during API calls."""
+    prev_levels = {}
+    prev_disable = logging.root.manager.disable
+    targets = (
+        "openml",
+        "openml._api_calls",
+        "openml.flows",
+        "openml.runs",
+        "openml.tasks",
+        "openml.study",
+        "urllib3",
+        "urllib3.connectionpool",
+        "requests",
+    )
+    try:
+        for name in targets:
+            logger_obj = logging.getLogger(name)
+            prev_levels[name] = logger_obj.level
+            logger_obj.setLevel(logging.ERROR)
+        # Globally suppress INFO and below while inside this context
+        logging.disable(logging.INFO)
+        yield
+    finally:
+        logging.disable(prev_disable)
+        for name, lvl in prev_levels.items():
+            logging.getLogger(name).setLevel(lvl)
 
 
 def get_openml_cc18_mapping() -> Dict[int, Dict[str, Any]]:
@@ -45,8 +80,13 @@ def get_openml_cc18_mapping() -> Dict[int, Dict[str, Any]]:
     #         logger.warning(f"Failed to load cached mapping: {e}")
 
     # If cache doesn't exist or failed to load, create new mapping
-    logger.info("Creating OpenML mapping from scratch (cache and fallbacks disabled)")
-    mapping = _create_openml_mapping()
+    global _GLOBAL_MAPPING
+    if _GLOBAL_MAPPING is not None:
+        return _GLOBAL_MAPPING
+
+    logger.info("Creating OpenML mapping (using OpenML API)")
+    with _suppress_external_info_logs():
+        mapping = _create_openml_mapping()
 
     # DISABLED: Save to cache - preventing incorrect cached mappings
     # try:
@@ -56,7 +96,8 @@ def get_openml_cc18_mapping() -> Dict[int, Dict[str, Any]]:
     # except Exception as e:
     #     logger.warning(f"Failed to save mapping to cache: {e}")
 
-    return mapping
+    _GLOBAL_MAPPING = mapping
+    return _GLOBAL_MAPPING
 
 
 def _discover_tasks_from_data_directory() -> Dict[int, Dict[str, Any]]:
@@ -184,16 +225,26 @@ def _create_openml_mapping() -> Dict[int, Dict[str, Any]]:
     try:
         import openml
 
-        logger.info("Using only OpenML API data for task resolution")
+        logger.info("Resolving OpenML CC18 and regression task metadata")
+
+        # Build a high-level phase progress bar (2 phases) instead of per-task
+        outer_pbar = None
+        try:
+            from tqdm import tqdm  # type: ignore
+
+            outer_pbar = tqdm(total=2, desc="Building OpenML mapping", unit="phase")
+        except Exception:
+            outer_pbar = None
 
         # Get CC18 study for classification tasks
         try:
             suite = openml.study.get_suite(99)  # 99 is the ID for CC18
             cc18_task_ids = suite.tasks
-            logger.info(f"Found {len(cc18_task_ids)} CC18 tasks from OpenML")
+            logger.debug(f"Found {len(cc18_task_ids)} CC18 tasks from OpenML")
 
-            # Add CC18 tasks to mapping
-            for task_id in cc18_task_ids:
+            # Add CC18 tasks to mapping (no per-task progress bar)
+            start_time = time.time()
+            for i, task_id in enumerate(cc18_task_ids, start=1):
                 try:
                     task = openml.tasks.get_task(task_id)
                     dataset = task.get_dataset()
@@ -224,6 +275,11 @@ def _create_openml_mapping() -> Dict[int, Dict[str, Any]]:
                     logger.warning(
                         f"Failed to get details for CC18 task {task_id}: {e}"
                     )
+            if outer_pbar:
+                outer_pbar.update(1)
+            else:
+                elapsed = time.time() - start_time
+                logger.info(f"Resolved CC18 tasks: {len(cc18_task_ids)} in {elapsed:.1f}s")
         except Exception as e:
             logger.warning(f"Could not fetch CC18 tasks from OpenML: {e}")
 
@@ -231,11 +287,10 @@ def _create_openml_mapping() -> Dict[int, Dict[str, Any]]:
         try:
             suite = openml.study.get_suite(455)  # 455 is the ID for regression suite
             regression_task_ids = suite.tasks
-            logger.info(
-                f"Found {len(regression_task_ids)} regression tasks from OpenML"
-            )
+            logger.debug(f"Found {len(regression_task_ids)} regression tasks from OpenML")
 
             # Add regression tasks to mapping
+            start_time = time.time()
             for task_id in regression_task_ids:
                 try:
                     task = openml.tasks.get_task(task_id)
@@ -263,6 +318,12 @@ def _create_openml_mapping() -> Dict[int, Dict[str, Any]]:
                     logger.warning(
                         f"Failed to get details for regression task {task_id}: {e}"
                     )
+            if outer_pbar:
+                outer_pbar.update(1)
+                outer_pbar.close()
+            else:
+                elapsed = time.time() - start_time
+                logger.info(f"Resolved regression tasks: {len(regression_task_ids)} in {elapsed:.1f}s")
 
         except Exception as e:
             logger.warning(f"Could not fetch regression tasks from OpenML: {e}")
@@ -356,7 +417,7 @@ def resolve_task_id_from_openml_api(task_id: int) -> Optional[Dict[str, Any]]:
     try:
         import openml
 
-        logger.info(f"Attempting to resolve task {task_id} from OpenML API")
+        logger.debug(f"Attempting to resolve task {task_id} from OpenML API")
 
         # Get task from OpenML API
         task = openml.tasks.get_task(task_id)
@@ -380,7 +441,7 @@ def resolve_task_id_from_openml_api(task_id: int) -> Optional[Dict[str, Any]]:
             "source": "openml_api",
         }
 
-        logger.info(
+        logger.debug(
             f"Successfully resolved task {task_id}: {result['dataset_name']} (dataset_id: {result['dataset_id']})"
         )
         return result

@@ -17,7 +17,7 @@ import numpy as np
 import torch
 
 from marvis.models.process_one_sample import process_one_sample
-from marvis.utils.class_name_utils import extract_class_names_from_labels
+from marvis.utils.class_name_utils import extract_class_names_from_labels, normalize_predictions_to_target
 
 # Import unified model loader for VLM
 from marvis.utils.model_loader import model_loader
@@ -1840,15 +1840,12 @@ class MarvisTsneClassifier:
                 else list(y_test)[:completed_samples]
             )
 
-            # Convert predictions to same type as ground truth
-            predictions_converted = []
-            target_type = type(y_test_partial[0])
-
-            for pred in predictions:
-                try:
-                    predictions_converted.append(target_type(pred))
-                except (ValueError, TypeError):
-                    predictions_converted.append(pred)
+            predictions_converted = normalize_predictions_to_target(
+                predictions=predictions,
+                y_reference=y_test_partial,
+                unique_classes=getattr(self, 'unique_classes', None),
+                class_names=getattr(self, 'class_names', None),
+            )
 
             # Calculate metrics using shared utility
             from marvis.utils.llm_evaluation_utils import calculate_llm_metrics

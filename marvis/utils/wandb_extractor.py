@@ -488,6 +488,25 @@ def extract_variables_from_wandb_data(summary, config, run_name, run_type="unkno
         if result["task_id"] is None:
             result["task_id"] = extract_task_idx_from_name(run_name)
 
+    # If dataset_name is still missing but we have a task_id, map it via OpenML
+    if result["dataset_name"] is None and result["task_id"] is not None:
+        try:
+            from .openml_mapping import get_openml_cc18_mapping
+
+            mapping = get_openml_cc18_mapping()
+            key = int(result["task_id"]) if not isinstance(result["task_id"], str) or result["task_id"].isdigit() else result["task_id"]
+            info = mapping.get(key)
+            if not info and isinstance(key, str):
+                # Try numeric coercion if possible
+                try:
+                    info = mapping.get(int(key))
+                except Exception:
+                    info = None
+            if info and info.get("dataset_name"):
+                result["dataset_name"] = info["dataset_name"]
+        except Exception as e:
+            logger.debug(f"Could not map dataset_name from task_id {result['task_id']}: {e}")
+
     return result
 
 
@@ -1427,6 +1446,21 @@ def extract_results_from_wandb(
     tasks_without_id = 0
     zero_accuracy_details = []  # Track all runs with 0 accuracy for analysis
 
+    # Lazy OpenML mapping cache to avoid repeated API calls
+    openml_map_cache = None
+
+    def get_openml_map():
+        nonlocal openml_map_cache
+        if openml_map_cache is None:
+            try:
+                from .openml_mapping import get_openml_cc18_mapping
+
+                openml_map_cache = get_openml_cc18_mapping()
+            except Exception as e:
+                logger.warning(f"Could not create OpenML mapping: {e}")
+                openml_map_cache = {}
+        return openml_map_cache
+
     for _, row in wandb_df.iterrows():
         config = row["config"]
         summary = row["summary"]
@@ -1587,6 +1621,76 @@ def extract_results_from_wandb(
 
         is_eval_run = run_name.startswith("eval_")
 
+        # Special-case: handle results_v2 schema
+        # Keys like: model/./results_v2/task_146820/split_0/model/average_accuracy
+        v2_found = False
+        try:
+            v2_pattern = re.compile(r"^model/([^/]+)/results_v2/task_(\d+)/split_(\d+)/[^/]+/([^/]+)$")
+            for key, value in summary.items():
+                m = v2_pattern.match(key)
+                if not m:
+                    continue
+                if not is_numeric(value):
+                    continue
+                v2_found = True
+                model_name_raw, task_id_v2, split_v2, metric_name_raw = m.groups()
+                # Normalize model name; '.' seen in some runs, map to 'marvis'
+                model_name = "marvis" if model_name_raw in (".", "") else model_name_raw
+                # Normalize metric names
+                metric_map = {
+                    "average_accuracy": "accuracy",
+                    "accuracy": "accuracy",
+                    "balanced_accuracy": "balanced_accuracy",
+                    "roc_auc": "roc_auc",
+                    "f1_macro": "f1_macro",
+                    "f1_weighted": "f1_weighted",
+                    "f1_micro": "f1_micro",
+                    "precision_macro": "precision_macro",
+                    "recall_macro": "recall_macro",
+                }
+                metric_name = metric_map.get(metric_name_raw, metric_name_raw)
+
+                # Coerce ids
+                try:
+                    task_id_v2 = int(task_id_v2)
+                except Exception:
+                    pass
+                try:
+                    split_v2 = int(split_v2)
+                except Exception:
+                    split_v2 = 0
+
+                # Ensure dataset_name using OpenML mapping if possible
+                dataset_name_v2 = None
+                try:
+                    info = get_openml_map().get(task_id_v2)
+                    if info:
+                        dataset_name_v2 = info.get("dataset_name")
+                except Exception:
+                    pass
+
+                # Initialize structures
+                if task_id_v2 not in results:
+                    results[task_id_v2] = {
+                        "info": {
+                            "dataset_name": dataset_name_v2,
+                            "dataset_id": None,
+                            "task_id": task_id_v2,
+                        },
+                        "splits": {},
+                    }
+                if split_v2 not in results[task_id_v2]["splits"]:
+                    results[task_id_v2]["splits"][split_v2] = {}
+                if model_name not in results[task_id_v2]["splits"][split_v2]:
+                    results[task_id_v2]["splits"][split_v2][model_name] = {"metrics": {}}
+
+                # Store metric
+                results[task_id_v2]["splits"][split_v2][model_name]["metrics"][
+                    metric_name
+                ] = safe_float_convert(value)
+        except Exception as e:
+            logger.debug(f"Error parsing results_v2 schema in run {run_name}: {e}")
+
         # Determine run type
         if is_llm_baseline_run:
             run_type = "llm_baseline"
@@ -1611,6 +1715,10 @@ def extract_results_from_wandb(
             logger.info(
                 f"Run {run_name} - Type: {run_type}, dataset_name: {dataset_name}, dataset_id: {dataset_id}, task_id: {task_id}"
             )
+
+        # If results_v2 provided metrics for this run, skip further parsing to avoid duplicates
+        if v2_found:
+            continue
 
         if is_llm_baseline_run:
             # Handle LLM baseline format
@@ -1733,10 +1841,23 @@ def extract_results_from_wandb(
         elif is_standard_baseline_run:
             # Handle standard baseline format (model/{model}/dataset/{dataset}/{metric})
             if dataset_name is None:
-                logger.warning(
-                    f"No dataset_name found in standard baseline run: {run_name}"
-                )
-                continue
+                # Try to infer dataset_name from task_id via OpenML mapping (already tried above)
+                if task_id is not None:
+                    try:
+                        info = get_openml_map().get(
+                            int(task_id) if isinstance(task_id, (int, str)) and str(task_id).isdigit() else task_id
+                        )
+                        if info and info.get("dataset_name"):
+                            dataset_name = info["dataset_name"]
+                    except Exception:
+                        pass
+
+                # As a final fallback, set a placeholder to avoid dropping the run
+                if dataset_name is None:
+                    logger.warning(
+                        f"No dataset_name found in standard baseline run: {run_name}; using placeholder from task_id"
+                    )
+                    dataset_name = f"task_{task_id}" if task_id is not None else "unknown_dataset"
 
             if task_id is None:
                 logger.warning(

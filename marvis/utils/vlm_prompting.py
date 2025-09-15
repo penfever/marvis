@@ -8,6 +8,7 @@ This module provides consistent prompting strategies across different modalities
 import logging
 import re
 from typing import TYPE_CHECKING, Any, Dict, List, Optional
+from .class_name_utils import validate_and_clean_class_names as _validate_and_clean_class_names
 
 if TYPE_CHECKING:
     from .metadata_loader import DatasetMetadata
@@ -66,86 +67,8 @@ def create_metadata_summary(metadata: "DatasetMetadata") -> str:
 
 
 def validate_and_clean_class_names(class_names: List[str]) -> List[str]:
-    """
-    Validate and clean class names for semantic naming.
-
-    Requirements:
-    1. Unique names
-    2. Only ASCII characters
-    3. Less than 30 characters per name
-    4. No whitespace (replace with underscores)
-
-    Args:
-        class_names: List of class names to validate
-
-    Returns:
-        List of cleaned and validated class names
-
-    Raises:
-        ValueError: If validation fails
-    """
-    if not class_names:
-        return class_names
-
-    cleaned_names = []
-    seen_names = set()
-
-    for i, name in enumerate(class_names):
-        # Convert to string if not already
-        name_str = str(name)
-
-        # Replace whitespace with underscores and remove/replace special characters
-        cleaned_name = re.sub(r"\s+", "_", name_str)
-        # Replace common special characters with underscores
-        cleaned_name = re.sub(r'[/\\|,.;:!@#$%^&*()+=\[\]{}"`~<>?]', "_", cleaned_name)
-        # Remove multiple consecutive underscores
-        cleaned_name = re.sub(r"_+", "_", cleaned_name)
-        # Remove leading/trailing underscores
-        cleaned_name = cleaned_name.strip("_")
-
-        # Check ASCII only
-        if not cleaned_name.isascii():
-            raise ValueError(
-                f"Class name at index {i} contains non-ASCII characters: '{name_str}' -> '{cleaned_name}'"
-            )
-
-        # Check length and truncate if necessary
-        if len(cleaned_name) > 30:
-            original_name = cleaned_name
-            cleaned_name = cleaned_name[:27] + "..."
-            logger.warning(
-                f"Class name at index {i} too long ({len(original_name)} chars), truncated: '{original_name}' -> '{cleaned_name}'"
-            )
-
-        # Ensure not empty after cleaning
-        if not cleaned_name or cleaned_name == "_":
-            cleaned_name = f"class_{i}"
-            logger.warning(
-                f"Empty class name at index {i}, using fallback: '{cleaned_name}'"
-            )
-
-        # Check uniqueness
-        if cleaned_name in seen_names:
-            # Make unique by appending counter, ensuring we stay under 30 chars
-            original_cleaned = cleaned_name
-            counter = 1
-            while cleaned_name in seen_names:
-                suffix = f"_{counter}"
-                if len(original_cleaned) + len(suffix) > 30:
-                    # Truncate base name to fit suffix
-                    base_name = original_cleaned[: 30 - len(suffix)]
-                    cleaned_name = f"{base_name}{suffix}"
-                else:
-                    cleaned_name = f"{original_cleaned}{suffix}"
-                counter += 1
-            logger.warning(
-                f"Duplicate class name '{original_cleaned}' at index {i}, using '{cleaned_name}'"
-            )
-
-        seen_names.add(cleaned_name)
-        cleaned_names.append(cleaned_name)
-
-    return cleaned_names
+    """Compatibility wrapper: logic centralized in class_name_utils."""
+    return _validate_and_clean_class_names(class_names)
 
 
 def create_classification_prompt(

@@ -32,6 +32,17 @@ import scipy.stats as stats
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score, roc_auc_score
 import matplotlib.pyplot as plt
 
+# W&B utilities for fetching CC18 results
+try:
+    from marvis.utils.wandb_extractor import (
+        fetch_wandb_data,
+        extract_results_from_wandb,
+    )
+    _WANDB_AVAILABLE = True
+except Exception:
+    # Do not hard fail on import; we may not need W&B in some runs
+    _WANDB_AVAILABLE = False
+
 
 def setup_logging(log_level: str = "INFO") -> logging.Logger:
     """Set up logging configuration."""
@@ -199,6 +210,171 @@ def extract_results_from_fft_dir(fft_results_dir: str) -> List[Dict[str, Any]]:
                     continue
     
     logger.info(f"Total FFT results loaded: {len(results)}")
+    return results
+
+
+def _parse_wandb_path(wandb_path: str) -> Tuple[Optional[str], Optional[str]]:
+    """Parse a W&B URL or `entity/project` string into (entity, project).
+
+    Accepts forms like:
+    - https://wandb.ai/<entity>/<project>
+    - <entity>/<project>
+    - <project> (entity will be None)
+    """
+    if not wandb_path:
+        return None, None
+
+    wandb_path = wandb_path.strip()
+    # URL form
+    if wandb_path.startswith("http://") or wandb_path.startswith("https://"):
+        parts = wandb_path.rstrip("/").split("/")
+        # Expect .../ai/<entity>/<project>
+        if len(parts) >= 2:
+            entity = parts[-2]
+            project = parts[-1]
+            return entity, project
+        return None, None
+
+    # entity/project form
+    if "/" in wandb_path:
+        entity, project = wandb_path.split("/", 1)
+        return entity, project
+
+    # project only
+    return None, wandb_path
+
+
+def extract_fft_results_from_wandb(wandb_path: str, debug: bool = False) -> List[Dict[str, Any]]:
+    """Fetch FFT-style results from a W&B project and convert to local result dicts.
+
+    This mirrors the extraction approach used in analyze_cc18_results_wandb_tabular.py,
+    but converts outputs into the flat per-split record format expected by this script.
+
+    Args:
+        wandb_path: W&B URL or `entity/project` identifying the project to pull from.
+        debug: Enable verbose logging for W&B extraction.
+
+    Returns:
+        List of processed result dicts compatible with process_results().
+    """
+    logger = logging.getLogger(__name__)
+
+    if not _WANDB_AVAILABLE:
+        logger.error("wandb utilities are not available. Install with the 'api' extra: pip install '.[api]' or set --no_wandb_fft.")
+        return []
+
+    entity, project = _parse_wandb_path(wandb_path)
+    if not project:
+        logger.error(f"Invalid W&B path: {wandb_path}")
+        return []
+
+    # Fetch runs and extract results using shared MARVIS utilities
+    try:
+        wandb_df = fetch_wandb_data(entity or "nyu-dice-lab", project)
+    except Exception as e:
+        logger.error(f"Failed fetching W&B runs from {wandb_path}: {e}")
+        return []
+
+    try:
+        structured = extract_results_from_wandb(wandb_df, runtime_info=None, debug=debug)
+    except Exception as e:
+        logger.error(f"Failed extracting results from W&B data: {e}")
+        return []
+
+    # Convert structured dict -> flat list of per-split entries, annotating archive source
+    results: List[Dict[str, Any]] = []
+    archive_source = f"wandb_fft:{entity or 'unknown'}/{project}"
+
+    for task_id, task_data in structured.items():
+        info = task_data.get("info", {})
+        dataset_name = info.get("dataset_name", str(task_id))
+        dataset_id = info.get("dataset_id", None)
+        # Best-effort class count if present
+        n_classes = None
+        # Look for possible keys in info
+        for k in ("n_classes", "num_classes"):
+            if k in info:
+                n_classes = info[k]
+                break
+
+        splits = task_data.get("splits", {}) or {}
+        for split_id, split_data in splits.items():
+            if not isinstance(split_data, dict):
+                continue
+            for model_name, model_payload in split_data.items():
+                if not isinstance(model_payload, dict):
+                    continue
+                metrics = model_payload.get("metrics", {}) or {}
+
+                # Helper to resolve metric names that may be dataset-prefixed or aggregated
+                def pick_metric(m_name: str) -> Optional[float]:
+                    # Direct
+                    val = metrics.get(m_name)
+                    if val is not None:
+                        return val
+                    # dataset-specific keys
+                    ds_keys = []
+                    if dataset_name:
+                        ds_keys.append(f"{dataset_name}_{m_name}")
+                        # Try a normalized variant with hyphens replaced
+                        if "-" in dataset_name:
+                            ds_keys.append(f"{dataset_name.replace('-', '_')}_{m_name}")
+                    for k in ds_keys:
+                        if k in metrics:
+                            return metrics.get(k)
+                    # common alias
+                    if m_name == "accuracy":
+                        for k in ("average_accuracy", f"{dataset_name}_average_accuracy" if dataset_name else None):
+                            if k and k in metrics:
+                                return metrics.get(k)
+                    # aggregated fallback
+                    agg_key = f"aggregated_{m_name}"
+                    if agg_key in metrics:
+                        return metrics.get(agg_key)
+                    return None
+
+                resolved_metrics = {
+                    "accuracy": pick_metric("accuracy"),
+                    "balanced_accuracy": pick_metric("balanced_accuracy"),
+                    "roc_auc": pick_metric("roc_auc"),
+                    "f1_macro": pick_metric("f1_macro"),
+                    "f1_micro": pick_metric("f1_micro"),
+                    "f1_weighted": pick_metric("f1_weighted"),
+                    "precision_macro": pick_metric("precision_macro"),
+                    "recall_macro": pick_metric("recall_macro"),
+                    "training_time": pick_metric("training_time"),
+                    "prediction_time": pick_metric("prediction_time"),
+                    "total_time": pick_metric("total_time"),
+                    "num_train_samples": pick_metric("num_train_samples"),
+                    "num_test_samples": pick_metric("num_test_samples"),
+                    "num_features": pick_metric("num_features"),
+                }
+
+                # Only include entries that have at least one key metric
+                if not any(v is not None for v in [
+                    resolved_metrics["accuracy"],
+                    resolved_metrics["balanced_accuracy"],
+                    resolved_metrics["f1_macro"],
+                    resolved_metrics["roc_auc"],
+                ]):
+                    continue
+
+                rec: Dict[str, Any] = {
+                    "model_name": model_name,
+                    "dataset_name": dataset_name,
+                    "dataset_id": dataset_id if dataset_id is not None else task_id,
+                    "task_id": task_id,
+                    "split_id": str(split_id),
+                    "task_type": "classification",
+                    "num_classes": n_classes if isinstance(n_classes, int) else None,
+                    # Timings and standardized metrics
+                    **resolved_metrics,
+                    "_archive_source": archive_source,
+                    "_file_source": f"wandb://{entity or 'unknown'}/{project}",
+                }
+                results.append(rec)
+
+    logger.info(f"Total FFT results loaded from W&B: {len(results)}")
     return results
 
 
@@ -416,7 +592,8 @@ def create_unique_model_identifier(model_name: str, archive_source: str, model_u
     normalized_name = normalize_model_name(model_name)
     
     # Check for FFT results based on archive source
-    if 'marvis_fft_results' in (archive_source or '').lower():
+    arch_lower = (archive_source or '').lower()
+    if 'marvis_fft_results' in arch_lower or arch_lower.startswith('wandb_fft:'):
         return 'Qwen-FFT'
     
     # For tabllm, try to extract backend information from model_used field
@@ -1032,40 +1209,86 @@ def generate_analysis_report(aggregated_df: pd.DataFrame, per_dataset_df: pd.Dat
     plots_dir = Path(output_dir) / "plots"
     plots_dir.mkdir(exist_ok=True)
     
-    # Prepare data for analysis
-    algorithm_dataset_results = defaultdict(lambda: defaultdict(list))
-    algorithm_scores_matrix = defaultdict(dict)
-    
-    # Extract data from per-dataset results - now using balanced_accuracy for performance matrix
-    balanced_accuracy_scores_matrix = defaultdict(dict)
-    for _, row in per_dataset_df.iterrows():
-        model = row['model']
-        dataset = row['dataset_name']
-        task_id = str(row['task_id'])
-        
-        # Use balanced accuracy for both performance matrix and critical difference plot
-        if not pd.isna(row['balanced_accuracy_mean']):
-            algorithm_dataset_results[model][dataset].append(row['balanced_accuracy_mean'])
-            algorithm_scores_matrix[model][dataset] = row['balanced_accuracy_mean']
-            balanced_accuracy_scores_matrix[model][dataset] = row['balanced_accuracy_mean']
-    
-    # Create critical difference plot for balanced accuracy
-    if len(balanced_accuracy_scores_matrix) > 1:
-        cd_plot_path = plots_dir / "critical_difference_balanced_accuracy.png"
+    # Helpers to assemble metric-specific matrices
+    def extract_metric_matrices(metric_col: str):
+        scores_matrix = defaultdict(dict)  # model -> dataset -> val
+        dataset_results = defaultdict(lambda: defaultdict(list))  # model -> dataset -> [vals]
+        for _, row in per_dataset_df.iterrows():
+            model = row['model']
+            dataset = row['dataset_name']
+            val = row.get(metric_col, np.nan)
+            if not pd.isna(val):
+                scores_matrix[model][dataset] = val
+                dataset_results[model][dataset].append(val)
+        return scores_matrix, dataset_results
+
+    # Only BA
+    ba_scores_matrix, ba_results = extract_metric_matrices('balanced_accuracy_mean')
+    if len(ba_scores_matrix) > 1:
+        cd_path = plots_dir / "critical_difference_only_ba.png"
         create_critical_difference_plot(
-            dict(balanced_accuracy_scores_matrix),
-            str(cd_plot_path),
-            title="Critical Difference Diagram - Balanced Accuracy Performance",
-            alpha=0.05
+            dict(ba_scores_matrix),
+            str(cd_path),
+            title="Critical Difference Diagram - Balanced Accuracy",
+            alpha=0.05,
         )
-        
-        # Create performance matrix heatmap with balanced accuracy
-        matrix_plot_path = plots_dir / "performance_matrix_heatmap.png"
+        matrix_path = plots_dir / "performance_matrix_only_ba.png"
         create_performance_matrix_plot(
-            dict(algorithm_dataset_results),
-            str(matrix_plot_path),
-            metric_name="Balanced Accuracy"
+            dict(ba_results),
+            str(matrix_path),
+            metric_name="Balanced Accuracy",
         )
+
+    # Only Acc (drop models missing ACC)
+    acc_scores_matrix, acc_results = extract_metric_matrices('accuracy_mean')
+    # Drop models with no accuracy at all
+    acc_scores_matrix = {m: d for m, d in acc_scores_matrix.items() if len(d) > 0}
+    acc_results = {m: acc_results[m] for m in acc_scores_matrix.keys()}
+    if len(acc_scores_matrix) > 1:
+        cd_path = plots_dir / "critical_difference_only_acc.png"
+        create_critical_difference_plot(
+            dict(acc_scores_matrix),
+            str(cd_path),
+            title="Critical Difference Diagram - Accuracy",
+            alpha=0.05,
+        )
+        matrix_path = plots_dir / "performance_matrix_only_acc.png"
+        create_performance_matrix_plot(
+            dict(acc_results),
+            str(matrix_path),
+            metric_name="Accuracy",
+        )
+
+    # Acc, All Models (restrict datasets to those with accuracy for all models in scope)
+    if len(acc_scores_matrix) > 1:
+        models = sorted(acc_scores_matrix.keys())
+        # Datasets per model
+        per_model_datasets = [set(d.keys()) for d in acc_scores_matrix.values()]
+        common_datasets = set.intersection(*per_model_datasets) if per_model_datasets else set()
+        # Build restricted matrices
+        acc_all_models_matrix = {
+            m: {ds: acc_scores_matrix[m][ds] for ds in common_datasets if ds in acc_scores_matrix[m]}
+            for m in models
+        }
+        acc_all_models_results = {
+            m: {ds: [acc_scores_matrix[m][ds]] for ds in common_datasets if ds in acc_scores_matrix[m]}
+            for m in models
+        }
+        # Only plot if enough datasets remain for stats
+        if len(common_datasets) >= 3:
+            cd_path = plots_dir / "critical_difference_acc_all_models.png"
+            create_critical_difference_plot(
+                dict(acc_all_models_matrix),
+                str(cd_path),
+                title="Critical Difference Diagram - Accuracy (All Models, Common Datasets)",
+                alpha=0.05,
+            )
+            matrix_path = plots_dir / "performance_matrix_acc_all_models.png"
+            create_performance_matrix_plot(
+                dict(acc_all_models_results),
+                str(matrix_path),
+                metric_name="Accuracy (All Models, Common Datasets)",
+            )
     
     # Calculate win rates and additional statistics
     win_rates = calculate_win_rates(per_dataset_df)
@@ -1230,7 +1453,18 @@ def main():
         "--fft_results_dir", 
         type=str, 
         default=None,
-        help="Path to FFT results directory (e.g., results/tabular-cls/marvis_fft_results)"
+        help="[Deprecated] Path to local FFT results directory; W&B is preferred"
+    )
+    parser.add_argument(
+        "--wandb_fft_path",
+        type=str,
+        default="https://wandb.ai/nyu-dice-lab/llata-openml-cc18-hero1",
+        help="W&B URL or entity/project to fetch FFT results (default points to cc18 hero1)"
+    )
+    parser.add_argument(
+        "--no_wandb_fft",
+        action="store_true",
+        help="Disable fetching FFT results from W&B"
     )
     
     args = parser.parse_args()
@@ -1275,36 +1509,10 @@ def main():
             tar_files.append(tar_path)
             logger.info(f"Found classification archive: {file_name}")
     
-    # Discover FFT results directories automatically if present inside input tree
-    fft_dirs_to_process = []
-    # Explicit override
-    if args.fft_results_dir:
-        fft_dirs_to_process.append(os.path.abspath(args.fft_results_dir))
-    # Conventional locations relative to input_dir
-    conventional_fft = [
-        os.path.join(results_dir, 'tabular-cls', 'marvis_fft_results'),
-        os.path.join(results_dir, 'marvis_fft_results'),
-    ]
-    for cand in conventional_fft:
-        if os.path.isdir(cand):
-            fft_dirs_to_process.append(cand)
-    # Last resort: shallow scan for directories named exactly 'marvis_fft_results'
-    try:
-        for entry in os.listdir(results_dir):
-            p = os.path.join(results_dir, entry)
-            if os.path.isdir(p):
-                # one level deep search
-                if os.path.basename(p) == 'marvis_fft_results' and p not in fft_dirs_to_process:
-                    fft_dirs_to_process.append(p)
-                else:
-                    sub = os.path.join(p, 'marvis_fft_results')
-                    if os.path.isdir(sub) and sub not in fft_dirs_to_process:
-                        fft_dirs_to_process.append(sub)
-    except Exception:
-        pass
-    
-    if not tar_files and not fft_dirs_to_process:
-        logger.error(f"No tar files or FFT result directories found in {results_dir}")
+    # Decide source for FFT results: W&B preferred unless disabled
+    use_wandb_fft = not args.no_wandb_fft
+    if not tar_files and not use_wandb_fft and not args.fft_results_dir:
+        logger.error(f"No tar files and no FFT sources configured in {results_dir}")
         return
     
     # Extract and process results
@@ -1335,16 +1543,27 @@ def main():
             logger.error(f"Error processing retry results: {e}")
             logger.debug(traceback.format_exc())
     
-    # Process any discovered FFT results directories
-    for fft_dir in fft_dirs_to_process:
-        fft_dir = os.path.abspath(fft_dir)
-        logger.info(f"Processing FFT results from {fft_dir}")
+    # Fetch FFT results from W&B if enabled
+    if use_wandb_fft:
+        logger.info(f"Fetching FFT results from W&B: {args.wandb_fft_path}")
         try:
-            fft_results = extract_results_from_fft_dir(fft_dir)
+            fft_results = extract_fft_results_from_wandb(args.wandb_fft_path, debug=(args.log_level == "DEBUG"))
             all_results.extend(fft_results)
-            logger.info(f"Extracted {len(fft_results)} FFT results from {fft_dir}")
+            logger.info(f"Extracted {len(fft_results)} FFT results from W&B")
         except Exception as e:
-            logger.error(f"Error processing FFT results in {fft_dir}: {e}")
+            logger.error(f"Error fetching FFT results from W&B: {e}")
+            logger.debug(traceback.format_exc())
+
+    # Optionally, also process a local FFT directory if explicitly provided
+    if args.fft_results_dir:
+        fft_dir = os.path.abspath(args.fft_results_dir)
+        logger.info(f"[Deprecated] Also loading local FFT results from {fft_dir}")
+        try:
+            fft_local_results = extract_results_from_fft_dir(fft_dir)
+            all_results.extend(fft_local_results)
+            logger.info(f"Extracted {len(fft_local_results)} local FFT results from {fft_dir}")
+        except Exception as e:
+            logger.error(f"Error processing local FFT results in {fft_dir}: {e}")
             logger.debug(traceback.format_exc())
     
     if not all_results:

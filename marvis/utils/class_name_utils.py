@@ -12,12 +12,74 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 
 import numpy as np
 
-from .vlm_prompting import validate_and_clean_class_names
+__all__ = [
+    "extract_class_names_from_labels",
+    "normalize_class_names_to_class_num",
+    "get_semantic_class_names_or_fallback",
+    "get_actually_plotted_classes",
+    "normalize_predictions_to_target",
+    "validate_and_clean_class_names",
+]
 
 logger = logging.getLogger(__name__)
 
 
-class ClassNameExtractor:
+def validate_and_clean_class_names(class_names: List[str]) -> List[str]:
+    """
+    Validate and clean class names for semantic naming.
+
+    Requirements:
+    1. Unique names
+    2. Only ASCII characters
+    3. Less than 30 characters per name
+    4. No whitespace (replace with underscores)
+
+    Returns:
+        List of cleaned and validated class names
+    """
+    if not class_names:
+        return class_names
+
+    cleaned_names = []
+    seen_names = set()
+
+    for i, name in enumerate(class_names):
+        name_str = str(name)
+        # Replace whitespace with underscores and remove/replace special characters
+        import re as _re
+
+        cleaned_name = _re.sub(r"\s+", "_", name_str)
+        cleaned_name = _re.sub(r'[\/\\|,.;:!@#$%^&*()+=\[\]{}"`~<>?]', "_", cleaned_name)
+        cleaned_name = _re.sub(r"_+", "_", cleaned_name).strip("_")
+
+        # Check ASCII only
+        if not cleaned_name.isascii():
+            raise ValueError(
+                f"Class name at index {i} contains non-ASCII characters: '{name_str}' -> '{cleaned_name}'"
+            )
+
+        # Truncate overly long names
+        if len(cleaned_name) > 30:
+            cleaned_name = cleaned_name[:27] + "..."
+
+        # Ensure not empty after cleaning
+        if not cleaned_name or cleaned_name == "_":
+            cleaned_name = f"class_{i}"
+
+        # Ensure uniqueness
+        if cleaned_name in seen_names:
+            base = cleaned_name
+            suffix = 1
+            while f"{base}_{suffix}" in seen_names:
+                suffix += 1
+            cleaned_name = f"{base}_{suffix}"
+        seen_names.add(cleaned_name)
+        cleaned_names.append(cleaned_name)
+
+    return cleaned_names
+
+
+class _ClassNameExtractor:
     """
     Unified class name extractor for all modalities.
 
@@ -386,7 +448,7 @@ def extract_class_names_from_labels(
     Returns:
         Tuple of (class_names, is_semantic)
     """
-    extractor = ClassNameExtractor(semantic_data_dir=semantic_data_dir)
+    extractor = _ClassNameExtractor(semantic_data_dir=semantic_data_dir)
     return extractor.extract_class_names(
         labels=labels,
         dataset_name=dataset_name,
@@ -426,7 +488,7 @@ def get_semantic_class_names_or_fallback(
     Returns:
         List of class names (semantic if available, otherwise Class_<NUM>)
     """
-    extractor = ClassNameExtractor(semantic_data_dir=semantic_data_dir)
+    extractor = _ClassNameExtractor(semantic_data_dir=semantic_data_dir)
     return extractor.get_semantic_or_fallback(
         labels=labels, dataset_name=dataset_name, semantic_file=semantic_file
     )
@@ -515,3 +577,111 @@ def get_actually_plotted_classes(
             unique_classes.append(class_label)
 
     return np.array(unique_classes)
+
+
+def normalize_predictions_to_target(
+    predictions: List[Any],
+    y_reference: List[Any],
+    unique_classes: Optional[List[Any]] = None,
+    class_names: Optional[List[str]] = None,
+) -> List[Any]:
+    """
+    Normalize a list of predicted labels to the same type/domain as the ground-truth labels.
+
+    Handles common LLM outputs such as:
+    - "True"/"False" or "Class True"/"Class False"
+    - "Class_X", "class X", "class: X" → map via unique_classes if provided
+    - Exact string matches with class labels or class_names
+    - Numeric strings → cast to the ground-truth type when appropriate
+
+    Args:
+        predictions: Raw predicted labels (strings, ints, bools, etc.)
+        y_reference: Ground-truth labels slice used to infer the target type (e.g., y_test[:N])
+        unique_classes: Canonical class label values by index (optional but preferred)
+        class_names: Display names per class index (optional)
+
+    Returns:
+        List of predictions converted to the same type space as y_reference.
+    """
+    if not y_reference:
+        return predictions
+
+    tgt_example = y_reference[0]
+    tgt_type = type(tgt_example)
+
+    def _map_class_index(idx: int) -> Any:
+        if unique_classes is not None and 0 <= idx < len(unique_classes):
+            return unique_classes[idx]
+        return idx
+
+    def _convert_single(pred: Any) -> Any:
+        # Already correct type
+        if isinstance(pred, tgt_type):
+            return pred
+
+        # String parsing
+        if isinstance(pred, str):
+            pl = pred.strip().lower()
+
+            # Boolean names
+            if pl in ("true", "class true", "class_true"):
+                return True if isinstance(tgt_example, (bool, np.bool_)) else 1
+            if pl in ("false", "class false", "class_false"):
+                return False if isinstance(tgt_example, (bool, np.bool_)) else 0
+
+            # Class_X patterns
+            import re as _re
+
+            m = _re.search(r"class[_\s]*:?[_\s]*(\d+)", pl)
+            if m:
+                try:
+                    idx = int(m.group(1))
+                    mapped = _map_class_index(idx)
+                    try:
+                        return tgt_type(mapped)
+                    except Exception:
+                        return mapped
+                except Exception:
+                    pass
+
+            # Exact match against unique class labels
+            if unique_classes is not None:
+                for uc in unique_classes:
+                    if pl == str(uc).lower():
+                        try:
+                            return tgt_type(uc)
+                        except Exception:
+                            return uc
+
+            # Match against class_names -> index -> unique_classes
+            if class_names is not None and unique_classes is not None:
+                for i, name in enumerate(class_names):
+                    if pl == str(name).lower():
+                        uc = _map_class_index(i)
+                        try:
+                            return tgt_type(uc)
+                        except Exception:
+                            return uc
+
+            # Numeric fallback
+            try:
+                num = float(pl)
+                if num.is_integer():
+                    num = int(num)
+                return tgt_type(num)
+            except Exception:
+                # Final fallback: first class if available
+                if unique_classes is not None and len(unique_classes) > 0:
+                    try:
+                        return tgt_type(unique_classes[0])
+                    except Exception:
+                        return unique_classes[0]
+                return tgt_example
+
+        # Non-string predictions: attempt direct cast to target type
+        try:
+            return tgt_type(pred)
+        except Exception:
+            return pred
+
+    return [_convert_single(p) for p in predictions]
