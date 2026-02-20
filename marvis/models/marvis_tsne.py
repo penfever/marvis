@@ -2029,7 +2029,13 @@ class MarvisTsneClassifier:
 - Completion Rate: {prediction_context.get('completion_rate', 'N/A')}
 """)
 
-        # Add visualization context if available
+        # Add visualization context
+        has_viz_image = hasattr(self, '_last_viz_image') and self._last_viz_image is not None
+        if has_viz_image:
+            context_parts.append("""
+**Visualization:** The most recent t-SNE visualization from the prediction session is attached to this message. You can see the exact spatial layout of training points, test points, and the query point that was classified. Reference specific visual details (cluster positions, neighbor distributions, color patterns) in your response.
+""")
+
         if prediction_context.get('visualization_context'):
             viz_context = prediction_context['visualization_context']
             context_parts.append(f"""
@@ -2078,34 +2084,25 @@ Based on the context below, please provide a helpful, informative response to th
             # Generate response using the VLM
             self.logger.info("Generating chat response...")
             
+            # Get the stored visualization image from the last prediction (if any)
+            chat_image = getattr(self, '_last_viz_image', None)
+
             # Use the VLM wrapper interface for chat
             if hasattr(self.vlm_wrapper, 'generate_response'):
                 # Use the standard generate_response interface
                 response = self.vlm_wrapper.generate_response(
                     text_input=chat_prompt,
-                    image_input=None,  # Text-only conversation
+                    image_input=chat_image,  # Pass last visualization if available
                     max_tokens=1000,
                     temperature=0.7  # Slightly higher temperature for conversational responses
-                )
-            elif hasattr(self.vlm_wrapper, 'generate'):
-                # Use the direct generate interface with proper parameters
-                from marvis.utils.model_loader import GenerationConfig
-                config = GenerationConfig(
-                    max_new_tokens=512,
-                    temperature=0.7,
-                    do_sample=True,
-                    top_p=0.9
-                )
-                response = self.vlm_wrapper.generate(
-                    inputs=chat_prompt,
-                    config=config
                 )
             elif hasattr(self.vlm_wrapper, 'generate_from_conversation'):
                 # Use conversation interface if available
                 from marvis.utils.model_loader import GenerationConfig
-                conversation = [{"role": "user", "content": chat_prompt}]
+                from marvis.utils.vlm_prompting import create_vlm_conversation
+                conversation = create_vlm_conversation(chat_image, chat_prompt) if chat_image else [{"role": "user", "content": chat_prompt}]
                 config = GenerationConfig(
-                    max_new_tokens=512,
+                    max_new_tokens=1000,
                     temperature=0.7,
                     do_sample=True,
                     top_p=0.9
@@ -2113,6 +2110,19 @@ Based on the context below, please provide a helpful, informative response to th
                 response = self.vlm_wrapper.generate_from_conversation(
                     conversation,
                     config
+                )
+            elif hasattr(self.vlm_wrapper, 'generate'):
+                # Use the direct generate interface with proper parameters
+                from marvis.utils.model_loader import GenerationConfig
+                config = GenerationConfig(
+                    max_new_tokens=1000,
+                    temperature=0.7,
+                    do_sample=True,
+                    top_p=0.9
+                )
+                response = self.vlm_wrapper.generate(
+                    inputs=chat_prompt,
+                    config=config
                 )
             else:
                 # Final fallback - raise informative error

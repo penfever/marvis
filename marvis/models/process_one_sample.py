@@ -566,6 +566,11 @@ def process_one_sample(
 
     # Process image and generate VLM response
     image = _process_image(classifier_instance, image)
+
+    # Store the last visualization image and prompt on the classifier for chat access
+    classifier_instance._last_viz_image = image.copy()
+    classifier_instance._last_viz_prompt = prompt
+
     response = _generate_vlm_response(classifier_instance, image, prompt)
     prediction = _parse_prediction(response, classifier_instance, all_classes)
 

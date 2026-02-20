@@ -603,7 +603,7 @@ def normalize_predictions_to_target(
     Returns:
         List of predictions converted to the same type space as y_reference.
     """
-    if not y_reference:
+    if y_reference is None or len(y_reference) == 0:
         return predictions
 
     tgt_example = y_reference[0]
