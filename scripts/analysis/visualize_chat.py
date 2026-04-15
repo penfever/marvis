@@ -31,21 +31,21 @@ from sklearn.model_selection import train_test_split
 warnings.filterwarnings('ignore')
 
 # ── Visual config ──────────────────────────────────────────────────
-FONT_SIZE = 13          # Large enough for publication
+FONT_SIZE = 13          # Large enough for publication (≈9pt at print after scaling)
 FONT_FAMILY = 'sans-serif'
-LINE_SPACING = 1.45
-CHARS_PER_LINE = 72     # Wider lines to use space efficiently
+LINE_SPACING = 1.35
+CHARS_PER_LINE = 75     # Fits within bubble width at 13pt
 
 USER_COLOR = '#4A90E2'
 ASSISTANT_COLOR = '#50B848'
 BG_COLOR = '#F5F6F8'
 
 BUBBLE_PAD = 0.015      # Internal padding of FancyBboxPatch
-BUBBLE_HMARGIN = 0.04   # Horizontal margin from edge
-GAP_LABEL = 0.012       # Gap between label and bubble top
-GAP_WITHIN = 0.025      # Gap between user bubble bottom and assistant label
-GAP_BETWEEN = 0.045     # Gap between exchanges
-TITLE_AREA = 0.06       # Fraction of figure height for title
+BUBBLE_HMARGIN = 0.03   # Horizontal margin from edge
+GAP_LABEL = 0.008       # Gap between label and bubble top
+GAP_WITHIN = 0.018      # Gap between user bubble bottom and assistant label
+GAP_BETWEEN = 0.030     # Gap between exchanges
+TITLE_AREA = 0.04       # Fraction of figure height for title
 
 
 def wrap_message(text, max_chars=CHARS_PER_LINE, max_lines=None):
@@ -98,8 +98,8 @@ def create_chat_visualization(chat_history, title="MARVIS Chat", output_dir=None
     # ── Pre-compute wrapped text and heights ──────────────────────
     exchanges = []
     for ex in chat_history:
-        u_lines = wrap_message(ex['user'], max_lines=2)
-        a_lines = wrap_message(ex['assistant'], max_lines=12)
+        u_lines = wrap_message(ex['user'], max_lines=1)
+        a_lines = wrap_message(ex['assistant'], max_lines=8)
         u_h = _text_block_height(len(u_lines))
         a_h = _text_block_height(len(a_lines))
         exchanges.append({
@@ -118,9 +118,9 @@ def create_chat_visualization(chat_history, title="MARVIS Chat", output_dir=None
     content_h += 0.04  # bottom padding
 
     # Size figure so content fills nicely: 1 axis-unit ≈ some inches
-    fig_width = 11
-    inches_per_unit = 11  # how many inches per 1.0 of axis height
-    fig_height = max(content_h * inches_per_unit, 6)
+    fig_width = 10
+    inches_per_unit = 5  # compact: target ~8in tall for 3 exchanges
+    fig_height = max(content_h * inches_per_unit, 5)
 
     fig, ax = plt.subplots(figsize=(fig_width, fig_height))
     ax.set_xlim(0, 1)
@@ -142,7 +142,7 @@ def create_chat_visualization(chat_history, title="MARVIS Chat", output_dir=None
 
     for i, ex in enumerate(exchanges):
         # ── User bubble (right-aligned) ───────────────────────────
-        u_w = 0.52
+        u_w = 0.55
         u_x = 1.0 - BUBBLE_HMARGIN - u_w
 
         # Label
@@ -159,7 +159,7 @@ def create_chat_visualization(chat_history, title="MARVIS Chat", output_dir=None
         y -= (u_h + GAP_WITHIN)
 
         # ── Assistant bubble (left-aligned) ───────────────────────
-        a_w = 0.70
+        a_w = 0.82
         a_x = BUBBLE_HMARGIN
 
         # Label
